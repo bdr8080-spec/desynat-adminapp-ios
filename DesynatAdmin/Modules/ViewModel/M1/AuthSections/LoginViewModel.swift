@@ -1,0 +1,65 @@
+//
+//  LoginViewModel.swift
+//  DesynatUser
+//
+//  Created by Rakhi Kumari on 28/10/25.
+//
+
+
+import Foundation
+import UIKit
+
+class LoginViewModel: NSObject {
+    
+    private var loginHostVC: LoginViewController
+    
+    init(loginHostVC: LoginViewController) {
+        self.loginHostVC = loginHostVC
+    }
+    
+    func validFields() -> Bool {
+        var errorMessage: AlertConstant = .none
+        let input = String.getString(loginHostVC.emailTextField.text).trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if input.isEmpty {
+            errorMessage = .EnterEmailOrMobileNumber
+        } else if input.isEmail() {
+            if !input.isValidEmail() {
+                errorMessage = .EnterValidEmailAddress
+            }
+        } else if input.isPhoneNumber() {
+            if !input.isValidPhoneNumber() {
+                errorMessage = .validMobileNumber
+            }
+        } else {
+            errorMessage = .EnterValidEmail
+        }
+        
+        let password = String.getString(loginHostVC.passwordTextField.text).trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if errorMessage == .none {
+            if password.isEmpty {
+                errorMessage = .EnterPassword
+            } else if !password.isValidPassword() {
+                errorMessage = .InvalidPasswordFormat
+            }
+        }
+        
+        if errorMessage != .none {
+            loginHostVC.showAlert(msg: errorMessage.rawValue)
+        }
+        
+        loginHostVC.view.endEditing(true)
+        return errorMessage == .none
+    }
+    
+    func loginApi() {
+        let params: [String:Any] = [
+            "email": loginHostVC.emailTextField.text?.trimmed() ?? "",
+            "password": loginHostVC.passwordTextField.text?.trimmed() ?? ""]
+        WebService.sharedInstance.loginUserService(withParams: params) { (response) in
+            kSharedSceneDelegate.navigateToUserHomeVc()
+        }
+    }
+}
+
