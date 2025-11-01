@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CategoryTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var statusImageView: UIImageView!
     @IBOutlet weak var mainContentView: CustomView!
     @IBOutlet weak var rightImageView: CustomImageView!
     @IBOutlet weak var leftImageView: CustomImageView!
@@ -17,6 +19,7 @@ class CategoryTableViewCell: UITableViewCell {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var statusButton: UIButton!
     
+    var onStatusToggle: (() -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,8 +27,34 @@ class CategoryTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    }
+    
+    @IBAction func statusButtonTapped(_ sender: UIButton) {
+            onStatusToggle?()
+        }
+    
+    func configData(data: GetCategoryModel) {
+        titleLabel.text = data.name
+        descriptionLabel.text = data.description
+        if let imageUrlString = data.image,
+           let url = URL(string: imageUrlString) {
+            leftImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "categorySub"))
+            rightImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "categorySub"))
+        } else {
+            leftImageView.image = UIImage(named: "categorySub")
+            rightImageView.image = UIImage(named: "categorySub")
+        }
+        
+        if data.status == 1 {
+            statusLabel.text = "Active"
+            statusImageView.image = UIImage(named: "toggleOn")
+        } else {
+            statusLabel.text = "Inactive"
+            statusImageView.image = UIImage(named: "toggleOff")
+        }
+        
+        mainContentView.backgroundColor = UIColor(hexString: data.colorCode ?? "")
+        
     }
     
 }

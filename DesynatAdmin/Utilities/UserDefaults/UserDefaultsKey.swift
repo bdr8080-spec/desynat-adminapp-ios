@@ -65,6 +65,16 @@ extension UserDefaults {
         }
     }
     
+    func retrieveModelFor<T: Decodable>(key: UserDefaultsKey, model: T.Type) -> T? {
+        guard let data = self.data(forKey: key.rawValue) else { return nil }
+        do {
+            let decodedObject = try JSONDecoder().decode(model, from: data)
+            return decodedObject
+        } catch {
+            print("❌ Failed to decode model for key \(key.rawValue): \(error)")
+            return nil
+        }
+    }
     
     func isUserLoggedIn() -> Bool {
         return self.bool(forKey: kIsUserLoggedIn)

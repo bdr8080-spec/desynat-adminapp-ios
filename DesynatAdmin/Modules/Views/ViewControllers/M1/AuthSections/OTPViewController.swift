@@ -61,6 +61,7 @@ class OTPViewController: UIViewController {
     
     @IBAction func buttonResend(_ sender: UIButton) {
         startTimer()
+        viewModel.resendOtpAPI()
     }
     
     // MARK: - Timer Handling

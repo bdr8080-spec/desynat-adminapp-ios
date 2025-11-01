@@ -44,9 +44,22 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var totalOnlineUserCountLabel: UILabel!
     @IBOutlet weak var userVisitWebsiteLabel: UILabel!
     @IBOutlet weak var userVisitLabel: UILabel!
+    @IBOutlet weak var countryTableViewHeightConstarint: NSLayoutConstraint!
+    @IBOutlet weak var dropdownCountryLabel: CustomLabelFont!
+    @IBOutlet weak var countryDropDownView: CustomView!
+    @IBOutlet weak var selectedCountryView: CustomView!
+    @IBOutlet weak var selectedCountryLabel: CustomLabelFont!
+    @IBOutlet weak var dropDownCountryImage: UIImageView!
+    @IBOutlet weak var extraSpaceLabel: UILabel!
+    @IBOutlet weak var dropDownCountryFlagEmoji: CustomLabelFont!
     @IBOutlet weak var durationCollectionView: UICollectionView! {
         didSet {
             durationCollectionView.registerCellFromNib(cellID: "DurationCollectionViewCell")
+        }
+    }
+    @IBOutlet weak var countryTableView: TableViewDynamicHeight! {
+        didSet {
+            countryTableView.registerCellFromNib(cellID: "CountryTableViewCell")
         }
     }
     
@@ -54,12 +67,26 @@ class HomeViewController: UIViewController {
     private var durationSelectedIndex: Int = 0
     let datePicker = UIDatePicker()
     private var activeTextField: UITextField?
+    private var selectedCountryIndex: Int = 0
+    private lazy var viewModel = HomeViewModel(hostVC: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         uiSetup()
         bindData()
         setUpTextFields()
+        countryDropDownView.isHidden = true
+        selectedCountryView.isHidden = false
+        extraSpaceLabel.isHidden = true
+        viewModel.getAllCountry()
+        viewModel.getUserData()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        DispatchQueue.main.async {
+            self.countryTableViewHeightConstarint.constant = self.countryTableView.contentSize.height
+        }
     }
     
     @IBAction func profileButtonAction(_ sender: Any) {
@@ -68,11 +95,19 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func chooseCountryDidTapepd(_ sender: Any) {
-        
+        selectedCountryView.isHidden = true
+        countryDropDownView.isHidden = false
+        extraSpaceLabel.isHidden = false
     }
     
     @IBAction func exportDidTapped(_ sender: Any) {
         
+    }
+    
+    @IBAction func selectedCountryDropDownButtonAction(_ sender: Any) {
+        selectedCountryView.isHidden = false
+        extraSpaceLabel.isHidden = true
+        countryDropDownView.isHidden = true
     }
     
     private func bindData() {
@@ -94,6 +129,8 @@ class HomeViewController: UIViewController {
         revenueDetailsView.clipsToBounds = true
 
     }
+    
+    
     
 }
 
@@ -118,7 +155,38 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         durationCollectionView.reloadData()
     }
     
+}
+
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.countryListData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CountryTableViewCell", for: indexPath) as! CountryTableViewCell
+        let data = viewModel.countryListData[indexPath.row]
+        cell.configData(data: data)
+        if indexPath.row == selectedCountryIndex {
+            cell.selectedImageView.image = UIImage(named: "radioSelected")
+        } else {
+            cell.selectedImageView.image = UIImage(named: "radioUnselected")
+        }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedCountryIndex = indexPath.row
+        let data = viewModel.countryListData[indexPath.row]
+        dropdownCountryLabel.text = data.name
+        dropDownCountryFlagEmoji.text = data.flag
+        selectedCountryLabel.text = data.name
+        countryTableView.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        viewWillLayoutSubviews()
+    }
     
 }
 

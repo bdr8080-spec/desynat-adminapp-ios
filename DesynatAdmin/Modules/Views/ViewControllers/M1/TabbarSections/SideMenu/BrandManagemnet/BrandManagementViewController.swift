@@ -9,6 +9,9 @@ import UIKit
 
 class BrandManagementViewController: UIViewController {
 
+    @IBOutlet weak var noDataFoundLabel: UILabel!
+    @IBOutlet weak var previousButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var pageCountLabel: UILabel!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var brandTableView: UITableView! {
@@ -17,8 +20,19 @@ class BrandManagementViewController: UIViewController {
         }
     }
     
+    private lazy var viewModel = BrandViewModel(hostVC: self)
+    private var searchWorkItem: DispatchWorkItem?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchTextField.delegate = self
+        updatePaginationButtonImages()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.currentPage = 1
+        viewModel.getAllBrands()
     }
 
     @IBAction func backDidTapped(_ sender: Any) {
@@ -26,16 +40,37 @@ class BrandManagementViewController: UIViewController {
     }
     
     @IBAction func plusDidTapped(_ sender: Any) {
-//        let vc = SubCategoryViewController.instantiate(fromAppStoryboard: .SideMenu)
-//        self.navigationController?.pushViewController(vc, animated: false)
+        let vc = AddNewBrandViewController.instantiate(fromAppStoryboard: .SideMenu)
+        vc.isComingForEdit = false
+        self.navigationController?.pushViewController(vc, animated: false)
     }
     
     @IBAction func nextButtonAction(_ sender: Any) {
-        
+        viewModel.goToNextPage()
     }
     
     @IBAction func previousButtonAction(_ sender: Any) {
-        
+        viewModel.goToPreviousPage()
+    }
+    
+    func updatePaginationButtonImages() {
+        // Previous Button
+        if viewModel.currentPage == 1 {
+            previousButton.setImage(UIImage(named: "previousLeft"), for: .normal)
+            previousButton.isUserInteractionEnabled = false
+        } else {
+            previousButton.setImage(UIImage(named: "darkpreviousimage"), for: .normal)
+            previousButton.isUserInteractionEnabled = true
+        }
+
+        // Next Button
+        if viewModel.currentPage >= viewModel.totalPages {
+            nextButton.setImage(UIImage(named: "lightnextimage"), for: .normal)
+            nextButton.isUserInteractionEnabled = false
+        } else {
+            nextButton.setImage(UIImage(named: "nextRight"), for: .normal)
+            nextButton.isUserInteractionEnabled = true
+        }
     }
     
     
@@ -44,11 +79,13 @@ class BrandManagementViewController: UIViewController {
 extension BrandManagementViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return viewModel.brandListData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BrandManagementTableViewCell", for: indexPath) as! BrandManagementTableViewCell
+        let data = viewModel.brandListData[indexPath.row]
+        cell.configData(data: data)
         return cell
     }
     
@@ -58,10 +95,31 @@ extension BrandManagementViewController: UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = BrandDetailsViewController.instantiate(fromAppStoryboard: .SideMenu)
+        vc.brandData = viewModel.brandListData[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: false)
     }
     
-    
 }
 
-
+extension BrandManagementViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? ""
+        
+        // Cancel previous search work item
+        searchWorkItem?.cancel()
+        
+        // Create new one
+        let workItem = DispatchWorkItem { [weak self] in
+            guard let self = self else { return }
+            self.viewModel.searchText = currentText
+            self.viewModel.currentPage = 1
+            self.viewModel.getAllBrands()
+        }
+        
+        // Store and execute after delay
+        searchWorkItem = workItem
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: workItem)
+        
+        return true
+    }
+}

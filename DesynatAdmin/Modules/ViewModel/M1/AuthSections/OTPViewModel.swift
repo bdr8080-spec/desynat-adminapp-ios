@@ -30,4 +30,11 @@ class OTPViewModel: NSObject {
             }
         }
     }
+    
+    func resendOtpAPI() {
+        var params: [String: Any] = ["email": hostVC.phoneNumber ?? ""]
+        WebService.sharedInstance.resendOTPService(withParams: params){ otp in
+            
+        }
+    }
 }

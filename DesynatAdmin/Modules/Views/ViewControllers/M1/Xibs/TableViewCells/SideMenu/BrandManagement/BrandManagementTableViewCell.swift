@@ -26,4 +26,14 @@ class BrandManagementTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func configData(data: GetBrandDataList?) {
+        titleLabel.text = data?.nameEnglish
+        if let imageUrlString = data?.image,
+           let url = URL(string: imageUrlString) {
+            mainImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "subCategory"))
+        } else {
+            mainImageView.image = UIImage(named: "subCategory")
+        }
+    }
+    
 }

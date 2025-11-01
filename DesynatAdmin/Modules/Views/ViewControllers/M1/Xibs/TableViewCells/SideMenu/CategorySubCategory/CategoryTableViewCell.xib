@@ -34,6 +34,9 @@
                                 <color key="textColor" red="0.26666668059999998" green="0.55686277149999996" blue="0.1686274707" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="toggleOn" translatesAutoresizingMaskIntoConstraints="NO" id="sXi-vF-xcp">
+                                <rect key="frame" x="422" y="184.66666666666666" width="40" height="22"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dhJ-ec-QUc">
                                 <rect key="frame" x="422" y="184.66666666666666" width="40" height="22"/>
                                 <constraints>
@@ -41,15 +44,22 @@
                                     <constraint firstAttribute="height" constant="22" id="VBp-7o-Au2"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="toggleOn"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                                <connections>
+                                    <action selector="statusButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="n2r-cs-Z77"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="219" id="J4p-BD-vVh"/>
+                            <constraint firstItem="dhJ-ec-QUc" firstAttribute="top" secondItem="sXi-vF-xcp" secondAttribute="top" id="KX6-Rh-cmO"/>
+                            <constraint firstItem="dhJ-ec-QUc" firstAttribute="bottom" secondItem="sXi-vF-xcp" secondAttribute="bottom" id="KyK-mp-SCp"/>
                             <constraint firstItem="dhJ-ec-QUc" firstAttribute="centerY" secondItem="RaA-yA-EUj" secondAttribute="centerY" id="LLF-vK-KYj"/>
                             <constraint firstItem="RaA-yA-EUj" firstAttribute="leading" secondItem="Qfm-6W-PLg" secondAttribute="leading" constant="20" id="PJL-X5-LIj"/>
                             <constraint firstAttribute="trailing" secondItem="dhJ-ec-QUc" secondAttribute="trailing" constant="20" id="Ti9-Ri-DPD"/>
+                            <constraint firstItem="dhJ-ec-QUc" firstAttribute="trailing" secondItem="sXi-vF-xcp" secondAttribute="trailing" id="hgU-Sy-jVo"/>
+                            <constraint firstItem="dhJ-ec-QUc" firstAttribute="leading" secondItem="sXi-vF-xcp" secondAttribute="leading" id="o7z-ZL-nKc"/>
                             <constraint firstAttribute="bottom" secondItem="RaA-yA-EUj" secondAttribute="bottom" constant="15" id="x7q-Gg-Q2O"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -85,7 +95,7 @@
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="hGO-HA-rhC">
                         <rect key="frame" x="40" y="9" width="442" height="172"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="categorySub" translatesAutoresizingMaskIntoConstraints="NO" id="lDN-nQ-1FY" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lDN-nQ-1FY" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="115" height="172"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="lDN-nQ-1FY" secondAttribute="height" multiplier="115:172" id="cqC-Rq-B4O"/>
@@ -94,8 +104,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sSV-a7-4Ky">
                                 <rect key="frame" x="135" y="0.0" width="172" height="172"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="4nP-ub-PY8">
-                                        <rect key="frame" x="0.0" y="40" width="172" height="112"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="4nP-ub-PY8">
+                                        <rect key="frame" x="0.0" y="40" width="172" height="92"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Women" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="312-YF-Nau">
                                                 <rect key="frame" x="0.0" y="0.0" width="172" height="28"/>
@@ -104,7 +114,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r0p-6O-ALP">
-                                                <rect key="frame" x="0.0" y="33" width="172" height="79"/>
+                                                <rect key="frame" x="0.0" y="30" width="172" height="62"/>
                                                 <string key="text">From casual wear to formal
 looks, explore the latest
 in men’s fashion, accessories,
@@ -117,20 +127,22 @@ and more.</string>
                                     </stackView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="4nP-ub-PY8" firstAttribute="centerY" secondItem="sSV-a7-4Ky" secondAttribute="centerY" id="3qD-Y1-mOE"/>
                                     <constraint firstAttribute="trailing" secondItem="4nP-ub-PY8" secondAttribute="trailing" id="DgE-UN-HAY"/>
-                                    <constraint firstAttribute="bottom" secondItem="4nP-ub-PY8" secondAttribute="bottom" constant="20" id="ZkE-IU-EQf"/>
                                     <constraint firstItem="4nP-ub-PY8" firstAttribute="leading" secondItem="sSV-a7-4Ky" secondAttribute="leading" id="dFR-4u-ymU"/>
                                     <constraint firstAttribute="width" secondItem="sSV-a7-4Ky" secondAttribute="height" id="lZn-we-JxY"/>
-                                    <constraint firstItem="4nP-ub-PY8" firstAttribute="top" secondItem="sSV-a7-4Ky" secondAttribute="top" constant="40" id="yKX-hV-fEc"/>
+                                    <constraint firstItem="4nP-ub-PY8" firstAttribute="top" relation="greaterThanOrEqual" secondItem="sSV-a7-4Ky" secondAttribute="top" constant="40" id="yKX-hV-fEc"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="categorySub" translatesAutoresizingMaskIntoConstraints="NO" id="CjE-fx-q0w" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CjE-fx-q0w" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
                                 <rect key="frame" x="327" y="0.0" width="115" height="172"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="CjE-fx-q0w" secondAttribute="height" multiplier="115:172" id="HlW-BO-5DJ"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="height" constant="172" id="Ce6-aG-waL"/>
-                            <constraint firstItem="CjE-fx-q0w" firstAttribute="width" secondItem="CjE-fx-q0w" secondAttribute="height" multiplier="115:172" id="HlW-BO-5DJ"/>
                         </constraints>
                     </stackView>
                 </subviews>
@@ -154,6 +166,7 @@ and more.</string>
                 <outlet property="mainContentView" destination="xmH-D5-fAZ" id="MKg-nu-a4B"/>
                 <outlet property="rightImageView" destination="CjE-fx-q0w" id="f4o-is-1tw"/>
                 <outlet property="statusButton" destination="dhJ-ec-QUc" id="BHz-7E-DNJ"/>
+                <outlet property="statusImageView" destination="sXi-vF-xcp" id="zj4-ue-U3L"/>
                 <outlet property="statusLabel" destination="RaA-yA-EUj" id="HFO-9J-19g"/>
                 <outlet property="titleLabel" destination="312-YF-Nau" id="MN5-BF-oha"/>
             </connections>
@@ -161,13 +174,12 @@ and more.</string>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="categorySub" width="115" height="172"/>
         <image name="toggleOn" width="40" height="22"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

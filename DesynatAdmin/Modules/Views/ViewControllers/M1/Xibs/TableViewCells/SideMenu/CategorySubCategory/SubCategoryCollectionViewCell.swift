@@ -14,7 +14,17 @@ class SubCategoryCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+    }
+    
+    func configData(data: GetSubCategoryDataList) {
+        titleLabel.text = data.nameEnglish
+        if let imageUrlString = data.image,
+           let url = URL(string: imageUrlString) {
+            mainImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "categorySub"))
+        } else {
+            mainImageView.image = UIImage(named: "categorySub")
+        }
+        
     }
 
 }

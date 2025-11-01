@@ -22,24 +22,117 @@ extension UIViewController {
 //        self.present(alert, animated: true)
 //    }
     
-    public func showAlert(msg: String, completion: (() -> Void)? = nil) {
-            // Prevent multiple alerts
-            guard !UIViewController.isAlertVisible else { return }
-            UIViewController.isAlertVisible = true
-            
-            DispatchQueue.main.async {
-                let alert = UIAlertController(title: Bundle.main.ApplicationName ?? "",
-                                              message: msg,
-                                              preferredStyle: .alert)
-                
-                alert.addAction(UIAlertAction(title: StringConstant.ok.value(), style: .default, handler: { _ in
-                    UIViewController.isAlertVisible = false   // reset flag
-                    completion?()
-                }))
-                
-                self.present(alert, animated: true)
-            }
+//    public func showAlert(title: String? = StringConstant.ok.value(), msg: String, completion: (() -> Void)? = nil) {
+//            // Prevent multiple alerts
+//            guard !UIViewController.isAlertVisible else { return }
+//            UIViewController.isAlertVisible = true
+//            
+//            DispatchQueue.main.async {
+//                let alert = UIAlertController(title: Bundle.main.ApplicationName ?? "",
+//                                              message: msg,
+//                                              preferredStyle: .alert)
+//                
+//                alert.addAction(UIAlertAction(title: title, style: .default, handler: { _ in
+//                    UIViewController.isAlertVisible = false   // reset flag
+//                    completion?()
+//                }))
+//                
+//                self.present(alert, animated: true)
+//            }
+//        }
+    
+    
+    public func showAlert(buttonTitle: String? = nil, msg: String, completion: (() -> Void)? = nil) {
+        // Prevent multiple alerts
+        guard !UIViewController.isAlertVisible else { return }
+        UIViewController.isAlertVisible = true
+
+        DispatchQueue.main.async {
+            let alert = UIAlertController(
+                title: Bundle.main.ApplicationName ?? "",
+                message: msg,
+                preferredStyle: .alert
+            )
+
+            let actionTitle = buttonTitle ?? StringConstant.ok.value()
+            alert.addAction(UIAlertAction(title: actionTitle, style: .default, handler: { _ in
+                UIViewController.isAlertVisible = false
+                completion?()
+            }))
+
+            self.present(alert, animated: true)
         }
+    }
+    
+//    public func showConfirmationAlert(msg: String,completion: (() -> Void)? = nil) {
+//        // Prevent multiple alerts
+//        guard !UIViewController.isAlertVisible else { return }
+//        UIViewController.isAlertVisible = true
+//
+//        DispatchQueue.main.async {
+//            let alert = UIAlertController(
+//                title: Bundle.main.ApplicationName ?? "",
+//                message: msg,
+//                preferredStyle: .alert
+//            )
+//
+//            // Yes Action
+//            let yesButton = UIAlertAction(title: "Yes", style: .default) { _ in
+//                UIViewController.isAlertVisible = false
+//                completion?()
+//            }
+//
+//            // Cancel Action (just dismiss)
+//            let cancelButton = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+//                UIViewController.isAlertVisible = false
+//            }
+//
+//            alert.addAction(yesButton)
+//            alert.addAction(cancelButton)
+//
+//            self.present(alert, animated: true)
+//        }
+//    }
+    
+    public func showConfirmationAlert(
+        msg: String,
+        completion: (() -> Void)? = nil
+    ) {
+        // Prevent multiple alerts
+        guard !UIViewController.isAlertVisible else { return }
+        UIViewController.isAlertVisible = true
+
+        DispatchQueue.main.async {
+            let alert = UIAlertController(
+                title: Bundle.main.ApplicationName ?? "",
+                message: msg,
+                preferredStyle: .alert
+            )
+
+            // Yes Action
+            let yesButton = UIAlertAction(title: "Yes", style: .default) { _ in
+                UIViewController.isAlertVisible = false
+                completion?()
+            }
+
+            // Cancel Action (red color)
+            let cancelButton = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+                UIViewController.isAlertVisible = false
+            }
+
+            // Apply red color to Cancel button text
+            cancelButton.setValue(UIColor.red, forKey: "titleTextColor")
+
+            alert.addAction(yesButton)
+            alert.addAction(cancelButton)
+
+            self.present(alert, animated: true)
+        }
+    }
+
+
+
+
     
     static func convertPDFToImages(pdfURL: URL) -> [UIImage]? {
         guard let pdfDocument = PDFDocument(url: pdfURL) else {

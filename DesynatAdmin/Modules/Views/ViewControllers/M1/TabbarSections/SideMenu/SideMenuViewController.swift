@@ -46,10 +46,16 @@ class SideMenuViewController: UIViewController {
         SideMenuModel(title: "Reason Management", image: "reason"),
         SideMenuModel(title: "CMS", image: "cms"),
         SideMenuModel(title: "Support Chat", image: "support")]
+    private lazy var viewModel = SideMenuViewModel(hostVC: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateTableHeight()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.getUserData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -69,7 +75,10 @@ class SideMenuViewController: UIViewController {
     }
     
     @IBAction func logoutDidTapped(_ sender: Any) {
-        
+        self.showConfirmationAlert(msg: "Are you sure you want to logout?"){ [weak self] in
+            guard let self = self else { return }
+            self.viewModel.logoutAPI()
+        }
     }
     
 }
