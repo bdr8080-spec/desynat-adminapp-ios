@@ -37,6 +37,7 @@ extension WebService {
                     kSharedUserDefaults.saveModelFor(key: .user, value: response)
                     kSharedUserDefaults.saveStringFor(Key: .accessToken, value: String.getString(response.accessToken))
                     kSharedUserDefaults.setUserLoggedIn(userLoggedIn: true)
+                    CommonUtils.showToast(message: "Login Succesfully")
                     completion(response)
                 }
             }
@@ -51,6 +52,8 @@ extension WebService {
                 if let error {
                     UIApplication.shared.topViewController()?.showAlert(msg: error)
                 } else if let response {
+//                    CommonUtils.showToast(message: message ?? "Opt sent to your email address succesfully")
+                    CommonUtils.showToastForOTP(message: "Opt sent to your email address succesfully")
                     completion(response)
                 }
             }
@@ -79,7 +82,7 @@ extension WebService {
                 if let error {
                     UIApplication.shared.topViewController()?.showAlert(msg: error)
                 } else if let response {
-                    CommonUtils.showToast(message: message ?? "OTP Sent Successfully")
+                    CommonUtils.showToastForOTP(message: message ?? "OTP Sent Successfully")
                     completion(response)
                 }
             }

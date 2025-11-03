@@ -20,8 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         IQKeyboardManager.shared.enableAutoToolbar = true
         IQKeyboardManager.shared.isEnabled = true
+        UIScrollView.appearance().showsVerticalScrollIndicator = false
+        UIScrollView.appearance().showsHorizontalScrollIndicator = false
         GMSServices.provideAPIKey("AIzaSyBlCfJlRuxElolt6l-4erdJPR9ySUB8Jwk")    // Our google map API
         GMSPlacesClient.provideAPIKey("AIzaSyAekJV3oxQlPy_OWHCxPYfFw5CnrD-Wzkg")
+        LocationManager.sharedInstance.startUpdatingLocation()
+        ImagePickerManager.shared.requestMediaPermissions()
+        requestNotificationPermission()
         return true
     }
 
@@ -39,9 +44,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
+    // 🔹 Called when APNs registration succeeds
+       func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+           let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+           print("📱 Device Token: \(token)")
+       }
+
+       // 🔹 Called when APNs registration fails
+       func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+           print("❌ Failed to register for remote notifications: \(error.localizedDescription)")
+       }
+
 
 }
 
 
 
 
+// MARK: - Permissions
+extension AppDelegate {
+
+    func requestNotificationPermission() {
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+                if let error = error {
+                    print("❌ Notification permission error: \(error.localizedDescription)")
+                } else {
+                    print("🔔 Notification permission granted: \(granted)")
+                    if granted {
+                        DispatchQueue.main.async {
+                            UIApplication.shared.registerForRemoteNotifications()
+                        }
+                    }
+                }
+            }
+        }
+
+}

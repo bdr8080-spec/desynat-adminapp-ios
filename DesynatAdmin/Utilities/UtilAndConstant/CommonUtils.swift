@@ -261,8 +261,22 @@ class CommonUtils {
         }
     
     static func showToast(message: String) {
-        FTIndicator.showNotification(withTitle: "Altair",
+        FTIndicator.showNotification(withTitle: Bundle.main.ApplicationName ?? "",
         message: message.count>0 ? message: "Message")
         
     }
+    
+    
+    static func showToastForOTP(message: String) {
+        let title = Bundle.main.ApplicationName ?? ""
+        let displayMessage = message.isEmpty ? "Message" : message
+        
+        FTIndicator.showNotification(withTitle: title, message: displayMessage)
+        
+        // ⏳ Keep visible for 4 seconds
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+            FTIndicator.dismissNotification()
+        }
+    }
+
 }

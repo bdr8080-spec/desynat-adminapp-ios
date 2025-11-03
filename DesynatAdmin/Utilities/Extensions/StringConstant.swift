@@ -18,7 +18,7 @@ enum StringConstant: String {
 }
 
 enum AlertConstant: String {
-
+    
     case none = ""
     /// Network validation
     case noInternet                 = "Network connection failed. Please check your internet and try again."
@@ -33,51 +33,30 @@ enum AlertConstant: String {
     case decodingError              = "Failed to decode response"
     
     ///Validation Error Message
-    case EnterEmailOrMobileNumber   = "Please Enter Email ID or Mobile Number"
-    case EnterEmail                 = "Please Enter Email ID"
+    case EnterEmailAddress          = "Please Enter Emaill address"
+//    case EnterEmail                 = "Please Enter Email ID"
     case EnterMobileNumber          = "Please Enter Mobile Number"
     case EnterValidEmailAddress     = "Please Enter Valid Email"
     case validMobileNumber          = "Please enter valid mobile number between 7 to 15 digits"
-    case EnterFullName             = "Please enter your full name."
-    case EnterValidEmail   = "Please Enter Valid Email ID"
-    case EnterPassword              = "Please enter your password"
+    case EnterFullName              = "Please enter your full name"
+    case EnterValidEmail            = "Please Enter Valid Email address"
+    case EnterPassword              = "Please Enter Password"
     case InvalidPasswordFormat      = "Password must be at least 8 characters long, include 1 uppercase, 1 lowercase, and 1 special character"
-    case EnterNewPassword           = "Please enter a new password."
-    case EnterConfirmPassword       = "Please confirm your password."
-    case PasswordNotMatched         = "Passwords do not match."
-//    case SelectProfileImage         = "Please select a profile image."
+    case EnterNewPassword           = "Please Enter New Pasword"
+    case EnterConfirmPassword       = "Please ReEnter Confrim Pasword"
+    case PasswordNotMatched         = "Passwords do not match"
+    case AcceptTermsAndConditions   = "Please accept the Terms & Conditions to continue"
+    case SelectSubCategoryImage     = "Please Upload Sub Category Image"
+    case EnterSubCategoryEnglish    = "Please enter sub-category name in english"
+    case EnterSubCategoryArabic     = "Please enter sub-category name in arabic"
+    case EnterBrandEnglish          = "Please enter brand name in english"
+    case EnterBrandArabic           = "Please enter brand name in arabic"
+    case SelectBrandImage           = "Please Upload brand image"
     
-//    case EnterLastName              = "Please enter your last name."
-    case AcceptTermsAndConditions   = "Please accept the Terms & Conditions to continue."
-    case SelectSubCategoryImage     = "Please select a sub-category image."
-    case EnterSubCategoryEnglish    = "Please enter sub-category name in english."
-    case EnterSubCategoryArabic     = "Please enter sub-category name in arabic."
-    case EnterBrandEnglish          = "Please enter brand name in english."
-    case EnterBrandArabic           = "Please enter brand name in arabic."
-    case SelectBrandImage           = "Please select a brand image."
-//    case EnterStoreAddress          = "Please enter store address."
-//    case EnterAddressLine1          = "Please enter address line 1."
-//    case EnterAddressLine2          = "Please enter address line 2."
-//    case EnterPhoneNumber           = "Please enter phone number."
-//    case EnterValidStoreMobileNumber     = "Please enter valid store mobile number."
-//    case EnterStoreEmail            = "Please enter store email."
-//    case EnterValidStoreEmailAddress = "Please enter valid store email address."
-//    case EnterBio                   = "Please enter store bio."
-//    case UploadStoreImage           = "Please upload store image."
-//    case UploadOwnerDoc1            = "Please upload owner document 1."
-//    case UploadOwnerDoc2            = "Please upload owner document 2."
-//    case UploadStoreDoc1            = "Please upload store document 1."
-//    case UploadStoreDoc2            = "Please upload store document 2."
-//    case UploadAccountHolderImage   = "Please upload account holder image."
-//    case SelectAccountType          = "Please select an account type."
-//    case EnterIBAN                  = "Please enter IBAN number."
-//    case EnterSWIFT                 = "Please enter SWIFT/BIC code."
-//    case EnterBankName              = "Please enter bank name."
-//    case EnterAccountHolder         = "Please enter account holder name."
-
-func value() -> String {
-    return self.rawValue
-}
+    
+    func value() -> String {
+        return self.rawValue
+    }
 }
 
 struct MatchCharacterConstant {

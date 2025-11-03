@@ -25,7 +25,7 @@ struct StringValidation {
     enum Validation {
         case none, firstName, lastName, mobileNo, tableName, packageName,
              time, cardExpiration, cvv, bankName, accountNo, accountHolderName, emailId, bankCode,
-             cost, noBookings, password, agencyName, managerCode, unitNumber, buildingName, dewaNo, area, specialRequest
+             cost, noBookings, password, agencyName, managerCode, unitNumber, buildingName, dewaNo, area, specialRequest, brandNameInEnglish
         
         var matchCharacter: String {
             switch self {
@@ -33,7 +33,7 @@ struct StringValidation {
                 return ""
             case .firstName:
                 return MatchCharacterConstant.capitalAlphabet + MatchCharacterConstant.smallAlphabet + " "
-            case .lastName:
+            case .lastName, .brandNameInEnglish:
                 return MatchCharacterConstant.capitalAlphabet + MatchCharacterConstant.smallAlphabet
             case .mobileNo, .accountNo, .cvv, .cost, .noBookings, .dewaNo:
                 return MatchCharacterConstant.number
