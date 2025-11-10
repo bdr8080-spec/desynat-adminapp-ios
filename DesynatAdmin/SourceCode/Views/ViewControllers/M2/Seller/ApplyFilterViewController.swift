@@ -16,10 +16,10 @@ class ApplyFilterViewController: UIViewController {
     @IBOutlet weak var lnlFlag: CustomLabelFont!
     @IBOutlet weak var txtFieldFrom: UITextField!
     @IBOutlet weak var txtFieldTo: UITextField!
-    
-    private var viewModel : FilterViewModel = FilterViewModel()
     @IBOutlet weak var tblCountry: TableViewDynamicHeight!
     
+    
+    private var viewModel : FilterViewModel = FilterViewModel()
     private var isCountryExpanded : Bool = false
     private var callBackFromApplyFilter : ((FilterInfo) -> Void)?
     private var lastEditedTextField : UITextField?
@@ -188,7 +188,7 @@ extension ApplyFilterViewController: UITableViewDelegate, UITableViewDataSource 
     
 }
 extension ApplyFilterViewController:HandleTableRefresh {
-    func refreshTable() {
+    func refreshTable(for string: String) {
         self.tblCountry.reloadData()
     }
 }

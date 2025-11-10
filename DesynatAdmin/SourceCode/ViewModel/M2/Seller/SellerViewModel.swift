@@ -29,11 +29,12 @@ struct SellerListInfo    {
         self.handler?.rejectSeller(self)
     }
     
-    static func makeInfo(_ data:SellerDataModel,country:String,handler:HandleSellerAction?,status:SellersTab) -> Self {
+    static func makeInfo(_ data:SellerDataModel,handler:HandleSellerAction?,status:SellersTab) -> Self {
         SellerListInfo(
             id:String.getString(data.id),
             name: "\(String.getString(data.firstName)) \(String.getString(data.lastName))",
-            country: country,
+            image: String.getString(data.profilePic),
+            country: String.getString(data.storeInfo?.countryInfo?.name),
             joinedOn: CommonUtils.getDateString(from: Date(iso8601String: String.getString(data.createdAt)),format: "dd/MM/yyyy"),
             mobileNumber: "\(String.getString(data.countryCode))-\(String.getString(data.mobile))",
             totalOrders: "0",
@@ -46,8 +47,9 @@ struct SellerListInfo    {
     }
 }
 protocol HandleTableRefresh {
-    func refreshTable()
+    func refreshTable(for string:String)
 }
+
 protocol HandleSellerAction {
     func aprovedSeller(_ data:SellerListInfo)
     func rejectSeller(_ data:SellerListInfo)
@@ -55,6 +57,18 @@ protocol HandleSellerAction {
 
 enum SellersTab:Int {
 case none = 0, new,approved,reject
+    var title:String {
+        switch self {
+        case .none:
+            ""
+        case .new:
+            "Pending"
+        case .approved:
+            "Approved"
+        case .reject:
+            "Rejected"
+        }
+    }
 }
 struct FilterInfo {
     var searchText:String = ""
@@ -64,7 +78,7 @@ struct FilterInfo {
 }
 class SellerViewModel {
     private(set) var currentPage : Int = 1
-    private(set) var totalPage : Int = 15
+    private(set) var totalPage : Int = 1
     private(set) var arraySellers : [SellerListInfo] = []
     private(set) var refreshHandler : HandleTableRefresh?
     private(set) var sellerActionHandler : HandleSellerAction?
@@ -108,7 +122,7 @@ class SellerViewModel {
     
     private func resetPageCount() {
         self.currentPage = 1
-        self.totalPage = 15 //TODO: make dynamic
+        self.totalPage = 1
     }
     
     func setFilter(_ filter:FilterInfo) {
@@ -135,12 +149,11 @@ class SellerViewModel {
             { seller in
                 SellerListInfo.makeInfo(
                     seller,
-                    country: String.getString(self.countryListData.first(where: {dat in dat.id == Int.getInt(seller.storeInfo?.country)})?.name),
                     handler: self.sellerActionHandler,
                     status: type
                 )
             })
-        self.refreshHandler?.refreshTable()
+        self.refreshHandler?.refreshTable(for: "")
     }
     
     func getData() {
@@ -390,8 +403,12 @@ class SellerViewModel {
             completion()
         }
     }
-    func rejectSeller(id:String,reason:String,_ completion:@escaping() -> Void ) {
-        let parameter :[String:Any] = [APIKeys.seller_id:id,APIKeys.reject_reason:reason]
+    func rejectSeller(id:String,reason:String,type:SellerRejectionType,_ completion:@escaping() -> Void ) {
+        let parameter :[String:Any] = [
+            APIKeys.seller_id:id,
+            APIKeys.reject_reason:reason,
+            APIKeys.reject_type:type.paramterValue,
+        ]
         WebService.shared.rejectSellers(paramter: parameter) { data in
             completion()
         }

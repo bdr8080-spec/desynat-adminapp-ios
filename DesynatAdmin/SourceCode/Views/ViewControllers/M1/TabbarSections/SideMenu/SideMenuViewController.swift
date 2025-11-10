@@ -123,7 +123,7 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             case "Orders Management":
                 print("➡️ Navigating to Orders Management")
             case "Country , City & Zone Management":
-                print("➡️ Navigating to Country, City & Zone Management")
+                self.navigate(to: CountryCityListViewController.viewFromNIB)
             case "Shipping charges & Tax Management":
                 print("➡️ Navigating to Shipping & Tax Management")
             case "Promocode Management":

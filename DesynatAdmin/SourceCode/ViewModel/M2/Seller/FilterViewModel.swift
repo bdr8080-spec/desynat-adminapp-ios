@@ -7,7 +7,7 @@
 
 import Foundation
 class FilterViewModel {
-    var countryListData: [GetCountryDataModel] = []
+    private(set) var countryListData: [GetCountryDataModel] = []
     private(set) var refresHandler : HandleTableRefresh?
     private(set) var filterInfo : FilterInfo = FilterInfo()
     
@@ -21,7 +21,7 @@ class FilterViewModel {
 
     func setCountry(_ country:GetCountryDataModel) {
         self.filterInfo.country = country
-        self.refresHandler?.refreshTable()
+        self.refresHandler?.refreshTable(for: "")
     }
     func setStartDate(_ date:Date) {
         self.filterInfo.startDate = date
@@ -39,7 +39,7 @@ class FilterViewModel {
                     self.setCountry(countryListData[0])
                 }
             }
-            refresHandler?.refreshTable()
+            refresHandler?.refreshTable(for: "")
             completion()
         }
     }

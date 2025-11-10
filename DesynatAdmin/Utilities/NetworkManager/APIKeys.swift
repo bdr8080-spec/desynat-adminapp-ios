@@ -8,6 +8,7 @@ struct APIKeys {
     static let email               = "email"
     static let password            = "password"
     static let reject_reason            = "reject_reason"
+    static let reject_type            = "reject_type"
     static let seller_id            = "seller_id"
     static let country_id            = "country_id"
     static let from_date            = "from_date"
@@ -21,6 +22,20 @@ struct APIKeys {
     static let country_id2            = "country_id2"
     static let from_date2            = "from_date2"
     static let to_date2            = "to_date2"
+    
+    static let plan_name_english = "plan_name_english"
+    static let plan_name_arabic = "plan_name_arabic"
+    static let duration = "duration"
+    static let duration_type = "duration_type"
+    static let no_of_videos = "no_of_videos"
+    static let no_of_products = "no_of_products"
+    static let no_of_highlights = "no_of_highlights"
+    static let no_of_employee = "no_of_employee"
+    static let stories = "stories"
+    static let price = "price"
+    static let commission = "commission"
+    static let commissionPercentage = "commission_percentage"
+    static let plan_id = "plan_id"
 
     
 }

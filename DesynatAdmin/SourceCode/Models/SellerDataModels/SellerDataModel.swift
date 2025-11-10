@@ -98,6 +98,7 @@ struct StoreInfo: Codable {
     var storeImage: String?
     var storeName: String?
     var country: String?
+    var countryInfo: GetCountryDataModel?
     var storeAddress: String?
     var addressLine1: String?
     var addressLine2: String?
@@ -116,6 +117,7 @@ struct StoreInfo: Codable {
         case storeImage = "store_image"
         case storeName = "store_name"
         case country = "country"
+        case countryInfo = "country_info"
         case storeAddress = "store_address"
         case addressLine1 = "address_line1"
         case addressLine2 = "address_line2"

@@ -116,7 +116,7 @@ extension UIViewController {
             }
 
             // Cancel Action (red color)
-            let cancelButton = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            let cancelButton = UIAlertAction(title: "No", style: .cancel) { _ in
                 UIViewController.isAlertVisible = false
             }
 
@@ -433,7 +433,7 @@ extension UIView {
         self.layer.maskedCorners = cornerMask
     }
 }
-extension UIButton {
+extension UIView {
     
     func addGradientBorder(cornerRadius:CGFloat = 0.0,direction:GradiantDirection = .leftToRight,colors:[UIColor] = [.black,.black]) {
         // Remove any existing gradient border layers to prevent duplicates
@@ -473,5 +473,33 @@ extension UIButton {
         case rightToLeft
         case topToBottom
         case bottomToTop
+    }
+    
+    func appendDashedBorder(rect:CGRect? = nil,radius:CGFloat = 5,gap:NSNumber = 2,dashWidth:NSNumber = 4,color:UIColor = UIColor.clear) {
+        
+        
+        let yourViewShapeLayer: CAShapeLayer = CAShapeLayer()
+        let frame = rect ?? self.bounds
+        yourViewShapeLayer.frame = frame
+        yourViewShapeLayer.bounds = frame
+        yourViewShapeLayer.position = CGPoint(x: frame.width/2, y: frame.height/2)
+        yourViewShapeLayer.fillColor = UIColor.white.cgColor
+        yourViewShapeLayer.strokeColor =  color.cgColor
+        yourViewShapeLayer.lineWidth = 1
+        yourViewShapeLayer.lineJoin = CAShapeLayerLineJoin.round
+        yourViewShapeLayer.lineDashPattern = [dashWidth,gap]
+        yourViewShapeLayer.path = UIBezierPath(roundedRect: frame, cornerRadius: radius).cgPath
+        if let layer = self.layer.sublayers?.first(where: {$0 is CAShapeLayer}) {
+            layer.frame = frame
+            self.layoutIfNeeded()
+        } else {
+            self.layer.insertSublayer(yourViewShapeLayer, at: 0)
+        }
+        
+    }
+}
+extension UIView {
+    class func fromNib<T: UIView>() -> T {
+        return Bundle(for: T.self).loadNibNamed(String(describing: T.self), owner: nil, options: nil)![0] as! T
     }
 }

@@ -91,6 +91,29 @@ extension WebService {
             }
         }
     }
+    func updateStatusSellers(id:String,completion: @escaping(SellerDataModel) -> Void) {
+        CommonUtils.showHud(show: true)
+        NetworkManager.shared.request(
+            withAPI: .endpoint(.blockUnBlockSeller),
+            requestMethod: .post,
+            requestParams: [APIKeys.seller_id:id],
+            encoding: JSONEncoding.default,
+            requestModel: SellerDataModel.self
+        ) { result, code in
+            CommonUtils.showHud(show: false)
+            self.evaluateWebServiceResponse(response: result) { response, message, error in
+                guard let response = response else {
+                    if let error {
+                        UIApplication.shared.topViewController()?.showAlert(msg: error)
+                    }
+                    return
+                }
+                CommonUtils.showToast(message: message ?? "")
+                completion(response)
+            }
+            
+        }
+    }
     func rejectSellers(paramter:[String:Any],completion: @escaping(SellerDataModel) -> Void) {
         CommonUtils.showHud(show: true)
         NetworkManager.shared.request(
@@ -98,6 +121,26 @@ extension WebService {
             requestMethod: .post,
             requestParams: paramter,
             encoding: JSONEncoding.default,
+            requestModel: SellerDataModel.self
+        ) { result, code in
+            CommonUtils.showHud(show: false)
+            self.evaluateWebServiceResponse(response: result) { response, message, error in
+                guard let response = response else {
+                    if let error {
+                        UIApplication.shared.topViewController()?.showAlert(msg: error)
+                    }
+                    return
+                }
+                completion(response)
+            }
+        }
+    }
+    func getSellerDetail(id:String,completion: @escaping(SellerDataModel) -> Void) {
+        CommonUtils.showHud(show: true)
+        NetworkManager.shared.request(
+            withAPI: .endpoint(.getSellerDetail),
+            requestMethod: .get,
+            requestParams: [APIKeys.seller_id:id],
             requestModel: SellerDataModel.self
         ) { result, code in
             CommonUtils.showHud(show: false)

@@ -53,6 +53,20 @@ enum AlertConstant: String {
     case EnterBrandArabic           = "Please enter brand name in arabic"
     case SelectBrandImage           = "Please Upload brand image"
     
+    case selectCountry =  "Please select country"
+    case enterEnglishPlanName =  "Please enter english plan name"
+    case enterArabicPlanName =  "Please enter arabic plan name"
+    case enterPlanDuration =  "Please enter plan duration"
+    case enterNoOfVideo =  "Please enter no of videos"
+    case enterNoOfProduct =  "Please enter no of products"
+    case enterNoOfHighlights =  "Please enter no of highlights"
+    case enterNoOfEmployee =  "Please enter no of employee"
+    case enterPlanPrice =  "Please enter plan price"
+    case enterComission =  "Please enter comission"
+    case comissionShouldLess100 =  "Comission should be equal or less than 100"
+    
+    
+    
     
     func value() -> String {
         return self.rawValue

@@ -130,7 +130,9 @@ class CustomButton: UIButton {
             layer.masksToBounds = newValue
         }
     }
-    
+
+}
+extension UIView {
     @discardableResult
     func applyGradient(colours: [UIColor], gradientDirection: GradiantDirection = .leftToRight, cornerRadius:CGFloat = 0.0,corners:CACornerMask = []) -> CAGradientLayer {
         return self.applyGradient(colours: colours, locations: nil, gradientDirection:gradientDirection, cornerRadius: cornerRadius,corners: corners)
@@ -186,6 +188,11 @@ class CustomButton: UIButton {
         if let glayer = self.layer.sublayers?.first(where: {$0 is CAGradientLayer}) as? CAGradientLayer {
             glayer.frame = self.bounds
             glayer.cornerRadius = glayer.cornerRadius
+        }
+    }
+    func removeGLayer() {
+        if let index = self.layer.sublayers?.firstIndex(where: {$0 is CAGradientLayer}) {
+            self.layer.sublayers?.remove(at: index)
         }
     }
 }

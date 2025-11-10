@@ -40,14 +40,14 @@ class SellerListViewController: UIViewController {
         self.tblSellers.delegate = self
         self.tblSellers.separatorStyle = .none
         self.viewModel.setRefreshHandler(self,sellerActionHandler: self)
-        self.switchTab(self.viewModel.currentTab)
         self.refreshPageActionButton()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.btnExport.addGradientBorder(cornerRadius: 5,direction: .topToBottom,colors: [UIColor.init(hexString: "#DFBF8F"), UIColor.init(hexString: "#6E4527")])
         }
-        
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        self.switchTab(self.viewModel.currentTab)
+    }
     private func switchTab(_ tab:SellersTab) {
         self.btnNew.setTitleColor(.init(hexString: tab == .new ? "#875C3A" : "#C0BBBB") , for: .normal)
         self.viewNewBar.backgroundColor = .init(hexString: tab == .new ? "#875C3A" : "#C0BBBB")
@@ -115,12 +115,16 @@ extension SellerListViewController:UITableViewDelegate,UITableViewDataSource {
         return UITableViewCell(frame: .zero)
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if self.viewModel.arraySellers.count > indexPath.row {
+            let vc :SellerDetailViewController = SellerDetailViewController.viewFromNIB
+            vc.setInitial(self.viewModel.arraySellers[indexPath.row])
+            self.navigate(to: vc)
+        }
     }
     
 }
 extension SellerListViewController:HandleTableRefresh {
-    func refreshTable() {
+    func refreshTable(for string: String) {
         self.refreshPageActionButton()
         self.lblNoData.isHidden = self.viewModel.arraySellers.count > 0
         self.tblSellers.reloadData()
@@ -145,8 +149,8 @@ extension SellerListViewController:HandleSellerAction {
     
     func rejectSeller(_ data: SellerListInfo) {
         let vc = RejectReasonViewController.viewFromNIB
-        vc.setCallback { reason in
-            self.viewModel.rejectSeller(id: data.id, reason: reason) {
+        vc.setCallback { reason,type in
+            self.viewModel.rejectSeller(id: data.id, reason: reason,type: type) {
                 DispatchQueue.main.async {
                     let succesVC = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
                     succesVC.setTitle("Seller rejected\nsuccessfully!")

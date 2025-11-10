@@ -48,6 +48,9 @@ extension Double {
         let divide = (self * divisor).rounded(.toNearestOrAwayFromZero)
         return Decimal(divide / divisor)
     }
+    var clean: String {
+           return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(format: "%.2f",self)
+        }
 }
 
 extension Int {
@@ -140,5 +143,15 @@ extension String {
             return formattedNumber
         }
         return strMessage.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    func makeAttributedString(attribute : [NSAttributedString.Key : Any],for rangeString:String) -> NSAttributedString {
+        
+        let string = NSMutableAttributedString(string: self)
+        if !rangeString.isEmpty {
+            let range = (self as NSString).range(of: rangeString,options: .caseInsensitive)
+            string.addAttributes(attribute, range: range)
+        }
+        
+        return string
     }
 }
