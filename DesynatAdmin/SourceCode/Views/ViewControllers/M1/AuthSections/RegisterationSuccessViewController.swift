@@ -12,27 +12,36 @@ class RegisterationSuccessViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     
     var comingReason: ComingReasonAtRegisterationSuccess = .passwordUpdated
+    private var titleString: String = ""
     var callBackDismiss: (()->())?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initialSetup()
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
             self.dismiss(animated: true) {
                 self.callBackDismiss?()
             }
+        }
+        if titleString.isEmpty {
+            initialSetup()
+            descriptionLabel.text = titleString
+        } else {
+            descriptionLabel.text = titleString
         }
     }
     
     func initialSetup() {
         switch comingReason {
         case .passwordUpdated:
-            descriptionLabel.text = "Password Reset\nsuccessfully!"
+            self.titleString = "Password Reset\nsuccessfully!"
         case .accountCreated:
-            descriptionLabel.text = "Thank you for sinning up\nwith DESYNAT"
+            self.titleString = "Thank you for sinning up\nwith DESYNAT"
         }
     }
-
+    func setTitle(_ string:String)  {
+        self.titleString = string
+    }
 }
 
 enum ComingReasonAtRegisterationSuccess {

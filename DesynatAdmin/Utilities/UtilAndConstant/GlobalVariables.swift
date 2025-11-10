@@ -34,3 +34,20 @@ final class Global {
 }
 
 
+class ResuableCollectionCell: UICollectionViewCell,ReusableView,NibLoadableView,CollectionSize {
+    func getCellSize() -> CGSize {
+        .zero
+    }
+    
+    
+}
+class ResuableTableCell: UITableViewCell,ReusableView,NibLoadableView,CollectionSize {
+    func getCellSize() -> CGSize {
+        return .zero
+    }
+}
+
+protocol CollectionSize {
+    func getCellSize() -> CGSize
+}
+protocol SectionCell {}

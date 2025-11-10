@@ -113,7 +113,7 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             case "Affiliate User Management":
                 print("➡️ Navigating to Affiliate User Management")
             case "Seller Management":
-                print("➡️ Navigating to Seller Management")
+                self.navigate(to: SellerListViewController.viewFromNIB)
             case "Delivery Boy Management":
                 print("➡️ Navigating to Delivery Boy Management")
             case "Live Request  & Timeslot Management":

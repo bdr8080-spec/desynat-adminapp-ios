@@ -40,6 +40,35 @@ enum NetworkEndPoint: String {
     case updateBrand                        = "api/admin/update_brand"
     case logoutUser                         = "api/admin/admin_logout"
     
+    //Seller
+    case getNewSellers                         = "api/admin/get_new_sellers"
+    case getApprovedSellers                         = "api/admin/get_approved_sellers"
+    case getRejectedSellers                         = "api/admin/get_rejected_sellers"
+    case getSellerDetail                         = "api/admin/get_seller_details"
+    case acceptSeller                         = "api/admin/accept_seller"
+    case blockUnBlockSeller                         = "api/admin/block_unblock_seller"
+    case rejectSeller                         = "api/admin/reject_seller"
+    
+    case getCountries                         = "api/admin/get_countries"
+    case getCitites                         = "api/admin/get_cities"
+    case getServiceCitites                         = "api/admin/get_service_cities"
+    case addServiceCity                         = "api/admin/add_service_city"
+    case changeServiceCityStatus                         = "api/admin/change_service_city_status"
+    case deleteServiceCity                         = "api/admin/delete_service_city"
+    case addZone                         = "api/admin/add_zone"
+    case getZone                         = "api/admin/get_zones"
+    case getZoneDetails                         = "api/admin/get_zone_details"
+    case updateZone                         = "api/admin/update_zone"
+    case changeUpdateZoneStatus                         = "api/admin/change_zone_status"
+    case delteZone                         = "api/admin/delete_zone"
+    
+    case addPlan                         = "api/admin/add_plan"
+    case updatePlan                         = "api/admin/update_plan"
+    case getPlans                         = "api/admin/get_plans"
+    case getPlanDetails                         = "api/admin/get_plan_details"
+    case changePlanStatus                         = "api/admin/change_plan_status"
+    case deltePlan                         = "api/admin/delete_plan"
+    
     func withBaseURL() -> String {
         return "\(BaseURL.value())\(self.rawValue)"
     }

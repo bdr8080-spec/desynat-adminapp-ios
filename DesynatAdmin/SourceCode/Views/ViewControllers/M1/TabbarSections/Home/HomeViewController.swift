@@ -127,10 +127,7 @@ class HomeViewController: UIViewController {
         revenueDetailsView.layer.cornerRadius = 16
         revenueDetailsView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         revenueDetailsView.clipsToBounds = true
-
     }
-    
-    
     
 }
 
@@ -166,12 +163,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CountryTableViewCell", for: indexPath) as! CountryTableViewCell
         let data = viewModel.countryListData[indexPath.row]
-        cell.configData(data: data)
-        if indexPath.row == selectedCountryIndex {
-            cell.selectedImageView.image = UIImage(named: "radioSelected")
-        } else {
-            cell.selectedImageView.image = UIImage(named: "radioUnselected")
-        }
+        cell.configData(data: data,isSelected: indexPath.row == selectedCountryIndex)
         return cell
     }
     
