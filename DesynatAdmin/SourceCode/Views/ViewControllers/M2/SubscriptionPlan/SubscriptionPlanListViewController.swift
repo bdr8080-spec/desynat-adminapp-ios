@@ -13,7 +13,6 @@ class SubscriptionPlanListViewController: UIViewController {
     @IBOutlet weak var lblNodata: UILabel!
     @IBOutlet weak var tblCountry: TableViewDynamicHeight!
     @IBOutlet weak var lnlFlag: CustomLabelFont!
-    
     @IBOutlet weak var tblPlans: UITableView!
     private var viewModel : SubscriptionPlanViewModel = SubscriptionPlanViewModel()
     private var isCountryExpanded : Bool = false
@@ -78,6 +77,7 @@ extension SubscriptionPlanListViewController: UITableViewDelegate, UITableViewDa
                 if viewModel.arrayPlans.count > indexPath.row {
                     cell.setData(viewModel.arrayPlans[indexPath.row])
                 }
+                cell.selectionStyle = .none
                 return cell
             }
         case tblCountry:

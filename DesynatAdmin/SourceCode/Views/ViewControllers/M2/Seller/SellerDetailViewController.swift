@@ -102,6 +102,9 @@ class SellerDetailViewController: UIViewController {
     @IBOutlet weak var tblPlans: TableViewDynamicHeight!
     @IBOutlet weak var btnReject: CustomButton!
     
+    @IBOutlet weak var lblPlacePlans: UILabel!
+    @IBOutlet weak var lblPlaceHighlights: UILabel!
+    @IBOutlet weak var lblPlaceReels: UILabel!
     @IBOutlet weak var btnAccept: CustomButton!
     @IBOutlet weak var viewBottomAction: UIView!
     @IBOutlet weak var lctBottomMainStack: NSLayoutConstraint!
@@ -131,11 +134,15 @@ class SellerDetailViewController: UIViewController {
             self.imgSellerProfile.addGradientBorder(cornerRadius: 5,direction: .topToBottom,colors: [UIColor.init(hexString: "#DFBF8F"), UIColor.init(hexString: "#6E4527")])
             self.btnAccept.applyGradient(colours: [UIColor.init(hexString: "#DFBF8F"), UIColor.init(hexString: "#6E4527")],gradientDirection: .topToBottom,cornerRadius: 5)
         }
+        
+        self.tblPlans.register(PurchasedPlanTableViewCell.self)
+        self.tblPlans.delegate = self
+        self.tblPlans.dataSource = self
+        self.tblPlans.separatorStyle = .none
     }
     
     private func setData() {
         if let listInfo = self.viewModel.sellerData {
-            self.btnSwitch.setImage(self.viewModel.isActive ? .toggleOn : .toggleOff , for: .normal)
             self.viewSwitchTab.isHidden = listInfo.status != .approved
             self.viewSellerInfo.isHidden =  listInfo.status != .approved
             self.btnSwitch.isHidden =  listInfo.status != .approved
@@ -179,7 +186,7 @@ class SellerDetailViewController: UIViewController {
         self.viewModel.getSellerDetailInfo {
             if let detailModel = self.viewModel.detailModel {
                 self.imgSellerCover.image = .imgCoverPlace
-                
+                self.btnSwitch.setImage(self.viewModel.isActive ? .toggleOn : .toggleOff , for: .normal)
                 self.viewSellerrating.rating = 4.0
                 
                 if let storeInfo = detailModel.storeInfo {
@@ -251,6 +258,8 @@ class SellerDetailViewController: UIViewController {
                         }
                     }
                 }
+                self.lblPlacePlans.isHidden = self.viewModel.arrayPlans.count > 0
+                self.tblPlans.reloadData()
             }
         }
     }
@@ -291,19 +300,6 @@ class SellerDetailViewController: UIViewController {
     }
     
     @IBAction func handleReject(_ sender: Any) {
-        self.viewModel.approveSeller {
-            DispatchQueue.main.async {
-                let vc = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
-                vc.setTitle("Seller approved\nsuccessfully!")
-                vc.callBackDismiss = {
-                    self.navigationController?.popViewController(animated: true)
-                }
-                self.presentVC(vc,modalPresentationStyle: .overCurrentContext)
-            }
-        }
-    }
-    
-    @IBAction func handleAccept(_ sender: Any) {
         let vc = RejectReasonViewController.viewFromNIB
         vc.setCallback { reason,type in
             self.viewModel.rejectSeller(reason: reason,type: type) {
@@ -321,6 +317,20 @@ class SellerDetailViewController: UIViewController {
         self.presentVC(vc,withAnimation: false,modalPresentationStyle: .overCurrentContext)
     }
     
+    @IBAction func handleAccept(_ sender: Any) {
+        self.viewModel.approveSeller {
+            DispatchQueue.main.async {
+                let vc = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
+                vc.setTitle("Seller approved\nsuccessfully!")
+                vc.callBackDismiss = {
+                    self.navigationController?.popViewController(animated: true)
+                }
+                self.presentVC(vc,modalPresentationStyle: .overCurrentContext)
+            }
+        }
+    
+    }
+    
     @IBAction func handleSwitch(_ sender: Any) {
         self.viewModel.updateStatusSellers {
             self.viewModel.setActive(!self.viewModel.isActive)
@@ -328,4 +338,22 @@ class SellerDetailViewController: UIViewController {
         }
         
     }
+}
+extension SellerDetailViewController:UITableViewDataSource,UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.viewModel.arrayPlans.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = self.tblPlans.dequeueReusableCell(withIdentifier: PurchasedPlanTableViewCell.defaultIdentifier, for: indexPath) as? PurchasedPlanTableViewCell {
+            cell.selectionStyle = .none
+            if (self.viewModel.arrayPlans.count > indexPath.row) {
+                cell.setData(self.viewModel.arrayPlans[indexPath.row])
+            }
+            return cell
+        }
+        return UITableViewCell(frame: .zero)
+    }
+    
+    
 }

@@ -12,7 +12,7 @@ struct PlanInfo {
     var planNameEnglish:String = ""
     var planNameArabic:String = ""
     var duration:Double = 0.0
-    var durationType:DurationType = .month
+    var durationType:DurationType = .year
     var noOfVideos:Int = 0
     var noOfProducts:Int = 0
     var noOfHighlights:Int = 0
@@ -44,9 +44,9 @@ struct PlanInfo {
     func validateData() -> AlertConstant{
         if country == nil {
             return .selectCountry
-        } else if planNameEnglish.isEmpty {
+        } else if planNameEnglish.trimmingCharacters(in: .whitespaces).isEmpty {
             return .enterEnglishPlanName
-        } else if planNameArabic.isEmpty {
+        } else if planNameEnglish.trimmingCharacters(in: .whitespaces).isEmpty {
             return .enterArabicPlanName
         } else if duration <= 0.0 {
             return .enterPlanDuration
@@ -131,7 +131,7 @@ class AddSubscriptionPlansViewModel {
     
     func setDurationType(_ index:Int)  {
         if (DurationType.allCases.count > index) {
-            self.subscriptionInfo.durationType = DurationType.allCases[index]
+            self.subscriptionInfo.durationType = DurationType.allCases.filter({$0 != .none})[index]
         }
     }
     

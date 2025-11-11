@@ -9,7 +9,6 @@ import UIKit
 class SellerListViewController: UIViewController {
     
     @IBOutlet weak var btnExport: CustomButton!
-    
     @IBOutlet weak var btnNew: CustomButton!
     @IBOutlet weak var viewNewBar: UIView!
     @IBOutlet weak var btnApproved: CustomButton!
@@ -126,6 +125,7 @@ extension SellerListViewController:UITableViewDelegate,UITableViewDataSource {
 extension SellerListViewController:HandleTableRefresh {
     func refreshTable(for string: String) {
         self.refreshPageActionButton()
+        self.lblNoData.text = self.viewModel.currentTab.placeHolder
         self.lblNoData.isHidden = self.viewModel.arraySellers.count > 0
         self.tblSellers.reloadData()
     }

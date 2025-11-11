@@ -31,4 +31,10 @@ class CountryTableViewCell: ResuableTableCell {
         self.selectedImageView.image = UIImage(named: isSelected ? "radioSelected" : "radioUnselected")
     }
     
+    func configCityData(data: CountryCitiesDataModel,isSelected:Bool) {
+        countryLabel.text = data.name
+        countryFlagEmojiLabel.isHidden = true
+        self.selectedImageView.image = UIImage(named: isSelected ? "radioSelected" : "radioUnselected")
+    }
+    
 }

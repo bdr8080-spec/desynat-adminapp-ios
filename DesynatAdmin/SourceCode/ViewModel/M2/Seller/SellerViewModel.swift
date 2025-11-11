@@ -55,6 +55,18 @@ protocol HandleSellerAction {
     func rejectSeller(_ data:SellerListInfo)
 }
 
+protocol HandleCityAction {
+    func viewZone(_ data:CitiesInfo)
+    func deleteCity(_ data:CitiesInfo)
+    func setActiveCity(_ data:CitiesInfo)
+}
+protocol HandleZoneAction {
+    func viewLocation(_ data:ZoneInfo)
+    func deleteZone(_ data:ZoneInfo)
+    func editZone(_ data:ZoneInfo)
+    func setActiveZone(_ data:ZoneInfo)
+}
+
 enum SellersTab:Int {
 case none = 0, new,approved,reject
     var title:String {
@@ -67,6 +79,18 @@ case none = 0, new,approved,reject
             "Approved"
         case .reject:
             "Rejected"
+        }
+    }
+    var placeHolder:String {
+        switch self {
+        case .none:
+            ""
+        case .new:
+            "No New Request Found"
+        case .approved:
+            "No Result Found"
+        case .reject:
+            "No Result Found"
         }
     }
 }

@@ -278,5 +278,45 @@ class CommonUtils {
             FTIndicator.dismissNotification()
         }
     }
-
+    static func getCoordinatesFromPlaceID(placeID: String, completion: @escaping (Double, Double) -> Void) {
+        let baseURL = "https://maps.googleapis.com/maps/api/place/details/json"
+        let parameters = [
+            "place_id": placeID,
+            "key": "AIzaSyAekJV3oxQlPy_OWHCxPYfFw5CnrD-Wzkg"
+        ]
+        
+        var urlComponents = URLComponents(string: baseURL)
+        urlComponents?.queryItems = parameters.map { URLQueryItem(name: $0, value: $1) }
+        
+        guard let url = urlComponents?.url else {
+            UIApplication.shared.topViewController()?.showAlert(msg: AlertConstant.wentWrong.value())
+            return
+        }
+        CommonUtils.showHud(show: true)
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            CommonUtils.showHud(show: false)
+            guard let data = data, error == nil else {
+                UIApplication.shared.topViewController()?.showAlert(msg: AlertConstant.wentWrong.value())
+                return
+            }
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                
+                if let result = json?["result"] as? [String: Any],
+                   let geometry = result["geometry"] as? [String: Any],
+                   let location = geometry["location"] as? [String: Any],
+                   let latitude = location["lat"] as? Double,
+                   let longitude = location["lng"] as? Double {
+                    DispatchQueue.main.async {
+                        completion(latitude, longitude)
+                    }
+                } else {
+                    UIApplication.shared.topViewController()?.showAlert(msg: AlertConstant.wentWrong.value())
+                }
+            } catch {
+                UIApplication.shared.topViewController()?.showAlert(msg: error.localizedDescription)
+            }
+        }
+        task.resume()
+    }
 }

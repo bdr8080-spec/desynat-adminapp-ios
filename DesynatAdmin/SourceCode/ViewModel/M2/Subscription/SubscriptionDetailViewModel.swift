@@ -18,6 +18,7 @@ class SubscriptionDetailViewModel {
             completion()
         }
     }
+    
     func deletePlan(_ completion:@escaping() -> Void) {
         WebService.sharedInstance.deletePlan(id: data.id) { model in
             completion()

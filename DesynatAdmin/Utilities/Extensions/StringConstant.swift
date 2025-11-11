@@ -54,17 +54,20 @@ enum AlertConstant: String {
     case SelectBrandImage           = "Please Upload brand image"
     
     case selectCountry =  "Please select country"
-    case enterEnglishPlanName =  "Please enter english plan name"
-    case enterArabicPlanName =  "Please enter arabic plan name"
+    case enterEnglishPlanName =  "Please enter plan name in english"
+    case enterArabicPlanName =  "Please enter plan name in Arabic"
     case enterPlanDuration =  "Please enter plan duration"
-    case enterNoOfVideo =  "Please enter no of videos"
-    case enterNoOfProduct =  "Please enter no of products"
-    case enterNoOfHighlights =  "Please enter no of highlights"
-    case enterNoOfEmployee =  "Please enter no of employee"
+    case enterNoOfVideo =  "Please Enter Number of Videos"
+    case enterNoOfProduct =  "Please Enter Number of products"
+    case enterNoOfHighlights =  "Please Enter Number of highlights"
+    case enterNoOfEmployee =  "Please Enter Number of employee"
     case enterPlanPrice =  "Please enter plan price"
     case enterComission =  "Please enter comission"
     case comissionShouldLess100 =  "Comission should be equal or less than 100"
-    
+    case  selectLocation = "Select Location"
+    case  provideZoneBoundary = "Please provide zone boundary."
+    case  enterEnglishName = "Please Enter english name"
+    case  enterArabicName = "Please Enter arabic name"
     
     
     

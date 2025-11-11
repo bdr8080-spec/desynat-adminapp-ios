@@ -16,6 +16,7 @@ class SellerDetailViewModel {
     private(set) var detailModel :SellerDataModel?
     private(set) var sellerStatus : SellersTab = .none
     private(set) var arrayReels : [SocialMediaInfo] = []
+    private(set) var arrayPlans : [PurchasedPlanInfo] = []
     private(set) var isActive : Bool = true
     
     func setData(_ sellerData :SellerListInfo) {
@@ -25,6 +26,7 @@ class SellerDetailViewModel {
     func getSellerDetailInfo(_ completion:@escaping () -> Void) {
         WebService.shared.getSellerDetail(id: String.getString(sellerData?.id)) { data in
             self.detailModel = data
+            self.arrayPlans = (data.subcriptionPlan ?? []).map({PurchasedPlanInfo.makeData($0)})
             completion()
         }
     }
@@ -49,7 +51,7 @@ class SellerDetailViewModel {
             APIKeys.reject_type:type.paramterValue,
         ]
         WebService.shared.rejectSellers(paramter: parameter) { data in
-            self.setActive(!Bool(truncating: NSNumber(value: Int.getInt(data.isBlock))))
+            self.setActive(Bool(truncating: NSNumber(value: Int.getInt(data.isBlock))))
             completion()
         }
     }

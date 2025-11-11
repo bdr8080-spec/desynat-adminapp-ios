@@ -61,6 +61,7 @@ struct SellerDataModel: Codable {
     var ownerDocument: [OwnerDocument]?
     var storeDocument: [StoreDocument]?
     var sellerBankDetails: SellerBankDetails?
+    var subcriptionPlan: [PurchasedPlanDataModel]?
 
     private enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -88,6 +89,7 @@ struct SellerDataModel: Codable {
         case ownerDocument = "owner_document"
         case storeDocument = "store_document"
         case sellerBankDetails = "seller_bank_details"
+        case subcriptionPlan = "subcription_plan"
     }
 
 }

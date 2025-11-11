@@ -35,7 +35,7 @@ class LocationManager:NSObject, CLLocationManagerDelegate {
         printInConsole("latitude \(String(describing: locations.first)),longitude \(String(describing: locations.first))")
         
         if let location {
-            self.reverseGeocodeCoordinate(location) { add in
+            self.reverseGeocodeCoordinate(location) { add,cityName in
                 self.currentLocation = add
                 self.callBackGetCurrentLoc?(location, self.currentLocation)
             }
@@ -43,7 +43,7 @@ class LocationManager:NSObject, CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
     }
     
-    public func reverseGeocodeCoordinate(_ coordinate: CLLocationCoordinate2D, completion:@escaping(_ address:String) -> Void) {
+    public func reverseGeocodeCoordinate(_ coordinate: CLLocationCoordinate2D, completion:@escaping(_ address:String,_ cityName:String) -> Void) {
         
         let ceo: CLGeocoder = CLGeocoder()
         let loc: CLLocation = CLLocation(latitude:coordinate.latitude, longitude: coordinate.longitude)
@@ -75,7 +75,7 @@ class LocationManager:NSObject, CLLocationManagerDelegate {
                     addressString = addressString + pm.postalCode! + " "
                 }
                 self.country = pm.country ?? ""
-                completion(addressString)
+                completion(addressString,pm.locality ?? "")
                 self.getPickCity = pm.locality ?? ""
                 
                 print("subLocality\(pm.subLocality ?? "")")
@@ -110,6 +110,52 @@ class LocationManager:NSObject, CLLocationManagerDelegate {
             return ADCountry(name: displayName!, code: countryCode, dialCode: dialCode)
         } else {
             return ADCountry(name: displayName!, code: countryCode)
+        }
+    }
+    static func getCityAndStateCountry(lat:Double, long:Double,completionHandler : @escaping (String) -> Void) {
+        let userLocation :CLLocation = CLLocation(latitude: lat, longitude: long)
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(userLocation) { (placemarks, error) in
+            if let error = error {
+                completionHandler("")
+            }
+            if let placemarks = placemarks {
+                
+                if (placemarks.count > 0) {
+                    let placemark = placemarks[0]
+                    var addressString : String = ""
+                    if let thoroughfare = placemark.thoroughfare {
+                        addressString += "\(thoroughfare),"
+                    }
+//                    else
+//                    if let subLocality = placemark.subLocality {
+//                        addressString += "\(subLocality),"
+//                    }
+//
+                    if placemark.subLocality != nil{
+                        addressString += "\(placemark.subLocality ?? ""),"
+
+                    }
+                    if placemark.locality != nil{
+                        addressString += "\(placemark.locality ?? ""),"
+                    }
+                    if placemark.administrativeArea != nil {
+                        addressString += "\(placemark.administrativeArea ?? ""),"
+                    }
+                    if placemark.country != nil {
+                        addressString += "\(placemark.country ?? ""),"
+                    }
+                    if placemark.postalCode != nil{
+                        addressString += "\(placemark.postalCode ?? "")"
+                    }
+                    completionHandler(addressString)
+                } else {
+                    completionHandler("")
+                }
+               
+            } else {
+                completionHandler("")
+            }
         }
     }
 }

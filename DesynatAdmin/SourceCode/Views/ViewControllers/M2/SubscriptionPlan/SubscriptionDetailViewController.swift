@@ -63,7 +63,7 @@ class SubscriptionDetailViewController: UIViewController {
                     self.stackFeature.addArrangedSubview(self.getView("\(data.noOfEmployee) Store Employees ".makeAttributedString(attribute: [.font:UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12,weight: .semibold)], for: "")))
                 }
                 if (data.comission > 0) {
-                    self.stackFeature.addArrangedSubview(self.getView("Commission: \(data.comission)%".makeAttributedString(attribute: [.font:UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12,weight: .semibold)], for: "\(data.comission)")))
+                    self.stackFeature.addArrangedSubview(self.getView("Commission: \(data.comission.clean)%".makeAttributedString(attribute: [.font:UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12,weight: .semibold)], for: "\(data.comission.clean)")))
                 }
                 self.refreshStatus()
             }
@@ -86,7 +86,7 @@ class SubscriptionDetailViewController: UIViewController {
     }
     
     @IBAction func handleDelete(_ sender: Any) {
-        self.showConfirmationAlert(msg: "Are you sure want\nto delete this plan") {
+        self.showConfirmationAlert(msg: "Are you sure you want\nto delete the plan?") {
             self.viewModel?.deletePlan {
                 let vc = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
                 vc.setTitle("Subscription plan deleted\nsuccessfully!")

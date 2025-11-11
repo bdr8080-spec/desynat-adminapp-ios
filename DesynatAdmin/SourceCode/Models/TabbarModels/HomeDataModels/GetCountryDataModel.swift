@@ -27,3 +27,18 @@ struct GetCountryDataModel: Codable {
         case updatedAt = "updated_at"
     }
 }
+
+
+struct GetCityDataModel: Codable {
+    let id: Int?
+    let countryId: Int?
+    let name: String?
+    let createdAt, updatedAt: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case id, name
+        case countryId = "country_id"
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+    }
+}

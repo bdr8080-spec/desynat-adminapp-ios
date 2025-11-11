@@ -22,10 +22,10 @@ class SideMenuViewController: UIViewController {
     private var sideMenuData: [SideMenuModel] = [
         SideMenuModel(title: "Brand management", image: "brandManagemnt"),
         SideMenuModel(title: "Category & Sub- Category Management", image: "category"),
+        SideMenuModel(title: "Seller Management", image: "sellerManagement"),
         SideMenuModel(title: "User Management", image: "userManagemnet"),
         SideMenuModel(title: "Sub Admin", image: "subadmin"),
         SideMenuModel(title: "Affiliate User Management", image: "userManagemnet"),
-        SideMenuModel(title: "Seller Management", image: "sellerManagement"),
         SideMenuModel(title: "Delivery Boy Management", image: "deliveryBoy"),
         SideMenuModel(title: "Live Request  & Timeslot Management", image: "liveReuqest"),
         SideMenuModel(title: "Gift Card Management", image: "gift"),

@@ -54,7 +54,7 @@ class RejectReasonViewController: UIViewController {
     
     @IBAction func handleSubmit(_ sender: Any) {
         if (self.viewModel.reason.isEmpty) {
-            self.showAlert(msg: "Please provide reason")
+            self.showAlert(msg: "Please enter reason")
             return
         }
         self.txtViewReason.becomeFirstResponder()

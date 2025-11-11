@@ -86,15 +86,18 @@ class AddPlanViewController: UIViewController {
     
     private func setUpUi() {
         self.viewModel.setRefreshHandler(self)
+        self.txtFieldArabicPlanName.delegate = self
         self.tblCountry.register(CountryTableViewCell.self)
         self.tblCountry.dataSource = self
         self.tblCountry.delegate = self
+        
         self.tblCountry.separatorStyle = .none
-        self.lblTitle.text = self.viewModel.isForEdit ? "Edit plan" : "Create New Plan"
-        self.btnAdd.setTitle(self.viewModel.isForEdit ? "Edit" : "Add", for: .normal)
+        self.lblTitle.text = self.viewModel.isForEdit ? "Update plan" : "Create New Plan"
+        self.btnAdd.setTitle(self.viewModel.isForEdit ? "Update" : "Add", for: .normal)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.btnAdd.applyGradient(colours: [UIColor.init(hexString: "#DFBF8F"), UIColor.init(hexString: "#6E4527")],gradientDirection: .topToBottom,cornerRadius: 5)
         }
+        self.lblDurationTyp.text = self.viewModel.subscriptionInfo.durationType.title
     }
     
     func setData() {
@@ -130,7 +133,7 @@ class AddPlanViewController: UIViewController {
     }
     
     @IBAction func handleDiscountTypeSelection(_ sender: Any) {
-        CommonUtils.dropDown(dataSource: DurationType.allCases.map({$0.title}), anchorView: self.viewDurationSeletion, selectedColor: .black) { index, item in
+        CommonUtils.dropDown(dataSource: DurationType.allCases.filter({$0 != .none}).map({$0.title}), anchorView: self.viewDurationSeletion, selectedColor: .black) { index, item in
             self.viewModel.setDurationType(index)
             self.lblDurationTyp.text = self.viewModel.subscriptionInfo.durationType.title
         }
@@ -161,7 +164,7 @@ class AddPlanViewController: UIViewController {
         self.viewModel.makePlan {
             DispatchQueue.main.async {
                 let vc = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
-                vc.setTitle(self.viewModel.isForEdit ? "Subscription plan edited\nsuccessfully!" : "Subscription plan added\nsuccessfully!")
+                vc.setTitle(self.viewModel.isForEdit ? "Subscription plan updated\nsuccessfully!" : "Subscription plan added\nsuccessfully!")
                 vc.callBackDismiss = {
                     self.navigationController?.popViewController(animated: true)
                 }
@@ -219,5 +222,25 @@ extension AddPlanViewController :HandleTableRefresh {
     func refreshTable(for string: String) {
         self.tblCountry.reloadData()
         
+    }
+}
+extension AddPlanViewController:UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string.isEmpty {
+            return true
+        }
+        var newText = textField.text ?? ""
+        newText = string.isEmpty ? String(newText.dropLast()) : newText + string
+        if (textField == self.txtFieldArabicPlanName) {
+            // Define the set of English letters to block
+            let englishLetters = CharacterSet.lowercaseLetters.union(CharacterSet.uppercaseLetters)
+            
+            // Check if the replacement string contains any English letters
+            if string.rangeOfCharacter(from: englishLetters) != nil {
+                self.showAlert(msg: "Plese enter arabic letter.")
+                return false
+            }
+        }
+        return true
     }
 }

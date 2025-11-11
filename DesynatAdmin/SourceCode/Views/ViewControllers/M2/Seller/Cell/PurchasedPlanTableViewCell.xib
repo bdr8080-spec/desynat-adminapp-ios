@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="PurchasedPlanTableViewCell" customModule="DesynatAdmin" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="164"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="164"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qDY-kn-MxZ" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
+                        <rect key="frame" x="16" y="0.0" width="343" height="144"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pro Plan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tmq-wD-aAP" customClass="CustomLabelFont" customModule="DesynatAdmin" customModuleProvider="target">
+                                <rect key="frame" x="12" y="13" width="40" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monthly" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MVf-It-LWc" customClass="CustomLabelFont" customModule="DesynatAdmin" customModuleProvider="target">
+                                <rect key="frame" x="283" y="12" width="48" height="14.333333333333336"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fzb-Sh-6yB">
+                                <rect key="frame" x="0.0" y="37" width="343" height="1"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="EkM-7k-Pk5"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="eqT-qx-JRt">
+                                <rect key="frame" x="12" y="50" width="319" height="62"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="0XS-jb-lli">
+                                        <rect key="frame" x="0.0" y="0.0" width="319" height="12"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qtb-Hq-vOp" customClass="CustomLabelFont" customModule="DesynatAdmin" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="159.66666666666666" height="12"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Active" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qIg-So-zpM" customClass="CustomLabelFont" customModule="DesynatAdmin" customModuleProvider="target">
+                                                <rect key="frame" x="159.66666666666663" y="0.0" width="159.33333333333337" height="12"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                <color key="textColor" red="0.090196078431372548" green="0.52156862745098043" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="NVh-ZJ-MUs">
+                                        <rect key="frame" x="0.0" y="25" width="319" height="12"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Purchased on" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVU-1n-QcO" customClass="CustomLabelFont" customModule="DesynatAdmin" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="159.66666666666666" height="12"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21/08/2024 at 07:30 PM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OfX-1U-EZ4" customClass="CustomLabelFont" customModule="DesynatAdmin" customModuleProvider="target">
+                                                <rect key="frame" x="159.66666666666663" y="0.0" width="159.33333333333337" height="12"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="2v5-Ss-POH">
+                                        <rect key="frame" x="0.0" y="50" width="319" height="12"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XhL-Ki-8gA" customClass="CustomLabelFont" customModule="DesynatAdmin" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="159.66666666666666" height="12"/>
+                                                <string key="text">Total Amount</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KD 299" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NM1-8f-xJG" customClass="CustomLabelFont" customModule="DesynatAdmin" customModuleProvider="target">
+                                                <rect key="frame" x="159.66666666666663" y="0.0" width="159.33333333333337" height="12"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="fzb-Sh-6yB" secondAttribute="trailing" id="GSe-tT-ir3"/>
+                            <constraint firstItem="Tmq-wD-aAP" firstAttribute="top" secondItem="qDY-kn-MxZ" secondAttribute="top" constant="13" id="ISt-jg-fmy"/>
+                            <constraint firstItem="fzb-Sh-6yB" firstAttribute="top" secondItem="Tmq-wD-aAP" secondAttribute="bottom" constant="12" id="KQx-Gw-u6a"/>
+                            <constraint firstItem="eqT-qx-JRt" firstAttribute="top" secondItem="fzb-Sh-6yB" secondAttribute="bottom" constant="12" id="LZV-98-H69"/>
+                            <constraint firstItem="Tmq-wD-aAP" firstAttribute="leading" secondItem="qDY-kn-MxZ" secondAttribute="leading" constant="12" id="MUT-WG-g2A"/>
+                            <constraint firstAttribute="trailing" secondItem="MVf-It-LWc" secondAttribute="trailing" constant="12" id="eLv-CJ-Sh4"/>
+                            <constraint firstItem="fzb-Sh-6yB" firstAttribute="leading" secondItem="qDY-kn-MxZ" secondAttribute="leading" id="f7h-qx-KIc"/>
+                            <constraint firstAttribute="trailing" secondItem="eqT-qx-JRt" secondAttribute="trailing" constant="12" id="h7L-92-ztI"/>
+                            <constraint firstItem="MVf-It-LWc" firstAttribute="centerY" secondItem="Tmq-wD-aAP" secondAttribute="centerY" id="iJo-g0-ciJ"/>
+                            <constraint firstItem="eqT-qx-JRt" firstAttribute="leading" secondItem="qDY-kn-MxZ" secondAttribute="leading" constant="12" id="rxs-3Q-cdN"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="eqT-qx-JRt" secondAttribute="bottom" constant="12" id="sg3-qr-O2D"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="12"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="qDY-kn-MxZ" secondAttribute="trailing" constant="16" id="XAA-tb-HgI"/>
+                    <constraint firstItem="qDY-kn-MxZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="fBh-wZ-Ei4"/>
+                    <constraint firstItem="qDY-kn-MxZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="qi6-Yz-qMi"/>
+                    <constraint firstAttribute="bottom" secondItem="qDY-kn-MxZ" secondAttribute="bottom" constant="20" id="t9X-gZ-KVA"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="lblPlanDurationType" destination="MVf-It-LWc" id="2HO-tT-Btl"/>
+                <outlet property="lblPlanName" destination="Tmq-wD-aAP" id="WZb-eV-nzH"/>
+                <outlet property="lblPurchasedOn" destination="OfX-1U-EZ4" id="wJi-4J-gca"/>
+                <outlet property="lblStatus" destination="qIg-So-zpM" id="rgl-nu-efr"/>
+                <outlet property="lblTotalAmount" destination="NM1-8f-xJG" id="lHL-ES-IjH"/>
+            </connections>
+            <point key="canvasLocation" x="-226" y="70"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

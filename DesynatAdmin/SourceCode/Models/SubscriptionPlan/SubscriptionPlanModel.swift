@@ -6,6 +6,40 @@
 //
 
 import Foundation
+struct PurchasedPlanDataModel:Codable {
+    var id: Int?
+    var transactionId: String?
+    var sellerId: Int?
+    var planId: Int?
+    var status: String?
+    var amount: String?
+    var planStartDate: String?
+    var planEndDate: String?
+    var planInfo: SubscriptionPlanDataModel?
+    @DefaultCodable<DefaultNilStrategy> var onlineTransactionId: String?
+    @DefaultCodable<DefaultNilStrategy> var paymentMethod: String?
+    var paymentStatus: String?
+    var createdAt: String?
+    var updatedAt: String?
+    
+    enum CodingKeys: String,CodingKey {
+        case id
+        case transactionId = "transaction_id"
+        case sellerId = "seller_id"
+        case planId = "plan_id"
+        case status = "status"
+        case amount = "amount"
+        case planStartDate = "plan_start_date"
+        case planEndDate = "plan_end_date"
+        case planInfo = "plan_info"
+        case onlineTransactionId = "online_transaction_id"
+        case paymentMethod = "payment_method"
+        case paymentStatus = "payment_status"
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+    }
+    
+}
 struct SubscriptionPlanDataModel: Codable {
 
     var id: Int?

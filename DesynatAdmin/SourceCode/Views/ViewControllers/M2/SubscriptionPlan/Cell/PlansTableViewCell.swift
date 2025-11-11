@@ -48,7 +48,7 @@ class PlansTableViewCell: ResuableTableCell {
             self.stackFeature.addArrangedSubview(self.getView("\(data.noOfEmployee) Store Employees ".makeAttributedString(attribute: [.font:UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12,weight: .semibold)], for: "")))
         }
         if (data.comission > 0) {
-            self.stackFeature.addArrangedSubview(self.getView("Commission: \(data.comission)%".makeAttributedString(attribute: [.font:UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12,weight: .semibold)], for: "\(data.comission)")))
+            self.stackFeature.addArrangedSubview(self.getView("Commission: \(data.comission.clean)%".makeAttributedString(attribute: [.font:UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12,weight: .semibold)], for: "\(data.comission.clean)")))
         }
     }
     

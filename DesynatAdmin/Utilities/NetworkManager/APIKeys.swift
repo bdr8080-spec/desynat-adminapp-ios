@@ -36,6 +36,11 @@ struct APIKeys {
     static let commission = "commission"
     static let commissionPercentage = "commission_percentage"
     static let plan_id = "plan_id"
-
-    
+    static let city_id            = "city_id"
+    static let zone_id            = "zone_id"
+    static let name_english            = "name_english"
+    static let name_arabic            = "name_arabic"
+    static let coordinates            = "coordinates"
+    static let lat = "lat"
+    static let lng = "lng"
 }
