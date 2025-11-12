@@ -42,7 +42,7 @@ struct SellerListInfo    {
             reason: String.getString(data.rejectReason),
             email: String.getString(data.email),
             status: status,
-            handler: handler,
+            handler: handler
         )
     }
 }

@@ -17,7 +17,8 @@ class SelectCitiesViewController: UIViewController {
     @IBOutlet weak var btnSubmit: CustomButton!
     private var viewModel : SelectCityViewModel = SelectCityViewModel()
     private var callCackFromSelection:((String) -> Void)?
-    
+    private var alreadyAddedCities: [Int] = [] // 👈 add this property
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,13 +26,14 @@ class SelectCitiesViewController: UIViewController {
         self.setData()
     }
     
-    func setCountry(_ id:String,callCackFromSelection:@escaping ((String) -> Void))  {
+    func setCountry(_ id: String, alreadyAddedCities: [Int] = [], callCackFromSelection: @escaping ((String) -> Void)) {
         self.callCackFromSelection = callCackFromSelection
         self.viewModel.setCountryId(id)
+        self.viewModel.setExcludedCities(alreadyAddedCities) // 👈 set here
     }
     
     private func setUpUi() {
-        self.viewModel.setRefreshHandler(self,)
+        self.viewModel.setRefreshHandler(self)
         self.viewMain.borderRadiusWithCornerMask(radius: 24,cornerMask: [.layerMinXMinYCorner,.layerMaxXMinYCorner])
         self.tblCities.register(CountryTableViewCell.self)
         self.tblCities.dataSource = self
@@ -50,7 +52,8 @@ class SelectCitiesViewController: UIViewController {
     
     private func refreshCitySelection() {
         if let countryListData = viewModel.selectedCity {
-            self.lblSelectedCity.text = String.getString(countryListData.name)
+            //self.lblSelectedCity.text = String.getString(countryListData.name)
+            self.lblSelectedCity.text = "Select"
             self.lblSelectedCity.textColor = .black
         } else {
             self.lblSelectedCity.text = "Select"

@@ -157,6 +157,7 @@ class SellerDetailViewController: UIViewController {
                 self.imgSellerProfile.sd_setImage(with: url,placeholderImage: .sellerActive)
                 self.imgStoreSellerImage.sd_setImage(with: url,placeholderImage: .sellerActive)
             }
+            self.lblSellerName.text = listInfo.name
             self.lblStoreSellerJoinedOn.text = "Joined on \(listInfo.joinedOn)"
             self.lblStoreSellerMobileNumber.text = listInfo.mobileNumber
             self.lblSellerMobileNumber.text = listInfo.mobileNumber

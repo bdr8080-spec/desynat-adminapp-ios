@@ -46,7 +46,7 @@ struct PurchasedPlanInfo {
                 from: Date(iso8601String: String.getString(data.createdAt)),
                 format: "dd/MM/yyyy 'at' hh:mm a"
             ),
-            price: "KD \(Int.getInt(Double.getDouble(data.planInfo?.price).clean))",
+            price: "KD \(Int.getInt(Double.getDouble(data.planInfo?.price).clean))"
         )
     }
 }

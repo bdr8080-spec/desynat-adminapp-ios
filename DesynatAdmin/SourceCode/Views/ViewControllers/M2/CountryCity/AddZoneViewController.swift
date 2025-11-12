@@ -33,8 +33,11 @@ class AddZoneViewController: UIViewController {
     @IBOutlet weak var mapView: GMSMapView!
     private(set) var isForView : Bool = false
     private var titleString : String = ""
+    private var markers: [GMSMarker] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        txtFieldNameArabic.delegate = self
         self.setUpUi()
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -193,6 +196,9 @@ class AddZoneViewController: UIViewController {
     @IBAction func tapUndo(_ sender: Any) {
         let needRefresh = self.viewModel.undoLPath()
         if (needRefresh) {
+            if let lastMarker = self.markers.popLast() {
+                lastMarker.map = nil
+            }
             self.btnUndu.isHidden = self.viewModel.data.coordinates.isEmpty
             self.refreshPath()
         }
@@ -235,9 +241,28 @@ extension AddZoneViewController : GMSMapViewDelegate  {
         }
         LocationManager.sharedInstance.reverseGeocodeCoordinate(coordinate) { address ,cityName in
 //            if (cityName.lowercased() == String.getString(self.viewModel.cityInfo?.name)) {
-                self.btnUndu.isHidden = false
-                self.viewModel.setLocation(coordinate)
-                self.refreshPath()
+//            let marker = GMSMarker(position: coordinate)
+//            marker.icon = UIImage(named: "ic_map_point") // ← use your custom icon or a default one
+//            marker.map = self.mapView
+//            self.markers.append(marker)
+            
+            let marker = GMSMarker(position: coordinate)
+            let size: CGFloat = 10
+            UIGraphicsBeginImageContextWithOptions(CGSize(width: size, height: size), false, 0.0)
+            let ctx = UIGraphicsGetCurrentContext()!
+            ctx.setFillColor(UIColor.systemOrange.cgColor) // customize color
+            ctx.fillEllipse(in: CGRect(x: 0, y: 0, width: size, height: size))
+            let circleImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            marker.icon = circleImage
+            marker.groundAnchor = CGPoint(x: 0.5, y: 0.5)
+            marker.map = self.mapView
+            self.markers.append(marker)
+
+            
+            self.btnUndu.isHidden = false
+            self.viewModel.setLocation(coordinate)
+            self.refreshPath()
 //            } else {
 //                self.showAlert(msg: "The given coordinate is not in \(String.getString(self.viewModel.cityInfo?.name)) city")
 //            }
@@ -247,12 +272,33 @@ extension AddZoneViewController : GMSMapViewDelegate  {
 
 }
 extension AddZoneViewController : UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string.isEmpty {
+            return true
+        }
+        var newText = textField.text ?? ""
+        newText = string.isEmpty ? String(newText.dropLast()) : newText + string
+        if (textField == self.txtFieldNameArabic) {
+            // Define the set of English letters to block
+            let englishLetters = CharacterSet.lowercaseLetters.union(CharacterSet.uppercaseLetters)
+            
+            // Check if the replacement string contains any English letters
+            if string.rangeOfCharacter(from: englishLetters) != nil {
+                self.showAlert(msg: "Plese enter arabic letter.")
+                return false
+            }
+        }
+        return true
+    }
+
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        let autocompleteController = GMSAutocompleteViewController()
-        autocompleteController.delegate = self
-        autocompleteController.modalPresentationStyle = .overFullScreen
-        self.present(autocompleteController, animated: true, completion: nil)
-        self.txtFieldSearch.resignFirstResponder()
+        if textField == txtFieldSearch {
+            let autocompleteController = GMSAutocompleteViewController()
+            autocompleteController.delegate = self
+            autocompleteController.modalPresentationStyle = .overFullScreen
+            self.present(autocompleteController, animated: true, completion: nil)
+            self.txtFieldSearch.resignFirstResponder()
+        }
     }
 }
 extension AddZoneViewController : GMSAutocompleteViewControllerDelegate {

@@ -71,7 +71,8 @@ class AddPlanViewController: UIViewController {
     @IBOutlet weak var viewComission: UIView!
     private var isCountryExpanded : Bool = false
     private(set) var viewModel : AddSubscriptionPlansViewModel = AddSubscriptionPlansViewModel()
-    
+    private(set) var subscriptionInfo: PlanInfo = PlanInfo()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,13 +85,18 @@ class AddPlanViewController: UIViewController {
         self.viewModel.setData(data)
     }
     
+    func setCountry(_ country: GetCountryDataModel) {
+        self.subscriptionInfo.country = country
+    }
+
     private func setUpUi() {
         self.viewModel.setRefreshHandler(self)
         self.txtFieldArabicPlanName.delegate = self
+        self.txtFieldEnglishPlanName.delegate = self
         self.tblCountry.register(CountryTableViewCell.self)
         self.tblCountry.dataSource = self
         self.tblCountry.delegate = self
-        
+        self.txtFieldDuration.delegate = self
         self.tblCountry.separatorStyle = .none
         self.lblTitle.text = self.viewModel.isForEdit ? "Update plan" : "Create New Plan"
         self.btnAdd.setTitle(self.viewModel.isForEdit ? "Update" : "Add", for: .normal)
@@ -209,6 +215,7 @@ extension AddPlanViewController: UITableViewDelegate, UITableViewDataSource {
         if (self.viewModel.countryListData.count > indexPath.row) {
             let data = viewModel.countryListData[indexPath.row]
             self.viewModel.setCountry(data)
+            self.isCountryExpanded = false
             self.refreshCountrySelection()
         }
     }
@@ -226,6 +233,8 @@ extension AddPlanViewController :HandleTableRefresh {
 }
 extension AddPlanViewController:UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        var validation: StringValidation?
+        let currentText = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         if string.isEmpty {
             return true
         }
@@ -240,7 +249,21 @@ extension AddPlanViewController:UITextFieldDelegate {
                 self.showAlert(msg: "Plese enter arabic letter.")
                 return false
             }
+        } else if (textField == self.txtFieldEnglishPlanName) {
+            if currentText.hasPrefix(" "){
+                return false
+            }
+            //validation = StringValidation(string: currentText, characterCount: 30, validation: .firstName)
+        } else if (textField == self.txtFieldDuration) {
+            if currentText.hasPrefix(" "){
+                return false
+            }
+            validation = StringValidation(string: currentText, characterCount: 2, validation: .mobileNo)
         }
-        return true
+        if let data = validation {
+            return data.validate()
+        } else {
+            return true
+        }
     }
 }

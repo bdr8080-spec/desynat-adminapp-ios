@@ -78,7 +78,10 @@ class CountryCityListViewController: UIViewController {
     
     @IBAction func handleAddCity(_ sender: UIButton) {
         let vc = SelectCitiesViewController.viewFromNIB
-        vc.setCountry(String.getString(self.viewModel.selectedCountry?.id)) { cityId in
+        vc.setCountry(
+            String.getString(self.viewModel.selectedCountry?.id),
+            alreadyAddedCities: self.viewModel.arrayCities.map { Int.getInt($0.id) }
+        ) { cityId in
             self.viewModel.addCity(id: cityId) {
                 self.viewModel.getCities()
             }
@@ -151,6 +154,7 @@ extension CountryCityListViewController: UITableViewDelegate, UITableViewDataSou
                 let data = viewModel.countryListData[indexPath.row]
                 self.viewModel.setCountry(data)
                 self.txtFielSearch.text = ""
+                self.isCountryExpanded = false
                 self.refreshCountrySelection()
             }
         default:

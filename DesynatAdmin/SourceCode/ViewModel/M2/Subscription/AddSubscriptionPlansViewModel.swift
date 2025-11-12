@@ -46,7 +46,7 @@ struct PlanInfo {
             return .selectCountry
         } else if planNameEnglish.trimmingCharacters(in: .whitespaces).isEmpty {
             return .enterEnglishPlanName
-        } else if planNameEnglish.trimmingCharacters(in: .whitespaces).isEmpty {
+        } else if planNameArabic.trimmingCharacters(in: .whitespaces).isEmpty {
             return .enterArabicPlanName
         } else if duration <= 0.0 {
             return .enterPlanDuration

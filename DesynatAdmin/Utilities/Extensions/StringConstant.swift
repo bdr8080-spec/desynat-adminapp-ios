@@ -66,8 +66,8 @@ enum AlertConstant: String {
     case comissionShouldLess100 =  "Comission should be equal or less than 100"
     case  selectLocation = "Select Location"
     case  provideZoneBoundary = "Please provide zone boundary."
-    case  enterEnglishName = "Please Enter english name"
-    case  enterArabicName = "Please Enter arabic name"
+    case  enterEnglishName = "Please Enter Zone Name in english"
+    case  enterArabicName = "Please Enter Zone Name in arabic"
     
     
     

@@ -44,7 +44,12 @@ class SubscriptionPlanListViewController: UIViewController {
     }
     
     @IBAction func handleAddPlan(_ sender: Any) {
-        self.navigate(to: AddPlanViewController.viewFromNIB)
+        //self.navigate(to: AddPlanViewController.viewFromNIB)
+        let vc = AddPlanViewController.viewFromNIB
+        if let selected = self.viewModel.selectedCountry {
+            vc.viewModel.setCountry(selected)
+        }
+        self.navigate(to: vc)
     }
     
     @IBAction func handleChooseCountry(_ sender: Any) {
@@ -105,6 +110,7 @@ extension SubscriptionPlanListViewController: UITableViewDelegate, UITableViewDa
             if (self.viewModel.countryListData.count > indexPath.row) {
                 let data = viewModel.countryListData[indexPath.row]
                 self.viewModel.setCountry(data)
+                self.isCountryExpanded = false
                 self.refreshCountrySelection()
             }
         default:
