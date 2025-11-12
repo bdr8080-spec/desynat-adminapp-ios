@@ -34,7 +34,7 @@ class AddZoneViewController: UIViewController {
     private(set) var isForView : Bool = false
     private var titleString : String = ""
     private var markers: [GMSMarker] = []
-    
+    private(set) var isInitalLoad : Bool = true
     override func viewDidLoad() {
         super.viewDidLoad()
         txtFieldNameArabic.delegate = self
@@ -52,6 +52,7 @@ class AddZoneViewController: UIViewController {
             }
         } else {
             self.cameraMoveToLocation(isForCurrent: false)
+            self.setAreaPolyGon()
         }
        
     }
@@ -113,7 +114,6 @@ class AddZoneViewController: UIViewController {
 //        if !viewModel.data.coordinates.isEmpty {
 //            
 //        }
-        self.setAreaPolyGon()
         self.btnCurrentLocation.isHidden = true
         self.imgPin.isHidden = true
         if (!self.viewModel.isForEdit) {
@@ -232,7 +232,10 @@ extension AddZoneViewController : GMSMapViewDelegate  {
         //        self.getAddressFromCameraPosition(cameraPosition: position)
         
         LocationManager.getCityAndStateCountry(lat: position.target.latitude, long: position.target.longitude) { string in
-            self.txtFieldSearch.text = string
+            if(!self.isInitalLoad) {
+                self.txtFieldSearch.text = string
+            }
+            self.isInitalLoad = false
         }
     }
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
