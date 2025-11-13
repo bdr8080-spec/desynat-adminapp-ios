@@ -241,6 +241,9 @@ extension AddPlanViewController:UITextFieldDelegate {
         var newText = textField.text ?? ""
         newText = string.isEmpty ? String(newText.dropLast()) : newText + string
         if (textField == self.txtFieldArabicPlanName) {
+            if currentText.hasPrefix(" "){
+                return false
+            }
             // Define the set of English letters to block
             let englishLetters = CharacterSet.lowercaseLetters.union(CharacterSet.uppercaseLetters)
             

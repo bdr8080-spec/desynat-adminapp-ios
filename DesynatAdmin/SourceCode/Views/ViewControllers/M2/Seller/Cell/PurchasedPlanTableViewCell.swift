@@ -32,6 +32,7 @@ case none = 0 ,active,expired
 struct PurchasedPlanInfo {
     var id:String = UUID().uuidString
     var name: String = ""
+    var duration: Int = 0
     var durationType: DurationType = .none
     var status: PurchasedStatus = .none
     var purchasedOn:String = ""
@@ -40,6 +41,7 @@ struct PurchasedPlanInfo {
         PurchasedPlanInfo(
             id: String.getString(data.id),
             name: String.getString(data.planInfo?.planNameEnglish),
+            duration: Int.getInt(data.planInfo?.duration),
             durationType: DurationType(rawValue: Int.getInt(data.planInfo?.durationType)) ?? .none,
             status: PurchasedStatus(rawValue: Int.getInt(data.status)) ?? .none,
             purchasedOn: CommonUtils.getDateString(
@@ -64,7 +66,9 @@ class PurchasedPlanTableViewCell: ResuableTableCell {
     }
     
     func setData(_ data:PurchasedPlanInfo) {
-        self.lblPlanDurationType.text = data.durationType.title
+        self.lblPlanName.text = data.name
+        //self.lblPlanDurationType.text = "\(data.duration) \(data.durationType.title)"
+        self.lblPlanDurationType.text = "\(data.duration) \(data.durationType == .month ? (data.duration > 1 ? "Months" : "Month") : (data.duration > 1 ? "Years" : "Year"))"
         self.lblStatus.text = data.status.title
         self.lblStatus.textColor = data.status.titleColor
         self.lblPurchasedOn.text = data.purchasedOn

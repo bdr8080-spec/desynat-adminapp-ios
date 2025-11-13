@@ -113,7 +113,7 @@ class AddZoneViewController: UIViewController {
         self.mapView.padding = UIEdgeInsets(top: 0, left: 0, bottom: 30, right: 0)
         
 //        if !viewModel.data.coordinates.isEmpty {
-//            
+//
 //        }
         self.btnCurrentLocation.isHidden = true
         self.imgPin.isHidden = true
@@ -277,6 +277,9 @@ extension AddZoneViewController : GMSMapViewDelegate  {
 }
 extension AddZoneViewController : UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentText = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        var validation: StringValidation?
+        
         if string.isEmpty {
             return true
         }
@@ -284,6 +287,9 @@ extension AddZoneViewController : UITextFieldDelegate {
         newText = string.isEmpty ? String(newText.dropLast()) : newText + string
         if (textField == self.txtFieldNameArabic) {
             // Define the set of English letters to block
+            if currentText.hasPrefix(" "){
+                return false
+            }
             let englishLetters = CharacterSet.lowercaseLetters.union(CharacterSet.uppercaseLetters)
             
             // Check if the replacement string contains any English letters
@@ -291,10 +297,19 @@ extension AddZoneViewController : UITextFieldDelegate {
                 self.showAlert(msg: "Plese enter arabic letter.")
                 return false
             }
+        } else if (textField == self.txtFieldNameEnglish) {
+            if currentText.hasPrefix(" "){
+                return false
+            }
         }
-        return true
+        
+        if let data = validation {
+            return data.validate()
+        } else {
+            return true
+        }
     }
-
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == txtFieldSearch {
             let autocompleteController = GMSAutocompleteViewController()

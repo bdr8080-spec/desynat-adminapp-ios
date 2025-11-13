@@ -173,7 +173,7 @@ class SellerDetailViewController: UIViewController {
             }
             self.viewStoreSellerInfo.isHidden = listInfo.status == .approved
             self.viewStoreImage.isHidden = listInfo.status == .approved
-            self.viewStoreName.isHidden = listInfo.status == .approved
+            //self.viewStoreName.isHidden = listInfo.status == .approved
             self.viewStorePhoneNumber.isHidden = listInfo.status == .approved
             self.viewStoreEmail.isHidden = listInfo.status == .approved
             self.viewBio.isHidden = listInfo.status == .approved
@@ -187,6 +187,9 @@ class SellerDetailViewController: UIViewController {
         self.viewModel.getSellerDetailInfo {
             if let detailModel = self.viewModel.detailModel {
                 self.imgSellerCover.image = .imgCoverPlace
+                if let url = URL(string: String.getString(detailModel.storeInfo?.storeImage)) {
+                    self.imgSellerCover.sd_setImage(with: url, placeholderImage: .imgCoverPlace)
+                }
                 self.btnSwitch.setImage(self.viewModel.isActive ? .toggleOn : .toggleOff , for: .normal)
                 self.viewSellerrating.rating = 4.0
                 

@@ -17,8 +17,7 @@ class SelectCitiesViewController: UIViewController {
     @IBOutlet weak var btnSubmit: CustomButton!
     private var viewModel : SelectCityViewModel = SelectCityViewModel()
     private var callCackFromSelection:((String) -> Void)?
-    private var alreadyAddedCities: [Int] = [] // 👈 add this property
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,10 +25,9 @@ class SelectCitiesViewController: UIViewController {
         self.setData()
     }
     
-    func setCountry(_ id: String, alreadyAddedCities: [Int] = [], callCackFromSelection: @escaping ((String) -> Void)) {
+    func setCountry(_ id:String,callCackFromSelection:@escaping ((String) -> Void))  {
         self.callCackFromSelection = callCackFromSelection
         self.viewModel.setCountryId(id)
-        self.viewModel.setExcludedCities(alreadyAddedCities) // 👈 set here
     }
     
     private func setUpUi() {
@@ -43,7 +41,6 @@ class SelectCitiesViewController: UIViewController {
             self.btnSubmit.applyGradient(colours: [UIColor.init(hexString: "#DFBF8F"), UIColor.init(hexString: "#6E4527")],gradientDirection: .topToBottom,cornerRadius: 5)
         }
     }
-
     func setData() {
         self.viewModel.getAllCities {
             self.refreshCitySelection()
@@ -52,7 +49,7 @@ class SelectCitiesViewController: UIViewController {
     
     private func refreshCitySelection() {
         if let countryListData = viewModel.selectedCity {
-            //self.lblSelectedCity.text = String.getString(countryListData.name)
+            self.lblSelectedCity.text = String.getString(countryListData.name)
             self.lblSelectedCity.text = "Select"
             self.lblSelectedCity.textColor = .black
         } else {
@@ -72,6 +69,10 @@ class SelectCitiesViewController: UIViewController {
     }
     
     @IBAction func handleSubmit(_ sender: Any) {
+        guard let selectedCity = viewModel.selectedCity else {
+            self.showAlert(msg: "Please select city")
+            return
+        }
         self.callCackFromSelection?(String.getString(viewModel.selectedCity?.id))
         self.dismiss(animated: false)
     }

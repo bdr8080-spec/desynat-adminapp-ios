@@ -15,16 +15,53 @@ class PlansTableViewCell: ResuableTableCell {
     @IBOutlet weak var viewPlanTitleBack: CustomView!
     @IBOutlet weak var lblPrice: CustomLabelFont!
     @IBOutlet weak var lblPlanName: CustomLabelFont!
+
+    private var gradientIndex: Int?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.setUpUi()
+        //self.setUpUi()
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if let index = gradientIndex {
+            applyGradientForIndex(index)
+        }
+    }
+
     private func setUpUi() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-//            self.viewMain.borderRadiusWithCornerMask(radius: 12,cornerMask: [.layerMinXMaxYCorner,.layerMaxXMaxYCorner])
             self.viewPlanTitleBack.applyGradient(colours: [.init(hexString: "#5E5E5E"),.init(hexString: "#1A1A1A"),.init(hexString: "#1A1A1A")],gradientDirection: .leftToRight,cornerRadius: 16,corners: [.layerMinXMaxYCorner,.layerMaxXMaxYCorner])
         }
     }
+    
+    func applyGradientForIndex(_ index: Int) {
+        self.gradientIndex = index // keep it for layout pass
+        
+        let gradients: [[UIColor]] = [
+            [UIColor(hexString: "#DFBF8F"), UIColor(hexString: "#6E4527")],
+            [UIColor(hexString: "#2E8B57"), UIColor(hexString: "#006400")],
+            [UIColor(hexString: "#1E90FF"), UIColor(hexString: "#00008B")],
+            [UIColor(hexString: "#FF6347"), UIColor(hexString: "#8B0000")],
+            [UIColor(hexString: "#8A2BE2"), UIColor(hexString: "#4B0082")],
+            [UIColor(hexString: "#FF69B4"), UIColor(hexString: "#C71585")],
+            [UIColor(hexString: "#FFD700"), UIColor(hexString: "#FFA500")]
+        ]
+        
+        let colorSet = gradients[index % gradients.count]
+        
+        DispatchQueue.main.async {
+            self.viewPlanTitleBack.layer.sublayers?.removeAll(where: { $0 is CAGradientLayer })
+            self.viewPlanTitleBack.applyGradient(
+                colours: colorSet,
+                gradientDirection: .leftToRight,
+                cornerRadius: 16,
+                corners: [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+            )
+        }
+    }
+
     
     func setData(_ data:PlanInfo) {
         self.lblPlanName.text = data.planNameEnglish

@@ -81,6 +81,7 @@ extension SubscriptionPlanListViewController: UITableViewDelegate, UITableViewDa
             if  let cell = tableView.dequeueReusableCell(withIdentifier: PlansTableViewCell.defaultIdentifier, for: indexPath) as? PlansTableViewCell {
                 if viewModel.arrayPlans.count > indexPath.row {
                     cell.setData(viewModel.arrayPlans[indexPath.row])
+                    cell.applyGradientForIndex(indexPath.row)
                 }
                 cell.selectionStyle = .none
                 return cell
