@@ -47,6 +47,7 @@ class AddZoneViewController: UIViewController {
                     DispatchQueue.main.async {
                         let camera = GMSCameraPosition.camera(withLatitude: lat, longitude:long, zoom: 16.0)
                         self.mapView.camera = camera
+                        self.setAreaPolyGon()
                     }
                 }
             }
