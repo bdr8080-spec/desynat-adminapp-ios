@@ -27,12 +27,17 @@ struct APIKeys {
     static let plan_name_arabic = "plan_name_arabic"
     static let duration = "duration"
     static let duration_type = "duration_type"
+    static let newduration = "new_duration"
+    static let newduration_type = "new_duration_type"
+
     static let no_of_videos = "no_of_videos"
     static let no_of_products = "no_of_products"
     static let no_of_highlights = "no_of_highlights"
     static let no_of_employee = "no_of_employee"
     static let stories = "stories"
     static let price = "price"
+    static let newprice = "discounted_price"
+
     static let commission = "commission"
     static let commissionPercentage = "commission_percentage"
     static let plan_id = "plan_id"
@@ -43,4 +48,8 @@ struct APIKeys {
     static let coordinates            = "coordinates"
     static let lat = "lat"
     static let lng = "lng"
+    
+   
+    static let discountedPrice = "discounted_price"
+//    static let discountedPrice = "discounted_price"
 }

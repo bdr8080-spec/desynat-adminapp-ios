@@ -12,7 +12,19 @@ class AddPlanViewController: UIViewController {
     @IBOutlet weak var lblSelectedCountry: CustomLabelFont!
     @IBOutlet weak var lnlFlag: CustomLabelFont!
     @IBOutlet weak var tblCountry: TableViewDynamicHeight!
+    @IBOutlet weak var newPriceView: UIView!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var newDurationView: UIView!
+    @IBOutlet weak var newPriceTextField: BindableTextField!
+    {
+        didSet {
+            newPriceTextField.bind(callback: {self.viewModel.setnewPrice($0)})
+        }
+    }
     
+    @IBOutlet weak var lblNewDurationType: CustomLabelFont!
+   
     @IBOutlet weak var txtFieldEnglishPlanName: BindableTextField! {
         didSet {
             txtFieldEnglishPlanName.bind(callback: {self.viewModel.setPlanEnglishName($0)})
@@ -28,6 +40,15 @@ class AddPlanViewController: UIViewController {
             txtFieldDuration.bind(callback: {self.viewModel.setDuration($0)})
         }
     }
+    
+    @IBOutlet weak var textNewDuration: BindableTextField!
+    {
+        didSet {
+            textNewDuration.bind(callback: {self.viewModel.setnewDuration($0)})
+        }
+    }
+    
+    
     @IBOutlet weak var lblDurationTyp: CustomLabelFont!
     @IBOutlet weak var viewDurationSeletion: UIView!
     @IBOutlet weak var txtFielNoVideos: BindableTextField! {
@@ -104,6 +125,8 @@ class AddPlanViewController: UIViewController {
             self.btnAdd.applyGradient(colours: [UIColor.init(hexString: "#DFBF8F"), UIColor.init(hexString: "#6E4527")],gradientDirection: .topToBottom,cornerRadius: 5)
         }
         self.lblDurationTyp.text = self.viewModel.subscriptionInfo.durationType.title
+        self.lblNewDurationType.text = self.viewModel.subscriptionInfo.NewdurationType.title
+
     }
     
     func setData() {
@@ -111,15 +134,27 @@ class AddPlanViewController: UIViewController {
             self.refreshCountrySelection()
         }
         if (self.viewModel.isForEdit) {
+            self.priceLabel.text = "Old Price"
+            self.durationLabel.text = "Old Duration"
+            self.newPriceView.isHidden = false
+            self.newDurationView.isHidden = false
             self.txtFieldEnglishPlanName.text = self.viewModel.subscriptionInfo.planNameEnglish
             self.txtFieldArabicPlanName.text = self.viewModel.subscriptionInfo.planNameArabic
             self.txtFieldDuration.text = String.getString(self.viewModel.subscriptionInfo.duration)
+            self.textNewDuration.text = String.getString(self.viewModel.subscriptionInfo.Newduration)
+
             self.txtFielNoVideos.text = String.getString(self.viewModel.subscriptionInfo.noOfVideos)
             self.txtFielNoProducts.text = String.getString(self.viewModel.subscriptionInfo.noOfProducts)
             self.txtFielNoHighlights.text = String.getString(self.viewModel.subscriptionInfo.noOfHighlights)
             self.txtFielNoEmployee.text = String.getString(self.viewModel.subscriptionInfo.noOfEmployee)
             self.txtFieldPrice.text = String.getString(self.viewModel.subscriptionInfo.price)
+            self.newPriceTextField.text = String.getString(self.viewModel.subscriptionInfo.NewPrice)
             self.txtFieldComission.text = String.getString(self.viewModel.subscriptionInfo.comission)
+        } else {
+            self.priceLabel.text = "Price"
+            self.durationLabel.text = "Duration"
+            self.newPriceView.isHidden = true
+            self.newDurationView.isHidden = true
         }
         self.selectComission(self.viewModel.subscriptionInfo.isComission)
         self.viewComission.isHidden = !self.viewModel.subscriptionInfo.isComission
@@ -182,6 +217,13 @@ class AddPlanViewController: UIViewController {
     
     @IBAction func handleBack(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func newDurationDidTapped(_ sender: Any) {
+        CommonUtils.dropDown(dataSource: DurationType.allCases.filter({$0 != .none}).map({$0.title}), anchorView: self.viewDurationSeletion, selectedColor: .black) { index, item in
+            self.viewModel.setnewDurationType(index)
+            self.lblNewDurationType.text = self.viewModel.subscriptionInfo.durationType.title
+        }
     }
     
     func refreshCountrySelection() {

@@ -22,6 +22,11 @@ struct PlanInfo {
     var price:Double = 0.0
     var comission:Double = 0.0
     var isActive:Bool = false
+    var NewPrice:Double = 0.0
+    var Newduration:Double = 0.0
+    var NewdurationType:DurationType = .year
+    
+    
     static func makeInfo(_ data:SubscriptionPlanDataModel) -> Self {
         PlanInfo(
             id: String.getString(data.id),
@@ -38,7 +43,11 @@ struct PlanInfo {
             isComission:   Int.getInt(data.commission) == 1,
             price: Double.getDouble(data.price),
             comission:   Double.getDouble(data.commissionPercentage),
-            isActive:   Int.getInt(data.status) == 1
+            isActive:   Int.getInt(data.status) == 1,
+            NewPrice: Double.getDouble(data.discountedPrice),
+            Newduration: Double.getDouble(data.newduration),
+            NewdurationType: DurationType(rawValue: Int.getInt(data.newdurationType)) ?? .none
+
         )
     }
     func validateData() -> AlertConstant{
@@ -83,6 +92,29 @@ struct PlanInfo {
             APIKeys.price:self.price,
             APIKeys.commission:self.isComission ? 1 :0,
             APIKeys.commissionPercentage:self.comission,
+
+        ]
+    }
+    
+    var editParatmer:[String:Any] {
+        [
+            APIKeys.country_id:Int.getInt(self.country?.id),
+            APIKeys.plan_name_english:self.planNameEnglish,
+            APIKeys.plan_name_arabic:self.planNameArabic,
+            APIKeys.duration:self.duration,
+            APIKeys.duration_type:self.durationType.rawValue,
+            APIKeys.no_of_videos:self.noOfVideos,
+            APIKeys.no_of_products:self.noOfProducts,
+            APIKeys.no_of_highlights:self.noOfHighlights,
+            APIKeys.no_of_employee:self.noOfEmployee,
+            APIKeys.stories:self.isStoryOpen ? 1 : 0,
+            APIKeys.price:self.price,
+            APIKeys.commission:self.isComission ? 1 :0,
+            APIKeys.commissionPercentage:self.comission,
+            APIKeys.newprice:self.NewPrice,
+            APIKeys.newduration:self.Newduration,
+            APIKeys.newduration_type:self.NewdurationType.rawValue
+
         ]
     }
     
@@ -128,10 +160,19 @@ class AddSubscriptionPlansViewModel {
     func setDuration(_ string:String)  {
         self.subscriptionInfo.duration = Double.getDouble(string)
     }
+    func setnewDuration(_ string:String)  {
+        self.subscriptionInfo.Newduration = Double.getDouble(string)
+    }
     
     func setDurationType(_ index:Int)  {
         if (DurationType.allCases.count > index) {
             self.subscriptionInfo.durationType = DurationType.allCases.filter({$0 != .none})[index]
+        }
+    }
+    
+    func setnewDurationType(_ index:Int)  {
+        if (DurationType.allCases.count > index) {
+            self.subscriptionInfo.NewdurationType = DurationType.allCases.filter({$0 != .none})[index]
         }
     }
     
@@ -162,6 +203,9 @@ class AddSubscriptionPlansViewModel {
     func setPrice(_ string:String)  {
         self.subscriptionInfo.price = Double.getDouble(string)
     }
+    func setnewPrice(_ string:String)  {
+        self.subscriptionInfo.NewPrice = Double.getDouble(string)
+    }
     func setCountry(_ country:GetCountryDataModel) {
         self.subscriptionInfo.country = country
         refresHandler?.refreshTable(for: "")
@@ -184,7 +228,7 @@ class AddSubscriptionPlansViewModel {
     
     func makePlan(_ completion:@escaping () -> Void) {
         if self.isForEdit {
-            var paramter = self.subscriptionInfo.paratmer
+            var paramter = self.subscriptionInfo.editParatmer
             paramter[APIKeys.plan_id] = self.subscriptionInfo.id
             WebService.sharedInstance.editPlan(paramter: paramter) { _ in
                 completion()

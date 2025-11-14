@@ -48,12 +48,15 @@ struct SubscriptionPlanDataModel: Codable {
     var planNameArabic: String?
     var duration: Double?
     var durationType: Int?
+    var newduration: Double?
+    var newdurationType: Int?
     var noOfVideos: Int?
     var noOfProducts: Int?
     var noOfHighlights: Int?
     var noOfEmployee: Int?
     var stories: Int?
     var price: Double?
+    var discountedPrice: Double?
     var commission: Int?
     var commissionPercentage: Double?
     var status: Int?
@@ -68,18 +71,23 @@ struct SubscriptionPlanDataModel: Codable {
         case planNameArabic = "plan_name_arabic"
         case duration = "duration"
         case durationType = "duration_type"
+        case newduration = "new_duration"
+        case newdurationType = "new_duration_type"
         case noOfVideos = "no_of_videos"
         case noOfProducts = "no_of_products"
         case noOfHighlights = "no_of_highlights"
         case noOfEmployee = "no_of_employee"
         case stories = "stories"
         case price = "price"
+        case discountedPrice = "discounted_price"
+
         case commission = "commission"
         case commissionPercentage = "commission_percentage"
         case status = "status"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
         case countryInfo = "country_info"
+        
     }
     
     init(from decoder: any Decoder) throws {
@@ -94,6 +102,14 @@ struct SubscriptionPlanDataModel: Codable {
             self.duration = Double(intValue)
         }
         self.durationType = try container?.decodeIfPresent(Int.self, forKey: .durationType)
+        
+        if let intValue = try? container?.decodeIfPresent(Int.self, forKey: .newduration) {
+            self.newduration = Double(intValue)
+        } else if let intValue = try? container?.decodeIfPresent(Double.self, forKey: .newduration) {
+            self.newduration = Double(intValue)
+        }
+        self.newdurationType = try container?.decodeIfPresent(Int.self, forKey: .newdurationType)
+        
         self.noOfVideos = try container?.decodeIfPresent(Int.self, forKey: .noOfVideos)
         self.noOfProducts = try container?.decodeIfPresent(Int.self, forKey: .noOfProducts)
         self.noOfHighlights = try container?.decodeIfPresent(Int.self, forKey: .noOfHighlights)
@@ -103,6 +119,12 @@ struct SubscriptionPlanDataModel: Codable {
             self.price = Double(intValue)
         } else if let intValue = try? container?.decodeIfPresent(Double.self, forKey: .price) {
             self.price = Double(intValue)
+        }
+        
+        if let intValue = try? container?.decodeIfPresent(Int.self, forKey: .discountedPrice) {
+            self.discountedPrice = Double(intValue)
+        } else if let intValue = try? container?.decodeIfPresent(Double.self, forKey: .discountedPrice) {
+            self.discountedPrice = Double(intValue)
         }
         self.commission = try container?.decodeIfPresent(Int.self, forKey: .commission)
         if let intValue = try? container?.decodeIfPresent(Int.self, forKey: .commissionPercentage) {
