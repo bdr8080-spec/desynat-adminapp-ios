@@ -24,10 +24,11 @@ class SideMenuViewController: UIViewController {
         SideMenuModel(title: "Category & Sub- Category Management", image: "category"),
         SideMenuModel(title: "Seller Management", image: "sellerManagement"),
         SideMenuModel(title: "Country , City & Zone Management", image: "country"),
+        SideMenuModel(title: "Reason Management", image: "reason"),
+        SideMenuModel(title: "Delivery Boy Management", image: "deliveryBoy"),
         SideMenuModel(title: "User Management", image: "userManagemnet"),
         SideMenuModel(title: "Sub Admin", image: "subadmin"),
         SideMenuModel(title: "Affiliate User Management", image: "userManagemnet"),
-        SideMenuModel(title: "Delivery Boy Management", image: "deliveryBoy"),
         SideMenuModel(title: "Live Request  & Timeslot Management", image: "liveReuqest"),
         SideMenuModel(title: "Gift Card Management", image: "gift"),
         SideMenuModel(title: "Orders Management", image: "orderManagemnt"),
@@ -43,7 +44,6 @@ class SideMenuViewController: UIViewController {
         SideMenuModel(title: "Deals Management", image: "dealsManagement"),
         SideMenuModel(title: "Banner per day price", image: "bannerPay"),
         SideMenuModel(title: "Banner requests Management", image: "bannerRequest"),
-        SideMenuModel(title: "Reason Management", image: "reason"),
         SideMenuModel(title: "CMS", image: "cms"),
         SideMenuModel(title: "Support Chat", image: "support")]
     private lazy var viewModel = SideMenuViewModel(hostVC: self)
@@ -115,6 +115,8 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             case "Seller Management":
                 self.navigate(to: SellerListViewController.viewFromNIB)
             case "Delivery Boy Management":
+              let vc = DeliveryBoyViewController.instantiate(fromAppStoryboard: .SideMenu)
+              self.navigationController?.pushViewController(vc, animated: false)
                 print("➡️ Navigating to Delivery Boy Management")
             case "Live Request  & Timeslot Management":
                 print("➡️ Navigating to Live Request & Timeslot Management")
@@ -149,7 +151,8 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             case "Banner requests Management":
                 print("➡️ Navigating to Banner Requests Management")
             case "Reason Management":
-                print("➡️ Navigating to Reason Management")
+              let vc = ReasonManagementViewController.instantiate(fromAppStoryboard: .ReasonManagement)
+              self.navigationController?.pushViewController(vc, animated: false)
             case "CMS":
                 print("➡️ Navigating to CMS")
             case "Support Chat":

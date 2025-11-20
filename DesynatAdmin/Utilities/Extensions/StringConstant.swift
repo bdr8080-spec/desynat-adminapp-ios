@@ -69,6 +69,9 @@ enum AlertConstant: String {
     case  enterEnglishName = "Please Enter Zone Name in english"
     case  enterArabicName = "Please Enter Zone Name in arabic"
     
+  
+  case EnterReasonEnglish          = "Please enter reason in english"
+  case EnterReasonArabic           = "Please enter reason in arabic"
     
     
     func value() -> String {

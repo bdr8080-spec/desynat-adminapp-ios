@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		49DBE5522EB0836A00DE95E8 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 49DBE5512EB0836A00DE95E8 /* IQKeyboardManagerSwift */; };
+		D1C88BC62ECF25E9006B02A2 /* ReasonManagement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1C88BC52ECF25E9006B02A2 /* ReasonManagement.storyboard */; };
 		E63EED1228A8686ED571F811 /* Pods_DesynatAdmin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F90342B856995B003DD7352B /* Pods_DesynatAdmin.framework */; };
 		ED01EAB92EBDE2D800A92E1E /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED01EAB82EBDE2D800A92E1E /* FilterViewModel.swift */; };
 		ED01EABB2EBDED1600A92E1E /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED01EABA2EBDED1600A92E1E /* Bindable.swift */; };
@@ -232,6 +233,7 @@
 		495DBBA12E81528A00E61635 /* DesynatAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesynatAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C4E9B8B9705C3871D77FF3E /* Pods-DesynatUser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesynatUser.debug.xcconfig"; path = "Target Support Files/Pods-DesynatUser/Pods-DesynatUser.debug.xcconfig"; sourceTree = "<group>"; };
 		B8F5F09A386DA7CAD4D87C8F /* Pods-DesynatAdmin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesynatAdmin.release.xcconfig"; path = "Target Support Files/Pods-DesynatAdmin/Pods-DesynatAdmin.release.xcconfig"; sourceTree = "<group>"; };
+		D1C88BC52ECF25E9006B02A2 /* ReasonManagement.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReasonManagement.storyboard; sourceTree = "<group>"; };
 		DAC861322A1CE32C917A0BDC /* Pods-DesynatUser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesynatUser.release.xcconfig"; path = "Target Support Files/Pods-DesynatUser/Pods-DesynatUser.release.xcconfig"; sourceTree = "<group>"; };
 		ED01EAB82EBDE2D800A92E1E /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
 		ED01EABA2EBDED1600A92E1E /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
@@ -441,6 +443,10 @@
 		EDF438312EC215CD004CC018 /* CountryCityListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryCityListViewController.xib; sourceTree = "<group>"; };
 		F90342B856995B003DD7352B /* Pods_DesynatAdmin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DesynatAdmin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		D1C88BC02ECF2545006B02A2 /* M3 */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = M3; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		495DBB9E2E81528A00E61635 /* Frameworks */ = {
@@ -828,6 +834,7 @@
 				EDEDD0132EBCC53E00F2BEF1 /* Home.storyboard */,
 				EDEDD0152EBCC53E00F2BEF1 /* LaunchScreen.storyboard */,
 				EDEDD0172EBCC53E00F2BEF1 /* SideMenu.storyboard */,
+				D1C88BC52ECF25E9006B02A2 /* ReasonManagement.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -1010,6 +1017,7 @@
 		EDEDD04B2EBCC53E00F2BEF1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				D1C88BC02ECF2545006B02A2 /* M3 */,
 				EDF3F3DA2EBD9F8E00FF515C /* M2 */,
 				EDEDD04A2EBCC53E00F2BEF1 /* M1 */,
 			);
@@ -1326,6 +1334,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				D1C88BC02ECF2545006B02A2 /* M3 */,
+			);
 			name = DesynatAdmin;
 			packageProductDependencies = (
 				49DBE5512EB0836A00DE95E8 /* IQKeyboardManagerSwift */,
@@ -1447,6 +1458,7 @@
 				EDF4382C2EC207DC004CC018 /* SubscriptionDetailViewController.xib in Resources */,
 				EDEDD0BF2EBCC53E00F2BEF1 /* assets.bundle in Resources */,
 				EDEDD0C02EBCC53E00F2BEF1 /* CallingCodes.plist in Resources */,
+				D1C88BC62ECF25E9006B02A2 /* ReasonManagement.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
