@@ -9,6 +9,7 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 import IQKeyboardManagerSwift
+import DropDown
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -54,6 +55,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
            print("❌ Failed to register for remote notifications: \(error.localizedDescription)")
        }
+  
+  func dropDown(dataSource:[String] , anchorView:UIView , completion: @escaping (  _ index: Int ,  _ item: String) -> ()) -> Void {
+      let dropDown = DropDown()
+      dropDown.anchorView = anchorView
+      dropDown.dataSource = dataSource
+      dropDown.backgroundColor = UIColor.white
+      dropDown.textColor = .black
+      dropDown.direction = .bottom
+      dropDown.selectionBackgroundColor = UIColor.white
+      dropDown.selectedTextColor = .black
+      dropDown.bottomOffset = CGPoint(x: 0, y:(dropDown.anchorView?.plainView.bounds.height)!)
+      dropDown.dismissMode = .automatic
+      dropDown.show()
+      dropDown.selectionAction = {(index: Int, item: String) in
+          print("Selected item: \(item) at index: \(index)")
+          completion(index,item)
+          
+      }
+  }
 
 
 }

@@ -33,6 +33,7 @@ class ReasonManagementViewController: UIViewController {
   
   private lazy var viewModel = ReasonManagementViewModel(hostVC: self)
   private var searchWorkItem: DispatchWorkItem?
+  var type: Int = 1
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -43,7 +44,7 @@ class ReasonManagementViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     viewModel.currentPage = 1
-//    viewModel.getAllReasons()
+    viewModel.getAllReasons()
   }
   
   
@@ -54,15 +55,16 @@ class ReasonManagementViewController: UIViewController {
   @IBAction func plusDidTapped(_ sender: Any) {
     let vc = AddReasonViewController.instantiate(fromAppStoryboard: .ReasonManagement)
     vc.isComingForEdit = false
+    vc.type = type
     self.navigationController?.present(vc, animated: false)
   }
   
   @IBAction func nextButtonAction(_ sender: Any) {
-    viewModel.goToNextPage()
+    viewModel.getAllReasons()
   }
   
   @IBAction func previousButtonAction(_ sender: Any) {
-    viewModel.goToPreviousPage()
+    viewModel.getAllReasons()
   }
   
   @IBAction func returnDidTapped(_ sender: Any) {
@@ -72,6 +74,8 @@ class ReasonManagementViewController: UIViewController {
     returnLabel.textColor = UIColor.white
     cancelButton.setImage(UIImage(named: ""), for: .normal)
     cancelLabel.textColor = UIColor.black
+    type = 2
+    viewModel.getAllReasons()
   }
   
   @IBAction func cancelDidTapped(_ sender: Any) {
@@ -81,6 +85,8 @@ class ReasonManagementViewController: UIViewController {
     returnLabel.textColor = UIColor.black
     cancelButton.setImage(UIImage(named: "btnGradient"), for: .normal)
     cancelLabel.textColor = UIColor.white
+    type = 3
+    viewModel.getAllReasons()
   }
   
   @IBAction func exchangeDidTapped(_ sender: Any) {
@@ -90,6 +96,8 @@ class ReasonManagementViewController: UIViewController {
     returnLabel.textColor = UIColor.black
     cancelButton.setImage(UIImage(named: ""), for: .normal)
     cancelLabel.textColor = UIColor.black
+    type = 1
+    viewModel.getAllReasons()
   }
   
   func updatePaginationButtonImages() {
@@ -113,24 +121,24 @@ class ReasonManagementViewController: UIViewController {
   }
   
   private func toggleReasonStatus(at indexPath: IndexPath) {
-    //      var category = viewModel.reasonListData[indexPath.row]
-    //      let newStatus = category.status == 1 ? 0 : 1
-    //      let params: [String: Any] = ["category_id": category.id ?? 0]
-    //      viewModel.upadteCategory(param: params) { [weak self] success in
-    //          guard let self = self else { return }
-    //          if success {
-    //              category.status = newStatus
-    //              self.viewModel.reasonListData[indexPath.row] = category
-    //              self.reasonTableView.reloadRows(at: [indexPath], with: .automatic)
-    //              if let status = category.status {
-    //                  if status == 1 {
-    //                      CommonUtils.showToast(message: "Reason has been activated Successfully")
-    //                  } else {
-    //                      CommonUtils.showToast(message: "Reason has been Deactivated Successfully")
-    //                  }
-    //              }
-    //          }
-    //      }
+          var category = viewModel.reasonListData[indexPath.row]
+          let newStatus = category.status == 1 ? 0 : 1
+          let params: [String: Any] = ["reason_id": category.id ?? 0]
+          viewModel.updateActiveStatus(param: params) { [weak self] success in
+              guard let self = self else { return }
+              if success {
+                  category.status = newStatus
+                  self.viewModel.reasonListData[indexPath.row] = category
+                  self.reasonTableView.reloadRows(at: [indexPath], with: .automatic)
+                  if let status = category.status {
+                      if status == 1 {
+                          CommonUtils.showToast(message: "Reason has been activated Successfully")
+                      } else {
+                          CommonUtils.showToast(message: "Reason has been Deactivated Successfully")
+                      }
+                  }
+              }
+          }
   }
   
   
@@ -139,18 +147,18 @@ class ReasonManagementViewController: UIViewController {
 extension ReasonManagementViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 3//viewModel.reasonListData.count
+    return viewModel.reasonListData.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "ReasonManagementTableViewCell", for: indexPath) as! ReasonManagementTableViewCell
-//    let data = viewModel.reasonListData[indexPath.row]
-//    cell.delegate = self
-//    cell.configData(data: data)
-//    cell.onStatusToggle = { [weak self] in
-//      guard let self = self else { return }
-//      self.toggleReasonStatus(at: indexPath)
-//    }
+    let data = viewModel.reasonListData[indexPath.row]
+    cell.delegate = self
+    cell.configData(data: data)
+    cell.onStatusToggle = { [weak self] in
+      guard let self = self else { return }
+      self.toggleReasonStatus(at: indexPath)
+    }
     return cell
   }
   
@@ -162,6 +170,10 @@ extension ReasonManagementViewController: UITableViewDelegate, UITableViewDataSo
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let vc = AddReasonViewController.instantiate(fromAppStoryboard: .ReasonManagement)
     vc.isComingForEdit = true
+    vc.reasonId = viewModel.reasonListData[indexPath.row].id
+    vc.onUpdate = {
+      self.viewModel.getAllReasons()
+    }
     self.navigationController?.present(vc, animated: false)
   }
   
@@ -175,7 +187,7 @@ extension ReasonManagementViewController: UITextFieldDelegate {
       guard let self = self else { return }
       self.viewModel.searchText = currentText
       self.viewModel.currentPage = 1
-      self.viewModel.getAllReasons()
+      viewModel.getAllReasons()
     }
     searchWorkItem = workItem
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: workItem)
@@ -187,19 +199,22 @@ extension ReasonManagementViewController: ReasonManagementCellDelegate {
   
   func didTapEdit(_ cell: ReasonManagementTableViewCell) {
     guard let indexPath = reasonTableView.indexPath(for: cell) else { return }
-    let data = viewModel.reasonListData[indexPath.row]
-    
-    print("Edit tapped for id: \(data.id ?? 0)")
+    let vc = AddReasonViewController.instantiate(fromAppStoryboard: .ReasonManagement)
+    vc.isComingForEdit = true
+    vc.reasonId = viewModel.reasonListData[indexPath.row].id
+    vc.onUpdate = {
+      self.viewModel.getAllReasons()
+    }
+    self.navigationController?.present(vc, animated: false)
   }
   
   func didTapDelete(_ cell: ReasonManagementTableViewCell) {
     guard let indexPath = reasonTableView.indexPath(for: cell) else { return }
-    let data = viewModel.reasonListData[indexPath.row]
-    
-    print("Delete tapped for id: \(data.id ?? 0)")
+    let reasonID = viewModel.reasonListData[indexPath.row].id ?? 0
     self.showConfirmationAlert(msg: "Are you sure you want to delete this reason?") { [weak self] in
       guard let self = self else { return }
-      // CALL API
+      let param: [String: Any] = ["reason_id": reasonID]
+      viewModel.deleteReason(param: param)
     }
   }
 }

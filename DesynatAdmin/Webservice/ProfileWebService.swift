@@ -244,6 +244,246 @@ extension WebService {
             }
         }
     }
+  
+  func getAllUsers(param: [String: Any], completion: @escaping (UsersManagmentListModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getUsers), requestMethod: .get, requestParams: param, requestModel: UsersManagmentListModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func getUserDetails(param: [String: Any], completion: @escaping (UsersListModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getUserDetails), requestMethod: .get, requestParams: param, requestModel: UsersListModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func updateUserStatus(param: [String: Any], completion: @escaping (EmptyModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.updateUserStatus), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func addAmountUserStatus(param: [String: Any], completion: @escaping (EmptyModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.addWalletAmount), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func getReasonsList(param: [String: Any], completion: @escaping (ReasonManagmentListModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getReasonsList), requestMethod: .get, requestParams: param, requestModel: ReasonManagmentListModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func updateReasonStatus(param: [String: Any], completion: @escaping (EmptyModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.updateReasonStatus), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func editReason(param: [String: Any], completion: @escaping (EmptyModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.updateReason), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+    func deleteReason(param: [String: Any], completion: @escaping (EmptyModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.deleteReason), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func getAllDeliveryBoys(param: [String: Any], completion: @escaping (DeliveryBoysListDataModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getDeliveryBoysList), requestMethod: .get, requestParams: param, requestModel: DeliveryBoysListDataModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func deleteBoy(param: [String: Any], completion: @escaping (EmptyModel) -> Void) {
+    CommonUtils.showHud(show: true)
+    NetworkManager.shared.request(withAPI: .endpoint(.deleteDeliveryBoys), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+        CommonUtils.showHud(show: false)
+        self.evaluateWebServiceResponse(response: result) { response, message, error in
+            guard let response = response else {
+                if let error {
+                    UIApplication.shared.topViewController()?.showAlert(msg: error)
+                }
+                return
+            }
+            completion(response)
+        }
+    }
+}
+  
+  func updateStatusBoy(param: [String: Any], completion: @escaping (EmptyModel) -> Void) {
+    CommonUtils.showHud(show: true)
+    NetworkManager.shared.request(withAPI: .endpoint(.updateDeliveryBoyStatus), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+        CommonUtils.showHud(show: false)
+        self.evaluateWebServiceResponse(response: result) { response, message, error in
+            guard let response = response else {
+                if let error {
+                    UIApplication.shared.topViewController()?.showAlert(msg: error)
+                }
+                return
+            }
+            completion(response)
+        }
+    }
+}
+  
+  func getAllCountryListForDriver(completion: @escaping([DriverCounrtyListDataModel]) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getCountryListOfDriver), requestMethod: .get, requestModel: [DriverCounrtyListDataModel].self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func getAllZone(completion: @escaping([DriverZoneList]) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getZoneListOfDriver), requestMethod: .get, requestModel: [DriverZoneList].self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func addDriver(param: [String:Any], completion: @escaping(EmptyModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.addNewDriver), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func getDriverDetails(completion: @escaping(DeliveryBoysList) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getZoneListOfDriver), requestMethod: .get, requestModel: DeliveryBoysList.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
     
 }
 

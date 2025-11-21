@@ -68,7 +68,28 @@ enum NetworkEndPoint: String {
     case getPlanDetails                         = "api/admin/get_plan_details"
     case changePlanStatus                         = "api/admin/change_plan_status"
     case deltePlan                         = "api/admin/delete_plan"
-    
+  
+  
+  //UserManagement
+  case getUsers                         = "api/admin/get_users"
+  case getUserDetails                   = "api/admin/get_user_details"
+  case updateUserStatus                 = "api/admin/block_unblock_user"
+  case addWalletAmount                  = "api/admin/add_user_wallet_amount"
+  
+  //ReasonManagement
+  case getReasonsList                   = "api/admin/get_reasons"
+  case updateReasonStatus               = "api/admin/change_reason_status"
+  case updateReason                     = "api/admin/update_reason"
+  case deleteReason                     = "api/admin/delete_reason"
+  
+  //DeliveryManagement
+  case getDeliveryBoysList              = "api/admin/get_delivery_boys"
+  case deleteDeliveryBoys               = "api/admin/delete_deliveryboy"
+  case updateDeliveryBoyStatus          = "api/admin/block_unblock_deliveryboy"
+  case getCountryListOfDriver          = "api/admin/get_user_countries_list"
+  case getZoneListOfDriver          = "api/admin/get_kuwait_zones"
+  case addNewDriver          = "api/admin/add_deliveryBoy"
+  
     func withBaseURL() -> String {
         return "\(BaseURL.value())\(self.rawValue)"
     }

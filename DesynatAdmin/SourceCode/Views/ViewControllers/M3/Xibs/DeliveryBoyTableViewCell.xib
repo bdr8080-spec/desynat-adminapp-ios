@@ -26,12 +26,15 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zBK-Wx-hth" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="311" height="148"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OiC-hD-uai">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OiC-hD-uai" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
                                 <rect key="frame" x="12" y="12" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="8vc-zV-7dx"/>
                                     <constraint firstAttribute="width" constant="44" id="Qk2-yB-OE7"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="circleCorner" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="5cn-ja-6yd">
                                 <rect key="frame" x="71" y="17" width="168" height="34"/>
@@ -260,7 +263,12 @@
             <connections>
                 <outlet property="deleteButtonOutlet" destination="hyN-AU-8X4" id="p1u-Gu-zYX"/>
                 <outlet property="editButtonOutlet" destination="bDX-at-MYC" id="c87-7s-d4i"/>
+                <outlet property="emailLabel" destination="6u1-qn-PT5" id="B7Q-h0-JHr"/>
+                <outlet property="joinedDateLabel" destination="7md-qG-yGz" id="z4s-Wb-Ncz"/>
+                <outlet property="mainImageView" destination="OiC-hD-uai" id="IuJ-tE-cej"/>
+                <outlet property="mobileLabel" destination="Bqu-Df-Gg5" id="Sz8-iG-gWH"/>
                 <outlet property="statusButtonOutlet" destination="WIY-TR-1rf" id="qYn-fR-d3f"/>
+                <outlet property="usernameLabel" destination="pXh-qL-fNJ" id="b4B-yv-nvt"/>
             </connections>
             <point key="canvasLocation" x="75.572519083969468" y="94.718309859154928"/>
         </tableViewCell>

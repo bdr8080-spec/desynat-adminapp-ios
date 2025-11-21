@@ -72,7 +72,7 @@ enum AlertConstant: String {
   
   case EnterReasonEnglish          = "Please enter reason in english"
   case EnterReasonArabic           = "Please enter reason in arabic"
-    
+  case enterAmount                 = "Please enter amount"
     
     func value() -> String {
         return self.rawValue

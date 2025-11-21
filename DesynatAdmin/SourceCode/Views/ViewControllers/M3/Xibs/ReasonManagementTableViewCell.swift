@@ -42,8 +42,8 @@ class ReasonManagementTableViewCell: UITableViewCell {
   }
   
   
-  func configData(data: GetBrandDataList?) {
-    raesonLabel.text = data?.nameEnglish
+  func configData(data: ReasonsListModel?) {
+    raesonLabel.text = data?.reasonEnglish
     if data?.status == 1 {
       statusButtonOutlet.setImage(UIImage(named: "toggleOn"), for: .normal)
     } else {

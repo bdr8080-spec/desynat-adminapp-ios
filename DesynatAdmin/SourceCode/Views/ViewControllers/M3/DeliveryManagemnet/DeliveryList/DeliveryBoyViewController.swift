@@ -32,7 +32,7 @@ class DeliveryBoyViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     viewModel.currentPage = 1
-//    viewModel.getAllReasons()
+    viewModel.getAllDeliveryBoy()
   }
   
   @IBAction func backDidTapped(_ sender: Any) {
@@ -40,9 +40,8 @@ class DeliveryBoyViewController: UIViewController {
   }
   
   @IBAction func plusDidTapped(_ sender: Any) {
-//    let vc = AddReasonViewController.instantiate(fromAppStoryboard: .ReasonManagement)
-//    vc.isComingForEdit = false
-//    self.navigationController?.present(vc, animated: false)
+    let vc = DriverDetailsViewController.instantiate(fromAppStoryboard: .ReasonManagement)
+    self.navigationController?.present(vc, animated: false)
   }
   
   @IBAction func nextButtonAction(_ sender: Any) {
@@ -55,6 +54,19 @@ class DeliveryBoyViewController: UIViewController {
   
   @IBAction func filterDidTapped(_ sender: Any) {
     let vc = DeliveryManagementFilterViewController.instantiate(fromAppStoryboard: .ReasonManagement)
+    vc.selectedFilter = viewModel.appliedFilter
+    vc.onApplyFilter = { [weak self] filter in
+        guard let self = self else { return }
+        self.viewModel.appliedFilter = filter
+        self.viewModel.currentPage = 1
+        self.viewModel.getAllDeliveryBoy()
+    }
+    vc.onClearFilter = { [weak self] in
+        guard let self = self else { return }
+        self.viewModel.appliedFilter = DriverFilterModel()
+        self.viewModel.currentPage = 1
+        self.viewModel.getAllDeliveryBoy()
+    }
     self.navigationController?.present(vc, animated: false)
   }
   
@@ -80,24 +92,24 @@ class DeliveryBoyViewController: UIViewController {
   }
   
   private func toggleReasonStatus(at indexPath: IndexPath) {
-    //      var category = viewModel.reasonListData[indexPath.row]
-    //      let newStatus = category.status == 1 ? 0 : 1
-    //      let params: [String: Any] = ["category_id": category.id ?? 0]
-    //      viewModel.upadteCategory(param: params) { [weak self] success in
-    //          guard let self = self else { return }
-    //          if success {
-    //              category.status = newStatus
-    //              self.viewModel.reasonListData[indexPath.row] = category
-    //              self.reasonTableView.reloadRows(at: [indexPath], with: .automatic)
-    //              if let status = category.status {
-    //                  if status == 1 {
-    //                      CommonUtils.showToast(message: "Reason has been activated Successfully")
-    //                  } else {
-    //                      CommonUtils.showToast(message: "Reason has been Deactivated Successfully")
-    //                  }
-    //              }
-    //          }
-    //      }
+          var category = viewModel.boysListData[indexPath.row]
+          let newStatus = category.status == "1" ? "0" : "1"
+          let params: [String: Any] = ["category_id": category.id ?? 0]
+          viewModel.updateActiveStatus(param: params) { [weak self] success in
+              guard let self = self else { return }
+              if success {
+                  category.status = newStatus
+                  self.viewModel.boysListData[indexPath.row] = category
+                  self.deliveryTableView.reloadRows(at: [indexPath], with: .automatic)
+                  if let status = category.status {
+                      if status == "1" {
+                          CommonUtils.showToast(message: "Delivery boy has been unblocked Successfully")
+                      } else {
+                          CommonUtils.showToast(message: "Delivery boy has been blocked Successfully")
+                      }
+                  }
+              }
+          }
   }
 
 }
@@ -105,18 +117,18 @@ class DeliveryBoyViewController: UIViewController {
 extension DeliveryBoyViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 3//viewModel.reasonListData.count
+    return viewModel.boysListData.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "ReasonManagementTableViewCell", for: indexPath) as! ReasonManagementTableViewCell
-//    let data = viewModel.reasonListData[indexPath.row]
-//    cell.delegate = self
-//    cell.configData(data: data)
-//    cell.onStatusToggle = { [weak self] in
-//      guard let self = self else { return }
-//      self.toggleReasonStatus(at: indexPath)
-//    }
+    let cell = tableView.dequeueReusableCell(withIdentifier: "DeliveryBoyTableViewCell", for: indexPath) as! DeliveryBoyTableViewCell
+    let data = viewModel.boysListData[indexPath.row]
+    cell.delegate = self
+    cell.configData(data: data)
+    cell.onStatusToggle = { [weak self] in
+      guard let self = self else { return }
+      self.toggleReasonStatus(at: indexPath)
+    }
     return cell
   }
   
@@ -126,8 +138,9 @@ extension DeliveryBoyViewController: UITableViewDelegate, UITableViewDataSource 
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let vc = AddReasonViewController.instantiate(fromAppStoryboard: .ReasonManagement)
+    let vc = AddNewDriverViewController.instantiate(fromAppStoryboard: .ReasonManagement)
     vc.isComingForEdit = true
+    vc.userId = viewModel.boysListData[indexPath.row].id
     self.navigationController?.present(vc, animated: false)
   }
   
@@ -141,7 +154,7 @@ extension DeliveryBoyViewController: UITextFieldDelegate {
       guard let self = self else { return }
       self.viewModel.searchText = currentText
       self.viewModel.currentPage = 1
-      self.viewModel.getAllDeliveryBoys()
+      self.viewModel.getAllDeliveryBoy()
     }
     searchWorkItem = workItem
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: workItem)
@@ -160,12 +173,11 @@ extension DeliveryBoyViewController: DeliveryBoyManagementCellDelegate {
   
   func didTapDelete(_ cell: DeliveryBoyTableViewCell) {
     guard let indexPath = deliveryTableView.indexPath(for: cell) else { return }
-    let data = viewModel.boysListData[indexPath.row]
-    
-    print("Delete tapped for id: \(data.id ?? 0)")
-    self.showConfirmationAlert(msg: "Are you sure you want to delete this?") { [weak self] in
+    let driverId = viewModel.boysListData[indexPath.row].id ?? 0
+    self.showConfirmationAlert(msg: "Are you sure you want to delete this user?") { [weak self] in
       guard let self = self else { return }
-      // CALL API
+      let param: [String: Any] = ["user_id": driverId]
+      viewModel.deleteBoy(param: param)
     }
   }
 }

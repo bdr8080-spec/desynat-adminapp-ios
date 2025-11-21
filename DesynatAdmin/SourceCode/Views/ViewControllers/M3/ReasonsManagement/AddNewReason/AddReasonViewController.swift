@@ -14,7 +14,10 @@ class AddReasonViewController: UIViewController {
   @IBOutlet weak var titleLabel: UILabel!
   
   var isComingForEdit: Bool = false
+  var reasonId: Int? = 0
+  var type: Int? = 1
   private lazy var viewModel = AddReasonViewModel(hostVC: self)
+  var onUpdate: (() -> Void)?
   
   override func viewDidLoad() {
     super.viewDidLoad()
