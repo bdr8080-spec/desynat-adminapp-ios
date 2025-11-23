@@ -11,6 +11,7 @@ import GooglePlaces
 
 class LocationViewController: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var currentLocationButton: CustomButton!
     @IBOutlet weak var txtSearch: UITextField!
     @IBOutlet weak var viewMap: GMSMapView!
     @IBOutlet weak var lblLocation: UILabel!
@@ -42,6 +43,10 @@ class LocationViewController: UIViewController, UITextFieldDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        
+        let img = UIImage(named: "mark")?.withRenderingMode(.alwaysTemplate)
+        currentLocationButton.setImage(img, for: .normal)
+        currentLocationButton.tintColor = UIColor.darkBrown
     }
     
     func googleMapSetup() {

@@ -45,7 +45,7 @@ struct DeliveryBoysList: Codable {
     let mobile, password: String?
     let unhashedPassword: String?
     let addressLine1, addressLine2, city, state: String?
-    let datumLet, long: String?
+    let lat, long: String?
     let countryID, zoneID: Int?
     let otp: String?
     let otpVerify, deviceType: String?
@@ -69,7 +69,7 @@ struct DeliveryBoysList: Codable {
         case addressLine1 = "address_line1"
         case addressLine2 = "address_line2"
         case city, state
-        case datumLet = "let"
+        case lat = "let"
         case long
         case countryID = "country_id"
         case zoneID = "zone_id"
@@ -99,7 +99,7 @@ struct DrivingLicense: Codable {
     let documentType: String?
     let documentPath: String?
     let isFront, status: Int?
-    let createdAt, updatedAt: AtedAt?
+    let createdAt, updatedAt: String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -113,16 +113,11 @@ struct DrivingLicense: Codable {
     }
 }
 
-enum AtedAt: String, Codable {
-    case the20251119T103835000000Z = "2025-11-19T10:38:35.000000Z"
-    case the20251120T064623000000Z = "2025-11-20T06:46:23.000000Z"
-}
-
 // MARK: - DriverBoyZoneInfo
 struct DriverBoyZoneInfo: Codable {
     let id, countryID, cityID: Int?
     let nameEnglish, nameArabic: String?
-    let coordinates: [Coordinate]?
+//    let coordinates: [Coordinate]?
     let status: Int?
     let createdAt, updatedAt: String?
 
@@ -132,14 +127,51 @@ struct DriverBoyZoneInfo: Codable {
         case cityID = "city_id"
         case nameEnglish = "name_english"
         case nameArabic = "name_arabic"
-        case coordinates, status
+//        case coordinates
+        case status
         case createdAt = "created_at"
         case updatedAt = "updated_at"
     }
 }
+//// MARK: - Coordinate
+//struct Coordinate: Codable {
+//    let lat, lng: String?
+//}
 
-// MARK: - Coordinate
+// MARK: - Flexible Coordinate Model (String or Number)
 struct Coordinate: Codable {
-    let lat, lng: String?
-}
+    let lat: String
+    let lng: String
 
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        // Decode lat
+        if let latString = try? container.decode(String.self, forKey: .lat) {
+            lat = latString
+        } else if let latDouble = try? container.decode(Double.self, forKey: .lat) {
+            lat = String(latDouble)
+        } else {
+            throw DecodingError.typeMismatch(
+                String.self,
+                .init(codingPath: decoder.codingPath, debugDescription: "lat type mismatch")
+            )
+        }
+
+        // Decode lng
+        if let lngString = try? container.decode(String.self, forKey: .lng) {
+            lng = lngString
+        } else if let lngDouble = try? container.decode(Double.self, forKey: .lng) {
+            lng = String(lngDouble)
+        } else {
+            throw DecodingError.typeMismatch(
+                String.self,
+                .init(codingPath: decoder.codingPath, debugDescription: "lng type mismatch")
+            )
+        }
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case lat, lng
+    }
+}

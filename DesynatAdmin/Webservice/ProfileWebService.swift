@@ -469,9 +469,9 @@ extension WebService {
       }
   }
   
-  func getDriverDetails(completion: @escaping(DeliveryBoysList) -> Void) {
+  func getDriverDetails(param: [String:Any], completion: @escaping(DeliveryBoysList) -> Void) {
       CommonUtils.showHud(show: true)
-      NetworkManager.shared.request(withAPI: .endpoint(.getZoneListOfDriver), requestMethod: .get, requestModel: DeliveryBoysList.self) { result, code in
+      NetworkManager.shared.request(withAPI: .endpoint(.getDriverDetails), requestMethod: .get, requestParams: param, requestModel: DeliveryBoysList.self) { result, code in
           CommonUtils.showHud(show: false)
           self.evaluateWebServiceResponse(response: result) { response, message, error in
               guard let response = response else {
@@ -483,9 +483,23 @@ extension WebService {
               completion(response)
           }
       }
-    
-    
   }
+    
+    func editDriverDetails(param: [String:Any], completion: @escaping(EmptyModel) -> Void) {
+        CommonUtils.showHud(show: true)
+        NetworkManager.shared.request(withAPI: .endpoint(.editDriverDetails), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+            CommonUtils.showHud(show: false)
+            self.evaluateWebServiceResponse(response: result) { response, message, error in
+                guard let response = response else {
+                    if let error {
+                        UIApplication.shared.topViewController()?.showAlert(msg: error)
+                    }
+                    return
+                }
+                completion(response)
+            }
+        }
+    }
     
 }
 

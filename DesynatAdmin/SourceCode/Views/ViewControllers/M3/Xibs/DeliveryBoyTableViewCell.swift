@@ -48,6 +48,7 @@ class DeliveryBoyTableViewCell: UITableViewCell {
   
   
   func configData(data: DeliveryBoysList?) {
+      usernameLabel.text = data?.fullNameEnglish
     if let imageUrlString = data?.profilePic,
        let url = URL(string: imageUrlString) {
       mainImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray

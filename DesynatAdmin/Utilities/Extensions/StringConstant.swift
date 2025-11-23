@@ -34,7 +34,6 @@ enum AlertConstant: String {
     
     ///Validation Error Message
     case EnterEmailAddress          = "Please Enter Emaill address"
-//    case EnterEmail                 = "Please Enter Email ID"
     case EnterMobileNumber          = "Please Enter Mobile Number"
     case EnterValidEmailAddress     = "Please Enter Valid Email"
     case validMobileNumber          = "Please enter valid mobile number between 7 to 15 digits"
@@ -52,7 +51,6 @@ enum AlertConstant: String {
     case EnterBrandEnglish          = "Please enter brand name in english"
     case EnterBrandArabic           = "Please enter brand name in arabic"
     case SelectBrandImage           = "Please Upload brand image"
-    
     case selectCountry =  "Please select country"
     case enterEnglishPlanName =  "Please enter plan name in english"
     case enterArabicPlanName =  "Please enter plan name in Arabic"
@@ -69,10 +67,39 @@ enum AlertConstant: String {
     case  enterEnglishName = "Please Enter Zone Name in english"
     case  enterArabicName = "Please Enter Zone Name in arabic"
     
-  
-  case EnterReasonEnglish          = "Please enter reason in english"
-  case EnterReasonArabic           = "Please enter reason in arabic"
-  case enterAmount                 = "Please enter amount"
+    
+    case EnterReasonEnglish          = "Please enter reason in english"
+    case EnterReasonArabic           = "Please enter reason in arabic"
+    case enterAmount                 = "Please enter amount"
+    
+    
+    case uploadProfilePicture = "Please upload profile picture"
+    case enterFullNameEnglish = "Please enter full name in English"
+    case enterFullNameArabic = "Please enter full name in Arabic"
+    
+    case enterAddress1 = "Please select Address Line 1"
+    case enterAddress2 = "Please enter Address Line 2"
+    case enterCity = "Please enter city"
+    case enterState = "Please enter state"
+    case selectZone = "Please select zone"
+    
+    case enterVehicleName = "Please enter vehicle name"
+    case enterVehicleReg = "Please enter vehicle registration"
+    
+    case uploadVehicleFront = "Please upload vehicle front image"
+    case uploadVehicleBack = "Please upload vehicle back image"
+    
+    case uploadIdentityFront = "Please upload identity proof (front)"
+    case uploadIdentityBack = "Please upload identity proof (back)"
+    
+    case uploadDLFront = "Please upload driving license (front)"
+    case uploadDLBack = "Please upload driving license (back)"
+    
+    case uploadInsurance = "Please upload vehicle insurance"
+    case uploadPollution = "Please upload pollution paper"
+    
+    case uploadRCFront = "Please upload RC front image"
+    case uploadRCBack = "Please upload RC back image"
     
     func value() -> String {
         return self.rawValue

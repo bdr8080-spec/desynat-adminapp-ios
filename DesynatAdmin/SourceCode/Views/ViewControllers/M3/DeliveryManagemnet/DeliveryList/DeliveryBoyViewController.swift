@@ -39,9 +39,10 @@ class DeliveryBoyViewController: UIViewController {
     self.navigationController?.popViewController(animated: true)
   }
   
-  @IBAction func plusDidTapped(_ sender: Any) {
-    let vc = DriverDetailsViewController.instantiate(fromAppStoryboard: .ReasonManagement)
-    self.navigationController?.present(vc, animated: false)
+    @IBAction func plusDidTapped(_ sender: Any) {
+      let vc = AddNewDriverViewController.instantiate(fromAppStoryboard: .ReasonManagement)
+      vc.isComingForEdit = false
+      self.navigationController?.pushViewController(vc, animated: false)
   }
   
   @IBAction func nextButtonAction(_ sender: Any) {
@@ -68,6 +69,8 @@ class DeliveryBoyViewController: UIViewController {
         self.viewModel.getAllDeliveryBoy()
     }
     self.navigationController?.present(vc, animated: false)
+      
+      
   }
   
   
@@ -94,7 +97,7 @@ class DeliveryBoyViewController: UIViewController {
   private func toggleReasonStatus(at indexPath: IndexPath) {
           var category = viewModel.boysListData[indexPath.row]
           let newStatus = category.status == "1" ? "0" : "1"
-          let params: [String: Any] = ["category_id": category.id ?? 0]
+          let params: [String: Any] = ["user_id": category.id ?? 0]
           viewModel.updateActiveStatus(param: params) { [weak self] success in
               guard let self = self else { return }
               if success {
@@ -138,10 +141,13 @@ extension DeliveryBoyViewController: UITableViewDelegate, UITableViewDataSource 
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let vc = AddNewDriverViewController.instantiate(fromAppStoryboard: .ReasonManagement)
-    vc.isComingForEdit = true
-    vc.userId = viewModel.boysListData[indexPath.row].id
-    self.navigationController?.present(vc, animated: false)
+//    let vc = AddNewDriverViewController.instantiate(fromAppStoryboard: .ReasonManagement)
+//    vc.isComingForEdit = true
+//    vc.userId = viewModel.boysListData[indexPath.row].id
+//    self.navigationController?.present(vc, animated: false)
+      let vc = DriverDetailsViewController.instantiate(fromAppStoryboard: .ReasonManagement)
+    vc.userId = viewModel.boysListData[indexPath.row].id ?? 0
+    self.navigationController?.pushViewController(vc, animated: false)
   }
   
 }
@@ -166,9 +172,10 @@ extension DeliveryBoyViewController: DeliveryBoyManagementCellDelegate {
   
   func didTapEdit(_ cell: DeliveryBoyTableViewCell) {
     guard let indexPath = deliveryTableView.indexPath(for: cell) else { return }
-    let data = viewModel.boysListData[indexPath.row]
-    
-    print("Edit tapped for id: \(data.id ?? 0)")
+      let vc = AddNewDriverViewController.instantiate(fromAppStoryboard: .ReasonManagement)
+      vc.isComingForEdit = true
+      vc.userId = viewModel.boysListData[indexPath.row].id ?? 0
+      self.navigationController?.pushViewController(vc, animated: false)
   }
   
   func didTapDelete(_ cell: DeliveryBoyTableViewCell) {

@@ -4,6 +4,7 @@
 
 import UIKit
 import ObjectiveC
+import SDWebImage
 
 private var closureKey: UInt = 0
 private var debugKey: UInt = 1
@@ -203,4 +204,20 @@ extension UIImageView: Attachable {
         }
     }
     
+}
+
+extension UIImageView {
+    func setImage(with urlString: String?) {
+        self.sd_imageIndicator = SDWebImageActivityIndicator.gray
+
+        guard let urlString = urlString,
+              let url = URL(string: urlString) else {
+            self.image = UIImage(named: "placeholder") // your placeholder
+            return
+        }
+
+        self.sd_setImage(with: url,
+                         placeholderImage: UIImage(named: "placeholder"),
+                         options: [.continueInBackground, .highPriority])
+    }
 }

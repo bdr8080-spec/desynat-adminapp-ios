@@ -116,7 +116,7 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             case "Seller Management":
                 self.navigate(to: SellerListViewController.viewFromNIB)
             case "Delivery Boy Management":
-              let vc = DeliveryBoyViewController.instantiate(fromAppStoryboard: .SideMenu)
+              let vc = DeliveryBoyViewController.instantiate(fromAppStoryboard: .ReasonManagement)
               self.navigationController?.pushViewController(vc, animated: false)
                 print("➡️ Navigating to Delivery Boy Management")
             case "Live Request  & Timeslot Management":

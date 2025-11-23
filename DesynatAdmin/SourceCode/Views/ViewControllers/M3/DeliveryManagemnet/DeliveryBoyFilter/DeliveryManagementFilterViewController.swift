@@ -22,6 +22,7 @@ class DeliveryManagementFilterViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     handleUISetup()
+      applyPreselectedData()
   }
   
   
