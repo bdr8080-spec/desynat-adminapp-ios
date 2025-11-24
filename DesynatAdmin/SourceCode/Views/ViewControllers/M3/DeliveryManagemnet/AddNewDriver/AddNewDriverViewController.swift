@@ -341,7 +341,8 @@ class AddNewDriverViewController: UIViewController {
         addressLineTwoTF.text = data.addressLine2
         cityTF.text = data.city
         stateTF.text = data.state
-        
+      passwordTF.text = data.password
+      confirmPasswordTF.text = data.password
         vehicleNameTF.text = data.vehicleName
         vehicleeRegistrationTF.text = data.vehicleRegNo
         zoneTF.text = data.zoneInfo?.nameEnglish
