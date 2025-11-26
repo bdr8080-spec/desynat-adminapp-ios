@@ -63,8 +63,8 @@ class LocationViewController: UIViewController, UITextFieldDelegate {
       
       let camera = GMSCameraPosition.camera(withLatitude: targetLat, longitude: targetLng, zoom: zoom)
       viewMap.camera = camera
-      locationMarker.position = CLLocationCoordinate2D(latitude: targetLat, longitude: targetLng)
-      locationMarker.map = viewMap
+//      locationMarker.position = CLLocationCoordinate2D(latitude: targetLat, longitude: targetLng)
+//      locationMarker.map = viewMap
       reverseGeocodeCoordinate(CLLocationCoordinate2D(latitude: targetLat, longitude: targetLng))
     let img = UIImage(named: "mark")?.withRenderingMode(.alwaysTemplate)
     currentLocationButton.setImage(img, for: .normal)
@@ -79,9 +79,10 @@ class LocationViewController: UIViewController, UITextFieldDelegate {
       if let preLat = preSelectedLat, let preLong = preSelectedLng {
           self.latitude = preLat
           self.longitude = preLong
+//        viewMap.settings.myLocationButton = false
           let camera = GMSCameraPosition.camera(withLatitude: preLat, longitude: preLong, zoom: 12)
           self.viewMap.camera = camera
-          addMarker(at: CLLocationCoordinate2D(latitude: preLat, longitude: preLong))
+//          addMarker(at: CLLocationCoordinate2D(latitude: preLat, longitude: preLong))
       }
   }
 
@@ -112,11 +113,11 @@ class LocationViewController: UIViewController, UITextFieldDelegate {
         
     }
   
-  func addMarker(at coordinate: CLLocationCoordinate2D) {
-      locationMarker.map = nil // Remove previous marker
-      locationMarker = GMSMarker(position: coordinate)
-      locationMarker.map = viewMap
-  }
+//  func addMarker(at coordinate: CLLocationCoordinate2D) {
+//      locationMarker.map = nil // Remove previous marker
+//      locationMarker = GMSMarker(position: coordinate)
+//      locationMarker.map = viewMap
+//  }
 
 }
 
@@ -134,7 +135,7 @@ extension LocationViewController: CLLocationManagerDelegate,GMSMapViewDelegate {
                                                 longitude: coordinate.longitude,
                                                 zoom: 12)
           self.viewMap.animate(to: camera)
-          addMarker(at: coordinate)
+//          addMarker(at: coordinate)
       }
 
       locationManager.stopUpdatingLocation()

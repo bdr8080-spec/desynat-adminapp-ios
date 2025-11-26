@@ -75,8 +75,8 @@ enum AlertConstant: String {
     
     
     case uploadProfilePicture = "Please upload profile image"
-    case enterFullNameEnglish = "Please enter full name (En)"
-    case enterFullNameArabic = "Please enter full name (Ar)"
+    case enterFullNameEnglish = "Please enter full name in english"
+    case enterFullNameArabic = "Please enter full name in arabic"
     
     case enterAddress1 = "Please select Address Line 1"
     case enterAddress2 = "Please enter Address Line 2"
