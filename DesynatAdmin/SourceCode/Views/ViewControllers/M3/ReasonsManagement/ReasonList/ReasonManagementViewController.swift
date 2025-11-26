@@ -56,15 +56,18 @@ class ReasonManagementViewController: UIViewController {
     let vc = AddReasonViewController.instantiate(fromAppStoryboard: .ReasonManagement)
     vc.isComingForEdit = false
     vc.type = type
+    vc.onUpdate = { [weak self] in
+            self?.viewModel.getAllReasons()
+        }
     self.navigationController?.present(vc, animated: false)
   }
   
   @IBAction func nextButtonAction(_ sender: Any) {
-    viewModel.getAllReasons()
+    viewModel.goToNextPage(type: type)
   }
   
   @IBAction func previousButtonAction(_ sender: Any) {
-    viewModel.getAllReasons()
+    viewModel.goToPreviousPage(type: type)
   }
   
   @IBAction func returnDidTapped(_ sender: Any) {
@@ -131,11 +134,34 @@ class ReasonManagementViewController: UIViewController {
                   self.viewModel.reasonListData[indexPath.row] = category
                   self.reasonTableView.reloadRows(at: [indexPath], with: .automatic)
                   if let status = category.status {
+                      
+
+                    switch type {
+                    case 1:
                       if status == 1 {
-                          CommonUtils.showToast(message: "Reason has been activated Successfully")
+                          CommonUtils.showToast(message: "Exchange Reason Unblocked Succesfully")
                       } else {
-                          CommonUtils.showToast(message: "Reason has been Deactivated Successfully")
+                          CommonUtils.showToast(message: "Exchange Reason Blocked Succesfully")
                       }
+                    case 2:
+                      if status == 1 {
+                          CommonUtils.showToast(message: "Return Reason Unblocked Succesfully")
+                      } else {
+                          CommonUtils.showToast(message: "Return Reason Blocked Succesfully")
+                      }
+                    case 3:
+                      if status == 1 {
+                          CommonUtils.showToast(message: "Cancel Reason Unblocked Succesfully")
+                      } else {
+                          CommonUtils.showToast(message: "Cancel Reason Blocked Succesfully")
+                      }
+                    default:
+                      if status == 1 {
+                          CommonUtils.showToast(message: "Reason Unblocked Succesfully")
+                      } else {
+                          CommonUtils.showToast(message: "Reason Blocked Succesfully")
+                      }
+                    }
                   }
               }
           }
@@ -167,15 +193,16 @@ extension ReasonManagementViewController: UITableViewDelegate, UITableViewDataSo
     return UITableView.automaticDimension
   }
   
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let vc = AddReasonViewController.instantiate(fromAppStoryboard: .ReasonManagement)
-    vc.isComingForEdit = true
-    vc.reasonId = viewModel.reasonListData[indexPath.row].id
-    vc.onUpdate = {
-      self.viewModel.getAllReasons()
-    }
-    self.navigationController?.present(vc, animated: false)
-  }
+//  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//    let vc = AddReasonViewController.instantiate(fromAppStoryboard: .ReasonManagement)
+//    vc.isComingForEdit = true
+//    vc.reasonId = viewModel.reasonListData[indexPath.row].id
+//    vc.reasonForEdit = viewModel.reasonListData[indexPath.row]
+//    vc.onUpdate = {
+//      self.viewModel.getAllReasons()
+//    }
+//    self.navigationController?.present(vc, animated: false)
+//  }
   
 }
 
@@ -202,6 +229,7 @@ extension ReasonManagementViewController: ReasonManagementCellDelegate {
     let vc = AddReasonViewController.instantiate(fromAppStoryboard: .ReasonManagement)
     vc.isComingForEdit = true
     vc.reasonId = viewModel.reasonListData[indexPath.row].id
+    vc.reasonForEdit = viewModel.reasonListData[indexPath.row]
     vc.onUpdate = {
       self.viewModel.getAllReasons()
     }

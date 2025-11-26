@@ -52,23 +52,30 @@ class UserManagementDetailsViewController: UIViewController {
   }
   
   @IBAction func updateStatusDidTapped(_ sender: Any) {
-    guard var user = viewModel.userDetail else { return }
-    let newStatus = user.status == "1" ? "0" : "1"
-      let params: [String: Any] = ["user_id": user.id ?? 0]
-      viewModel.updateActiveStatus(param: params) { [weak self] success in
-        guard let self = self else { return }
-        if success {
-          user.status = newStatus
-          configData(data: user)
-          if let status = user.status {
-            if status == "1" {
-              CommonUtils.showToast(message: "User has been activated Successfully")
-            } else {
-              CommonUtils.showToast(message: "User has been Deactivated Successfully")
+    guard let user = viewModel.userDetail else { return }
+        let newStatus = user.status == "1" ? "0" : "1"
+
+        let params: [String: Any] = ["user_id": user.id ?? 0]
+
+        viewModel.updateActiveStatus(param: params) { [weak self] success in
+            guard let self = self else { return }
+            if success {
+
+                // UPDATE REAL MODEL HERE (IMPORTANT)
+                self.viewModel.userDetail?.status = newStatus
+
+                // Reload UI using updated model
+                if let updatedUser = self.viewModel.userDetail {
+                    self.configData(data: updatedUser)
+
+                    if newStatus == "1" {
+                        CommonUtils.showToast(message: "User Unblocked Successfully")
+                    } else {
+                        CommonUtils.showToast(message: "User Blocked Successfully")
+                    }
+                }
             }
-          }
         }
-      }
   }
   
   func configData(data: UsersListModel) {
@@ -87,7 +94,14 @@ class UserManagementDetailsViewController: UIViewController {
     joinedLabel.text = "Joined on \(result)"
     phoneLabel.text = "\(data.countryCode ?? "")-\(data.mobile ?? "")"
     emailLabel.text = data.email
-    walletBalanceCount.text = "\(data.walletInfo?.amount ?? "") KD"
+//    walletBalanceCount.text = "\(data.walletInfo?.amount ?? "") KD"
+    let amountString = data.walletInfo?.amount ?? ""
+    let amountValue = Double(amountString) ?? 0
+
+    // Format without decimals
+    let formattedAmount = String(format: "%.0f", amountValue)
+
+    walletBalanceCount.text = "\(formattedAmount) KD"
 //    completedOrderCount.text = data.
     if data.status == "1" {
       statusButton.setImage(UIImage(named: "toggleOn"), for: .normal)

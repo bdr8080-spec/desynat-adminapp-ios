@@ -21,6 +21,7 @@ class AddAmountForUserViewController: UIViewController {
     headerView.layer.cornerRadius = 24
     headerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     headerView.clipsToBounds = true
+    amountTextFiled.delegate = self
   }
   
   
@@ -34,4 +35,37 @@ class AddAmountForUserViewController: UIViewController {
     }
   }
 
+}
+
+extension AddAmountForUserViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        
+        // Current text in the field
+        let currentText = textField.text ?? ""
+        
+        // Compute the updated text
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+        
+        // 1️⃣ Limit to 7 characters
+        if updatedText.count > 7 {
+            return false
+        }
+        
+        // 2️⃣ Prevent starting with "0"
+        if updatedText.count == 1 && updatedText == "0" {
+            return false
+        }
+        
+        // Allow only numbers
+        let allowedCharacters = CharacterSet.decimalDigits
+        if string.rangeOfCharacter(from: allowedCharacters.inverted) != nil {
+            return false
+        }
+        
+        return true
+    }
 }

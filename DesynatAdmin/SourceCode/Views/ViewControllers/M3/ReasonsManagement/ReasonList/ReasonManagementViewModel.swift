@@ -23,7 +23,7 @@ class ReasonManagementViewModel {
     var params: [String : Any] = [:]
     params["page"] = currentPage
     params["type"] = hostVC?.type
-    params["limit"] = 4
+    params["limit"] = 3
     if !searchText.isEmpty {
       params["search"] = searchText
     }
@@ -69,7 +69,17 @@ class ReasonManagementViewModel {
   func deleteReason(param: [String: Any]) {
     WebService.shared.deleteReason(param: param){ [weak self] response in
       guard let self = self else { return }
-      CommonUtils.showToast(message: "Reason deleted succesfully")
+      let type = hostVC?.type ?? 1
+      switch type {
+      case 1:
+        CommonUtils.showToast(message: "Exchange Reason Deleted Succesfully")
+      case 2:
+        CommonUtils.showToast(message: "Return Reason Deleted Succesfully")
+      case 3:
+        CommonUtils.showToast(message: "Cancel Reason Deleted Succesfully")
+      default:
+        CommonUtils.showToast(message: "Reason deleted succesfully")
+      }
       self.currentPage = 1 // optional: reset to first page
       self.getAllReasons()
     }

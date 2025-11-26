@@ -22,6 +22,7 @@ class UserManagementTableViewCell: UITableViewCell {
   @IBOutlet weak var statusButton: UIButton!
   
   var onStatusToggle: (() -> Void)?
+  var onViewDetails: (() -> Void)?
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -36,6 +37,11 @@ class UserManagementTableViewCell: UITableViewCell {
   
   @IBAction func statusDidTapped(_ sender: Any) {
     onStatusToggle?()
+  }
+  
+  
+  @IBAction func viewDetailsDidTapped(_ sender: Any) {
+    onViewDetails?()
   }
   
   func configData(data: UsersListModel) {
@@ -54,7 +60,14 @@ class UserManagementTableViewCell: UITableViewCell {
     joinedLabel.text = "Joined on \(result)"
     phoneLabel.text = "\(data.countryCode ?? "")-\(data.mobile ?? "")"
     emailLabel.text = data.email
-    walletBalanceCount.text = "\(data.walletInfo?.amount ?? "") KD"
+//    walletBalanceCount.text = "\(data.walletInfo?.amount ?? "") KD"
+    let amountString = data.walletInfo?.amount ?? ""
+    let amountValue = Double(amountString) ?? 0
+
+    // Format without decimals
+    let formattedAmount = String(format: "%.0f", amountValue)
+
+    walletBalanceCount.text = "\(formattedAmount) KD"
 //    completedOrderCount.text = data.
     if data.status == "1" {
       statusButton.setImage(UIImage(named: "toggleOn"), for: .normal)

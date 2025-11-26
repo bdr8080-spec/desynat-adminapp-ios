@@ -31,33 +31,60 @@ class LocationViewController: UIViewController, UITextFieldDelegate {
     var country = ""
     var pincode = ""
     var locationMarker = GMSMarker()
-//    lazy private var viewModel = LocationViewModel(hostVC: self)
+  var preSelectedLat: Double?
+  var preSelectedLng: Double?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        LocationManager.sharedInstance.startUpdatingLocation()
-        self.txtSearch.delegate = self
-        self.googleMapSetup()
-        
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        
-        let img = UIImage(named: "mark")?.withRenderingMode(.alwaysTemplate)
-        currentLocationButton.setImage(img, for: .normal)
-        currentLocationButton.tintColor = UIColor.darkBrown
-    }
+  override func viewDidLoad() {
+      super.viewDidLoad()
+      
+      txtSearch.delegate = self
+      viewMap.delegate = self
+      
+      // Setup location manager
+      locationManager.delegate = self
+      locationManager.desiredAccuracy = kCLLocationAccuracyBest
+      locationManager.requestWhenInUseAuthorization()
+      locationManager.startUpdatingLocation()
+      
+      // Smart: Use pre-selected > current location > fallback
+      let targetLat: Double
+      let targetLng: Double
+      let zoom: Float
+      
+      if let lat = preSelectedLat, let lng = preSelectedLng, lat != 0, lng != 0 {
+          targetLat = lat
+          targetLng = lng
+          zoom = ZOOM_LEVEL_HIGH  // Zoom in if user already picked a place
+      } else {
+          targetLat = LocationManager.sharedInstance.location?.latitude ?? 28.6139  // Default: Delhi (or your city)
+          targetLng = LocationManager.sharedInstance.location?.longitude ?? 77.2090
+          zoom = 12
+      }
+      
+      let camera = GMSCameraPosition.camera(withLatitude: targetLat, longitude: targetLng, zoom: zoom)
+      viewMap.camera = camera
+      locationMarker.position = CLLocationCoordinate2D(latitude: targetLat, longitude: targetLng)
+      locationMarker.map = viewMap
+      reverseGeocodeCoordinate(CLLocationCoordinate2D(latitude: targetLat, longitude: targetLng))
+    let img = UIImage(named: "mark")?.withRenderingMode(.alwaysTemplate)
+    currentLocationButton.setImage(img, for: .normal)
+    currentLocationButton.tintColor = UIColor.darkBrown
+  }
     
-    func googleMapSetup() {
-        self.latitude = LocationManager.sharedInstance.location?.latitude ?? 0.0
-        self.longitude = LocationManager.sharedInstance.location?.longitude ?? 0.0
-        self.currentLocation =  LocationManager.sharedInstance.currentLocation
-        viewMap.isMyLocationEnabled = false
-        let camera = GMSCameraPosition.camera(withLatitude: latitude ?? 0.0, longitude: longitude ?? 0.0, zoom: 12)
-        self.viewMap.camera = camera
-        self.viewMap.delegate = self
-    }
+  func googleMapSetup() {
+      viewMap.isMyLocationEnabled = false
+      viewMap.delegate = self
+
+      // If preselected location exists, show it
+      if let preLat = preSelectedLat, let preLong = preSelectedLng {
+          self.latitude = preLat
+          self.longitude = preLong
+          let camera = GMSCameraPosition.camera(withLatitude: preLat, longitude: preLong, zoom: 12)
+          self.viewMap.camera = camera
+          addMarker(at: CLLocationCoordinate2D(latitude: preLat, longitude: preLong))
+      }
+  }
+
     
     @IBAction func btnBack(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -84,74 +111,41 @@ class LocationViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.popViewController(animated: true)
         
     }
+  
+  func addMarker(at coordinate: CLLocationCoordinate2D) {
+      locationMarker.map = nil // Remove previous marker
+      locationMarker = GMSMarker(position: coordinate)
+      locationMarker.map = viewMap
+  }
+
 }
 
 extension LocationViewController: CLLocationManagerDelegate,GMSMapViewDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations.last
-        let camera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!, zoom: 12.0)
-        self.viewMap.animate(to: camera)
-        self.latitude = location?.coordinate.latitude
-        self.longitude = location?.coordinate.longitude
-        self.locationManager.stopUpdatingLocation()
-    }
+  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+      guard let location = locations.last else { return }
+
+      // Only move camera if no preselected location
+      if preSelectedLat == nil && preSelectedLng == nil {
+          let coordinate = location.coordinate
+          self.latitude = coordinate.latitude
+          self.longitude = coordinate.longitude
+
+          let camera = GMSCameraPosition.camera(withLatitude: coordinate.latitude,
+                                                longitude: coordinate.longitude,
+                                                zoom: 12)
+          self.viewMap.animate(to: camera)
+          addMarker(at: coordinate)
+      }
+
+      locationManager.stopUpdatingLocation()
+  }
+
     
     func mapView(_ mapView: GMSMapView, idleAt cameraPosition: GMSCameraPosition) {
         self.latitude = cameraPosition.target.latitude
         self.longitude = cameraPosition.target.longitude
         reverseGeocodeCoordinate(cameraPosition.target)
     }
-    
-//    func reverseGeocodeCoordinate(_ coordinate: CLLocationCoordinate2D) {
-//        let geocoder = CLGeocoder()
-//        let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-//        self.latitude = coordinate.latitude
-//        self.longitude = coordinate.longitude
-//        
-//        geocoder.reverseGeocodeLocation(location) { placemarks, error in
-//            guard error == nil else { return }
-//            guard let pm = placemarks?.first else { return }
-//            
-//            var fullAddress = ""
-//            var shortAddress = ""
-//            
-//            // 🔹 Extract individual address components
-//            let name = pm.name ?? ""
-//            let subLocality = pm.subLocality ?? ""
-//            let locality = pm.locality ?? ""
-//            let state = pm.administrativeArea ?? ""
-//            let country = pm.country ?? ""
-//            let postalCode = pm.postalCode ?? ""
-//            
-//            // 🔹 Clean short address: remove repeating locality part (like "Sector 63")
-//            if !name.isEmpty {
-//                shortAddress = name
-//                if shortAddress.lowercased().contains(subLocality.lowercased()) {
-//                    shortAddress = shortAddress.replacingOccurrences(of: subLocality, with: "", options: .caseInsensitive)
-//                }
-//                shortAddress = shortAddress.replacingOccurrences(of: ", ,", with: ",")
-//                    .trimmingCharacters(in: .whitespacesAndNewlines)
-//                    .trimmingCharacters(in: CharacterSet(charactersIn: ", "))
-//            }
-//            
-//            // 🔹 Full readable address for label
-//            fullAddress = [name, subLocality, locality, state, country, postalCode]
-//                .filter { !$0.isEmpty }
-//                .joined(separator: ", ")
-//            
-//            // 🔹 Assign cleaned-up values
-//            self.locality = subLocality
-//            self.city = locality
-//            self.state = state
-//            self.country = country
-//            self.pincode = postalCode
-//            self.address = shortAddress
-//            
-//            // 🔹 Update UI
-//            self.txtSearch.text = shortAddress                  // only "142, B Block"
-//            self.lblLocation.text = fullAddress                 // full readable address
-//        }
-//    }
     
     func reverseGeocodeCoordinate(_ coordinate: CLLocationCoordinate2D) {
         let geocoder = CLGeocoder()

@@ -27,23 +27,55 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigatio
     }
     
     // MARK: - Setup Alert
-    private func setupAlert() {
-        alert = UIAlertController(title: "Choose File", message: nil, preferredStyle: .actionSheet)
+//    private func setupAlert() {
+//        alert = UIAlertController(title: "Choose File", message: nil, preferredStyle: .actionSheet)
+//
+//        let cameraAction = UIAlertAction(title: "Camera", style: .default) { _ in
+//            self.openCamera()
+//        }
+//
+//        let galleryAction = UIAlertAction(title: "Gallery", style: .default) { _ in
+//            self.openGallery()
+//        }
+//
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+//
+//        alert.addAction(cameraAction)
+//        alert.addAction(galleryAction)
+//        alert.addAction(cancelAction)
+//    }
+  
+  private func setupAlert() {
+      alert = UIAlertController(title: "Choose File", message: nil, preferredStyle: .actionSheet)
 
-        let cameraAction = UIAlertAction(title: "Camera", style: .default) { _ in
-            self.openCamera()
-        }
+      let cameraAction = UIAlertAction(title: "Camera", style: .default) { _ in
+          self.openCamera()
+      }
 
-        let galleryAction = UIAlertAction(title: "Gallery", style: .default) { _ in
-            self.openGallery()
-        }
+      let galleryAction = UIAlertAction(title: "Gallery", style: .default) { _ in
+          self.openGallery()
+      }
 
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+      // ✅ PDF option — only if allowed
+      if allowPDFSelection {
+          let pdfAction = UIAlertAction(title: "PDF / Files", style: .default) { _ in
+              self.openDocumentPicker()
+          }
+          alert.addAction(pdfAction)
+      }
 
-        alert.addAction(cameraAction)
-        alert.addAction(galleryAction)
-        alert.addAction(cancelAction)
-    }
+      let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+
+      alert.addAction(cameraAction)
+      alert.addAction(galleryAction)
+      alert.addAction(cancelAction)
+  }
+
+  func openDocumentPicker() {
+      alert.dismiss(animated: true)
+      initializeDocument()
+  }
+
 
     // MARK: - Pick Image
     func pickImage(_ viewController: UIViewController, _ callback: @escaping ((UIImage, String, URL?) -> ())) {

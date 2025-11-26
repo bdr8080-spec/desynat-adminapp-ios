@@ -81,6 +81,7 @@ enum NetworkEndPoint: String {
   case updateReasonStatus               = "api/admin/change_reason_status"
   case updateReason                     = "api/admin/update_reason"
   case deleteReason                     = "api/admin/delete_reason"
+  case addReason                     = "api/admin/add_reason"
   
   //DeliveryManagement
   case getDeliveryBoysList              = "api/admin/get_delivery_boys"

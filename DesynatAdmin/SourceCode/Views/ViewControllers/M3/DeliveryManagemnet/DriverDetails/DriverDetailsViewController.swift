@@ -9,7 +9,9 @@ import UIKit
 
 class DriverDetailsViewController: UIViewController {
   
-    @IBOutlet weak var profileImageView: CustomImageView!
+  @IBOutlet weak var registrtionCertificateView: UIView!
+  @IBOutlet weak var pollutionCertificateView: UIView!
+  @IBOutlet weak var profileImageView: CustomImageView!
     @IBOutlet weak var fullNameInEnglishLabel: UILabel!
     @IBOutlet weak var mobileLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
@@ -95,8 +97,14 @@ private lazy var viewModel = DriverDetailsViewModel(hostVC: self)
         drivingLcenseBackImageView.setImage(with: data.drivingLicense?.first(where: { $0.isFront == 0})?.documentPath ?? "")
         
         vehicleInsuranceImageView.setImage(with: data.vehicleInsurance?.first?.documentPath)
+      let pollutionUrl = data.pollutionPaper?.first?.documentPath ?? ""
+
+        pollutionCertificateView.isHidden = pollutionUrl.isEmpty
+      
         pollutionPaperImageView.setImage(with: data.pollutionPaper?.first?.documentPath)
         
+      let registrationURL = data.registrationCertificate?.first(where: { $0.isFront == 1})?.documentPath ?? ""
+      registrtionCertificateView.isHidden = registrationURL.isEmpty
         registrationCertificationFrontImagViw.setImage(with: data.registrationCertificate?.first(where: { $0.isFront == 1})?.documentPath)
         registrationCertificationBackImagViw.setImage(with: data.registrationCertificate?.first(where: { $0.isFront == 0})?.documentPath)
     }

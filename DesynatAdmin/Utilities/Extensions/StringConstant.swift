@@ -33,7 +33,7 @@ enum AlertConstant: String {
     case decodingError              = "Failed to decode response"
     
     ///Validation Error Message
-    case EnterEmailAddress          = "Please Enter Emaill address"
+    case EnterEmailAddress          = "Please enter emaill address"
     case EnterMobileNumber          = "Please Enter Mobile Number"
     case EnterValidEmailAddress     = "Please Enter Valid Email"
     case validMobileNumber          = "Please enter valid mobile number between 7 to 15 digits"
@@ -42,7 +42,8 @@ enum AlertConstant: String {
     case EnterPassword              = "Please Enter Password"
     case InvalidPasswordFormat      = "Password must be at least 8 characters long, include 1 uppercase, 1 lowercase, and 1 special character"
     case EnterNewPassword           = "Please Enter New Pasword"
-    case EnterConfirmPassword       = "Please ReEnter Confrim Pasword"
+  case PasswordMinLength = "Password must be at least 6 characters long"
+    case EnterConfirmPassword       = "Please enter confrim pasword"
     case PasswordNotMatched         = "Passwords do not match"
     case AcceptTermsAndConditions   = "Please accept the Terms & Conditions to continue"
     case SelectSubCategoryImage     = "Please Upload Sub Category Image"
@@ -73,21 +74,21 @@ enum AlertConstant: String {
     case enterAmount                 = "Please enter amount"
     
     
-    case uploadProfilePicture = "Please upload profile picture"
-    case enterFullNameEnglish = "Please enter full name in English"
-    case enterFullNameArabic = "Please enter full name in Arabic"
+    case uploadProfilePicture = "Please upload profile image"
+    case enterFullNameEnglish = "Please enter full name (En)"
+    case enterFullNameArabic = "Please enter full name (Ar)"
     
     case enterAddress1 = "Please select Address Line 1"
     case enterAddress2 = "Please enter Address Line 2"
-    case enterCity = "Please enter city"
+    case enterCity = "Please enter city/district"
     case enterState = "Please enter state"
     case selectZone = "Please select zone"
     
     case enterVehicleName = "Please enter vehicle name"
     case enterVehicleReg = "Please enter vehicle registration"
     
-    case uploadVehicleFront = "Please upload vehicle front image"
-    case uploadVehicleBack = "Please upload vehicle back image"
+    case uploadVehicleFront = "Please upload vehicle image (front)"
+    case uploadVehicleBack = "Please upload vehicle image (back)"
     
     case uploadIdentityFront = "Please upload identity proof (front)"
     case uploadIdentityBack = "Please upload identity proof (back)"

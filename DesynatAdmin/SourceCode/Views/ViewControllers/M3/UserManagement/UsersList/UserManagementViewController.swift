@@ -98,9 +98,9 @@ class UserManagementViewController: UIViewController {
         self.userTableView.reloadRows(at: [indexPath], with: .automatic)
         if let status = user.status {
           if status == "1" {
-            CommonUtils.showToast(message: "User has been activated Successfully")
+            CommonUtils.showToast(message: "User Unblocked Succesfully ")
           } else {
-            CommonUtils.showToast(message: "User has been Deactivated Successfully")
+            CommonUtils.showToast(message: "User Blocked Succesfully")
           }
         }
       }
@@ -124,6 +124,12 @@ extension UserManagementViewController: UITableViewDelegate, UITableViewDataSour
       guard let self = self else { return }
       self.toggleReasonStatus(at: indexPath)
     }
+    cell.onViewDetails = {[weak self] in
+      guard let self = self else { return }
+      let vc = UserManagementDetailsViewController.instantiate(fromAppStoryboard: .ReasonManagement)
+      vc.userId = viewModel.usersListData[indexPath.row].id
+      self.navigationController?.pushViewController(vc, animated: false)
+    }
     return cell
   }
   
@@ -131,11 +137,11 @@ extension UserManagementViewController: UITableViewDelegate, UITableViewDataSour
     return UITableView.automaticDimension
   }
   
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let vc = UserManagementDetailsViewController.instantiate(fromAppStoryboard: .ReasonManagement)
-    vc.userId = viewModel.usersListData[indexPath.row].id
-    self.navigationController?.pushViewController(vc, animated: false)
-  }
+//  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//    let vc = UserManagementDetailsViewController.instantiate(fromAppStoryboard: .ReasonManagement)
+//    vc.userId = viewModel.usersListData[indexPath.row].id
+//    self.navigationController?.pushViewController(vc, animated: false)
+//  }
   
 }
 
