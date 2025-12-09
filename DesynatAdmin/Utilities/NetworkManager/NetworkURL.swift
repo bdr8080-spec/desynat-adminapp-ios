@@ -93,6 +93,24 @@ enum NetworkEndPoint: String {
   case getDriverDetails          = "api/admin/get_deliveryboy_details"
   case editDriverDetails          = "api/admin/update_deliveryBoy"
   
+  //M4
+  case getShippingTaxes          = "api/admin/countries_with_tax_shipping"
+  case getShippingTaxesCountry   = "api/admin/shipping_charges_by_countryId"
+  case deleteShippingInfo        = "api/admin/delete_shipping_fee"
+  case editShippingInfo        = "api/admin/update_shipping_charge"
+  case updateStatusOfShippingFee  = "api/admin/blobk_unblock_shippingFee"
+  case addShippingFee  = "api/admin/add_tax"
+  case addShippingCharges  = "api/admin/add_shipping_charge"
+  case getGiftCardsList  = "api/admin/get_giftCards"
+  case updateStatusOfGiftCards  = "api/admin/block_unblock_giftCard"
+  case deleteGiftCard  = "api/admin/delete_gift_card"
+  case editGiftCard  = "api/admin/update_giftCard"
+  case addGiftCard  = "api/admin/add_giftCard"
+  case getBannersList  = "api/admin/get_banners"
+  case addPriceBanners  = "api/admin/add_update_banner"
+  
+  case getPromocode = "api/admin/get_promocodes"
+  
     func withBaseURL() -> String {
         return "\(BaseURL.value())\(self.rawValue)"
     }

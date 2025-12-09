@@ -136,15 +136,10 @@ extension DeliveryBoyViewController: UITableViewDelegate, UITableViewDataSource 
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//    return 100
     return UITableView.automaticDimension
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//    let vc = AddNewDriverViewController.instantiate(fromAppStoryboard: .ReasonManagement)
-//    vc.isComingForEdit = true
-//    vc.userId = viewModel.boysListData[indexPath.row].id
-//    self.navigationController?.present(vc, animated: false)
       let vc = DriverDetailsViewController.instantiate(fromAppStoryboard: .ReasonManagement)
     vc.userId = viewModel.boysListData[indexPath.row].id ?? 0
     self.navigationController?.pushViewController(vc, animated: false)

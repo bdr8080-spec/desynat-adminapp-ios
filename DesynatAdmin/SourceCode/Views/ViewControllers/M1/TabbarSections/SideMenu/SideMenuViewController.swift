@@ -27,13 +27,14 @@ class SideMenuViewController: UIViewController {
         SideMenuModel(title: "Reason Management", image: "reason"),
         SideMenuModel(title: "Delivery Boy Management", image: "deliveryBoy"),
         SideMenuModel(title: "User Management", image: "userManagemnet"),
+        SideMenuModel(title: "Delivery charges & Tax Management", image: "shippingCharges"),
+        SideMenuModel(title: "Gift Card Management", image: "gift"),
+        SideMenuModel(title: "Banner per day price", image: "bannerPay"),
+        SideMenuModel(title: "Promocode Management", image: "promocode"),
         SideMenuModel(title: "Sub Admin", image: "subadmin"),
         SideMenuModel(title: "Affiliate User Management", image: "userManagemnet"),
         SideMenuModel(title: "Live Request  & Timeslot Management", image: "liveReuqest"),
-        SideMenuModel(title: "Gift Card Management", image: "gift"),
         SideMenuModel(title: "Orders Management", image: "orderManagemnt"),
-        SideMenuModel(title: "Shipping charges & Tax Management", image: "shippingCharges"),
-        SideMenuModel(title: "Promocode Management", image: "promocode"),
         SideMenuModel(title: "Affiliate Commission percentage", image: "affilitaeCommisiin"),
         SideMenuModel(title: "Refund Management", image: "refundManagemnt"),
         SideMenuModel(title: "Affiliate withdrawal requests", image: "affilateWithdraw"),
@@ -42,7 +43,6 @@ class SideMenuViewController: UIViewController {
         SideMenuModel(title: "Ticket Management", image: "ticketManagemnt"),
         SideMenuModel(title: "Seller Payouts", image: "sellerPayout"),
         SideMenuModel(title: "Deals Management", image: "dealsManagement"),
-        SideMenuModel(title: "Banner per day price", image: "bannerPay"),
         SideMenuModel(title: "Banner requests Management", image: "bannerRequest"),
         SideMenuModel(title: "CMS", image: "cms"),
         SideMenuModel(title: "Support Chat", image: "support")]
@@ -118,19 +118,21 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             case "Delivery Boy Management":
               let vc = DeliveryBoyViewController.instantiate(fromAppStoryboard: .ReasonManagement)
               self.navigationController?.pushViewController(vc, animated: false)
-                print("➡️ Navigating to Delivery Boy Management")
             case "Live Request  & Timeslot Management":
                 print("➡️ Navigating to Live Request & Timeslot Management")
             case "Gift Card Management":
-                print("➡️ Navigating to Gift Card Management")
+              let vc = GiftCardsListViewController.instantiate(fromAppStoryboard: .ShippingPromocode)
+              self.navigationController?.pushViewController(vc, animated: false)
             case "Orders Management":
                 print("➡️ Navigating to Orders Management")
             case "Country , City & Zone Management":
                 self.navigate(to: CountryCityListViewController.viewFromNIB)
-            case "Shipping charges & Tax Management":
-                print("➡️ Navigating to Shipping & Tax Management")
+            case "Delivery charges & Tax Management":
+              let vc = ShippingChargesListViewController.instantiate(fromAppStoryboard: .ShippingPromocode)
+              self.navigationController?.pushViewController(vc, animated: false)
             case "Promocode Management":
-                print("➡️ Navigating to Promocode Management")
+              let vc = PromodeListViewController.instantiate(fromAppStoryboard: .ShippingPromocode)
+              self.navigationController?.pushViewController(vc, animated: false)
             case "Affiliate Commission percentage":
                 print("➡️ Navigating to Affiliate Commission Percentage")
             case "Refund Management":
@@ -148,7 +150,8 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             case "Deals Management":
                 print("➡️ Navigating to Deals Management")
             case "Banner per day price":
-                print("➡️ Navigating to Banner Per Day Price")
+              let vc = BannerPerDayListViewController.instantiate(fromAppStoryboard: .ShippingPromocode)
+              self.navigationController?.pushViewController(vc, animated: false)
             case "Banner requests Management":
                 print("➡️ Navigating to Banner Requests Management")
             case "Reason Management":

@@ -14,7 +14,7 @@ class LoginViewController: UIViewController {
 
     
     private lazy var viewModel = LoginViewModel(loginHostVC: self)
-    var countryCode: String = LocationManager.sharedInstance.getCurrentLocationCode().dialCode
+//    var countryCode: String = LocationManager.sharedInstance.getCurrentLocationCode().dialCode
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -212,7 +212,7 @@ extension UIImageView {
 
         guard let urlString = urlString,
               let url = URL(string: urlString) else {
-            self.image = UIImage(named: "placeholder") // your placeholder
+            self.image = UIImage(named: "placeholder")
             return
         }
 

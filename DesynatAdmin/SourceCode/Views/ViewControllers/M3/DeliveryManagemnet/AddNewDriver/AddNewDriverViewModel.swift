@@ -222,18 +222,6 @@ class AddNewDriverViewModel: NSObject {
     }
   }
   
-//  func uploadDocument(file: Any, isImage: Bool, completion: @escaping(String) -> Void) {
-//      let param = MultipartUpload(
-//          fileName: isImage ? "image" : "document",
-//          file: file,
-//          mimeType: isImage ? .image : .pdf
-//      )
-//      WebService.sharedInstance.uploadFile(withParams: param) { url, _, _ in
-//          completion(url)
-//      }
-//  }
-
-  
   func getAllCountry(completion: (() -> Void)? = nil) {
     WebService.shared.getAllCountry(){ [weak self] response in
       guard let self = self else { return }

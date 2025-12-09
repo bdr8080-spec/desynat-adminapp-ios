@@ -101,7 +101,11 @@ enum AlertConstant: String {
     
     case uploadRCFront = "Please upload RC front image"
     case uploadRCBack = "Please upload RC back image"
-    
+  
+  case EnterCardEnglish          = "Please enter gift card category name in english" //Gift Card Category Name
+  case EnterCardArabic           = "Please enter gift card category name in arabic"
+  case SelectCardImage           = "Please Upload gift card category image"
+  
     func value() -> String {
         return self.rawValue
     }

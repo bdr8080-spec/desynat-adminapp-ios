@@ -189,20 +189,8 @@ extension ReasonManagementViewController: UITableViewDelegate, UITableViewDataSo
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//    return 100
     return UITableView.automaticDimension
   }
-  
-//  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//    let vc = AddReasonViewController.instantiate(fromAppStoryboard: .ReasonManagement)
-//    vc.isComingForEdit = true
-//    vc.reasonId = viewModel.reasonListData[indexPath.row].id
-//    vc.reasonForEdit = viewModel.reasonListData[indexPath.row]
-//    vc.onUpdate = {
-//      self.viewModel.getAllReasons()
-//    }
-//    self.navigationController?.present(vc, animated: false)
-//  }
   
 }
 

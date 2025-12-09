@@ -516,6 +516,251 @@ extension WebService {
             }
         }
     }
+  
+  //M4
+  
+  func getShippingTaxes(completion: @escaping([ShippingChargesDataModel]) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getShippingTaxes), requestMethod: .get, requestModel: [ShippingChargesDataModel].self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func getShippingTaxesCountryWise(params:[String: Any], completion: @escaping([ShippingChargesList]) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getShippingTaxesCountry), requestMethod: .get, requestParams: params,  requestModel: [ShippingChargesList].self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func deleteShippingInfo(param: [String: Any], completion: @escaping([ShippingChargesDataModel]) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.deleteShippingInfo), requestMethod: .post, requestParams: param, requestModel: [ShippingChargesDataModel].self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func updateStatusOfShippingFees(param: [String: Any], completion: @escaping(EmptyModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.updateStatusOfShippingFee), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  
+  func addShippingFees(param: [String: Any], completion: @escaping(EmptyModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.addShippingFee), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  
+  func addNewShippingCharge(param: [String: Any], completion: @escaping(EmptyModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.addShippingCharges), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func editShippingInfo(param: [String: Any], completion: @escaping(ShippingChargesDataModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.editShippingInfo), requestMethod: .post, requestParams: param, requestModel: ShippingChargesDataModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func getGiftsList(param: [String: Any], completion: @escaping (GiftCardsListDataModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getGiftCardsList), requestMethod: .get, requestParams: param, requestModel: GiftCardsListDataModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func upadteGiftCardStatus(param: [String:Any], completion: @escaping(GiftCardsList) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.updateStatusOfGiftCards), requestMethod: .post, requestParams: param, requestModel: GiftCardsList.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func deleteCard(param: [String:Any], completion: @escaping(EmptyModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.deleteGiftCard), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func editCardDetails(param: [String:Any], completion: @escaping(GiftCardsList) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.editGiftCard), requestMethod: .post, requestParams: param, requestModel: GiftCardsList.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func addNewCard(param: [String:Any], completion: @escaping(GiftCardsList) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.addGiftCard), requestMethod: .post, requestParams: param, requestModel: GiftCardsList.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func getBannersPerDay(param: [String:Any], completion: @escaping([BannersPerDayListDataModel]) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getBannersList), requestMethod: .get, requestParams: param, requestModel: [BannersPerDayListDataModel].self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func addPriceBannersPerDay(param: [String:Any], completion: @escaping(EmptyModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.addPriceBanners), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func getAllPromoCode(param: [String:Any], completion: @escaping(PromocodeListDataModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getPromocode), requestMethod: .get, requestParams: param, requestModel: PromocodeListDataModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
     
 }
 
