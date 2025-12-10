@@ -44,7 +44,7 @@ struct PromocodeList: Codable {
     let applicableFor: Int?
     let discountPercent, minOrderValue, uptoDiscount, startDate: String?
     let endDate: String?
-    let status: Int?
+    var status: Int?
     let createdAt, updatedAt: String?
     let countryInfo: CountryInfo?
 

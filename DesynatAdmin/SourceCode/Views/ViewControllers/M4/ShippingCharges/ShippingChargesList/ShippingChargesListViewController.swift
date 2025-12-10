@@ -48,6 +48,8 @@ extension ShippingChargesListViewController: UITableViewDelegate, UITableViewDat
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let nextVC = ShippingChargesAndTaxViewController.instantiate(fromAppStoryboard: .ShippingPromocode)
     nextVC.countryId = viewModel.shippingDetails?[indexPath.row].id
+    nextVC.flag = viewModel.shippingDetails?[indexPath.row].flag
+    nextVC.countryName = viewModel.shippingDetails?[indexPath.row].name
     nextVC.taxAmount = viewModel.shippingDetails?[indexPath.row].taxInfo?.tax
     self.navigationController?.pushViewController(nextVC, animated: true)
   }

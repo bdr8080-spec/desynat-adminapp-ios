@@ -110,6 +110,10 @@ enum NetworkEndPoint: String {
   case addPriceBanners  = "api/admin/add_update_banner"
   
   case getPromocode = "api/admin/get_promocodes"
+  case updateStatusPromocode = "api/admin/block_unblock_promocode"
+  case deletePromocode = "api/admin/delete_promocode"
+  case addPromocode = "api/admin/add_promocode"
+  case editPromocode = "api/admin/update_promocode"
   
     func withBaseURL() -> String {
         return "\(BaseURL.value())\(self.rawValue)"

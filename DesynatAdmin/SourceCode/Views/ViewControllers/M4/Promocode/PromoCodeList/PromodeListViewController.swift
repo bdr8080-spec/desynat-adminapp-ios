@@ -108,6 +108,7 @@ extension PromodeListViewController: UITableViewDelegate, UITableViewDataSource 
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let nextVC = PromocodeDetailsViewController.instantiate(fromAppStoryboard: .ShippingPromocode)
+    nextVC.promocodeDetails = viewModel.promocodeListData[indexPath.row]
     self.navigationController?.pushViewController(nextVC, animated: true)
   }
   

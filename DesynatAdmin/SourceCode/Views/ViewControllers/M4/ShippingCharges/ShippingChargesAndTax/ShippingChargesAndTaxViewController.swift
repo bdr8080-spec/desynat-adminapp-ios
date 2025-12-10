@@ -24,6 +24,8 @@ class ShippingChargesAndTaxViewController: UIViewController {
   }
   
   var countryId: Int? = 0
+  var flag: String? = ""
+  var countryName: String? = ""
   private lazy var viewModel = ShippingChargesAndTaxViewModel(hostVC: self)
   private var currentPageIndex = 0
   private var itemsPerPage = 5
@@ -56,6 +58,7 @@ class ShippingChargesAndTaxViewController: UIViewController {
     nextVC.changesAreDone = {
       self.viewModel.getAllshippingTaxList()
     }
+    nextVC.countryId = countryId
     nextVC.shippingInfo = viewModel.shippingTaxDetails?.first
     self.navigationController?.present(nextVC, animated: true)
   }
@@ -109,8 +112,8 @@ class ShippingChargesAndTaxViewController: UIViewController {
   }
   
   func populateData() {
-    flagEmojiLabel.text = viewModel.shippingTaxDetails?.first?.countryInfo?.flag
-    countryNameTitleLabel.text = viewModel.shippingTaxDetails?.first?.countryInfo?.name
+    flagEmojiLabel.text = flag//countryInfo?.flag//viewModel.shippingTaxDetails?.first?.countryInfo?.flag
+    countryNameTitleLabel.text = countryName//countryInfo?.name//viewModel.shippingTaxDetails?.first?.countryInfo?.name
     taxAmountLabel.text = "\(taxAmount ?? "0")%"
     
     let hasData = (viewModel.shippingTaxDetails?.isEmpty == false)

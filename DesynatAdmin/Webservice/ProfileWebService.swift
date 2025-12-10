@@ -761,6 +761,69 @@ extension WebService {
       }
   }
   
+  func upadtePromocodeStatus(param: [String:Any], completion: @escaping(PromocodeList) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.updateStatusPromocode), requestMethod: .post, requestParams: param, requestModel: PromocodeList.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func deletePromoCode(param: [String:Any], completion: @escaping(EmptyModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.deletePromocode), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func addPromoCode(param: [String:Any], completion: @escaping(EmptyModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.addPromocode), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func editPromoCode(param: [String:Any], completion: @escaping(EmptyModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.editPromocode), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
     
 }
 

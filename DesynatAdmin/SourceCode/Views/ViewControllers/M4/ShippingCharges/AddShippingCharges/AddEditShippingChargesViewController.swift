@@ -20,6 +20,7 @@ class AddEditShippingChargesViewController: UIViewController {
   var shippingInfo: ShippingChargesList?
   private lazy var viewModel = AddEditShippingChargesViewModel(hostVC: self)
   var changesAreDone: (() -> Void)?
+  var countryId: Int? = 0
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -37,7 +38,7 @@ class AddEditShippingChargesViewController: UIViewController {
     guard validateFields() else { return }
     switch commingReason {
     case .add:
-      let param: [String: Any] = ["country_id": shippingInfo?.countryID ?? 0,
+      let param: [String: Any] = ["country_id": countryId ?? 0,
                                   "range_from": fromTF.text?.trimmed() ?? "",
                                   "range_to": toTF.text?.trimmed() ?? "",
                                   "shipping_fee": delieryChargeTF.text?.trimmed() ?? ""]
