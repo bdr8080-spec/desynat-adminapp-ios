@@ -36,7 +36,7 @@ class GiftCardDetailsViewModel {
         WebService.shared.deleteCard(param: param){ [weak self] response in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                CommonUtils.showToast(message: "Gift Card Deleted Successfully")
+                CommonUtils.showToast(message: "Gift Card Category Deleted Successfully")
                 self.hostVC.navigationController?.popViewController(animated: true)
             }
         }

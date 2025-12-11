@@ -39,7 +39,10 @@ class AddPromocodeViewModel {
     ]
     WebService.shared.addPromoCode(param: param){ [weak self] response in
       guard let self = self else { return }
-      self.hostVC?.navigationController?.popViewController(animated: true)
+      DispatchQueue.main.async {
+        CommonUtils.showToast(message: "Promocode added successfully")
+        self.hostVC?.navigationController?.popViewController(animated: true)
+      }
     }
   }
   
@@ -59,8 +62,12 @@ class AddPromocodeViewModel {
     ]
     WebService.shared.editPromoCode(param: param){ [weak self] response in
       guard let self = self else { return }
+      DispatchQueue.main.async {
+        CommonUtils.showToast(message: "Promocode updated successfully")
+        self.hostVC?.navigationController?.popToViewController(ofClass: PromodeListViewController.self, animated: true)
+      }
 //      self.hostVC?.navigationController?.popViewController(animated: true)
-      self.hostVC?.navigationController?.popToViewController(ofClass: PromodeListViewController.self, animated: true)
+      
     }
   }
   

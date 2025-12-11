@@ -27,7 +27,9 @@ class BannerPerDayListViewController: UIViewController {
   
   override func viewDidLoad() {
         super.viewDidLoad()
-    
+    topButton.layer.cornerRadius = 5
+    topButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+    topButton.clipsToBounds = true
     }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -36,11 +38,16 @@ class BannerPerDayListViewController: UIViewController {
   }
 
   @IBAction func topDidTapped(_ sender: Any) {
-    topButton.setImage(UIImage(named: "btnGradient"), for: .normal)
+    topButton.setImage(UIImage(named: "topTabbar"), for: .normal)
+    topButton.layer.cornerRadius = 5
+    topButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+    topButton.clipsToBounds = true
     topLabel.textColor = UIColor.white
     bottomButton.setImage(UIImage(named: ""), for: .normal)
+    bottomButton.layer.cornerRadius = 0
     bottomLabel.textColor = UIColor.black
     subCatgeoryButton.setImage(UIImage(named: ""), for: .normal)
+    subCatgeoryButton.layer.cornerRadius = 0
     subCategoryLabel.textColor = UIColor.black
     type = 1
     viewModel.getAllBannersPerDay()
@@ -48,10 +55,15 @@ class BannerPerDayListViewController: UIViewController {
   
   @IBAction func bottomDidTapped(_ sender: Any) {
     topButton.setImage(UIImage(named: ""), for: .normal)
+    bottomButton.layer.cornerRadius = 0
     topLabel.textColor = UIColor.black
-    bottomButton.setImage(UIImage(named: "btnGradient"), for: .normal)
+    bottomButton.setImage(UIImage(named: "topTabbar"), for: .normal)
+    bottomButton.layer.cornerRadius = 0
+//    bottomButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+//    bottomButton.clipsToBounds = true
     bottomLabel.textColor = UIColor.white
     subCatgeoryButton.setImage(UIImage(named: ""), for: .normal)
+    subCatgeoryButton.layer.cornerRadius = 0
     subCategoryLabel.textColor = UIColor.black
     type = 2
     viewModel.getAllBannersPerDay()
@@ -59,11 +71,16 @@ class BannerPerDayListViewController: UIViewController {
   
   @IBAction func subCategoryDidTapped(_ sender: Any) {
     topButton.setImage(UIImage(named: ""), for: .normal)
+    topButton.layer.cornerRadius = 0
     topLabel.textColor = UIColor.black
     bottomButton.setImage(UIImage(named: ""), for: .normal)
     bottomLabel.textColor = UIColor.black
-    subCatgeoryButton.setImage(UIImage(named: "btnGradient"), for: .normal)
+    bottomButton.layer.cornerRadius = 0
+    subCatgeoryButton.setImage(UIImage(named: "topTabbar"), for: .normal)
     subCategoryLabel.textColor = UIColor.white
+    subCatgeoryButton.layer.cornerRadius = 5
+    subCatgeoryButton.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+    subCatgeoryButton.clipsToBounds = true
     type = 3
     viewModel.getAllBannersPerDay()
   }

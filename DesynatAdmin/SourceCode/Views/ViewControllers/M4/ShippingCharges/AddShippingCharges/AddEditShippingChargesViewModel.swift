@@ -20,7 +20,7 @@ class AddEditShippingChargesViewModel {
     WebService.shared.editShippingInfo(param: param) { [weak self] response in
       guard let self = self else { return }
       DispatchQueue.main.async {
-        CommonUtils.showToast(message: "Edit successfully")
+        CommonUtils.showToast(message: "Delivery charge updated successfully")
         self.hostVC?.changesAreDone?()
         self.hostVC?.dismiss(animated: true)
       }
@@ -31,7 +31,7 @@ class AddEditShippingChargesViewModel {
     WebService.shared.addNewShippingCharge(param: param) { [weak self] response in
       guard let self = self else { return }
       DispatchQueue.main.async {
-        CommonUtils.showToast(message: "Added successfully")
+        CommonUtils.showToast(message: "Delivery charge added successfully")
         self.hostVC?.changesAreDone?()
         self.hostVC?.dismiss(animated: true)
       }

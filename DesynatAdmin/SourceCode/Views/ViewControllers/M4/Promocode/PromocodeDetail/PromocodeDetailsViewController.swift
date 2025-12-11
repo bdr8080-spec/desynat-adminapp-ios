@@ -56,6 +56,7 @@ class PromocodeDetailsViewController: UIViewController {
     percentageOffLabel.text = "Flat \(promocodeDetails?.discountPercent ?? "")% OFF" //promocodeDetails?.nameEnglish
     percentageOffDescriptionLabel.text = "Flat \(promocodeDetails?.discountPercent ?? "")% Off On minimum order \(promocodeDetails?.minOrderValue ?? "")"
     descriptionLabel.text = promocodeDetails?.descriptionEnglish ?? ""
+    termsAndConditionLabel.text = promocodeDetails?.descriptionEnglish ?? ""
     if promocodeDetails?.status == 1 {
         statusLabel.text = "Active"
       statusToggleImageView.image = UIImage(named: "toggleOn")

@@ -67,9 +67,10 @@ class AddEditShippingChargesViewController: UIViewController {
     case .edit:
       titleLabel.text = "Edit"
       addChargesLabel.text = "Save Changes"
-      fromTF.text = shippingInfo?.rangeFrom
-      toTF.text = shippingInfo?.rangeTo
-      delieryChargeTF.text = shippingInfo?.shippingFee
+      
+      fromTF.text = shippingInfo?.rangeFrom?.roundedIntString
+      toTF.text = shippingInfo?.rangeTo?.roundedIntString
+      delieryChargeTF.text = shippingInfo?.shippingFee?.roundedIntString
     }
   }
   
@@ -79,21 +80,58 @@ class AddEditShippingChargesViewController: UIViewController {
     headerView.clipsToBounds = true
   }
   
+//  private func validateFields() -> Bool {
+//    guard let fromText = fromTF.text, !fromText.isEmpty,
+//          let toText = toTF.text, !toText.isEmpty,
+//          let deliveryText = delieryChargeTF.text, !deliveryText.isEmpty else {
+//      showAlert(msg: "Please Enter Range")
+//      return false
+//    }
+//    
+//    guard let fromValue = Double(fromText), let toValue = Double(toText), toValue > fromValue else {
+//      showAlert(msg: "To value should be greater than From value")
+//      return false
+//    }
+//    
+//    return true
+//  }
+  
   private func validateFields() -> Bool {
-    guard let fromText = fromTF.text, !fromText.isEmpty,
-          let toText = toTF.text, !toText.isEmpty,
-          let deliveryText = delieryChargeTF.text, !deliveryText.isEmpty else {
-      showAlert(msg: "All fields are required")
-      return false
-    }
-    
-    guard let fromValue = Double(fromText), let toValue = Double(toText), toValue > fromValue else {
-      showAlert(msg: "To value should be greater than From value")
-      return false
-    }
-    
-    return true
+      guard let fromText = fromTF.text, !fromText.isEmpty else {
+          showAlert(msg: "Please Enter Range")
+          return false
+      }
+      guard let toText = toTF.text, !toText.isEmpty else {
+          showAlert(msg: "Please Enter Range")
+          return false
+      }
+      guard let deliveryText = delieryChargeTF.text, !deliveryText.isEmpty else {
+          showAlert(msg: "Please enter Delivery Charge")
+          return false
+      }
+      guard let fromValue = Double(fromText) else {
+          showAlert(msg: "From value must be a number")
+          return false
+      }
+      
+      guard let toValue = Double(toText) else {
+          showAlert(msg: "To value must be a number")
+          return false
+      }
+      
+      guard toValue > fromValue else {
+          showAlert(msg: "To value should be greater than From value")
+          return false
+      }
+      
+      guard let deliveryValue = Double(deliveryText) else {
+          showAlert(msg: "Delivery Charge must be a number")
+          return false
+      }
+      
+      return true
   }
+
   
 }
 
@@ -138,3 +176,4 @@ enum ComingReasonAtAddEditShipping {
   case add
   case edit
 }
+

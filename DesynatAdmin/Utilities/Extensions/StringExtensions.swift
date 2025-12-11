@@ -8,13 +8,20 @@
 import Foundation
 
 extension String {
-    
-    func trimmed() -> String {
-        return trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+  
+  func trimmed() -> String {
+    return trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+  }
+  
+  func localiz(comment: String = "") -> String {
+    return NSLocalizedString(self, comment: comment)
+  }
+  
+  var roundedIntString: String {
+    if let value = Double(self) {
+      return "\(Int(value.rounded()))"
     }
-    
-    func localiz(comment: String = "") -> String {
-        return NSLocalizedString(self, comment: comment)
-    }
-    
+    return self
+  }
+  
 }

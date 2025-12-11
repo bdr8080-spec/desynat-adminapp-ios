@@ -52,7 +52,7 @@ class AddNewCardViewModel: NSObject {
       "image": hostVC.selectedImageUrl]
     WebService.sharedInstance.addNewCard(param: params) { (response) in
       DispatchQueue.main.async {
-        CommonUtils.showToast(message: "Gift Card Added Succesfully")
+        CommonUtils.showToast(message: "Gift Card Category Added Succesfully")
         self.hostVC.navigationController?.popViewController(animated: true)
       }
     }
@@ -66,7 +66,7 @@ class AddNewCardViewModel: NSObject {
       "image": hostVC.selectedImageUrl]
     WebService.sharedInstance.editCardDetails(param: params) { (response) in
       DispatchQueue.main.async {
-        CommonUtils.showToast(message: "Gift Card updated Succesfully ")
+        CommonUtils.showToast(message: "Gift Card Category Updated Succesfully ")
         self.hostVC.onCardUpdated?(response)
         self.hostVC.navigationController?.popViewController(animated: true)
       }

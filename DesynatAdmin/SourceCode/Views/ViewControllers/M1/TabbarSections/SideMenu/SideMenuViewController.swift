@@ -28,7 +28,7 @@ class SideMenuViewController: UIViewController {
         SideMenuModel(title: "Delivery Boy Management", image: "deliveryBoy"),
         SideMenuModel(title: "User Management", image: "userManagemnet"),
         SideMenuModel(title: "Delivery charges & Tax Management", image: "shippingCharges"),
-        SideMenuModel(title: "Gift Card Management", image: "gift"),
+        SideMenuModel(title: "Gift Card Category Management", image: "gift"),
         SideMenuModel(title: "Banner per day price", image: "bannerPay"),
         SideMenuModel(title: "Promocode Management", image: "promocode"),
         SideMenuModel(title: "Sub Admin", image: "subadmin"),
@@ -120,7 +120,7 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
               self.navigationController?.pushViewController(vc, animated: false)
             case "Live Request  & Timeslot Management":
                 print("➡️ Navigating to Live Request & Timeslot Management")
-            case "Gift Card Management":
+            case "Gift Card Category Management":
               let vc = GiftCardsListViewController.instantiate(fromAppStoryboard: .ShippingPromocode)
               self.navigationController?.pushViewController(vc, animated: false)
             case "Orders Management":

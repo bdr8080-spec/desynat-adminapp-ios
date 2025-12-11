@@ -22,10 +22,36 @@ class ShippingChargesListTableViewCell: UITableViewCell {
     
   }
   
+//  func configData(data: ShippingChargesDataModel?) {
+//    flagEmojiLabel.text = data?.flag
+//    titleLabel.text = data?.name
+//    taxAmountLabel.text = "\(data?.taxInfo?.tax ?? "0")%"
+//  }
+  
   func configData(data: ShippingChargesDataModel?) {
-    flagEmojiLabel.text = data?.flag
-    titleLabel.text = data?.name
-    taxAmountLabel.text = "\(data?.taxInfo?.tax ?? "0")%"
+      flagEmojiLabel.text = data?.flag
+      titleLabel.text = data?.name
+      
+      if let taxString = data?.taxInfo?.tax,
+         let taxDouble = Double(taxString) {
+          
+          // Format with up to 2 decimals, trimming unnecessary zeros
+          let formatter = NumberFormatter()
+          formatter.minimumFractionDigits = 0
+          formatter.maximumFractionDigits = 2
+          formatter.numberStyle = .decimal
+          
+          if let formattedTax = formatter.string(from: NSNumber(value: taxDouble)) {
+              taxAmountLabel.text = "\(formattedTax)%"
+          } else {
+              taxAmountLabel.text = "0%"
+          }
+          
+      } else {
+          taxAmountLabel.text = "0%"
+      }
   }
+
+
   
 }

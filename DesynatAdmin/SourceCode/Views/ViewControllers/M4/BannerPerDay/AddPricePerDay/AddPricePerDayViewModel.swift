@@ -24,6 +24,18 @@ class AddPricePerDayViewModel {
       DispatchQueue.main.async {
         self.hostVC.onChangesAreDone?()
         self.hostVC.dismiss(animated: true)
+        let type = self.hostVC.bannerDetails?.type ?? 1
+        switch type {
+        case 1:
+          CommonUtils.showToast(message: "Top Banner Per Day Price updated succesfully")
+        case 2:
+          CommonUtils.showToast(message: "Bottom Banner Per Day Price updated succesfully ")
+        case 3:
+          CommonUtils.showToast(message: "Sub-Category Banner Per Day Price updated succesfully")
+        default:
+          CommonUtils.showToast(message: "Top Banner Per Day Price updated succesfully")
+          
+        }
       }
     }
   }

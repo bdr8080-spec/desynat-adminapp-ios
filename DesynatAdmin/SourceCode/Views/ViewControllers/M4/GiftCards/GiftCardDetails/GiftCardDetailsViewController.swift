@@ -46,7 +46,7 @@ class GiftCardDetailsViewController: UIViewController {
   
   @IBAction func deleteDidTapped(_ sender: Any) {
       guard let gift = giftsListData else { return }
-      self.showConfirmationAlert(msg: "Are you sure you want to delete this card?"){ [weak self] in
+      self.showConfirmationAlert(msg: "Are you sure you want to delete this gift card category?"){ [weak self] in
           guard let self = self else { return }
           self.viewModel.deleteCard(param: ["giftCard_id": gift.id ?? 0])
       }

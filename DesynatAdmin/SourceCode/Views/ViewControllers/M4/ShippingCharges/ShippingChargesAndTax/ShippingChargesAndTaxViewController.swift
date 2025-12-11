@@ -33,6 +33,7 @@ class ShippingChargesAndTaxViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    populateCountryData()
     viewModel.getAllshippingTaxList()
   }
   
@@ -44,10 +45,15 @@ class ShippingChargesAndTaxViewController: UIViewController {
     let nextVC = SetTaxViewController.instantiate(fromAppStoryboard: .ShippingPromocode)
     nextVC.countryID = countryId
     nextVC.taxAmount = taxAmount
-    nextVC.taxAmountSet = {[weak self] tax in
-      guard let self else { return }
-      taxAmount = tax
-      taxAmountLabel.text = "\(taxAmount ?? "0")%"
+    nextVC.taxAmountSet = { [weak self] tax in
+        guard let self = self else { return }
+        if let taxValue = Double(tax) {
+            self.taxAmount = tax
+            self.taxAmountLabel.text = "\(self.formattedTax(taxValue))%"
+        } else {
+            self.taxAmountLabel.text = "0%"
+            self.taxAmount = "0"
+        }
     }
     self.navigationController?.present(nextVC, animated: true)
   }
@@ -102,9 +108,9 @@ class ShippingChargesAndTaxViewController: UIViewController {
         self.shippingTableView.reloadRows(at: [indexPath], with: .automatic)
         if let status = shippingInfo.status {
           if status == 1 {
-            CommonUtils.showToast(message: "Delivery fee has been unblocked Successfully")
+            CommonUtils.showToast(message: "Delivery charge has been unblocked successfully")
           } else {
-            CommonUtils.showToast(message: "Delivery fee has been blocked Successfully")
+            CommonUtils.showToast(message: "Delivery charge has been blocked successfully")
           }
         }
       }
@@ -112,22 +118,29 @@ class ShippingChargesAndTaxViewController: UIViewController {
   }
   
   func populateData() {
-    flagEmojiLabel.text = flag//countryInfo?.flag//viewModel.shippingTaxDetails?.first?.countryInfo?.flag
-    countryNameTitleLabel.text = countryName//countryInfo?.name//viewModel.shippingTaxDetails?.first?.countryInfo?.name
-    taxAmountLabel.text = "\(taxAmount ?? "0")%"
-    
     let hasData = (viewModel.shippingTaxDetails?.isEmpty == false)
-    
     noDataFoundLabel.isHidden = hasData
     shippingTableView.isHidden = !hasData
     bottomButtonsView.isHidden = !hasData
-    
     if hasData {
       updatePaginationButtonImages()
       shippingTableView.reloadData()
     }
   }
   
+  private func populateCountryData() {
+      flagEmojiLabel.text = flag
+      countryNameTitleLabel.text = countryName
+      
+      if let taxString = taxAmount,
+         let taxDouble = Double(taxString) {
+          taxAmountLabel.text = "\(formattedTax(taxDouble))%"
+      } else {
+          taxAmountLabel.text = "0%"
+      }
+  }
+
+
   func updatePaginationButtonImages() {
     guard let total = viewModel.shippingTaxDetails?.count else { return }
     let totalPages = Int(ceil(Double(total) / Double(itemsPerPage)))
@@ -138,6 +151,15 @@ class ShippingChargesAndTaxViewController: UIViewController {
     nextButton.isUserInteractionEnabled = currentPageIndex < totalPages - 1
     nextButton.setImage(UIImage(named: currentPageIndex < totalPages - 1 ? "nextRight" : "lightnextimage"), for: .normal)
   }
+  
+  private func formattedTax(_ value: Double) -> String {
+      let formatter = NumberFormatter()
+      formatter.minimumFractionDigits = 0
+      formatter.maximumFractionDigits = 2
+      formatter.numberStyle = .decimal
+      return formatter.string(from: NSNumber(value: value)) ?? "0"
+  }
+
   
   
 }
@@ -178,29 +200,21 @@ extension ShippingChargesAndTaxViewController: UITableViewDelegate, UITableViewD
         self.viewModel.deleteShippingInfo(param: param)
       }
     }
-    
     return cell
   }
-  
-  
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     print("")
   }
-  
   
 }
 
 extension ShippingChargesAndTaxViewController {
   var currentPageData: [ShippingChargesList] {
     guard let data = viewModel.shippingTaxDetails, !data.isEmpty else { return [] }
-    
     let startIndex = currentPageIndex * itemsPerPage
     let endIndex = min(startIndex + itemsPerPage, data.count)
-    
     guard startIndex < endIndex else { return [] }
-    
     return Array(data[startIndex..<endIndex])
   }
-  
 }

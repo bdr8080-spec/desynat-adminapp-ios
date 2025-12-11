@@ -28,10 +28,10 @@ class AddNewCardViewController: UIViewController {
     if isComingForEdit {
       bindData()
       submitTitleLabel.text = "Update"
-      titleLabel.text = "Edit Card Details"
+      titleLabel.text = "Edit Gift Card Category Details"
     } else {
       submitTitleLabel.text = "Submit"
-      titleLabel.text = "Add New Card"
+      titleLabel.text = "Add New Gift Card Category"
     }
   }
   

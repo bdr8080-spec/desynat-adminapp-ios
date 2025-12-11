@@ -46,9 +46,9 @@ class AddPromocodeViewController: UIViewController {
   @IBAction func countryDidTapped(_ sender: UIButton) {
     let countryNames = viewModel.countryListData.map { country -> String in
       let name = country.name ?? ""
-      let dialCode = country.dialCode ?? ""
+//      let dialCode = country.dialCode ?? ""
       let flag = country.flag ?? "🇰🇼"
-      return "\(flag)  \(name) (\(dialCode))"
+      return "\(flag)  \(name)"// (\(dialCode))"
     }
     
     kSharedAppDelegate.dropDown(dataSource: countryNames, anchorView: sender) { index, item in
