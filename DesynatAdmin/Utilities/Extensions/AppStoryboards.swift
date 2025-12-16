@@ -13,6 +13,7 @@ enum AppStoryboard : String {
   case SideMenu
   case ReasonManagement
   case ShippingPromocode
+  case AffiliatedBannerOrder
 }
 
 extension AppStoryboard {

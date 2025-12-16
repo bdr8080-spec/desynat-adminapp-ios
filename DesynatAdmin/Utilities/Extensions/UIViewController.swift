@@ -503,3 +503,38 @@ extension UIView {
         return Bundle(for: T.self).loadNibNamed(String(describing: T.self), owner: nil, options: nil)![0] as! T
     }
 }
+
+//extension UIView {
+//
+//    func addThreeSideBorder(width: CGFloat = 1) {
+//        let color = UIColor(
+//            red: 153/255,
+//            green: 116/255,
+//            blue: 79/255,
+//            alpha: 1
+//        )
+//
+//        // Corner radius
+//        layer.cornerRadius = 5
+//        layer.masksToBounds = true
+//
+//        let left = CALayer()
+//        left.backgroundColor = color.cgColor
+//        left.frame = CGRect(x: 0, y: 0, width: width, height: bounds.height)
+//
+//        let top = CALayer()
+//        top.backgroundColor = color.cgColor
+//        top.frame = CGRect(x: 0, y: 0, width: bounds.width, height: width)
+//
+//        let bottom = CALayer()
+//        bottom.backgroundColor = color.cgColor
+//        bottom.frame = CGRect(
+//            x: 0,
+//            y: bounds.height - width,
+//            width: bounds.width,
+//            height: width
+//        )
+//
+//        [left, top, bottom].forEach { layer.addSublayer($0) }
+//    }
+//}

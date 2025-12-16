@@ -33,25 +33,6 @@ class SetTaxViewController: UIViewController {
   
   
   @IBAction func saveChangesDidTapped(_ sender: Any) {
-//    guard let text = taxTF.text, !text.isEmpty else {
-//      CommonUtils.showToast(message: "Please set charges")
-//      return
-//    }
-//    
-//    guard let newValue = Int(text) else {
-//      CommonUtils.showToast(message: "Invalid tax value")
-//      return
-//    }
-//    
-//    if newValue == originalRoundedTax {
-//      CommonUtils.showToast(message: "No changes found")
-//      return
-//    }
-//    let params: [String: Any] = [
-//      "country_id": countryID ?? "",
-//      "tax": text]
-//    viewModel.addShippingFees(param: params)
-    
     guard let text = taxTF.text, !text.isEmpty else {
             CommonUtils.showToast(message: "Please set charges")
             return

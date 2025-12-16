@@ -31,11 +31,13 @@ class SideMenuViewController: UIViewController {
         SideMenuModel(title: "Gift Card Category Management", image: "gift"),
         SideMenuModel(title: "Banner per day price", image: "bannerPay"),
         SideMenuModel(title: "Promocode Management", image: "promocode"),
+        SideMenuModel(title: "Affiliate Commission percentage", image: "affilitaeCommisiin"),
+        SideMenuModel(title: "Banner requests Management", image: "bannerRequest"),
+        SideMenuModel(title: "Orders Management", image: "orderManagemnt"),
+        
         SideMenuModel(title: "Sub Admin", image: "subadmin"),
         SideMenuModel(title: "Affiliate User Management", image: "userManagemnet"),
         SideMenuModel(title: "Live Request  & Timeslot Management", image: "liveReuqest"),
-        SideMenuModel(title: "Orders Management", image: "orderManagemnt"),
-        SideMenuModel(title: "Affiliate Commission percentage", image: "affilitaeCommisiin"),
         SideMenuModel(title: "Refund Management", image: "refundManagemnt"),
         SideMenuModel(title: "Affiliate withdrawal requests", image: "affilateWithdraw"),
         SideMenuModel(title: "Notifications Management", image: "notificationBell"),
@@ -43,7 +45,6 @@ class SideMenuViewController: UIViewController {
         SideMenuModel(title: "Ticket Management", image: "ticketManagemnt"),
         SideMenuModel(title: "Seller Payouts", image: "sellerPayout"),
         SideMenuModel(title: "Deals Management", image: "dealsManagement"),
-        SideMenuModel(title: "Banner requests Management", image: "bannerRequest"),
         SideMenuModel(title: "CMS", image: "cms"),
         SideMenuModel(title: "Support Chat", image: "support")]
     private lazy var viewModel = SideMenuViewModel(hostVC: self)
@@ -124,7 +125,8 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
               let vc = GiftCardsListViewController.instantiate(fromAppStoryboard: .ShippingPromocode)
               self.navigationController?.pushViewController(vc, animated: false)
             case "Orders Management":
-                print("➡️ Navigating to Orders Management")
+              let nextVC = OrdersManagementListViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
+              self.navigationController?.pushViewController(nextVC, animated: true)
             case "Country , City & Zone Management":
                 self.navigate(to: CountryCityListViewController.viewFromNIB)
             case "Delivery charges & Tax Management":
@@ -134,7 +136,8 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
               let vc = PromodeListViewController.instantiate(fromAppStoryboard: .ShippingPromocode)
               self.navigationController?.pushViewController(vc, animated: false)
             case "Affiliate Commission percentage":
-                print("➡️ Navigating to Affiliate Commission Percentage")
+              let nextVC = AffiliatedCommissionViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
+              self.navigationController?.pushViewController(nextVC, animated: false)
             case "Refund Management":
                 print("➡️ Navigating to Refund Management")
             case "Affiliate withdrawal requests":
@@ -153,7 +156,8 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
               let vc = BannerPerDayListViewController.instantiate(fromAppStoryboard: .ShippingPromocode)
               self.navigationController?.pushViewController(vc, animated: false)
             case "Banner requests Management":
-                print("➡️ Navigating to Banner Requests Management")
+              let vc = BannersManagementListViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
+              self.navigationController?.pushViewController(vc, animated: false)
             case "Reason Management":
               let vc = ReasonManagementViewController.instantiate(fromAppStoryboard: .ReasonManagement)
               self.navigationController?.pushViewController(vc, animated: false)

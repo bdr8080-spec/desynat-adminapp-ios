@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Medium.ttf">
+            <string>Poppins-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="OrdersManagementCategoryCollectionViewCell" customModule="DesynatAdmin" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="218" height="192"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="218" height="192"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kgd-35-Jik" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="118" width="218" height="40"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btnGradient" translatesAutoresizingMaskIntoConstraints="NO" id="qQo-dn-ctM">
+                                <rect key="frame" x="0.0" y="0.0" width="218" height="40"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cg3-B3-hqE">
+                                <rect key="frame" x="94" y="10.333333333333345" width="30.333333333333329" height="19.666666666666671"/>
+                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="qQo-dn-ctM" firstAttribute="leading" secondItem="Kgd-35-Jik" secondAttribute="leading" id="Csq-iB-oic"/>
+                            <constraint firstItem="Cg3-B3-hqE" firstAttribute="centerX" secondItem="Kgd-35-Jik" secondAttribute="centerX" id="FpN-Cc-NTw"/>
+                            <constraint firstAttribute="trailing" secondItem="qQo-dn-ctM" secondAttribute="trailing" id="UUM-Nb-dCM"/>
+                            <constraint firstItem="qQo-dn-ctM" firstAttribute="top" secondItem="Kgd-35-Jik" secondAttribute="top" id="VB5-ZT-Ft4"/>
+                            <constraint firstAttribute="bottom" secondItem="qQo-dn-ctM" secondAttribute="bottom" id="yee-QA-ENU"/>
+                            <constraint firstItem="Cg3-B3-hqE" firstAttribute="centerY" secondItem="Kgd-35-Jik" secondAttribute="centerY" id="zab-JA-0EL"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="leading" secondItem="Kgd-35-Jik" secondAttribute="leading" id="0OD-xD-ZvA"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="Kgd-35-Jik" secondAttribute="bottom" id="ES0-ZQ-sTf"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="top" secondItem="Kgd-35-Jik" secondAttribute="top" id="SoK-hC-Yxf"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="Kgd-35-Jik" secondAttribute="trailing" id="xmv-R1-eJ7"/>
+            </constraints>
+            <size key="customSize" width="218" height="192"/>
+            <connections>
+                <outlet property="mainImageView" destination="qQo-dn-ctM" id="y7j-IW-nmz"/>
+                <outlet property="titleLabel" destination="Cg3-B3-hqE" id="GT7-wm-86j"/>
+            </connections>
+            <point key="canvasLocation" x="80.916030534351137" y="38.732394366197184"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="btnGradient" width="343" height="38"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
