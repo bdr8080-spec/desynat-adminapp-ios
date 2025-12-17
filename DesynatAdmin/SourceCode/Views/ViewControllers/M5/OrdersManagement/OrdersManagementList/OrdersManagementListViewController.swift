@@ -17,7 +17,7 @@ class OrdersManagementListViewController: UIViewController {
   }
   @IBOutlet weak var ordersTableView: UITableView! {
     didSet {
-      ordersTableView.registerCellFromNib(cellID: "BannersManagementListTableViewCell")
+      ordersTableView.registerCellFromNib(cellID: "OrderMangementTableViewCell")
     }
   }
   
@@ -26,17 +26,6 @@ class OrdersManagementListViewController: UIViewController {
   
   override func viewDidLoad() {
         super.viewDidLoad()
-//    collectionViewMainView.addThreeSideBorder()
-//    categorriesCollectionView.layer.cornerRadius = 5
-//    categorriesCollectionView.layer.borderWidth = 1
-//    categorriesCollectionView.layer.borderColor = UIColor(
-//        red: 153/255,
-//        green: 116/255,
-//        blue: 79/255,
-//        alpha: 1
-//    ).cgColor
-//    categorriesCollectionView.clipsToBounds = true
-
     }
 
   @IBAction func backDidTapped(_ sender: Any) {
@@ -108,33 +97,31 @@ extension OrdersManagementListViewController: UICollectionViewDelegate, UICollec
 
 extension OrdersManagementListViewController: UITableViewDelegate, UITableViewDataSource {
   
-//  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//    return 4//viewModel.bannersListData.count
-//  }
-//  
-//  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//    let cell = tableView.dequeueReusableCell(withIdentifier: "BannersManagementListTableViewCell", for: indexPath) as! BannersManagementListTableViewCell
-////    cell.hideAndShowDetails(for: type)
-////    cell.rejectAction = { [weak self] in
-////        guard let self else { return }
-////      let nextVC = RejectReasonPopupViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
-////      nextVC.onChangesAreDone = {
-////        self.viewModel.getAllBannersList()
-////      }
-////      self.navigationController?.present(nextVC, animated: true)
-////    }
-////    cell.acceptAction =  {[weak self] in
-////      guard let self else { return }
-////      handleApproveAction()
-////    }
-//    return cell
-//  }
-//  
-//  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//    let nextVC = BannersManagementDetailsViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
-//    //nextVC.type = type
-//    self.navigationController?.pushViewController(nextVC, animated: true)
-//  }
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return 4//viewModel.bannersListData.count
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "OrderMangementTableViewCell", for: indexPath) as! OrderMangementTableViewCell
+    if indexPath.row == 1 {
+      cell.assignDriverView.isHidden = false
+      cell.assignDriverStackView.isHidden = false
+    } else {
+      cell.assignDriverView.isHidden = true
+      cell.assignDriverStackView.isHidden = true
+    }
+    cell.assignDriverTapped = { [weak self] in
+      guard let self else { return }
+      let nextVC = DriversListViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
+      self.navigationController?.present(nextVC, animated: true)
+    }
+    return cell
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let nextVC = OrderManagementDetailsViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
+    self.navigationController?.pushViewController(nextVC, animated: true)
+  }
   
 }
 
