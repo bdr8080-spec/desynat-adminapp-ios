@@ -8,7 +8,7 @@
 import UIKit
 
 class OrderManagementDetailsViewController: UIViewController {
-
+  
   @IBOutlet weak var assignDriverView: UIView!
   @IBOutlet weak var driverDetailsView: UIView!
   @IBOutlet weak var productTableView: UITableView! {
@@ -17,11 +17,11 @@ class OrderManagementDetailsViewController: UIViewController {
     }
   }
   
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      driverDetailsView.isHidden = true
-    }
-
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    driverDetailsView.isHidden = true
+  }
+  
   @IBAction func backDidTapped(_ sender: Any) {
     self.navigationController?.popViewController(animated: true)
   }
@@ -38,8 +38,8 @@ class OrderManagementDetailsViewController: UIViewController {
   
   @IBAction func editDriverDidTapped(_ sender: Any) {
     let nextVC = DriversListViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
-    nextVC.driverIsAssigned = { [weak self] in
-      guard let self else { return }
+    nextVC.driverIsAssigned = {
+      // reload data here
     }
     self.navigationController?.present(nextVC, animated: true)
   }
@@ -47,6 +47,7 @@ class OrderManagementDetailsViewController: UIViewController {
 }
 
 extension OrderManagementDetailsViewController: UITableViewDelegate, UITableViewDataSource {
+  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return 2
   }
@@ -55,6 +56,5 @@ extension OrderManagementDetailsViewController: UITableViewDelegate, UITableView
     let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListTableViewCell", for: indexPath) as! ProductListTableViewCell
     return cell
   }
-  
   
 }

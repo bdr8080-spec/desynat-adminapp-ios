@@ -17,6 +17,7 @@ class DriversListViewController: UIViewController {
   }
   
   var driverIsAssigned: (() -> Void)?
+  var selectedIndex: Int = 0
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -41,15 +42,24 @@ class DriversListViewController: UIViewController {
 }
 
 extension DriversListViewController: UITableViewDelegate, UITableViewDataSource {
+  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return 5
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "DriversListTableViewCell", for: indexPath) as! DriversListTableViewCell
+    if selectedIndex == indexPath.row {
+      cell.selectedImageView.image = UIImage(named: "radioSelected")
+    } else {
+      cell.selectedImageView.image = UIImage(named: "radioUnselected")
+    }
     return cell
   }
   
-  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    selectedIndex = indexPath.row
+    driverTableView.reloadData()
+  }
   
 }

@@ -8,7 +8,8 @@
 import UIKit
 
 class BannersManagementListViewController: UIViewController {
-
+  
+  @IBOutlet weak var searchTF: UITextField!
   @IBOutlet weak var noDataFoundLabel: UILabel!
   @IBOutlet weak var nowButton: CustomButton!
   @IBOutlet weak var nowLabel: UILabel!
@@ -26,17 +27,17 @@ class BannersManagementListViewController: UIViewController {
   private lazy var viewModel = BannersManagementListViewModel(hostVC: self)
   
   override func viewDidLoad() {
-        super.viewDidLoad()
+    super.viewDidLoad()
     nowButton.layer.cornerRadius = 5
     nowButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
     nowButton.clipsToBounds = true
-    }
+  }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     viewModel.getAllBannersList()
   }
-
+  
   @IBAction func nowDidTapped(_ sender: Any) {
     handleNewAction()
     
@@ -56,20 +57,7 @@ class BannersManagementListViewController: UIViewController {
   
   @IBAction func filterDidTapped(_ sender: Any) {
     let vc = BannersMangementFilterViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
-       vc.selectedFilter = viewModel.appliedFilter
-       vc.onApplyFilter = { [weak self] filter in
-           guard let self = self else { return }
-           self.viewModel.appliedFilter = filter
-           self.viewModel.currentPage = 1
-           self.viewModel.getAllBannersList()
-       }
-       vc.onClearFilter = { [weak self] in
-           guard let self = self else { return }
-           self.viewModel.appliedFilter = UserFilterModel()
-           self.viewModel.currentPage = 1
-           self.viewModel.getAllBannersList()
-       }
-       self.navigationController?.present(vc, animated: true)
+    self.navigationController?.present(vc, animated: true)
   }
   
   private func handleApproveAction() {
@@ -132,7 +120,7 @@ extension BannersManagementListViewController: UITableViewDelegate, UITableViewD
     let cell = tableView.dequeueReusableCell(withIdentifier: "BannersManagementListTableViewCell", for: indexPath) as! BannersManagementListTableViewCell
     cell.hideAndShowDetails(for: type)
     cell.rejectAction = { [weak self] in
-        guard let self else { return }
+      guard let self else { return }
       let nextVC = RejectReasonPopupViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
       nextVC.onChangesAreDone = {
         self.viewModel.getAllBannersList()
