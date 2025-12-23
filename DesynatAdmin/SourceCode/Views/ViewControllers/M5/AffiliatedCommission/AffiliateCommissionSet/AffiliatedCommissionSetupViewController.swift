@@ -8,82 +8,77 @@
 import UIKit
 
 class AffiliatedCommissionSetupViewController: UIViewController {
-
-  @IBOutlet weak var taxTF: UITextField!
-  @IBOutlet weak var headerView: UIView!
-  
-  private lazy var viewModel = AffiliatedCommissionSetupViewModel(hostVC: self)
-  var countryID: Int? = 0
-  var taxAmount: String?
-  var taxAmountSet: ((_ amount: String) -> Void)?
-  var originalTaxValue: Double = 0.0
-
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    handleUISetup()
-    taxTF.delegate = self
-    if let taxString = taxAmount,
-       let taxValue = Double(taxString) {
-        taxTF.text = formatTax(taxValue)
-        originalTaxValue = taxValue // store exact original value
+    
+    @IBOutlet weak var taxTF: UITextField!
+    @IBOutlet weak var headerView: UIView!
+    
+    private lazy var viewModel = AffiliatedCommissionSetupViewModel(hostVC: self)
+    var countryID: Int? = 0
+    var taxAmount: String?
+    var taxAmountSet: ((_ amount: String) -> Void)?
+    var originalTaxValue: Double = 0.0
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        handleUISetup()
+        taxTF.delegate = self
+        if let taxString = taxAmount,
+           let taxValue = Double(taxString) {
+            taxTF.text = formatTax(taxValue)
+            originalTaxValue = taxValue // store exact original value
+        }
+        
     }
-
-  }
-  
-  
-  @IBAction func saveChangesDidTapped(_ sender: Any) {
-    guard let text = taxTF.text, !text.isEmpty else {
-            CommonUtils.showToast(message: "Please set commission")
-            return
+    
+    
+    @IBAction func saveChangesDidTapped(_ sender: Any) {
+        self.dismiss(animated: true) {
+            guard let text = self.taxTF.text, !text.isEmpty else {
+                CommonUtils.showToast(message: "Please set commission")
+                return
+            }
+            
+            // Convert to Double instead of Int
+            guard let newValue = Double(text) else {
+                CommonUtils.showToast(message: "Invalid commission value")
+                return
+            }
+            
+            // Compare with original Double value
+            if newValue == self.originalTaxValue {
+                CommonUtils.showToast(message: "No changes found")
+                return
+            }
+            
+            // Format the value to max 2 decimals for saving
+            let formatter = NumberFormatter()
+            formatter.minimumFractionDigits = 0
+            formatter.maximumFractionDigits = 2
+            formatter.numberStyle = .decimal
+            let formattedValue = formatter.string(from: NSNumber(value: newValue)) ?? "\(newValue)"
+            
+            self.taxAmountSet?(formattedValue)
         }
-        
-        // Convert to Double instead of Int
-        guard let newValue = Double(text) else {
-            CommonUtils.showToast(message: "Invalid commission value")
-            return
-        }
-        
-        // Compare with original Double value
-        if newValue == originalTaxValue {
-            CommonUtils.showToast(message: "No changes found")
-            return
-        }
-        
-        // Format the value to max 2 decimals for saving
+    }
+    
+    @IBAction func dismissDidTapepd(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
+    private func handleUISetup() {
+        headerView.layer.cornerRadius = 24
+        headerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        headerView.clipsToBounds = true
+    }
+    
+    private func formatTax(_ value: Double) -> String {
         let formatter = NumberFormatter()
-        formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = 2
+        formatter.minimumFractionDigits = 0   // no decimal for whole numbers
+        formatter.maximumFractionDigits = 2   // up to 2 decimal digits
         formatter.numberStyle = .decimal
-        let formattedValue = formatter.string(from: NSNumber(value: newValue)) ?? "\(newValue)"
-        
-        let params: [String: Any] = [
-            "country_id": countryID ?? "",
-            "tax": formattedValue
-        ]
-        
-//        viewModel.addShippingFees(param: params)
-  }
-  
-  @IBAction func dismissDidTapepd(_ sender: Any) {
-    self.dismiss(animated: true)
-  }
-  
-  private func handleUISetup() {
-    headerView.layer.cornerRadius = 24
-    headerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-    headerView.clipsToBounds = true
-  }
-  
-  private func formatTax(_ value: Double) -> String {
-      let formatter = NumberFormatter()
-      formatter.minimumFractionDigits = 0   // no decimal for whole numbers
-      formatter.maximumFractionDigits = 2   // up to 2 decimal digits
-      formatter.numberStyle = .decimal
-      return formatter.string(from: NSNumber(value: value)) ?? "0"
-  }
-
-  
+        return formatter.string(from: NSNumber(value: value)) ?? "0"
+    }
 }
 
 extension AffiliatedCommissionSetupViewController: UITextFieldDelegate {

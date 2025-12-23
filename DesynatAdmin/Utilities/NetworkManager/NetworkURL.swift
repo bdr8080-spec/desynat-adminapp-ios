@@ -68,53 +68,71 @@ enum NetworkEndPoint: String {
     case getPlanDetails                         = "api/admin/get_plan_details"
     case changePlanStatus                         = "api/admin/change_plan_status"
     case deltePlan                         = "api/admin/delete_plan"
-  
-  
-  //UserManagement
-  case getUsers                         = "api/admin/get_users"
-  case getUserDetails                   = "api/admin/get_user_details"
-  case updateUserStatus                 = "api/admin/block_unblock_user"
-  case addWalletAmount                  = "api/admin/add_user_wallet_amount"
-  
-  //ReasonManagement
-  case getReasonsList                   = "api/admin/get_reasons"
-  case updateReasonStatus               = "api/admin/change_reason_status"
-  case updateReason                     = "api/admin/update_reason"
-  case deleteReason                     = "api/admin/delete_reason"
-  case addReason                     = "api/admin/add_reason"
-  
-  //DeliveryManagement
-  case getDeliveryBoysList              = "api/admin/get_delivery_boys"
-  case deleteDeliveryBoys               = "api/admin/delete_deliveryboy"
-  case updateDeliveryBoyStatus          = "api/admin/block_unblock_deliveryboy"
-  case getCountryListOfDriver          = "api/admin/get_user_countries_list"
-  case getZoneListOfDriver          = "api/admin/get_kuwait_zones"
-  case addNewDriver          = "api/admin/add_deliveryBoy"
-  case getDriverDetails          = "api/admin/get_deliveryboy_details"
-  case editDriverDetails          = "api/admin/update_deliveryBoy"
-  
-  //M4
-  case getShippingTaxes          = "api/admin/countries_with_tax_shipping"
-  case getShippingTaxesCountry   = "api/admin/shipping_charges_by_countryId"
-  case deleteShippingInfo        = "api/admin/delete_shipping_fee"
-  case editShippingInfo        = "api/admin/update_shipping_charge"
-  case updateStatusOfShippingFee  = "api/admin/blobk_unblock_shippingFee"
-  case addShippingFee  = "api/admin/add_tax"
-  case addShippingCharges  = "api/admin/add_shipping_charge"
-  case getGiftCardsList  = "api/admin/get_giftCards"
-  case updateStatusOfGiftCards  = "api/admin/block_unblock_giftCard"
-  case deleteGiftCard  = "api/admin/delete_gift_card"
-  case editGiftCard  = "api/admin/update_giftCard"
-  case addGiftCard  = "api/admin/add_giftCard"
-  case getBannersList  = "api/admin/get_banners"
-  case addPriceBanners  = "api/admin/add_update_banner"
-  
-  case getPromocode = "api/admin/get_promocodes"
-  case updateStatusPromocode = "api/admin/block_unblock_promocode"
-  case deletePromocode = "api/admin/delete_promocode"
-  case addPromocode = "api/admin/add_promocode"
-  case editPromocode = "api/admin/update_promocode"
-  
+    
+    
+    //UserManagement
+    case getUsers                         = "api/admin/get_users"
+    case getUserDetails                   = "api/admin/get_user_details"
+    case updateUserStatus                 = "api/admin/block_unblock_user"
+    case addWalletAmount                  = "api/admin/add_user_wallet_amount"
+    
+    //ReasonManagement
+    case getReasonsList                   = "api/admin/get_reasons"
+    case updateReasonStatus               = "api/admin/change_reason_status"
+    case updateReason                     = "api/admin/update_reason"
+    case deleteReason                     = "api/admin/delete_reason"
+    case addReason                     = "api/admin/add_reason"
+    
+    //DeliveryManagement
+    case getDeliveryBoysList              = "api/admin/get_delivery_boys"
+    case deleteDeliveryBoys               = "api/admin/delete_deliveryboy"
+    case updateDeliveryBoyStatus          = "api/admin/block_unblock_deliveryboy"
+    case getCountryListOfDriver          = "api/admin/get_user_countries_list"
+    case getZoneListOfDriver          = "api/admin/get_kuwait_zones"
+    case addNewDriver          = "api/admin/add_deliveryBoy"
+    case getDriverDetails          = "api/admin/get_deliveryboy_details"
+    case editDriverDetails          = "api/admin/update_deliveryBoy"
+    
+    //M4
+    case getShippingTaxes          = "api/admin/countries_with_tax_shipping"
+    case getShippingTaxesCountry   = "api/admin/shipping_charges_by_countryId"
+    case deleteShippingInfo        = "api/admin/delete_shipping_fee"
+    case editShippingInfo        = "api/admin/update_shipping_charge"
+    case updateStatusOfShippingFee  = "api/admin/blobk_unblock_shippingFee"
+    case addShippingFee  = "api/admin/add_tax"
+    case addShippingCharges  = "api/admin/add_shipping_charge"
+    case getGiftCardsList  = "api/admin/get_giftCards"
+    case updateStatusOfGiftCards  = "api/admin/block_unblock_giftCard"
+    case deleteGiftCard  = "api/admin/delete_gift_card"
+    case editGiftCard  = "api/admin/update_giftCard"
+    case addGiftCard  = "api/admin/add_giftCard"
+    case getBannersList  = "api/admin/get_banners"
+    case addPriceBanners  = "api/admin/add_update_banner"
+    
+    case getPromocode = "api/admin/get_promocodes"
+    case updateStatusPromocode = "api/admin/block_unblock_promocode"
+    case deletePromocode = "api/admin/delete_promocode"
+    case addPromocode = "api/admin/add_promocode"
+    case editPromocode = "api/admin/update_promocode"
+    
+    //AFFILIATE COMMISSION MANAGEMENT
+    case countriesWithAffiliateCommission = "api/admin/countries_with_affiliate_commission"
+    case updateAffiliateCommission = "api/admin/update_affiliate_commission"
+    
+    //BANNER REQUEST MANAGEMENT
+    case getBannerRequest = "api/admin/get_banner_request"
+    case approveBannerRequest = "api/admin/approve_banner_request"
+    case rejectBannerRequest = "api/admin/reject_banner_request"
+    
+    //ORDER MANAGEMENT
+    case activeOrders = "api/admin/active_orders"
+    case returnOrders = "api/admin/return_orders"
+    case completedOrders = "api/admin/completed_orders"
+    case cancelledOrders = "api/admin/cancelled_orders"
+    case singleOrderDetail = "api/admin/single_order_detail"
+    case getDriversAssign = "api/admin/get_drivers_to_assign"
+    case assignDriver = "api/admin/assign_driver"
+    
     func withBaseURL() -> String {
         return "\(BaseURL.value())\(self.rawValue)"
     }

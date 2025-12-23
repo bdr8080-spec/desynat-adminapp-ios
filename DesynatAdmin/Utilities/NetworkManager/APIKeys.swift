@@ -48,6 +48,9 @@ struct APIKeys {
     static let coordinates            = "coordinates"
     static let lat = "lat"
     static let lng = "lng"
+    static let bannerId            = "banner_id"
+    static let bannerType            = "type"
+    static let countryName            = "country_name"
     
    
     static let discountedPrice = "discounted_price"

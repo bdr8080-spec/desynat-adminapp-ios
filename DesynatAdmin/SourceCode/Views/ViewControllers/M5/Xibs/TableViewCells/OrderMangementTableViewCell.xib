@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -95,14 +95,14 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="gu1-f2-YDn">
                                         <rect key="frame" x="0.0" y="29" width="285" height="17"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="order on" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pds-IN-jBS">
-                                                <rect key="frame" x="0.0" y="0.0" width="42.333333333333336" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Order on" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pds-IN-jBS">
+                                                <rect key="frame" x="0.0" y="0.0" width="44" height="17"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
                                                 <color key="textColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="21/08/2024 at 07:30 PM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Znx-k2-Nyc">
-                                                <rect key="frame" x="57.333333333333329" y="0.0" width="227.66666666666669" height="17"/>
+                                                <rect key="frame" x="59" y="0.0" width="226" height="17"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -232,6 +232,12 @@
             <connections>
                 <outlet property="assignDriverStackView" destination="cTI-TJ-oiE" id="MSX-9B-xox"/>
                 <outlet property="assignDriverView" destination="Dsc-bR-f70" id="1Ip-In-bGt"/>
+                <outlet property="lblOrderID" destination="NHz-0x-OWI" id="3oj-U6-26i"/>
+                <outlet property="lblOrderOn" destination="Znx-k2-Nyc" id="CBU-F2-6MH"/>
+                <outlet property="lblOrderType" destination="vAW-wb-jHd" id="TzM-qH-KpD"/>
+                <outlet property="lblSellerName" destination="TQl-NQ-IaX" id="dXn-TV-60X"/>
+                <outlet property="lblTotalAmount" destination="r8Q-ow-mce" id="4Wl-Yo-BLS"/>
+                <outlet property="lblTransactionId" destination="MbD-hs-iw8" id="Afu-NW-Ly4"/>
             </connections>
             <point key="canvasLocation" x="121.37404580152672" y="147.18309859154931"/>
         </tableViewCell>

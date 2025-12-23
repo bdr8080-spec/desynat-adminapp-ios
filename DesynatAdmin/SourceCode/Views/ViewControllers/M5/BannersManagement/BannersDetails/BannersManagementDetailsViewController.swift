@@ -15,8 +15,25 @@ class BannersManagementDetailsViewController: UIViewController {
   @IBOutlet weak var rejectAcceptStackView: UIStackView!
   @IBOutlet weak var transactionIdStackView: UIStackView!
   @IBOutlet weak var amountPaidOrNotStackView: UIStackView!
+    
+    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var lblCity: UILabel!
+    @IBOutlet weak var lblRequestId: UILabel!
+    @IBOutlet weak var lblRequestOn: UILabel!
+    @IBOutlet weak var lblDuration: UILabel!
+    @IBOutlet weak var lblTotalAmount: UILabel!
+    @IBOutlet weak var lblBannerPosition: UILabel!
+    @IBOutlet weak var lblAmount: UILabel!
+    @IBOutlet weak var lblFrom: UILabel!
+    @IBOutlet weak var lblTo: UILabel!
+    @IBOutlet weak var lblTransactionId: UILabel!
+    @IBOutlet weak var lblSubcategoryName: UILabel!
+    @IBOutlet weak var lblStatus: UILabel!
   
-  var type: BannersSelectedListType = .new
+    //MARK: VARIABLE
+    var type: BannersSelectedListType = .new
+    var detailData = BannerListInfo()
+    private var viewModel : BannersManagementListViewModel = BannersManagementListViewModel()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -34,12 +51,88 @@ class BannersManagementDetailsViewController: UIViewController {
       rejectView.isHidden = true
     }
     initialSetUp()
+      setData()
   }
-  
-  @IBAction func rejectDidTapped(_ sender: Any) {
-    let nextVC = RejectReasonPopupViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
-    self.navigationController?.present(nextVC, animated: true)
-  }
+    
+    
+    func setData() {
+        self.lblName.text = detailData.name
+        self.lblCity.text = detailData.country
+        let fullId = detailData.orderID
+        let last7 = fullId.count >= 7 ? String(fullId.suffix(7)) : fullId
+        self.lblRequestId.text = "#\(last7)"
+        let fullTransactionId = detailData.transactionID
+        let lastTransactionId7 = fullTransactionId.count >= 7 ? String(fullTransactionId.suffix(7)) : fullTransactionId
+        self.lblTransactionId.text = "#\(lastTransactionId7)"
+        self.lblRequestOn.text = detailData.joinedOn
+        self.lblDuration.text = "\(detailData.totalDays) days"
+        self.lblTotalAmount.text = detailData.totalEarning
+        if detailData.bannerPosition == "1" {
+            self.lblBannerPosition.text = "Home-Top"
+        } else if detailData.bannerPosition == "2" {
+            self.lblBannerPosition.text = "Home-Bottom"
+        } else if detailData.bannerPosition == "3" {
+            self.lblBannerPosition.text = "Sub-Category"
+        }
+       // payment status - 0 pending, 1 paid , 2 cancelled, 3 failed
+        if detailData.paymentStatus == "0" {
+            self.lblAmount.text = "Pending"
+        } else if detailData.paymentStatus == "1" {
+            self.lblAmount.text = "Paid"
+        } else if detailData.paymentStatus == "2" {
+            self.lblAmount.text = "Cancelled"
+        } else if detailData.paymentStatus == "3" {
+            self.lblAmount.text = "Failed"
+        }
+        if type.rawValue == 1 {
+            if detailData.paymentStatus == "0" {
+                self.lblStatus.text = "Upcoming"
+            } else if detailData.paymentStatus == "1" {
+                self.lblStatus.text = "Active"
+            }
+        }else if type.rawValue == 2 {
+            self.lblStatus.text = "Rejected"
+        }
+        self.lblFrom.text = detailData.from
+        self.lblTo.text = detailData.to
+        self.banneImageView.image = .placeholder
+        if let url = URL(string: detailData.image) {
+            self.banneImageView.sd_setImage(with: url,placeholderImage: .placeholder)
+        }
+    }
+    
+
+    @IBAction func rejectDidTapped(_ sender: Any) {
+        let vc = RejectReasonViewController.viewFromNIB
+        vc.setCallback { reason,type in
+            self.viewModel.rejectBanner(id: self.detailData.id, reason: reason) {
+                DispatchQueue.main.async {
+                    let succesVC = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
+                    succesVC.setTitle("Banner rejected\nsuccessfully!")
+                    succesVC.callBackDismiss = {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                    vc.dismiss(animated: false)
+                    self.presentVC(succesVC)
+                }
+            }
+        }
+        self.presentVC(vc,withAnimation: false,modalPresentationStyle: .overCurrentContext)
+    }
+    
+    
+    @IBAction func acceptDidTapped(_ sender: Any) {
+        viewModel.acceptBanner(id: self.detailData.id) {
+            DispatchQueue.main.async {
+                let vc = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
+                vc.setTitle("Banner approved\nsuccessfully!")
+                vc.callBackDismiss = {
+                    self.navigationController?.popViewController(animated: true)
+                }
+                self.presentVC(vc,modalPresentationStyle: .overCurrentContext)
+            }
+        }
+    }
   
   @IBAction func backDidTapped(_ sender: Any) {
     self.navigationController?.popViewController(animated: true)
@@ -51,5 +144,5 @@ class BannersManagementDetailsViewController: UIViewController {
     banneImageView.clipsToBounds = true
 
   }
-  
 }
+

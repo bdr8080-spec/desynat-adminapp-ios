@@ -46,6 +46,7 @@ struct SellerListInfo    {
         )
     }
 }
+
 protocol HandleTableRefresh {
     func refreshTable(for string:String)
 }
