@@ -109,6 +109,7 @@ class OrderManagementDetailsViewController: UIViewController {
     
     @IBAction func assignDriverDidTapped(_ sender: Any) {
         let nextVC = DriversListViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
+        nextVC.orderId = self.viewModel.orderDetail?.id ?? 0
         nextVC.driverIsAssigned = { driverId, driver in
             print("Selected Driver ID:", driverId)
             print("Selected Driver Name:", driver.fullNameEnglish)
@@ -123,6 +124,7 @@ class OrderManagementDetailsViewController: UIViewController {
     
     @IBAction func editDriverDidTapped(_ sender: Any) {
         let nextVC = DriversListViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
+        nextVC.orderId = Int(self.viewModel.orderDetail?.orderID ?? "") ?? 0
         nextVC.driverIsAssigned = { driverId, driver in
             print("Selected Driver ID:", driverId)
             print("Selected Driver Name:", driver.fullNameEnglish)
