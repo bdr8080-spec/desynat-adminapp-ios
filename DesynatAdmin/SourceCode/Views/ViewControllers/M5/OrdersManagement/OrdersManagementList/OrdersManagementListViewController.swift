@@ -38,9 +38,15 @@ class OrdersManagementListViewController: UIViewController {
         super.viewDidLoad()
         setupBinding()
         
-        selecetedCategoryId = 0
-        viewModel.setCategory(.active)   // 🔥 default API hit
+//        selecetedCategoryId = 0
+//        viewModel.setCategory(.active)   // 🔥 default API hit
     }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    selecetedCategoryId = 0
+    viewModel.setCategory(.active) 
+  }
     
     private func setupBinding() {
         

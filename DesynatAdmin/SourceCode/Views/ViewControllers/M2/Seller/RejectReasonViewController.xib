@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vFv-Xq-kf3" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="470" width="375" height="342"/>
+                    <rect key="frame" x="0.0" y="520" width="375" height="292"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hRj-qh-eGX">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
@@ -42,7 +42,7 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reason for Rejection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgk-iC-Xz3">
-                                    <rect key="frame" x="16" y="18.333333333333314" width="153" height="19.333333333333329"/>
+                                    <rect key="frame" x="16" y="18.333333333333371" width="153" height="19.333333333333329"/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -57,7 +57,7 @@
                                 <constraint firstItem="lgk-iC-Xz3" firstAttribute="centerY" secondItem="hRj-qh-eGX" secondAttribute="centerY" id="a6Y-vc-hPS"/>
                             </constraints>
                         </view>
-                        <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="nEK-qd-Jpz">
+                        <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="nEK-qd-Jpz">
                             <rect key="frame" x="16" y="76" width="315" height="20"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eMf-Uh-i8V" customClass="CustomButton" customModule="DesynatAdmin" customModuleProvider="target">
@@ -101,7 +101,7 @@
                             </subviews>
                         </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ezV-Rh-5pw" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                            <rect key="frame" x="16" y="126" width="343" height="90"/>
+                            <rect key="frame" x="16" y="76" width="343" height="90"/>
                             <subviews>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ucf-KT-H3v" customClass="IQTextView">
                                     <rect key="frame" x="10" y="10" width="317" height="64"/>
@@ -143,7 +143,7 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yYI-dh-JGY" customClass="CustomButton" customModule="DesynatAdmin" customModuleProvider="target">
-                            <rect key="frame" x="16" y="236" width="343" height="38"/>
+                            <rect key="frame" x="16" y="186" width="343" height="38"/>
                             <color key="backgroundColor" red="0.43137254899999999" green="0.27058823529999998" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="38" id="yiP-oR-cIl"/>
@@ -165,6 +165,7 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
+                        <constraint firstItem="ezV-Rh-5pw" firstAttribute="top" secondItem="hRj-qh-eGX" secondAttribute="bottom" constant="20" id="0Qp-mD-CFH"/>
                         <constraint firstItem="ezV-Rh-5pw" firstAttribute="leading" secondItem="vFv-Xq-kf3" secondAttribute="leading" constant="16" id="2Qr-TG-q3f"/>
                         <constraint firstAttribute="trailing" secondItem="ezV-Rh-5pw" secondAttribute="trailing" constant="16" id="5s9-LI-OMp"/>
                         <constraint firstItem="nEK-qd-Jpz" firstAttribute="top" secondItem="hRj-qh-eGX" secondAttribute="bottom" constant="20" id="EEB-wN-a3Y"/>
@@ -172,7 +173,6 @@
                         <constraint firstItem="yYI-dh-JGY" firstAttribute="top" secondItem="ezV-Rh-5pw" secondAttribute="bottom" constant="20" id="dn8-Un-2iN"/>
                         <constraint firstItem="nEK-qd-Jpz" firstAttribute="leading" secondItem="vFv-Xq-kf3" secondAttribute="leading" constant="16" id="eld-B6-zOF"/>
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nEK-qd-Jpz" secondAttribute="trailing" constant="16" id="fHI-1h-Syx"/>
-                        <constraint firstItem="ezV-Rh-5pw" firstAttribute="top" secondItem="nEK-qd-Jpz" secondAttribute="bottom" constant="30" id="iYW-KF-ulL"/>
                         <constraint firstAttribute="trailing" secondItem="hRj-qh-eGX" secondAttribute="trailing" id="j5z-oG-Dbq"/>
                         <constraint firstItem="hRj-qh-eGX" firstAttribute="leading" secondItem="vFv-Xq-kf3" secondAttribute="leading" id="jir-Qm-nUK"/>
                         <constraint firstItem="hRj-qh-eGX" firstAttribute="top" secondItem="vFv-Xq-kf3" secondAttribute="top" id="sZk-WP-mtF"/>

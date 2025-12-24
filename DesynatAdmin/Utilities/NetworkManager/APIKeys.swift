@@ -7,7 +7,7 @@ struct APIKeys {
     //Signup
     static let email               = "email"
     static let password            = "password"
-    static let reject_reason            = "reject_reason"
+    static let reject_reason            = "reason"
     static let reject_type            = "reject_type"
     static let seller_id            = "seller_id"
     static let country_id            = "country_id"
