@@ -38,6 +38,7 @@ class DriversListViewController: UIViewController {
         driverTableView.dataSource = self
         driverTableView.delegate = self
         driverTableView.separatorStyle = .none
+       // driverTableHeight.constant = 0
         driverTableView.isHidden = true
     }
 
