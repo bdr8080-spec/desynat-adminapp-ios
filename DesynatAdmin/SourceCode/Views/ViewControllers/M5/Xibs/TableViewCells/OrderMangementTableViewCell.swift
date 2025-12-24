@@ -44,13 +44,7 @@ class OrderMangementTableViewCell: UITableViewCell {
             format: "dd/MM/yyyy 'at' hh:mm a"
         )
         self.lblTotalAmount.text = "\(data.totalAmount ?? "") KD"
-        if data.deliveryDetails?.countryName == "Kuwait" {
-            self.assignDriverView.isHidden = false
-            self.assignDriverStackView.isHidden = false
-        } else {
-            self.assignDriverView.isHidden = true
-            self.assignDriverStackView.isHidden = true
-        }
+        
     }
     
     @IBAction func assignDriverDidTapped(_ sender: Any) {

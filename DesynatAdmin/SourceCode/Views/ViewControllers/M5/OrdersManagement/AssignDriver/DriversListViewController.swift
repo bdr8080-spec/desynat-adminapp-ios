@@ -117,11 +117,11 @@ extension DriversListViewController: UITableViewDelegate, UITableViewDataSource 
 
         tableView.reloadData()
 
-        isDriverExpanded = false
-        UIView.animate(withDuration: 0.25) {
-            self.driverTableView.isHidden = true
-            self.view.layoutIfNeeded()
-        }
+//        isDriverExpanded = false
+//        UIView.animate(withDuration: 0.25) {
+//            self.driverTableView.isHidden = true
+//            self.view.layoutIfNeeded()
+//        }
     }
 
 }

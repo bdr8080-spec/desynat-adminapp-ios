@@ -40,7 +40,6 @@ class OrderManagementDetailsViewController: UIViewController {
     @IBOutlet weak var lblDriverName: UILabel!
     @IBOutlet weak var imgDriver: UIImageView!
     
-    
     //MARK: VARIABLES
     private lazy var viewModel = OrderManagementListViewModel()
     var orderId: Int?
@@ -71,6 +70,11 @@ class OrderManagementDetailsViewController: UIViewController {
             self.lblCountry.text = self.viewModel.orderDetail?.deliveryDetails?.countryName ?? ""
             self.lblShippingLocation.text = self.viewModel.orderDetail?.deliveryDetails?.address ?? ""
             self.productTableView.reloadData()
+            if self.viewModel.orderDetail?.deliveryDetails?.countryName == "Kuwait" {
+                self.assignDriverView.isHidden = false
+            } else {
+                self.assignDriverView.isHidden = true
+            }
         }
     }
     
@@ -116,21 +120,25 @@ class OrderManagementDetailsViewController: UIViewController {
             self.assignDriverView.isHidden = true
             self.driverDetailsView.isHidden = false
             self.lblDriverName.text = driver.fullNameEnglish
-            // API call example
-           // self.assignDriver(orderId: self.orderId, driverId: driverId)
+            self.viewModel.assignDriver(orderId: self.orderId ?? 0, driverId: driverId) {
+                
+            }
         }
         self.navigationController?.present(nextVC, animated: true)
     }
     
     @IBAction func editDriverDidTapped(_ sender: Any) {
         let nextVC = DriversListViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
-        nextVC.orderId = Int(self.viewModel.orderDetail?.orderID ?? "") ?? 0
+        nextVC.orderId = self.viewModel.orderDetail?.id ?? 0
         nextVC.driverIsAssigned = { driverId, driver in
             print("Selected Driver ID:", driverId)
             print("Selected Driver Name:", driver.fullNameEnglish)
+            self.assignDriverView.isHidden = true
+            self.driverDetailsView.isHidden = false
             self.lblDriverName.text = driver.fullNameEnglish
-            // API call example
-           // self.assignDriver(orderId: self.orderId, driverId: driverId)
+            self.viewModel.assignDriver(orderId: self.orderId ?? 0, driverId: driverId) {
+                
+            }
         }
         self.navigationController?.present(nextVC, animated: true)
     }

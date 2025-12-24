@@ -115,6 +115,7 @@ extension OrdersManagementListViewController: UICollectionViewDelegate, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OrdersManagementCategoryCollectionViewCell", for: indexPath) as! OrdersManagementCategoryCollectionViewCell
         cell.configure(title: orderCategoriesList[indexPath.row])
+        
         if selecetedCategoryId == indexPath.row {
             cell.mainImageView.isHidden = false
             cell.titleLabel.textColor = .white
@@ -171,12 +172,31 @@ extension OrdersManagementListViewController: UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OrderMangementTableViewCell", for: indexPath) as! OrderMangementTableViewCell
         let order = viewModel.orders[indexPath.row]
+        if viewModel.currentCategory == .active {
+            if order.deliveryDetails?.countryName == "Kuwait" {
+                cell.assignDriverView.isHidden = false
+                cell.assignDriverStackView.isHidden = false
+            } else {
+                cell.assignDriverView.isHidden = true
+                cell.assignDriverStackView.isHidden = true
+            }
+        }else {
+            cell.assignDriverView.isHidden = true
+            cell.assignDriverStackView.isHidden = true
+        }
         cell.configure(data: order)
         
         cell.assignDriverTapped = { [weak self] in
             guard let self else { return }
             let nextVC = DriversListViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
             nextVC.orderId = order.id ?? 0
+            nextVC.driverIsAssigned = { driverId, driver in
+                print("Selected Driver ID:", driverId)
+                print("Selected Driver Name:", driver.fullNameEnglish)
+                self.viewModel.assignDriver(orderId: order.id ?? 0, driverId: driverId) {
+                    self.viewModel.setCategory(self.viewModel.currentCategory)
+                }
+            }
             self.navigationController?.present(nextVC, animated: true)
         }
         return cell
