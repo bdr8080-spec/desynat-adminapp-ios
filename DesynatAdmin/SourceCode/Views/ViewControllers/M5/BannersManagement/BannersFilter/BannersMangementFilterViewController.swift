@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DropDown
 
 class BannersMangementFilterViewController: UIViewController {
     
@@ -75,18 +76,30 @@ class BannersMangementFilterViewController: UIViewController {
 
     
     @IBAction func countryDidTapped(_ sender: UIButton) {
-        let names = viewModel.countryListData.map { $0.name ?? "" }
-        
-        CommonUtils.dropDown(
-            dataSource: names,
-            anchorView: sender,
-            selectedColor: .black
-        ) { [weak self] index, item in
-            guard let self = self else { return }
-            let selectedCountry = self.viewModel.countryListData[index]
-            self.viewModel.setCountry(selectedCountry)
-            self.countryLabel.text = selectedCountry.name
-        }
+      let countryNames = viewModel.countryListData.map { country -> String in
+              let name = country.name ?? ""
+              let dialCode = country.dialCode ?? ""
+              let flag = country.flag ?? "🇰🇼"
+              return "\(flag)  \(name) (\(dialCode))"
+          }
+
+          // Create a DropDown object
+          let dropDown = DropDown()
+          dropDown.dataSource = countryNames
+          
+          // Use the view controller's view as anchor
+          dropDown.anchorView = self.view // This centers it on the screen
+          dropDown.direction = .any
+          dropDown.bottomOffset = CGPoint(x: 0, y: (self.view.frame.height / 2) - 50) // adjust to roughly center vertically
+          dropDown.width = 250 // optional, adjust width
+          dropDown.selectionAction = { index, item in
+              let selectedCountry = self.viewModel.countryListData[index]
+              self.viewModel.setCountry(selectedCountry)
+              self.countryLabel.text = selectedCountry.name
+          }
+
+          // Show the dropdown
+          dropDown.show()
     }
     
     private func handleUISetup() {

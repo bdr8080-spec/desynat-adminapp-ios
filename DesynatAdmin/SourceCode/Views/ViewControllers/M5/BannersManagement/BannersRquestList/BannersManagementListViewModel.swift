@@ -49,7 +49,7 @@ struct BannerListInfo    {
             totalDays:String.getString(data.totalDays),
             totalOrders: "0",
             totalEarning: String.getString(data.price),
-            reason: String.getString(data.sellerDetails?.rejectReason),
+            reason: String.getString(data.cancelledReason),
             email: String.getString(data.sellerDetails?.email),
             bannerPosition: String.getString(data.bannerPosition),
             paymentStatus: String.getString(data.paymentStatus),
