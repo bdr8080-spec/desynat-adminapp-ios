@@ -16,6 +16,37 @@ class CommonUtils {
             return countryPicker.getDialCode(countryCode: NSLocale.current.identifier) ?? "+91"
         }
     }
+  
+  static func formatPrice(_ amount: Double?, currency: String = "KD") -> String {
+    guard let amount = amount else { return "0 \(currency)" }
+    
+    let roundedAmount = round(amount * 100) / 100   // Round to 2 decimal places
+    if roundedAmount.truncatingRemainder(dividingBy: 1) == 0 {
+      // If whole number, show without decimal
+      return "\(Int(roundedAmount)) \(currency)"
+    } else {
+      // Show up to 2 decimal places
+      return String(format: "%.2f", roundedAmount) + " \(currency)"
+    }
+  }
+  
+  static func formatPriceStringInput(_ amount: String?, currency: String = "KD") -> String {
+      guard
+          let amount = amount,
+          let doubleAmount = Double(amount)
+      else {
+          return "0 \(currency)"
+      }
+
+      let roundedAmount = round(doubleAmount * 100) / 100
+
+      if roundedAmount.truncatingRemainder(dividingBy: 1) == 0 {
+          return "\(Int(roundedAmount)) \(currency)"
+      } else {
+          return String(format: "%.2f", roundedAmount) + " \(currency)"
+      }
+  }
+
     
 //    static func formatDate(_ date: Date) -> String {
 //        let formatter = DateFormatter()

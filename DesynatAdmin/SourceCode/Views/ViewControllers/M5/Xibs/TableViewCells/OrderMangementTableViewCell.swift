@@ -31,13 +31,13 @@ class OrderMangementTableViewCell: UITableViewCell {
   }
   
   func configure(data: OrderData) {
-    self.lblSellerName.text = "\(data.orderDetails?.first?.productDetails?.sellerDetails?.firstName ?? "") \(data.orderDetails?.first?.productDetails?.sellerDetails?.lastName ?? "")"
+    self.lblSellerName.text = "\(data.productDetails?.sellerDetails?.firstName ?? "") \(data.productDetails?.sellerDetails?.lastName ?? "")"
     
     let fullIdString = data.orderID.map { String(describing: $0) } ?? ""
     let last7OrderID = fullIdString.count >= 7 ? String(fullIdString.suffix(7)) : fullIdString
     self.lblOrderID.text = "#\(last7OrderID)"
     
-    let fullTransactionIdString = data.transactionID.map { String(describing: $0) } ?? ""
+    let fullTransactionIdString = data.order?.transactionID.map { String(describing: $0) } ?? ""
     let last7TransactionID = fullTransactionIdString.count >= 7 ? String(fullTransactionIdString.suffix(7)) : fullTransactionIdString
     if last7TransactionID.isEmpty {
       transactionStackView.isHidden = true
@@ -49,7 +49,7 @@ class OrderMangementTableViewCell: UITableViewCell {
       from: Date(iso8601String: String.getString(data.createdAt)),
       format: "dd/MM/yyyy 'at' hh:mm a"
     )
-    self.lblTotalAmount.text = "\(data.totalAmount ?? "") KD"
+    self.lblTotalAmount.text = "\(data.order?.totalAmount ?? "") KD"
   }
   
   @IBAction func assignDriverDidTapped(_ sender: Any) {

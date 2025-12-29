@@ -28,16 +28,16 @@ class ProductListTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func setData(data:OrderDetail?) {
-        self.nameLabel.text = data?.productDetails?.productNameEn ?? ""
-        self.priceLabel.text = "\(data?.amount ?? "") KD"
+    func setData(data: OrderData?) {
+      self.nameLabel.text = data?.productDetails?.productNameEn ?? ""
+      self.priceLabel.text = "\(data?.variationDetails?.finalPrice ?? "") KD"
         self.sizeLabel.text = data?.variationDetails?.size?.name ?? ""
         self.colourLabel.text = data?.variationDetails?.color?.name ?? ""
         self.categoryLabel.text = data?.productDetails?.category?.name ?? ""
         self.quantityLabel.text = data?.quantity?.description
         self.materialLabel.text = data?.productDetails?.brand?.nameEnglish ?? ""
         self.productImageView.image = .placeholder
-        if let url = URL(string: data?.variationDetails?.variantImage?.first ?? "") {
+      if let url = URL(string: data?.variationDetails?.variantImage?.first ?? "") {
             self.productImageView.sd_setImage(with: url,placeholderImage: .placeholder)
         }
     }

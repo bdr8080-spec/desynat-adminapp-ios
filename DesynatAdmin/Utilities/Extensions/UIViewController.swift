@@ -129,10 +129,6 @@ extension UIViewController {
             self.present(alert, animated: true)
         }
     }
-
-
-
-
     
     static func convertPDFToImages(pdfURL: URL) -> [UIImage]? {
         guard let pdfDocument = PDFDocument(url: pdfURL) else {

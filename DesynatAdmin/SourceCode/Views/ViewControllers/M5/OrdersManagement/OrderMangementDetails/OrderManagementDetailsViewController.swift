@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import Cosmos
 
 class OrderManagementDetailsViewController: UIViewController {
   
@@ -55,6 +56,13 @@ class OrderManagementDetailsViewController: UIViewController {
   @IBOutlet weak var productRatingStackView: UIStackView!
   @IBOutlet weak var sellerRatingStackView: UIStackView!
   @IBOutlet weak var returnDetailsStackView: UIStackView!
+  @IBOutlet weak var editAssignDriverButtonOutlet: UIButton!
+  @IBOutlet weak var productRatingView: CosmosView!
+  @IBOutlet weak var sellerRatingView: CosmosView!
+  @IBOutlet weak var returnExchangeReasonStackView: UIStackView!
+  @IBOutlet weak var retunrExchangeReasonLabel: UILabel!
+  @IBOutlet weak var retunrDetailsTitleLabel: UILabel!
+  @IBOutlet weak var paymentMethodLabel: UILabel!
   
   //MARK: VARIABLES
   private lazy var viewModel = OrderManagementListViewModel()
@@ -68,14 +76,13 @@ class OrderManagementDetailsViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    driverDetailsView.isHidden = true
     productTableView.rowHeight = UITableView.automaticDimension
     productTableView.estimatedRowHeight = 260
     productTableView.isScrollEnabled = false
-    // Observe contentSize safely (will deliver initial value too)
+//    // Observe contentSize safely (will deliver initial value too)
     productTableView.addObserver(self, forKeyPath: "contentSize", options: [.new, .initial], context: nil)
     self.viewModel.getOrderDetail(orderId: self.orderId ?? 0) {
-      self.lblSellerName.text = "\(self.viewModel.orderDetail?.orderDetails?.first?.productDetails?.sellerDetails?.firstName ?? "") \(self.viewModel.orderDetail?.orderDetails?.first?.productDetails?.sellerDetails?.lastName ?? "")"
+      self.lblSellerName.text = "\(self.viewModel.orderDetail?.productDetails?.sellerDetails?.firstName ?? "") \(self.viewModel.orderDetail?.productDetails?.sellerDetails?.lastName ?? "")"
       
       let fullIdString = self.viewModel.orderDetail?.orderID.map { String(describing: $0) } ?? ""
       let last7OrderID = fullIdString.count >= 7 ? String(fullIdString.suffix(7)) : fullIdString
@@ -84,15 +91,26 @@ class OrderManagementDetailsViewController: UIViewController {
         from: Date(iso8601String: String.getString(self.viewModel.orderDetail?.createdAt)),
         format: "dd/MM/yyyy 'at' hh:mm a"
       )
-      self.lblCustomerName.text = self.viewModel.orderDetail?.deliveryDetails?.name ?? ""
-      self.lblDeliveredBy.text = self.viewModel.orderDetail?.deliveryDetails?.name ?? ""
-      self.lblTotalAmount.text = "\(self.viewModel.orderDetail?.totalAmount ?? "") KD"
-      self.lblCommissionEarn.text = "\(self.viewModel.orderDetail?.totalAmount ?? "") KD"
-      self.lblCountry.text = self.viewModel.orderDetail?.deliveryDetails?.countryName ?? ""
+      self.lblCustomerName.text = self.viewModel.orderDetail?.order?.deliveryDetails?.name
+      self.lblDeliveredBy.text = self.viewModel.orderDetail?.driverDetails?.fullNameEnglish ?? ""
+      self.lblTotalAmount.text = "\(CommonUtils.formatPriceStringInput(self.viewModel.orderDetail?.order?.totalAmount))"
+      self.lblCommissionEarn.text = "\(CommonUtils.formatPriceStringInput(self.viewModel.orderDetail?.productDetails?.affiliatedCommission))"
+      self.lblCountry.text = self.viewModel.orderDetail?.order?.deliveryDetails?.countryName ?? ""
       self.lblShippingLocation.text =
-      self.buildFullAddress(from: self.viewModel.orderDetail?.deliveryDetails)
+      self.buildFullAddress(from: self.viewModel.orderDetail?.order?.deliveryDetails)
       self.lblDeliveredBy.text = self.viewModel.orderDetail?.driverDetails?.fullNameEnglish
       self.productTableView.reloadData()
+      let paymentMethod = self.viewModel.orderDetail?.order?.paymentMethod
+      switch paymentMethod {
+      case "1":
+        self.paymentMethodLabel.text = "Online"
+      case "2":
+        self.paymentMethodLabel.text = "In-App Wallet"
+      case "3":
+        self.paymentMethodLabel.text = "COD"
+      default:
+        self.paymentMethodLabel.text = "COD"
+      }
       self.lblDriverName.text = self.viewModel.orderDetail?.driverDetails?.fullNameEnglish
       if let imageUrlString = self.viewModel.orderDetail?.driverDetails?.profilePic,
          let url = URL(string: imageUrlString) {
@@ -109,17 +127,34 @@ class OrderManagementDetailsViewController: UIViewController {
         self.zoneStackView.isHidden = true
       }
       self.lblZone.text = zoneName
-      self.lblCancelReason.text = self.viewModel.orderDetail?.orderDetails?.first?.cancelReason
-      
+      self.assignDriverView.isHidden = true
+      self.driverDetailsView.isHidden = true
       self.deliveryInstaructionStackView.isHidden = true
       self.cancellationStackView.isHidden = true
       self.productRatingStackView.isHidden = true
       self.sellerRatingStackView.isHidden = true
       self.returnDetailsStackView.isHidden = true
-      let deliveryStatus = self.viewModel.orderDetail?.orderDetails?.first?.deliveryStatus
+      self.returnExchangeReasonStackView.isHidden = true
+      let deliveryStatus = self.viewModel.orderDetail?.order?.deliveryStatus
       let assignStatus = self.viewModel.orderDetail?.assignStatus
       switch deliveryStatus {
-      case "1", "2": // ongoing, confirmed
+//      case "1": // ongoing
+//        self.activateStep(0, title: "Confirmed")
+//        self.activateStep(1, title: "Shipped")
+//        self.lblStatus.text = "Active"
+////        switch assignStatus {
+////        case "1":
+////          self.assignDriverView.isHidden = true
+////          self.deliveryByStackView.isHidden = false
+////          self.driverDetailsView.isHidden = false
+////        case "2":
+//          self.assignDriverView.isHidden = false
+//          self.deliveryByStackView.isHidden = true
+//          self.driverDetailsView.isHidden = true
+//        default:
+//          print("")
+//        }
+      case "1","2": // confirmed
         self.activateStep(0, title: "Confirmed")
         self.activateStep(1, title: "Shipped")
         self.lblStatus.text = "Active"
@@ -128,7 +163,7 @@ class OrderManagementDetailsViewController: UIViewController {
           self.assignDriverView.isHidden = true
           self.deliveryByStackView.isHidden = false
           self.driverDetailsView.isHidden = false
-        case "2":
+        case "0":
           self.assignDriverView.isHidden = false
           self.deliveryByStackView.isHidden = true
           self.driverDetailsView.isHidden = true
@@ -143,13 +178,44 @@ class OrderManagementDetailsViewController: UIViewController {
         self.activateStep(3, title: "Delivered")
         self.sellerRatingStackView.isHidden = false
         self.productRatingStackView.isHidden = false
-        
+        self.driverDetailsView.isHidden = false
+        self.editAssignDriverButtonOutlet.isHidden = true
+        let userRatingDone = self.viewModel.orderDetail?.userRatingReviewProvide
+        self.lblStatus.text = "Delivered"
+        // Hide by default
+        self.productRatingStackView.isHidden = true
+        self.sellerRatingStackView.isHidden = true
+
+        guard let ratingData = userRatingDone else { return }
+
+        /// ✅ PRODUCT RATING CHECK
+        let productReview = ratingData.productReview ?? ""
+        let productRatingValue = Double(ratingData.productRating ?? "") ?? 0
+
+        if !productReview.isEmpty || productRatingValue > 0 {
+            self.productRatingStackView.isHidden = false
+            self.lblProductReview.text = productReview
+            self.productRatingView.rating = productRatingValue
+        }
+
+        /// ✅ SELLER RATING CHECK
+        let sellerReview = ratingData.storeReview ?? ""
+        let sellerRatingValue = Double(ratingData.storeRating ?? "") ?? 0
+
+        if !sellerReview.isEmpty || sellerRatingValue > 0 {
+            self.sellerRatingStackView.isHidden = false
+            self.lblSellerReview.text = sellerReview
+            self.sellerRatingView.rating = sellerRatingValue
+        }
+
       case "4": //Cancelled
         self.activateStep(0, title: "Confirmed")
         self.activateStep(1, title: "Shipped")
         self.activateStep(2, title: "On the Way")
         self.activateStep(3, title: "Cancelled")
         self.cancellationStackView.isHidden = false
+        self.lblCancelReason.text = self.viewModel.orderDetail?.order?.cancelReason
+        self.lblStatus.text = "Cancelled"
         
       case "7": //Picked
         self.activateStep(0, title: "Confirmed")
@@ -163,6 +229,12 @@ class OrderManagementDetailsViewController: UIViewController {
         self.activateStep(2, title: "On the Way")
         self.activateStep(3, title: "Exchanged")
         self.returnDetailsStackView.isHidden = false
+        self.returnExchangeReasonStackView.isHidden = false
+        self.retunrExchangeReasonLabel.text = self.viewModel.orderDetail?.exchangeReason
+        self.lblReturnId.text = "#\(self.viewModel.orderDetail?.orderID ?? 0)"
+        self.lblRequestedOn.text = self.viewModel.orderDetail?.updatedAt?.formattedPlacedDate() ?? ""
+        self.retunrDetailsTitleLabel.text = "Exchange Details"
+        self.lblStatus.text = "Exchange"
         
       case "5": // Return
         self.activateStep(0, title: "Confirmed")
@@ -170,11 +242,17 @@ class OrderManagementDetailsViewController: UIViewController {
         self.activateStep(2, title: "On the Way")
         self.activateStep(3, title: "Returned")
         self.returnDetailsStackView.isHidden = false
+        self.retunrDetailsTitleLabel.text = "Return Details"
+        self.retunrExchangeReasonLabel.text = self.viewModel.orderDetail?.returnReason
+        self.lblReturnId.text = "#\(self.viewModel.orderDetail?.orderID ?? 0)"
+        self.lblRequestedOn.text = self.viewModel.orderDetail?.updatedAt?.formattedPlacedDate() ?? ""
+        self.lblStatus.text = "Return"
         
       default:
         self.assignDriverView.isHidden = true
         self.deliveryByStackView.isHidden = true
         self.driverDetailsView.isHidden = true
+        self.lblStatus.text = "Ongoing"
       }
     }
   }
@@ -282,6 +360,14 @@ class OrderManagementDetailsViewController: UIViewController {
       self.assignDriverView.isHidden = true
       self.driverDetailsView.isHidden = false
       self.lblDriverName.text = driver.fullNameEnglish
+      if let imageUrlString = driver.profilePic,
+         let url = URL(string: imageUrlString) {
+        self.imgDriver.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        self.imgDriver.sd_imageIndicator?.startAnimatingIndicator()
+        self.imgDriver.sd_setImage(with: url, placeholderImage: UIImage(named: "userProfile"))
+      } else {
+        self.imgDriver.image = UIImage(named: "userProfile")
+      }
       self.viewModel.assignDriver(orderId: self.orderId ?? 0, driverId: driverId) {
         
       }
@@ -307,13 +393,13 @@ class OrderManagementDetailsViewController: UIViewController {
 extension OrderManagementDetailsViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return self.viewModel.orderDetail?.orderDetails?.count ?? 0
+    return 1//self.viewModel.orderDetail?.orderDetails?.count ?? 0
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListTableViewCell", for: indexPath) as! ProductListTableViewCell
     cell.serialNumberLabel.text = "0\(indexPath.row + 1)"
-    cell.setData(data: self.viewModel.orderDetail?.orderDetails?[indexPath.row])
+    cell.setData(data: self.viewModel.orderDetail)
     return cell
   }
   
