@@ -33,9 +33,10 @@ class OrderMangementTableViewCell: UITableViewCell {
   func configure(data: OrderData) {
     self.lblSellerName.text = "\(data.productDetails?.sellerDetails?.firstName ?? "") \(data.productDetails?.sellerDetails?.lastName ?? "")"
     
-    let fullIdString = data.orderID.map { String(describing: $0) } ?? ""
-    let last7OrderID = fullIdString.count >= 7 ? String(fullIdString.suffix(7)) : fullIdString
-    self.lblOrderID.text = "#\(last7OrderID)"
+//    let fullIdString = data.orderID.map { String(describing: $0) } ?? ""
+//    let last7OrderID = fullIdString.count >= 7 ? String(fullIdString.suffix(7)) : fullIdString
+//    self.lblOrderID.text = "#\(last7OrderID)"
+    self.lblOrderID.text = "#\(data.id ?? 0)"
     
     let fullTransactionIdString = data.order?.transactionID.map { String(describing: $0) } ?? ""
     let last7TransactionID = fullTransactionIdString.count >= 7 ? String(fullTransactionIdString.suffix(7)) : fullTransactionIdString

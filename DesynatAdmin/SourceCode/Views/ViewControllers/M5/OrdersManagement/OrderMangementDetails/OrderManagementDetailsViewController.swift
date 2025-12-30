@@ -84,9 +84,11 @@ class OrderManagementDetailsViewController: UIViewController {
     self.viewModel.getOrderDetail(orderId: self.orderId ?? 0) {
       self.lblSellerName.text = "\(self.viewModel.orderDetail?.productDetails?.sellerDetails?.firstName ?? "") \(self.viewModel.orderDetail?.productDetails?.sellerDetails?.lastName ?? "")"
       
-      let fullIdString = self.viewModel.orderDetail?.orderID.map { String(describing: $0) } ?? ""
-      let last7OrderID = fullIdString.count >= 7 ? String(fullIdString.suffix(7)) : fullIdString
-      self.lblOrderId.text = "#\(last7OrderID)"
+//      let fullIdString = self.viewModel.orderDetail?.orderID.map { String(describing: $0) } ?? ""
+//      let last7OrderID = fullIdString.count >= 7 ? String(fullIdString.suffix(7)) : fullIdString
+//      self.lblOrderId.text = "#\(last7OrderID)"
+      self.lblOrderId.text = "#\(self.viewModel.orderDetail?.id ?? 0)"
+//      let id = self.viewModel.orderDetail?.id
       self.lblDateTime.text = CommonUtils.getDateStrings(
         from: Date(iso8601String: String.getString(self.viewModel.orderDetail?.createdAt)),
         format: "dd/MM/yyyy 'at' hh:mm a"
