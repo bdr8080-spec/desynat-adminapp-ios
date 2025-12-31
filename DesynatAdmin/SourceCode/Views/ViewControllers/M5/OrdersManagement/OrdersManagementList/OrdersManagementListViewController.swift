@@ -36,11 +36,13 @@ class OrdersManagementListViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupBinding()
+    
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    setupBinding()
+    categorriesCollectionView.reloadData()
     selecetedCategoryId = 0
     viewModel.setCategory(.active)
   }

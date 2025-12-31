@@ -63,6 +63,8 @@ class OrderManagementDetailsViewController: UIViewController {
   @IBOutlet weak var retunrExchangeReasonLabel: UILabel!
   @IBOutlet weak var retunrDetailsTitleLabel: UILabel!
   @IBOutlet weak var paymentMethodLabel: UILabel!
+  @IBOutlet weak var prodcuctReviewtitleLabel: UILabel!
+  @IBOutlet weak var sellerReviewTitleLabel: UILabel!
   
   //MARK: VARIABLES
   private lazy var viewModel = OrderManagementListViewModel()
@@ -96,7 +98,7 @@ class OrderManagementDetailsViewController: UIViewController {
       self.lblCustomerName.text = self.viewModel.orderDetail?.order?.deliveryDetails?.name
       self.lblDeliveredBy.text = self.viewModel.orderDetail?.driverDetails?.fullNameEnglish ?? ""
       self.lblTotalAmount.text = "\(CommonUtils.formatPriceStringInput(self.viewModel.orderDetail?.order?.totalAmount))"
-      self.lblCommissionEarn.text = "\(CommonUtils.formatPriceStringInput(self.viewModel.orderDetail?.productDetails?.affiliatedCommission))"
+      self.lblCommissionEarn.text = "\(CommonUtils.formatPrice(self.viewModel.orderDetail?.adminCommission))"
       self.lblCountry.text = self.viewModel.orderDetail?.order?.deliveryDetails?.countryName ?? ""
       self.lblShippingLocation.text =
       self.buildFullAddress(from: self.viewModel.orderDetail?.order?.deliveryDetails)
@@ -137,80 +139,12 @@ class OrderManagementDetailsViewController: UIViewController {
       self.sellerRatingStackView.isHidden = true
       self.returnDetailsStackView.isHidden = true
       self.returnExchangeReasonStackView.isHidden = true
-      let deliveryStatus = self.viewModel.orderDetail?.order?.deliveryStatus
+      self.lblStatus.textColor = UIColor(hexString: "#16B364")
+      let deliveryStatus = self.viewModel.orderDetail?.deliveryStatus
+      let paymentStatus = self.viewModel.orderDetail?.paymentStatus
       let assignStatus = self.viewModel.orderDetail?.assignStatus
-      switch deliveryStatus {
-//      case "1": // ongoing
-//        self.activateStep(0, title: "Confirmed")
-//        self.activateStep(1, title: "Shipped")
-//        self.lblStatus.text = "Active"
-////        switch assignStatus {
-////        case "1":
-////          self.assignDriverView.isHidden = true
-////          self.deliveryByStackView.isHidden = false
-////          self.driverDetailsView.isHidden = false
-////        case "2":
-//          self.assignDriverView.isHidden = false
-//          self.deliveryByStackView.isHidden = true
-//          self.driverDetailsView.isHidden = true
-//        default:
-//          print("")
-//        }
-      case "1","2": // confirmed
-        self.activateStep(0, title: "Confirmed")
-        self.activateStep(1, title: "Shipped")
-        self.lblStatus.text = "Active"
-        switch assignStatus {
-        case "1":
-          self.assignDriverView.isHidden = true
-          self.deliveryByStackView.isHidden = false
-          self.driverDetailsView.isHidden = false
-        case "0":
-          self.assignDriverView.isHidden = false
-          self.deliveryByStackView.isHidden = true
-          self.driverDetailsView.isHidden = true
-        default:
-          print("")
-        }
-        
-      case "3": // Delivered
-        self.activateStep(0, title: "Confirmed")
-        self.activateStep(1, title: "Shipped")
-        self.activateStep(2, title: "On the Way")
-        self.activateStep(3, title: "Delivered")
-        self.sellerRatingStackView.isHidden = false
-        self.productRatingStackView.isHidden = false
-        self.driverDetailsView.isHidden = false
-        self.editAssignDriverButtonOutlet.isHidden = true
-        let userRatingDone = self.viewModel.orderDetail?.userRatingReviewProvide
-        self.lblStatus.text = "Delivered"
-        // Hide by default
-        self.productRatingStackView.isHidden = true
-        self.sellerRatingStackView.isHidden = true
-
-        guard let ratingData = userRatingDone else { return }
-
-        /// ✅ PRODUCT RATING CHECK
-        let productReview = ratingData.productReview ?? ""
-        let productRatingValue = Double(ratingData.productRating ?? "") ?? 0
-
-        if !productReview.isEmpty || productRatingValue > 0 {
-            self.productRatingStackView.isHidden = false
-            self.lblProductReview.text = productReview
-            self.productRatingView.rating = productRatingValue
-        }
-
-        /// ✅ SELLER RATING CHECK
-        let sellerReview = ratingData.storeReview ?? ""
-        let sellerRatingValue = Double(ratingData.storeRating ?? "") ?? 0
-
-        if !sellerReview.isEmpty || sellerRatingValue > 0 {
-            self.sellerRatingStackView.isHidden = false
-            self.lblSellerReview.text = sellerReview
-            self.sellerRatingView.rating = sellerRatingValue
-        }
-
-      case "4": //Cancelled
+      switch paymentStatus {
+      case "2", "3": //Cancelled
         self.activateStep(0, title: "Confirmed")
         self.activateStep(1, title: "Shipped")
         self.activateStep(2, title: "On the Way")
@@ -218,46 +152,154 @@ class OrderManagementDetailsViewController: UIViewController {
         self.cancellationStackView.isHidden = false
         self.lblCancelReason.text = self.viewModel.orderDetail?.order?.cancelReason
         self.lblStatus.text = "Cancelled"
-        
-      case "7": //Picked
-        self.activateStep(0, title: "Confirmed")
-        self.activateStep(1, title: "Shipped")
-        self.activateStep(2, title: "On the Way")
-        self.lblStatus.text = "On The Way"
-        
-      case "9": // Exchange
-        self.activateStep(0, title: "Confirmed")
-        self.activateStep(1, title: "Shipped")
-        self.activateStep(2, title: "On the Way")
-        self.activateStep(3, title: "Exchanged")
-        self.returnDetailsStackView.isHidden = false
-        self.returnExchangeReasonStackView.isHidden = false
-        self.retunrExchangeReasonLabel.text = self.viewModel.orderDetail?.exchangeReason
-        self.lblReturnId.text = "#\(self.viewModel.orderDetail?.orderID ?? 0)"
-        self.lblRequestedOn.text = self.viewModel.orderDetail?.updatedAt?.formattedPlacedDate() ?? ""
-        self.retunrDetailsTitleLabel.text = "Exchange Details"
-        self.lblStatus.text = "Exchange"
-        
-      case "5": // Return
-        self.activateStep(0, title: "Confirmed")
-        self.activateStep(1, title: "Shipped")
-        self.activateStep(2, title: "On the Way")
-        self.activateStep(3, title: "Returned")
-        self.returnDetailsStackView.isHidden = false
-        self.retunrDetailsTitleLabel.text = "Return Details"
-        self.retunrExchangeReasonLabel.text = self.viewModel.orderDetail?.returnReason
-        self.lblReturnId.text = "#\(self.viewModel.orderDetail?.orderID ?? 0)"
-        self.lblRequestedOn.text = self.viewModel.orderDetail?.updatedAt?.formattedPlacedDate() ?? ""
-        self.lblStatus.text = "Return"
-        
-      default:
+        self.lblStatus.textColor = UIColor(hexString: "#D91A1B")
+        self.editAssignDriverButtonOutlet.isHidden = true
         self.assignDriverView.isHidden = true
-        self.deliveryByStackView.isHidden = true
-        self.driverDetailsView.isHidden = true
-        self.lblStatus.text = "Ongoing"
+//        case "3": //Returned
+//          self.activateStep(0, title: "Confirmed")
+//          self.activateStep(1, title: "Shipped")
+//          self.activateStep(2, title: "On the Way")
+//          self.activateStep(3, title: "Returned")
+//          self.returnDetailsStackView.isHidden = false
+//          self.retunrDetailsTitleLabel.text = "Return Details"
+//          self.retunrExchangeReasonLabel.text = self.viewModel.orderDetail?.returnReason
+//          self.lblReturnId.text = "#\(self.viewModel.orderDetail?.orderID ?? 0)"
+//          self.lblRequestedOn.text = self.viewModel.orderDetail?.updatedAt?.formattedPlacedDate() ?? ""
+//          self.lblStatus.text = "Return"
+//          self.editAssignDriverButtonOutlet.isHidden = true
+      default:
+        switch deliveryStatus {
+        case "1","2": // confirmed
+          self.activateStep(0, title: "Confirmed")
+          self.activateStep(1, title: "Shipped")
+          self.lblStatus.text = "Active"
+          switch assignStatus {
+          case "1":
+            self.assignDriverView.isHidden = true
+            self.deliveryByStackView.isHidden = false
+            self.driverDetailsView.isHidden = false
+          case "0":
+            self.assignDriverView.isHidden = false
+            self.deliveryByStackView.isHidden = true
+            self.driverDetailsView.isHidden = true
+          default:
+            print("")
+          }
+          
+          
+          
+        case "3": // Delivered
+          self.activateStep(0, title: "Confirmed")
+          self.activateStep(1, title: "Shipped")
+          self.activateStep(2, title: "On the Way")
+          self.activateStep(3, title: "Delivered")
+          self.sellerRatingStackView.isHidden = false
+          self.productRatingStackView.isHidden = false
+          self.driverDetailsView.isHidden = false
+          self.editAssignDriverButtonOutlet.isHidden = true
+          let userRatingDone = self.viewModel.orderDetail?.userRatingReviewProvide
+          self.lblStatus.text = "Delivered"
+          // Hide by default
+          self.productRatingStackView.isHidden = true
+          self.sellerRatingStackView.isHidden = true
+          self.assignDriverView.isHidden = true
+
+          guard let ratingData = userRatingDone else { return }
+
+          /// ✅ PRODUCT RATING CHECK
+          let productReview = ratingData.productReview ?? ""
+          let productRatingValue = Double(ratingData.productRating ?? "") ?? 0
+
+          if !productReview.isEmpty || productRatingValue > 0 {
+              self.productRatingStackView.isHidden = false
+              self.lblProductReview.text = productReview
+              self.productRatingView.rating = productRatingValue
+            
+          }
+          
+          if !productReview.isEmpty {
+            self.prodcuctReviewtitleLabel.isHidden = false
+          } else {
+            self.prodcuctReviewtitleLabel.isHidden = true
+          }
+
+          /// ✅ SELLER RATING CHECK
+          let sellerReview = ratingData.storeReview ?? ""
+          let sellerRatingValue = Double(ratingData.storeRating ?? "") ?? 0
+
+          if !sellerReview.isEmpty || sellerRatingValue > 0 {
+              self.sellerRatingStackView.isHidden = false
+              self.lblSellerReview.text = sellerReview
+              self.sellerRatingView.rating = sellerRatingValue
+            
+          }
+          if !sellerReview.isEmpty {
+            self.sellerReviewTitleLabel.isHidden = false
+          }else {
+            self.sellerReviewTitleLabel.isHidden = true
+          }
+
+        case "4": //Cancelled
+          self.activateStep(0, title: "Confirmed")
+          self.activateStep(1, title: "Shipped")
+          self.activateStep(2, title: "On the Way")
+          self.activateStep(3, title: "Cancelled")
+          self.cancellationStackView.isHidden = false
+          self.lblCancelReason.text = self.viewModel.orderDetail?.order?.cancelReason
+          self.lblStatus.text = "Cancelled"
+          self.assignDriverView.isHidden = true
+          self.editAssignDriverButtonOutlet.isHidden = true
+          
+        case "7": //Picked
+          self.activateStep(0, title: "Confirmed")
+          self.activateStep(1, title: "Shipped")
+          self.activateStep(2, title: "On the Way")
+          self.lblStatus.text = "On The Way"
+          self.assignDriverView.isHidden = true
+          self.deliveryByStackView.isHidden = true
+          self.driverDetailsView.isHidden = false
+          self.editAssignDriverButtonOutlet.isHidden = true
+          
+        case "9": // Exchange
+          self.activateStep(0, title: "Confirmed")
+          self.activateStep(1, title: "Shipped")
+          self.activateStep(2, title: "On the Way")
+          self.activateStep(3, title: "Exchanged")
+          self.returnDetailsStackView.isHidden = false
+          self.returnExchangeReasonStackView.isHidden = false
+          self.retunrExchangeReasonLabel.text = self.viewModel.orderDetail?.exchangeReason
+          self.lblReturnId.text = "#\(self.viewModel.orderDetail?.orderID ?? 0)"
+          self.lblRequestedOn.text = self.viewModel.orderDetail?.updatedAt?.formattedPlacedDate() ?? ""
+          self.retunrDetailsTitleLabel.text = "Exchange Details"
+          self.lblStatus.text = "Exchange"
+          self.assignDriverView.isHidden = true
+          self.editAssignDriverButtonOutlet.isHidden = true
+          
+        case "5": // Return
+          self.activateStep(0, title: "Confirmed")
+          self.activateStep(1, title: "Shipped")
+          self.activateStep(2, title: "On the Way")
+          self.activateStep(3, title: "Returned")
+          self.returnDetailsStackView.isHidden = false
+          self.retunrDetailsTitleLabel.text = "Return Details"
+          self.retunrExchangeReasonLabel.text = self.viewModel.orderDetail?.returnReason
+          self.lblReturnId.text = "#\(self.viewModel.orderDetail?.orderID ?? 0)"
+          self.lblRequestedOn.text = self.viewModel.orderDetail?.updatedAt?.formattedPlacedDate() ?? ""
+          self.lblStatus.text = "Return"
+          self.assignDriverView.isHidden = true
+          self.editAssignDriverButtonOutlet.isHidden = true
+          
+        default:
+          self.assignDriverView.isHidden = true
+          self.deliveryByStackView.isHidden = true
+          self.driverDetailsView.isHidden = true
+          self.lblStatus.text = "Ongoing"
+        }
       }
     }
-  }
+      }
+      
+      
   
   func buildFullAddress(from details: DeliveryDetails?) -> String {
     guard let details = details else { return "" }

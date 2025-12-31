@@ -420,6 +420,7 @@ struct OrderData: Codable {
   let variationDetails: VariationDetails?
   let userRatingReviewProvide: UserRatingReviewProvide?
   let driverDetails: DriverDetails?
+  let adminCommission: Double?
   
   enum CodingKeys: String, CodingKey {
     case id
@@ -450,6 +451,7 @@ struct OrderData: Codable {
     case variationDetails = "variation_details"
     case userRatingReviewProvide = "user_rating_review_provide"
     case driverDetails = "driver_details"
+    case adminCommission = "admin_commission"
   }
 }
 

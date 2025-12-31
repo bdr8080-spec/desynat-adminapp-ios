@@ -90,7 +90,7 @@ class BannersMangementFilterViewController: UIViewController {
           // Use the view controller's view as anchor
           dropDown.anchorView = self.view // This centers it on the screen
           dropDown.direction = .any
-          dropDown.bottomOffset = CGPoint(x: 0, y: (self.view.frame.height / 2) - 50) // adjust to roughly center vertically
+          dropDown.bottomOffset = CGPoint(x: 50, y: (self.view.frame.height / 2) - 50) // adjust to roughly center vertically
           dropDown.width = 250 // optional, adjust width
           dropDown.selectionAction = { index, item in
               let selectedCountry = self.viewModel.countryListData[index]

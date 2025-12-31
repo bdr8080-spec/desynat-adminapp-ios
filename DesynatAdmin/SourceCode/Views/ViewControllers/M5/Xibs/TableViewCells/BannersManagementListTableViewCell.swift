@@ -60,15 +60,15 @@ class BannersManagementListTableViewCell: UITableViewCell {
     self.lblRequestOn.text = data.joinedOn
     self.lblDuration.text = "\(data.totalDays) days"
     self.lblReason.text = data.reason
-    self.lblTotalAmount.text = data.totalEarning
-    self.lblAvailableAmount.text = data.totalEarning
-    self.lblRequestedAmount.text = data.totalEarning
+    self.lblTotalAmount.text = "\(data.totalEarning) KD"
+    self.lblAvailableAmount.text = "\(data.totalEarning) KD"
+    self.lblRequestedAmount.text = "\(data.totalEarning) KD"
     if data.bannerPosition == "1" {
       self.lblBannerPosition.text = "Home-Top"
     } else if data.bannerPosition == "2" {
       self.lblBannerPosition.text = "Home-Banner"
     } else if data.bannerPosition == "3" {
-      self.lblBannerPosition.text = "Sub-Category"
+      self.lblBannerPosition.text = "Category"
     }
     // payment status - 0 pending, 1 paid , 2 cancelled, 3 failed
     if data.paymentStatus == "0" {

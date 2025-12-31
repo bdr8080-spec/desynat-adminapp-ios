@@ -76,20 +76,23 @@ class DriversListViewController: UIViewController {
   
   @IBAction func handleDriverSelection(_ sender: Any) {
     isDriverExpanded.toggle()
-    
-    if isDriverExpanded {
-      driverTableView.isHidden = false
-      driverTableHeight.constant =
-      min(CGFloat(viewModel.driverList.count) * 60, 300)
-      separatorLabel.isHidden = false
-    } else {
-      driverTableHeight.constant = 0
-      separatorLabel.isHidden = true
-    }
-    
-    UIView.animate(withDuration: 0.25) {
-      self.view.layoutIfNeeded()
-    }
+
+        if isDriverExpanded {
+            driverTableView.isHidden = false
+            driverTableView.layoutIfNeeded()
+
+            let contentHeight = driverTableView.contentSize.height
+            driverTableHeight.constant = min(contentHeight, 300)
+
+            separatorLabel.isHidden = false
+        } else {
+            driverTableHeight.constant = 0
+            separatorLabel.isHidden = true
+        }
+
+        UIView.animate(withDuration: 0.25) {
+            self.view.layoutIfNeeded()
+        }
   }
   
   @IBAction func submitDidTapped(_ sender: Any) {

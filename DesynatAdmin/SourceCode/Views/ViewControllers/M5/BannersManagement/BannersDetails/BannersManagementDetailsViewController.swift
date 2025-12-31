@@ -75,7 +75,7 @@ class BannersManagementDetailsViewController: UIViewController {
     } else if detailData.bannerPosition == "2" {
       self.lblBannerPosition.text = "Home-Bottom"
     } else if detailData.bannerPosition == "3" {
-      self.lblBannerPosition.text = "Sub-Category"
+      self.lblBannerPosition.text = "Category"
       self.subCategoryStackView.isHidden = false
     }
     // payment status - 0 pending, 1 paid , 2 cancelled, 3 failed
