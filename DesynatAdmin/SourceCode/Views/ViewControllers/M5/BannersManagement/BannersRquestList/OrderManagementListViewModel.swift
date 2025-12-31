@@ -118,6 +118,14 @@ class OrderManagementListViewModel {
         if !country.isEmpty {
             params[APIKeys.countryName] = country
         }
+      
+      if let startDate = filterInfo.startDate {
+              params["from_date"] = CommonUtils.getDateString(from: startDate, format: "yyyy-MM-dd")
+          }
+          
+          if let endDate = filterInfo.endDate {
+              params["to_date"] = CommonUtils.getDateString(from: endDate, format: "yyyy-MM-dd")
+          }
 
         let completion: (OrderListModel) -> Void = { data in
             self.totalPage = data.lastPage ?? 1
