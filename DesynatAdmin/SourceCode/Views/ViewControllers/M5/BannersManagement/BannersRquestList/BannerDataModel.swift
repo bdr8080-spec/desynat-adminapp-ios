@@ -41,6 +41,7 @@ struct BannerRequestData: Codable {
     var id: Int?
     var orderID: String?
     var sellerID: Int?
+    var status: String?
     var bannerPosition: String?
     var category, subcatgory: String?
     var startDate, endDate, totalDays: String?
@@ -64,6 +65,7 @@ struct BannerRequestData: Codable {
         case uploadBanner = "upload_banner"
         case price
         case adminVerify = "Admin_verify"
+        case status = "status"
         case paymentStatus = "payment_status"
         case transactionID = "transaction_id"
         case cancelledReason = "cancelled_reason"
@@ -74,7 +76,7 @@ struct BannerRequestData: Codable {
         case sellerDetails = "seller_details"
     }
     
-    init(id: Int? = nil, orderID: String? = nil, sellerID: Int? = nil, bannerPosition: String? = nil, category: String? = nil, subcatgory: String? = nil, startDate: String? = nil, endDate: String? = nil, totalDays: String? = nil, uploadBanner: String? = nil, price: String? = nil, adminVerify: String? = nil, paymentStatus: String? = nil, transactionID: String? = nil, cancelledReason: String? = nil, createdAt: String? = nil, updatedAt: String? = nil, categoryDetails: CategoryDetails? = nil, subcategoryDetails: SubcategoryDetails? = nil, sellerDetails: SellerDetails? = nil) {
+    init(id: Int? = nil, orderID: String? = nil, sellerID: Int? = nil, bannerPosition: String? = nil, category: String? = nil, subcatgory: String? = nil, startDate: String? = nil, endDate: String? = nil, totalDays: String? = nil, uploadBanner: String? = nil, price: String? = nil, adminVerify: String? = nil, paymentStatus: String? = nil, transactionID: String? = nil, cancelledReason: String? = nil, createdAt: String? = nil, updatedAt: String? = nil, categoryDetails: CategoryDetails? = nil, subcategoryDetails: SubcategoryDetails? = nil,status: String? = nil, sellerDetails: SellerDetails? = nil) {
         self.id = id
         self.orderID = orderID
         self.sellerID = sellerID
@@ -92,6 +94,7 @@ struct BannerRequestData: Codable {
         self.cancelledReason = cancelledReason
         self.createdAt = createdAt
         self.updatedAt = updatedAt
+        self.status = status
         self.categoryDetails = categoryDetails
         self.subcategoryDetails = subcategoryDetails
         self.sellerDetails = sellerDetails

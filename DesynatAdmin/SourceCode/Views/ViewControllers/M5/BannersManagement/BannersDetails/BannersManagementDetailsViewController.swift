@@ -30,12 +30,15 @@ class BannersManagementDetailsViewController: UIViewController {
   @IBOutlet weak var lblTransactionId: UILabel!
   @IBOutlet weak var lblSubcategoryName: UILabel!
   @IBOutlet weak var lblStatus: UILabel!
-  
+    @IBOutlet weak var toggleImageView: UIImageView!
+    
   //MARK: VARIABLE
   var type: BannersSelectedListType = .new
   var detailData = BannerListInfo()
   private var viewModel : BannersManagementListViewModel = BannersManagementListViewModel()
-  
+    private var toggleStatus: Int = 0
+    var onStatusUpdated: ((BannerListInfo) -> Void)?
+
   override func viewDidLoad() {
     super.viewDidLoad()
     if type == .new { //new
@@ -90,6 +93,8 @@ class BannersManagementDetailsViewController: UIViewController {
     }
     self.lblStatus.textColor = UIColor(hexString: "34A853") //green
     self.transactionIdStackView.isHidden = true
+      toggleStatus = detailData.bannerBlockStatus == "1" ? 1 : 0
+      updateToggleUI()
     if type.rawValue == 1 {
       if detailData.paymentStatus == "0" {
         self.lblStatus.text = "Upcoming"
@@ -108,8 +113,46 @@ class BannersManagementDetailsViewController: UIViewController {
       self.banneImageView.sd_setImage(with: url,placeholderImage: .placeholder)
     }
   }
-  
-  
+    
+    private func updateToggleUI() {
+        toggleImageView.image = toggleStatus == 1
+            ? UIImage(named: "toggleOn")   // Unblocked
+            : UIImage(named: "toggleOff")  // Blocked
+    }
+
+
+    
+    
+    @IBAction func toggleButtonDidTapped(_ sender: Any) {
+        let newStatus = toggleStatus == 1 ? 0 : 1
+
+            let param: [String: Any] = [
+                "id": detailData.id,
+//                "status": newStatus
+            ]
+
+            viewModel.upadteBannerStatus(param: param) { [weak self] success in
+                guard let self = self else { return }
+
+                DispatchQueue.main.async {
+                    if success {
+                        // 1️⃣ Update local toggle
+                        self.toggleStatus = newStatus
+                        self.updateToggleUI()
+
+                        // 2️⃣ Update model object
+                        self.detailData.bannerBlockStatus = "\(newStatus)"
+
+                        // 3️⃣ Send updated model back
+                        self.onStatusUpdated?(self.detailData)
+                    }
+                }
+            }
+    }
+    
+
+
+    
   @IBAction func rejectDidTapped(_ sender: Any) {
     let vc = RejectReasonViewController.viewFromNIB
     vc.setCallback { reason,type in

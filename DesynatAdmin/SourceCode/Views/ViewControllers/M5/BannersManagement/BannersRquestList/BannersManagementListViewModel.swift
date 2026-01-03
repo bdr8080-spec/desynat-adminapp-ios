@@ -25,6 +25,7 @@ struct BannerListInfo    {
     var to:String = ""
     var transactionID:String = ""
     var subcategory:String = ""
+    var bannerBlockStatus:String = ""
     var status:BannersTab = .new
     var handler:HandleBannerAction?
     
@@ -57,6 +58,7 @@ struct BannerListInfo    {
             to: String.getString(data.endDate),
             transactionID: String.getString(data.transactionID),
             subcategory: String.getString(data.subcategoryDetails?.nameEnglish),
+            bannerBlockStatus: String.getString(data.status),
             status: status,
             handler: handler
         )
@@ -95,7 +97,7 @@ case new,approved,reject
 class BannersManagementListViewModel {
     private(set) var currentPage : Int = 1
     private(set) var totalPage : Int = 1
-    private(set) var arraySellers : [BannerListInfo] = []
+    var arraySellers : [BannerListInfo] = []
     private(set) var refreshHandler : HandleTableRefresh?
     private(set) var sellerActionHandler : HandleBannerAction?
     private(set) var currentTab : BannersTab = .new
@@ -262,5 +264,36 @@ class BannersManagementListViewModel {
             completion()
         }
     }
+    
+   
+    func upadteBannerStatus(
+        param: [String: Any],
+        completion: @escaping (Bool) -> Void
+    ) {
+        WebService.shared.upadteBannerRequestStatus(param: param) { response in
+            // Assuming API returns success flag
+            
+            completion(true)
+        }
+    }
+
+    
+//    func upadteBrandStatus(param: [String: Any]) {
+//        WebService.shared.upadteBrandStatus(param: param) { [weak self] response in
+//            guard let self = self else { return }
+//            
+//            DispatchQueue.main.async {
+//                self.hostVC.brandData = response
+//                self.hostVC.bindData()
+//                if let status = response.status {
+//                    if status == 1 {
+//                        CommonUtils.showToast(message: "Brand Activated Successfully")
+//                    } else {
+//                        CommonUtils.showToast(message: "Brand Deactivated Successfully")
+//                    }
+//                }
+//            }
+//        }
+//    }
 }
 

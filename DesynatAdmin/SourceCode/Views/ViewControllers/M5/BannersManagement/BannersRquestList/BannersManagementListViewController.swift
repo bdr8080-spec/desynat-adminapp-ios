@@ -59,6 +59,10 @@ class BannersManagementListViewController: UIViewController, HandleTableRefresh 
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+//      setUpUi()
+//      
+//      // Default tab = New
+//      viewModel.changeTab(.new)
   }
   
   private func setUpUi() {
@@ -189,14 +193,44 @@ extension BannersManagementListViewController: UITableViewDelegate, UITableViewD
     return cell
   }
   
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    if self.viewModel.arraySellers.count > indexPath.row {
-      let vc = BannersManagementDetailsViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
-      vc.detailData = self.viewModel.arraySellers[indexPath.row]
-      vc.type = type
-      self.navigationController?.pushViewController(vc, animated: true)
-    }
-  }
+//  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//    if self.viewModel.arraySellers.count > indexPath.row {
+//      let vc = BannersManagementDetailsViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
+//      vc.detailData = self.viewModel.arraySellers[indexPath.row]
+//      vc.type = type
+//      self.navigationController?.pushViewController(vc, animated: true)
+//    }
+      
+      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+          let vc = BannersManagementDetailsViewController
+              .instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
+
+          vc.detailData = viewModel.arraySellers[indexPath.row]
+          vc.type = type
+
+          vc.onStatusUpdated = { [weak self] updatedBanner in
+              guard let self = self else { return }
+
+              // Find same banner & update it
+              if let index = self.viewModel.arraySellers.firstIndex(where: {
+                  $0.id == updatedBanner.id
+              }) {
+                  self.viewModel.arraySellers[index] = updatedBanner
+
+                  // Reload only that row (efficient)
+                  let indexPath = IndexPath(row: index, section: 0)
+                  self.bannersTableView.reloadRows(
+                      at: [indexPath],
+                      with: .none
+                  )
+              }
+          }
+
+          navigationController?.pushViewController(vc, animated: true)
+      }
+
+//  }
   
 }
 

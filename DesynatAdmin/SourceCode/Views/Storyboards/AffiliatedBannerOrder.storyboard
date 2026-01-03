@@ -888,11 +888,44 @@
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6lb-Xj-iTH">
+                                        <rect key="frame" x="329" y="9" width="40" height="22"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="toggleOn" translatesAutoresizingMaskIntoConstraints="NO" id="fKW-v2-f31">
+                                                <rect key="frame" x="0.0" y="0.0" width="40" height="22"/>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PSc-YR-uXQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="40" height="22"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="40" id="MbZ-j5-bLn"/>
+                                                    <constraint firstAttribute="height" constant="22" id="MdA-cH-xgH"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                <connections>
+                                                    <action selector="toggleButtonDidTapped:" destination="HoM-nD-uc3" eventType="touchUpInside" id="UFa-Jn-GPN"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="PSc-YR-uXQ" firstAttribute="leading" secondItem="6lb-Xj-iTH" secondAttribute="leading" id="BTB-bK-B73"/>
+                                            <constraint firstAttribute="trailing" secondItem="fKW-v2-f31" secondAttribute="trailing" id="P1L-pW-vOe"/>
+                                            <constraint firstAttribute="trailing" secondItem="PSc-YR-uXQ" secondAttribute="trailing" id="Qb5-gY-Vbm"/>
+                                            <constraint firstItem="PSc-YR-uXQ" firstAttribute="top" secondItem="6lb-Xj-iTH" secondAttribute="top" id="TnB-oY-xoe"/>
+                                            <constraint firstItem="fKW-v2-f31" firstAttribute="top" secondItem="6lb-Xj-iTH" secondAttribute="top" id="YJw-jh-C8v"/>
+                                            <constraint firstAttribute="bottom" secondItem="fKW-v2-f31" secondAttribute="bottom" id="ZsI-6k-2f3"/>
+                                            <constraint firstItem="fKW-v2-f31" firstAttribute="leading" secondItem="6lb-Xj-iTH" secondAttribute="leading" id="c4n-NZ-Cel"/>
+                                            <constraint firstAttribute="bottom" secondItem="PSc-YR-uXQ" secondAttribute="bottom" id="lF5-py-K1V"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="cM7-8f-sKz" firstAttribute="leading" secondItem="P1o-7S-vjB" secondAttribute="trailing" constant="2" id="5Vo-Xv-GLP"/>
                                     <constraint firstItem="P1o-7S-vjB" firstAttribute="leading" secondItem="gMm-AL-6mG" secondAttribute="leading" constant="24" id="FfM-8Z-WGF"/>
+                                    <constraint firstAttribute="trailing" secondItem="6lb-Xj-iTH" secondAttribute="trailing" constant="24" id="KDs-5c-zWx"/>
                                     <constraint firstAttribute="bottom" secondItem="P1o-7S-vjB" secondAttribute="bottom" id="NYy-KA-tEs"/>
+                                    <constraint firstItem="6lb-Xj-iTH" firstAttribute="centerY" secondItem="P1o-7S-vjB" secondAttribute="centerY" id="bPr-Xu-0Mj"/>
                                     <constraint firstItem="P1o-7S-vjB" firstAttribute="top" secondItem="gMm-AL-6mG" secondAttribute="top" id="eYg-M3-V2F"/>
                                     <constraint firstItem="cM7-8f-sKz" firstAttribute="centerY" secondItem="P1o-7S-vjB" secondAttribute="centerY" id="i9S-zg-bVH"/>
                                     <constraint firstItem="cM7-8f-sKz" firstAttribute="centerX" secondItem="gMm-AL-6mG" secondAttribute="centerX" id="tDn-Rj-Dng"/>
@@ -1382,6 +1415,7 @@
                         <outlet property="rejectAcceptStackView" destination="yyj-qb-j2t" id="qWr-zz-vDk"/>
                         <outlet property="rejectView" destination="UzC-9B-ECf" id="GGs-ZK-dy1"/>
                         <outlet property="subCategoryStackView" destination="H2U-74-RTC" id="dD8-Kz-PJO"/>
+                        <outlet property="toggleImageView" destination="fKW-v2-f31" id="7dl-fs-MLq"/>
                         <outlet property="transactionIdStackView" destination="1fU-mI-c9E" id="3A7-pb-rbg"/>
                     </connections>
                 </viewController>
@@ -2959,6 +2993,9 @@
                                                                         <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="downloadInvoiceDidTapped:" destination="PWt-Ce-6rS" eventType="touchUpInside" id="r2e-s4-zI9"/>
+                                                                </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Download Invoice" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mqs-SJ-z0B">
                                                                 <rect key="frame" x="110" y="9.3333333333334867" width="125.33333333333331" height="19.666666666666671"/>
@@ -3412,6 +3449,7 @@ Address Zone</string>
         <image name="search" width="20" height="20"/>
         <image name="setTaxPercentage" width="16.666666030883789" height="24.666666030883789"/>
         <image name="shippedDone" width="29" height="29"/>
+        <image name="toggleOn" width="40" height="22"/>
         <image name="topTabbar" width="114.33333587646484" height="38"/>
         <image name="userProfile" width="32" height="32"/>
         <namedColor name="171717">

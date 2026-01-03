@@ -179,6 +179,23 @@ extension WebService {
         }
     }
     
+    
+    func upadteBannerRequestStatus(param: [String:Any], completion: @escaping(GetBrandDataList) -> Void) {
+        CommonUtils.showHud(show: true)
+        NetworkManager.shared.request(withAPI: .endpoint(.updateBannerRequestStatus), requestMethod: .post, requestParams: param, requestModel: GetBrandDataList.self) { result, code in
+            CommonUtils.showHud(show: false)
+            self.evaluateWebServiceResponse(response: result) { response, message, error in
+                guard let response = response else {
+                    if let error {
+                        UIApplication.shared.topViewController()?.showAlert(msg: error)
+                    }
+                    return
+                }
+                completion(response)
+            }
+        }
+    }
+    
     func deleteBrand(param: [String:Any], completion: @escaping(EmptyModel) -> Void) {
         CommonUtils.showHud(show: true)
         NetworkManager.shared.request(withAPI: .endpoint(.deleteBrand), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
