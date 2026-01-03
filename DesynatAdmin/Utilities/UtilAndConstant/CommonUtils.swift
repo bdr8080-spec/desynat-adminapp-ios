@@ -47,6 +47,23 @@ class CommonUtils {
       }
   }
 
+    static func formatPriceStringInputDecimal(_ amount: String?, currency: String = "KD") -> String {
+        guard
+            let amount = amount,
+            let doubleAmount = Double(amount)
+        else {
+            return "0 \(currency)"
+        }
+
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 0   // no forced decimals
+        formatter.maximumFractionDigits = 2   // up to 2 decimals
+
+        let formattedAmount = formatter.string(from: NSNumber(value: doubleAmount)) ?? "0"
+        return "\(formattedAmount) \(currency)"
+    }
+
     
 //    static func formatDate(_ date: Date) -> String {
 //        let formatter = DateFormatter()

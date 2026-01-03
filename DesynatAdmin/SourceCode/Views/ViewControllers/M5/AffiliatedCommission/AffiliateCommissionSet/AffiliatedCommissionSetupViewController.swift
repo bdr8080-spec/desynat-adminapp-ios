@@ -9,6 +9,7 @@ import UIKit
 
 class AffiliatedCommissionSetupViewController: UIViewController {
     
+    @IBOutlet weak var saveChangesButton: CustomButton!
     @IBOutlet weak var taxTF: UITextField!
     @IBOutlet weak var headerView: UIView!
     
@@ -27,6 +28,7 @@ class AffiliatedCommissionSetupViewController: UIViewController {
            let taxValue = Double(taxString) {
             taxTF.text = formatTax(taxValue)
             originalTaxValue = taxValue // store exact original value
+            updateSaveButtonState()
         }
         
     }
@@ -79,6 +81,23 @@ class AffiliatedCommissionSetupViewController: UIViewController {
         formatter.numberStyle = .decimal
         return formatter.string(from: NSNumber(value: value)) ?? "0"
     }
+    
+    private func updateSaveButtonState() {
+        guard let text = taxTF.text,
+              !text.isEmpty,
+              let currentValue = Double(text) else {
+            // ❌ Empty or invalid → Disable
+            saveChangesButton.isEnabled = false
+            saveChangesButton.alpha = 0.5
+            return
+        }
+
+        let hasChanged = currentValue != originalTaxValue
+
+        saveChangesButton.isEnabled = hasChanged
+        saveChangesButton.alpha = hasChanged ? 1.0 : 0.5
+    }
+
 }
 
 extension AffiliatedCommissionSetupViewController: UITextFieldDelegate {
@@ -122,5 +141,14 @@ extension AffiliatedCommissionSetupViewController: UITextFieldDelegate {
         
         return true
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        updateSaveButtonState()
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        updateSaveButtonState()
+    }
+
 }
 

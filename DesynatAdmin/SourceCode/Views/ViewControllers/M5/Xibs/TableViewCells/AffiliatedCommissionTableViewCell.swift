@@ -32,13 +32,15 @@ class AffiliatedCommissionTableViewCell: UITableViewCell {
     func configData(data: CommissionPercentageModel) {
         self.titleLabel.text = data.name ?? ""
         self.flagEmojLabel.text = data.flag ?? ""
-        if let commissionStr = data.affiliateCommissionInfo?.commission,
-           let commission = Double(commissionStr) {
-
-            self.commissionLabel.text = String(format: "%.1f %%", commission)
-        } else {
-            self.commissionLabel.text = "0.0 %"
-        }
-
+//        if let commissionStr = data.affiliateCommissionInfo?.commission,
+//           let commission = Double(commissionStr) {
+//            self.commissionLabel.text = String(format: "%.1f %%", commission)
+//        } else {
+//            self.commissionLabel.text = "0.0 %"
+//        }
+        commissionLabel.text = "\(CommonUtils.formatPriceStringInputDecimal(data.affiliateCommissionInfo?.commission))"
     }
+    
+    
+    
 }

@@ -31,8 +31,9 @@ class BannersManagementDetailsViewController: UIViewController {
   @IBOutlet weak var lblSubcategoryName: UILabel!
   @IBOutlet weak var lblStatus: UILabel!
     @IBOutlet weak var toggleImageView: UIImageView!
+    @IBOutlet weak var toggleButtonOutlet: UIButton!
     
-  //MARK: VARIABLE
+    //MARK: VARIABLE
   var type: BannersSelectedListType = .new
   var detailData = BannerListInfo()
   private var viewModel : BannersManagementListViewModel = BannersManagementListViewModel()
@@ -53,9 +54,17 @@ class BannersManagementDetailsViewController: UIViewController {
       rejectAcceptStackView.isHidden = true
       acceptView.isHidden = true
       rejectView.isHidden = true
+        
     }
     initialSetUp()
     setData()
+      if type == .approved {
+          toggleImageView.isHidden = false
+          toggleButtonOutlet.isHidden = false
+      } else {
+          toggleImageView.isHidden = true
+          toggleButtonOutlet.isHidden = true
+      }
   }
   
   
@@ -120,8 +129,11 @@ class BannersManagementDetailsViewController: UIViewController {
             : UIImage(named: "toggleOff")  // Blocked
     }
 
-
-    
+    @IBAction func bannerImageDidTapped(_ sender: Any) {
+        let nextVC = SizeChartViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
+        nextVC.sizeChartUrl = detailData.image
+        self.navigationController?.present(nextVC, animated: true)
+    }
     
     @IBAction func toggleButtonDidTapped(_ sender: Any) {
         let newStatus = toggleStatus == 1 ? 0 : 1
@@ -145,6 +157,12 @@ class BannersManagementDetailsViewController: UIViewController {
 
                         // 3️⃣ Send updated model back
                         self.onStatusUpdated?(self.detailData)
+                        let message = newStatus == 1
+                                            ? "Banner activated successfully"
+                                            : "Banner deactivated successfully"
+
+//                                        self.view.showToast(message)
+                        CommonUtils.showToast(message: message)
                     }
                 }
             }
