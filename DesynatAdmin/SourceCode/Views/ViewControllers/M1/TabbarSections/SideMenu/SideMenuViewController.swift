@@ -120,7 +120,8 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
               let vc = DeliveryBoyViewController.instantiate(fromAppStoryboard: .ReasonManagement)
               self.navigationController?.pushViewController(vc, animated: false)
             case "Live Request  & Timeslot Management":
-                print("➡️ Navigating to Live Request & Timeslot Management")
+              let nextVC = LiveRequestListManagementViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
+              self.navigationController?.pushViewController(nextVC, animated: false)
             case "Gift Card Category Management":
               let vc = GiftCardsListViewController.instantiate(fromAppStoryboard: .ShippingPromocode)
               self.navigationController?.pushViewController(vc, animated: false)

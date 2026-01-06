@@ -14,6 +14,7 @@ enum AppStoryboard : String {
   case ReasonManagement
   case ShippingPromocode
   case AffiliatedBannerOrder
+  case LiveStoryDealManagement
 }
 
 extension AppStoryboard {
