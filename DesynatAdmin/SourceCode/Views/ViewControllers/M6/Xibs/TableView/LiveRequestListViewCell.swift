@@ -9,7 +9,14 @@ import UIKit
 
 class LiveRequestListViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
+  @IBOutlet weak var toggleImageView: UIImageView!
+  @IBOutlet weak var timeLabel: UILabel!
+  
+  var onDeleteToggle:(() -> Void)?
+  var onEditToggle:(() -> Void)?
+  var onStatusToggle:(() -> Void)?
+  
+  override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
@@ -20,4 +27,17 @@ class LiveRequestListViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+  @IBAction func deleteDidTapped(_ sender: Any) {
+    onDeleteToggle?()
+  }
+  
+  @IBAction func editDidTapped(_ sender: Any) {
+    onEditToggle?()
+  }
+  
+  @IBAction func toggleDidTapped(_ sender: Any) {
+    onStatusToggle?()
+  }
+  
+  
 }

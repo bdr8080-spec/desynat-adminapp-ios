@@ -26,10 +26,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="339" height="46"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1pi-4K-Jnq" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="163" height="46"/>
+                                <rect key="frame" x="0.0" y="0.0" width="171" height="46"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:30 AM TO 11:30 AM" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wPA-fB-LKV">
-                                        <rect key="frame" x="12" y="5" width="139" height="36"/>
+                                        <rect key="frame" x="12" y="5" width="147" height="36"/>
                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -64,11 +64,17 @@
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="ic_delete_city"/>
+                                        <connections>
+                                            <action selector="deleteDidTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Xdc-D7-j6q"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FNo-8A-rlt">
                                         <rect key="frame" x="35" y="0.0" width="30" height="30"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="pencilEdit"/>
+                                        <connections>
+                                            <action selector="editDidTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="jar-UM-DKd"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -89,6 +95,9 @@
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain"/>
+                                        <connections>
+                                            <action selector="toggleDidTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="mD3-Wn-YxK"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -125,6 +134,10 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="timeLabel" destination="wPA-fB-LKV" id="440-hi-uqA"/>
+                <outlet property="toggleImageView" destination="Xtv-li-u2x" id="bB4-eU-uyx"/>
+            </connections>
             <point key="canvasLocation" x="60.305343511450381" y="40.140845070422536"/>
         </tableViewCell>
     </objects>

@@ -34,19 +34,20 @@ class SideMenuViewController: UIViewController {
         SideMenuModel(title: "Affiliate Commission percentage", image: "affilitaeCommisiin"),
         SideMenuModel(title: "Banner requests Management", image: "bannerRequest"),
         SideMenuModel(title: "Orders Management", image: "orderManagemnt"),
+        SideMenuModel(title: "Live Request  & Timeslot Management", image: "liveReuqest"),
+        SideMenuModel(title: "Story Management", image: "storyManagment"),
+        SideMenuModel(title: "Deals Management", image: "dealsManagement"),
         
         SideMenuModel(title: "Sub Admin", image: "subadmin"),
         SideMenuModel(title: "Affiliate User Management", image: "userManagemnet"),
-        SideMenuModel(title: "Live Request  & Timeslot Management", image: "liveReuqest"),
         SideMenuModel(title: "Refund Management", image: "refundManagemnt"),
         SideMenuModel(title: "Affiliate withdrawal requests", image: "affilateWithdraw"),
         SideMenuModel(title: "Notifications Management", image: "notificationBell"),
-        SideMenuModel(title: "Story Management", image: "storyManagment"),
         SideMenuModel(title: "Ticket Management", image: "ticketManagemnt"),
         SideMenuModel(title: "Seller Payouts", image: "sellerPayout"),
-        SideMenuModel(title: "Deals Management", image: "dealsManagement"),
         SideMenuModel(title: "CMS", image: "cms"),
         SideMenuModel(title: "Support Chat", image: "support")]
+  
     private lazy var viewModel = SideMenuViewModel(hostVC: self)
     
     override func viewDidLoad() {
@@ -146,12 +147,15 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             case "Notifications Management":
                 print("➡️ Navigating to Notifications Management")
             case "Story Management":
-                print("➡️ Navigating to Story Management")
+              let nextVC = StoryManagemnetViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
+              self.navigationController?.pushViewController(nextVC, animated: true)
             case "Ticket Management":
                 print("➡️ Navigating to Ticket Management")
             case "Seller Payouts":
                 print("➡️ Navigating to Seller Payouts")
             case "Deals Management":
+              let nextVC = DealsManagementListViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
+              self.navigationController?.pushViewController(nextVC, animated: true)
                 print("➡️ Navigating to Deals Management")
             case "Banner per day price":
               let vc = BannerPerDayListViewController.instantiate(fromAppStoryboard: .ShippingPromocode)
