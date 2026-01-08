@@ -114,6 +114,38 @@ extension WebService {
             }
         }
     }
+  
+  func addAdvertisement(param: [String:Any], completion: @escaping(FullScreenBannerDataList) -> Void) { //AddAdvertisementModel
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.addFullScreenBanner), requestMethod: .post, requestParams: param, requestModel: FullScreenBannerDataList.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func editAdvertisement(param: [String:Any], completion: @escaping(FullScreenBannerDataList) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.updateFullScreenBanner), requestMethod: .post, requestParams: param, requestModel: FullScreenBannerDataList.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
     
     func editSubCategory(param: [String:Any], completion: @escaping(GetSubCategoryDataList) -> Void) {
         CommonUtils.showHud(show: true)
@@ -130,6 +162,8 @@ extension WebService {
             }
         }
     }
+  
+  
     
     func deleteSubCategory(param: [String:Any], completion: @escaping(EmptyModel) -> Void) {
         CommonUtils.showHud(show: true)
@@ -162,6 +196,22 @@ extension WebService {
             }
         }
     }
+  
+  func getAllFullScreenBanners(param: [String: Any], completion: @escaping (FullScreenBannerDataModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getFullScreenBanners), requestMethod: .get, requestParams: param, requestModel: FullScreenBannerDataModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
     
     func upadteBrandStatus(param: [String:Any], completion: @escaping(GetBrandDataList) -> Void) {
         CommonUtils.showHud(show: true)
@@ -470,6 +520,23 @@ extension WebService {
       }
   }
   
+  func getAllUsersCountryList(completion:@escaping (_ user:[GetAllUserCountryModel])-> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI:.endpoint(.allUserCountry), requestMethod: .get,requestModel:[GetAllUserCountryModel].self) { result, code in
+          
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message,error in
+              guard let user = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(user)
+          }
+      }
+  }
+  
   func getAllZone(completion: @escaping([DriverZoneList]) -> Void) {
       CommonUtils.showHud(show: true)
       NetworkManager.shared.request(withAPI: .endpoint(.getZoneListOfDriver), requestMethod: .get, requestModel: [DriverZoneList].self) { result, code in
@@ -666,6 +733,22 @@ extension WebService {
       }
   }
   
+  func getFullScreenBannerDetailsList(param: [String: Any], completion: @escaping (FullScreenBannerDataList) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getFullScreenDetailsBanners), requestMethod: .get, requestParams: param, requestModel: FullScreenBannerDataList.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
   func upadteGiftCardStatus(param: [String:Any], completion: @escaping(GiftCardsList) -> Void) {
       CommonUtils.showHud(show: true)
       NetworkManager.shared.request(withAPI: .endpoint(.updateStatusOfGiftCards), requestMethod: .post, requestParams: param, requestModel: GiftCardsList.self) { result, code in
@@ -685,6 +768,22 @@ extension WebService {
   func deleteCard(param: [String:Any], completion: @escaping(EmptyModel) -> Void) {
       CommonUtils.showHud(show: true)
       NetworkManager.shared.request(withAPI: .endpoint(.deleteGiftCard), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func deleteFullScreenBanner(param: [String:Any], completion: @escaping(EmptyModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.deleteFullScreenBanner), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
           CommonUtils.showHud(show: false)
           self.evaluateWebServiceResponse(response: result) { response, message, error in
               guard let response = response else {
@@ -829,6 +928,150 @@ extension WebService {
   func editPromoCode(param: [String:Any], completion: @escaping(EmptyModel) -> Void) {
       CommonUtils.showHud(show: true)
       NetworkManager.shared.request(withAPI: .endpoint(.editPromocode), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func getActiveDeals(param: [String: Any], completion: @escaping (DealListManagementListDataModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getAllActiveDeals), requestMethod: .get, requestParams: param, requestModel: DealListManagementListDataModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func getExpiredDeals(param: [String: Any], completion: @escaping (DealListManagementListDataModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getAllExpiredDeals), requestMethod: .get, requestParams: param, requestModel: DealListManagementListDataModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func editDealsDetails(param: [String:Any], completion: @escaping(EmptyModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.editDealDetails), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func addNewDeal(param: [String:Any], completion: @escaping(EmptyModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.addNewDeal), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func getDealDetailsList(param: [String: Any], completion: @escaping (DealListManagementList) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getDealDetails), requestMethod: .get, requestParams: param, requestModel: DealListManagementList.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func dealDetailsStatusUpdate(param: [String:Any], completion: @escaping(DealListManagementList) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.updateDealStatus), requestMethod: .post, requestParams: param, requestModel: DealListManagementList.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func deleteDealDetails(param: [String:Any], completion: @escaping(EmptyModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.deleteDealDetails), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func addTimeSlot(param: [String:Any], completion: @escaping(EmptyModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.addTimeSlots), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func getAllLiveRequestTimeSlot(completion: @escaping([LiveRequestListDataModel]) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getLiveRequestTimeSlots), requestMethod: .get, requestModel: [LiveRequestListDataModel].self) { result, code in
           CommonUtils.showHud(show: false)
           self.evaluateWebServiceResponse(response: result) { response, message, error in
               guard let response = response else {

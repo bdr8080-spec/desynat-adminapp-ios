@@ -134,6 +134,26 @@ enum NetworkEndPoint: String {
     case assignDriver = "api/admin/assign_driver"
     case updateBannerRequestStatus = "api/admin/block_unblock_banner_req"
     
+  //FULL SCREEN BANNER MANAGEMENT
+  case getFullScreenBanners = "api/admin/get_full_banners"
+  case getFullScreenDetailsBanners = "api/admin/get_banner_detail"
+  case allUserCountry = "api/all_country"
+  case addFullScreenBanner = "api/admin/add_full_banner"
+  case updateFullScreenBanner = "api/admin/update_full_banner"
+  case deleteFullScreenBanner = "api/admin/delete_full_banner"
+  
+  //M6
+  case getAllActiveDeals = "api/admin/get_active_deals"
+  case getAllExpiredDeals = "api/admin/get_expired_deals"
+  case addNewDeal = "api/admin/add_deal"
+  case editDealDetails = "api/admin/update_deal"
+  case getDealDetails = "api/admin/get_deal_detail"
+  case updateDealStatus = "api/admin/block_unblock_deal"
+  case deleteDealDetails = "api/admin/delete_deal"
+  
+  case addTimeSlots = "api/admin/add_timeslot"
+  case getLiveRequestTimeSlots = "api/admin/get_timeslots"
+  
     func withBaseURL() -> String {
         return "\(BaseURL.value())\(self.rawValue)"
     }

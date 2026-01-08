@@ -10,6 +10,7 @@ import FSCalendar
 
 class LiveRequestListManagementViewController: UIViewController {
   
+  @IBOutlet weak var liveRequestTimeSlotTableViewHieghtConstriant: NSLayoutConstraint!
   @IBOutlet weak var countryTableViewHeightConstarint: NSLayoutConstraint!
   @IBOutlet weak var countryTableView: TableViewDynamicHeight! {
       didSet {
@@ -59,12 +60,20 @@ class LiveRequestListManagementViewController: UIViewController {
   var liveRequestTimeslotISSelcted: Bool = true
   private var selectedTab: SelectedLiveRequestTab = .all
   private lazy var viewModel = LiveRequestListManagementViewModel(hostVC: self)
-  private var selectedCountryIndex: Int = 0
+  var selectedCountryIndex: Int = 0
+  var selectedDateString: String? = ""
   lazy private var monthYearFormatter: DateFormatter = {
       let formatter = DateFormatter()
       formatter.dateFormat = "MMMM yyyy"   // November 2025
       return formatter
   }()
+  private lazy var apiDateFormatter: DateFormatter = {
+      let formatter = DateFormatter()
+      formatter.dateFormat = "yyyy-MM-dd"
+      formatter.locale = Locale(identifier: "en_US_POSIX")
+      return formatter
+  }()
+
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -73,13 +82,18 @@ class LiveRequestListManagementViewController: UIViewController {
     selectedCountryView.isHidden = false
     viewModel.getAllCountry()
     initialUIStep(isShow: true)
-    
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    viewModel.getAllTimeRequestTimeSlot()
+  }
+
   override func viewWillLayoutSubviews() {
       super.viewWillLayoutSubviews()
       DispatchQueue.main.async {
           self.countryTableViewHeightConstarint.constant = self.countryTableView.contentSize.height
+        self.liveRequestTimeSlotTableViewHieghtConstriant.constant = self.timeSlotsTableView.contentSize.height
       }
   }
   
@@ -127,6 +141,9 @@ class LiveRequestListManagementViewController: UIViewController {
   
   @IBAction func addTimeSlotDidTapped(_ sender: Any) {
     let nextVC = AddTimeSlotViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
+    nextVC.selectedDate = selectedDateString ?? ""
+    nextVC.countryId = selectedCountryIndex
+    nextVC.isComingForEdit = false
     self.navigationController?.present(nextVC, animated: true)
   }
   
@@ -211,7 +228,22 @@ class LiveRequestListManagementViewController: UIViewController {
     assignButtonView.isHidden = !isShow
     paginationBottomView.isHidden = isShow
     liveRequestTimeslotISSelcted = isShow
+    if isShow {
+      selectTodayDate()
+    }
   }
+  
+  private func selectTodayDate() {
+      let today = Calendar.current.startOfDay(for: Date())
+
+      viewCalendar.select(today)
+      viewCalendar.setCurrentPage(today, animated: false)
+      dateAndYearLabel.text = monthYearFormatter.string(from: today)
+
+      // ✅ STORE DEFAULT DATE
+      selectedDateString = apiDateFormatter.string(from: today)
+  }
+
   
   private func configureCalendar() {
       viewCalendar.delegate = self
@@ -253,7 +285,7 @@ extension LiveRequestListManagementViewController: UITableViewDelegate, UITableV
     } else if tableView == countryTableView {
       return viewModel.countryListData.count
     } else {
-      return 10
+      return viewModel.slectedTimeSlot.count
     }
   }
   
@@ -278,6 +310,14 @@ extension LiveRequestListManagementViewController: UITableViewDelegate, UITableV
       return cell
     } else {
       let cell = tableView.dequeueReusableCell(withIdentifier: "LiveRequestListViewCell", for: indexPath) as! LiveRequestListViewCell
+      let data = viewModel.slectedTimeSlot[indexPath.row]
+      cell.configData(data: data)
+      cell.onEditToggle = {
+        let nextVC = AddTimeSlotViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
+        nextVC.slectedTimeSlot = data
+        nextVC.isComingForEdit = true
+        self.navigationController?.present(nextVC, animated: true)
+      }
       return cell
     }
   }
@@ -324,17 +364,21 @@ extension LiveRequestListManagementViewController: FSCalendarDelegate, FSCalenda
   }
 
     
-    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        let today = Calendar.current.startOfDay(for: Date())
-        let targetDate = Calendar.current.startOfDay(for: date)
-        
-        // Only allow future dates
-        guard targetDate >= today else { return }
+  func calendar(_ calendar: FSCalendar,
+                didSelect date: Date,
+                at monthPosition: FSCalendarMonthPosition) {
 
-        
-        // Refresh calendar
-        calendar.reloadData()
-    }
+      let today = Calendar.current.startOfDay(for: Date())
+      let targetDate = Calendar.current.startOfDay(for: date)
+
+      guard targetDate >= today else { return }
+
+      // ✅ STORE SELECTED DATE
+      selectedDateString = apiDateFormatter.string(from: targetDate)
+
+      calendar.reloadData()
+  }
+
 
 
     // Highlight selected range

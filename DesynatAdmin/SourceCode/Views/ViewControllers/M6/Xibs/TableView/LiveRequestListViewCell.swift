@@ -8,7 +8,7 @@
 import UIKit
 
 class LiveRequestListViewCell: UITableViewCell {
-
+  
   @IBOutlet weak var toggleImageView: UIImageView!
   @IBOutlet weak var timeLabel: UILabel!
   
@@ -17,16 +17,16 @@ class LiveRequestListViewCell: UITableViewCell {
   var onStatusToggle:(() -> Void)?
   
   override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+    super.awakeFromNib()
+    // Initialization code
+  }
+  
+  override func setSelected(_ selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
     
+    // Configure the view for the selected state
+  }
+  
   @IBAction func deleteDidTapped(_ sender: Any) {
     onDeleteToggle?()
   }
@@ -37,6 +37,10 @@ class LiveRequestListViewCell: UITableViewCell {
   
   @IBAction func toggleDidTapped(_ sender: Any) {
     onStatusToggle?()
+  }
+  
+  func configData(data: LiveRequestListDataModel) {
+    timeLabel.text = "\(data.from ?? "") TO \(data.to ?? "")"
   }
   
   

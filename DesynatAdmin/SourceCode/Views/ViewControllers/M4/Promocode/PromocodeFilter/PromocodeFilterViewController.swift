@@ -92,7 +92,6 @@ class PromocodeFilterViewController: UIViewController {
     toTextField.text = selectedFilter.toDate
   }
   
-  
 }
 
 extension PromocodeFilterViewController {

@@ -33,6 +33,7 @@ class SideMenuViewController: UIViewController {
         SideMenuModel(title: "Promocode Management", image: "promocode"),
         SideMenuModel(title: "Affiliate Commission percentage", image: "affilitaeCommisiin"),
         SideMenuModel(title: "Banner requests Management", image: "bannerRequest"),
+        SideMenuModel(title: "Full Screen Banner Management", image: "bannerRequest"),
         SideMenuModel(title: "Orders Management", image: "orderManagemnt"),
         SideMenuModel(title: "Live Request  & Timeslot Management", image: "liveReuqest"),
         SideMenuModel(title: "Story Management", image: "storyManagment"),
@@ -162,6 +163,9 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
               self.navigationController?.pushViewController(vc, animated: false)
             case "Banner requests Management":
               let vc = BannersManagementListViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
+              self.navigationController?.pushViewController(vc, animated: false)
+            case "Full Screen Banner Management":
+              let vc = FullScreenBannerViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
               self.navigationController?.pushViewController(vc, animated: false)
             case "Reason Management":
               let vc = ReasonManagementViewController.instantiate(fromAppStoryboard: .ReasonManagement)

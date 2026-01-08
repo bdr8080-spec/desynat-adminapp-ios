@@ -46,6 +46,8 @@ class CommonUtils {
           return String(format: "%.2f", roundedAmount) + " \(currency)"
       }
   }
+  
+  
 
     static func formatPriceStringInputDecimal(_ amount: String?, currency: String = "KD") -> String {
         guard

@@ -8,7 +8,8 @@
 import UIKit
 
 class DealsManagementListViewController: UIViewController {
-
+  
+  @IBOutlet weak var searchTF: BindableTextField!
   @IBOutlet weak var previousButton: UIButton!
   @IBOutlet weak var nextButton: UIButton!
   @IBOutlet weak var pageCountLabel: UILabel!
@@ -23,16 +24,24 @@ class DealsManagementListViewController: UIViewController {
     }
   }
   
-//  var type: DealsManagementTab = .active
+  //  var type: DealsManagementTab = .active
   var type: Int = 1
   private lazy var viewModel = DealsManagementListViewModel(hostVC: self)
+  private var searchWorkItem: DispatchWorkItem?
   
   override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
-    
-
+    super.viewDidLoad()
+    searchTF.delegate = self
+    updatePaginationButtonImages()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    viewModel.currentPage = 1
+    viewModel.getActiveDeals()
+  }
+  
+  
   @IBAction func backDidTapped(_ sender: Any) {
     self.navigationController?.popViewController(animated: true)
   }
@@ -43,8 +52,9 @@ class DealsManagementListViewController: UIViewController {
     expiredButtonOutlet.setImage(UIImage(named: ""), for: .normal)
     expiredLabel.textColor = UIColor.black
     type = 1
-//    txtFieldSearch.text = ""
-//    viewModel.changeTab(.approved)
+    viewModel.currentPage = 1
+    searchTF.text = ""
+    viewModel.getActiveDeals()
   }
   
   @IBAction func expiredDidTapped(_ sender: Any) {
@@ -53,6 +63,9 @@ class DealsManagementListViewController: UIViewController {
     expiredButtonOutlet.setImage(UIImage(named: "btnGradient"), for: .normal)
     expiredLabel.textColor = UIColor.white
     type = 2
+    viewModel.currentPage = 1
+    searchTF.text = ""
+    viewModel.getExpiredDeals()
   }
   
   @IBAction func serchDidTapped(_ sender: Any) {
@@ -96,18 +109,13 @@ class DealsManagementListViewController: UIViewController {
 extension DealsManagementListViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 3//viewModel.reasonListData.count
+    return viewModel.reasonListData.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "DealsManagementListTableViewCell", for: indexPath) as! DealsManagementListTableViewCell
-//    let data = viewModel.reasonListData[indexPath.row]
-//    cell.delegate = self
-//    cell.configData(data: data)
-//    cell.onStatusToggle = { [weak self] in
-//      guard let self = self else { return }
-//      self.toggleReasonStatus(at: indexPath)
-//    }
+    let data = viewModel.reasonListData[indexPath.row]
+    cell.configData(data: data)
     return cell
   }
   
@@ -118,12 +126,29 @@ extension DealsManagementListViewController: UITableViewDelegate, UITableViewDat
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let nextVC = DealDetailsViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
     nextVC.type = type
+    nextVC.dealId = viewModel.reasonListData[indexPath.row].id ?? 0
     self.navigationController?.pushViewController(nextVC, animated: true)
   }
   
 }
-//
-//enum DealsManagementTab {
-//  case active
-//  case expired
-//}
+
+extension DealsManagementListViewController: UITextFieldDelegate {
+  
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    let currentText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? ""
+    searchWorkItem?.cancel()
+    let workItem = DispatchWorkItem { [weak self] in
+      guard let self = self else { return }
+      self.viewModel.searchText = currentText
+      self.viewModel.currentPage = 1
+      if type == 1 {
+        self.viewModel.getActiveDeals()
+      } else {
+        self.viewModel.getExpiredDeals()
+      }
+    }
+    searchWorkItem = workItem
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: workItem)
+    return true
+  }
+}

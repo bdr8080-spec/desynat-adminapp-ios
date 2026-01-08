@@ -15,3 +15,14 @@ struct UserFilterModel {
         return countryId == nil && fromDate == nil && toDate == nil
     }
 }
+
+
+struct FullScreenBannerFilterModel {
+    var countryName: String?
+    var fromDate: String?
+    var toDate: String?
+    
+    var isEmpty: Bool {
+        return countryName == nil && fromDate == nil && toDate == nil
+    }
+}
