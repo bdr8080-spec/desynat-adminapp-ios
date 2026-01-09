@@ -152,7 +152,18 @@ enum NetworkEndPoint: String {
   case deleteDealDetails = "api/admin/delete_deal"
   
   case addTimeSlots = "api/admin/add_timeslot"
+  case editTimeSlots = "api/admin/update_timeslot"
   case getLiveRequestTimeSlots = "api/admin/get_timeslots"
+  case updateStatusLiveRequestTimeSlots = "api/admin/block_unblock_timeslot"
+  case deleteLiveRequestTimeSlots = "api/admin/delete_timeslot"
+  case getLiveRequestTime = "api/admin/get_live_requests"
+  case acceptLiveRequest = "api/admin/accept_live_request"
+  case rejectLiveRequest = "api/admin/reject_live_request"
+  
+  case getAdminStories = "api/admin/get_admin_stories"
+  case deleteAdminStories = "api/admin/delete_story"
+  case uploadImageAndVideo = "api/uploadFile"
+  case uploadAdminStory = "api/admin/add_story"
   
     func withBaseURL() -> String {
         return "\(BaseURL.value())\(self.rawValue)"

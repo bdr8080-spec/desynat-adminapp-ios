@@ -173,6 +173,7 @@ class BannersManagementDetailsViewController: UIViewController {
     
   @IBAction func rejectDidTapped(_ sender: Any) {
     let vc = RejectReasonViewController.viewFromNIB
+    vc.needToShowButtonStackView = false
     vc.setCallback { reason,type in
       self.viewModel.rejectBanner(id: self.detailData.id, reason: reason) {
         DispatchQueue.main.async {

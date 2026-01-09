@@ -115,12 +115,17 @@ class AddTimeSlotViewController: UIViewController {
     let fromTime = "\(fromHour):\(fromMinute) \(fromAmPm)"
     let toTime = "\(toHour):\(toMinute) \(toAmPm)"
     
-    let apiParams: [String: Any] = [
+    var apiParams: [String: Any] = [
       "country_id": countryId,
       "date": selectedDate,
       "from": fromTime,
       "to": toTime]
-    viewModel.addTimeSlotRequest(param: apiParams)
+    if isComingForEdit {
+      apiParams["timeslot_id"] = slectedTimeSlot?.id ?? 0
+      viewModel.editTimeSlotRequest(param: apiParams)
+    } else {
+      viewModel.addTimeSlotRequest(param: apiParams)
+    }
   }
   
   // MARK: - UI Setup

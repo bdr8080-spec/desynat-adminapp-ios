@@ -41,6 +41,11 @@ class LiveRequestListViewCell: UITableViewCell {
   
   func configData(data: LiveRequestListDataModel) {
     timeLabel.text = "\(data.from ?? "") TO \(data.to ?? "")"
+    if data.status == 1 {
+      toggleImageView.image = UIImage(named: "toggleOn")
+    } else {
+      toggleImageView.image = UIImage(named: "toggleOff")
+    }
   }
   
   

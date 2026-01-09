@@ -1069,9 +1069,73 @@ extension WebService {
       }
   }
   
-  func getAllLiveRequestTimeSlot(completion: @escaping([LiveRequestListDataModel]) -> Void) {
+  func editTimeSlot(param: [String:Any], completion: @escaping(EmptyModel) -> Void) {
       CommonUtils.showHud(show: true)
-      NetworkManager.shared.request(withAPI: .endpoint(.getLiveRequestTimeSlots), requestMethod: .get, requestModel: [LiveRequestListDataModel].self) { result, code in
+      NetworkManager.shared.request(withAPI: .endpoint(.editTimeSlots), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func getAllLiveRequestTimeSlot(param: [String: Any], completion: @escaping([LiveRequestListDataModel]) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getLiveRequestTimeSlots), requestMethod: .get, requestParams: param, requestModel: [LiveRequestListDataModel].self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func updateLiveRequestTimeslotStatus(param: [String: Any], completion: @escaping (EmptyModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.updateStatusLiveRequestTimeSlots), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func deleteTimeSlots(param: [String: Any], completion: @escaping (EmptyModel) -> Void) {
+    CommonUtils.showHud(show: true)
+    NetworkManager.shared.request(withAPI: .endpoint(.deleteLiveRequestTimeSlots), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+        CommonUtils.showHud(show: false)
+        self.evaluateWebServiceResponse(response: result) { response, message, error in
+            guard let response = response else {
+                if let error {
+                    UIApplication.shared.topViewController()?.showAlert(msg: error)
+                }
+                return
+            }
+            completion(response)
+        }
+    }
+}
+  
+  func getAllLiveRequest(param: [String: Any], completion: @escaping(LiveRequestPermissionDataModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getLiveRequestTime), requestMethod: .get, requestParams: param, requestModel: LiveRequestPermissionDataModel.self) { result, code in
           CommonUtils.showHud(show: false)
           self.evaluateWebServiceResponse(response: result) { response, message, error in
               guard let response = response else {
@@ -1085,5 +1149,102 @@ extension WebService {
       }
   }
     
+  func acceptLiveRequest(param: [String: Any], completion: @escaping (EmptyModel) -> Void) {
+    CommonUtils.showHud(show: true)
+    NetworkManager.shared.request(withAPI: .endpoint(.acceptLiveRequest), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+        CommonUtils.showHud(show: false)
+        self.evaluateWebServiceResponse(response: result) { response, message, error in
+            guard let response = response else {
+                if let error {
+                    UIApplication.shared.topViewController()?.showAlert(msg: error)
+                }
+                return
+            }
+            completion(response)
+        }
+    }
+}
+  
+  func rejectLiveRequest(param: [String: Any], completion: @escaping (EmptyModel) -> Void) {
+    CommonUtils.showHud(show: true)
+    NetworkManager.shared.request(withAPI: .endpoint(.rejectLiveRequest), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+        CommonUtils.showHud(show: false)
+        self.evaluateWebServiceResponse(response: result) { response, message, error in
+            guard let response = response else {
+                if let error {
+                    UIApplication.shared.topViewController()?.showAlert(msg: error)
+                }
+                return
+            }
+            completion(response)
+        }
+    }
+}
+  
+  func getAdminStoriesList(param: [String: Any], completion: @escaping (AdminStoriesDataModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getAdminStories), requestMethod: .get, requestParams: param, requestModel: AdminStoriesDataModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+  
+  func deleteAdminStories(param: [String: Any], completion: @escaping (EmptyModel) -> Void) {
+    CommonUtils.showHud(show: true)
+    NetworkManager.shared.request(withAPI: .endpoint(.deleteAdminStories), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+        CommonUtils.showHud(show: false)
+        self.evaluateWebServiceResponse(response: result) { response, message, error in
+            guard let response = response else {
+                if let error {
+                    UIApplication.shared.topViewController()?.showAlert(msg: error)
+                }
+                return
+            }
+            completion(response)
+        }
+    }
+}
+  
+  func uploadVideoAndImage(withParams file:MultipartUpload,
+                  completion:@escaping (_ url:String, _ msg:String?, _ code:HTTPStatusCode?)-> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.requestMultiPartForVideoAndAudio(url: .endpoint(.uploadImageAndVideo), assets: [file], model: UploadFileDataModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              if let url = response?.url {
+                  completion(url, message, code)
+              } else if let error {
+                  UIApplication.shared.topViewController()?.showAlert(msg: error)
+              }
+          }
+      }
+  }
+  
+  
+  
+  func uploadAdminStories(param: [String: Any], completion: @escaping (EmptyModel) -> Void) {
+    CommonUtils.showHud(show: true)
+    NetworkManager.shared.request(withAPI: .endpoint(.uploadAdminStory), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+        CommonUtils.showHud(show: false)
+        self.evaluateWebServiceResponse(response: result) { response, message, error in
+            guard let response = response else {
+                if let error {
+                    UIApplication.shared.topViewController()?.showAlert(msg: error)
+                }
+                return
+            }
+            completion(response)
+        }
+    }
+}
+  
 }
 

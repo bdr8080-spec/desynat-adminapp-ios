@@ -253,6 +253,7 @@ extension BannersManagementListViewController: HandleBannerAction {
   
   func rejectBanner(_ data: BannerListInfo) {
     let vc = RejectReasonViewController.viewFromNIB
+    vc.needToShowButtonStackView = false
     vc.setCallback { reason,type in
       self.viewModel.rejectBanner(id: data.id, reason: reason) {
         DispatchQueue.main.async {

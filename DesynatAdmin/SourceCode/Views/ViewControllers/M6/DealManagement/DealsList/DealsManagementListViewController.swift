@@ -130,6 +130,8 @@ extension DealsManagementListViewController: UITableViewDelegate, UITableViewDat
     self.navigationController?.pushViewController(nextVC, animated: true)
   }
   
+  
+  
 }
 
 extension DealsManagementListViewController: UITextFieldDelegate {

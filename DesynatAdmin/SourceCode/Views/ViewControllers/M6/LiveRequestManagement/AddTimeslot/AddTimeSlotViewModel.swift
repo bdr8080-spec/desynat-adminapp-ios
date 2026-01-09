@@ -24,4 +24,14 @@ class AddTimeSlotViewModel {
       }
     }
   }
+  
+  func editTimeSlotRequest(param: [String: Any]) {
+    WebService.shared.editTimeSlot(param: param){ [weak self] response in
+      guard let self = self else { return }
+      DispatchQueue.main.async {
+        self.hostVC.onChangesDone?()
+        self.hostVC.dismiss(animated: true)
+      }
+    }
+  }
 }

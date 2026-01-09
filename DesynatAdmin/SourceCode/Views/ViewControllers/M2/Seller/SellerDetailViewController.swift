@@ -305,6 +305,7 @@ class SellerDetailViewController: UIViewController {
     
     @IBAction func handleReject(_ sender: Any) {
         let vc = RejectReasonViewController.viewFromNIB
+      vc.needToShowButtonStackView = true
         vc.setCallback { reason,type in
             self.viewModel.rejectSeller(reason: reason,type: type) {
                 DispatchQueue.main.async {

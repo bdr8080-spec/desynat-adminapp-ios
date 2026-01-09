@@ -11,7 +11,7 @@ import Foundation
 struct LiveRequestListDataModel: Codable {
   let id, countryID: Int?
   let date, from, to: String?
-  let status: Int?
+  var status: Int?
   let createdAt, updatedAt: String?
   let countryInfo: CountryCodeInfo?
   
@@ -45,4 +45,138 @@ struct CountryCodeInfo: Codable {
     case createdAt = "created_at"
     case updatedAt = "updated_at"
   }
+}
+
+
+// MARK: - DataClass
+struct LiveRequestPermissionDataModel: Codable {
+    let currentPage: Int?
+    let data: [LiveRequestPermissionList]?
+    let firstPageURL: String?
+    let from, lastPage: Int?
+    let lastPageURL: String?
+    let links: [Link]?
+    let nextPageURL: String?
+    let path: String?
+    let perPage: Int?
+    let prevPageURL: String?
+    let to, total: Int?
+
+    enum CodingKeys: String, CodingKey {
+        case currentPage = "current_page"
+        case data
+        case firstPageURL = "first_page_url"
+        case from
+        case lastPage = "last_page"
+        case lastPageURL = "last_page_url"
+        case links
+        case nextPageURL = "next_page_url"
+        case path
+        case perPage = "per_page"
+        case prevPageURL = "prev_page_url"
+        case to, total
+    }
+}
+
+// MARK: - LiveRequestPermissionList
+struct LiveRequestPermissionList: Codable {
+    let id, timeslotID, sellerID, orderID: Int?
+    let adminVerify: Int?
+    let rejectReason: String?
+    let createdAt, updatedAt: String?
+    let timeslotDetails: TimeslotDetails?
+    let sellerDetails: SellerDetails?
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case timeslotID = "timeslot_id"
+        case sellerID = "seller_id"
+        case orderID = "order_id"
+        case adminVerify = "admin_verify"
+        case rejectReason = "reject_reason"
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+        case timeslotDetails = "timeslot_details"
+        case sellerDetails = "seller_details"
+    }
+}
+
+//// MARK: - SellerDetails
+//struct SellerDetails: Codable {
+//    let id: Int?
+//    let profilePic: String?
+//    let firstName, lastName, countryCode, mobile: String?
+//    let email, password, acceptTerms, otp: String?
+//    let otpVerify: String?
+//    let deviceType, deviceToken: String?
+//    let adminVerify, storeInformation, bankInformation: String?
+//    let rejectReason, lang: String?
+//    let isBlock: Int?
+//    let affilateCommission: String?
+//    let createdAt, updatedAt: String?
+//    let countryDetails: Country?
+//
+//    enum CodingKeys: String, CodingKey {
+//        case id
+//        case profilePic = "profile_pic"
+//        case firstName = "first_name"
+//        case lastName = "last_name"
+//        case countryCode = "country_code"
+//        case mobile, email, password
+//        case acceptTerms = "accept_terms"
+//        case otp
+//        case otpVerify = "otp_verify"
+//        case deviceType = "device_type"
+//        case deviceToken = "device_token"
+//        case adminVerify = "admin_verify"
+//        case storeInformation = "store_information"
+//        case bankInformation = "bank_information"
+//        case rejectReason = "reject_reason"
+//        case lang
+//        case isBlock = "is_block"
+//        case affilateCommission = "affilate_commission"
+//        case createdAt = "created_at"
+//        case updatedAt = "updated_at"
+//        case countryDetails = "country_details"
+//    }
+//}
+//
+//// MARK: - Country
+//struct Country: Codable {
+//    let id: Int?
+//    let name, isoCode, currencyName, currencyCode: String?
+//    let currencySymbol, dialCode, flag: String?
+//    let flag1: String?
+//    let exchangeRateToKwd, createdAt, updatedAt: String?
+//
+//    enum CodingKeys: String, CodingKey {
+//        case id, name
+//        case isoCode = "iso_code"
+//        case currencyName = "currency_name"
+//        case currencyCode = "currency_code"
+//        case currencySymbol = "currency_symbol"
+//        case dialCode = "dial_code"
+//        case flag, flag1
+//        case exchangeRateToKwd = "exchange_rate_to_kwd"
+//        case createdAt = "created_at"
+//        case updatedAt = "updated_at"
+//    }
+//}
+
+// MARK: - TimeslotDetails
+struct TimeslotDetails: Codable {
+    let id, countryID: Int?
+    let date, from, to: String?
+    let status: Int?
+    let createdAt, updatedAt: String?
+    let countryInfo: CountryDetails?
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case countryID = "country_id"
+        case date, from, to, status
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+        case countryInfo = "country_info"
+    }
 }

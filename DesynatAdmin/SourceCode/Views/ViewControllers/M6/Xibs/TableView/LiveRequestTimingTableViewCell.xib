@@ -15,6 +15,9 @@
         <array key="Poppins-Medium.ttf">
             <string>Poppins-Medium</string>
         </array>
+        <array key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -27,7 +30,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bfE-Wx-icI" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="461" height="253"/>
+                        <rect key="frame" x="0.0" y="0.0" width="461" height="344"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request By" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9lB-0G-iEf">
                                 <rect key="frame" x="15" y="15" width="67" height="17"/>
@@ -64,7 +67,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="4OG-u1-iiz">
-                                <rect key="frame" x="15" y="83.666666666666671" width="431" height="149.33333333333331"/>
+                                <rect key="frame" x="15" y="83.666666666666671" width="431" height="240.33333333333331"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="3KN-33-3eH">
                                         <rect key="frame" x="0.0" y="0.0" width="431" height="17"/>
@@ -100,8 +103,25 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Mnb-07-tBO">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="dyG-Bd-tjn">
                                         <rect key="frame" x="0.0" y="63.999999999999986" width="431" height="17"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="osc-Wx-1mg">
+                                                <rect key="frame" x="0.0" y="0.0" width="208" height="17"/>
+                                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
+                                                <color key="textColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Online" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t0a-EZ-l7V">
+                                                <rect key="frame" x="223" y="0.0" width="208" height="17"/>
+                                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Mnb-07-tBO">
+                                        <rect key="frame" x="0.0" y="95.999999999999986" width="431" height="17"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="da6-a5-ZkV">
                                                 <rect key="frame" x="0.0" y="0.0" width="208" height="17"/>
@@ -117,18 +137,30 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fvh-Jt-Nwj">
-                                        <rect key="frame" x="0.0" y="95.999999999999986" width="431" height="0.3333333333333286"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RMl-DE-ztm">
+                                        <rect key="frame" x="0.0" y="127.99999999999999" width="431" height="0.3333333333333286"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fvh-Jt-Nwj">
+                                                <rect key="frame" x="-15" y="0.0" width="461" height="0.33333333333333331"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="0.5" id="u7D-oU-kt6"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="0.0" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="0.5" id="u7D-oU-kt6"/>
+                                            <constraint firstItem="Fvh-Jt-Nwj" firstAttribute="leading" secondItem="RMl-DE-ztm" secondAttribute="leading" constant="-15" id="8bC-XS-Jbf"/>
+                                            <constraint firstAttribute="trailing" secondItem="Fvh-Jt-Nwj" secondAttribute="trailing" constant="-15" id="TD5-rl-y51"/>
+                                            <constraint firstItem="Fvh-Jt-Nwj" firstAttribute="top" secondItem="RMl-DE-ztm" secondAttribute="top" id="j9p-rE-lLS"/>
+                                            <constraint firstAttribute="bottom" secondItem="Fvh-Jt-Nwj" secondAttribute="bottom" id="nWU-IS-smo"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="0.0" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Mmh-Ue-g9I">
-                                        <rect key="frame" x="0.0" y="111.33333333333331" width="431" height="38"/>
+                                        <rect key="frame" x="0.0" y="143.33333333333331" width="431" height="38"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2wd-c2-Hic">
                                                 <rect key="frame" x="0.0" y="0.0" width="205.66666666666666" height="38"/>
@@ -217,6 +249,23 @@
                                             <constraint firstAttribute="height" constant="38" id="Mnb-xl-i2Y"/>
                                         </constraints>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="KdI-YV-x2I">
+                                        <rect key="frame" x="0.0" y="196.33333333333331" width="431" height="44"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reason" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jOF-9v-a01">
+                                                <rect key="frame" x="0.0" y="0.0" width="431" height="17"/>
+                                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Online" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PlZ-gH-sk7">
+                                                <rect key="frame" x="0.0" y="27" width="431" height="17"/>
+                                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -259,6 +308,21 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="acceptView" destination="YmL-zU-RiL" id="5zD-dl-J8G"/>
+                <outlet property="buttonStackView" destination="Mmh-Ue-g9I" id="KJ5-O5-nQ7"/>
+                <outlet property="liveRequestLabel" destination="Tj7-JT-MOO" id="kvJ-3u-Pzx"/>
+                <outlet property="paymentModelabel" destination="t0a-EZ-l7V" id="XTk-eL-Qr8"/>
+                <outlet property="paymentStackView" destination="dyG-Bd-tjn" id="MzE-jV-7Sa"/>
+                <outlet property="reasonLabel" destination="PlZ-gH-sk7" id="lE8-VY-kGx"/>
+                <outlet property="reasonStackView" destination="KdI-YV-x2I" id="zWb-bq-SPE"/>
+                <outlet property="rejectView" destination="2wd-c2-Hic" id="KLh-y2-mtP"/>
+                <outlet property="requestIdLabel" destination="wLJ-AP-blc" id="qjm-7U-lK4"/>
+                <outlet property="requestOnLabel" destination="Ny8-hy-ZfI" id="kYf-la-XHC"/>
+                <outlet property="separatorLabel" destination="Fvh-Jt-Nwj" id="CYR-HA-fFs"/>
+                <outlet property="statusLabel" destination="07Y-fH-bcv" id="OBV-yR-OS3"/>
+                <outlet property="usernameCountryLabe" destination="SvX-ZD-Vdc" id="NcB-KG-TX6"/>
+            </connections>
             <point key="canvasLocation" x="495.41984732824426" y="98.591549295774655"/>
         </tableViewCell>
     </objects>

@@ -1,4 +1,5 @@
 import Foundation
+import Photos
 import UIKit
 import SVProgressHUD
 import AVFoundation
@@ -47,7 +48,20 @@ class CommonUtils {
       }
   }
   
-  
+  static func getThumbnail(asset: PHAsset, size: CGSize, completion: @escaping (UIImage?) -> Void) {
+      let imageManager = PHCachingImageManager()
+      let options = PHImageRequestOptions()
+      options.deliveryMode = .highQualityFormat
+      options.isSynchronous = false
+      
+      imageManager.requestImage(for: asset,
+                                targetSize: size,
+                                contentMode: .aspectFill,
+                                options: options) { image, _ in
+          completion(image)
+      }
+  }
+
 
     static func formatPriceStringInputDecimal(_ amount: String?, currency: String = "KD") -> String {
         guard

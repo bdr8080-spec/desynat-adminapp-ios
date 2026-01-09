@@ -41,7 +41,7 @@ class RegisterationSuccessViewController: UIViewController {
       self.titleString = "Thank you for sinning up\nwith DESYNAT"
     case .LiveRequestIsDone:
       self.titleString = "Request accepted\nsuccessfully!"
-      mainImageView.image = UIImage(named: "ic_done")
+      mainImageView.image = UIImage(named: "darkGreenCompletion")
     }
   }
   

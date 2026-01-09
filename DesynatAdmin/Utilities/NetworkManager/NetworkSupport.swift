@@ -21,6 +21,8 @@ struct MultipartUpload {
     }
 }
 
+
+
 enum NetworkError: Error {
     case noResponseData
     case invalidResponse(ErrorResponse?)
@@ -104,3 +106,4 @@ enum HTTPStatusCode: Int, Decodable {
     static let Sucess = [SUCCESS, CREATED, ACCEPTED, NO_CONTENT]
     static let Failure = [BAD_REQUEST, FORBIDDEN, NOT_FOUND, METHOD_NOT_ALLOWED, DATA_EXIST, CONFLICT, INTERNAL_SERVER_ERROR]
 }
+

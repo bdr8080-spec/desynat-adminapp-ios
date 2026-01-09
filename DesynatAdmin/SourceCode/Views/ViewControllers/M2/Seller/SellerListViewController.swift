@@ -149,6 +149,7 @@ extension SellerListViewController:HandleSellerAction {
     
     func rejectSeller(_ data: SellerListInfo) {
         let vc = RejectReasonViewController.viewFromNIB
+      vc.needToShowButtonStackView = true
         vc.setCallback { reason,type in
             self.viewModel.rejectSeller(id: data.id, reason: reason,type: type) {
                 DispatchQueue.main.async {

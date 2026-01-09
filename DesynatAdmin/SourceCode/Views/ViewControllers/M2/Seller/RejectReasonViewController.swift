@@ -21,19 +21,22 @@ enum SellerRejectionType {
 }
 
 class RejectReasonViewController: UIViewController {
+  
   @IBOutlet weak var viewMain: CustomView!
   @IBOutlet weak var txtViewReason: IQTextView!
   @IBOutlet weak var btnCompleteProject: CustomButton!
   @IBOutlet weak var btnDocument: CustomButton!
   @IBOutlet weak var lblPlace: UILabel!
+  @IBOutlet weak var buttonStackView: UIStackView!
   
   private var viewModel : RejectReasonViewModel = RejectReasonViewModel()
   private(set) var callBack : ((String,SellerRejectionType) -> Void)?
+  var needToShowButtonStackView: Bool = false
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     self.setUpUi()
+    buttonStackView.isHidden = !needToShowButtonStackView
   }
   
   private func setUpUi() {
@@ -84,3 +87,4 @@ extension RejectReasonViewController : UITextViewDelegate {
     self.viewModel.setReason(textView.text)
   }
 }
+
