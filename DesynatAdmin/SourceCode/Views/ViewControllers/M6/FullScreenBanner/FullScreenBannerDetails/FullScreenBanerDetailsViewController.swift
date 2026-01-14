@@ -68,8 +68,33 @@ class FullScreenBanerDetailsViewController: UIViewController {
     }
     cardImageView.enableFullscreenZoom()
     countryNameLabel.text = giftsListData?.countryInfo?.name
+      
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+    formatter.locale = Locale(identifier: "en_US_POSIX")
+
+    let today = Calendar.current.startOfDay(for: Date())
+      
     if giftsListData?.status == 1 {
-      statusLabel.text = "Active"
+        if let startDateStr = giftsListData?.startDate,
+           let endDateStr = giftsListData?.endDate,
+           let startDate = formatter.date(from: startDateStr),
+           let endDate = formatter.date(from: endDateStr) {
+            
+            let start = Calendar.current.startOfDay(for: startDate)
+            let end = Calendar.current.startOfDay(for: endDate)
+            
+            if today < start {
+                statusLabel.text = "Upcoming"
+            } else if today > end {
+                statusLabel.text = "Inactive"
+            } else {
+                statusLabel.text = "Active"
+            }
+        } else {
+            statusLabel.text = "Upcoming"
+        }
+        
 //      statusImageView.image = UIImage(named: "toggleOn")
     } else {
       statusLabel.text = "Inactive"

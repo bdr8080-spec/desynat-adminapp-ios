@@ -125,7 +125,7 @@ extension AddAdvertisementViewController {
   private func setUpTextFields() {
     datePicker.preferredDatePickerStyle = .wheels
     datePicker.datePickerMode = .date
-    datePicker.minimumDate = nil
+      datePicker.minimumDate = Date()
     datePicker.backgroundColor = .white
     
     let toolbar = UIToolbar()
@@ -186,20 +186,20 @@ extension AddAdvertisementViewController {
 
 
 extension AddAdvertisementViewController: UITextFieldDelegate {
-  func textFieldDidBeginEditing(_ textField: UITextField) {
-    activeTextField = textField
-    let formatter = DateFormatter()
-    formatter.dateFormat = "dd/MM/yyyy"
-    if textField == toTextField {
-      if let fromText = fromTextField.text,
-         let fromDate = formatter.date(from: fromText) {
-        datePicker.minimumDate = fromDate
-      } else {
-        datePicker.minimumDate = nil
-      }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeTextField = textField
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        if textField == toTextField {
+            if let fromText = fromTextField.text,
+               let fromDate = formatter.date(from: fromText) {
+                datePicker.minimumDate = fromDate
+            } else {
+                datePicker.minimumDate = nil
+            }
+        }
+        if textField == fromTextField {
+            datePicker.minimumDate = Date()
+        }
     }
-    if textField == fromTextField {
-      datePicker.minimumDate = nil
-    }
-  }
 }

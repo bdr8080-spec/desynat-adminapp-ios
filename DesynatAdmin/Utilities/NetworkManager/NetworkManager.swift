@@ -164,7 +164,15 @@ final class NetworkManager {
                     }
                 }
             case .failure(let err):
-                completion(.failure(.decoding(err)), status)
+                if status == .UNAUTHORIZED {
+                    completion(.failure(.sessionExpired), status)
+                } else if HTTPStatusCode.Failure.contains(status) {
+                    self.ErrorResponseHandle(response: response.data) { errResponse in
+                        completion(.failure(.invalidResponse(errResponse)), status)
+                    }
+                } else {
+                    completion(.failure(.decoding(err)), status)
+                }
             }
         }
     }
@@ -309,7 +317,15 @@ final class NetworkManager {
                   }
               }
           case .failure(let err):
-              completion(.failure(.decoding(err)), status)
+              if status == .UNAUTHORIZED {
+                  completion(.failure(.sessionExpired), status)
+              } else if HTTPStatusCode.Failure.contains(status) {
+                  self.ErrorResponseHandle(response: response.data) { errResponse in
+                      completion(.failure(.invalidResponse(errResponse)), status)
+                  }
+              } else {
+                  completion(.failure(.decoding(err)), status)
+              }
           }
       }
   }

@@ -268,7 +268,7 @@ extension AddDealViewController: UITextFieldDelegate {
       }
     }
     if textField == fromTf {
-      datePicker.minimumDate = nil
+        datePicker.minimumDate = Date()
     }
   }
 }
@@ -277,7 +277,7 @@ extension AddDealViewController {
   private func setUpTextFields() {
     datePicker.preferredDatePickerStyle = .wheels
     datePicker.datePickerMode = .date
-    datePicker.minimumDate = nil
+    //datePicker.minimumDate = nil
     datePicker.backgroundColor = .white
     
     let toolbar = UIToolbar()

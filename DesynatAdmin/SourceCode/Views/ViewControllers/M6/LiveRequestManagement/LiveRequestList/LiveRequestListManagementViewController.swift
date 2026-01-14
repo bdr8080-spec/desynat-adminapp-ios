@@ -176,6 +176,9 @@ class LiveRequestListManagementViewController: UIViewController {
     nextVC.selectedDate = selectedDateString ?? ""
     nextVC.countryId = selectedCountryIndex
     nextVC.isComingForEdit = false
+    nextVC.onChangesDone = {
+        self.viewModel.fetchTimeSlotsIfPossible()
+    }
     self.navigationController?.present(nextVC, animated: true)
   }
   

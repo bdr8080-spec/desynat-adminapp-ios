@@ -16,52 +16,53 @@ class AddAdvertisementViewModel {
     self.hostVC = hostVC
   }
   
-  func validFields() -> Bool {
-    var errorMessage: AlertConstant = .none
-    
-    if hostVC.selectedImageUrl.isEmpty {
-      errorMessage = .SelectBannerImage
+    func validFields() -> Bool {
+        var errorMessage: AlertConstant = .none
+        
+        //Image
+        if hostVC.selectedImageUrl.isEmpty {
+            errorMessage = .SelectBannerImage
+        }
+        
+        //Title
+        let title = String.getString(hostVC.titleTextField.text)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if errorMessage == .none && title.isEmpty {
+            errorMessage = .EnterAdvTitle
+        }
+        
+        //Country
+        if errorMessage == .none && hostVC.countryId == 0 {
+            errorMessage = .selectCountry
+        }
+        
+        //From Date
+        let fromDate = String.getString(hostVC.fromTextField.text)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if errorMessage == .none && fromDate.isEmpty {
+            errorMessage = .SelectFromDate
+        }
+        
+        //To Date
+        let toDate = String.getString(hostVC.toTextField.text)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if errorMessage == .none && toDate.isEmpty {
+            errorMessage = .SelectToDate
+        }
+        
+        if errorMessage != .none {
+            hostVC.showAlert(msg: errorMessage.rawValue)
+            hostVC.view.endEditing(true)
+            return false
+        }
+        
+        hostVC.view.endEditing(true)
+        return true
     }
-    
-    let title = String.getString(hostVC.titleTextField.text).trimmingCharacters(in: .whitespacesAndNewlines)
-    if errorMessage == .none {
-      if title.isEmpty {
-        errorMessage = .EnterAdvTitle
-      }
-    }
-    
-//    let country = String.getString(hostVC.countryLabel.text).trimmingCharacters(in: .whitespacesAndNewlines)
-//    if errorMessage == .none {
-//      if country.isEmpty {
-//        errorMessage = .selectCountry
-//      }
-//    }
-    
-    if hostVC.countryId == 0 {
-      errorMessage = .selectCountry
-    }
-    
-    let fromDate = String.getString(hostVC.fromTextField.text).trimmingCharacters(in: .whitespacesAndNewlines)
-    if errorMessage == .none {
-      if fromDate.isEmpty {
-        errorMessage = .SelectFromDate
-      }
-    }
-    
-    let toDate = String.getString(hostVC.toTextField.text).trimmingCharacters(in: .whitespacesAndNewlines)
-    if errorMessage == .none {
-      if toDate.isEmpty {
-        errorMessage = .SelectToDate
-      }
-    }
-    
-    if errorMessage != .none {
-      hostVC.showAlert(msg: errorMessage.rawValue)
-    }
-    
-    hostVC.view.endEditing(true)
-    return errorMessage == .none
-  }
+
   
   func getAllCountry() {
     WebService.shared.getAllUsersCountryList(){ [weak self] response in

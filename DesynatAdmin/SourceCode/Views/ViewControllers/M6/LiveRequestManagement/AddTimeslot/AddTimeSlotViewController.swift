@@ -100,11 +100,25 @@ class AddTimeSlotViewController: UIViewController {
     let formatter = DateFormatter()
     formatter.dateFormat = "hh:mm a"
     
-    guard let fromDate = formatter.date(from: "\(fromHour):\(fromMinute) \(fromAmPm)"),
-          let toDate = formatter.date(from: "\(toHour):\(toMinute) \(toAmPm)") else {
-      showAlert(msg: "Please select From and to Times")
-      return
-    }
+      //Validate FROM time
+      let fromTimeString = "\(fromHour):\(fromMinute) \(fromAmPm)"
+      guard let fromDate = formatter.date(from: fromTimeString) else {
+          showAlert(msg: "Please select From time")
+          return
+      }
+      
+      //Validate TO time
+      let toTimeString = "\(toHour):\(toMinute) \(toAmPm)"
+      guard let toDate = formatter.date(from: toTimeString) else {
+          showAlert(msg: "Please select To time")
+          return
+      }
+      
+//    guard let fromDate = formatter.date(from: "\(fromHour):\(fromMinute) \(fromAmPm)"),
+//          let toDate = formatter.date(from: "\(toHour):\(toMinute) \(toAmPm)") else {
+//      showAlert(msg: "Please select From and to Times")
+//      return
+//    }
     
     // Check if From < To
     if fromDate >= toDate {
