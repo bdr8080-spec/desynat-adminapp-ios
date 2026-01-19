@@ -166,7 +166,7 @@ extension OrdersManagementListViewController: UITableViewDelegate, UITableViewDa
     let order = viewModel.orders[indexPath.row]
     if viewModel.currentCategory == .active {
 //      if order.deliveryDetails?.countryName == "Kuwait" {
-        if order.deliveryStatus == "1" || order.deliveryStatus == "2" {
+        if order.deliveryStatus == "2" || order.deliveryStatus == "2.1"  {
           if order.assignStatus == "1" {
             cell.assignDriverView.isHidden = true
             cell.assignDriverStackView.isHidden = true
@@ -174,15 +174,31 @@ extension OrdersManagementListViewController: UITableViewDelegate, UITableViewDa
             cell.assignDriverView.isHidden = false
             cell.assignDriverStackView.isHidden = false
           }
+        } else if order.deliveryStatus == "1" {
+            if order.rEApprove == "1" {
+                cell.assignDriverView.isHidden = false
+                cell.assignDriverStackView.isHidden = false
+                
+                if order.assignStatus == "1" {
+                  cell.assignDriverView.isHidden = true
+                  cell.assignDriverStackView.isHidden = true
+                }
+            }
         } else {
           cell.assignDriverView.isHidden = true
           cell.assignDriverStackView.isHidden = true
         }
-//      } else {
-//        cell.assignDriverView.isHidden = true
-//        cell.assignDriverStackView.isHidden = true
-//      }
-    }else {
+    } else if order.deliveryStatus == "1" {
+        if order.rEApprove == "1" {
+            cell.assignDriverView.isHidden = false
+            cell.assignDriverStackView.isHidden = false
+            
+            if order.assignStatus == "1" {
+              cell.assignDriverView.isHidden = true
+              cell.assignDriverStackView.isHidden = true
+            }
+        }
+    } else {
       cell.assignDriverView.isHidden = true
       cell.assignDriverStackView.isHidden = true
     }

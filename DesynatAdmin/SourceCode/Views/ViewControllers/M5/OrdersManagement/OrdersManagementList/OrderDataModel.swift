@@ -408,7 +408,8 @@ struct OrderData: Codable {
   let variantsID, quantity: Int?
   let amount, status, createdAt, updatedAt: String?
   let returnType, rEApprove: String?
-  let returnReason, returnImage, exchangeReason, exchangeNewSize: String?
+  let returnReason, exchangeReason, exchangeNewSize: String?
+  let returnImage: [String]?
   let exchangeOldSize: String?
   let paymentStatus, deliveryStatus, deliveryBoyID, assignStatus: String?
   let assignDate: String?
@@ -421,6 +422,7 @@ struct OrderData: Codable {
   let userRatingReviewProvide: UserRatingReviewProvide?
   let driverDetails: DriverDetails?
   let adminCommission: Double?
+  let exchangeOrderDetails: ExchangeOrderDetails?
   
   enum CodingKeys: String, CodingKey {
     case id
@@ -452,7 +454,68 @@ struct OrderData: Codable {
     case userRatingReviewProvide = "user_rating_review_provide"
     case driverDetails = "driver_details"
     case adminCommission = "admin_commission"
+    case exchangeOrderDetails = "exchange_order_details"
   }
+}
+
+// MARK: - ExchangeOrderDetails
+struct ExchangeOrderDetails: Codable {
+    var id: Int?
+    var rEType, pOrderdetailsID: String?
+    var orderID, userID, productID, variantsID: Int?
+    var quantity: Int?
+    var amount, tax, shippingFees: String?
+    var promocodeID, promocodeValue, giftcardID, giftcardAmount: String?
+    var status, createdAt, updatedAt, returnType: String?
+    var rEApprove: String?
+    var returnReason, exchangeReason: String?
+    var returnImage: [String]?
+    var exchangeNewSize: String?
+    var exchangeOldSize: String?
+    var paymentStatus, deliveryStatus, deliveryBoyID, assignStatus: String?
+    var assignDate: String?
+    var cancelReason: String?
+    var isPicked: String?
+    var notDeliveredReason: String?
+    var sellerID: String?
+    var adminCommission, orderStatus: String?
+ 
+    enum CodingKeys: String, CodingKey {
+        case id
+        case rEType = "r_e_type"
+        case pOrderdetailsID = "p_orderdetails_id"
+        case orderID = "order_id"
+        case userID = "user_id"
+        case productID = "product_id"
+        case variantsID = "variants_id"
+        case quantity, amount, tax
+        case shippingFees = "shipping_fees"
+        case promocodeID = "promocode_id"
+        case promocodeValue = "promocode_value"
+        case giftcardID = "giftcard_id"
+        case giftcardAmount = "giftcard_amount"
+        case status
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+        case returnType = "return_type"
+        case rEApprove = "r_e_approve"
+        case returnReason = "return_reason"
+        case returnImage = "return_image"
+        case exchangeReason = "exchange_reason"
+        case exchangeNewSize = "exchange_new_size"
+        case exchangeOldSize = "exchange_old_size"
+        case paymentStatus = "payment_status"
+        case deliveryStatus = "delivery_status"
+        case deliveryBoyID = "delivery_boy_id"
+        case assignStatus = "assign_status"
+        case assignDate = "assign_date"
+        case cancelReason = "cancel_reason"
+        case isPicked = "is_picked"
+        case notDeliveredReason = "not_delivered_reason"
+        case sellerID = "seller_id"
+        case adminCommission = "admin_commission"
+        case orderStatus = "order_status"
+    }
 }
 
 // MARK: - UserRatingReviewProvide

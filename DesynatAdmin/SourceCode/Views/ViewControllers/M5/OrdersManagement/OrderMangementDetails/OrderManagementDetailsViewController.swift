@@ -143,6 +143,9 @@ class OrderManagementDetailsViewController: UIViewController {
             let deliveryStatus = self.viewModel.orderDetail?.deliveryStatus
             let paymentStatus = self.viewModel.orderDetail?.paymentStatus
             let assignStatus = self.viewModel.orderDetail?.assignStatus
+            let reApprove = self.viewModel.orderDetail?.rEApprove
+            let returnType = self.viewModel.orderDetail?.returnType
+            let isPicked = self.viewModel.orderDetail?.isPicked
             switch paymentStatus {
             case "2", "3": //Cancelled
                 self.activateStep(0, title: "Confirmed")
@@ -169,7 +172,25 @@ class OrderManagementDetailsViewController: UIViewController {
                 //          self.editAssignDriverButtonOutlet.isHidden = true
             default:
                 switch deliveryStatus {
-                case "1","2": // confirmed
+                case "1":
+                    self.img2.image = .shipped
+                    if reApprove == "1" {
+                        self.activateStep(0, title: "Confirmed")
+                        self.activateStep(1, title: "Shipped")
+                        self.lblStatus.text = "Return Request"
+                        self.assignDriverView.isHidden = false
+                        self.deliveryByStackView.isHidden = true
+                        self.driverDetailsView.isHidden = true
+                        
+                        if assignStatus == "1" {
+                            self.lblStatus.text = "Ongoing"
+                            self.assignDriverView.isHidden = true
+                            self.deliveryByStackView.isHidden = true
+                            self.driverDetailsView.isHidden = false
+                        }
+                    }
+                    
+                case "2", "2.1": // confirmed
                     self.activateStep(0, title: "Confirmed")
                     self.activateStep(1, title: "Shipped")
                     self.lblStatus.text = "Active"
@@ -185,8 +206,20 @@ class OrderManagementDetailsViewController: UIViewController {
                     default:
                         print("")
                     }
-                    
-                    
+            
+                    if reApprove == "1" && returnType == "1" || returnType == "2" {
+                        
+                        self.activateStep(0, title: "Confirmed")
+                        self.img2.image = .shipped
+                        self.lbl2.text = "Picked"
+                        self.lbl3.text = "On The Way"
+                        self.lbl4.text = "Returned"
+                        self.assignDriverView.isHidden = false
+                        
+                        if assignStatus == "1" {
+                            self.assignDriverView.isHidden = true
+                        }
+                    }
                     
                 case "3": // Delivered
                     self.activateStep(0, title: "Confirmed")
@@ -237,6 +270,36 @@ class OrderManagementDetailsViewController: UIViewController {
                         self.sellerReviewTitleLabel.isHidden = false
                     }else {
                         self.sellerReviewTitleLabel.isHidden = true
+                    }
+                    
+                    if returnType == "2" && reApprove == "1" {
+                        self.lblStatus.text = "Exchange Request"
+                        self.activateStep(0, title: "Confirmed")
+                        self.activateStep(1, title: "In Progress")
+//                        self.img2.image = .shipped
+                        self.img3.image = .ontheWay
+                        self.img4.image = .delivered
+                        self.lbl3.text = "Picked &\nExchange"
+                        self.lbl4.text = "Completed"
+                        self.assignDriverView.isHidden = true
+                        if isPicked == "1" {
+                            self.activateStep(2, title: "Picked &\nExchange")
+                            let exchangeOrderDetails = self.viewModel.orderDetail?.exchangeOrderDetails?.deliveryStatus ?? "0"
+                            if exchangeOrderDetails == "3"
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            {
+                                self.activateStep(3, title: "Completed")
+                                self.lblStatus.text = "Delivered"
+                            }
+                        }
                     }
                     
                 case "4": //Cancelled
