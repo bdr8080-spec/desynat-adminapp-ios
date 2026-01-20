@@ -36,6 +36,11 @@ class AddAdvertisementViewModel {
         if errorMessage == .none && hostVC.countryId == 0 {
             errorMessage = .selectCountry
         }
+      
+      //ForType
+      if errorMessage == .none && hostVC.selectedForType == 0 { //type 1 mobile,2-web
+          errorMessage = .selectForType
+      }
         
         //From Date
         let fromDate = String.getString(hostVC.fromTextField.text)
@@ -80,6 +85,7 @@ class AddAdvertisementViewModel {
       "image": hostVC.selectedImageUrl,
       "country_id": hostVC.countryId,
       "title": hostVC.titleTextField.text?.trimmed() ?? "",
+      "type": hostVC.selectedForType,
       "start_date": apiFromDate,//hostVC.fromTextField.text?.trimmed() ?? "", //"2026-01-01",
       "end_date": apiToDate ]//hostVC.toTextField.text?.trimmed() ?? ""]
     
@@ -98,6 +104,7 @@ class AddAdvertisementViewModel {
       "banner_id": hostVC.giftsListData?.id ?? 0,
       "image": hostVC.selectedImageUrl,
       "country_id": hostVC.countryId,
+      "type": hostVC.selectedForType,
       "title": hostVC.titleTextField.text?.trimmed() ?? "",
       "start_date": apiFromDate, //hostVC.fromTextField.text?.trimmed() ?? "",
       "end_date": apiToDate ]//hostVC.toTextField.text?.trimmed() ?? ""]
@@ -114,6 +121,13 @@ class AddAdvertisementViewModel {
   func uploadDocument(file: Any, isImage: Bool, completion: @escaping(String) -> Void) {
     let param:MultipartUpload = MultipartUpload(fileName: "image", file: file, mimeType: isImage ? .image : .pdf)
     WebService.sharedInstance.uploadFile(withParams: param) { url, msg, code in
+      completion(url)
+    }
+  }
+  
+  func uploadFullScreenBanner(file: Any, isImage: Bool, keyParam: [String: Any], completion: @escaping(String) -> Void) {
+    let param:MultipartUpload = MultipartUpload(fileName: "image", file: file, mimeType: isImage ? .image : .pdf)
+    WebService.sharedInstance.uploadFullScreenBanner(withParams: param, param: keyParam) { url, msg, code in
       completion(url)
     }
   }

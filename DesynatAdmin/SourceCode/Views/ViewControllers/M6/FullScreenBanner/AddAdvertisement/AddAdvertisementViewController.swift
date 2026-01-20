@@ -10,6 +10,7 @@ import SDWebImage
 
 class AddAdvertisementViewController: UIViewController {
 
+  @IBOutlet weak var forTypeLabel: CustomLabelFont!
   @IBOutlet weak var mainImageView: CustomImageView!
   @IBOutlet weak var toTextField: UITextField!
   @IBOutlet weak var fromTextField: UITextField!
@@ -24,7 +25,12 @@ class AddAdvertisementViewController: UIViewController {
   var isComingForEdit: Bool = false
   var giftsListData: FullScreenBannerDataList?
   var onCardUpdated: ((FullScreenBannerDataList) -> Void)?
-  
+  var forTypeList = ["Mobile", "Web"]
+  var selectedForType: Int = 0 //type 1 mobile,2-web
+  func selectedAspectRatio() -> BannerAspectRatio {
+      return selectedForType == 1 ? .mobile : .web
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
     setUpTextFields()
@@ -49,6 +55,13 @@ class AddAdvertisementViewController: UIViewController {
     }
   }
   
+  @IBAction func forTypeDropDownDidTapped(_ sender: UIButton) {
+    kSharedAppDelegate.dropDown(dataSource: forTypeList, anchorView: sender) { index, item in
+      self.forTypeLabel.text = item
+      self.selectedForType = index + 1
+    }
+  }
+  
   @IBAction func submitDidTapped(_ sender: UIButton) {
     if viewModel.validFields() {
       if isComingForEdit {
@@ -60,22 +73,69 @@ class AddAdvertisementViewController: UIViewController {
   }
   
   @IBAction func uploadImageDidTapped(_ sender: UIButton) {
-    ImagePickerManager().pickImage(self) { [weak self] image, fileName, url in
-        guard let self = self else { return }
-        DispatchQueue.main.async {
-            self.mainImageView.image = image
+//    if selectedForType == 0 {
+//      showAlert(msg: "Please select type")
+//      return
+//    } else {
+//      ImagePickerManager().pickImage(self) { [weak self] image, fileName, url in
+//          guard let self = self else { return }
+//          DispatchQueue.main.async {
+//              self.mainImageView.image = image
+//          }
+//          guard let compressedImage = image.jpegData(compressionQuality: 0.25),
+//                        let finalImage = UIImage(data: compressedImage) else {
+//                      return
+//                  }
+//  //        self.viewModel.uploadDocument(file: finalImage, isImage: true) { [weak self] uploadedUrl in
+//  //            guard let self = self else { return }
+//  //            DispatchQueue.main.async {
+//  //                self.selectedImageUrl = uploadedUrl
+//  //            }
+//  //        }
+//        
+//        let keyParam: [String: Any] = ["type": selectedForType]
+//        self.viewModel.uploadFullScreenBanner(file: finalImage, isImage: true, keyParam: keyParam) { [weak self] uploadedUrl in
+//              guard let self = self else { return }
+//              DispatchQueue.main.async {
+//                  self.selectedImageUrl = uploadedUrl
+//              }
+//          }
+//      }
+//    }
+    if selectedForType == 0 {
+            showAlert(msg: "Please select type")
+            return
         }
-        guard let compressedImage = image.jpegData(compressionQuality: 0.25),
-                      let finalImage = UIImage(data: compressedImage) else {
-                    return
-                }
-        self.viewModel.uploadDocument(file: finalImage, isImage: true) { [weak self] uploadedUrl in
+
+        ImagePickerManager().pickImage(self) { [weak self] image, fileName, url in
             guard let self = self else { return }
+
+            var finalImage = image
+
+            // ✅ Convert ONLY if image is from CAMERA
+            if url == nil {
+                finalImage = self.convertImageToSelectedRatio(image)
+            }
+
             DispatchQueue.main.async {
-                self.selectedImageUrl = uploadedUrl
+                self.mainImageView.image = finalImage
+            }
+
+            guard let compressedData = finalImage.jpegData(compressionQuality: 0.25),
+                  let uploadImage = UIImage(data: compressedData) else {
+                return
+            }
+
+            let keyParam: [String: Any] = ["type": self.selectedForType]
+
+            self.viewModel.uploadFullScreenBanner(
+                file: uploadImage,
+                isImage: true,
+                keyParam: keyParam
+            ) { [weak self] uploadedUrl in
+                self?.selectedImageUrl = uploadedUrl
             }
         }
-    }
   }
   
   @IBAction func backDidTapped(_ sender: UIButton) {
@@ -97,7 +157,39 @@ class AddAdvertisementViewController: UIViewController {
     countryId = giftsListData?.countryInfo?.id ?? 0
     fromTextField.text = convertDateFormat(giftsListData?.startDate ?? "")
     toTextField.text = convertDateFormat(giftsListData?.endDate ?? "")
+    selectedForType = (Int(giftsListData?.type ?? "1") ?? 1) - 1
+    forTypeLabel.text = forTypeList[selectedForType]
+    
   }
+  
+  private func convertImageToSelectedRatio(_ image: UIImage) -> UIImage {
+
+      let targetRatio: CGFloat = (selectedForType == 1) ? (9.0 / 16.0) : (16.0 / 9.0)
+
+      let width = image.size.width
+      let height = image.size.height
+      let currentRatio = width / height
+
+      var cropRect: CGRect
+
+      if currentRatio > targetRatio {
+          let newWidth = height * targetRatio
+          let xOffset = (width - newWidth) / 2
+          cropRect = CGRect(x: xOffset, y: 0, width: newWidth, height: height)
+      } else {
+          let newHeight = width / targetRatio
+          let yOffset = (height - newHeight) / 2
+          cropRect = CGRect(x: 0, y: yOffset, width: width, height: newHeight)
+      }
+
+      guard let cgImage = image.cgImage?.cropping(to: cropRect) else {
+          return image
+      }
+
+      return UIImage(cgImage: cgImage, scale: image.scale, orientation: image.imageOrientation)
+  }
+
+
   
   func convertDateFormat(
     _ dateString: String,
@@ -200,6 +292,20 @@ extension AddAdvertisementViewController: UITextFieldDelegate {
         }
         if textField == fromTextField {
             datePicker.minimumDate = Date()
+        }
+    }
+}
+
+enum BannerAspectRatio {
+    case mobile   // 9:16
+    case web      // 16:9
+    
+    var value: CGFloat {
+        switch self {
+        case .mobile:
+            return 9.0 / 16.0
+        case .web:
+            return 16.0 / 9.0
         }
     }
 }

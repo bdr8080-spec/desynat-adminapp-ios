@@ -164,6 +164,7 @@ enum NetworkEndPoint: String {
   case deleteAdminStories = "api/admin/delete_story"
   case uploadImageAndVideo = "api/uploadFile"
   case uploadAdminStory = "api/admin/add_story"
+  case uploadFullScreenBanner = "api/uploadWithResolution"
   
     func withBaseURL() -> String {
         return "\(BaseURL.value())\(self.rawValue)"

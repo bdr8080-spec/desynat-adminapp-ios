@@ -40,7 +40,7 @@ struct FullScreenBannerDataModel: Codable {
 // MARK: - FullScreenBannerDataList
 struct FullScreenBannerDataList: Codable {
     let id: Int?
-    let image: String?
+    let image, type: String?
 //    let countryID: String?
     let title, startDate, endDate: String?
     let status: Int?
@@ -50,7 +50,7 @@ struct FullScreenBannerDataList: Codable {
     enum CodingKeys: String, CodingKey {
         case id, image
 //        case countryID = "country_id"
-        case title
+        case title, type
         case startDate = "start_date"
         case endDate = "end_date"
         case status

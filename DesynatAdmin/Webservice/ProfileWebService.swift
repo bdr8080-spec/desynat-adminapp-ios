@@ -98,6 +98,21 @@ extension WebService {
             }
         }
     }
+  
+  func uploadFullScreenBanner(withParams file:MultipartUpload, param: [String: Any],
+                  completion:@escaping (_ url:String, _ msg:String?, _ code:HTTPStatusCode?)-> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.requestMultiPart(url: .endpoint(.uploadFullScreenBanner), assets: [file], param: param, model: UploadFileDataModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              if let url = response?.url {
+                  completion(url, message, code)
+              } else if let error {
+                  UIApplication.shared.topViewController()?.showAlert(msg: error)
+              }
+          }
+      }
+  }
     
     func addSubCategory(param: [String:Any], completion: @escaping(GetCategoryModel) -> Void) {
         CommonUtils.showHud(show: true)

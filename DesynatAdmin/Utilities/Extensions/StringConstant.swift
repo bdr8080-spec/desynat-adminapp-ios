@@ -53,6 +53,7 @@ enum AlertConstant: String {
   case EnterBrandArabic           = "Please enter brand name in arabic"
   case SelectBrandImage           = "Please Upload brand image"
   case selectCountry =  "Please select country"
+  case selectForType =  "Please select type"
   case enterEnglishPlanName =  "Please enter plan name in english"
   case enterArabicPlanName =  "Please enter plan name in Arabic"
   case enterPlanDuration =  "Please enter plan duration"
