@@ -20,9 +20,12 @@ class AddAdvertisementViewModel {
         var errorMessage: AlertConstant = .none
         
         //Image
-        if hostVC.selectedImageUrl.isEmpty {
-            errorMessage = .SelectBannerImage
-        }
+      if errorMessage == .none &&
+         hostVC.selectedImageUrl.isEmpty &&
+         hostVC.pickedImage == nil &&
+         hostVC.pickedGifData == nil {
+          errorMessage = .SelectBannerImage
+      }
         
         //Title
         let title = String.getString(hostVC.titleTextField.text)
@@ -125,12 +128,34 @@ class AddAdvertisementViewModel {
     }
   }
   
-  func uploadFullScreenBanner(file: Any, isImage: Bool, keyParam: [String: Any], completion: @escaping(String) -> Void) {
-    let param:MultipartUpload = MultipartUpload(fileName: "image", file: file, mimeType: isImage ? .image : .pdf)
-    WebService.sharedInstance.uploadFullScreenBanner(withParams: param, param: keyParam) { url, msg, code in
-      completion(url)
-    }
+//  func uploadFullScreenBanner(file: Any, isImage: Bool, keyParam: [String: Any], completion: @escaping(String) -> Void) {
+//    let param:MultipartUpload = MultipartUpload(fileName: "image", file: file, mimeType: isImage ? .image : .pdf)
+//    WebService.sharedInstance.uploadFullScreenBanner(withParams: param, param: keyParam) { url, msg, code in
+//      completion(url)
+//    }
+//  }
+  
+  func uploadFullScreenBanner(
+      file: Any,
+      isImage: Bool,
+      isGif: Bool = false,
+      keyParam: [String: Any],
+      completion: @escaping(String) -> Void
+  ) {
+    let mime: MultipartUpload.Mime = isGif ? .gif : (isImage ? .image : .pdf)
+
+      let param = MultipartUpload(
+          fileName: "image",
+          file: file,
+          mimeType: mime
+      )
+
+      WebService.sharedInstance.uploadFullScreenBanner(withParams: param, param: keyParam) {
+          url, msg, code in
+          completion(url)
+      }
   }
+
   
   func convertDateString(
       _ dateString: String,

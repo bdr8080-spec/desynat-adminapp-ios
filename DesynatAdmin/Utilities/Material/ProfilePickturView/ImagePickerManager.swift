@@ -13,13 +13,13 @@ import Photos
 class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIDocumentPickerDelegate {
     
     static let shared = ImagePickerManager()
-    var lastImageSource: ImageSourceType = .unknown
+//    var lastImageSource: ImageSourceType = .unknown
     var picker = UIImagePickerController()
     lazy var alert = UIAlertController(title: "Choose File", message: nil, preferredStyle: .actionSheet) // ✅ lazy to prevent crash
     var viewController: UIViewController?
     var pickImageCallback: ((UIImage, String, URL?) -> ())?
     var allowPDFSelection: Bool = false
-    
+  var pickGalleryCallback: ((UIImage?, Data?, Bool, String, URL?) -> ())?
     // MARK: - Init
     override init() {
         super.init()
@@ -66,6 +66,22 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigatio
         alert.popoverPresentationController?.sourceView = viewController.view
         viewController.present(alert, animated: true)
     }
+  
+  func pickFromGalleryOnly(
+      _ viewController: UIViewController,
+      callback: @escaping ((UIImage?, Data?, Bool, String, URL?) -> ())
+  ) {
+      self.viewController = viewController
+
+      picker = UIImagePickerController()
+      picker.delegate = self
+      picker.sourceType = .photoLibrary
+      picker.mediaTypes = ["public.image", "com.compuserve.gif"] // ✅ Image + GIF
+
+      self.pickGalleryCallback = callback
+      viewController.present(picker, animated: true)
+  }
+
     
     // MARK: - Camera
     func openCamera() {
@@ -95,36 +111,94 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigatio
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true)
     }
+//    
+//  func imagePickerController(
+//      _ picker: UIImagePickerController,
+//      didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
+//  ) {
+//      picker.dismiss(animated: true)
+//
+//      // ✅ Detect GIF
+//      if let imageURL = info[.imageURL] as? URL,
+//         imageURL.pathExtension.lowercased() == "gif" {
+//
+//          if let gifData = try? Data(contentsOf: imageURL) {
+//              let fileName = imageURL.lastPathComponent
+//              pickGalleryCallback?(nil, gifData, true, fileName, imageURL)
+//              return
+//          }
+//      }
+//
+//      // ✅ Normal image
+//      if let image = info[.originalImage] as? UIImage {
+//          let fileName = UUID().uuidString + ".jpg"
+//          pickGalleryCallback?(image, nil, false, fileName, nil)
+//      }
+//  }
+
     
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//        picker.dismiss(animated: true)
-//        guard let image = info[.originalImage] as? UIImage else {
-//            print("❌ Could not get image from picker info")
-//            return
-//        }
-//        let fileName = UUID().uuidString + ".jpg"
-//        pickImageCallback?(image, fileName, nil)
-//    }
-    
-    func imagePickerController(_ picker: UIImagePickerController,
-                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//      picker.dismiss(animated: true, completion: nil)
+//          guard let image = info[.originalImage] as? UIImage else { return }
+//          // ✅ Save image to temporary folder
+//          let fileName = UUID().uuidString + ".jpg"
+//          let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent(fileName)
+//          if let data = image.jpegData(compressionQuality: 0.8) {
+//              try? data.write(to: tempURL)
+//          }
+//          // ✅ Provide valid URL to callback
+//          pickImageCallback?(image, fileName, tempURL)
+//  }
+  func imagePickerController(
+      _ picker: UIImagePickerController,
+      didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
+  ) {
+      picker.dismiss(animated: true)
 
-        picker.dismiss(animated: true)
+      // ==================================================
+      // ✅ NEW FLOW — Gallery only (Image + GIF)
+      // ==================================================
+      if let galleryCallback = pickGalleryCallback {
 
-        guard let image = info[.originalImage] as? UIImage else {
-            print("❌ Could not get image from picker info")
-            return
-        }
+          // GIF
+          if let imageURL = info[.imageURL] as? URL,
+             imageURL.pathExtension.lowercased() == "gif",
+             let gifData = try? Data(contentsOf: imageURL) {
 
-        let fileName = UUID().uuidString + ".jpg"
+              let fileName = imageURL.lastPathComponent
+              galleryCallback(nil, gifData, true, fileName, imageURL)
+              pickGalleryCallback = nil
+              return
+          }
 
-        let source = getImageSource(from: info, picker: picker)
+          // Normal image
+          if let image = info[.originalImage] as? UIImage {
+              let fileName = UUID().uuidString + ".jpg"
+              galleryCallback(image, nil, false, fileName, nil)
+              pickGalleryCallback = nil
+              return
+          }
+      }
 
-        // store source temporarily
-        self.lastImageSource = source
+      // ==================================================
+      // ✅ OLD FLOW — Camera / Gallery (IMAGE ONLY)
+      // ==================================================
+      if let image = info[.originalImage] as? UIImage {
 
-        pickImageCallback?(image, fileName, nil)
-    }
+          let fileName = UUID().uuidString + ".jpg"
+          let tempURL = FileManager.default
+              .temporaryDirectory
+              .appendingPathComponent(fileName)
+
+          if let data = image.jpegData(compressionQuality: 0.8) {
+              try? data.write(to: tempURL)
+          }
+
+          pickImageCallback?(image, fileName, tempURL)
+          pickImageCallback = nil
+      }
+  }
+
 
 }
 
@@ -148,19 +222,19 @@ extension ImagePickerManager {
         }
     }
     
-    func getImageSource(from info: [UIImagePickerController.InfoKey : Any],
-                        picker: UIImagePickerController) -> ImageSourceType {
-
-        if picker.sourceType == .camera {
-            return .camera
-        }
-
-        if picker.sourceType == .photoLibrary {
-            return .gallery
-        }
-
-        return .unknown
-    }
+//    func getImageSource(from info: [UIImagePickerController.InfoKey : Any],
+//                        picker: UIImagePickerController) -> ImageSourceType {
+//
+//        if picker.sourceType == .camera {
+//            return .camera
+//        }
+//
+//        if picker.sourceType == .photoLibrary {
+//            return .gallery
+//        }
+//
+//        return .unknown
+//    }
 
 }
 
@@ -181,9 +255,9 @@ extension ImagePickerManager {
     }
 }
 
-enum ImageSourceType {
-    case camera
-    case gallery
-    case unknown
-}
+//enum ImageSourceType {
+//    case camera
+//    case gallery
+//    case unknown
+//}
 

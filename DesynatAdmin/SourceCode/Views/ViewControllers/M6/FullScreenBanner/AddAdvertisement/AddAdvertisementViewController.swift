@@ -30,6 +30,11 @@ class AddAdvertisementViewController: UIViewController {
   func selectedAspectRatio() -> BannerAspectRatio {
       return selectedForType == 1 ? .mobile : .web
   }
+  var pickedImage: UIImage?
+  var pickedGifData: Data?
+  var pickedFileName: String = ""
+  var isGifSelected: Bool = false
+  private var isImageChanged: Bool = false
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -63,49 +68,37 @@ class AddAdvertisementViewController: UIViewController {
   }
   
   @IBAction func submitDidTapped(_ sender: UIButton) {
-    if viewModel.validFields() {
-      if isComingForEdit {
-        viewModel.editAdvertisementApi()
-      } else{
-        viewModel.addAdvertisementApi()
-      }
-    }
+    guard viewModel.validFields() else { return }
+        uploadBannerThenSubmit()
   }
   
   @IBAction func uploadImageDidTapped(_ sender: UIButton) {
-    if selectedForType == 0 {
-            showAlert(msg: "Please select type")
-            return
+//    if selectedForType == 0 {
+//            showAlert(msg: "Please select type")
+//            return
+//        }
+
+    ImagePickerManager.shared.pickFromGalleryOnly(self) { [weak self]
+            image, gifData, isGif, fileName, url in
+
+            guard let self = self else { return }
+
+            self.isImageChanged = true   // ✅ VERY IMPORTANT
+            self.isGifSelected = isGif
+            self.pickedFileName = fileName
+
+            if isGif, let gifData = gifData {
+                self.pickedGifData = gifData
+                self.pickedImage = nil
+                if let url = url {
+                    self.mainImageView.sd_setImage(with: url)
+                }
+            } else if let image = image {
+                self.pickedGifData = nil
+                self.pickedImage = self.processCameraImage(image)
+                self.mainImageView.image = self.pickedImage
+            }
         }
-      ImagePickerManager.shared.pickImage(self) { [weak self] image, fileName, url in
-          guard let self = self else { return }
-
-          var finalImage = image
-
-          //  NOW THIS WILL WORK
-          if ImagePickerManager.shared.lastImageSource == .camera {
-              finalImage = self.processCameraImage(image)
-          }
-
-          DispatchQueue.main.async {
-              self.mainImageView.image = finalImage
-          }
-
-          guard let compressedData = finalImage.jpegData(compressionQuality: 0.25),
-                let uploadImage = UIImage(data: compressedData) else {
-              return
-          }
-
-          let keyParam: [String: Any] = ["type": self.selectedForType]
-
-          self.viewModel.uploadFullScreenBanner(
-              file: uploadImage,
-              isImage: true,
-              keyParam: keyParam
-          ) { [weak self] uploadedUrl in
-              self?.selectedImageUrl = uploadedUrl
-          }
-      }
   }
     
     private func processCameraImage(_ image: UIImage) -> UIImage {
@@ -125,6 +118,95 @@ class AddAdvertisementViewController: UIViewController {
     self.navigationController?.popViewController(animated: true)
   }
   
+//  private func uploadBannerThenSubmit() {
+//
+//      let keyParam: [String: Any] = ["type": selectedForType]
+//
+//      // ✅ GIF selected
+//      if isGifSelected, let gifData = pickedGifData {
+//          viewModel.uploadFullScreenBanner(
+//              file: gifData,
+//              isImage: false,
+//              isGif: true,
+//              keyParam: keyParam
+//          ) { [weak self] url in
+//              self?.selectedImageUrl = url
+//              self?.submitFinalApi()
+//          }
+//          return
+//      }
+//
+//      // ✅ Image selected
+//      if let image = pickedImage {
+//          viewModel.uploadFullScreenBanner(
+//              file: image,
+//              isImage: true,
+//              keyParam: keyParam
+//          ) { [weak self] url in
+//              self?.selectedImageUrl = url
+//              self?.submitFinalApi()
+//          }
+//          return
+//      }
+//
+//      // ✅ NO image selected
+//      // 👉 Happens when editing and only changing text/country/dates
+//      if isComingForEdit {
+//          submitFinalApi()
+//      } else {
+//          showAlert(msg: "Please select image")
+//      }
+//  }
+  private func uploadBannerThenSubmit() {
+
+      let keyParam: [String: Any] = ["type": selectedForType]
+
+      // ✅ Edit flow WITHOUT image change
+      if isComingForEdit, !isImageChanged {
+          submitFinalApi()
+          return
+      }
+
+      // ✅ GIF upload
+      if isGifSelected, let gifData = pickedGifData {
+          viewModel.uploadFullScreenBanner(
+              file: gifData,
+              isImage: false,
+              isGif: true,
+              keyParam: keyParam
+          ) { [weak self] url in
+              self?.selectedImageUrl = url
+              self?.submitFinalApi()
+          }
+          return
+      }
+
+      // ✅ Image upload
+      if let image = pickedImage {
+          viewModel.uploadFullScreenBanner(
+              file: image,
+              isImage: true,
+              keyParam: keyParam
+          ) { [weak self] url in
+              self?.selectedImageUrl = url
+              self?.submitFinalApi()
+          }
+          return
+      }
+
+      // ✅ Add flow safety
+      showAlert(msg: "Please select image")
+  }
+
+
+  private func submitFinalApi() {
+      if isComingForEdit {
+          viewModel.editAdvertisementApi()
+      } else {
+          viewModel.addAdvertisementApi()
+      }
+  }
+  
   func bindData() {
     titleTextField.text = giftsListData?.title
     if let imageUrlString = giftsListData?.image,
@@ -140,8 +222,8 @@ class AddAdvertisementViewController: UIViewController {
     countryId = giftsListData?.countryInfo?.id ?? 0
     fromTextField.text = convertDateFormat(giftsListData?.startDate ?? "")
     toTextField.text = convertDateFormat(giftsListData?.endDate ?? "")
-    selectedForType = (Int(giftsListData?.type ?? "1") ?? 1) - 1
-    forTypeLabel.text = forTypeList[selectedForType]
+    selectedForType = (Int(giftsListData?.type ?? "1") ?? 1)
+    forTypeLabel.text = forTypeList[selectedForType - 1]
     
   }
   

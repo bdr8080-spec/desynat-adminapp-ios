@@ -114,6 +114,19 @@ final class NetworkManager {
                   } else {
                       completion(.failure(.custom(code: 2)), nil)
                   }
+                
+              case .gif:
+                  if let data = uploadData.file as? Data {
+                      multipartFormData.append(
+                          data,
+                          withName: uploadData.fileName,
+                          fileName: "\(UUID().uuidString).gif",
+                          mimeType: uploadData.mimeType.rawValue
+                      )
+                  } else {
+                      completion(.failure(.custom(code: 4)), nil)
+                  }
+
 
               case .pdf:  // ← Add PDF support
                   if let file = uploadData.file as? URL {
@@ -124,6 +137,8 @@ final class NetworkManager {
                       completion(.failure(.custom(code: 3)), nil)
                   }
               }
+            
+            
           }
 
           // Append other params
