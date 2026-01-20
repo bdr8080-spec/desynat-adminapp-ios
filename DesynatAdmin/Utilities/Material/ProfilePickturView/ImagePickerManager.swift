@@ -13,7 +13,7 @@ import Photos
 class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIDocumentPickerDelegate {
     
     static let shared = ImagePickerManager()
-    
+    var lastImageSource: ImageSourceType = .unknown
     var picker = UIImagePickerController()
     lazy var alert = UIAlertController(title: "Choose File", message: nil, preferredStyle: .actionSheet) // ✅ lazy to prevent crash
     var viewController: UIViewController?
@@ -25,25 +25,6 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigatio
         super.init()
         picker.delegate = self
     }
-    
-    // MARK: - Setup Alert
-//    private func setupAlert() {
-//        alert = UIAlertController(title: "Choose File", message: nil, preferredStyle: .actionSheet)
-//
-//        let cameraAction = UIAlertAction(title: "Camera", style: .default) { _ in
-//            self.openCamera()
-//        }
-//
-//        let galleryAction = UIAlertAction(title: "Gallery", style: .default) { _ in
-//            self.openGallery()
-//        }
-//
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-//
-//        alert.addAction(cameraAction)
-//        alert.addAction(galleryAction)
-//        alert.addAction(cancelAction)
-//    }
   
   private func setupAlert() {
       alert = UIAlertController(title: "Choose File", message: nil, preferredStyle: .actionSheet)
@@ -115,15 +96,36 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigatio
         picker.dismiss(animated: true)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//        picker.dismiss(animated: true)
+//        guard let image = info[.originalImage] as? UIImage else {
+//            print("❌ Could not get image from picker info")
+//            return
+//        }
+//        let fileName = UUID().uuidString + ".jpg"
+//        pickImageCallback?(image, fileName, nil)
+//    }
+    
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+
         picker.dismiss(animated: true)
+
         guard let image = info[.originalImage] as? UIImage else {
             print("❌ Could not get image from picker info")
             return
         }
+
         let fileName = UUID().uuidString + ".jpg"
+
+        let source = getImageSource(from: info, picker: picker)
+
+        // store source temporarily
+        self.lastImageSource = source
+
         pickImageCallback?(image, fileName, nil)
     }
+
 }
 
 extension ImagePickerManager {
@@ -145,6 +147,21 @@ extension ImagePickerManager {
             pickImageCallback?(UIImage(), "", url)
         }
     }
+    
+    func getImageSource(from info: [UIImagePickerController.InfoKey : Any],
+                        picker: UIImagePickerController) -> ImageSourceType {
+
+        if picker.sourceType == .camera {
+            return .camera
+        }
+
+        if picker.sourceType == .photoLibrary {
+            return .gallery
+        }
+
+        return .unknown
+    }
+
 }
 
 // MARK: - Permissions
@@ -163,3 +180,10 @@ extension ImagePickerManager {
         }
     }
 }
+
+enum ImageSourceType {
+    case camera
+    case gallery
+    case unknown
+}
+

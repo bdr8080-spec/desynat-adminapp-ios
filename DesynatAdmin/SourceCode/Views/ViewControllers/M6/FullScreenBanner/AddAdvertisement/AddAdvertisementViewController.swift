@@ -73,70 +73,53 @@ class AddAdvertisementViewController: UIViewController {
   }
   
   @IBAction func uploadImageDidTapped(_ sender: UIButton) {
-//    if selectedForType == 0 {
-//      showAlert(msg: "Please select type")
-//      return
-//    } else {
-//      ImagePickerManager().pickImage(self) { [weak self] image, fileName, url in
-//          guard let self = self else { return }
-//          DispatchQueue.main.async {
-//              self.mainImageView.image = image
-//          }
-//          guard let compressedImage = image.jpegData(compressionQuality: 0.25),
-//                        let finalImage = UIImage(data: compressedImage) else {
-//                      return
-//                  }
-//  //        self.viewModel.uploadDocument(file: finalImage, isImage: true) { [weak self] uploadedUrl in
-//  //            guard let self = self else { return }
-//  //            DispatchQueue.main.async {
-//  //                self.selectedImageUrl = uploadedUrl
-//  //            }
-//  //        }
-//        
-//        let keyParam: [String: Any] = ["type": selectedForType]
-//        self.viewModel.uploadFullScreenBanner(file: finalImage, isImage: true, keyParam: keyParam) { [weak self] uploadedUrl in
-//              guard let self = self else { return }
-//              DispatchQueue.main.async {
-//                  self.selectedImageUrl = uploadedUrl
-//              }
-//          }
-//      }
-//    }
     if selectedForType == 0 {
             showAlert(msg: "Please select type")
             return
         }
+      ImagePickerManager.shared.pickImage(self) { [weak self] image, fileName, url in
+          guard let self = self else { return }
 
-        ImagePickerManager().pickImage(self) { [weak self] image, fileName, url in
-            guard let self = self else { return }
+          var finalImage = image
 
-            var finalImage = image
+          //  NOW THIS WILL WORK
+          if ImagePickerManager.shared.lastImageSource == .camera {
+              finalImage = self.processCameraImage(image)
+          }
 
-            // ✅ Convert ONLY if image is from CAMERA
-            if url == nil {
-                finalImage = self.convertImageToSelectedRatio(image)
-            }
+          DispatchQueue.main.async {
+              self.mainImageView.image = finalImage
+          }
 
-            DispatchQueue.main.async {
-                self.mainImageView.image = finalImage
-            }
+          guard let compressedData = finalImage.jpegData(compressionQuality: 0.25),
+                let uploadImage = UIImage(data: compressedData) else {
+              return
+          }
 
-            guard let compressedData = finalImage.jpegData(compressionQuality: 0.25),
-                  let uploadImage = UIImage(data: compressedData) else {
-                return
-            }
+          let keyParam: [String: Any] = ["type": self.selectedForType]
 
-            let keyParam: [String: Any] = ["type": self.selectedForType]
-
-            self.viewModel.uploadFullScreenBanner(
-                file: uploadImage,
-                isImage: true,
-                keyParam: keyParam
-            ) { [weak self] uploadedUrl in
-                self?.selectedImageUrl = uploadedUrl
-            }
-        }
+          self.viewModel.uploadFullScreenBanner(
+              file: uploadImage,
+              isImage: true,
+              keyParam: keyParam
+          ) { [weak self] uploadedUrl in
+              self?.selectedImageUrl = uploadedUrl
+          }
+      }
   }
+    
+    private func processCameraImage(_ image: UIImage) -> UIImage {
+
+        let aspect = selectedAspectRatio()
+
+        let targetSize: CGSize = (aspect == .mobile)
+            ? CGSize(width: 1080, height: 1920)   // Mobile 9:16
+            : CGSize(width: 1920, height: 1080)   // Web 16:9
+
+        let croppedImage = image.cropToAspectRatio(aspect.value)
+        return croppedImage.resize(to: targetSize)
+    }
+
   
   @IBAction func backDidTapped(_ sender: UIButton) {
     self.navigationController?.popViewController(animated: true)
@@ -306,6 +289,48 @@ enum BannerAspectRatio {
             return 9.0 / 16.0
         case .web:
             return 16.0 / 9.0
+        }
+    }
+}
+
+extension UIImage {
+
+    func cropToAspectRatio(_ ratio: CGFloat) -> UIImage {
+        let width = size.width
+        let height = size.height
+        let currentRatio = width / height
+
+        var cropRect: CGRect
+
+        if currentRatio > ratio {
+            let newWidth = height * ratio
+            cropRect = CGRect(
+                x: (width - newWidth) / 2,
+                y: 0,
+                width: newWidth,
+                height: height
+            )
+        } else {
+            let newHeight = width / ratio
+            cropRect = CGRect(
+                x: 0,
+                y: (height - newHeight) / 2,
+                width: width,
+                height: newHeight
+            )
+        }
+
+        guard let cgImage = cgImage?.cropping(to: cropRect) else {
+            return self
+        }
+
+        return UIImage(cgImage: cgImage, scale: scale, orientation: imageOrientation)
+    }
+
+    func resize(to targetSize: CGSize) -> UIImage {
+        let renderer = UIGraphicsImageRenderer(size: targetSize)
+        return renderer.image { _ in
+            self.draw(in: CGRect(origin: .zero, size: targetSize))
         }
     }
 }
