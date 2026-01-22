@@ -12,6 +12,8 @@ class SelectCityViewModel {
     private(set) var countryId : String = ""
     private(set) var selectedCity:CountryCitiesDataModel?
     
+//    private var hostVC: SelectCitiesViewController?
+    
     func setCountryId(_ string:String) {
         self.countryId = string
     }
@@ -25,6 +27,10 @@ class SelectCityViewModel {
 //                    self.setCities(citiesListData[0])
 //                }
 //            }
+//                hostVC?.selcectCityDropDownView.isHidden = citiesListData.isEmpty
+//                hostVC?.btnSubmit.isHidden = citiesListData.isEmpty
+//                hostVC?.noDataFoundLabel.isHidden = !citiesListData.isEmpty
+                
             refresHandler?.refreshTable(for: "")
             completion()
         }

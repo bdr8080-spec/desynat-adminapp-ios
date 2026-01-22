@@ -16,11 +16,10 @@ class CountryCityListViewController: UIViewController {
     @IBOutlet weak var tblCountry: TableViewDynamicHeight!
     @IBOutlet weak var lnlFlag: CustomLabelFont!
     @IBOutlet weak var tblCities: UITableView!
-    
+    @IBOutlet weak var plusButtonOutlet: UIButton!
     @IBOutlet weak var lblPageCount: UILabel!
     @IBOutlet weak var btnPreviousPage: UIButton!
     @IBOutlet weak var btnNextPage: UIButton!
-    
     @IBOutlet weak var txtFielSearch: BindableTextField! {
         didSet {
             txtFielSearch.bind(callback: {self.viewModel.setSearch($0)})

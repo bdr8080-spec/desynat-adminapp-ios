@@ -38,9 +38,9 @@ class SideMenuViewController: UIViewController {
         SideMenuModel(title: "Live Request  & Timeslot Management", image: "liveReuqest"),
         SideMenuModel(title: "Story Management", image: "storyManagment"),
         SideMenuModel(title: "Deals Management", image: "dealsManagement"),
+        SideMenuModel(title: "Affiliate User Management", image: "userManagemnet"),
         
         SideMenuModel(title: "Sub Admin", image: "subadmin"),
-        SideMenuModel(title: "Affiliate User Management", image: "userManagemnet"),
         SideMenuModel(title: "Refund Management", image: "refundManagemnt"),
         SideMenuModel(title: "Affiliate withdrawal requests", image: "affilateWithdraw"),
         SideMenuModel(title: "Notifications Management", image: "notificationBell"),
@@ -115,7 +115,8 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             case "Sub Admin":
                 print("➡️ Navigating to Sub Admin")
             case "Affiliate User Management":
-                print("➡️ Navigating to Affiliate User Management")
+                let nextVC = AffiliatedUsersListViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
+                self.navigationController?.pushViewController(nextVC, animated: false)
             case "Seller Management":
                 self.navigate(to: SellerListViewController.viewFromNIB)
             case "Delivery Boy Management":

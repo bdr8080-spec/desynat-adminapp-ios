@@ -42,6 +42,9 @@ class RegisterationSuccessViewController: UIViewController {
     case .LiveRequestIsDone:
       self.titleString = "Request accepted\nsuccessfully!"
       mainImageView.image = UIImage(named: "darkGreenCompletion")
+    case .AffiliateUserManagement:
+      self.titleString = "Affiliate customer approved\nsuccessfully!"
+      mainImageView.image = UIImage(named: "darkGreenCompletion")
     }
   }
   
@@ -54,4 +57,5 @@ enum ComingReasonAtRegisterationSuccess {
   case passwordUpdated
   case accountCreated
   case LiveRequestIsDone
+  case AffiliateUserManagement
 }

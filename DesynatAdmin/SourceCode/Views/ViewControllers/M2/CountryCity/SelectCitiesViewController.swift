@@ -8,19 +8,21 @@
 import UIKit
 
 class SelectCitiesViewController: UIViewController {
+    
+    @IBOutlet weak var noDataFoundLabel: UILabel!
+    @IBOutlet weak var selcectCityDropDownView: UIView!
     @IBOutlet weak var viewCityContainer: CustomView!
     @IBOutlet weak var lblSelectedCity: CustomLabelFont!
     @IBOutlet weak var viewMain: CustomView!
     @IBOutlet weak var tblCities: TableViewDynamicHeight!
+    @IBOutlet weak var btnSubmit: CustomButton!
     
     private var isCityExpanded : Bool = false
-    @IBOutlet weak var btnSubmit: CustomButton!
     private var viewModel : SelectCityViewModel = SelectCityViewModel()
     private var callCackFromSelection:((String) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.setUpUi()
         self.setData()
     }
@@ -41,11 +43,27 @@ class SelectCitiesViewController: UIViewController {
             self.btnSubmit.applyGradient(colours: [UIColor.init(hexString: "#DFBF8F"), UIColor.init(hexString: "#6E4527")],gradientDirection: .topToBottom,cornerRadius: 5)
         }
     }
+//    func setData() {
+//        self.viewModel.getAllCities {
+//            self.refreshCitySelection()
+//        }
+//    }
+    
     func setData() {
         self.viewModel.getAllCities {
+            self.updateNoDataUI()
             self.refreshCitySelection()
         }
     }
+    
+    private func updateNoDataUI() {
+        let isEmpty = viewModel.citiesListData.isEmpty
+
+        self.selcectCityDropDownView.isHidden = isEmpty
+        self.btnSubmit.isHidden = isEmpty
+        self.noDataFoundLabel.isHidden = !isEmpty
+    }
+
     
     private func refreshCitySelection() {
         if let countryListData = viewModel.selectedCity {
