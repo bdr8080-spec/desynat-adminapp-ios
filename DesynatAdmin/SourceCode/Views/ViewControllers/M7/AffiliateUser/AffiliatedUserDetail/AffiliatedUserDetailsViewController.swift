@@ -6,16 +6,21 @@
 //
 
 import UIKit
+import SDWebImage
 
 class AffiliatedUserDetailsViewController: UIViewController {
     
+    @IBOutlet weak var swiftView: UIView!
+    @IBOutlet weak var ibanView: UIView!
+    @IBOutlet weak var accountTypeLabel: UILabel!
+    @IBOutlet weak var statusToggleButton: UIButton!
+    @IBOutlet weak var rejectTypeLabel: UILabel!
     @IBOutlet weak var buttonActionStackView: UIStackView!
     @IBOutlet weak var proofOfDocumentImageView: CustomImageView!
     @IBOutlet weak var accountHolderNameLabel: UILabel!
     @IBOutlet weak var bankNameLabel: UILabel!
     @IBOutlet weak var swiftBICLabel: UILabel!
     @IBOutlet weak var ibanLabel: UILabel!
-    @IBOutlet weak var accountTypeLabel: UILabel!
     @IBOutlet weak var secondDocumentImageView: CustomImageView!
     @IBOutlet weak var firstDocumentImageView: CustomImageView!
     @IBOutlet weak var addressLaebl: UILabel!
@@ -35,15 +40,21 @@ class AffiliatedUserDetailsViewController: UIViewController {
     @IBOutlet weak var reasonLabel: UILabel!
     
     var userType: AffiliatedUsersListType = .newUsers
+    private lazy var viewModel = AffiliatedUserDetailsViewModel(hostVC: self)
+    var userId: Int? = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initailSetupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.getAffilitaedUserDetails()
+    }
+    
     @IBAction func statusToggleDidTapped(_ sender: Any) {
-//        guard let brand = brandData else { return }
-//        viewModel.upadteBrandStatus(param: ["brand_id": brand.id ?? 0])
+        viewModel.upadteUserStatus(param: ["user_id": userId ?? 0])
     }
     
     @IBAction func backDidTapped(_ sender: Any) {
@@ -54,22 +65,22 @@ class AffiliatedUserDetailsViewController: UIViewController {
         let vc = RejectReasonViewController.viewFromNIB
         vc.needToShowButtonStackView = true
         vc.setCallback { reason,type in
-//          let param: [String: Any] = ["request_id": data.id ?? 0,
-//                                      "reject_reason": reason]
-//          self.viewModel.rejectLiveRequest(param: param)
+            let param: [String: Any] = ["user_id": self.userId ?? 0,
+                                        "reject_type": type.paramterValue,
+                                        "reject_reason": reason]
+            self.viewModel.RejectUserRequest(param: param)
+            vc.dismiss(animated: false)
+            self.userType = .rejectedUsers
+            self.initailSetupUI()
         }
         self.presentVC(vc,withAnimation: false,modalPresentationStyle: .overCurrentContext)
     }
     
     @IBAction func acceptDidTapped(_ sender: Any) {
-        let vc = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
-        vc.comingReason = .AffiliateUserManagement
-        vc.callBackDismiss = {
-//            self.fetchAffiliatedUsersList()
-        }
-        self.navigationController?.present(vc, animated: true)
+        let param: [String: Any] = ["user_id": self.userId ?? 0]
+        viewModel.AcceptUserRequest(param: param)
     }
-
+    
     func initailSetupUI() {
         approvedStackView.isHidden = true
         rejectedStackView.isHidden = true
@@ -87,4 +98,83 @@ class AffiliatedUserDetailsViewController: UIViewController {
             rejectedStackView.isHidden = false
         }
     }
+    
+    func configUserData(userData: AffilitaitedUsersDataModel?) {
+        guard let data = userData else { return }
+        if let imageUrlString = data.profileImage,
+           let url = URL(string: imageUrlString) {
+            profileImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            profileImageView.sd_imageIndicator?.startAnimatingIndicator()
+            profileImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "userProfile"))
+        } else {
+            profileImageView.image = UIImage(named: "userProfile")
+        }
+        usernameLabel.text = data.fullName
+        countryLabel.text = data.countryDetails?.name
+        joinedDateLabel.text = "Joined on \(convertISOToDMY(data.createdAt ?? "") ?? "")"
+        mobileLabel.text = "\(data.countryCode ?? "")-\(data.mobile ?? "")"
+        emailLabel.text = data.email
+        //        totalOrdersLabek.text = data.or
+        //        totalEarningsLabel.text = data.ea
+        reasonLabel.text = data.rejectReason
+        
+        if data.adminVerify == "3" {
+            rejectTypeLabel.text = "Complete Rejected"
+        } else if data.adminVerify == "4" {
+            rejectTypeLabel.text = "Document Rejected"
+        }
+        if data.status == "1" {
+            toggleViewstatusLabel.text = "Active"
+            statusToggleButton.setImage(UIImage(named: "toggleOn"), for: .normal)
+        } else {
+            toggleViewstatusLabel.text = "Inactive"
+            statusToggleButton.setImage(UIImage(named: "toggleOff"), for: .normal)
+        }
+        addressLaebl.text = data.addressDetails?.fullAddress
+        
+        firstDocumentImageView.setImage(with: data.document1)
+        secondDocumentImageView.setImage(with: data.document2)
+        proofOfDocumentImageView.setImage(with: data.bankDetails?.uploadProof)
+        
+        let type = data.bankDetails?.accountType ?? "0"
+        if type == "0" {
+            accountTypeLabel.text = "Personal"
+        } else {
+            accountTypeLabel.text = "Business"
+        }
+        
+        if let iban = data.bankDetails?.iban, !iban.isEmpty {
+            ibanView.isHidden = false
+            ibanLabel.text = iban
+        } else {
+            ibanView.isHidden = true
+        }
+        
+        if let swift = data.bankDetails?.swift, !swift.isEmpty {
+            swiftView.isHidden = false
+            swiftBICLabel.text = swift
+        } else {
+            swiftView.isHidden = true
+        }
+        bankNameLabel.text = data.bankDetails?.bankName
+        accountHolderNameLabel.text = data.bankDetails?.accountHolderName
+    }
+    
+    private func convertISOToDMY(_ isoString: String) -> String? {
+        // ISO8601 parser
+        let isoFormatter = ISO8601DateFormatter()
+        isoFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        
+        // Parse to Date
+        guard let date = isoFormatter.date(from: isoString) else {
+            return nil
+        }
+        
+        // Output formatter
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = "dd/MM/yyyy"
+        
+        return outputFormatter.string(from: date)
+    }
 }
+

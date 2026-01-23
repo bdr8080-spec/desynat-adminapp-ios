@@ -166,6 +166,16 @@ enum NetworkEndPoint: String {
   case uploadAdminStory = "api/admin/add_story"
   case uploadFullScreenBanner = "api/uploadWithResolution"
   
+    
+    //M7
+    case getNewAffilaitedUsers = "api/admin/get_new_affilaited_users"
+    case getApprovedAffilaitedUsers = "api/admin/get_approved_affilaited_users"
+    case getRejectedAffilaitedUsers = "api/admin/get_rejected_affilaited_users"
+    case getAffilaitedUsersDetails = "api/admin/get_affiliate_user_details"
+    case acceptAffilaitedUsers = "api/admin/accept_affiliate_user"
+    case rejectAffilaitedUsers = "api/admin/reject_affiliate_user"
+    case blockUnblockAffilaitedUsers = "api/admin/block_unblock_affiliate_user"
+    
     func withBaseURL() -> String {
         return "\(BaseURL.value())\(self.rawValue)"
     }

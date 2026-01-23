@@ -1243,8 +1243,6 @@ extension WebService {
       }
   }
   
-  
-  
   func uploadAdminStories(param: [String: Any], completion: @escaping (EmptyModel) -> Void) {
     CommonUtils.showHud(show: true)
     NetworkManager.shared.request(withAPI: .endpoint(.uploadAdminStory), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
@@ -1260,6 +1258,118 @@ extension WebService {
         }
     }
 }
+    
+    func getNewAffilaitedUsersRequest(param: [String: Any], completion: @escaping (AffilitaitedUsersListDataModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getNewAffilaitedUsers), requestMethod: .get, requestParams: param, requestModel: AffilitaitedUsersListDataModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+    
+    func getApprovedAffilaitedUsersRequest(param: [String: Any], completion: @escaping (AffilitaitedUsersListDataModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getApprovedAffilaitedUsers), requestMethod: .get, requestParams: param, requestModel: AffilitaitedUsersListDataModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+    
+    func getRejectedAffilaitedUsersRequest(param: [String: Any], completion: @escaping (AffilitaitedUsersListDataModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getRejectedAffilaitedUsers), requestMethod: .get, requestParams: param, requestModel: AffilitaitedUsersListDataModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+    
+    func getAffilaitedUsersDetailsRequest(param: [String: Any], completion: @escaping (AffilitaitedUsersDataModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getAffilaitedUsersDetails), requestMethod: .get, requestParams: param, requestModel: AffilitaitedUsersDataModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+    
+    func acceptAffilaitedUsersRequest(param: [String: Any], completion: @escaping (EmptyModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.acceptAffilaitedUsers), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+    
+    func rejectAffilaitedUsersRequest(param: [String: Any], completion: @escaping (EmptyModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.rejectAffilaitedUsers), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+    
+    func blockUnblockAffilaitedUsersRequest(param: [String: Any], completion: @escaping (EmptyModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.blockUnblockAffilaitedUsers), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
   
 }
 

