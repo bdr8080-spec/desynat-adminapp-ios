@@ -30,6 +30,37 @@ class CommonUtils {
       return String(format: "%.2f", roundedAmount) + " \(currency)"
     }
   }
+    
+    static func setStrikethrough(label: UILabel, text: String) {
+        let attributeString = NSMutableAttributedString(string: text)
+        
+        // Strikethrough in the same color as the label text
+        let textColor = label.textColor ?? .black
+        
+        attributeString.addAttribute(
+            .strikethroughStyle,
+            value: NSUnderlineStyle.single.rawValue,
+            range: NSRange(location: 0, length: attributeString.length)
+        )
+        
+        attributeString.addAttribute(
+            .strikethroughColor,
+            value: textColor,
+            range: NSRange(location: 0, length: attributeString.length)
+        )
+        
+        // Keep label's current font
+        if let font = label.font {
+            attributeString.addAttribute(
+                .font,
+                value: font,
+                range: NSRange(location: 0, length: attributeString.length)
+            )
+        }
+        
+        label.attributedText = attributeString
+    }
+    
   
   static func formatPriceStringInput(_ amount: String?, currency: String = "KD") -> String {
       guard

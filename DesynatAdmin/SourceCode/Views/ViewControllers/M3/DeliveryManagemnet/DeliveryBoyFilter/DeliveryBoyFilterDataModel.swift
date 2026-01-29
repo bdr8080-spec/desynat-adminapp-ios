@@ -15,3 +15,13 @@ struct DriverFilterModel {
         return fromDate == nil && toDate == nil
     }
 }
+
+
+struct ProductFilterModelOnBrand {
+    var brandName: String?
+    var brandId: Int?
+    
+    var isEmpty: Bool {
+        return brandName == nil && brandId == nil
+    }
+}

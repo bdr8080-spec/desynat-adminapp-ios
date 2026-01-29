@@ -42,7 +42,8 @@ class DealsManagementListTableViewCell: UITableViewCell {
     let startDate = convertDateFormat(data?.from ?? "") ?? ""
     let endDate = convertDateFormat(data?.to ?? "") ?? ""
     dateLabel.text = "\(startDate) - \(endDate)"
-//    totalSellerLabel.text = data.t
+    let count = data?.sellerEnrolled?.sellerCount ?? 0
+    totalSellerLabel.text = "\(count) " + (count == 1 ? "Seller" : "Sellers")
   }
   
   func convertDateFormat(

@@ -14,14 +14,33 @@ class AffiliatedUsersListViewModel {
     var currentPage: Int = 1
     var totalPages: Int = 1
     var searchText: String = ""
-    var appliedFilterForNew = FullScreenBannerFilterModel()
+    var newUsersFilter = FullScreenBannerFilterModel()
+        var approvedUsersFilter = FullScreenBannerFilterModel()
+        var rejectedUsersFilter = FullScreenBannerFilterModel()
     
     init(hostVC: AffiliatedUsersListViewController? = nil) {
         self.hostVC = hostVC
     }
     
+    // Helper
+        func filter(for type: AffiliatedUsersListType) -> FullScreenBannerFilterModel {
+            switch type {
+            case .newUsers: return newUsersFilter
+            case .approvedUsers: return approvedUsersFilter
+            case .rejectedUsers: return rejectedUsersFilter
+            }
+        }
+
+        func setFilter(_ filter: FullScreenBannerFilterModel, for type: AffiliatedUsersListType) {
+            switch type {
+            case .newUsers: newUsersFilter = filter
+            case .approvedUsers: approvedUsersFilter = filter
+            case .rejectedUsers: rejectedUsersFilter = filter
+            }
+        }
+    
     func fetchNewAffiliatedUsersList() {
-        hostVC?.listTableView.reloadData()
+        let filter = newUsersFilter
         var params: [String : Any] = [:]
         params["page"] = currentPage
         params["limit"] = 3
@@ -29,16 +48,16 @@ class AffiliatedUsersListViewModel {
             params["search"] = searchText
         }
         
-        if let country = appliedFilterForNew.countryName {
+        if let country = filter.countryName {
             params["country"] = country
         }
         
-        if let fromDate = appliedFilterForNew.fromDate {
-            params["from_date"] = fromDate
+        if let fromDate = filter.fromDate {
+            params["from_date"] = convertDate(fromDate)
         }
         
-        if let toDate = appliedFilterForNew.toDate {
-            params["to_date"] = toDate
+        if let toDate = filter.toDate {
+            params["to_date"] = convertDate(toDate)
         }
         
         WebService.shared.getNewAffilaitedUsersRequest(param: params) { [weak self] response in
@@ -60,7 +79,8 @@ class AffiliatedUsersListViewModel {
     }
     
     func fetchApprovedAffiliatedUsersList() {
-        hostVC?.listTableView.reloadData()
+        
+        let filter = approvedUsersFilter
         var params: [String : Any] = [:]
         params["page"] = currentPage
         params["limit"] = 3
@@ -68,16 +88,16 @@ class AffiliatedUsersListViewModel {
             params["search"] = searchText
         }
         
-        if let country = appliedFilterForNew.countryName {
-            params["country"] = country
+        if let country = filter.countryName {
+            params["country1"] = country
         }
         
-        if let fromDate = appliedFilterForNew.fromDate {
-            params["from_date"] = fromDate
+        if let fromDate = filter.fromDate {
+            params["from_date1"] = convertDate(fromDate)
         }
         
-        if let toDate = appliedFilterForNew.toDate {
-            params["to_date"] = toDate
+        if let toDate = filter.toDate {
+            params["to_date1"] = convertDate(toDate)
         }
         
         WebService.shared.getApprovedAffilaitedUsersRequest(param: params) { [weak self] response in
@@ -99,7 +119,7 @@ class AffiliatedUsersListViewModel {
     }
     
     func fetchRejectedAffiliatedUsersList() {
-        hostVC?.listTableView.reloadData()
+        let filter = rejectedUsersFilter
         var params: [String : Any] = [:]
         params["page"] = currentPage
         params["limit"] = 3
@@ -107,16 +127,16 @@ class AffiliatedUsersListViewModel {
             params["search"] = searchText
         }
         
-        if let country = appliedFilterForNew.countryName {
-            params["country"] = country
+        if let country = filter.countryName {
+            params["country2"] = country
         }
         
-        if let fromDate = appliedFilterForNew.fromDate {
-            params["from_date"] = fromDate
+        if let fromDate = filter.fromDate {
+            params["from_date2"] = convertDate(fromDate)
         }
         
-        if let toDate = appliedFilterForNew.toDate {
-            params["to_date"] = toDate
+        if let toDate = filter.toDate {
+            params["to_date2"] = convertDate(toDate)
         }
         
         WebService.shared.getRejectedAffilaitedUsersRequest(param: params) { [weak self] response in
@@ -189,4 +209,26 @@ class AffiliatedUsersListViewModel {
             }
         }
     }
+    
+    func convertDate(
+        _ dateString: String,
+        from inputFormat: String = "dd/MM/yyyy",
+        to outputFormat: String = "yyyy-MM-dd"
+    ) -> String? {
+
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = inputFormat
+        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
+
+        guard let date = inputFormatter.date(from: dateString) else {
+            return nil
+        }
+
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = outputFormat
+        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
+
+        return outputFormatter.string(from: date)
+    }
+
 }

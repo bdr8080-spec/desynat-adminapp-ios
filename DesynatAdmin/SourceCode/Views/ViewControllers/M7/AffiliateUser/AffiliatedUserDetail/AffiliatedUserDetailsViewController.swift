@@ -117,7 +117,8 @@ class AffiliatedUserDetailsViewController: UIViewController {
         //        totalOrdersLabek.text = data.or
         //        totalEarningsLabel.text = data.ea
         reasonLabel.text = data.rejectReason
-        
+        firstDocumentImageView.enableFullscreenZoom()
+        secondDocumentImageView.enableFullscreenZoom()
         if data.adminVerify == "3" {
             rejectTypeLabel.text = "Complete Rejected"
         } else if data.adminVerify == "4" {
@@ -130,7 +131,7 @@ class AffiliatedUserDetailsViewController: UIViewController {
             toggleViewstatusLabel.text = "Inactive"
             statusToggleButton.setImage(UIImage(named: "toggleOff"), for: .normal)
         }
-        addressLaebl.text = data.addressDetails?.fullAddress
+        addressLaebl.text = data.addressDetails?.locations//data.addressDetails?.fullAddress
         
         firstDocumentImageView.setImage(with: data.document1)
         secondDocumentImageView.setImage(with: data.document2)

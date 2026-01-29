@@ -390,6 +390,7 @@ struct ProductDetails: Codable {
   let subcategory: Brand?
   let sellerDetails: SellerDetails?
   let store: Store?
+    let productVariants: [ProductVariant]?
   
   enum CodingKeys: String, CodingKey {
     case id
@@ -423,6 +424,7 @@ struct ProductDetails: Codable {
     case brand, category, subcategory
     case sellerDetails = "seller_details"
     case store
+      case productVariants = "product_variants"
   }
 }
 
@@ -460,6 +462,43 @@ struct Category: Codable {
     case createdAt = "created_at"
     case updatedAt = "updated_at"
   }
+}
+
+// MARK: - ProductVariant
+struct ProductVariant: Codable {
+    let id, productID: Int?
+    let parentChild: String?
+    let variantImage: [String]?
+    let colorID, sizeID, bust, waist: String?
+    let hip, shoulder, sleeveLength, length: String?
+    let totalStock, sku: String?
+    let skuThresholdValue: String?
+    let actualPrice, discountType, discountValue, finalPrice: String?
+    let status, createdAt, updatedAt: String?
+    let dealDiscountPrice: Double?
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case productID = "product_id"
+        case parentChild = "parent_child"
+        case variantImage = "variant_image"
+        case colorID = "color_id"
+        case sizeID = "size_id"
+        case bust, waist, hip, shoulder
+        case sleeveLength = "sleeve_length"
+        case length
+        case totalStock = "total_stock"
+        case sku
+        case skuThresholdValue = "sku_threshold_value"
+        case actualPrice = "actual_price"
+        case discountType = "discount_type"
+        case discountValue = "discount_value"
+        case finalPrice = "final_price"
+        case status
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+        case dealDiscountPrice = "deal_discount_price"
+    }
 }
 
 // MARK: - SellerDetails

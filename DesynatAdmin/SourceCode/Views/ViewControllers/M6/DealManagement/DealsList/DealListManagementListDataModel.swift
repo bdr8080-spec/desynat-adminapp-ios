@@ -48,7 +48,9 @@ struct DealListManagementList: Codable {
     let createdAt, updatedAt: String?
     let categoryDetails: CategoryDetails?
     let subCategoryDetails: SubCategoryDetails?
-
+    let sellerDealrecords: [SellerDealrecord]?
+    let sellerEnrolled: SellerEnrolled?
+    
     enum CodingKeys: String, CodingKey {
         case id, image
         case nameEnglish = "name_english"
@@ -60,6 +62,18 @@ struct DealListManagementList: Codable {
         case updatedAt = "updated_at"
         case categoryDetails = "category_details"
         case subCategoryDetails = "sub_category_details"
+        case sellerDealrecords = "seller_dealrecords"
+        case sellerEnrolled = "seller_enrolled"
+    }
+}
+
+// MARK: - SellerEnrolled
+struct SellerEnrolled: Codable {
+    let dealID, sellerCount: Int?
+
+    enum CodingKeys: String, CodingKey {
+        case dealID = "deal_id"
+        case sellerCount = "seller_count"
     }
 }
 
@@ -79,5 +93,42 @@ struct SubCategoryDetails: Codable {
         case image, status
         case createdAt = "created_at"
         case updatedAt = "updated_at"
+    }
+}
+
+// MARK: - SellerDealrecord
+struct SellerDealrecord: Codable {
+    let dealID: Int?
+    let sellerID: String?
+    let productCount: Int?
+    let sellerDetails: SellerDetails?
+    let products: [Product]?
+
+    enum CodingKeys: String, CodingKey {
+        case dealID = "deal_id"
+        case sellerID = "seller_id"
+        case productCount = "product_count"
+        case sellerDetails = "seller_details"
+        case products
+    }
+}
+
+// MARK: - Product
+struct Product: Codable {
+    let id, dealID: Int?
+    let sellerID: String?
+    let productID: Int?
+    let discount, createdAt, updatedAt: String?
+    let productDetails: ProductDetails?
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case dealID = "deal_id"
+        case sellerID = "seller_id"
+        case productID = "product_id"
+        case discount
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+        case productDetails = "product_details"
     }
 }

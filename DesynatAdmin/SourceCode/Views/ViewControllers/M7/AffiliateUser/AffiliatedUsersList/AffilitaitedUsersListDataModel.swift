@@ -122,9 +122,44 @@ struct BankDetails: Codable {
     }
 }
 
+//extension AddressDetails {
+//
+//    var fullAddress: String {
+//        let components: [String?] = [
+//            address1,
+//            address2,
+//            addressDetailsLet,
+//            locations,
+//            town,
+//            city,
+//            state,
+//            country,
+//            pincode
+//        ]
+//
+//        // Remove nil, empty, and duplicates (case-insensitive)
+//        var seen = Set<String>()
+//        let uniqueParts = components
+//            .compactMap { $0?.trimmingCharacters(in: .whitespacesAndNewlines) }
+//            .filter { !$0.isEmpty }
+//            .filter {
+//                let key = $0.lowercased()
+//                if seen.contains(key) {
+//                    return false
+//                } else {
+//                    seen.insert(key)
+//                    return true
+//                }
+//            }
+//
+//        return uniqueParts.joined(separator: ", ")
+//    }
+//}
+
 extension AddressDetails {
 
     var fullAddress: String {
+
         let components: [String?] = [
             address1,
             address2,
@@ -133,25 +168,44 @@ extension AddressDetails {
             town,
             city,
             state,
-            country,
-            pincode
+            country
+            // ❌ pincode removed from here on purpose
         ]
 
-        // Remove nil, empty, and duplicates (case-insensitive)
-        var seen = Set<String>()
-        let uniqueParts = components
-            .compactMap { $0?.trimmingCharacters(in: .whitespacesAndNewlines) }
-            .filter { !$0.isEmpty }
-            .filter {
-                let key = $0.lowercased()
-                if seen.contains(key) {
-                    return false
-                } else {
-                    seen.insert(key)
-                    return true
+        var seenWords = Set<String>()
+        var finalComponents: [String] = []
+
+        for component in components {
+            guard let text = component?
+                .trimmingCharacters(in: .whitespacesAndNewlines),
+                  !text.isEmpty else { continue }
+
+            let words = text
+                .components(separatedBy: .whitespaces)
+                .map { $0.trimmingCharacters(in: .punctuationCharacters) }
+                .filter { !$0.isEmpty }
+
+            var uniqueWords: [String] = []
+
+            for word in words {
+                let key = word.lowercased()
+                if !seenWords.contains(key) {
+                    seenWords.insert(key)
+                    uniqueWords.append(word)
                 }
             }
 
-        return uniqueParts.joined(separator: ", ")
+            if !uniqueWords.isEmpty {
+                finalComponents.append(uniqueWords.joined(separator: " "))
+            }
+        }
+
+        // ✅ Append pincode at the end (no word repetition check needed)
+        if let pincode = pincode?.trimmingCharacters(in: .whitespacesAndNewlines),
+           !pincode.isEmpty {
+            finalComponents.append(pincode)
+        }
+
+        return finalComponents.joined(separator: ", ")
     }
 }

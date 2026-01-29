@@ -11,7 +11,26 @@ import UIKit
 class DealDetailsViewModel {
   
   private var hostVC: DealDetailsViewController
-  
+    let pageSize = 2
+    var currentPage: Int = 1
+
+    var totalItems: Int {
+        hostVC.dealData?.sellerDealrecords?.count ?? 0
+    }
+
+    var totalPages: Int {
+        return Int(ceil(Double(totalItems) / Double(pageSize)))
+    }
+
+    var paginatedItems: [SellerDealrecord] {
+        guard let records = hostVC.dealData?.sellerDealrecords else { return [] }
+
+        let startIndex = (currentPage - 1) * pageSize
+        let endIndex = min(startIndex + pageSize, records.count)
+
+        guard startIndex < endIndex else { return [] }
+        return Array(records[startIndex..<endIndex])
+    }
   init(hostVC: DealDetailsViewController) {
     self.hostVC = hostVC
   }
@@ -56,3 +75,4 @@ class DealDetailsViewModel {
   }
   
 }
+

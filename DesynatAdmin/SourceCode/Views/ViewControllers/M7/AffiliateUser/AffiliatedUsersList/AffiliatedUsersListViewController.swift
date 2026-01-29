@@ -79,34 +79,39 @@ class AffiliatedUsersListViewController: UIViewController {
     }
     
     @IBAction func filterDidTapped(_ sender: Any) {
-        let vc = FullScreenBannerFilterViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
-           vc.selectedFilter = viewModel.appliedFilterForNew
-           vc.onApplyFilter = { [weak self] filter in
-               guard let self = self else { return }
-               self.viewModel.appliedFilterForNew = filter
-               self.viewModel.currentPage = 1
-               switch userType {
-               case .newUsers:
-                   self.viewModel.fetchNewAffiliatedUsersList()
-               case .approvedUsers:
-                   self.viewModel.fetchApprovedAffiliatedUsersList()
-               case .rejectedUsers:
-                   self.viewModel.fetchRejectedAffiliatedUsersList()
-               }
-           }
-           vc.onClearFilter = { [weak self] in
-               guard let self = self else { return }
-               self.viewModel.appliedFilterForNew = FullScreenBannerFilterModel()
-               self.viewModel.currentPage = 1
-               switch userType {
-               case .newUsers:
-                   self.viewModel.fetchNewAffiliatedUsersList()
-               case .approvedUsers:
-                   self.viewModel.fetchApprovedAffiliatedUsersList()
-               case .rejectedUsers:
-                   self.viewModel.fetchRejectedAffiliatedUsersList()
-               }
-           }
+        let vc = AffiliatedUserFilterViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
+        vc.selectedFilter = viewModel.filter(for: userType)
+
+        vc.onApplyFilter = { [weak self] filter in
+                guard let self = self else { return }
+
+                self.viewModel.setFilter(filter, for: self.userType)
+                self.viewModel.currentPage = 1
+
+                switch self.userType {
+                case .newUsers:
+                    self.viewModel.fetchNewAffiliatedUsersList()
+                case .approvedUsers:
+                    self.viewModel.fetchApprovedAffiliatedUsersList()
+                case .rejectedUsers:
+                    self.viewModel.fetchRejectedAffiliatedUsersList()
+                }
+            }
+        vc.onClearFilter = { [weak self] in
+                guard let self = self else { return }
+
+                self.viewModel.setFilter(FullScreenBannerFilterModel(), for: self.userType)
+                self.viewModel.currentPage = 1
+
+                switch self.userType {
+                case .newUsers:
+                    self.viewModel.fetchNewAffiliatedUsersList()
+                case .approvedUsers:
+                    self.viewModel.fetchApprovedAffiliatedUsersList()
+                case .rejectedUsers:
+                    self.viewModel.fetchRejectedAffiliatedUsersList()
+                }
+            }
            self.navigationController?.present(vc, animated: true)
     }
     

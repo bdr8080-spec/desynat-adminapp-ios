@@ -43,7 +43,7 @@ class RegisterationSuccessViewController: UIViewController {
       self.titleString = "Request accepted\nsuccessfully!"
       mainImageView.image = UIImage(named: "darkGreenCompletion")
     case .AffiliateUserManagement:
-      self.titleString = "Affiliate customer approved\nsuccessfully!"
+      self.titleString = "Affiliate user approved\nsuccessfully!"
       mainImageView.image = UIImage(named: "darkGreenCompletion")
     }
   }

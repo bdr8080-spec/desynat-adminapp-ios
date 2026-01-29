@@ -33,12 +33,13 @@ class DealsManagementListViewController: UIViewController {
     super.viewDidLoad()
     searchTF.delegate = self
     updatePaginationButtonImages()
+      viewModel.currentPage = 1
+      viewModel.getActiveDeals()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    viewModel.currentPage = 1
-    viewModel.getActiveDeals()
+    
   }
   
   

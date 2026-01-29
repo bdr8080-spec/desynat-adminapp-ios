@@ -175,6 +175,7 @@ enum NetworkEndPoint: String {
     case acceptAffilaitedUsers = "api/admin/accept_affiliate_user"
     case rejectAffilaitedUsers = "api/admin/reject_affiliate_user"
     case blockUnblockAffilaitedUsers = "api/admin/block_unblock_affiliate_user"
+    case getDealProductsList         = "api/admin/get_deal_seller_product_list"
     
     func withBaseURL() -> String {
         return "\(BaseURL.value())\(self.rawValue)"
