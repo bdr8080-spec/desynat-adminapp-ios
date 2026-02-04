@@ -42,12 +42,13 @@ struct DealListManagementList: Codable {
     let id: Int?
     let image: String?
     let nameEnglish, nameArabic: String?
-    let categoryID, subCategoryID: Int?
+    let categoryID: Int?
+    let subCategoryID: [String]?
     let discount, from, to: String?
     var status: Int?
     let createdAt, updatedAt: String?
     let categoryDetails: CategoryDetails?
-    let subCategoryDetails: SubCategoryDetails?
+    let subCategoryDetails: [SubCategoryDetails]?
     let sellerDealrecords: [SellerDealrecord]?
     let sellerEnrolled: SellerEnrolled?
     
@@ -61,7 +62,7 @@ struct DealListManagementList: Codable {
         case createdAt = "created_at"
         case updatedAt = "updated_at"
         case categoryDetails = "category_details"
-        case subCategoryDetails = "sub_category_details"
+        case subCategoryDetails = "subCategory_details" //subCategory_details
         case sellerDealrecords = "seller_dealrecords"
         case sellerEnrolled = "seller_enrolled"
     }

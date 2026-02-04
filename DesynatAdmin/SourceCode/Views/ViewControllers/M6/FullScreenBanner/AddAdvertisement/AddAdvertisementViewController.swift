@@ -25,7 +25,7 @@ class AddAdvertisementViewController: UIViewController {
   var isComingForEdit: Bool = false
   var giftsListData: FullScreenBannerDataList?
   var onCardUpdated: ((FullScreenBannerDataList) -> Void)?
-  var forTypeList = ["Mobile", "Web"]
+  var forTypeList = ["App Banner", "Web Banner"]
   var selectedForType: Int = 0 //type 1 mobile,2-web
   func selectedAspectRatio() -> BannerAspectRatio {
       return selectedForType == 1 ? .mobile : .web
@@ -73,11 +73,6 @@ class AddAdvertisementViewController: UIViewController {
   }
   
   @IBAction func uploadImageDidTapped(_ sender: UIButton) {
-//    if selectedForType == 0 {
-//            showAlert(msg: "Please select type")
-//            return
-//        }
-
     ImagePickerManager.shared.pickFromGalleryOnly(self) { [weak self]
             image, gifData, isGif, fileName, url in
 
@@ -117,46 +112,7 @@ class AddAdvertisementViewController: UIViewController {
   @IBAction func backDidTapped(_ sender: UIButton) {
     self.navigationController?.popViewController(animated: true)
   }
-  
-//  private func uploadBannerThenSubmit() {
-//
-//      let keyParam: [String: Any] = ["type": selectedForType]
-//
-//      // ✅ GIF selected
-//      if isGifSelected, let gifData = pickedGifData {
-//          viewModel.uploadFullScreenBanner(
-//              file: gifData,
-//              isImage: false,
-//              isGif: true,
-//              keyParam: keyParam
-//          ) { [weak self] url in
-//              self?.selectedImageUrl = url
-//              self?.submitFinalApi()
-//          }
-//          return
-//      }
-//
-//      // ✅ Image selected
-//      if let image = pickedImage {
-//          viewModel.uploadFullScreenBanner(
-//              file: image,
-//              isImage: true,
-//              keyParam: keyParam
-//          ) { [weak self] url in
-//              self?.selectedImageUrl = url
-//              self?.submitFinalApi()
-//          }
-//          return
-//      }
-//
-//      // ✅ NO image selected
-//      // 👉 Happens when editing and only changing text/country/dates
-//      if isComingForEdit {
-//          submitFinalApi()
-//      } else {
-//          showAlert(msg: "Please select image")
-//      }
-//  }
+
   private func uploadBannerThenSubmit() {
 
       let keyParam: [String: Any] = ["type": selectedForType]
@@ -227,35 +183,33 @@ class AddAdvertisementViewController: UIViewController {
     
   }
   
-  private func convertImageToSelectedRatio(_ image: UIImage) -> UIImage {
+//  private func convertImageToSelectedRatio(_ image: UIImage) -> UIImage {
+//
+//      let targetRatio: CGFloat = (selectedForType == 1) ? (9.0 / 16.0) : (16.0 / 9.0)
+//
+//      let width = image.size.width
+//      let height = image.size.height
+//      let currentRatio = width / height
+//
+//      var cropRect: CGRect
+//
+//      if currentRatio > targetRatio {
+//          let newWidth = height * targetRatio
+//          let xOffset = (width - newWidth) / 2
+//          cropRect = CGRect(x: xOffset, y: 0, width: newWidth, height: height)
+//      } else {
+//          let newHeight = width / targetRatio
+//          let yOffset = (height - newHeight) / 2
+//          cropRect = CGRect(x: 0, y: yOffset, width: width, height: newHeight)
+//      }
+//
+//      guard let cgImage = image.cgImage?.cropping(to: cropRect) else {
+//          return image
+//      }
+//
+//      return UIImage(cgImage: cgImage, scale: image.scale, orientation: image.imageOrientation)
+//  }
 
-      let targetRatio: CGFloat = (selectedForType == 1) ? (9.0 / 16.0) : (16.0 / 9.0)
-
-      let width = image.size.width
-      let height = image.size.height
-      let currentRatio = width / height
-
-      var cropRect: CGRect
-
-      if currentRatio > targetRatio {
-          let newWidth = height * targetRatio
-          let xOffset = (width - newWidth) / 2
-          cropRect = CGRect(x: xOffset, y: 0, width: newWidth, height: height)
-      } else {
-          let newHeight = width / targetRatio
-          let yOffset = (height - newHeight) / 2
-          cropRect = CGRect(x: 0, y: yOffset, width: width, height: newHeight)
-      }
-
-      guard let cgImage = image.cgImage?.cropping(to: cropRect) else {
-          return image
-      }
-
-      return UIImage(cgImage: cgImage, scale: image.scale, orientation: image.imageOrientation)
-  }
-
-
-  
   func convertDateFormat(
     _ dateString: String,
     from inputFormat: String = "yyyy-MM-dd",

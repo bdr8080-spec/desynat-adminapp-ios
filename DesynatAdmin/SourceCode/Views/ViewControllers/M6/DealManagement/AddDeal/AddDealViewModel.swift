@@ -12,7 +12,7 @@ class AddDealViewModel {
   private var hostVC : AddDealViewController
   var categoryListData: [GetCategoryModel] = []
   var selectedCategoriesId: Int? = -1
-  var selectedSubCategoriesId: Int? = -1
+//  var selectedSubCategoriesId: Int? = -1
   var subcategoriesList: [GetSubCategoryDataList] = []
   
   init(hostVC: AddDealViewController) {
@@ -44,6 +44,7 @@ class AddDealViewModel {
     let param: [String :Any] = ["category_id": selectedCategoriesId ?? ""]
     WebService.sharedInstance.getAllsubcategory(param: param) { [self] list in
       self.subcategoriesList = list.data ?? []
+        self.hostVC.setupPreselectedSubcategories()
     }
   }
   
@@ -72,7 +73,10 @@ class AddDealViewModel {
       errorMessage = .SelectCategory
     }
     
-    if errorMessage == .none && selectedSubCategoriesId == -1 {
+//    if errorMessage == .none && selectedSubCategoriesId == -1 {
+//      errorMessage = .SelectSubCategory
+//    }
+      if errorMessage == .none && hostVC.selectedIds == [] {
       errorMessage = .SelectSubCategory
     }
     
@@ -113,7 +117,7 @@ class AddDealViewModel {
       "name_english": hostVC.fullNameTF.text?.trimmed() ?? "",
       "name_arabic": hostVC.fullNameInArabicTF.text?.trimmed() ?? "",
       "category_id": selectedCategoriesId ?? 0,
-      "sub_category_id": selectedSubCategoriesId ?? 0,
+      "sub_category_id": hostVC.selectedIds,
       "discount": hostVC.discountTF.text?.trimmed() ?? "",
       "from":  apiFromDate,
       "to": apiToDate]
@@ -134,7 +138,7 @@ class AddDealViewModel {
       "name_english": hostVC.fullNameTF.text?.trimmed() ?? "",
       "name_arabic": hostVC.fullNameInArabicTF.text?.trimmed() ?? "",
       "category_id": selectedCategoriesId ?? 0,
-      "sub_category_id": selectedSubCategoriesId ?? 0,
+      "sub_category_id": hostVC.selectedIds,//selectedSubCategoriesId ?? 0,
       "discount": hostVC.discountTF.text?.trimmed() ?? "",
       "from":  apiFromDate,
       "to": apiToDate]
