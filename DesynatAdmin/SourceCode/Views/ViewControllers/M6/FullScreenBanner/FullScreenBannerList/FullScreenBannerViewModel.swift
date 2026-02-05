@@ -11,7 +11,7 @@ class FullScreenBannerViewModel {
   
   private var hostVC: FullScreenBannerViewController?
   var brandListData: [FullScreenBannerDataList] = []
-  var promotionalListData: [FullScreenBannerDataList] = []
+  var promotionalListData: [GetPromotionalBannersList] = []
   var currentPage: Int = 1
   var totalPages: Int = 1
   var searchText: String = ""
@@ -94,23 +94,23 @@ class FullScreenBannerViewModel {
     
     // From Date
     if let fromDate = appliedFilter.fromDate {
-      params["from_date"] = fromDate
+      params["start_date"] = fromDate
     }
         
         if let bannerType = appliedFilter.bannerType {
-            params["position"] = bannerType
+            params["banner_position"] = bannerType
         }
     
     // To Date
     if let toDate = appliedFilter.toDate {
-      params["to_date"] = toDate
+      params["end_date"] = toDate
     }
     
-    if let countryName = appliedFilter.countryName {
-      params["country"] = countryName
-    }
+//    if let countryName = appliedFilter.countryName {
+//      params["country"] = countryName
+//    }
     
-    WebService.shared.getAllFullScreenBanners(param: params) { [weak self] response in
+    WebService.shared.getAllPromotionalBanners(param: params) { [weak self] response in
       guard let self = self else { return }
       
       // Update page info

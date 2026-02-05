@@ -116,6 +116,7 @@ enum AlertConstant: String {
   case SelectCategory          = "Please select category" //Gift Card Category Name
   case SelectSubCategory          = "Please select sub-category" //Gift Card Category Name
   case EnterDiscount           = "Please enter discount"
+    case selectForPosition =  "Please select position"
   func value() -> String {
     return self.rawValue
   }

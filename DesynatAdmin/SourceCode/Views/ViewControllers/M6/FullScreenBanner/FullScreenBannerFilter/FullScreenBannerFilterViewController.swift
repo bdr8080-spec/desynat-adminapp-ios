@@ -9,6 +9,7 @@ import UIKit
 
 class FullScreenBannerFilterViewController: UIViewController {
     
+    @IBOutlet weak var countryView: UIView!
     @IBOutlet weak var typeCollectionView: UICollectionView! {
         didSet {
             typeCollectionView.registerCellFromNib(cellID: "DurationCollectionViewCell")
@@ -37,6 +38,12 @@ class FullScreenBannerFilterViewController: UIViewController {
         handleUISetup()
         viewModel.getAllCountry { [weak self] in
             self?.applyPreselectedData()
+        }
+        switch bannerType {
+        case .fullScreen:
+            countryView.isHidden = false
+        case .promotional:
+            countryView.isHidden = true
         }
     }
     

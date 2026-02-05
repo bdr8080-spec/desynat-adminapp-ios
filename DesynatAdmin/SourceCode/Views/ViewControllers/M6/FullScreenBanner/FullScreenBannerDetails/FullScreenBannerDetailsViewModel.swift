@@ -52,5 +52,16 @@ class FullScreenBannerDetailsViewModel {
       }
     }
   }
+    
+    func getPromotionalScreenBannerDetailsList() {
+    let param: [String: Any] = ["banner_id": hostVC.bannerId]
+    WebService.shared.getPromotionalScreenBannerDetailsList(param: param){ [weak self] response in
+      guard let self = self else { return }
+      DispatchQueue.main.async {
+        self.hostVC.bannerListData = response
+        self.hostVC.bindPromotionalBannerData()
+      }
+    }
+  }
   
 }

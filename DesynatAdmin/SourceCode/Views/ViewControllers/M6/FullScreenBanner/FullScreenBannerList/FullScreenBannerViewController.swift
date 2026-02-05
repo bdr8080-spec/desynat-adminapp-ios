@@ -144,16 +144,22 @@ class FullScreenBannerViewController: UIViewController {
 extension FullScreenBannerViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.brandListData.count
+        switch bannerType {
+        case .fullScreen:
+            return viewModel.brandListData.count
+        case .promotional:
+            return viewModel.promotionalListData.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FullScreenBannerTableViewCell", for: indexPath) as! FullScreenBannerTableViewCell
-        let data = viewModel.brandListData[indexPath.row]
         switch bannerType {
         case .fullScreen:
+            let data = viewModel.brandListData[indexPath.row]
             cell.configData(data: data)
         case .promotional:
+            let data = viewModel.promotionalListData[indexPath.row]
             cell.configDataForPromotionalBanner(data: data)
         }
         return cell
@@ -167,8 +173,8 @@ extension FullScreenBannerViewController: UITableViewDelegate, UITableViewDataSo
             vc.bannerType = bannerType
             self.navigationController?.pushViewController(vc, animated: false)
         case .promotional:
-            let vc = FullScreenBanerDetailsViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
-            vc.bannerId = viewModel.promotionalListData[indexPath.row].id ?? 0
+            let vc = PromotionalBannerDetaislViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
+//            vc.bannerId = viewModel.promotionalListData[indexPath.row].id ?? 0
             self.navigationController?.pushViewController(vc, animated: false)
         }
     }

@@ -72,7 +72,6 @@ class AddDealViewController: UIViewController {
         }
     }
     
-    
     @IBAction func selecteSubCategoryDidTapped(_ sender: UIButton) {
         let dropdown = MultiSelectDropdownView(
             items: subCategoryNames,

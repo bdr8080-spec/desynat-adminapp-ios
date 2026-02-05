@@ -10,16 +10,23 @@ import SDWebImage
 
 class AddPromotionalBannerViewController: UIViewController {
     
+    @IBOutlet weak var numberOfDaysView: CustomView!
+    @IBOutlet weak var subCategoryView: UIView!
+    @IBOutlet weak var categoryView: UIView!
+    @IBOutlet weak var lblTotalDays: CustomLabelFont!
+    @IBOutlet weak var subCategoryTF: UITextField!
     @IBOutlet weak var positionLabel: CustomLabelFont!
     @IBOutlet weak var mainImageView: CustomImageView!
     @IBOutlet weak var toTextField: UITextField!
     @IBOutlet weak var fromTextField: UITextField!
-    @IBOutlet weak var countryLabel: CustomLabelFont!
-    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var selectCategoryCollectionview: UICollectionView! {
+        didSet {
+            selectCategoryCollectionview.registerCellFromNib(cellID: "DurationCollectionViewCell")
+        }
+    }
     
     let datePicker = UIDatePicker()
     private var activeTextField: UITextField?
-    var countryId: Int = 0
     var selectedImageUrl: String = ""
     private lazy var viewModel = AddPromotionalBannerViewModel(hostVC: self)
     var isComingForEdit: Bool = false
@@ -28,32 +35,20 @@ class AddPromotionalBannerViewController: UIViewController {
     var forTypeList = ["Home Top", "Home Bottom", "Category"]
     var selectedPositionIndex: Int = 0 //type 1 mobile,2-web
     var pickedImage: UIImage?
-    var pickedGifData: Data?
+//    var pickedGifData: Data?
     var pickedFileName: String = ""
     var isGifSelected: Bool = false
     private var isImageChanged: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        numberOfDaysView.isHidden = true
+        categoryView.isHidden = true
+        subCategoryView.isHidden = true
         setUpTextFields()
-        viewModel.getAllCountry()
+        viewModel.getAllCategory()
         if isComingForEdit {
             bindData()
-        }
-    }
-    
-    @IBAction func countryDidTapped(_ sender: UIButton) {
-        let countryNames = viewModel.countryListData.map { country -> String in
-            let name = country.name ?? ""
-            let dialCode = country.dialCode ?? ""
-            let flag = country.flag1 ?? "🇰🇼"
-            return "\(flag)  \(name) (\(dialCode))"
-        }
-        
-        kSharedAppDelegate.dropDown(dataSource: countryNames, anchorView: sender) { index, item in
-            let selectedCountry = self.viewModel.countryListData[index]
-            self.countryLabel.text = selectedCountry.name
-            self.countryId = selectedCountry.id ?? 0
         }
     }
     
@@ -61,81 +56,141 @@ class AddPromotionalBannerViewController: UIViewController {
         kSharedAppDelegate.dropDown(dataSource: forTypeList, anchorView: sender) { index, item in
             self.positionLabel.text = item
             self.selectedPositionIndex = index + 1
+            self.lblTotalDays.text = "days"
+            self.updateCategoryVisibility()
         }
     }
     
     @IBAction func submitDidTapped(_ sender: UIButton) {
         guard viewModel.validFields() else { return }
-        uploadBannerThenSubmit()
+        viewModel.addAdvertisementApi()
     }
     
     @IBAction func uploadImageDidTapped(_ sender: UIButton) {
         ImagePickerManager.shared.pickFromGalleryOnly(self) { [weak self]
-            image, gifData, isGif, fileName, url in
-            
+                image, gifData, isGif, fileName, url in
             guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.mainImageView.image = image
+                self.pickedImage = image
+            }
+            guard let compressedImage = image?.jpegData(compressionQuality: 0.25),
+                  let finalImage = UIImage(data: compressedImage) else {
+                return
+            }
             
-            self.isImageChanged = true
-            self.isGifSelected = isGif
-            self.pickedFileName = fileName
-            
-            if isGif, let gifData = gifData {
-                self.pickedGifData = gifData
-                self.pickedImage = nil
-                if let url = url {
-                    self.mainImageView.sd_setImage(with: url)
+            self.viewModel.uploadDocument(file: finalImage, isImage: true) { [weak self] uploadedUrl in
+                guard let self = self else { return }
+                DispatchQueue.main.async {
+                    self.selectedImageUrl = uploadedUrl
                 }
-            } else if let image = image {
-                self.pickedGifData = nil
-                self.mainImageView.image = self.pickedImage
             }
         }
     }
-    
     
     @IBAction func backDidTapped(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
     
-    private func uploadBannerThenSubmit() {
-        
-        let keyParam: [String: Any] = ["type": selectedPositionIndex]
-        
-        // Edit flow WITHOUT image change
-        if isComingForEdit, !isImageChanged {
-            submitFinalApi()
+    
+    @IBAction func subCategoryDidTapped(_ sender: UIButton) {
+        guard let _ = viewModel.selectedCategoriesId else {
+            showAlert(msg: "Please select the category first")
             return
         }
         
-        // GIF upload
-        if isGifSelected, let gifData = pickedGifData {
-            viewModel.uploadFullScreenBanner(
-                file: gifData,
-                isImage: false,
-                isGif: true,
-                keyParam: keyParam
-            ) { [weak self] url in
-                self?.selectedImageUrl = url
-                self?.submitFinalApi()
-            }
+        //If no subcategories available
+        guard !viewModel.subcategoriesList.isEmpty else {
+            showAlert(msg: "No subcategories available")
             return
         }
         
-        // Image upload
-        if let image = pickedImage {
-            viewModel.uploadFullScreenBanner(
-                file: image,
-                isImage: true,
-                keyParam: keyParam
-            ) { [weak self] url in
-                self?.selectedImageUrl = url
-                self?.submitFinalApi()
-            }
+        let subCategoryNames = self.viewModel.subcategoriesList.map { $0.nameEnglish ?? "" }
+        
+        kSharedAppDelegate.dropDown(dataSource: subCategoryNames, anchorView: sender) { index, item in
+            let selectedsubCategory = self.viewModel.subcategoriesList[index]
+            self.subCategoryTF.text = selectedsubCategory.nameEnglish ?? ""
+            self.viewModel.selectedSubCategoriesId = selectedsubCategory.id
+        }
+    }
+    
+    private func updateCategoryVisibility() {
+        let isCategorySelected = (selectedPositionIndex == 3) // Category
+        
+        categoryView.isHidden = !isCategorySelected
+        subCategoryView.isHidden = !isCategorySelected
+    }
+    
+    
+//    private func uploadBannerThenSubmit() {
+//        
+//        let keyParam: [String: Any] = ["type": selectedPositionIndex]
+//        
+//        // Edit flow WITHOUT image change
+//        if isComingForEdit, !isImageChanged {
+//            submitFinalApi()
+//            return
+//        }
+//        
+//        // GIF upload
+//        if isGifSelected, let gifData = pickedGifData {
+//            viewModel.uploadFullScreenBanner(
+//                file: gifData,
+//                isImage: false,
+//                isGif: true,
+//                keyParam: keyParam
+//            ) { [weak self] url in
+//                self?.selectedImageUrl = url
+//                self?.submitFinalApi()
+//            }
+//            return
+//        }
+//        
+//        // Image upload
+//        if let image = pickedImage {
+//            viewModel.uploadFullScreenBanner(
+//                file: image,
+//                isImage: true,
+//                keyParam: keyParam
+//            ) { [weak self] url in
+//                self?.selectedImageUrl = url
+//                self?.submitFinalApi()
+//            }
+//            return
+//        }
+//        
+//        // Add flow safety
+//        showAlert(msg: "Please select image")
+//    }
+    
+    func calculateTotalDays() {
+        guard
+            let fromText = fromTextField.text, !fromText.isEmpty,
+            let toText = toTextField.text, !toText.isEmpty
+        else {
+            lblTotalDays.text = "days"
+            numberOfDaysView.isHidden = true
             return
         }
         
-        // Add flow safety
-        showAlert(msg: "Please select image")
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        
+        guard
+            let startDate = formatter.date(from: fromText),
+            let endDate = formatter.date(from: toText),
+            startDate <= endDate
+        else {
+            lblTotalDays.text = "days"
+            numberOfDaysView.isHidden = true
+            return
+        }
+        
+        let days = Calendar.current.dateComponents([.day], from: startDate, to: endDate).day ?? 0
+        let totalDays = days + 1
+        
+        lblTotalDays.text = "\(totalDays)"
+        numberOfDaysView.isHidden = false
     }
     
     
@@ -148,7 +203,7 @@ class AddPromotionalBannerViewController: UIViewController {
     }
     
     func bindData() {
-        titleTextField.text = giftsListData?.title
+        //        titleTextField.text = giftsListData?.title
         if let imageUrlString = giftsListData?.image,
            let url = URL(string: imageUrlString) {
             selectedImageUrl = imageUrlString
@@ -158,13 +213,13 @@ class AddPromotionalBannerViewController: UIViewController {
         } else {
             mainImageView.image = UIImage(named: "placeholder")
         }
-        countryLabel.text = giftsListData?.countryInfo?.name
-        countryId = giftsListData?.countryInfo?.id ?? 0
+        //        countryLabel.text = giftsListData?.countryInfo?.name
+        //        countryId = giftsListData?.countryInfo?.id ?? 0
         fromTextField.text = convertDateFormat(giftsListData?.startDate ?? "")
         toTextField.text = convertDateFormat(giftsListData?.endDate ?? "")
         selectedPositionIndex = (Int(giftsListData?.type ?? "1") ?? 1)
         positionLabel.text = forTypeList[selectedPositionIndex - 1]
-        
+        updateCategoryVisibility()
     }
     
     func convertDateFormat(
@@ -214,25 +269,33 @@ extension AddPromotionalBannerViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
         
-        if activeTextField == fromTextField {
-            fromTextField.text = formatter.string(from: datePicker.date)
-            if let toText = toTextField.text,
-               let toDate = formatter.date(from: toText),
-               toDate < datePicker.date {
+        guard let activeTextField = activeTextField else { return }
+        
+        let selectedDate = datePicker.date
+        activeTextField.text = formatter.string(from: selectedDate)
+        view.endEditing(true)
+        
+        // Case: From date changed
+        if activeTextField == fromTextField,
+           let toText = toTextField.text,
+           !toText.isEmpty,
+           let toDate = formatter.date(from: toText) {
+            
+            // From > To → invalidate To
+            if selectedDate > toDate {
                 toTextField.text = ""
+                lblTotalDays.text = "days"
+                numberOfDaysView.isHidden = true
+                // Force user to select To Date again
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    self.toTextField.becomeFirstResponder()
+                }
+                return
             }
         }
         
-        else if activeTextField == toTextField {
-            if let fromText = fromTextField.text,
-               let fromDate = formatter.date(from: fromText),
-               datePicker.date < fromDate {
-                showValidationAlert()
-                return
-            }
-            toTextField.text = formatter.string(from: datePicker.date)
-        }
-        view.endEditing(true)
+        // Calculate only when both dates are valid
+        calculateTotalDays()
     }
     
     private func showValidationAlert() {
@@ -268,3 +331,35 @@ extension AddPromotionalBannerViewController: UITextFieldDelegate {
     }
 }
 
+extension AddPromotionalBannerViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.categoryListData.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DurationCollectionViewCell", for: indexPath) as! DurationCollectionViewCell
+        let data = viewModel.categoryListData[indexPath.row]
+        cell.titleLabel.text = data.name
+        if viewModel.selectedCategoriesId == data.id {
+            cell.selectedImageView.image = UIImage(named: "durationSelected")
+        } else {
+            cell.selectedImageView.image = UIImage(named: "durationUnselected")
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.selectedCategoriesId = viewModel.categoryListData[indexPath.row].id
+        selectCategoryCollectionview.reloadData()
+        subCategoryTF.text = ""
+        viewModel.getSubCategoriesListApi()
+        viewModel.selectedSubCategoriesId = -1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = selectCategoryCollectionview.frame.width / 3
+        return CGSize(width: width, height: 25)
+    }
+    
+}

@@ -145,6 +145,22 @@ extension WebService {
           }
       }
   }
+    
+    func addPromotionalBanner(param: [String:Any], completion: @escaping(FullScreenBannerDataList) -> Void) { //AddAdvertisementModel
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.addPromotionalBanner), requestMethod: .post, requestParams: param, requestModel: FullScreenBannerDataList.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
   
   func editAdvertisement(param: [String:Any], completion: @escaping(FullScreenBannerDataList) -> Void) {
       CommonUtils.showHud(show: true)
@@ -215,6 +231,22 @@ extension WebService {
   func getAllFullScreenBanners(param: [String: Any], completion: @escaping (FullScreenBannerDataModel) -> Void) {
       CommonUtils.showHud(show: true)
       NetworkManager.shared.request(withAPI: .endpoint(.getFullScreenBanners), requestMethod: .get, requestParams: param, requestModel: FullScreenBannerDataModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+    
+    func getAllPromotionalBanners(param: [String: Any], completion: @escaping (GetPromotionalBannersDataModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getPromotionalBanner), requestMethod: .get, requestParams: param, requestModel: GetPromotionalBannersDataModel.self) { result, code in
           CommonUtils.showHud(show: false)
           self.evaluateWebServiceResponse(response: result) { response, message, error in
               guard let response = response else {
@@ -751,6 +783,22 @@ extension WebService {
   func getFullScreenBannerDetailsList(param: [String: Any], completion: @escaping (FullScreenBannerDataList) -> Void) {
       CommonUtils.showHud(show: true)
       NetworkManager.shared.request(withAPI: .endpoint(.getFullScreenDetailsBanners), requestMethod: .get, requestParams: param, requestModel: FullScreenBannerDataList.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+    
+    func getPromotionalScreenBannerDetailsList(param: [String: Any], completion: @escaping (GetPromotionalBannersList) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getPromotionalBannerDetails), requestMethod: .get, requestParams: param, requestModel: GetPromotionalBannersList.self) { result, code in
           CommonUtils.showHud(show: false)
           self.evaluateWebServiceResponse(response: result) { response, message, error in
               guard let response = response else {

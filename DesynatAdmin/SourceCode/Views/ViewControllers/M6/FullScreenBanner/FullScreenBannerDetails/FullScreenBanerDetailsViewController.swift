@@ -10,6 +10,7 @@ import SDWebImage
 
 class FullScreenBanerDetailsViewController: UIViewController {
     
+    @IBOutlet weak var coountryView: UIStackView!
     @IBOutlet weak var typeTitleLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var statusImageView: UIImageView!
@@ -22,6 +23,7 @@ class FullScreenBanerDetailsViewController: UIViewController {
     
     var bannerId: Int = 0
     var giftsListData: FullScreenBannerDataList?
+    var bannerListData: GetPromotionalBannersList?
     private lazy var viewModel = FullScreenBannerDetailsViewModel(hostVC: self)
     var bannerType: BannerMangementType = .fullScreen
     
@@ -29,10 +31,13 @@ class FullScreenBanerDetailsViewController: UIViewController {
         super.viewDidLoad()
         switch bannerType {
         case .fullScreen:
+            coountryView.isHidden = false
+            typeTitleLabel.text = "Type"
             viewModel.getFullScreenBannerDetailsList()
         case .promotional:
-            print("")
-            //CALL API HERE
+            coountryView.isHidden = true
+            typeTitleLabel.text = "Position"
+            viewModel.getPromotionalScreenBannerDetailsList()
         }
     }
     
@@ -139,6 +144,7 @@ class FullScreenBanerDetailsViewController: UIViewController {
         }
        
     }
+    
     
     func convertDateFormat(
         _ dateString: String,

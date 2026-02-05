@@ -10,6 +10,10 @@ import SDWebImage
 
 class FullScreenBannerTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var positionTitleLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var countrystackView: UIStackView!
+    @IBOutlet weak var titleStackView: UIStackView!
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var mainImageView: CustomImageView!
@@ -32,6 +36,8 @@ class FullScreenBannerTableViewCell: UITableViewCell {
     }
     
     func configData(data: FullScreenBannerDataList?) {
+        titleStackView.isHidden = false
+        countrystackView.isHidden = false
         titleLabel.text = data?.title
         if let imageUrlString = data?.image,
            let url = URL(string: imageUrlString) {
@@ -52,11 +58,13 @@ class FullScreenBannerTableViewCell: UITableViewCell {
         } else {
             typeLabel.text = "Web Banner"
         }
+        positionTitleLabel.text = "Type"
     }
     
-    func configDataForPromotionalBanner(data: FullScreenBannerDataList?) {
-        titleLabel.text = data?.title
-        if let imageUrlString = data?.image,
+    func configDataForPromotionalBanner(data: GetPromotionalBannersList?) {
+        titleStackView.isHidden = true
+        countrystackView.isHidden = true
+        if let imageUrlString = data?.uploadBanner,
            let url = URL(string: imageUrlString) {
             mainImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
             mainImageView.sd_imageIndicator?.startAnimatingIndicator()
@@ -64,19 +72,33 @@ class FullScreenBannerTableViewCell: UITableViewCell {
         } else {
             mainImageView.image = UIImage(named: "")
         }
-        countryLabel.text = data?.countryInfo?.name
         if let startDate = convertDateFormat(data?.startDate ?? "") {
             startDateLabel.text = startDate
         }
         
         endDateLabel.text = convertDateFormat(data?.endDate ?? "")
-        if data?.type == "1" {
+        if data?.bannerPosition == "1" {
             typeLabel.text = "Top"
-        } else if data?.type == "2" {
+        } else if data?.bannerPosition == "2" {
             typeLabel.text = "Bottom"
         } else {
             typeLabel.text = "Category"
         }
+        
+        if let status = categorizeDeal(from: data?.startDate ?? "", to: data?.endDate ?? "") {
+            statusLabel.isHidden = false
+            if status == .upcoming {
+                statusLabel.text = "Upcoming"
+                statusLabel.textColor = .black
+            } else if status == .active {
+                statusLabel.text = "Active"
+                statusLabel.textColor = UIColor(hexString: "#68CA44")
+            } else {
+                statusLabel.text = "Expired"
+                statusLabel.textColor = .red
+            }
+        }
+        positionTitleLabel.text = "Position"
     }
     
     func convertDateFormat(
@@ -99,4 +121,50 @@ class FullScreenBannerTableViewCell: UITableViewCell {
         return outputFormatter.string(from: date)
     }
     
+    func categorizeDeal(from fromDateString: String,
+                        to toDateString: String) -> BannerStatus? {
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.timeZone = TimeZone.current
+
+        guard let fromDate = formatter.date(from: fromDateString),
+              let toDate = formatter.date(from: toDateString) else {
+            return nil
+        }
+
+        let calendar = Calendar.current
+        let now = Date()
+
+        let startOfFromDate = calendar.startOfDay(for: fromDate)
+
+        // End of "to" day → 23:59:59
+        let endOfToDate = calendar.date(
+            bySettingHour: 23,
+            minute: 59,
+            second: 59,
+            of: toDate
+        )!
+
+        if now < startOfFromDate {
+            return .upcoming
+        }
+
+        if now <= endOfToDate {
+            return .active
+        }
+
+        // Expired
+        return .expired
+    }
+
+
 }
+
+enum BannerStatus {
+    case upcoming
+    case active
+    case expired
+}
+
+
