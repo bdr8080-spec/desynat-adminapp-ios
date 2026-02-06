@@ -31,7 +31,7 @@ class FullScreenBannerFilterViewController: UIViewController {
     var bannerType: BannerMangementType = .fullScreen
     let typeForFullscreenBanner = ["Both", "App Banner", "Web Banner"]
     let typeForPromotionalScreenBanner = ["Home Top", "Home Bottom", "Category"]
-    var selectedIndexOfType: Int? = 0
+    var selectedIndexOfType: Int? = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,9 +70,17 @@ class FullScreenBannerFilterViewController: UIViewController {
             filter.toDate = toDate
         }
         
-        if let selectedIndexOfBanner = selectedIndexOfType {
-            filter.bannerType = selectedIndexOfBanner
+        switch bannerType {
+        case .fullScreen:
+            if let selectedIndexOfBanner = selectedIndexOfType, selectedIndexOfBanner != -1 {
+                filter.bannerType = selectedIndexOfBanner
+            }
+        case .promotional:
+            if let selectedIndexOfBanner = selectedIndexOfType, selectedIndexOfBanner != -1 {
+                filter.bannerType = selectedIndexOfBanner
+            }
         }
+        
         onApplyFilter?(filter)
         dismiss(animated: true)
     }
@@ -111,7 +119,7 @@ class FullScreenBannerFilterViewController: UIViewController {
         // Preselect date fields
         fromTextField.text = selectedFilter.fromDate
         toTextField.text = selectedFilter.toDate
-        selectedIndexOfType = selectedFilter.bannerType ?? 0
+        selectedIndexOfType = selectedFilter.bannerType ?? -1
         typeCollectionView.reloadData()
     }
     

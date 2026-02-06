@@ -113,35 +113,75 @@ extension MultiSelectDropdownView: UITableViewDelegate, UITableViewDataSource {
 //        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: "DropDownCheckboxCell", for: indexPath) as! DropDownCheckboxCell
 
-        let isSelected = selectedIndexes.contains(indexPath.row)
+//        let isSelected = selectedIndexes.contains(indexPath.row)
         cell.titleLabel?.text = items[indexPath.row]
+//        cell.checkboxImageView?.image = isSelected
+//        ? .selectedCheckBox//UIImage(named: "checkbox_checked")
+//        : .unslectedCheckbox //UIImage(named: "checkbox_unchecked")
+        let isSelected = selectedIndexes.contains(indexPath.row)
         cell.checkboxImageView?.image = isSelected
-        ? .selectedCheckBox//UIImage(named: "checkbox_checked")
-        : .unslectedCheckbox //UIImage(named: "checkbox_unchecked")
+            ? .selectedCheckBox
+            : .unslectedCheckbox
 
         return cell
     }
 
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//        let index = indexPath.row
+//
+//        // SELECT ALL
+//        if index == 0 {
+//            if selectedIndexes.count == items.count - 1 {
+//                selectedIndexes.removeAll()
+//            } else {
+//                selectedIndexes = Set(1..<items.count)
+//            }
+//        } else {
+//            if selectedIndexes.contains(index) {
+//                selectedIndexes.remove(index)
+//            } else {
+//                selectedIndexes.insert(index)
+//            }
+//        }
+//
+//        tableView.reloadData()
+//        onSelectionChanged?(selectedIndexes)
+//    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         let index = indexPath.row
+        let allItemIndexes = Set(1..<items.count)
 
-        // SELECT ALL
         if index == 0 {
-            if selectedIndexes.count == items.count - 1 {
+            // User tapped "Select All"
+            if selectedIndexes.contains(0) {
+                // Unselect everything
                 selectedIndexes.removeAll()
             } else {
-                selectedIndexes = Set(1..<items.count)
+                // Select all INCLUDING index 0
+                selectedIndexes = allItemIndexes
+                selectedIndexes.insert(0)
             }
         } else {
+            // User tapped a normal item
             if selectedIndexes.contains(index) {
                 selectedIndexes.remove(index)
             } else {
                 selectedIndexes.insert(index)
+            }
+
+            // Sync Select All state
+            if allItemIndexes.isSubset(of: selectedIndexes) {
+                selectedIndexes.insert(0)
+            } else {
+                selectedIndexes.remove(0)
             }
         }
 
         tableView.reloadData()
         onSelectionChanged?(selectedIndexes)
     }
+
 }

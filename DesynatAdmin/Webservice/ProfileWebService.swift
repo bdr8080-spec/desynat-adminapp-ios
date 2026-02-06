@@ -178,6 +178,22 @@ extension WebService {
       }
   }
     
+    func editPromotionalBanner(param: [String:Any], completion: @escaping(GetPromotionalBannersList) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.updatePromotionalBannerDetails), requestMethod: .post, requestParams: param, requestModel: GetPromotionalBannersList.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+    
     func editSubCategory(param: [String:Any], completion: @escaping(GetSubCategoryDataList) -> Void) {
         CommonUtils.showHud(show: true)
         NetworkManager.shared.request(withAPI: .endpoint(.editSubCategory), requestMethod: .post, requestParams: param, requestModel: GetSubCategoryDataList.self) { result, code in
@@ -280,6 +296,22 @@ extension WebService {
     func upadteBannerRequestStatus(param: [String:Any], completion: @escaping(GetBrandDataList) -> Void) {
         CommonUtils.showHud(show: true)
         NetworkManager.shared.request(withAPI: .endpoint(.updateBannerRequestStatus), requestMethod: .post, requestParams: param, requestModel: GetBrandDataList.self) { result, code in
+            CommonUtils.showHud(show: false)
+            self.evaluateWebServiceResponse(response: result) { response, message, error in
+                guard let response = response else {
+                    if let error {
+                        UIApplication.shared.topViewController()?.showAlert(msg: error)
+                    }
+                    return
+                }
+                completion(response)
+            }
+        }
+    }
+    
+    func upadtePromtoionalBannerRequestStatus(param: [String:Any], completion: @escaping(EmptyModel) -> Void) {
+        CommonUtils.showHud(show: true)
+        NetworkManager.shared.request(withAPI: .endpoint(.blcokUblockPromotionalBannerDetails), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
             CommonUtils.showHud(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
@@ -847,6 +879,22 @@ extension WebService {
   func deleteFullScreenBanner(param: [String:Any], completion: @escaping(EmptyModel) -> Void) {
       CommonUtils.showHud(show: true)
       NetworkManager.shared.request(withAPI: .endpoint(.deleteFullScreenBanner), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+    
+    func deletePromtoionalBanner(param: [String:Any], completion: @escaping(EmptyModel) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.deletePromotionalBannerDetails), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
           CommonUtils.showHud(show: false)
           self.evaluateWebServiceResponse(response: result) { response, message, error in
               guard let response = response else {

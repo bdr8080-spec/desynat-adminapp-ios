@@ -174,7 +174,7 @@ extension FullScreenBannerViewController: UITableViewDelegate, UITableViewDataSo
             self.navigationController?.pushViewController(vc, animated: false)
         case .promotional:
             let vc = PromotionalBannerDetaislViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
-//            vc.bannerId = viewModel.promotionalListData[indexPath.row].id ?? 0
+            vc.bannerId = viewModel.promotionalListData[indexPath.row].id ?? 0
             self.navigationController?.pushViewController(vc, animated: false)
         }
     }

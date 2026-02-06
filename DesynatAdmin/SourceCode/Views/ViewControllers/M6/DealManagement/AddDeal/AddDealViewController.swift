@@ -141,6 +141,23 @@ class AddDealViewController: UIViewController {
         }
     }
     
+//    func setupPreselectedSubcategories() {
+//        guard let selectedSubIds = dealData?.subCategoryID else { return }
+//
+//        var indexes = Set<Int>()
+//
+//        for (index, item) in viewModel.subcategoriesList.enumerated() {
+//            if let id = item.id,
+//               selectedSubIds.contains(String(id)) {
+//                // +1 because index 0 is "Select All"
+//                indexes.insert(index + 1)
+//            }
+//        }
+//
+//        selectedIndexes = indexes
+//        updateSelection()
+//    }
+    
     func setupPreselectedSubcategories() {
         guard let selectedSubIds = dealData?.subCategoryID else { return }
 
@@ -154,9 +171,16 @@ class AddDealViewController: UIViewController {
             }
         }
 
+        // ✅ NEW: if all real items selected, select "Select All"
+        let allItemIndexes = Set(1...(viewModel.subcategoriesList.count))
+        if allItemIndexes == indexes {
+            indexes.insert(0)
+        }
+
         selectedIndexes = indexes
         updateSelection()
     }
+
 
     
     func bindData() {

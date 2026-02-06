@@ -78,25 +78,59 @@ class FullScreenBannerTableViewCell: UITableViewCell {
         
         endDateLabel.text = convertDateFormat(data?.endDate ?? "")
         if data?.bannerPosition == "1" {
-            typeLabel.text = "Top"
+            typeLabel.text = "Home Top"
         } else if data?.bannerPosition == "2" {
-            typeLabel.text = "Bottom"
+            typeLabel.text = "Home Bottom"
         } else {
             typeLabel.text = "Category"
         }
         
-        if let status = categorizeDeal(from: data?.startDate ?? "", to: data?.endDate ?? "") {
-            statusLabel.isHidden = false
-            if status == .upcoming {
+//        if let status = categorizeDeal(from: data?.startDate ?? "", to: data?.endDate ?? "") {
+//            statusLabel.isHidden = false
+//            if status == .upcoming {
+//                statusLabel.text = "Upcoming"
+//                statusLabel.textColor = .black
+//            } else if status == .active {
+//                statusLabel.text = "Active"
+//                statusLabel.textColor = UIColor(hexString: "#68CA44")
+//            } else {
+//                statusLabel.text = "Expired"
+//                statusLabel.textColor = .red
+//            }
+//        }
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        let today = Calendar.current.startOfDay(for: Date())
+        
+        if data?.status == "1" {
+            if let startDateStr = data?.startDate,
+               let endDateStr = data?.endDate,
+               let startDate = formatter.date(from: startDateStr),
+               let endDate = formatter.date(from: endDateStr) {
+                
+                let start = Calendar.current.startOfDay(for: startDate)
+                let end = Calendar.current.startOfDay(for: endDate)
+                
+                if today < start {
+                    statusLabel.text = "Upcoming"
+                    statusLabel.textColor = .black
+                } else if today > end {
+                    statusLabel.text = "Inactive"
+                    statusLabel.textColor = UIColor(hexString: "#68CA44")
+                } else {
+                    statusLabel.text = "Active"
+                    statusLabel.textColor = UIColor(hexString: "#68CA44")
+                }
+            } else {
                 statusLabel.text = "Upcoming"
                 statusLabel.textColor = .black
-            } else if status == .active {
-                statusLabel.text = "Active"
-                statusLabel.textColor = UIColor(hexString: "#68CA44")
-            } else {
-                statusLabel.text = "Expired"
-                statusLabel.textColor = .red
             }
+        } else {
+            statusLabel.text = "Inactive"
+            statusLabel.textColor = UIColor(hexString: "#68CA44")
         }
         positionTitleLabel.text = "Position"
     }

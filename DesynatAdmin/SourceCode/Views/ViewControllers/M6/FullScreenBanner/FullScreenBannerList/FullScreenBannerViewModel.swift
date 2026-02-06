@@ -35,6 +35,28 @@ class FullScreenBannerViewModel {
   init(hostVC: FullScreenBannerViewController) {
     self.hostVC = hostVC
   }
+    
+    func convertDateString(
+        _ dateString: String,
+        from inputFormat: String = "dd/MM/yyyy",
+        to outputFormat: String = "yyyy-MM-dd"
+    ) -> String? {
+
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = inputFormat
+        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
+
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = outputFormat
+        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
+
+        guard let date = inputFormatter.date(from: dateString) else {
+            return nil
+        }
+
+        return outputFormatter.string(from: date)
+    }
+
   
   func getAllFullScreenBanners() {
     var params: [String : Any] = [:]
@@ -45,24 +67,28 @@ class FullScreenBannerViewModel {
       params["search"] = searchText
     }
     
-    // From Date
-    if let fromDate = appliedFilter.fromDate {
-      params["from_date"] = fromDate
-    }
+    
       
-      if let bannerType = appliedFilter.bannerType {
+      if let bannerType = appliedFilter.bannerType, bannerType > 0 {
           params["type"] = bannerType
       }
-  
-    
-    // To Date
-    if let toDate = appliedFilter.toDate {
-      params["to_date"] = toDate
-    }
+      
+      if let toDate = appliedFilter.toDate,
+         let formattedToDate = convertDateString(toDate) {
+          params["to_date"] = formattedToDate
+      }
+
+      // From Date
+      if let fromDate = appliedFilter.fromDate,
+         let formattedFromDate = convertDateString(fromDate) {
+          params["from_date"] = formattedFromDate
+      }
+
     
     if let countryName = appliedFilter.countryName {
       params["country"] = countryName
     }
+      
     
     WebService.shared.getAllFullScreenBanners(param: params) { [weak self] response in
       guard let self = self else { return }
@@ -91,20 +117,22 @@ class FullScreenBannerViewModel {
     if !searchText.isEmpty {
       params["search"] = searchText
     }
-    
-    // From Date
-    if let fromDate = appliedFilter.fromDate {
-      params["start_date"] = fromDate
-    }
         
         if let bannerType = appliedFilter.bannerType {
-            params["banner_position"] = bannerType
+            params["banner_position"] = bannerType + 1
         }
-    
-    // To Date
-    if let toDate = appliedFilter.toDate {
-      params["end_date"] = toDate
-    }
+
+        
+        if let toDate = appliedFilter.toDate,
+           let formattedToDate = convertDateString(toDate) {
+            params["end_date"] = formattedToDate
+        }
+
+        // From Date
+        if let fromDate = appliedFilter.fromDate,
+           let formattedFromDate = convertDateString(fromDate) {
+            params["start_date"] = formattedFromDate
+        }
     
 //    if let countryName = appliedFilter.countryName {
 //      params["country"] = countryName

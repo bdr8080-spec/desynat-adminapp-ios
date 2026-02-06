@@ -10,6 +10,8 @@ import SDWebImage
 
 class DealDetailsViewController: UIViewController {
     
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var subCategoryLabel: UILabel!
     @IBOutlet weak var totalSellerLabel: UILabel!
     @IBOutlet weak var noDataFoundLabel: UILabel!
     @IBOutlet weak var mainImageView: CustomImageView!
@@ -174,6 +176,8 @@ class DealDetailsViewController: UIViewController {
         //    totalSellerLabel.text = data.t
         let count = dealData?.sellerDealrecords?.count ?? 0
         totalSellerLabel.text = "\(count) " + (count == 1 ? "Seller" : "Sellers")
+        categoryLabel.text = dealData?.categoryDetails?.name
+        subCategoryLabel.text = dealData?.subCategoryDetails?.compactMap({ $0.nameEnglish }).joined(separator: ", ")
     }
     
     func convertDateFormat(

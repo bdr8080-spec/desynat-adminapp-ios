@@ -29,16 +29,9 @@ class FullScreenBanerDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        switch bannerType {
-        case .fullScreen:
-            coountryView.isHidden = false
             typeTitleLabel.text = "Type"
             viewModel.getFullScreenBannerDetailsList()
-        case .promotional:
-            coountryView.isHidden = true
-            typeTitleLabel.text = "Position"
-            viewModel.getPromotionalScreenBannerDetailsList()
-        }
+        
     }
     
     @IBAction func backDidTapped(_ sender: Any) {
@@ -46,8 +39,6 @@ class FullScreenBanerDetailsViewController: UIViewController {
     }
     
     @IBAction func editDidTapped(_ sender: Any) {
-        switch bannerType {
-        case .fullScreen:
             let vc = AddAdvertisementViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
             vc.isComingForEdit = true
             vc.giftsListData = giftsListData
@@ -56,16 +47,7 @@ class FullScreenBanerDetailsViewController: UIViewController {
                 viewModel.getFullScreenBannerDetailsList()
             }
             self.navigationController?.pushViewController(vc, animated: false)
-        case .promotional:
-            let vc = AddPromotionalBannerViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
-            vc.isComingForEdit = true
-            vc.giftsListData = giftsListData
-            vc.onCardUpdated = { [weak self] updatedData in
-                guard let self = self else { return }
-                viewModel.getFullScreenBannerDetailsList()
-            }
-            self.navigationController?.pushViewController(vc, animated: false)
-        }
+        
         
     }
     

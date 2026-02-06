@@ -10,6 +10,7 @@ import SDWebImage
 
 class AddPromotionalBannerViewController: UIViewController {
     
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var numberOfDaysView: CustomView!
     @IBOutlet weak var subCategoryView: UIView!
     @IBOutlet weak var categoryView: UIView!
@@ -30,8 +31,8 @@ class AddPromotionalBannerViewController: UIViewController {
     var selectedImageUrl: String = ""
     private lazy var viewModel = AddPromotionalBannerViewModel(hostVC: self)
     var isComingForEdit: Bool = false
-    var giftsListData: FullScreenBannerDataList?
-    var onCardUpdated: ((FullScreenBannerDataList) -> Void)?
+    var giftsListData: GetPromotionalBannersList?
+    var onCardUpdated: ((GetPromotionalBannersList) -> Void)?
     var forTypeList = ["Home Top", "Home Bottom", "Category"]
     var selectedPositionIndex: Int = 0 //type 1 mobile,2-web
     var pickedImage: UIImage?
@@ -49,6 +50,9 @@ class AddPromotionalBannerViewController: UIViewController {
         viewModel.getAllCategory()
         if isComingForEdit {
             bindData()
+            titleLabel.text = "Edit Promotional Banner"
+        } else {
+            titleLabel.text = "Add Promotional Banner"
         }
     }
     
@@ -56,14 +60,17 @@ class AddPromotionalBannerViewController: UIViewController {
         kSharedAppDelegate.dropDown(dataSource: forTypeList, anchorView: sender) { index, item in
             self.positionLabel.text = item
             self.selectedPositionIndex = index + 1
-            self.lblTotalDays.text = "days"
             self.updateCategoryVisibility()
         }
     }
     
     @IBAction func submitDidTapped(_ sender: UIButton) {
         guard viewModel.validFields() else { return }
-        viewModel.addAdvertisementApi()
+        if isComingForEdit {
+            viewModel.editAdvertisementApi()
+        } else {
+            viewModel.addAdvertisementApi()
+        }
     }
     
     @IBAction func uploadImageDidTapped(_ sender: UIButton) {
@@ -202,25 +209,70 @@ class AddPromotionalBannerViewController: UIViewController {
         }
     }
     
+//    func bindData() {
+//        if let imageUrlString = giftsListData?.uploadBanner,
+//           let url = URL(string: imageUrlString) {
+//            selectedImageUrl = imageUrlString
+//            mainImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+//            mainImageView.sd_imageIndicator?.startAnimatingIndicator()
+//            mainImageView.sd_setImage(with: url, placeholderImage: UIImage(named: ""))
+//        } else {
+//            mainImageView.image = UIImage(named: "placeholder")
+//        }
+//        fromTextField.text = convertDateFormat(giftsListData?.startDate ?? "")
+//        toTextField.text = convertDateFormat(giftsListData?.endDate ?? "")
+//        selectedPositionIndex = (Int(giftsListData?.bannerPosition ?? "1") ?? 1)
+//        positionLabel.text = forTypeList[selectedPositionIndex - 1]
+//        updateCategoryVisibility()
+//    }
+    
     func bindData() {
-        //        titleTextField.text = giftsListData?.title
-        if let imageUrlString = giftsListData?.image,
+        // Image
+        if let imageUrlString = giftsListData?.uploadBanner,
            let url = URL(string: imageUrlString) {
             selectedImageUrl = imageUrlString
             mainImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
-            mainImageView.sd_imageIndicator?.startAnimatingIndicator()
-            mainImageView.sd_setImage(with: url, placeholderImage: UIImage(named: ""))
-        } else {
-            mainImageView.image = UIImage(named: "placeholder")
+            mainImageView.sd_setImage(with: url)
         }
-        //        countryLabel.text = giftsListData?.countryInfo?.name
-        //        countryId = giftsListData?.countryInfo?.id ?? 0
+
+        // Dates
         fromTextField.text = convertDateFormat(giftsListData?.startDate ?? "")
         toTextField.text = convertDateFormat(giftsListData?.endDate ?? "")
-        selectedPositionIndex = (Int(giftsListData?.type ?? "1") ?? 1)
+        calculateTotalDays()
+
+        // Position
+        selectedPositionIndex = Int(giftsListData?.bannerPosition ?? "1") ?? 1
         positionLabel.text = forTypeList[selectedPositionIndex - 1]
         updateCategoryVisibility()
+
+        // Category specific logic
+        if selectedPositionIndex == 3 {
+            populateCategoryAndSubCategory()
+        }
     }
+
+    private func populateCategoryAndSubCategory() {
+        guard let category = giftsListData?.categoryDetails else { return }
+
+        // Select category
+        viewModel.selectedCategoriesId = category.id
+        selectCategoryCollectionview.reloadData()
+
+        // Fetch subcategories
+        viewModel.getSubCategoriesListApi() { [weak self] in
+            guard let self = self else { return }
+
+            // Select subcategory
+            if let subCategoryId = self.giftsListData?.subcategoryDetails?.id,
+               let index = self.viewModel.subcategoriesList.firstIndex(where: { $0.id == subCategoryId }) {
+
+                let subCategory = self.viewModel.subcategoriesList[index]
+                self.subCategoryTF.text = subCategory.nameEnglish
+                self.viewModel.selectedSubCategoriesId = subCategoryId
+            }
+        }
+    }
+
     
     func convertDateFormat(
         _ dateString: String,

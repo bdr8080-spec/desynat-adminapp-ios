@@ -32,10 +32,11 @@ class AddPromotionalBannerViewModel {
         }
     }
     
-    func getSubCategoriesListApi(){
+    func getSubCategoriesListApi(completion: (() -> Void)? = nil) {
         let param: [String :Any] = ["category_id": selectedCategoriesId ?? ""]
         WebService.sharedInstance.getAllsubcategory(param: param) { [self] list in
             self.subcategoriesList = list.data ?? []
+            completion?()
         }
     }
     
@@ -119,16 +120,20 @@ class AddPromotionalBannerViewModel {
     func editAdvertisementApi() {
         let apiFromDate = convertDateString(hostVC.fromTextField.text ?? "",from: "dd/MM/yyyy",to: "yyyy-MM-dd")
         let apiToDate = convertDateString(hostVC.toTextField.text ?? "",from: "dd/MM/yyyy",to: "yyyy-MM-dd")
-        let params: [String:Any] = [:]
-        //      "banner_id": hostVC.giftsListData?.id ?? 0,
-        //      "image": hostVC.selectedImageUrl,
-        //      "country_id": hostVC.countryId,
-        //      "type": hostVC.selectedPositionIndex,
-        //      "title": hostVC.titleTextField.text?.trimmed() ?? "",
-        //      "start_date": apiFromDate, //hostVC.fromTextField.text?.trimmed() ?? "",
-        //      "end_date": apiToDate ]//hostVC.toTextField.text?.trimmed() ?? ""]
+        var params: [String:Any] = [
+            "banner_id": hostVC.giftsListData?.id ?? 0,
+            "banner_position": hostVC.selectedPositionIndex,
+            "upload_banner": hostVC.selectedImageUrl,
+            "start_date": apiFromDate,
+            "end_date": apiToDate,
+            "total_days": hostVC.lblTotalDays.text ?? "",
+        ]
+        if hostVC.selectedPositionIndex == 3 {
+            params["category"] = selectedCategoriesId ?? 0
+            params["subcatgory"] = selectedSubCategoriesId ?? 0
+        }
         
-        WebService.sharedInstance.editAdvertisement(param: params) { (response) in
+        WebService.sharedInstance.editPromotionalBanner(param: params) { (response) in
             DispatchQueue.main.async {
                 CommonUtils.showToast(message: "Advertisement updated succesfully")
                 self.hostVC.onCardUpdated?(response)

@@ -15,8 +15,8 @@ class PromotionalBannerDetailsViewModel {
     self.hostVC = hostVC
   }
   
-  func deleteFullScreenBanner(param: [String: Any]) {
-    WebService.shared.deleteFullScreenBanner(param: param){ [weak self] response in
+  func deletePromtoionalBanner(param: [String: Any]) {
+    WebService.shared.deletePromtoionalBanner(param: param){ [weak self] response in
       guard let self = self else { return }
       DispatchQueue.main.async {
         CommonUtils.showToast(message: "Banner Deleted Successfully")
@@ -31,9 +31,20 @@ class PromotionalBannerDetailsViewModel {
       guard let self = self else { return }
       DispatchQueue.main.async {
         self.hostVC.bannerListData = response
-        self.hostVC.bindPromotionalBannerData()
+        self.hostVC.bindData()
       }
     }
   }
+    
+    func upadteBannerStatus(
+        param: [String: Any],
+        completion: @escaping (Bool) -> Void
+    ) {
+        WebService.shared.upadtePromtoionalBannerRequestStatus(param: param) { response in
+            // Assuming API returns success flag
+            
+            completion(true)
+        }
+    }
   
 }

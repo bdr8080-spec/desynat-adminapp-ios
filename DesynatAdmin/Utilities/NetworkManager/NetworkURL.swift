@@ -180,6 +180,9 @@ enum NetworkEndPoint: String {
     case addPromotionalBanner         = "api/admin/add_promotional_banner"
     case getPromotionalBanner         = "api/admin/get_promotional_banners"
     case getPromotionalBannerDetails         = "api/admin/get_promotional_banner_detail"
+    case deletePromotionalBannerDetails         = "api/admin/delete_promotional_banner"
+    case blcokUblockPromotionalBannerDetails         = "api/admin/block_unblock_promotional_banner"
+    case updatePromotionalBannerDetails         = "api/admin/update_promotional_banner"
     
     
     func withBaseURL() -> String {

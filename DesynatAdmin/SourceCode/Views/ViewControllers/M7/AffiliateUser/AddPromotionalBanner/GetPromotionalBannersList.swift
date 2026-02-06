@@ -49,7 +49,7 @@ struct GetPromotionalBannersList: Codable {
     let price: String?
     let addedBy, adminVerify, paymentStatus: String?
     let transactionID, cancelledReason: String?
-    let status, createdAt, updatedAt: String?
+    var status, createdAt, updatedAt: String?
     let categoryDetails: CategoryDetails?
     let subcategoryDetails: SubcategoryDetails?
 
