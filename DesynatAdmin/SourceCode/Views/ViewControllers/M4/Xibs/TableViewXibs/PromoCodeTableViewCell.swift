@@ -13,8 +13,6 @@ class PromoCodeTableViewCell: UITableViewCell {
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var descriptionLabel: UILabel!
   
-//  var fullData: GetPromoCodeListDataModel?
-  
   override func layoutSubviews() {
     super.layoutSubviews()
     

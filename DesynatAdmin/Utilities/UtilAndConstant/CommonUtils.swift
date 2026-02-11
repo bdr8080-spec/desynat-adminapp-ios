@@ -17,19 +17,35 @@ class CommonUtils {
             return countryPicker.getDialCode(countryCode: NSLocale.current.identifier) ?? "+91"
         }
     }
-  
-  static func formatPrice(_ amount: Double?, currency: String = "KD") -> String {
-    guard let amount = amount else { return "0 \(currency)" }
     
-    let roundedAmount = round(amount * 100) / 100   // Round to 2 decimal places
-    if roundedAmount.truncatingRemainder(dividingBy: 1) == 0 {
-      // If whole number, show without decimal
-      return "\(Int(roundedAmount)) \(currency)"
-    } else {
-      // Show up to 2 decimal places
-      return String(format: "%.2f", roundedAmount) + " \(currency)"
+    static func formatPrice(_ amount: Double?, currency: String = "KD") -> String {
+        guard let amount = amount else { return "0 \(currency)" }
+        
+        let roundedAmount = round(amount * 100) / 100   // Round to 2 decimal places
+        if roundedAmount.truncatingRemainder(dividingBy: 1) == 0 {
+            // If whole number, show without decimal
+            return "\(Int(roundedAmount)) \(currency)"
+        } else {
+            // Show up to 2 decimal places
+            return String(format: "%.2f", roundedAmount) + " \(currency)"
+        }
     }
-  }
+    
+    static func updateDiscountPercentageLabel(_ label: UILabel, actualAmountLabel: UILabel, discountType: String?,discountValue: String?) {
+        let value = Double(discountValue ?? "0") ?? 0
+        guard value > 0 else {
+            label.isHidden = true
+            actualAmountLabel.isHidden = true
+            return
+        }
+        label.isHidden = false
+        actualAmountLabel.isHidden = false
+        if discountType == "1" {
+            label.text = "\(discountValue ?? "")% Off"
+        } else {
+            label.text = "\(discountValue ?? "") KD Off"
+        }
+    }
     
     static func setStrikethrough(label: UILabel, text: String) {
         let attributeString = NSMutableAttributedString(string: text)
@@ -61,39 +77,39 @@ class CommonUtils {
         label.attributedText = attributeString
     }
     
-  
-  static func formatPriceStringInput(_ amount: String?, currency: String = "KD") -> String {
-      guard
-          let amount = amount,
-          let doubleAmount = Double(amount)
-      else {
-          return "0 \(currency)"
-      }
-
-      let roundedAmount = round(doubleAmount * 100) / 100
-
-      if roundedAmount.truncatingRemainder(dividingBy: 1) == 0 {
-          return "\(Int(roundedAmount)) \(currency)"
-      } else {
-          return String(format: "%.2f", roundedAmount) + " \(currency)"
-      }
-  }
-  
-  static func getThumbnail(asset: PHAsset, size: CGSize, completion: @escaping (UIImage?) -> Void) {
-      let imageManager = PHCachingImageManager()
-      let options = PHImageRequestOptions()
-      options.deliveryMode = .highQualityFormat
-      options.isSynchronous = false
-      
-      imageManager.requestImage(for: asset,
-                                targetSize: size,
-                                contentMode: .aspectFill,
-                                options: options) { image, _ in
-          completion(image)
-      }
-  }
-
-
+    
+    static func formatPriceStringInput(_ amount: String?, currency: String = "KD") -> String {
+        guard
+            let amount = amount,
+            let doubleAmount = Double(amount)
+        else {
+            return "0 \(currency)"
+        }
+        
+        let roundedAmount = round(doubleAmount * 100) / 100
+        
+        if roundedAmount.truncatingRemainder(dividingBy: 1) == 0 {
+            return "\(Int(roundedAmount)) \(currency)"
+        } else {
+            return String(format: "%.2f", roundedAmount) + " \(currency)"
+        }
+    }
+    
+    static func getThumbnail(asset: PHAsset, size: CGSize, completion: @escaping (UIImage?) -> Void) {
+        let imageManager = PHCachingImageManager()
+        let options = PHImageRequestOptions()
+        options.deliveryMode = .highQualityFormat
+        options.isSynchronous = false
+        
+        imageManager.requestImage(for: asset,
+                                  targetSize: size,
+                                  contentMode: .aspectFill,
+                                  options: options) { image, _ in
+            completion(image)
+        }
+    }
+    
+    
     static func formatPriceStringInputDecimal(_ amount: String?, currency: String = "KD") -> String {
         guard
             let amount = amount,
@@ -101,32 +117,32 @@ class CommonUtils {
         else {
             return "0 \(currency)"
         }
-
+        
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.minimumFractionDigits = 0   // no forced decimals
         formatter.maximumFractionDigits = 2   // up to 2 decimals
-
+        
         let formattedAmount = formatter.string(from: NSNumber(value: doubleAmount)) ?? "0"
         return "\(formattedAmount) \(currency)"
     }
-
     
-//    static func formatDate(_ date: Date) -> String {
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "d MMM yyyy"   // e.g. 3 Feb 2025
-//        formatter.locale = Locale(identifier: "en_US")
-//        return formatter.string(from: date)
-//    }
+    
+    //    static func formatDate(_ date: Date) -> String {
+    //        let formatter = DateFormatter()
+    //        formatter.dateFormat = "d MMM yyyy"   // e.g. 3 Feb 2025
+    //        formatter.locale = Locale(identifier: "en_US")
+    //        return formatter.string(from: date)
+    //    }
     
     static func formatDate(from dateString: String) -> String? {
         let inputFormatter = ISO8601DateFormatter()
         inputFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-
+        
         guard let date = inputFormatter.date(from: dateString) else {
             return nil // Return nil if string can't be parsed
         }
-
+        
         let outputFormatter = DateFormatter()
         outputFormatter.dateFormat = "d MMM yyyy"   // e.g. 5 Oct 2025
         outputFormatter.locale = Locale(identifier: "en_US")
@@ -135,22 +151,22 @@ class CommonUtils {
     }
     
     
-        static let displayFormatter: DateFormatter = {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "dd MMM yyyy"
-            return formatter
-        }()
-        
-        static let apiFormatter: DateFormatter = {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-            formatter.timeZone = TimeZone(abbreviation: "UTC")
-            return formatter
-        }()
+    static let displayFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMM yyyy"
+        return formatter
+    }()
     
-
-
-
+    static let apiFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        formatter.timeZone = TimeZone(abbreviation: "UTC")
+        return formatter
+    }()
+    
+    
+    
+    
     static func formatDateToYYYYMMDD(date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -173,22 +189,22 @@ class CommonUtils {
         
         return formatter.string(from: date)
     }
-
+    
     static func formatStartEndDate(_ apiDate: String) -> String {
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         inputFormatter.timeZone = TimeZone(secondsFromGMT: 0) // important for Zulu time (UTC)
-
+        
         let outputFormatter = DateFormatter()
         outputFormatter.dateFormat = "yyyy-MM-dd"
         outputFormatter.timeZone = TimeZone.current // show in local time
-
+        
         if let date = inputFormatter.date(from: apiDate) {
             return outputFormatter.string(from: date)
         }
         return apiDate
     }
-
+    
     
     static func getDefaultCountryCode() -> String {
         let countryPicker = ADCountryPicker()
@@ -276,7 +292,7 @@ class CommonUtils {
         formatter.locale = Locale(identifier: "en_US_POSIX") // ✅ AM / PM uppercase
         return formatter.string(from: date)
     }
-
+    
     
     /// Show Progress Hud
     /// - Parameter show: Boolean value to show/Hide
@@ -321,7 +337,7 @@ class CommonUtils {
     ///   - selectedColor: selected value color
     ///   - completion: Index of selection and value of selection
     static func dropDown(dataSource:[String], anchorView:UIView, selectedColor:UIColor, bgColor:UIColor = .white,
-                  completion: @escaping (_ index: Int, _ item: String) -> ()) {
+                         completion: @escaping (_ index: Int, _ item: String) -> ()) {
         let dropDown = DropDown()
         dropDown.setupCornerRadius(16)
         dropDown.anchorView = anchorView
@@ -345,29 +361,29 @@ class CommonUtils {
     }
     
     static func openPicker(controller:UIViewController, callBack:@escaping ((String,String,String) -> Void)) {
-            let picker = ADCountryPicker(style: .grouped)
-            picker.searchBarBackgroundColor = .white
-            picker.showCallingCodes = true
-            picker.didSelectCountryWithCallingCodeClosure = { name,code, callingCodes in
-                picker.dismiss(animated: true)
-                callBack(name,code, callingCodes)
-            }
-            let pickerNavigationController = UINavigationController(rootViewController: picker)
-            controller.present(pickerNavigationController, animated: true, completion: nil)
+        let picker = ADCountryPicker(style: .grouped)
+        picker.searchBarBackgroundColor = .white
+        picker.showCallingCodes = true
+        picker.didSelectCountryWithCallingCodeClosure = { name,code, callingCodes in
+            picker.dismiss(animated: true)
+            callBack(name,code, callingCodes)
         }
+        let pickerNavigationController = UINavigationController(rootViewController: picker)
+        controller.present(pickerNavigationController, animated: true, completion: nil)
+    }
     
-        static func getCode(dialCode:String) -> String {
-            guard let path = Bundle.main.path(forResource: "CallingCodes", ofType: "plist") else {return ""}
-            let url = URL(fileURLWithPath: path)
-            let data = try! Data(contentsOf: url)
-            guard let plist = try! PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as? [[String:String]] else { return "" }
-            let countries = plist.first(where:{$0["dial_code"] ==  dialCode})
-            return String.getString(countries?["code"])
-        }
+    static func getCode(dialCode:String) -> String {
+        guard let path = Bundle.main.path(forResource: "CallingCodes", ofType: "plist") else {return ""}
+        let url = URL(fileURLWithPath: path)
+        let data = try! Data(contentsOf: url)
+        guard let plist = try! PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as? [[String:String]] else { return "" }
+        let countries = plist.first(where:{$0["dial_code"] ==  dialCode})
+        return String.getString(countries?["code"])
+    }
     
     static func showToast(message: String) {
         FTIndicator.showNotification(withTitle: Bundle.main.ApplicationName ?? "",
-        message: message.count>0 ? message: "Message")
+                                     message: message.count>0 ? message: "Message")
         
     }
     

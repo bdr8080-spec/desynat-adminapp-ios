@@ -54,12 +54,17 @@ class DealDetailsCollectionViewCell: UICollectionViewCell {
         
         CommonUtils.setStrikethrough(label: actualPriceLabel, text: "\(data?.productDetails?.productVariants?.first?.actualPrice ?? "") KD")
         //    iscountPriceLabel.text = "\(data?.productVariants?.first?.discountValue ?? "") KD"
-        let discountType = data?.productDetails?.productVariants?.first?.discountType ?? "1"
-        if discountType == "1" {
-            discountAmountLabel.text = "\(data?.productDetails?.productVariants?.first?.discountValue ?? "")% Off"
-        } else {
-            discountAmountLabel.text = "\(data?.productDetails?.productVariants?.first?.discountValue ?? "") KD Off"
-        }
+//        let discountType = data?.productDetails?.productVariants?.first?.discountType ?? "1"
+//        if discountType == "1" {
+//            discountAmountLabel.text = "\(data?.productDetails?.productVariants?.first?.discountValue ?? "")% Off"
+//        } else {
+//            discountAmountLabel.text = "\(data?.productDetails?.productVariants?.first?.discountValue ?? "") KD Off"
+//        }
+        
+        CommonUtils.updateDiscountPercentageLabel(discountAmountLabel,
+                                                  actualAmountLabel: actualPriceLabel,
+                                                  discountType: data?.productDetails?.productVariants?.first?.discountType,
+                                                  discountValue: data?.productDetails?.productVariants?.first?.discountValue)
         
         if data?.productDetails?.productActiveStatus == 1 {
             statusButtonOutlet.setImage(UIImage(named: "toggleOn"), for: .normal)

@@ -10,6 +10,8 @@ import SDWebImage
 
 class PromotionalBannerDetaislViewController: UIViewController {
     
+    @IBOutlet weak var categoryStackView: UIStackView!
+    @IBOutlet weak var categorynameLabel: UILabel!
     @IBOutlet weak var subcatgeoryStackView: UIStackView!
     @IBOutlet weak var subCategoryLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
@@ -196,6 +198,7 @@ class PromotionalBannerDetaislViewController: UIViewController {
         startDateLabel.text = convertDateFormat(bannerListData?.startDate ?? "")
         endDateLabel.text = convertDateFormat(bannerListData?.endDate ?? "")
         subcatgeoryStackView.isHidden = true
+        categoryStackView.isHidden = true
         if bannerListData?.bannerPosition == "1" {
             positionLabel.text = "Home Top"
         } else if bannerListData?.bannerPosition == "2" {
@@ -203,7 +206,9 @@ class PromotionalBannerDetaislViewController: UIViewController {
         } else {
             positionLabel.text = "Category"
             subCategoryLabel.text = bannerListData?.subcategoryDetails?.nameEnglish
+            categorynameLabel.text = bannerListData?.categoryDetails?.name
             subcatgeoryStackView.isHidden = false
+            categoryStackView.isHidden = false
         }
         toggleStatus = bannerListData?.status ?? "0"
         self.updateToggleUI()
