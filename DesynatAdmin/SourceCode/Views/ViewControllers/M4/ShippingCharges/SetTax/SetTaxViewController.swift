@@ -87,6 +87,47 @@ class SetTaxViewController: UIViewController {
 }
 
 extension SetTaxViewController: UITextFieldDelegate {
+    //
+    //    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    //
+    //        // Prevent spaces
+    //        if string == " " { return false }
+    //
+    //        let currentText = textField.text ?? ""
+    //        guard let stringRange = Range(range, in: currentText) else { return false }
+    //        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+    //
+    //        // Allow only digits and one decimal point
+    //        let allowedCharacters = CharacterSet(charactersIn: "0123456789.")
+    //        if string.rangeOfCharacter(from: allowedCharacters.inverted) != nil {
+    //            return false
+    //        }
+    //
+    //        // Prevent multiple decimals
+    //        let decimalCount = updatedText.components(separatedBy: ".").count - 1
+    //        if decimalCount > 1 { return false }
+    //
+    //        // Restrict up to 2 digits after decimal
+    //        if let dotIndex = updatedText.firstIndex(of: ".") {
+    //            let decimalPart = updatedText[updatedText.index(after: dotIndex)...]
+    //            if decimalPart.count > 2 {
+    //                return false
+    //            }
+    //        }
+    //
+    //        // Prevent leading zero if no decimal (e.g., "01")
+    //        if updatedText.count > 1, updatedText.first == "0", !updatedText.contains(".") {
+    //            return false
+    //        }
+    //
+    //        // Restrict max value to 100
+    //        if let value = Double(updatedText), value > 100 {
+    //            return false
+    //        }
+    //
+    //        return true
+    //    }
+    //}
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
@@ -95,9 +136,9 @@ extension SetTaxViewController: UITextFieldDelegate {
         
         let currentText = textField.text ?? ""
         guard let stringRange = Range(range, in: currentText) else { return false }
-        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+        var updatedText = currentText.replacingCharacters(in: stringRange, with: string)
         
-        // Allow only digits and one decimal point
+        // Allow only digits and decimal point
         let allowedCharacters = CharacterSet(charactersIn: "0123456789.")
         if string.rangeOfCharacter(from: allowedCharacters.inverted) != nil {
             return false
@@ -115,9 +156,11 @@ extension SetTaxViewController: UITextFieldDelegate {
             }
         }
         
-        // Prevent leading zero if no decimal (e.g., "01")
-        if updatedText.count > 1, updatedText.first == "0", !updatedText.contains(".") {
-            return false
+        // Remove leading zero if next character is digit and no decimal
+        if updatedText.count > 1, updatedText.hasPrefix("0"), !updatedText.hasPrefix("0.") {
+            updatedText.removeFirst()
+            textField.text = updatedText
+            return false // We manually updated the text, so return false
         }
         
         // Restrict max value to 100
@@ -127,4 +170,6 @@ extension SetTaxViewController: UITextFieldDelegate {
         
         return true
     }
+
+
 }

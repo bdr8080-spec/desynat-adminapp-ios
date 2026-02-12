@@ -135,42 +135,96 @@ class AddEditShippingChargesViewController: UIViewController {
   
 }
 
+//extension AddEditShippingChargesViewController: UITextFieldDelegate {
+//  
+//  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//    if string.contains(" ") { return false }
+//    if let currentText = textField.text, currentText.isEmpty, string == "0" { return false }
+//    if !CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: string)) { return false }
+//    if textField == fromTF || textField == toTF || textField == delieryChargeTF {
+//      let currentText = textField.text ?? ""
+//      guard let stringRange = Range(range, in: currentText) else { return false }
+//      let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+//      if updatedText.count > 7 {
+//        return false
+//      }
+//    }
+//    return true
+//  }
+//  
+//  func textFieldDidEndEditing(_ textField: UITextField) {
+//    if textField == toTF {
+//      guard let fromText = fromTF.text, let toText = toTF.text,
+//            let fromValue = Int(fromText), let toValue = Int(toText) else { return }
+//      
+//      if toValue <= fromValue {
+//        CommonUtils.showToast(message: "To value should be greater than From value")
+//        //toTF.text = ""
+//      }
+//    }
+//    if textField == fromTF {
+//      if let fromText = fromTF.text, let toText = toTF.text,
+//         let fromValue = Int(fromText), let toValue = Int(toText),
+//         fromValue >= toValue {
+//        //toTF.text = ""
+//      }
+//    }
+//  }
+//}
+
 extension AddEditShippingChargesViewController: UITextFieldDelegate {
-  
-  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-    if string.contains(" ") { return false }
-    if let currentText = textField.text, currentText.isEmpty, string == "0" { return false }
-    if !CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: string)) { return false }
-    if textField == fromTF || textField == toTF || textField == delieryChargeTF {
-      let currentText = textField.text ?? ""
-      guard let stringRange = Range(range, in: currentText) else { return false }
-      let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
-      if updatedText.count > 7 {
-        return false
-      }
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        // Prevent spaces
+        if string.contains(" ") { return false }
+        
+        // Allow only digits
+        if !CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: string)) {
+            return false
+        }
+        
+        let currentText = textField.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        var updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+        
+        // Remove leading zero if next character is digit (for delieryChargeTF)
+        if textField == delieryChargeTF {
+            if updatedText.count > 1, updatedText.hasPrefix("0") {
+                updatedText.removeFirst()
+                textField.text = updatedText
+                return false
+            }
+        }
+        
+        // Limit length for fromTF, toTF, and delieryChargeTF
+        if textField == fromTF || textField == toTF || textField == delieryChargeTF {
+            if updatedText.count > 7 { return false }
+        }
+        
+        return true
     }
-    return true
-  }
-  
-  func textFieldDidEndEditing(_ textField: UITextField) {
-    if textField == toTF {
-      guard let fromText = fromTF.text, let toText = toTF.text,
-            let fromValue = Int(fromText), let toValue = Int(toText) else { return }
-      
-      if toValue <= fromValue {
-        CommonUtils.showToast(message: "To value should be greater than From value")
-        //toTF.text = ""
-      }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == toTF {
+            guard let fromText = fromTF.text, let toText = toTF.text,
+                  let fromValue = Int(fromText), let toValue = Int(toText) else { return }
+            
+            if toValue <= fromValue {
+                CommonUtils.showToast(message: "To value should be greater than From value")
+                //toTF.text = ""
+            }
+        }
+        if textField == fromTF {
+            if let fromText = fromTF.text, let toText = toTF.text,
+               let fromValue = Int(fromText), let toValue = Int(toText),
+               fromValue >= toValue {
+                //toTF.text = ""
+            }
+        }
     }
-    if textField == fromTF {
-      if let fromText = fromTF.text, let toText = toTF.text,
-         let fromValue = Int(fromText), let toValue = Int(toText),
-         fromValue >= toValue {
-        //toTF.text = ""
-      }
-    }
-  }
 }
+
 
 enum ComingReasonAtAddEditShipping {
   case add
