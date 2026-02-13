@@ -501,44 +501,6 @@ struct ProductVariant: Codable {
     }
 }
 
-// MARK: - SellerDetails
-//struct SellerDetails: Codable {
-//    let id: Int?
-//    let profilePic: String?
-//    let firstName, lastName, countryCode, mobile: String?
-//    let email, password, acceptTerms, otp: String?
-//    let otpVerify: String?
-//    let deviceType, deviceToken: String?
-//    let adminVerify, storeInformation, bankInformation: String?
-//    let rejectReason, lang: String?
-//    let isBlock: Int?
-//    let affilateCommission: String?
-//    let createdAt, updatedAt: String?
-//
-//    enum CodingKeys: String, CodingKey {
-//        case id
-//        case profilePic = "profile_pic"
-//        case firstName = "first_name"
-//        case lastName = "last_name"
-//        case countryCode = "country_code"
-//        case mobile, email, password
-//        case acceptTerms = "accept_terms"
-//        case otp
-//        case otpVerify = "otp_verify"
-//        case deviceType = "device_type"
-//        case deviceToken = "device_token"
-//        case adminVerify = "admin_verify"
-//        case storeInformation = "store_information"
-//        case bankInformation = "bank_information"
-//        case rejectReason = "reject_reason"
-//        case lang
-//        case isBlock = "is_block"
-//        case affilateCommission = "affilate_commission"
-//        case createdAt = "created_at"
-//        case updatedAt = "updated_at"
-//    }
-//}
-
 // MARK: - Store
 struct Store: Codable {
   let id, sellerID: Int?

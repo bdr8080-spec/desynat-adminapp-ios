@@ -28,7 +28,7 @@ class ShippingChargesAndTaxViewController: UIViewController {
   var countryName: String? = ""
   private lazy var viewModel = ShippingChargesAndTaxViewModel(hostVC: self)
   private var currentPageIndex = 0
-  private var itemsPerPage = 5
+  private var itemsPerPage = 4
   var taxAmount: String? = ""
   
   override func viewDidLoad() {
