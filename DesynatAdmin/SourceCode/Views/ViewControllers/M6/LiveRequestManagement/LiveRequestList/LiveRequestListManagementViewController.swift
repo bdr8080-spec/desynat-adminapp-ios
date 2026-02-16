@@ -105,7 +105,6 @@ class LiveRequestListManagementViewController: UIViewController {
     initialUIStep(isShow: true)
     slectedLiveRequestType = 1
     liveRequestTbleViewHieghtConstarint.constant = 0
-    
   }
   
   //  override func viewWillAppear(_ animated: Bool) {
@@ -584,8 +583,6 @@ extension LiveRequestListManagementViewController: UITextFieldDelegate {
     return true
   }
 }
-
-
 
 enum SelectedLiveRequestTab: Int {
   case new = 0        // new

@@ -1954,8 +1954,8 @@ Visit Website</string>
                                     <constraint firstAttribute="bottom" secondItem="ChR-SV-Y4Y" secondAttribute="bottom" id="vhM-ka-cHf"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="inV-6u-DRQ">
-                                <rect key="frame" x="24" y="243.66666666666666" width="327" height="500.33333333333337"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="inV-6u-DRQ">
+                                <rect key="frame" x="24" y="243.66666666666666" width="327" height="420.33333333333337"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="1xN-yf-rBk" id="LZa-w0-2kC"/>
@@ -1983,7 +1983,7 @@ Visit Website</string>
                             <constraint firstItem="NTH-2E-rMU" firstAttribute="centerY" secondItem="5xy-Is-ydk" secondAttribute="centerY" id="PpT-2M-pL7"/>
                             <constraint firstItem="0JZ-zp-a7o" firstAttribute="leading" secondItem="5xy-Is-ydk" secondAttribute="leading" constant="24" id="ZTh-ib-xw0"/>
                             <constraint firstItem="Fbl-YK-pG9" firstAttribute="trailing" secondItem="0JZ-zp-a7o" secondAttribute="trailing" id="ewb-cv-YHN"/>
-                            <constraint firstItem="inV-6u-DRQ" firstAttribute="bottom" secondItem="5xy-Is-ydk" secondAttribute="bottom" id="lFr-ST-HXp"/>
+                            <constraint firstItem="inV-6u-DRQ" firstAttribute="bottom" secondItem="5xy-Is-ydk" secondAttribute="bottom" constant="-80" id="lFr-ST-HXp"/>
                             <constraint firstItem="Fbl-YK-pG9" firstAttribute="leading" secondItem="0JZ-zp-a7o" secondAttribute="leading" id="wtL-NO-EPa"/>
                             <constraint firstItem="Fbl-YK-pG9" firstAttribute="top" secondItem="0JZ-zp-a7o" secondAttribute="bottom" constant="15" id="zCR-Bh-fd4"/>
                         </constraints>
@@ -2107,8 +2107,8 @@ Visit Website</string>
                                             <action selector="backDidTapped:" destination="2H5-aA-DNs" eventType="touchUpInside" id="oq2-tI-8eC"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="53c-CU-IbQ">
-                                        <rect key="frame" x="69" y="20" width="237" height="0.0"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Details" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="53c-CU-IbQ">
+                                        <rect key="frame" x="69" y="8.6666666666666732" width="237" height="22.666666666666671"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -2128,7 +2128,7 @@ Visit Website</string>
                                 <rect key="frame" x="0.0" y="155" width="375" height="589"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3oh-zg-BSk">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1857"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1850"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KC8-6p-OT0">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
@@ -2162,8 +2162,8 @@ Visit Website</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vYJ-op-ad5">
                                                 <rect key="frame" x="0.0" y="420" width="375" height="47.333333333333314"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Levis (by Atif Aslam)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eDZ-LH-cGB">
-                                                        <rect key="frame" x="20" y="12.333333333333373" width="165.66666666666666" height="22.666666666666671"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eDZ-LH-cGB">
+                                                        <rect key="frame" x="20" y="12.333333333333373" width="9.6666666666666643" height="22.666666666666671"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -2206,32 +2206,20 @@ Visit Website</string>
                                                     <constraint firstItem="tdp-qs-eNB" firstAttribute="leading" secondItem="eaW-Eg-ulh" secondAttribute="leading" id="pYF-cx-WF7"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n4I-ri-Yhi">
-                                                <rect key="frame" x="24" y="487.33333333333337" width="12" height="28"/>
-                                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="20"/>
-                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJj-Jy-xCH">
-                                                <rect key="frame" x="343" y="491.33333333333337" width="8" height="19.666666666666686"/>
-                                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
-                                                <color key="textColor" white="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fPd-R0-yWD">
-                                                <rect key="frame" x="24" y="521.33333333333337" width="327" height="17"/>
+                                                <rect key="frame" x="24" y="487.33333333333337" width="327" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z4T-aU-8NH">
-                                                <rect key="frame" x="24" y="544.33333333333337" width="327" height="17"/>
+                                                <rect key="frame" x="24" y="510.33333333333337" width="327" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="LIk-Fn-qZD">
-                                                <rect key="frame" x="24" y="566.33333333333337" width="100" height="14"/>
+                                                <rect key="frame" x="24" y="532.33333333333337" width="100" height="14"/>
                                                 <subviews>
                                                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nTe-Fy-YzE" customClass="CosmosView" customModule="Cosmos">
                                                         <rect key="frame" x="0.0" y="0.0" width="80" height="14"/>
@@ -2272,7 +2260,7 @@ Visit Website</string>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="jHI-li-ZSA">
-                                                <rect key="frame" x="24.000000000000007" y="585.33333333333337" width="93.666666666666686" height="19.666666666666629"/>
+                                                <rect key="frame" x="24.000000000000007" y="551.33333333333337" width="93.666666666666686" height="19.666666666666629"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 KD" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BjR-4f-qiE">
                                                         <rect key="frame" x="0.0" y="0.0" width="31.666666666666668" height="19.666666666666668"/>
@@ -2301,19 +2289,36 @@ Visit Website</string>
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="inclusive of all taxes" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvd-TW-j5H">
-                                                <rect key="frame" x="24" y="613" width="139" height="19.666666666666629"/>
+                                                <rect key="frame" x="24" y="579" width="327" height="19.666666666666629"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                                 <color key="textColor" red="0.086274509799999996" green="0.70196078429999997" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="aEG-dr-j2T">
+                                                <rect key="frame" x="24" y="608.66666666666663" width="327" height="17"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Added On" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zI6-ae-Y6b">
+                                                        <rect key="frame" x="0.0" y="0.0" width="163.66666666666666" height="17"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="heP-iM-Eyv">
+                                                        <rect key="frame" x="163.66666666666663" y="0.0" width="163.33333333333337" height="17"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More Color" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nXo-Vi-W1a">
-                                                <rect key="frame" x="24" y="657.66666666666663" width="327" height="22.666666666666629"/>
+                                                <rect key="frame" x="24" y="650.66666666666663" width="327" height="22.666666666666629"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="d4G-bC-WTj">
-                                                <rect key="frame" x="24" y="690.33333333333337" width="351" height="50"/>
+                                                <rect key="frame" x="24" y="683.33333333333337" width="351" height="50"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="jxW-KB-zQX"/>
@@ -2331,13 +2336,13 @@ Visit Website</string>
                                                 </connections>
                                             </collectionView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available Size" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EFo-PO-UOa">
-                                                <rect key="frame" x="24" y="765.33333333333337" width="111" height="22.666666666666629"/>
+                                                <rect key="frame" x="24" y="758.33333333333337" width="111" height="22.666666666666629"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lat-cU-Zcl">
-                                                <rect key="frame" x="276" y="759" width="75" height="35"/>
+                                                <rect key="frame" x="276" y="752" width="75" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="Px4-0f-sKB"/>
                                                     <constraint firstAttribute="width" constant="75" id="nDz-BW-l4U"/>
@@ -2352,7 +2357,7 @@ Visit Website</string>
                                                 </connections>
                                             </button>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ig5-JE-urH">
-                                                <rect key="frame" x="24" y="798" width="351" height="50"/>
+                                                <rect key="frame" x="24" y="791" width="351" height="50"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="Ia9-dJ-bUh"/>
@@ -2370,7 +2375,7 @@ Visit Website</string>
                                                 </connections>
                                             </collectionView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kwu-IH-TwQ" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                <rect key="frame" x="24" y="866" width="327" height="198"/>
+                                                <rect key="frame" x="24" y="859" width="327" height="198"/>
                                                 <subviews>
                                                     <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Pd0-yQ-lry">
                                                         <rect key="frame" x="10" y="10" width="307" height="178"/>
@@ -2500,7 +2505,7 @@ Visit Website</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rxn-qv-cy4" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                <rect key="frame" x="24" y="1084" width="327" height="71.333333333333258"/>
+                                                <rect key="frame" x="24" y="1077" width="327" height="71.333333333333258"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="nrR-rP-UHz">
                                                         <rect key="frame" x="10" y="10.000000000000004" width="307" height="51.333333333333343"/>
@@ -2579,7 +2584,7 @@ Visit Website</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qep-wR-b8Q" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                <rect key="frame" x="24" y="1175.3333333333333" width="327" height="191"/>
+                                                <rect key="frame" x="24" y="1168.3333333333333" width="327" height="191"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RcQ-tp-pqc">
                                                         <rect key="frame" x="18" y="20" width="291" height="22.666666666666671"/>
@@ -2640,7 +2645,7 @@ Visit Website</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2qK-bg-I3b" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                <rect key="frame" x="24" y="1386.3333333333333" width="327" height="71.333333333333258"/>
+                                                <rect key="frame" x="24" y="1379.3333333333333" width="327" height="71.333333333333258"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="PuI-J2-Wdl">
                                                         <rect key="frame" x="10" y="10.000000000000004" width="307" height="51.333333333333343"/>
@@ -2702,7 +2707,7 @@ Visit Website</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5QT-LL-bMt" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                <rect key="frame" x="24" y="1477.6666666666667" width="327" height="229.66666666666674"/>
+                                                <rect key="frame" x="24" y="1470.6666666666667" width="327" height="229.66666666666674"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="VeK-z0-d3c">
                                                         <rect key="frame" x="10" y="10" width="307" height="209.66666666666666"/>
@@ -2851,7 +2856,7 @@ Visit Website</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dh8-E2-wdx" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                <rect key="frame" x="24" y="1727.3333333333333" width="327" height="129.66666666666674"/>
+                                                <rect key="frame" x="24" y="1720.3333333333333" width="327" height="129.66666666666674"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seller Details" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A1V-wj-nrc">
                                                         <rect key="frame" x="15" y="15.000000000000002" width="312" height="22.666666666666671"/>
@@ -2869,33 +2874,33 @@ Visit Website</string>
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="circleCorner" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </imageView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="upB-7A-dDj">
-                                                        <rect key="frame" x="87" y="57.666666666666742" width="225" height="47"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="upB-7A-dDj">
+                                                        <rect key="frame" x="87" y="54.666666666666742" width="225" height="53"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Atif Aslam" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W4S-Vt-oZu">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W4S-Vt-oZu">
                                                                 <rect key="frame" x="0.0" y="0.0" width="225" height="17"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alasa Collections" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Na-5w-54b">
-                                                                <rect key="frame" x="0.0" y="17" width="225" height="14"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Na-5w-54b">
+                                                                <rect key="frame" x="0.0" y="21" width="225" height="14"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="L74-F2-EZl">
-                                                                <rect key="frame" x="0.0" y="31" width="225" height="16"/>
+                                                                <rect key="frame" x="0.0" y="39" width="225" height="14"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="locationMarker" translatesAutoresizingMaskIntoConstraints="NO" id="2xe-y8-7Cx" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="14" height="14"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="width" constant="16" id="Y6J-S7-uNb"/>
-                                                                            <constraint firstAttribute="height" constant="16" id="rLm-4W-xBp"/>
+                                                                            <constraint firstAttribute="width" constant="14" id="Y6J-S7-uNb"/>
+                                                                            <constraint firstAttribute="height" constant="14" id="rLm-4W-xBp"/>
                                                                         </constraints>
                                                                     </imageView>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kuwait" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZXE-Fw-hVC">
-                                                                        <rect key="frame" x="21" y="2" width="204" height="14"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZXE-Fw-hVC">
+                                                                        <rect key="frame" x="19" y="0.0" width="206" height="14"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -2932,6 +2937,8 @@ Visit Website</string>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
+                                            <constraint firstItem="aEG-dr-j2T" firstAttribute="top" secondItem="zvd-TW-j5H" secondAttribute="bottom" constant="10" id="0jQ-k1-1li"/>
+                                            <constraint firstItem="nXo-Vi-W1a" firstAttribute="leading" secondItem="fPd-R0-yWD" secondAttribute="leading" id="1O6-ME-dfF"/>
                                             <constraint firstItem="dh8-E2-wdx" firstAttribute="top" secondItem="5QT-LL-bMt" secondAttribute="bottom" constant="20" id="2M5-ci-aQK"/>
                                             <constraint firstAttribute="trailing" secondItem="d4G-bC-WTj" secondAttribute="trailing" id="3nc-Ff-3R8"/>
                                             <constraint firstItem="EFo-PO-UOa" firstAttribute="top" secondItem="d4G-bC-WTj" secondAttribute="bottom" constant="25" id="5jL-zu-Pts"/>
@@ -2940,56 +2947,53 @@ Visit Website</string>
                                             <constraint firstItem="amJ-V5-9TE" firstAttribute="centerX" secondItem="KC8-6p-OT0" secondAttribute="centerX" id="9zA-XG-mav"/>
                                             <constraint firstItem="vYJ-op-ad5" firstAttribute="top" secondItem="amJ-V5-9TE" secondAttribute="bottom" constant="15" id="AZB-uS-bGD"/>
                                             <constraint firstItem="5QT-LL-bMt" firstAttribute="leading" secondItem="qep-wR-b8Q" secondAttribute="leading" id="BEm-qT-0ye"/>
-                                            <constraint firstItem="n4I-ri-Yhi" firstAttribute="top" secondItem="vYJ-op-ad5" secondAttribute="bottom" constant="20" id="BwX-j1-d0E"/>
                                             <constraint firstItem="d4G-bC-WTj" firstAttribute="trailing" secondItem="ig5-JE-urH" secondAttribute="trailing" id="Cor-aQ-fnL"/>
-                                            <constraint firstItem="fPd-R0-yWD" firstAttribute="top" secondItem="n4I-ri-Yhi" secondAttribute="bottom" constant="6" id="Dbg-7d-FrJ"/>
                                             <constraint firstItem="nXo-Vi-W1a" firstAttribute="leading" secondItem="d4G-bC-WTj" secondAttribute="leading" id="Fah-ke-tvM"/>
                                             <constraint firstItem="Kwu-IH-TwQ" firstAttribute="leading" secondItem="qep-wR-b8Q" secondAttribute="leading" id="Gmm-vr-4Zb"/>
                                             <constraint firstItem="5QT-LL-bMt" firstAttribute="top" secondItem="2qK-bg-I3b" secondAttribute="bottom" constant="20" id="IhJ-ZT-Vnx"/>
                                             <constraint firstAttribute="bottom" secondItem="dh8-E2-wdx" secondAttribute="bottom" id="IsN-Ny-hd0"/>
                                             <constraint firstItem="2qK-bg-I3b" firstAttribute="top" secondItem="qep-wR-b8Q" secondAttribute="bottom" constant="20" id="ItV-zS-0zc"/>
-                                            <constraint firstItem="TJj-Jy-xCH" firstAttribute="centerY" secondItem="n4I-ri-Yhi" secondAttribute="centerY" id="JtA-jj-TdK"/>
                                             <constraint firstItem="vYJ-op-ad5" firstAttribute="trailing" secondItem="KC8-6p-OT0" secondAttribute="trailing" id="MDH-BL-72z"/>
+                                            <constraint firstItem="nXo-Vi-W1a" firstAttribute="top" secondItem="aEG-dr-j2T" secondAttribute="bottom" constant="25" id="MWl-17-NcH"/>
                                             <constraint firstItem="KC8-6p-OT0" firstAttribute="leading" secondItem="3oh-zg-BSk" secondAttribute="leading" id="NvO-dq-EdU"/>
+                                            <constraint firstItem="LIk-Fn-qZD" firstAttribute="leading" secondItem="fPd-R0-yWD" secondAttribute="leading" id="O2k-Tk-P88"/>
                                             <constraint firstItem="d4G-bC-WTj" firstAttribute="top" secondItem="nXo-Vi-W1a" secondAttribute="bottom" constant="10" id="POM-RW-nIp"/>
+                                            <constraint firstItem="zvd-TW-j5H" firstAttribute="leading" secondItem="fPd-R0-yWD" secondAttribute="leading" id="Pho-V3-SFo"/>
                                             <constraint firstAttribute="trailing" secondItem="KC8-6p-OT0" secondAttribute="trailing" id="RRl-5k-36E"/>
-                                            <constraint firstItem="nXo-Vi-W1a" firstAttribute="leading" secondItem="n4I-ri-Yhi" secondAttribute="leading" id="S27-fj-iFs"/>
+                                            <constraint firstItem="fPd-R0-yWD" firstAttribute="leading" secondItem="3oh-zg-BSk" secondAttribute="leading" constant="24" id="SnH-l7-kgK"/>
                                             <constraint firstItem="amJ-V5-9TE" firstAttribute="top" secondItem="KC8-6p-OT0" secondAttribute="bottom" constant="10" id="T7Z-Tr-rK3"/>
                                             <constraint firstItem="EFo-PO-UOa" firstAttribute="leading" secondItem="ig5-JE-urH" secondAttribute="leading" id="Uav-rw-pfQ"/>
                                             <constraint firstItem="vYJ-op-ad5" firstAttribute="leading" secondItem="KC8-6p-OT0" secondAttribute="leading" id="VL6-dI-j83"/>
                                             <constraint firstAttribute="trailing" secondItem="Lat-cU-Zcl" secondAttribute="trailing" constant="24" id="WZR-yO-9VX"/>
                                             <constraint firstItem="z4T-aU-8NH" firstAttribute="trailing" secondItem="fPd-R0-yWD" secondAttribute="trailing" id="XC6-ao-a6W"/>
+                                            <constraint firstItem="zvd-TW-j5H" firstAttribute="trailing" secondItem="fPd-R0-yWD" secondAttribute="trailing" id="Xgc-jo-UT0"/>
                                             <constraint firstItem="zvd-TW-j5H" firstAttribute="top" secondItem="jHI-li-ZSA" secondAttribute="bottom" constant="8" id="YDU-TG-KwI"/>
                                             <constraint firstItem="Kwu-IH-TwQ" firstAttribute="trailing" secondItem="qep-wR-b8Q" secondAttribute="trailing" id="YI3-Op-huv"/>
                                             <constraint firstItem="ig5-JE-urH" firstAttribute="top" secondItem="EFo-PO-UOa" secondAttribute="bottom" constant="10" id="bLS-Ji-J7D"/>
-                                            <constraint firstItem="fPd-R0-yWD" firstAttribute="leading" secondItem="n4I-ri-Yhi" secondAttribute="leading" id="bSX-Zr-kFD"/>
-                                            <constraint firstAttribute="trailing" secondItem="TJj-Jy-xCH" secondAttribute="trailing" constant="24" id="bcD-Yi-KfC"/>
+                                            <constraint firstItem="fPd-R0-yWD" firstAttribute="top" secondItem="vYJ-op-ad5" secondAttribute="bottom" constant="20.000000000000057" id="cq9-Zy-Uu4"/>
                                             <constraint firstItem="KC8-6p-OT0" firstAttribute="top" secondItem="3oh-zg-BSk" secondAttribute="top" id="d8J-cd-Xi2"/>
+                                            <constraint firstItem="aEG-dr-j2T" firstAttribute="leading" secondItem="zvd-TW-j5H" secondAttribute="leading" id="ffo-9c-hfu"/>
                                             <constraint firstItem="nXo-Vi-W1a" firstAttribute="trailing" secondItem="fPd-R0-yWD" secondAttribute="trailing" id="gO5-It-8gD"/>
-                                            <constraint firstItem="n4I-ri-Yhi" firstAttribute="leading" secondItem="3oh-zg-BSk" secondAttribute="leading" constant="24" id="hEG-VP-zdj"/>
                                             <constraint firstItem="rxn-qv-cy4" firstAttribute="top" secondItem="Kwu-IH-TwQ" secondAttribute="bottom" constant="20" id="hQT-wj-EcU"/>
                                             <constraint firstItem="Lat-cU-Zcl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="EFo-PO-UOa" secondAttribute="trailing" constant="20" id="hjW-dv-O1s"/>
                                             <constraint firstItem="EFo-PO-UOa" firstAttribute="leading" secondItem="Kwu-IH-TwQ" secondAttribute="leading" id="hkB-ce-9ti"/>
                                             <constraint firstItem="Lat-cU-Zcl" firstAttribute="centerY" secondItem="EFo-PO-UOa" secondAttribute="centerY" id="iNP-iI-EdN"/>
-                                            <constraint firstItem="TJj-Jy-xCH" firstAttribute="trailing" secondItem="fPd-R0-yWD" secondAttribute="trailing" id="jFh-tR-RBG"/>
                                             <constraint firstItem="z4T-aU-8NH" firstAttribute="leading" secondItem="fPd-R0-yWD" secondAttribute="leading" id="lQ5-0r-JVK"/>
                                             <constraint firstItem="jHI-li-ZSA" firstAttribute="top" secondItem="LIk-Fn-qZD" secondAttribute="bottom" constant="5" id="mSg-1u-PrJ"/>
-                                            <constraint firstItem="zvd-TW-j5H" firstAttribute="leading" secondItem="n4I-ri-Yhi" secondAttribute="leading" id="mWM-OO-omY"/>
+                                            <constraint firstItem="aEG-dr-j2T" firstAttribute="trailing" secondItem="zvd-TW-j5H" secondAttribute="trailing" id="mt6-0E-osk"/>
                                             <constraint firstItem="qep-wR-b8Q" firstAttribute="trailing" secondItem="2qK-bg-I3b" secondAttribute="trailing" id="nKx-3k-l89"/>
                                             <constraint firstItem="5QT-LL-bMt" firstAttribute="trailing" secondItem="qep-wR-b8Q" secondAttribute="trailing" id="nY7-qK-D63"/>
                                             <constraint firstItem="qep-wR-b8Q" firstAttribute="leading" secondItem="2qK-bg-I3b" secondAttribute="leading" id="ocH-Q0-Bu4"/>
+                                            <constraint firstAttribute="trailing" secondItem="fPd-R0-yWD" secondAttribute="trailing" constant="24" id="pQI-HX-ORe"/>
                                             <constraint firstItem="Kwu-IH-TwQ" firstAttribute="trailing" secondItem="nXo-Vi-W1a" secondAttribute="trailing" id="pvD-uM-SXQ"/>
                                             <constraint firstItem="rxn-qv-cy4" firstAttribute="trailing" secondItem="Kwu-IH-TwQ" secondAttribute="trailing" id="qtb-bK-ExG"/>
-                                            <constraint firstItem="TJj-Jy-xCH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="n4I-ri-Yhi" secondAttribute="trailing" constant="20" id="r0q-oe-B4L"/>
                                             <constraint firstItem="5QT-LL-bMt" firstAttribute="leading" secondItem="dh8-E2-wdx" secondAttribute="leading" id="rh4-Si-5XA"/>
                                             <constraint firstItem="d4G-bC-WTj" firstAttribute="leading" secondItem="ig5-JE-urH" secondAttribute="leading" id="sVM-Jx-YV0"/>
                                             <constraint firstItem="qep-wR-b8Q" firstAttribute="top" secondItem="rxn-qv-cy4" secondAttribute="bottom" constant="20" id="tjI-ZG-g8C"/>
                                             <constraint firstItem="5QT-LL-bMt" firstAttribute="trailing" secondItem="dh8-E2-wdx" secondAttribute="trailing" id="v6e-uE-S0n"/>
                                             <constraint firstItem="LIk-Fn-qZD" firstAttribute="top" secondItem="z4T-aU-8NH" secondAttribute="bottom" constant="5" id="v9b-Ro-xWa"/>
-                                            <constraint firstItem="nXo-Vi-W1a" firstAttribute="top" secondItem="zvd-TW-j5H" secondAttribute="bottom" constant="25" id="vSv-l0-Abh"/>
                                             <constraint firstItem="jHI-li-ZSA" firstAttribute="leading" secondItem="fPd-R0-yWD" secondAttribute="leading" id="wPB-uG-UJp"/>
                                             <constraint firstItem="z4T-aU-8NH" firstAttribute="top" secondItem="fPd-R0-yWD" secondAttribute="bottom" constant="6" id="zYb-fd-u3c"/>
-                                            <constraint firstItem="LIk-Fn-qZD" firstAttribute="leading" secondItem="n4I-ri-Yhi" secondAttribute="leading" id="zt2-ci-WeB"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -3018,6 +3022,7 @@ Visit Website</string>
                     </view>
                     <connections>
                         <outlet property="actualPriceLAbel" destination="LeA-Ny-3TX" id="Gna-S6-DNU"/>
+                        <outlet property="addedOnDateLabel" destination="heP-iM-Eyv" id="Usw-jd-kLD"/>
                         <outlet property="affiliatedLabel" destination="Edk-NO-ODD" id="4Z9-C4-lxk"/>
                         <outlet property="brandCategoryLabel" destination="fPd-R0-yWD" id="Km8-qj-EwN"/>
                         <outlet property="bustLabel" destination="8aT-9A-0kZ" id="VfN-dQ-Txy"/>
@@ -3035,13 +3040,17 @@ Visit Website</string>
                         <outlet property="imagesPageController" destination="amJ-V5-9TE" id="SnM-aw-UOf"/>
                         <outlet property="lengthLabel" destination="hz1-72-CG0" id="wDt-OA-HTC"/>
                         <outlet property="lengthStackView" destination="dcB-qp-Xm7" id="gRi-iv-GtE"/>
+                        <outlet property="maxCartQuanity" destination="tlc-8X-izx" id="aav-sv-QRm"/>
+                        <outlet property="minimumCartQuantityLabel" destination="h7J-2a-S1q" id="RjB-Qd-VKb"/>
                         <outlet property="priceSeparatorLabel" destination="gey-md-xWb" id="9kC-6z-Vg7"/>
                         <outlet property="productImageCollectionView" destination="KC8-6p-OT0" id="BWK-Eu-ECA"/>
-                        <outlet property="productNameLabel" destination="n4I-ri-Yhi" id="p7u-6l-fGV"/>
+                        <outlet property="productNameLabel" destination="eDZ-LH-cGB" id="iTA-z7-7Ue"/>
                         <outlet property="ratingCountLabel" destination="N5P-UJ-Cjr" id="miG-uY-ViZ"/>
                         <outlet property="ratingReviewALlowedLabel" destination="MMB-f3-TzT" id="6rI-Mk-Vjy"/>
                         <outlet property="readyToShipLabel" destination="TCT-cL-CZd" id="7bp-f9-aTp"/>
                         <outlet property="returnAllowedLAbel" destination="knf-Lb-CSa" id="Tfo-0L-nfW"/>
+                        <outlet property="sellerImageView" destination="HSN-mH-jQ0" id="r8i-cU-yZb"/>
+                        <outlet property="sellerNameLabel" destination="W4S-Vt-oZu" id="Xz3-rD-TcL"/>
                         <outlet property="shoulderLabel" destination="DDc-p9-Ikt" id="VxX-JT-Y87"/>
                         <outlet property="shoulderView" destination="ddT-Bp-2vb" id="1Wm-ib-uE9"/>
                         <outlet property="sizeCollectionView" destination="ig5-JE-urH" id="Pwt-q4-kuR"/>
@@ -3052,7 +3061,8 @@ Visit Website</string>
                         <outlet property="specificationTableViewHieghtConstraint" destination="BpS-T0-0Ne" id="AfJ-ul-hHa"/>
                         <outlet property="statusButton" destination="tdp-qs-eNB" id="Jep-gc-5OB"/>
                         <outlet property="statusLabel" destination="8GE-kO-mEl" id="AVj-zt-0sB"/>
-                        <outlet property="titlePageLabel" destination="53c-CU-IbQ" id="pPS-un-nKJ"/>
+                        <outlet property="storeLocationLabel" destination="ZXE-Fw-hVC" id="rMu-Nh-mHt"/>
+                        <outlet property="storeNameLabel" destination="7Na-5w-54b" id="2o2-CD-2Y4"/>
                         <outlet property="totalStocksLabel" destination="b6o-fo-XRf" id="oL7-Bc-hnp"/>
                         <outlet property="waistLabel" destination="L1w-yz-QPj" id="78w-Kg-DbX"/>
                         <outlet property="waistView" destination="Uc0-RR-wBb" id="biM-cf-2TJ"/>
@@ -3062,7 +3072,7 @@ Visit Website</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GgA-CS-0hA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-727" y="676"/>
+            <point key="canvasLocation" x="-727" y="654"/>
         </scene>
         <!--Product Filters View Controller-->
         <scene sceneID="bhz-LJ-dSy">
@@ -3237,7 +3247,7 @@ Visit Website</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dnI-WE-Ob2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-727" y="1366"/>
+            <point key="canvasLocation" x="-727" y="1344"/>
         </scene>
     </scenes>
     <resources>

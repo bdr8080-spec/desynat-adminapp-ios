@@ -8,40 +8,69 @@
 
 import Foundation
 
+struct AppliedFilterForProductList {
+    var countryIDs: [String] = []
+    var categoryId: String = ""
+    var subcategoryIDs: [String] = []
+    var brandIDs: [String] = []
+}
+
 // MARK: - ProductsListDataModel
 struct ProductsListDataModel: Codable {
-    let allProductCount, activeProductCount, inactiveProductCount: Int?
-    var allProductData, activeProduct: [ProductsList]?
-    var inactiveProduct: [ProductsList]?
-    
+    let currentPage: Int?
+    let data: [ProductsList]?
+    let firstPageURL: String?
+    let from, lastPage: Int?
+    let lastPageURL: String?
+    let links: [Link]?
+    let nextPageURL, path: String?
+    let perPage: Int?
+    let prevPageURL: String?
+    let to, total: Int?
+
     enum CodingKeys: String, CodingKey {
-        case allProductCount = "all_product_count"
-        case activeProductCount = "active_product_count"
-        case inactiveProductCount = "inactive_product_count"
-        case allProductData = "all_product_data"
-        case activeProduct = "active_product"
-        case inactiveProduct = "inactive_product"
+        case currentPage = "current_page"
+        case data
+        case firstPageURL = "first_page_url"
+        case from
+        case lastPage = "last_page"
+        case lastPageURL = "last_page_url"
+        case links
+        case nextPageURL = "next_page_url"
+        case path
+        case perPage = "per_page"
+        case prevPageURL = "prev_page_url"
+        case to, total
     }
 }
 
 // MARK: - ProductsList
 struct ProductsList: Codable {
     let id: Int?
-    let storeID,sellerID, categoryID, subcategoryID: String?
-    let brandID, otherEn, otherAr, productNameEn: String?
-    let productNameAr, descriptionEn, descriptionAr, minCardQuantity: String?
-    let maxCardQuantity, productReturn, returnDays, productExchangable: String?
-    let exchangableDays, reviewRating, affiliatedProduct, customizedProduct: String?
-    let readyToShip, cashOnDelivery: String?
+    let sellerID, storeID, categoryID, subcategoryID: String?
+    let brandID: String?
+    let otherEn, otherAr: String?
+    let productNameEn, productNameAr, descriptionEn, descriptionAr: String?
+    let minCardQuantity, maxCardQuantity, productReturn: String?
+    let returnDays: String?
+    let productExchangable: String?
+    let exchangableDays: String?
+    let reviewRating, affiliatedProduct: String?
+    let affiliatedCommission: String?
+    let customizedProduct, readyToShip, cashOnDelivery: String?
     let uploadSizeChart: String?
-    var productActiveStatus, avgProductRating: Int?
-    let createdAt, updatedAt, stock: String?
-    let category: Category?
+    var productActiveStatus: Int?
+    let createdAt, updatedAt: String?
     let brand: Brand?
-    let subcategory: SubcategoryDetails?
+    let category: Category?
+    let subcategory: Brand?
     let productSpecifications: [ProductSpecification]?
-    let productVariants: [ProductVariantsList]?
-    
+    let productVariants: [ProductVariant]?
+    let sellerDetails: SellerDetails?
+    let store: Store?
+    let review: [Review]?
+    let averageRating: AverageRating?
+
     enum CodingKeys: String, CodingKey {
         case id
         case sellerID = "seller_id"
@@ -59,11 +88,11 @@ struct ProductsList: Codable {
         case maxCardQuantity = "max_card_quantity"
         case productReturn = "product_return"
         case returnDays = "return_days"
-        case avgProductRating = "avg_product_rating"
         case productExchangable = "product_exchangable"
         case exchangableDays = "exchangable_days"
         case reviewRating = "review_rating"
         case affiliatedProduct = "affiliated_product"
+        case affiliatedCommission = "affiliated_commission"
         case customizedProduct = "customized_product"
         case readyToShip = "ready_to_ship"
         case cashOnDelivery = "cash_on_delivery"
@@ -71,9 +100,48 @@ struct ProductsList: Codable {
         case productActiveStatus = "product_active_status"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
-        case stock, category, subcategory, brand
+        case brand, category, subcategory
         case productSpecifications = "product_specifications"
         case productVariants = "product_variants"
+        case sellerDetails = "seller_details"
+        case store, review
+        case averageRating = "average_rating"
+    }
+}
+
+// MARK: - AverageRating
+struct AverageRating: Codable {
+    let product, store: Int?
+}
+
+// MARK: - Review
+struct Review: Codable {
+    let id, userID, orderID, orderdetailsID: Int?
+    let productID: Int?
+    let productRating: String?
+    let productReview: String?
+    let productImage: String?
+    let storeID: Int?
+    let storeRating: String?
+    let storeReview: String?
+    let storeImage: String?
+    let createdAt, updatedAt: String?
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case userID = "user_id"
+        case orderID = "order_id"
+        case orderdetailsID = "orderdetails_id"
+        case productID = "product_id"
+        case productRating = "product_rating"
+        case productReview = "product_review"
+        case productImage = "product_image"
+        case storeID = "store_id"
+        case storeRating = "store_rating"
+        case storeReview = "store_review"
+        case storeImage = "store_image"
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
     }
 }
 
@@ -93,73 +161,4 @@ struct ProductSpecification: Codable {
         case createdAt = "created_at"
         case updatedAt = "updated_at"
     }
-}
-
-//// MARK: - ProductVariantsList
-struct ProductVariantsList: Codable {
-    let id, productID: Int?
-    let variantImage: [String]?
-    let colorID, sizeID: String?
-    let bust, waist, hip, shoulder: String?
-    let sleeveLength, length: String?
-    let totalStock, sku, skuThresholdValue, actualPrice: String?
-    let discountType, discountValue, finalPrice, status: String?
-    let createdAt, updatedAt: String?
-    let color: ColorsLisDataModel?
-    let size :SizeListDataModel?
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case productID = "product_id"
-        case variantImage = "variant_image"
-        case colorID = "color_id"
-        case sizeID = "size_id"
-        case bust, waist, hip, shoulder
-        case sleeveLength = "sleeve_length"
-        case length
-        case totalStock = "total_stock"
-        case sku
-        case skuThresholdValue = "sku_threshold_value"
-        case actualPrice = "actual_price"
-        case discountType = "discount_type"
-        case discountValue = "discount_value"
-        case finalPrice = "final_price"
-        case status
-        case createdAt = "created_at"
-        case updatedAt = "updated_at"
-        case color
-        case size
-    }
-}
-
-// MARK: - ColorsLisDataModel
-struct ColorsLisDataModel: Codable {
-    let id: Int?
-    let name, hexCode: String?
-    let createdAt, updatedAt: String?
-
-    enum CodingKeys: String, CodingKey {
-        case id, name
-        case hexCode = "hex_code"
-        case createdAt = "created_at"
-        case updatedAt = "updated_at"
-    }
-}
-
-// MARK: - SizeListDataModel
-struct SizeListDataModel: Codable {
-    var id: Int?
-    var name, createdAt, updatedAt: String?
-
-    enum CodingKeys: String, CodingKey {
-        case id, name
-        case createdAt = "created_at"
-        case updatedAt = "updated_at"
-    }
-}
-
-
-struct AppliedFilter {
-    var categoryIDs: [String] = []
-    var brandIDs: [String] = []
 }

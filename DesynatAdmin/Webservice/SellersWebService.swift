@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import Alamofire
 extension WebService {
+    
     func getNewSellers(parameter:[String:Any],completion: @escaping(SellerModel) -> Void) {
         CommonUtils.showHud(show: true)
         NetworkManager.shared.request(

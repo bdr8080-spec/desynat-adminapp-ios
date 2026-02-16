@@ -20,9 +20,7 @@ class ProductDetailImageCollectionViewCell: UICollectionViewCell {
   }
   
   func configData(variantImageUrl: String) {
-    
-    if //let imageUrlString = variantImageUrl,
-      let url = URL(string: variantImageUrl) {
+    if let url = URL(string: variantImageUrl) {
       mainImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
       mainImageView.sd_imageIndicator?.startAnimatingIndicator()
       mainImageView.sd_setImage(with: url, placeholderImage: UIImage(named: ""))
@@ -30,8 +28,6 @@ class ProductDetailImageCollectionViewCell: UICollectionViewCell {
     } else {
       mainImageView.image = UIImage(named: "")
     }
-//    mainImageView.enableFullscreenZoom()
-
   }
   
 }

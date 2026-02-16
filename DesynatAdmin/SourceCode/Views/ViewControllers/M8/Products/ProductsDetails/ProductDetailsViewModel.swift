@@ -19,18 +19,18 @@ class ProductDetailsViewModel {
   }
   
   func updateActiveStatus(param: [String: Any], completion: @escaping (Bool) -> Void) {
-//      WebService.sharedInstance.updateProductActiveStatus(param: param){ response in
-//          completion(true)
-//      }
+      WebService.sharedInstance.updateProductsstatus(param: param){ response in
+          completion(true)
+      }
   }
   
     func getProductDetailsService() {
-//        let param: [String: Any] = ["product_id" :hostVC.productId]
-//        WebService.sharedInstance.getProductDetailsService(param: param){ [weak self] response in
-//      guard let self = self else { return }
-//          productDetails = response
-//            hostVC.configData(data: response)
-//    }
+        let param: [String: Any] = ["id" :hostVC.productId]
+        WebService.sharedInstance.getProductsDetails(param: param){ [weak self] response in
+      guard let self = self else { return }
+          productDetails = response
+            hostVC.configData(data: response)
+    }
   }
   
 }

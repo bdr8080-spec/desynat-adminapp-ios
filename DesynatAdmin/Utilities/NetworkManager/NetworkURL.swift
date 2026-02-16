@@ -184,6 +184,12 @@ enum NetworkEndPoint: String {
     case blcokUblockPromotionalBannerDetails         = "api/admin/block_unblock_promotional_banner"
     case updatePromotionalBannerDetails         = "api/admin/update_promotional_banner"
     
+    //M8
+    case getProductsList         = "api/admin/get_products"
+    case blcokUnblockProduct         = "api/admin/block_unblock_product"
+    case getProductDetails         = "api/admin/get_product_detail"
+    case getDefaultShippingFees         = "api/admin/get_default_shipping_fee"
+    case updateDefaultShippingFees         = "api/admin/update_default_shipping_fee"
     
     func withBaseURL() -> String {
         return "\(BaseURL.value())\(self.rawValue)"

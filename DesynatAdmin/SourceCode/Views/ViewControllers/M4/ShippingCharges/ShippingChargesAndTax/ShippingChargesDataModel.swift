@@ -27,3 +27,20 @@ struct ShippingChargesList: Codable {
         case countryInfo = "country_info"
     }
 }
+
+
+// MARK: - GetDefaultShippingFees
+struct GetDefaultShippingFees: Codable {
+    let id, countryID: Int?
+    let shippingFee, createdAt, updatedAt: String?
+    let countryInfo: CountryInfo?
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case countryID = "country_id"
+        case shippingFee = "shipping_fee"
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+        case countryInfo = "country_info"
+    }
+}

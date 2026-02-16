@@ -7,21 +7,6 @@
 
 import UIKit
 
-struct FilterSection {
-    var header: String
-    var options: [FilterOption]
-}
-
-struct FilterOption {
-    var id: String
-    var title: String
-    var isSelected: Bool = false
-    var selectedImage: String = "selectedCheckBox"
-    var unselectedImage: String = "unslectedCheckbox"
-}
-
-//import UIKit
-
 class ProductFiltersViewController: UIViewController {
 
     @IBOutlet weak var filterTableView: UITableView!
@@ -35,15 +20,16 @@ class ProductFiltersViewController: UIViewController {
     
     // MARK: - Selected IDs
     var selectedCountryIDs: [String] = []
-    var selectedCategoryIDs: [String] = []
+    var selectedCategoryIDs: String = ""
     var selectedSubCategoryIDs: [String] = []
     var selectedBrandIDs: [String] = []
     
     // MARK: - Callback
     var onFilterApplied: ((_ countryIDs: [String],
-                           _ categoryIDs: [String],
+                           _ categoryIDs: String,
                            _ subCategoryIDs: [String],
                            _ brandIDs: [String]) -> Void)?
+    var onClearFilter: (() -> Void)?
     
     // MARK: - Filters Container
     var filtersOptions: [FilterSection] = []
@@ -53,6 +39,9 @@ class ProductFiltersViewController: UIViewController {
         registerXib()
         setupUI()
         prepareFilters()
+        if !selectedCategoryIDs.isEmpty {
+                getAllsubcategoryApi(id: Int(selectedCategoryIDs))
+            }
     }
     
     // MARK: - Apply Button
@@ -71,19 +60,8 @@ class ProductFiltersViewController: UIViewController {
     
     // MARK: - Clear Button
     @IBAction func clearDidTapped(_ sender: Any) {
-        
-        selectedCountryIDs.removeAll()
-        selectedCategoryIDs.removeAll()
-        selectedSubCategoryIDs.removeAll()
-        selectedBrandIDs.removeAll()
-        
-        for section in 0..<filtersOptions.count {
-            for index in 0..<filtersOptions[section].options.count {
-                filtersOptions[section].options[index].isSelected = false
-            }
-        }
-        
-        filterTableView.reloadData()
+        onClearFilter?()
+        dismiss(animated: true)
     }
     
     // MARK: - UI Setup
@@ -92,6 +70,32 @@ class ProductFiltersViewController: UIViewController {
         headerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         headerView.clipsToBounds = true
     }
+    
+    func getAllsubcategoryApi(id: Int?) {
+        let param: [String: Any] = ["category_id": id ?? 0]
+        
+        WebService.sharedInstance.getAllsubcategory(param: param) { [weak self] list in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                self.subCategoriesList = list.data ?? []
+                
+                let subCategoryOptions = self.subCategoriesList.map {
+                    FilterOption(
+                        id: "\($0.id ?? 0)",
+                        title: $0.nameEnglish ?? "",
+                        isSelected: self.selectedSubCategoryIDs.contains("\($0.id ?? 0)")
+                    )
+                }
+                
+                self.filtersOptions[2].options = subCategoryOptions
+                
+                self.filterTableView.reloadSections(IndexSet(integer: 2), with: .automatic)
+            }
+        }
+    }
+
+
     
     // MARK: - Prepare Filters (Handles Preselection)
     func prepareFilters() {
@@ -112,10 +116,10 @@ class ProductFiltersViewController: UIViewController {
             )
         }
         
-        let subCategoryOptions = categoriesList.map {
+        let subCategoryOptions = subCategoriesList.map {
             FilterOption(
                 id: "\($0.id ?? 0)",
-                title: $0.name ?? "",
+                title: $0.nameEnglish ?? "",
                 isSelected: selectedSubCategoryIDs.contains("\($0.id ?? 0)")
             )
         }
@@ -209,12 +213,21 @@ extension ProductFiltersViewController: UITableViewDelegate, UITableViewDataSour
         let option = filtersOptions[indexPath.section].options[indexPath.row]
         
         cell.titleLabel.text = option.title
-        cell.selectedImageView.image = UIImage(
-            named: option.isSelected
-            ? option.selectedImage
-            : option.unselectedImage
-        )
-        
+        switch indexPath.section {
+        case 1:
+            if option.isSelected {
+                cell.selectedImageView.image = .radioSelected
+            } else {
+                cell.selectedImageView.image = .radioUnselected
+            }
+            
+        default:
+            cell.selectedImageView.image = UIImage(
+                named: option.isSelected
+                ? option.selectedImage
+                : option.unselectedImage
+            )
+        }
         return cell
     }
     
@@ -233,13 +246,28 @@ extension ProductFiltersViewController: UITableViewDelegate, UITableViewDataSour
             
             
         // MARK: Category (Single)
+//        case 1:
+//            for i in 0..<filtersOptions[1].options.count {
+//                filtersOptions[1].options[i].isSelected = (i == indexPath.row)
+//            }
+//            
+//            selectedCategoryIDs = filtersOptions[1].options[indexPath.row].id
+            
         case 1:
             for i in 0..<filtersOptions[1].options.count {
                 filtersOptions[1].options[i].isSelected = (i == indexPath.row)
             }
             
-            selectedCategoryIDs = [filtersOptions[1].options[indexPath.row].id]
+            let selectedOption = filtersOptions[1].options[indexPath.row]
+            selectedCategoryIDs = selectedOption.id
             
+            // Clear old subcategories before loading new ones
+            selectedSubCategoryIDs.removeAll()
+            filtersOptions[2].options.removeAll()
+            filterTableView.reloadSections(IndexSet(integer: 2), with: .none)
+            
+            // Call subcategory API
+            getAllsubcategoryApi(id: Int(selectedOption.id))
             
         // MARK: SubCategory (Multi)
         case 2:
@@ -272,4 +300,17 @@ extension ProductFiltersViewController: UITableViewDelegate, UITableViewDataSour
         
         tableView.reloadSections(IndexSet(integer: indexPath.section), with: .none)
     }
+}
+
+struct FilterSection {
+    var header: String
+    var options: [FilterOption]
+}
+
+struct FilterOption {
+    var id: String
+    var title: String
+    var isSelected: Bool = false
+    var selectedImage: String = "selectedCheckBox"
+    var unselectedImage: String = "unslectedCheckbox"
 }
