@@ -1,0 +1,158 @@
+//
+//  AffiliatedWithdrawalRequestListViewController.swift
+//  DesynatAdmin
+//
+//  Created by fluper_mac3 on 25/02/26.
+//
+
+import UIKit
+
+class AffiliatedWithdrawalRequestListViewController: UIViewController {
+
+    @IBOutlet weak var rejectedLabel: UILabel!
+    @IBOutlet weak var rejectedBottomLabel: UILabel!
+    @IBOutlet weak var approvedLabel: UILabel!
+    @IBOutlet weak var approvedBottomLabel: UILabel!
+    @IBOutlet weak var newBottomLabel: UILabel!
+    @IBOutlet weak var newLabel: UILabel!
+    @IBOutlet weak var noDataFoundLabel: UILabel!
+    @IBOutlet weak var previousButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var pageCountLabel: UILabel!
+    @IBOutlet weak var listTableView: UITableView! {
+        didSet {
+            listTableView.registerCellFromNib(cellID: "AffiliatedWithdrawalTableViewCell")
+        }
+    }
+    
+    private var searchWorkItem: DispatchWorkItem?
+    private lazy var viewModel = AffiliatedWithdrawalRequestListViewModel(hostVC: self)
+    var requestType: AffiliatedWithdrawalListType = .newRequest
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        updatePaginationButtonImages()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.currentPage = 1
+        switch requestType {
+        case .newRequest:
+            viewModel.fetchNewAffiliatedUsersList()
+        case .approvedRequest:
+            viewModel.fetchApprovedAffiliatedUsersList()
+        case .rejectedRequest:
+            viewModel.fetchRejectedAffiliatedUsersList()
+        }
+    }
+    
+    @IBAction func backDidTapped(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func newDidTapped(_ sender: Any) {
+        requestType = .newRequest
+        updateTabUI()
+        viewModel.currentPage = 1
+        viewModel.fetchNewAffiliatedUsersList()
+        listTableView.reloadData()
+    }
+    
+    @IBAction func approvedDidTapped(_ sender: Any) {
+        handleApprovedSelection()
+        listTableView.reloadData()
+    }
+    
+    @IBAction func rejectedDidTapped(_ sender: Any) {
+        handleRejectedSelection()
+        listTableView.reloadData()
+    }
+    
+    @IBAction func nextDidTapped(_ sender: Any) {
+        viewModel.goToNextPage(type: requestType)
+    }
+    
+    @IBAction func previousDidTapped(_ sender: Any) {
+        viewModel.goToPreviousPage(type: requestType)
+    }
+    
+    private func handleApprovedSelection() {
+        requestType = .approvedRequest
+        updateTabUI()
+        viewModel.currentPage = 1
+        viewModel.fetchApprovedAffiliatedUsersList()
+    }
+    
+    private func handleRejectedSelection() {
+        requestType = .rejectedRequest
+        updateTabUI()
+        viewModel.currentPage = 1
+        viewModel.fetchRejectedAffiliatedUsersList()
+    }
+    
+    func updateTabUI() {
+        newLabel.textColor = requestType == .newRequest ? .darkBrown : UIColor(hexString: "#C0BBBB")
+        newBottomLabel.backgroundColor = requestType == .newRequest ? .darkBrown : UIColor(hexString: "#C0BBBB")
+        
+        approvedLabel.textColor = requestType == .approvedRequest ? .darkBrown : UIColor(hexString: "#C0BBBB")
+        approvedBottomLabel.backgroundColor = requestType == .approvedRequest ? .darkBrown : UIColor(hexString: "#C0BBBB")
+        
+        rejectedLabel.textColor = requestType == .rejectedRequest ? .darkBrown : UIColor(hexString: "#C0BBBB")
+        rejectedBottomLabel.backgroundColor = requestType == .rejectedRequest ? .darkBrown : UIColor(hexString: "#C0BBBB")
+    }
+    
+    func updatePaginationButtonImages() {
+        // Previous Button
+        if viewModel.currentPage == 1 {
+            previousButton.setImage(UIImage(named: "previousLeft"), for: .normal)
+            previousButton.isUserInteractionEnabled = false
+        } else {
+            previousButton.setImage(UIImage(named: "darkpreviousimage"), for: .normal)
+            previousButton.isUserInteractionEnabled = true
+        }
+        
+        // Next Button
+        if viewModel.currentPage >= viewModel.totalPages {
+            nextButton.setImage(UIImage(named: "lightnextimage"), for: .normal)
+            nextButton.isUserInteractionEnabled = false
+        } else {
+            nextButton.setImage(UIImage(named: "nextRight"), for: .normal)
+            nextButton.isUserInteractionEnabled = true
+        }
+    }
+}
+
+extension AffiliatedWithdrawalRequestListViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4//viewModel.affilitaitedUsersList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AffiliatedWithdrawalTableViewCell", for: indexPath) as! AffiliatedWithdrawalTableViewCell
+        //let data = viewModel.affilitaitedUsersList[indexPath.row]
+        cell.configData(requestType: requestType)//, data: data)
+        cell.onAcceptTap = { [weak self] in
+            //let param: [String: Any] = ["user_id": data.id ?? 0]
+            // CALL API HERE
+            self?.handleApprovedSelection()
+        }
+        cell.onRejectTap = {
+            let vc = RejectReasonPopupViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
+            vc.onChangesAreDone = { [weak self] in
+                //
+                self?.handleRejectedSelection()
+            }
+            self.presentVC(vc,withAnimation: false,modalPresentationStyle: .overCurrentContext)
+        }
+        return cell
+    }
+    
+}
+
+enum AffiliatedWithdrawalListType: Int {
+    case newRequest = 1
+    case approvedRequest = 2
+    case rejectedRequest = 3
+}

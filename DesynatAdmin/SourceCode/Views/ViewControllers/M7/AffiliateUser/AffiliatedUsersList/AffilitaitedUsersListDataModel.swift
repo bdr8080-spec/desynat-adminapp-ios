@@ -50,7 +50,7 @@ struct AffilitaitedUsersDataModel: Codable {
     let rejectReason, rememberToken: String?
     let status, createdAt, updatedAt: String?
     let addressDetails: AddressDetails?
-    let bankDetails: BankDetails?
+    let bankDetails: [BankDetails]?
     let countryDetails: CountryDetails?
 
     enum CodingKeys: String, CodingKey {

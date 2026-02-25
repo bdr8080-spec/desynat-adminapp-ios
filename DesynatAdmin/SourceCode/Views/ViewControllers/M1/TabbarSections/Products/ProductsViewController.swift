@@ -56,6 +56,7 @@ class ProductsViewController: UIViewController {
             self.viewModel.appliedFilter?.brandIDs = selectedBrand
             self.viewModel.resetAndFetchProducts()
         }
+        
         nextVC.onClearFilter = { [weak self] in
             guard let self = self else { return }
             self.viewModel.appliedFilter = AppliedFilterForProductList()
@@ -80,10 +81,7 @@ class ProductsViewController: UIViewController {
                     self.viewModel.productsListData[index].productActiveStatus = 1
                 }
                 DispatchQueue.main.async {
-                    self.productsTableView.reloadRows(
-                        at: [IndexPath(row: index, section: 0)],
-                        with: .none
-                    )
+                    self.productsTableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
                 }
             }
         }
@@ -130,6 +128,7 @@ extension ProductsViewController: UIScrollViewDelegate {
 }
 
 extension ProductsViewController: UITextFieldDelegate {
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let currentText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? ""
         viewModel.searchWorkItem?.cancel()
@@ -142,4 +141,5 @@ extension ProductsViewController: UITextFieldDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: workItem)
         return true
     }
+    
 }

@@ -135,30 +135,30 @@ class AffiliatedUserDetailsViewController: UIViewController {
         
         firstDocumentImageView.setImage(with: data.document1)
         secondDocumentImageView.setImage(with: data.document2)
-        proofOfDocumentImageView.setImage(with: data.bankDetails?.uploadProof)
+        proofOfDocumentImageView.setImage(with: data.bankDetails?.first?.uploadProof)
         
-        let type = data.bankDetails?.accountType ?? "0"
+        let type = data.bankDetails?.first?.accountType ?? "0"
         if type == "0" {
             accountTypeLabel.text = "Personal"
         } else {
             accountTypeLabel.text = "Business"
         }
         
-        if let iban = data.bankDetails?.iban, !iban.isEmpty {
+        if let iban = data.bankDetails?.first?.iban, !iban.isEmpty {
             ibanView.isHidden = false
             ibanLabel.text = iban
         } else {
             ibanView.isHidden = true
         }
         
-        if let swift = data.bankDetails?.swift, !swift.isEmpty {
+        if let swift = data.bankDetails?.first?.swift, !swift.isEmpty {
             swiftView.isHidden = false
             swiftBICLabel.text = swift
         } else {
             swiftView.isHidden = true
         }
-        bankNameLabel.text = data.bankDetails?.bankName
-        accountHolderNameLabel.text = data.bankDetails?.accountHolderName
+        bankNameLabel.text = data.bankDetails?.first?.bankName
+        accountHolderNameLabel.text = data.bankDetails?.first?.accountHolderName
     }
     
     private func convertISOToDMY(_ isoString: String) -> String? {
