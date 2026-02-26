@@ -21,7 +21,8 @@ class PromocodeFilterViewController: UIViewController {
   var selectedFilter = UserFilterModel()
   var onApplyFilter: ((UserFilterModel) -> Void)?
   var onClearFilter: (() -> Void)?
-  
+    var allowPastDates: Bool = false
+    
   override func viewDidLoad() {
     super.viewDidLoad()
     handleUISetup()
@@ -95,28 +96,30 @@ class PromocodeFilterViewController: UIViewController {
 }
 
 extension PromocodeFilterViewController {
-  private func setUpTextFields() {
-    datePicker.preferredDatePickerStyle = .wheels
-    datePicker.datePickerMode = .date
-    datePicker.minimumDate = nil
-    datePicker.backgroundColor = .white
-    
-    let toolbar = UIToolbar()
-    toolbar.sizeToFit()
-    
-    let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneDatePicker))
-    let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-    let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker))
-    toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
-    
-    fromTextField.inputView = datePicker
-    fromTextField.inputAccessoryView = toolbar
-    toTextField.inputView = datePicker
-    toTextField.inputAccessoryView = toolbar
-    
-    fromTextField.delegate = self
-    toTextField.delegate = self
-  }
+    private func setUpTextFields() {
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.datePickerMode = .date
+        datePicker.backgroundColor = .white
+        
+        // Set minimum date based on allowPastDates
+        datePicker.minimumDate = allowPastDates ? nil : Date()  // if false, block past dates
+        
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneDatePicker))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker))
+        toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        
+        fromTextField.inputView = datePicker
+        fromTextField.inputAccessoryView = toolbar
+        toTextField.inputView = datePicker
+        toTextField.inputAccessoryView = toolbar
+        
+        fromTextField.delegate = self
+        toTextField.delegate = self
+    }
   
   @objc private func doneDatePicker() {
     let formatter = DateFormatter()
@@ -159,20 +162,40 @@ extension PromocodeFilterViewController {
 
 
 extension PromocodeFilterViewController: UITextFieldDelegate {
-  func textFieldDidBeginEditing(_ textField: UITextField) {
-    activeTextField = textField
-    let formatter = DateFormatter()
-    formatter.dateFormat = "dd/MM/yyyy"
-    if textField == toTextField {
-      if let fromText = fromTextField.text,
-         let fromDate = formatter.date(from: fromText) {
-        datePicker.minimumDate = fromDate
-      } else {
-        datePicker.minimumDate = nil
-      }
+//  func textFieldDidBeginEditing(_ textField: UITextField) {
+//    activeTextField = textField
+//    let formatter = DateFormatter()
+//    formatter.dateFormat = "dd/MM/yyyy"
+//    if textField == toTextField {
+//      if let fromText = fromTextField.text,
+//         let fromDate = formatter.date(from: fromText) {
+//        datePicker.minimumDate = fromDate
+//      } else {
+//        datePicker.minimumDate = nil
+//      }
+//    }
+//    if textField == fromTextField {
+//      datePicker.minimumDate = nil
+//    }
+//  }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeTextField = textField
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        
+        // Configure minimum date dynamically
+        if textField == toTextField {
+            if let fromText = fromTextField.text,
+               let fromDate = formatter.date(from: fromText) {
+                datePicker.minimumDate = fromDate
+            } else {
+                datePicker.minimumDate = allowPastDates ? nil : Date()
+            }
+        }
+        
+        if textField == fromTextField {
+            datePicker.minimumDate = allowPastDates ? nil : Date()
+        }
     }
-    if textField == fromTextField {
-      datePicker.minimumDate = nil
-    }
-  }
 }

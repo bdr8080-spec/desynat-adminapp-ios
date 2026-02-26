@@ -48,6 +48,7 @@ class PromodeListViewController: UIViewController {
   
   @IBAction func filterDidTapped(_ sender: Any) {
     let vc = PromocodeFilterViewController.instantiate(fromAppStoryboard: .ShippingPromocode)
+      vc.allowPastDates = false
        vc.selectedFilter = viewModel.appliedFilter
        vc.onApplyFilter = { [weak self] filter in
            guard let self = self else { return }
