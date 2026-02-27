@@ -33,15 +33,24 @@ class ProductFiltersViewController: UIViewController {
     
     // MARK: - Filters Container
     var filtersOptions: [FilterSection] = []
+    
+    // MARK: - Dynamic Visible Sections
+    var visibleSections: [FilterSection] {
+        if selectedCategoryIDs.isEmpty {
+            return filtersOptions.filter { $0.type != .subCategory }
+        }
+        return filtersOptions
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         registerXib()
         setupUI()
         prepareFilters()
+        
         if !selectedCategoryIDs.isEmpty {
-                getAllsubcategoryApi(id: Int(selectedCategoryIDs))
-            }
+            getAllsubcategoryApi(id: Int(selectedCategoryIDs))
+        }
     }
     
     // MARK: - Apply Button
@@ -71,6 +80,7 @@ class ProductFiltersViewController: UIViewController {
         headerView.clipsToBounds = true
     }
     
+    // MARK: - Subcategory API
     func getAllsubcategoryApi(id: Int?) {
         let param: [String: Any] = ["category_id": id ?? 0]
         
@@ -88,16 +98,16 @@ class ProductFiltersViewController: UIViewController {
                     )
                 }
                 
-                self.filtersOptions[2].options = subCategoryOptions
+                if let index = self.filtersOptions.firstIndex(where: { $0.type == .subCategory }) {
+                    self.filtersOptions[index].options = subCategoryOptions
+                }
                 
-                self.filterTableView.reloadSections(IndexSet(integer: 2), with: .automatic)
+                self.filterTableView.reloadData()
             }
         }
     }
-
-
     
-    // MARK: - Prepare Filters (Handles Preselection)
+    // MARK: - Prepare Filters
     func prepareFilters() {
         
         let countryOptions = countriesList.map {
@@ -112,7 +122,7 @@ class ProductFiltersViewController: UIViewController {
             FilterOption(
                 id: "\($0.id ?? 0)",
                 title: $0.name ?? "",
-                isSelected: selectedCategoryIDs.contains("\($0.id ?? 0)")
+                isSelected: selectedCategoryIDs == "\($0.id ?? 0)"
             )
         }
         
@@ -133,10 +143,10 @@ class ProductFiltersViewController: UIViewController {
         }
         
         filtersOptions = [
-            FilterSection(header: "Country", options: countryOptions),
-            FilterSection(header: "Category", options: categoryOptions),
-            FilterSection(header: "Sub-category", options: subCategoryOptions),
-            FilterSection(header: "Brand", options: brandOptions)
+            FilterSection(type: .country, header: "Country", options: countryOptions),
+            FilterSection(type: .category, header: "Category", options: categoryOptions),
+            FilterSection(type: .subCategory, header: "Sub-category", options: subCategoryOptions),
+            FilterSection(type: .brand, header: "Brand", options: brandOptions)
         ]
         
         filterTableView.reloadData()
@@ -155,21 +165,20 @@ class ProductFiltersViewController: UIViewController {
             forHeaderFooterViewReuseIdentifier: "FilterHeaderTableViewCell"
         )
         
-        filterTableView.estimatedRowHeight = 0
-        filterTableView.estimatedSectionHeaderHeight = 0
-        filterTableView.estimatedSectionFooterHeight = 0
         filterTableView.showsVerticalScrollIndicator = false
     }
 }
 
+// MARK: - TableView
+
 extension ProductFiltersViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return filtersOptions.count
+        return visibleSections.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filtersOptions[section].options.count
+        return visibleSections[section].options.count
     }
     
     func tableView(_ tableView: UITableView,
@@ -178,28 +187,28 @@ extension ProductFiltersViewController: UITableViewDelegate, UITableViewDataSour
         let header = tableView.dequeueReusableHeaderFooterView(
             withIdentifier: "FilterHeaderTableViewCell"
         ) as! FilterHeaderTableViewCell
-        if section == 3 {
-            header.descriptionLabel.isHidden = false
-        } else {
-            header.descriptionLabel.isHidden = true
-        }
-        header.titleLabel.text = filtersOptions[section].header
+        
+        let sectionData = visibleSections[section]
+        header.titleLabel.text = sectionData.header
+        header.descriptionLabel.isHidden = (sectionData.type != .brand)
+        
         return header
     }
     
     func tableView(_ tableView: UITableView,
                    heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        let sectionType = visibleSections[section].type
+        switch sectionType {
+        case .brand:
+            return 60
+        default:
+            return 40
+        }
     }
     
     func tableView(_ tableView: UITableView,
                    heightForFooterInSection section: Int) -> CGFloat {
         return 0.01
-    }
-    
-    func tableView(_ tableView: UITableView,
-                   heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView,
@@ -210,99 +219,140 @@ extension ProductFiltersViewController: UITableViewDelegate, UITableViewDataSour
             for: indexPath
         ) as! FilterOptionsTableViewCell
         
-        let option = filtersOptions[indexPath.section].options[indexPath.row]
+        let section = visibleSections[indexPath.section]
+        let option = section.options[indexPath.row]
         
         cell.titleLabel.text = option.title
-        switch indexPath.section {
-        case 1:
-            if option.isSelected {
-                cell.selectedImageView.image = .radioSelected
-            } else {
-                cell.selectedImageView.image = .radioUnselected
-            }
-            
-        default:
+        
+        if section.type == .category {
+            cell.selectedImageView.image = option.isSelected ? .radioSelected : .radioUnselected
+        } else {
             cell.selectedImageView.image = UIImage(
                 named: option.isSelected
                 ? option.selectedImage
                 : option.unselectedImage
             )
         }
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
-        
-        switch indexPath.section {
+
+        let sectionType = visibleSections[indexPath.section].type
+
+        switch sectionType {
             
-        // MARK: Country (Single)
-        case 0:
-            for i in 0..<filtersOptions[0].options.count {
-                filtersOptions[0].options[i].isSelected = (i == indexPath.row)
-            }
+        // MARK: - Country (Single + Toggle)
+        case .country:
+            guard let sectionIndex = filtersOptions.firstIndex(where: { $0.type == .country }) else { return }
             
-            selectedCountryIDs = [filtersOptions[0].options[indexPath.row].id]
+            let tappedOption = filtersOptions[sectionIndex].options[indexPath.row]
             
-            
-        // MARK: Category (Single)
-//        case 1:
-//            for i in 0..<filtersOptions[1].options.count {
-//                filtersOptions[1].options[i].isSelected = (i == indexPath.row)
-//            }
-//            
-//            selectedCategoryIDs = filtersOptions[1].options[indexPath.row].id
-            
-        case 1:
-            for i in 0..<filtersOptions[1].options.count {
-                filtersOptions[1].options[i].isSelected = (i == indexPath.row)
-            }
-            
-            let selectedOption = filtersOptions[1].options[indexPath.row]
-            selectedCategoryIDs = selectedOption.id
-            
-            // Clear old subcategories before loading new ones
-            selectedSubCategoryIDs.removeAll()
-            filtersOptions[2].options.removeAll()
-            filterTableView.reloadSections(IndexSet(integer: 2), with: .none)
-            
-            // Call subcategory API
-            getAllsubcategoryApi(id: Int(selectedOption.id))
-            
-        // MARK: SubCategory (Multi)
-        case 2:
-            filtersOptions[2].options[indexPath.row].isSelected.toggle()
-            
-            let id = filtersOptions[2].options[indexPath.row].id
-            
-            if filtersOptions[2].options[indexPath.row].isSelected {
-                selectedSubCategoryIDs.append(id)
+            if tappedOption.isSelected {
+                // Deselect if already selected
+                filtersOptions[sectionIndex].options[indexPath.row].isSelected = false
+                selectedCountryIDs.removeAll()
             } else {
-                selectedSubCategoryIDs.removeAll { $0 == id }
+                // Select new one
+                for i in 0..<filtersOptions[sectionIndex].options.count {
+                    filtersOptions[sectionIndex].options[i].isSelected = false
+                }
+                filtersOptions[sectionIndex].options[indexPath.row].isSelected = true
+                selectedCountryIDs = [tappedOption.id]
             }
             
             
-        // MARK: Brand (Multi)
-        case 3:
-            filtersOptions[3].options[indexPath.row].isSelected.toggle()
+        // MARK: - Category (Single + Toggle)
+        case .category:
+            guard let sectionIndex = filtersOptions.firstIndex(where: { $0.type == .category }) else { return }
             
-            let id = filtersOptions[3].options[indexPath.row].id
+            let tappedOption = filtersOptions[sectionIndex].options[indexPath.row]
             
-            if filtersOptions[3].options[indexPath.row].isSelected {
-                selectedBrandIDs.append(id)
+            if tappedOption.isSelected {
+                // Deselect
+                filtersOptions[sectionIndex].options[indexPath.row].isSelected = false
+                selectedCategoryIDs = ""
+                
+                // Also clear subcategories
+                selectedSubCategoryIDs.removeAll()
+                subCategoriesList.removeAll()
+                
             } else {
-                selectedBrandIDs.removeAll { $0 == id }
+                // Select new category
+                for i in 0..<filtersOptions[sectionIndex].options.count {
+                    filtersOptions[sectionIndex].options[i].isSelected = false
+                }
+                filtersOptions[sectionIndex].options[indexPath.row].isSelected = true
+                selectedCategoryIDs = tappedOption.id
+                
+                // Reset old subcategories
+                selectedSubCategoryIDs.removeAll()
+                getAllsubcategoryApi(id: Int(tappedOption.id))
             }
             
-        default:
-            break
+            
+        // MARK: - SubCategory (Multi)
+        case .subCategory:
+            toggleMultiSelection(type: .subCategory,
+                                 index: indexPath.row,
+                                 selectedArray: &selectedSubCategoryIDs)
+            
+            
+        // MARK: - Brand (Multi)
+        case .brand:
+            toggleMultiSelection(type: .brand,
+                                 index: indexPath.row,
+                                 selectedArray: &selectedBrandIDs)
         }
         
-        tableView.reloadSections(IndexSet(integer: indexPath.section), with: .none)
+        tableView.reloadData()
     }
 }
 
+// MARK: - Helpers
+
+extension ProductFiltersViewController {
+    
+    func updateSingleSelection(type: FilterType, index: Int) {
+        guard let sectionIndex = filtersOptions.firstIndex(where: { $0.type == type }) else { return }
+        
+        for i in 0..<filtersOptions[sectionIndex].options.count {
+            filtersOptions[sectionIndex].options[i].isSelected = (i == index)
+        }
+    }
+    
+    func toggleMultiSelection(type: FilterType, index: Int, selectedArray: inout [String]) {
+        guard let sectionIndex = filtersOptions.firstIndex(where: { $0.type == type }) else { return }
+        
+        filtersOptions[sectionIndex].options[index].isSelected.toggle()
+        let id = filtersOptions[sectionIndex].options[index].id
+        
+        if filtersOptions[sectionIndex].options[index].isSelected {
+            selectedArray.append(id)
+        } else {
+            selectedArray.removeAll { $0 == id }
+        }
+    }
+    
+    func getOption(type: FilterType, index: Int) -> FilterOption {
+        let sectionIndex = filtersOptions.firstIndex { $0.type == type }!
+        return filtersOptions[sectionIndex].options[index]
+    }
+}
+
+// MARK: - Models
+
+enum FilterType {
+    case country
+    case category
+    case subCategory
+    case brand
+}
+
 struct FilterSection {
+    var type: FilterType
     var header: String
     var options: [FilterOption]
 }

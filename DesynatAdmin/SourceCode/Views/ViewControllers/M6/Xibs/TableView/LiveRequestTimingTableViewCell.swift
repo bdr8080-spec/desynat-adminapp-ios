@@ -9,7 +9,9 @@ import UIKit
 
 class LiveRequestTimingTableViewCell: UITableViewCell {
   
-  @IBOutlet weak var separatorLabel: UILabel!
+    @IBOutlet weak var rejectedDate: UIStackView!
+    @IBOutlet weak var rejectedOnDateLabel: UILabel!
+    @IBOutlet weak var separatorLabel: UILabel!
   @IBOutlet weak var reasonLabel: UILabel!
   @IBOutlet weak var reasonStackView: UIStackView!
   @IBOutlet weak var paymentStackView: UIStackView!
@@ -48,31 +50,60 @@ class LiveRequestTimingTableViewCell: UITableViewCell {
   func configData(data: LiveRequestPermissionList?) {
     let first = data?.sellerDetails?.firstName ?? ""
     let last = data?.sellerDetails?.lastName ?? ""
-    let country = data?.sellerDetails?.countryDetails?.name ?? ""
-    usernameCountryLabe.text = "\(first) \(last)|\(country)"
+    let country = data?.sellerDetails?.storeInfo?.countryInfo?.name ?? ""//data?.sellerDetails?.countryDetails?.name ?? ""
+    usernameCountryLabe.text = "\(first) \(last) | \(country)"
     requestIdLabel.text = "#\(data?.timeslotID ?? 0)"
     requestOnLabel.text = formatISODateToDayMonthYear(data?.createdAt ?? "")
     let date = convertDateFormat(data?.timeslotDetails?.date ?? "") ?? ""
     liveRequestLabel.text = "\(date)|\(data?.timeslotDetails?.from ?? "")"
+      rejectedOnDateLabel.text = formatISODateToDayMonthYear(data?.updatedAt ?? "")
     reasonLabel.text = data?.rejectReason
     let status = data?.adminVerify ?? 0
+      paymentStackView.isHidden = true
+      rejectedDate.isHidden = true
     switch status {
     case 1:
-      statusLabel.text = "Confirmed"
+//      statusLabel.text = "Confirmed"
       statusLabel.textColor = UIColor(hexString: "#17854C") // green
-      paymentStackView.isHidden = false
       separatorLabel.isHidden = true
       reasonStackView.isHidden = true
+        
+        var isTimeslotOver = false
+            if let timeslot = data?.timeslotDetails,
+               let timeslotDate = timeslot.date,
+               let toTime = timeslot.to {
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                
+                // Use 23:59 if end time missing
+                let endTimeString = toTime.count == 5 ? toTime : "23:59"
+                
+                if let endDate = dateFormatter.date(from: "\(timeslotDate) \(endTimeString)") {
+                    let now = Date()
+                    if now >= endDate {
+                        isTimeslotOver = true
+                    }
+                }
+            }
+            
+            // Update status based on timeslot
+            if isTimeslotOver {
+                statusLabel.text = "Completed"
+            } else {
+                statusLabel.text = "Confirmed"
+            }
+        
     case 2:
       statusLabel.text = "Rejected"
       statusLabel.textColor = UIColor(hexString: "#D91A1B") // red
-      paymentStackView.isHidden = false
       separatorLabel.isHidden = false
       reasonStackView.isHidden = false
+        rejectedDate.isHidden = false
     default:
       statusLabel.text = "Pending"
       statusLabel.textColor = UIColor(hexString: "#FFA41B") // orange
-      paymentStackView.isHidden = true
       separatorLabel.isHidden = false
       reasonStackView.isHidden = true
     }
@@ -107,7 +138,7 @@ class LiveRequestTimingTableViewCell: UITableViewCell {
     }
     
     let outputFormatter = DateFormatter()
-    outputFormatter.dateFormat = "dd/MM/yyyy"
+    outputFormatter.dateFormat = "dd/MM/yyyy|hh:mm a"
     outputFormatter.locale = Locale(identifier: "en_US_POSIX")
     
     return outputFormatter.string(from: date)

@@ -11,6 +11,7 @@ import SDWebImage
 
 class ProductDetailViewController: UIViewController {
     
+    @IBOutlet weak var brandTitleLabel: UILabel!
     @IBOutlet weak var storeLocationLabel: UILabel!
     @IBOutlet weak var storeNameLabel: UILabel!
     @IBOutlet weak var sellerNameLabel: UILabel!
@@ -128,7 +129,7 @@ class ProductDetailViewController: UIViewController {
                 self.viewModel.productDetails?.productActiveStatus = newStatus
                 if let updatedUser = self.viewModel.productDetails {
                     self.configData(data: updatedUser)
-                    let message = newStatus == 1 ? "Product has been activated Successfully" : "Product has been Deactivated Successfully"
+                    let message = newStatus == 1 ? "Product has been unblocked Successfully" : "Product has been blocked Successfully"
                     CommonUtils.showToast(message: message)
                 }
             }
@@ -159,13 +160,14 @@ class ProductDetailViewController: UIViewController {
     func configData(data: ProductsList) {
         // MARK: - Basic Product info
         if data.brand?.nameEnglish == "Other" {
-            productNameLabel.text = data.otherEn
+            brandTitleLabel.text = data.otherEn
         } else {
-            productNameLabel.text = data.brand?.nameEnglish
+            brandTitleLabel.text = data.brand?.nameEnglish
         }
-        descriptionLAbel.text = data.productNameEn ?? "-"
+        productNameLabel.text = "\(data.productNameEn ?? "-") (by \(data.sellerDetails?.firstName ?? "") \(data.sellerDetails?.lastName ?? "")"
+        descriptionLAbel.text = "\(data.store?.storeName ?? "-") (\(data.category?.name ?? "-"))"//data.productNameEn ?? "-"
         descriptionLabel.text = data.descriptionEn ?? "-"
-        brandCategoryLabel.text = data.category?.name ?? ""
+        brandCategoryLabel.text = data.productNameEn ?? "-"//data.category?.name ?? ""
         ratingCountLabel.text = " (\(data.reviewRating ?? "0"))"
         sizeChartUrl = data.uploadSizeChart
         let categoryName = data.category?.name ?? "Women"

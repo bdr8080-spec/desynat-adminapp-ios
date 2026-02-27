@@ -407,11 +407,12 @@ extension LiveRequestListManagementViewController: UITableViewDelegate, UITableV
             
             cell.onRejectTap = {
                 let vc = RejectReasonViewController.viewFromNIB
-                vc.needToShowButtonStackView = true
+                vc.needToShowButtonStackView = false
                 vc.setCallback { reason,type in
                     let param: [String: Any] = ["request_id": data.id ?? 0,
                                                 "reject_reason": reason]
                     self.viewModel.rejectLiveRequest(param: param)
+                    vc.dismiss(animated: false)
                 }
                 self.presentVC(vc,withAnimation: false,modalPresentationStyle: .overCurrentContext)
             }

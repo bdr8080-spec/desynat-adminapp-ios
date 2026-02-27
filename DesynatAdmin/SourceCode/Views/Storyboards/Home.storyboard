@@ -1910,7 +1910,7 @@ Visit Website</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fbl-YK-pG9">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fbl-YK-pG9">
                                 <rect key="frame" x="24" y="190.66666666666666" width="327" height="38"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ChR-SV-Y4Y" customClass="CustomButton" customModule="DesynatAdmin" customModuleProvider="target">
@@ -1955,7 +1955,7 @@ Visit Website</string>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="inV-6u-DRQ">
-                                <rect key="frame" x="24" y="243.66666666666666" width="327" height="420.33333333333337"/>
+                                <rect key="frame" x="24" y="195.66666666666666" width="327" height="468.33333333333337"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="1xN-yf-rBk" id="LZa-w0-2kC"/>
@@ -1972,7 +1972,6 @@ Visit Website</string>
                         <viewLayoutGuide key="safeArea" id="5xy-Is-ydk"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="inV-6u-DRQ" firstAttribute="top" secondItem="Fbl-YK-pG9" secondAttribute="bottom" constant="15" id="1fv-I7-TVJ"/>
                             <constraint firstItem="NTH-2E-rMU" firstAttribute="centerX" secondItem="5xy-Is-ydk" secondAttribute="centerX" id="4Kz-O3-7Sf"/>
                             <constraint firstItem="5xy-Is-ydk" firstAttribute="trailing" secondItem="0JZ-zp-a7o" secondAttribute="trailing" constant="24" id="6o8-EV-YHl"/>
                             <constraint firstItem="TD1-53-xkJ" firstAttribute="top" secondItem="5xy-Is-ydk" secondAttribute="top" id="Brb-pO-nPK"/>
@@ -1984,6 +1983,7 @@ Visit Website</string>
                             <constraint firstItem="0JZ-zp-a7o" firstAttribute="leading" secondItem="5xy-Is-ydk" secondAttribute="leading" constant="24" id="ZTh-ib-xw0"/>
                             <constraint firstItem="Fbl-YK-pG9" firstAttribute="trailing" secondItem="0JZ-zp-a7o" secondAttribute="trailing" id="ewb-cv-YHN"/>
                             <constraint firstItem="inV-6u-DRQ" firstAttribute="bottom" secondItem="5xy-Is-ydk" secondAttribute="bottom" constant="-80" id="lFr-ST-HXp"/>
+                            <constraint firstItem="inV-6u-DRQ" firstAttribute="top" secondItem="0JZ-zp-a7o" secondAttribute="bottom" constant="20" id="sGN-3N-4po"/>
                             <constraint firstItem="Fbl-YK-pG9" firstAttribute="leading" secondItem="0JZ-zp-a7o" secondAttribute="leading" id="wtL-NO-EPa"/>
                             <constraint firstItem="Fbl-YK-pG9" firstAttribute="top" secondItem="0JZ-zp-a7o" secondAttribute="bottom" constant="15" id="zCR-Bh-fd4"/>
                         </constraints>
@@ -2128,7 +2128,7 @@ Visit Website</string>
                                 <rect key="frame" x="0.0" y="155" width="375" height="589"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3oh-zg-BSk">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1850"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1877.6666666666667"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KC8-6p-OT0">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
@@ -2162,7 +2162,7 @@ Visit Website</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vYJ-op-ad5">
                                                 <rect key="frame" x="0.0" y="420" width="375" height="47.333333333333314"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eDZ-LH-cGB">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eDZ-LH-cGB">
                                                         <rect key="frame" x="20" y="12.333333333333373" width="9.6666666666666643" height="22.666666666666671"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2206,20 +2206,26 @@ Visit Website</string>
                                                     <constraint firstItem="tdp-qs-eNB" firstAttribute="leading" secondItem="eaW-Eg-ulh" secondAttribute="leading" id="pYF-cx-WF7"/>
                                                 </constraints>
                                             </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B0h-lG-VQ2">
+                                                <rect key="frame" x="24" y="487.33333333333337" width="327" height="22.666666666666686"/>
+                                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fPd-R0-yWD">
-                                                <rect key="frame" x="24" y="487.33333333333337" width="327" height="17"/>
+                                                <rect key="frame" x="24" y="515" width="327" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z4T-aU-8NH">
-                                                <rect key="frame" x="24" y="510.33333333333337" width="327" height="17"/>
+                                                <rect key="frame" x="24" y="538" width="327" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="LIk-Fn-qZD">
-                                                <rect key="frame" x="24" y="532.33333333333337" width="100" height="14"/>
+                                                <rect key="frame" x="24" y="560" width="100" height="14"/>
                                                 <subviews>
                                                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nTe-Fy-YzE" customClass="CosmosView" customModule="Cosmos">
                                                         <rect key="frame" x="0.0" y="0.0" width="80" height="14"/>
@@ -2260,7 +2266,7 @@ Visit Website</string>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="jHI-li-ZSA">
-                                                <rect key="frame" x="24.000000000000007" y="551.33333333333337" width="93.666666666666686" height="19.666666666666629"/>
+                                                <rect key="frame" x="24.000000000000007" y="579" width="93.666666666666686" height="19.666666666666629"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 KD" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BjR-4f-qiE">
                                                         <rect key="frame" x="0.0" y="0.0" width="31.666666666666668" height="19.666666666666668"/>
@@ -2289,13 +2295,13 @@ Visit Website</string>
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="inclusive of all taxes" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvd-TW-j5H">
-                                                <rect key="frame" x="24" y="579" width="327" height="19.666666666666629"/>
+                                                <rect key="frame" x="24" y="606.66666666666663" width="327" height="19.666666666666629"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                                 <color key="textColor" red="0.086274509799999996" green="0.70196078429999997" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="aEG-dr-j2T">
-                                                <rect key="frame" x="24" y="608.66666666666663" width="327" height="17"/>
+                                                <rect key="frame" x="24" y="636.33333333333337" width="327" height="17"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Added On" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zI6-ae-Y6b">
                                                         <rect key="frame" x="0.0" y="0.0" width="163.66666666666666" height="17"/>
@@ -2312,13 +2318,13 @@ Visit Website</string>
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More Color" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nXo-Vi-W1a">
-                                                <rect key="frame" x="24" y="650.66666666666663" width="327" height="22.666666666666629"/>
+                                                <rect key="frame" x="24" y="678.33333333333337" width="327" height="22.666666666666629"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="d4G-bC-WTj">
-                                                <rect key="frame" x="24" y="683.33333333333337" width="351" height="50"/>
+                                                <rect key="frame" x="24" y="711" width="351" height="50"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="jxW-KB-zQX"/>
@@ -2336,13 +2342,13 @@ Visit Website</string>
                                                 </connections>
                                             </collectionView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available Size" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EFo-PO-UOa">
-                                                <rect key="frame" x="24" y="758.33333333333337" width="111" height="22.666666666666629"/>
+                                                <rect key="frame" x="24" y="786" width="111" height="22.666666666666629"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lat-cU-Zcl">
-                                                <rect key="frame" x="276" y="752" width="75" height="35"/>
+                                                <rect key="frame" x="276" y="779.66666666666663" width="75" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="Px4-0f-sKB"/>
                                                     <constraint firstAttribute="width" constant="75" id="nDz-BW-l4U"/>
@@ -2357,7 +2363,7 @@ Visit Website</string>
                                                 </connections>
                                             </button>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ig5-JE-urH">
-                                                <rect key="frame" x="24" y="791" width="351" height="50"/>
+                                                <rect key="frame" x="24" y="818.66666666666663" width="351" height="50"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="Ia9-dJ-bUh"/>
@@ -2375,7 +2381,7 @@ Visit Website</string>
                                                 </connections>
                                             </collectionView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kwu-IH-TwQ" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                <rect key="frame" x="24" y="859" width="327" height="198"/>
+                                                <rect key="frame" x="24" y="886.66666666666674" width="327" height="198"/>
                                                 <subviews>
                                                     <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Pd0-yQ-lry">
                                                         <rect key="frame" x="10" y="10" width="307" height="178"/>
@@ -2398,7 +2404,7 @@ Visit Website</string>
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Uc0-RR-wBb">
-                                                                <rect key="frame" x="0.0" y="31.666666666666742" width="307" height="19.666666666666671"/>
+                                                                <rect key="frame" x="0.0" y="31.666666666666515" width="307" height="19.666666666666671"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waist" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D7o-IL-LLx">
                                                                         <rect key="frame" x="0.0" y="0.0" width="148.66666666666666" height="19.666666666666668"/>
@@ -2449,7 +2455,7 @@ Visit Website</string>
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="21w-IU-HUa">
-                                                                <rect key="frame" x="0.0" y="126.66666666666676" width="307" height="19.666666666666671"/>
+                                                                <rect key="frame" x="0.0" y="126.66666666666653" width="307" height="19.666666666666671"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sleeve length " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wcv-e4-1Kw">
                                                                         <rect key="frame" x="0.0" y="0.0" width="148.66666666666666" height="19.666666666666668"/>
@@ -2505,7 +2511,7 @@ Visit Website</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rxn-qv-cy4" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                <rect key="frame" x="24" y="1077" width="327" height="71.333333333333258"/>
+                                                <rect key="frame" x="24" y="1104.6666666666667" width="327" height="71.333333333333258"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="nrR-rP-UHz">
                                                         <rect key="frame" x="10" y="10.000000000000004" width="307" height="51.333333333333343"/>
@@ -2528,7 +2534,7 @@ Visit Website</string>
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tG7-EZ-OKS">
-                                                                <rect key="frame" x="0.0" y="31.666666666666742" width="307" height="19.666666666666671"/>
+                                                                <rect key="frame" x="0.0" y="31.666666666666515" width="307" height="19.666666666666671"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SKU Limit" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uGR-oP-Dbw">
                                                                         <rect key="frame" x="0.0" y="0.0" width="148.66666666666666" height="19.666666666666668"/>
@@ -2584,7 +2590,7 @@ Visit Website</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qep-wR-b8Q" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                <rect key="frame" x="24" y="1168.3333333333333" width="327" height="191"/>
+                                                <rect key="frame" x="24" y="1196" width="327" height="191"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RcQ-tp-pqc">
                                                         <rect key="frame" x="18" y="20" width="291" height="22.666666666666671"/>
@@ -2599,7 +2605,7 @@ Visit Website</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Specification" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6k-Xi-y8y">
-                                                        <rect key="frame" x="18" y="87.333333333333485" width="291" height="22.666666666666671"/>
+                                                        <rect key="frame" x="18" y="87.333333333333258" width="291" height="22.666666666666671"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -2645,7 +2651,7 @@ Visit Website</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2qK-bg-I3b" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                <rect key="frame" x="24" y="1379.3333333333333" width="327" height="71.333333333333258"/>
+                                                <rect key="frame" x="24" y="1407" width="327" height="71.333333333333258"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="PuI-J2-Wdl">
                                                         <rect key="frame" x="10" y="10.000000000000004" width="307" height="51.333333333333343"/>
@@ -2707,7 +2713,7 @@ Visit Website</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5QT-LL-bMt" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                <rect key="frame" x="24" y="1470.6666666666667" width="327" height="229.66666666666674"/>
+                                                <rect key="frame" x="24" y="1498.3333333333333" width="327" height="229.66666666666674"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="VeK-z0-d3c">
                                                         <rect key="frame" x="10" y="10" width="307" height="209.66666666666666"/>
@@ -2730,7 +2736,7 @@ Visit Website</string>
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6x9-a6-gvO">
-                                                                <rect key="frame" x="0.0" y="31.666666666666515" width="307" height="19.666666666666671"/>
+                                                                <rect key="frame" x="0.0" y="31.666666666666742" width="307" height="19.666666666666671"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Exchange allowed ?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLI-Pw-fWJ">
                                                                         <rect key="frame" x="0.0" y="0.0" width="137.66666666666666" height="19.666666666666668"/>
@@ -2747,7 +2753,7 @@ Visit Website</string>
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zFx-LI-0xa">
-                                                                <rect key="frame" x="0.0" y="63.33333333333325" width="307" height="19.666666666666664"/>
+                                                                <rect key="frame" x="0.0" y="63.333333333333478" width="307" height="19.66666666666665"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Review &amp; ratings allowed ? " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4k8-5A-VjV">
                                                                         <rect key="frame" x="0.0" y="0.0" width="189" height="19.666666666666668"/>
@@ -2783,7 +2789,7 @@ Visit Website</string>
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Pm7-bN-YEG">
-                                                                <rect key="frame" x="0.0" y="126.66666666666653" width="307" height="19.666666666666671"/>
+                                                                <rect key="frame" x="0.0" y="126.66666666666676" width="307" height="19.666666666666671"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Is this a Customized product?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2E-4p-AEL">
                                                                         <rect key="frame" x="0.0" y="0.0" width="206.66666666666666" height="19.666666666666668"/>
@@ -2800,7 +2806,7 @@ Visit Website</string>
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="raG-Ec-ALr">
-                                                                <rect key="frame" x="0.0" y="158.33333333333326" width="307" height="19.666666666666657"/>
+                                                                <rect key="frame" x="0.0" y="158.33333333333348" width="307" height="19.666666666666657"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Ready to ship?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNo-xE-wyl">
                                                                         <rect key="frame" x="0.0" y="0.0" width="102.33333333333333" height="19.666666666666668"/>
@@ -2856,7 +2862,7 @@ Visit Website</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dh8-E2-wdx" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                <rect key="frame" x="24" y="1720.3333333333333" width="327" height="129.66666666666674"/>
+                                                <rect key="frame" x="24" y="1748" width="327" height="129.66666666666674"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seller Details" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A1V-wj-nrc">
                                                         <rect key="frame" x="15" y="15.000000000000002" width="312" height="22.666666666666671"/>
@@ -2948,8 +2954,11 @@ Visit Website</string>
                                             <constraint firstItem="vYJ-op-ad5" firstAttribute="top" secondItem="amJ-V5-9TE" secondAttribute="bottom" constant="15" id="AZB-uS-bGD"/>
                                             <constraint firstItem="5QT-LL-bMt" firstAttribute="leading" secondItem="qep-wR-b8Q" secondAttribute="leading" id="BEm-qT-0ye"/>
                                             <constraint firstItem="d4G-bC-WTj" firstAttribute="trailing" secondItem="ig5-JE-urH" secondAttribute="trailing" id="Cor-aQ-fnL"/>
+                                            <constraint firstItem="fPd-R0-yWD" firstAttribute="top" secondItem="B0h-lG-VQ2" secondAttribute="bottom" constant="5" id="DQm-wP-F8Y"/>
                                             <constraint firstItem="nXo-Vi-W1a" firstAttribute="leading" secondItem="d4G-bC-WTj" secondAttribute="leading" id="Fah-ke-tvM"/>
+                                            <constraint firstItem="B0h-lG-VQ2" firstAttribute="leading" secondItem="fPd-R0-yWD" secondAttribute="leading" id="Ge2-pU-6wz"/>
                                             <constraint firstItem="Kwu-IH-TwQ" firstAttribute="leading" secondItem="qep-wR-b8Q" secondAttribute="leading" id="Gmm-vr-4Zb"/>
+                                            <constraint firstItem="B0h-lG-VQ2" firstAttribute="top" secondItem="vYJ-op-ad5" secondAttribute="bottom" constant="20" id="IL2-Mr-JSJ"/>
                                             <constraint firstItem="5QT-LL-bMt" firstAttribute="top" secondItem="2qK-bg-I3b" secondAttribute="bottom" constant="20" id="IhJ-ZT-Vnx"/>
                                             <constraint firstAttribute="bottom" secondItem="dh8-E2-wdx" secondAttribute="bottom" id="IsN-Ny-hd0"/>
                                             <constraint firstItem="2qK-bg-I3b" firstAttribute="top" secondItem="qep-wR-b8Q" secondAttribute="bottom" constant="20" id="ItV-zS-0zc"/>
@@ -2970,7 +2979,6 @@ Visit Website</string>
                                             <constraint firstItem="zvd-TW-j5H" firstAttribute="top" secondItem="jHI-li-ZSA" secondAttribute="bottom" constant="8" id="YDU-TG-KwI"/>
                                             <constraint firstItem="Kwu-IH-TwQ" firstAttribute="trailing" secondItem="qep-wR-b8Q" secondAttribute="trailing" id="YI3-Op-huv"/>
                                             <constraint firstItem="ig5-JE-urH" firstAttribute="top" secondItem="EFo-PO-UOa" secondAttribute="bottom" constant="10" id="bLS-Ji-J7D"/>
-                                            <constraint firstItem="fPd-R0-yWD" firstAttribute="top" secondItem="vYJ-op-ad5" secondAttribute="bottom" constant="20.000000000000057" id="cq9-Zy-Uu4"/>
                                             <constraint firstItem="KC8-6p-OT0" firstAttribute="top" secondItem="3oh-zg-BSk" secondAttribute="top" id="d8J-cd-Xi2"/>
                                             <constraint firstItem="aEG-dr-j2T" firstAttribute="leading" secondItem="zvd-TW-j5H" secondAttribute="leading" id="ffo-9c-hfu"/>
                                             <constraint firstItem="nXo-Vi-W1a" firstAttribute="trailing" secondItem="fPd-R0-yWD" secondAttribute="trailing" id="gO5-It-8gD"/>
@@ -2978,6 +2986,7 @@ Visit Website</string>
                                             <constraint firstItem="Lat-cU-Zcl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="EFo-PO-UOa" secondAttribute="trailing" constant="20" id="hjW-dv-O1s"/>
                                             <constraint firstItem="EFo-PO-UOa" firstAttribute="leading" secondItem="Kwu-IH-TwQ" secondAttribute="leading" id="hkB-ce-9ti"/>
                                             <constraint firstItem="Lat-cU-Zcl" firstAttribute="centerY" secondItem="EFo-PO-UOa" secondAttribute="centerY" id="iNP-iI-EdN"/>
+                                            <constraint firstItem="B0h-lG-VQ2" firstAttribute="trailing" secondItem="fPd-R0-yWD" secondAttribute="trailing" id="kw1-lh-ald"/>
                                             <constraint firstItem="z4T-aU-8NH" firstAttribute="leading" secondItem="fPd-R0-yWD" secondAttribute="leading" id="lQ5-0r-JVK"/>
                                             <constraint firstItem="jHI-li-ZSA" firstAttribute="top" secondItem="LIk-Fn-qZD" secondAttribute="bottom" constant="5" id="mSg-1u-PrJ"/>
                                             <constraint firstItem="aEG-dr-j2T" firstAttribute="trailing" secondItem="zvd-TW-j5H" secondAttribute="trailing" id="mt6-0E-osk"/>
@@ -3025,6 +3034,7 @@ Visit Website</string>
                         <outlet property="addedOnDateLabel" destination="heP-iM-Eyv" id="Usw-jd-kLD"/>
                         <outlet property="affiliatedLabel" destination="Edk-NO-ODD" id="4Z9-C4-lxk"/>
                         <outlet property="brandCategoryLabel" destination="fPd-R0-yWD" id="Km8-qj-EwN"/>
+                        <outlet property="brandTitleLabel" destination="B0h-lG-VQ2" id="95W-pr-8uv"/>
                         <outlet property="bustLabel" destination="8aT-9A-0kZ" id="VfN-dQ-Txy"/>
                         <outlet property="bustView" destination="Pld-iS-bcO" id="3jH-HD-T08"/>
                         <outlet property="cashOnDeliveryLabel" destination="5nC-Tw-azQ" id="yaD-XB-rpd"/>

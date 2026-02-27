@@ -30,7 +30,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bfE-Wx-icI" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="461" height="344"/>
+                        <rect key="frame" x="0.0" y="0.0" width="461" height="376"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request By" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9lB-0G-iEf">
                                 <rect key="frame" x="15" y="15" width="67" height="17"/>
@@ -67,13 +67,15 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="4OG-u1-iiz">
-                                <rect key="frame" x="15" y="83.666666666666671" width="431" height="240.33333333333331"/>
+                                <rect key="frame" x="15" y="83.666666666666657" width="431" height="272.33333333333337"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="3KN-33-3eH">
                                         <rect key="frame" x="0.0" y="0.0" width="431" height="17"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request Id" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PmW-rQ-x9K">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PmW-rQ-x9K">
                                                 <rect key="frame" x="0.0" y="0.0" width="208" height="17"/>
+                                                <string key="text">Requested On
+</string>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                                 <color key="textColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -137,8 +139,27 @@
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="B1q-0i-AA8">
+                                        <rect key="frame" x="0.0" y="128" width="431" height="17"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rqf-AE-x91">
+                                                <rect key="frame" x="0.0" y="0.0" width="208" height="17"/>
+                                                <string key="text">Rejected On
+</string>
+                                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
+                                                <color key="textColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" #5372821" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WNL-36-m5J">
+                                                <rect key="frame" x="223" y="0.0" width="208" height="17"/>
+                                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RMl-DE-ztm">
-                                        <rect key="frame" x="0.0" y="127.99999999999999" width="431" height="0.3333333333333286"/>
+                                        <rect key="frame" x="0.0" y="160" width="431" height="0.33333333333334281"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fvh-Jt-Nwj">
                                                 <rect key="frame" x="-15" y="0.0" width="461" height="0.33333333333333331"/>
@@ -160,7 +181,7 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Mmh-Ue-g9I">
-                                        <rect key="frame" x="0.0" y="143.33333333333331" width="431" height="38"/>
+                                        <rect key="frame" x="0.0" y="175.33333333333331" width="431" height="38"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2wd-c2-Hic">
                                                 <rect key="frame" x="0.0" y="0.0" width="205.66666666666666" height="38"/>
@@ -189,7 +210,7 @@
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reject" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3XM-0m-hH2">
-                                                        <rect key="frame" x="15" y="9.3333333333333446" width="175.66666666666666" height="19.666666666666671"/>
+                                                        <rect key="frame" x="15" y="9.3333333333333162" width="175.66666666666666" height="19.666666666666671"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                         <color key="textColor" name="darkBrown"/>
                                                         <nil key="highlightedColor"/>
@@ -228,7 +249,7 @@
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accept" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zz9-Sb-7h5">
-                                                        <rect key="frame" x="77.666666666666657" y="9.3333333333333446" width="50" height="19.666666666666671"/>
+                                                        <rect key="frame" x="77.666666666666657" y="9.3333333333333162" width="50" height="19.666666666666671"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -250,7 +271,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="KdI-YV-x2I">
-                                        <rect key="frame" x="0.0" y="196.33333333333331" width="431" height="44"/>
+                                        <rect key="frame" x="0.0" y="228.33333333333331" width="431" height="44"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reason" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jOF-9v-a01">
                                                 <rect key="frame" x="0.0" y="0.0" width="431" height="17"/>
@@ -317,6 +338,8 @@
                 <outlet property="reasonLabel" destination="PlZ-gH-sk7" id="lE8-VY-kGx"/>
                 <outlet property="reasonStackView" destination="KdI-YV-x2I" id="zWb-bq-SPE"/>
                 <outlet property="rejectView" destination="2wd-c2-Hic" id="KLh-y2-mtP"/>
+                <outlet property="rejectedDate" destination="B1q-0i-AA8" id="J0Y-J1-Mh1"/>
+                <outlet property="rejectedOnDateLabel" destination="WNL-36-m5J" id="8eM-ye-W0H"/>
                 <outlet property="requestIdLabel" destination="wLJ-AP-blc" id="qjm-7U-lK4"/>
                 <outlet property="requestOnLabel" destination="Ny8-hy-ZfI" id="kYf-la-XHC"/>
                 <outlet property="separatorLabel" destination="Fvh-Jt-Nwj" id="CYR-HA-fFs"/>

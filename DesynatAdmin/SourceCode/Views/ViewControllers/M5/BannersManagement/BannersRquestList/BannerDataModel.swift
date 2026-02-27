@@ -52,13 +52,14 @@ struct BannerRequestData: Codable {
     var categoryDetails: CategoryDetails?
     var subcategoryDetails: SubcategoryDetails?
     var sellerDetails: SellerDetails?
+    var store: Store?
 
     enum CodingKeys: String, CodingKey {
         case id
         case orderID = "order_id"
         case sellerID = "seller_id"
         case bannerPosition = "banner_position"
-        case category, subcatgory
+        case category, subcatgory, store
         case startDate = "start_date"
         case endDate = "end_date"
         case totalDays = "total_days"
@@ -131,6 +132,7 @@ struct SellerDetails: Codable {
     var affilateCommission: String?
     var createdAt, updatedAt: String?
     var countryDetails: CountryDetails?
+    var storeInfo: StoreInfo?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -146,6 +148,7 @@ struct SellerDetails: Codable {
         case deviceToken = "device_token"
         case adminVerify = "admin_verify"
         case storeInformation = "store_information"
+        case storeInfo = "store_info"
         case bankInformation = "bank_information"
         case rejectReason = "reject_reason"
         case lang
