@@ -69,31 +69,25 @@ class LiveRequestTimingTableViewCell: UITableViewCell {
       reasonStackView.isHidden = true
         
         var isTimeslotOver = false
-            if let timeslot = data?.timeslotDetails,
-               let timeslotDate = timeslot.date,
-               let toTime = timeslot.to {
-                
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-                
-                // Use 23:59 if end time missing
-                let endTimeString = toTime.count == 5 ? toTime : "23:59"
-                
-                if let endDate = dateFormatter.date(from: "\(timeslotDate) \(endTimeString)") {
-                    let now = Date()
-                    if now >= endDate {
-                        isTimeslotOver = true
-                    }
+
+        if let timeslot = data?.timeslotDetails,
+           let timeslotDate = timeslot.date,
+           let toTime = timeslot.to {
+
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd hh:mm a"   // ✅ FIXED
+            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+
+            if let endDate = dateFormatter.date(from: "\(timeslotDate) \(toTime)") {
+                let now = Date()
+                if now >= endDate {
+                    isTimeslotOver = true
                 }
             }
-            
-            // Update status based on timeslot
-            if isTimeslotOver {
-                statusLabel.text = "Completed"
-            } else {
-                statusLabel.text = "Confirmed"
-            }
+        }
+
+        // Update status
+        statusLabel.text = isTimeslotOver ? "Completed" : "Confirmed"
         
     case 2:
       statusLabel.text = "Rejected"
