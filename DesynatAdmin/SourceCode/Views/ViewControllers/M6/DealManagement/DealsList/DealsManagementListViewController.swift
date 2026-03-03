@@ -24,7 +24,6 @@ class DealsManagementListViewController: UIViewController {
         }
     }
     
-    //  var type: DealsManagementTab = .active
     var type: Int = 1
     private lazy var viewModel = DealsManagementListViewModel(hostVC: self)
     private var searchWorkItem: DispatchWorkItem?
@@ -134,8 +133,6 @@ extension DealsManagementListViewController: UITableViewDelegate, UITableViewDat
         nextVC.dealId = viewModel.reasonListData[indexPath.row].id ?? 0
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
-    
-    
     
 }
 

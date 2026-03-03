@@ -71,7 +71,7 @@ protocol HandleBannerAction {
 }
 
 enum BannersTab:Int {
-case new,approved,reject
+    case new,approved,reject
     var title:String {
         switch self {
         case .new:
@@ -117,11 +117,6 @@ class BannersManagementListViewModel {
         }
         self.filterInfo.searchText = string
         self.searchTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(handleSearch(_:)), userInfo: nil, repeats: false)
-    }
-    
-    
-    @objc func handleSearch(_ sender:Timer) {
-        self.getData()
     }
     
     func changePage(_ isPrevious:Bool) {
@@ -229,7 +224,7 @@ class BannersManagementListViewModel {
                 self.totalPage = data.lastPage ?? 1
                 self.refreshArray(for: .approved, data.data ?? [])
             }
-
+            
         case .reject:
             if (!country.isEmpty) {
                 paramter[APIKeys.countryName] = country
@@ -255,6 +250,7 @@ class BannersManagementListViewModel {
             completion()
         }
     }
+    
     func rejectBanner(id:String,reason:String,_ completion:@escaping() -> Void ) {
         let parameter :[String:Any] = [
             APIKeys.bannerId:id,
@@ -265,35 +261,15 @@ class BannersManagementListViewModel {
         }
     }
     
-   
-    func upadteBannerStatus(
-        param: [String: Any],
-        completion: @escaping (Bool) -> Void
-    ) {
+    func upadteBannerStatus(param: [String: Any], completion: @escaping (Bool) -> Void) {
         WebService.shared.upadteBannerRequestStatus(param: param) { response in
-            // Assuming API returns success flag
-            
             completion(true)
         }
     }
-
     
-//    func upadteBrandStatus(param: [String: Any]) {
-//        WebService.shared.upadteBrandStatus(param: param) { [weak self] response in
-//            guard let self = self else { return }
-//            
-//            DispatchQueue.main.async {
-//                self.hostVC.brandData = response
-//                self.hostVC.bindData()
-//                if let status = response.status {
-//                    if status == 1 {
-//                        CommonUtils.showToast(message: "Brand Activated Successfully")
-//                    } else {
-//                        CommonUtils.showToast(message: "Brand Deactivated Successfully")
-//                    }
-//                }
-//            }
-//        }
-//    }
+    @objc func handleSearch(_ sender:Timer) {
+        self.getData()
+    }
+    
 }
 

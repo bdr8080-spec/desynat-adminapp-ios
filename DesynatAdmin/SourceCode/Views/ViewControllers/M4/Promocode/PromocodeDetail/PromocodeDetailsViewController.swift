@@ -8,87 +8,87 @@
 import UIKit
 
 class PromocodeDetailsViewController: UIViewController {
-
-  @IBOutlet weak var percentageOffLabel: UILabel!
-  @IBOutlet weak var statusLabel: UILabel!
-  @IBOutlet weak var statusToggleImageView: UIImageView!
-  @IBOutlet weak var percentageOffDescriptionLabel: UILabel!
-  @IBOutlet weak var descriptionLabel: UILabel!
-  @IBOutlet weak var termsAndConditionLabel: UILabel!
-  @IBOutlet weak var countryLabel: UILabel!
-  @IBOutlet weak var applicableForLabel: UILabel!
-  @IBOutlet weak var startDateLabel: UILabel!
-  @IBOutlet weak var endDateLabel: UILabel!
-  
-  var promocodeDetails: PromocodeList?
-  private lazy var viewModel = PromocodeDetailsViewModel(hostVC: self)
-  
+    
+    @IBOutlet weak var percentageOffLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var statusToggleImageView: UIImageView!
+    @IBOutlet weak var percentageOffDescriptionLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var termsAndConditionLabel: UILabel!
+    @IBOutlet weak var countryLabel: UILabel!
+    @IBOutlet weak var applicableForLabel: UILabel!
+    @IBOutlet weak var startDateLabel: UILabel!
+    @IBOutlet weak var endDateLabel: UILabel!
+    
+    var promocodeDetails: PromocodeList?
+    private lazy var viewModel = PromocodeDetailsViewModel(hostVC: self)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-      configData()
+        configData()
     }
     
-  @IBAction func backDidTapped(_ sender: Any) {
-    self.navigationController?.popViewController(animated: true)
-  }
-  
-  @IBAction func deleteDidTapepd(_ sender: Any) {
-    guard let gift = promocodeDetails else { return }
-    self.showConfirmationAlert(msg: "Are you sure you want to delete this promocode?"){ [weak self] in
-        guard let self = self else { return }
-        self.viewModel.deletePromocode(param: ["promocode_id": gift.id ?? 0])
-    }
-  }
-  
-  @IBAction func editDidTapped(_ sender: Any) {
-    let nextVC = AddPromocodeViewController.instantiate(fromAppStoryboard: .ShippingPromocode)
-    nextVC.isComingForEdit = true
-    nextVC.promocodeDetails = promocodeDetails
-    self.navigationController?.pushViewController(nextVC, animated: true)
-  }
-  
-  @IBAction func toggleDidTapped(_ sender: Any) {
-    guard let card = promocodeDetails else { return }
-    viewModel.upadtePromocodeStatus(param: ["promocode_id": card.id ?? 0])
-  }
-  
-  func configData() {
-    percentageOffLabel.text = "Flat \(promocodeDetails?.discountPercent ?? "")% OFF" //promocodeDetails?.nameEnglish
-    percentageOffDescriptionLabel.text = "Flat \(promocodeDetails?.discountPercent ?? "")% Off On minimum order \(promocodeDetails?.minOrderValue ?? "")"
-    descriptionLabel.text = promocodeDetails?.descriptionEnglish ?? ""
-    termsAndConditionLabel.text = promocodeDetails?.descriptionEnglish ?? ""
-    if promocodeDetails?.status == 1 {
-        statusLabel.text = "Active"
-      statusToggleImageView.image = UIImage(named: "toggleOn")
-    } else {
-        statusLabel.text = "Inactive"
-      statusToggleImageView.image = UIImage(named: "toggleOff")
+    @IBAction func backDidTapped(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     
-    countryLabel.text = promocodeDetails?.countryInfo?.name
-    let applicableFor = promocodeDetails?.applicableFor
-    
-    if applicableFor == 2 {
-      applicableForLabel.text = "Every Order"
-    } else {
-      applicableForLabel.text = "First Order"
+    @IBAction func deleteDidTapepd(_ sender: Any) {
+        guard let gift = promocodeDetails else { return }
+        self.showConfirmationAlert(msg: "Are you sure you want to delete this promocode?"){ [weak self] in
+            guard let self = self else { return }
+            self.viewModel.deletePromocode(param: ["promocode_id": gift.id ?? 0])
+        }
     }
     
-    startDateLabel.text = convertDate(promocodeDetails?.startDate ?? "")
-    endDateLabel.text = convertDate(promocodeDetails?.endDate ?? "")
-  }
-  
-  func convertDate(_ input: String) -> String? {
-      let inputFormatter = DateFormatter()
-      inputFormatter.dateFormat = "yyyy-MM-dd"
-      inputFormatter.locale = Locale(identifier: "en_US_POSIX")
-      let outputFormatter = DateFormatter()
-      outputFormatter.dateFormat = "dd/MM/yyyy"
-      outputFormatter.locale = Locale(identifier: "en_US_POSIX")
-      if let date = inputFormatter.date(from: input) {
-          return outputFormatter.string(from: date)
-      }
-      return nil
-  }
-  
+    @IBAction func editDidTapped(_ sender: Any) {
+        let nextVC = AddPromocodeViewController.instantiate(fromAppStoryboard: .ShippingPromocode)
+        nextVC.isComingForEdit = true
+        nextVC.promocodeDetails = promocodeDetails
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+    
+    @IBAction func toggleDidTapped(_ sender: Any) {
+        guard let card = promocodeDetails else { return }
+        viewModel.upadtePromocodeStatus(param: ["promocode_id": card.id ?? 0])
+    }
+    
+    func configData() {
+        percentageOffLabel.text = "Flat \(promocodeDetails?.discountPercent ?? "")% OFF" //promocodeDetails?.nameEnglish
+        percentageOffDescriptionLabel.text = "Flat \(promocodeDetails?.discountPercent ?? "")% Off On minimum order \(promocodeDetails?.minOrderValue ?? "")"
+        descriptionLabel.text = promocodeDetails?.descriptionEnglish ?? ""
+        termsAndConditionLabel.text = promocodeDetails?.descriptionEnglish ?? ""
+        if promocodeDetails?.status == 1 {
+            statusLabel.text = "Active"
+            statusToggleImageView.image = UIImage(named: "toggleOn")
+        } else {
+            statusLabel.text = "Inactive"
+            statusToggleImageView.image = UIImage(named: "toggleOff")
+        }
+        
+        countryLabel.text = promocodeDetails?.countryInfo?.name
+        let applicableFor = promocodeDetails?.applicableFor
+        
+        if applicableFor == 2 {
+            applicableForLabel.text = "Every Order"
+        } else {
+            applicableForLabel.text = "First Order"
+        }
+        
+        startDateLabel.text = convertDate(promocodeDetails?.startDate ?? "")
+        endDateLabel.text = convertDate(promocodeDetails?.endDate ?? "")
+    }
+    
+    func convertDate(_ input: String) -> String? {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "yyyy-MM-dd"
+        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = "dd/MM/yyyy"
+        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        if let date = inputFormatter.date(from: input) {
+            return outputFormatter.string(from: date)
+        }
+        return nil
+    }
+    
 }

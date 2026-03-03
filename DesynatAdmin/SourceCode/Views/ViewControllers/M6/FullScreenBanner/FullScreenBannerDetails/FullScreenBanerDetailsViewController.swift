@@ -29,8 +29,8 @@ class FullScreenBanerDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            typeTitleLabel.text = "Type"
-            viewModel.getFullScreenBannerDetailsList()
+        typeTitleLabel.text = "Type"
+        viewModel.getFullScreenBannerDetailsList()
         
     }
     
@@ -39,14 +39,14 @@ class FullScreenBanerDetailsViewController: UIViewController {
     }
     
     @IBAction func editDidTapped(_ sender: Any) {
-            let vc = AddAdvertisementViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
-            vc.isComingForEdit = true
-            vc.giftsListData = giftsListData
-            vc.onCardUpdated = { [weak self] updatedData in
-                guard let self = self else { return }
-                viewModel.getFullScreenBannerDetailsList()
-            }
-            self.navigationController?.pushViewController(vc, animated: false)
+        let vc = AddAdvertisementViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
+        vc.isComingForEdit = true
+        vc.giftsListData = giftsListData
+        vc.onCardUpdated = { [weak self] updatedData in
+            guard let self = self else { return }
+            viewModel.getFullScreenBannerDetailsList()
+        }
+        self.navigationController?.pushViewController(vc, animated: false)
         
         
     }
@@ -124,7 +124,7 @@ class FullScreenBanerDetailsViewController: UIViewController {
                 typeLabel.text = "Category"
             }
         }
-       
+        
     }
     
     

@@ -8,7 +8,7 @@
 import UIKit
 
 class ProductFiltersViewController: UIViewController {
-
+    
     @IBOutlet weak var filterTableView: UITableView!
     @IBOutlet weak var headerView: UIView!
     
@@ -41,7 +41,7 @@ class ProductFiltersViewController: UIViewController {
         }
         return filtersOptions
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         registerXib()
@@ -239,12 +239,12 @@ extension ProductFiltersViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
-
+        
         let sectionType = visibleSections[indexPath.section].type
-
+        
         switch sectionType {
             
-        // MARK: - Country (Single + Toggle)
+            // MARK: - Country (Single + Toggle)
         case .country:
             guard let sectionIndex = filtersOptions.firstIndex(where: { $0.type == .country }) else { return }
             
@@ -264,7 +264,7 @@ extension ProductFiltersViewController: UITableViewDelegate, UITableViewDataSour
             }
             
             
-        // MARK: - Category (Single + Toggle)
+            // MARK: - Category (Single + Toggle)
         case .category:
             guard let sectionIndex = filtersOptions.firstIndex(where: { $0.type == .category }) else { return }
             
@@ -293,14 +293,14 @@ extension ProductFiltersViewController: UITableViewDelegate, UITableViewDataSour
             }
             
             
-        // MARK: - SubCategory (Multi)
+            // MARK: - SubCategory (Multi)
         case .subCategory:
             toggleMultiSelection(type: .subCategory,
                                  index: indexPath.row,
                                  selectedArray: &selectedSubCategoryIDs)
             
             
-        // MARK: - Brand (Multi)
+            // MARK: - Brand (Multi)
         case .brand:
             toggleMultiSelection(type: .brand,
                                  index: indexPath.row,

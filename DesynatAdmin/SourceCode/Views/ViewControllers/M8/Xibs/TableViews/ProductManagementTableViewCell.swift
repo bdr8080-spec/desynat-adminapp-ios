@@ -23,7 +23,7 @@ class ProductManagementTableViewCell: UITableViewCell {
     
     var onStatusToggle: (() -> Void)?
     var coloursList: [Color]?
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         colorsCollectionView.delegate = self
@@ -98,7 +98,7 @@ class ProductManagementTableViewCell: UITableViewCell {
             return "Invalid date"
         }
     }
-
+    
 }
 
 extension ProductManagementTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

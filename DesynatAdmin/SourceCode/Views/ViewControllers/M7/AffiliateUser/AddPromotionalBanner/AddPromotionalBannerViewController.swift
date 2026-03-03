@@ -36,7 +36,7 @@ class AddPromotionalBannerViewController: UIViewController {
     var forTypeList = ["Home Top", "Home Bottom", "Category"]
     var selectedPositionIndex: Int = 0 //type 1 mobile,2-web
     var pickedImage: UIImage?
-//    var pickedGifData: Data?
+    //    var pickedGifData: Data?
     var pickedFileName: String = ""
     var isGifSelected: Bool = false
     private var isImageChanged: Bool = false
@@ -75,7 +75,7 @@ class AddPromotionalBannerViewController: UIViewController {
     
     @IBAction func uploadImageDidTapped(_ sender: UIButton) {
         ImagePickerManager.shared.pickFromGalleryOnly(self) { [weak self]
-                image, gifData, isGif, fileName, url in
+            image, gifData, isGif, fileName, url in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.mainImageView.image = image
@@ -129,46 +129,46 @@ class AddPromotionalBannerViewController: UIViewController {
     }
     
     
-//    private func uploadBannerThenSubmit() {
-//        
-//        let keyParam: [String: Any] = ["type": selectedPositionIndex]
-//        
-//        // Edit flow WITHOUT image change
-//        if isComingForEdit, !isImageChanged {
-//            submitFinalApi()
-//            return
-//        }
-//        
-//        // GIF upload
-//        if isGifSelected, let gifData = pickedGifData {
-//            viewModel.uploadFullScreenBanner(
-//                file: gifData,
-//                isImage: false,
-//                isGif: true,
-//                keyParam: keyParam
-//            ) { [weak self] url in
-//                self?.selectedImageUrl = url
-//                self?.submitFinalApi()
-//            }
-//            return
-//        }
-//        
-//        // Image upload
-//        if let image = pickedImage {
-//            viewModel.uploadFullScreenBanner(
-//                file: image,
-//                isImage: true,
-//                keyParam: keyParam
-//            ) { [weak self] url in
-//                self?.selectedImageUrl = url
-//                self?.submitFinalApi()
-//            }
-//            return
-//        }
-//        
-//        // Add flow safety
-//        showAlert(msg: "Please select image")
-//    }
+    //    private func uploadBannerThenSubmit() {
+    //        
+    //        let keyParam: [String: Any] = ["type": selectedPositionIndex]
+    //        
+    //        // Edit flow WITHOUT image change
+    //        if isComingForEdit, !isImageChanged {
+    //            submitFinalApi()
+    //            return
+    //        }
+    //        
+    //        // GIF upload
+    //        if isGifSelected, let gifData = pickedGifData {
+    //            viewModel.uploadFullScreenBanner(
+    //                file: gifData,
+    //                isImage: false,
+    //                isGif: true,
+    //                keyParam: keyParam
+    //            ) { [weak self] url in
+    //                self?.selectedImageUrl = url
+    //                self?.submitFinalApi()
+    //            }
+    //            return
+    //        }
+    //        
+    //        // Image upload
+    //        if let image = pickedImage {
+    //            viewModel.uploadFullScreenBanner(
+    //                file: image,
+    //                isImage: true,
+    //                keyParam: keyParam
+    //            ) { [weak self] url in
+    //                self?.selectedImageUrl = url
+    //                self?.submitFinalApi()
+    //            }
+    //            return
+    //        }
+    //        
+    //        // Add flow safety
+    //        showAlert(msg: "Please select image")
+    //    }
     
     func calculateTotalDays() {
         guard
@@ -209,23 +209,6 @@ class AddPromotionalBannerViewController: UIViewController {
         }
     }
     
-//    func bindData() {
-//        if let imageUrlString = giftsListData?.uploadBanner,
-//           let url = URL(string: imageUrlString) {
-//            selectedImageUrl = imageUrlString
-//            mainImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
-//            mainImageView.sd_imageIndicator?.startAnimatingIndicator()
-//            mainImageView.sd_setImage(with: url, placeholderImage: UIImage(named: ""))
-//        } else {
-//            mainImageView.image = UIImage(named: "placeholder")
-//        }
-//        fromTextField.text = convertDateFormat(giftsListData?.startDate ?? "")
-//        toTextField.text = convertDateFormat(giftsListData?.endDate ?? "")
-//        selectedPositionIndex = (Int(giftsListData?.bannerPosition ?? "1") ?? 1)
-//        positionLabel.text = forTypeList[selectedPositionIndex - 1]
-//        updateCategoryVisibility()
-//    }
-    
     func bindData() {
         // Image
         if let imageUrlString = giftsListData?.uploadBanner,
@@ -234,45 +217,45 @@ class AddPromotionalBannerViewController: UIViewController {
             mainImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
             mainImageView.sd_setImage(with: url)
         }
-
+        
         // Dates
         fromTextField.text = convertDateFormat(giftsListData?.startDate ?? "")
         toTextField.text = convertDateFormat(giftsListData?.endDate ?? "")
         calculateTotalDays()
-
+        
         // Position
         selectedPositionIndex = Int(giftsListData?.bannerPosition ?? "1") ?? 1
         positionLabel.text = forTypeList[selectedPositionIndex - 1]
         updateCategoryVisibility()
-
+        
         // Category specific logic
         if selectedPositionIndex == 3 {
             populateCategoryAndSubCategory()
         }
     }
-
+    
     private func populateCategoryAndSubCategory() {
         guard let category = giftsListData?.categoryDetails else { return }
-
+        
         // Select category
         viewModel.selectedCategoriesId = category.id
         selectCategoryCollectionview.reloadData()
-
+        
         // Fetch subcategories
         viewModel.getSubCategoriesListApi() { [weak self] in
             guard let self = self else { return }
-
+            
             // Select subcategory
             if let subCategoryId = self.giftsListData?.subcategoryDetails?.id,
                let index = self.viewModel.subcategoriesList.firstIndex(where: { $0.id == subCategoryId }) {
-
+                
                 let subCategory = self.viewModel.subcategoriesList[index]
                 self.subCategoryTF.text = subCategory.nameEnglish
                 self.viewModel.selectedSubCategoriesId = subCategoryId
             }
         }
     }
-
+    
     
     func convertDateFormat(
         _ dateString: String,

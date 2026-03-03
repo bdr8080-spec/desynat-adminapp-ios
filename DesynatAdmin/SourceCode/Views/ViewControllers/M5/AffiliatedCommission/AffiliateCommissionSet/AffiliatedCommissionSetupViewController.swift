@@ -19,7 +19,6 @@ class AffiliatedCommissionSetupViewController: UIViewController {
     var taxAmountSet: ((_ amount: String) -> Void)?
     var originalTaxValue: Double = 0.0
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         handleUISetup()
@@ -86,18 +85,18 @@ class AffiliatedCommissionSetupViewController: UIViewController {
         guard let text = taxTF.text,
               !text.isEmpty,
               let currentValue = Double(text) else {
-            // ❌ Empty or invalid → Disable
+            // Empty or invalid → Disable
             saveChangesButton.isEnabled = false
             saveChangesButton.alpha = 0.5
             return
         }
-
+        
         let hasChanged = currentValue != originalTaxValue
-
+        
         saveChangesButton.isEnabled = hasChanged
         saveChangesButton.alpha = hasChanged ? 1.0 : 0.5
     }
-
+    
 }
 
 extension AffiliatedCommissionSetupViewController: UITextFieldDelegate {
@@ -145,10 +144,10 @@ extension AffiliatedCommissionSetupViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         updateSaveButtonState()
     }
-
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         updateSaveButtonState()
     }
-
+    
 }
 

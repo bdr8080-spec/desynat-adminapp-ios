@@ -15,24 +15,6 @@ class AddStoryViewModel {
     self.hostVC = hostVC
   }
   
-//  func uploadMedia(fileData: Data, isImage: Bool) {
-//
-//      let mimeType: MultipartUpload.Mime = isImage ? .image : .Video
-//
-//      let param = MultipartUpload(
-//          fileName: "file",
-//          file: fileData,
-//          mimeType: mimeType
-//      )
-//
-//      WebService.sharedInstance.uploadVideoAndImage(withParams: param) { [weak self] url, msg, code in
-//          guard let self = self, !url.isEmpty else { return }
-//
-//          // Upload story only after file upload success
-//          self.uploadStories(imageUrl: url)
-//      }
-//  }
-  
   func uploadMedia(fileData: Data, isImage: Bool) {
       let mimeType: MultipartUpload.Mime = isImage ? .image : .Video
       
@@ -46,11 +28,6 @@ class AddStoryViewModel {
       
       // Call the upload function
       WebService.sharedInstance.uploadVideoAndImage(withParams: uploadItem) { [weak self] url, msg, code in
-//          guard let self = self, let url = url, !url.isEmpty else {
-//              // Handle failure (msg or error)
-//              print("Upload failed: \(msg ?? "Unknown error")")
-//              return
-//          }
         guard let self = self, !url.isEmpty else { return }
           // Success: Now upload the story with the returned URL
           self.uploadStories(imageUrl: url)

@@ -22,7 +22,7 @@ class BannersMangementFilterViewController: UIViewController {
     private let datePicker = UIDatePicker()
     
     private var context: FilterContext?
-       private var callBack: ((FilterInfo) -> Void)?
+    private var callBack: ((FilterInfo) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +42,7 @@ class BannersMangementFilterViewController: UIViewController {
         self.viewModel.setFilter(filter)
         self.callBack = callBack
     }
-
+    
     
     func setIntitial(_ filterInfo:FilterInfo,callBack:@escaping((FilterInfo) -> Void))  {
         self.viewModel.setFilter(filterInfo)
@@ -50,7 +50,7 @@ class BannersMangementFilterViewController: UIViewController {
     }
     
     func setData() {
-         let filterInfo = viewModel.filterInfo
+        let filterInfo = viewModel.filterInfo
         if let startDate = filterInfo.startDate {
             self.fromTextField.text = CommonUtils.getDateString(from: startDate,format: "dd/MM/yyyy")
         }
@@ -65,41 +65,41 @@ class BannersMangementFilterViewController: UIViewController {
     
     @IBAction func clearDidTapped(_ sender: Any) {
         viewModel.clearFilter()
-            callBack?(viewModel.filterInfo)
-            dismiss(animated: true)
+        callBack?(viewModel.filterInfo)
+        dismiss(animated: true)
     }
     
     @IBAction func applyDidTapped(_ sender: Any) {
         callBack?(viewModel.filterInfo)
         dismiss(animated: true)
     }
-
+    
     
     @IBAction func countryDidTapped(_ sender: UIButton) {
-      let countryNames = viewModel.countryListData.map { country -> String in
-              let name = country.name ?? ""
-              let dialCode = country.dialCode ?? ""
-              let flag = country.flag ?? "🇰🇼"
-              return "\(flag)  \(name) (\(dialCode))"
-          }
-
-          // Create a DropDown object
-          let dropDown = DropDown()
-          dropDown.dataSource = countryNames
-          
-          // Use the view controller's view as anchor
-          dropDown.anchorView = self.view // This centers it on the screen
-          dropDown.direction = .any
-          dropDown.bottomOffset = CGPoint(x: 50, y: (self.view.frame.height / 2) - 50) // adjust to roughly center vertically
-          dropDown.width = 250 // optional, adjust width
-          dropDown.selectionAction = { index, item in
-              let selectedCountry = self.viewModel.countryListData[index]
-              self.viewModel.setCountry(selectedCountry)
-              self.countryLabel.text = selectedCountry.name
-          }
-
-          // Show the dropdown
-          dropDown.show()
+        let countryNames = viewModel.countryListData.map { country -> String in
+            let name = country.name ?? ""
+            let dialCode = country.dialCode ?? ""
+            let flag = country.flag ?? "🇰🇼"
+            return "\(flag)  \(name) (\(dialCode))"
+        }
+        
+        // Create a DropDown object
+        let dropDown = DropDown()
+        dropDown.dataSource = countryNames
+        
+        // Use the view controller's view as anchor
+        dropDown.anchorView = self.view // This centers it on the screen
+        dropDown.direction = .any
+        dropDown.bottomOffset = CGPoint(x: 50, y: (self.view.frame.height / 2) - 50) // adjust to roughly center vertically
+        dropDown.width = 250 // optional, adjust width
+        dropDown.selectionAction = { index, item in
+            let selectedCountry = self.viewModel.countryListData[index]
+            self.viewModel.setCountry(selectedCountry)
+            self.countryLabel.text = selectedCountry.name
+        }
+        
+        // Show the dropdown
+        dropDown.show()
     }
     
     private func handleUISetup() {

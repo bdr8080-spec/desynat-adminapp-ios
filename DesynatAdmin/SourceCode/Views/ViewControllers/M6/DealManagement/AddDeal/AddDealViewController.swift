@@ -77,7 +77,7 @@ class AddDealViewController: UIViewController {
             items: subCategoryNames,
             selectedIndexes: selectedIndexes
         )
-        dropdown.frame = view.bounds   // 🔑 REQUIRED
+        dropdown.frame = view.bounds   // REQUIRED
         
         dropdown.onSelectionChanged = { [weak self] indexes in
             self?.selectedIndexes = indexes
@@ -107,7 +107,7 @@ class AddDealViewController: UIViewController {
         let validIndexes = selectedIndexes
             .filter { $0 > 0 }
             .sorted()
-
+        
         let items = validIndexes.compactMap { index -> GetSubCategoryDataList? in
             let arrayIndex = index - 1
             guard viewModel.subcategoriesList.indices.contains(arrayIndex) else {
@@ -115,16 +115,16 @@ class AddDealViewController: UIViewController {
             }
             return viewModel.subcategoriesList[arrayIndex]
         }
-
+        
         let names = items.compactMap { $0.nameEnglish }
         selectedIds = items.compactMap { $0.id.map(String.init) }
-
+        
         subCategoryTF.text = names.joined(separator: ", ")
         
         print(selectedIds)
         print(names)
     }
-
+    
     
     private func initialSetUp() {
         setUpTextFields()
@@ -141,28 +141,11 @@ class AddDealViewController: UIViewController {
         }
     }
     
-//    func setupPreselectedSubcategories() {
-//        guard let selectedSubIds = dealData?.subCategoryID else { return }
-//
-//        var indexes = Set<Int>()
-//
-//        for (index, item) in viewModel.subcategoriesList.enumerated() {
-//            if let id = item.id,
-//               selectedSubIds.contains(String(id)) {
-//                // +1 because index 0 is "Select All"
-//                indexes.insert(index + 1)
-//            }
-//        }
-//
-//        selectedIndexes = indexes
-//        updateSelection()
-//    }
-    
     func setupPreselectedSubcategories() {
         guard let selectedSubIds = dealData?.subCategoryID else { return }
-
+        
         var indexes = Set<Int>()
-
+        
         for (index, item) in viewModel.subcategoriesList.enumerated() {
             if let id = item.id,
                selectedSubIds.contains(String(id)) {
@@ -170,18 +153,18 @@ class AddDealViewController: UIViewController {
                 indexes.insert(index + 1)
             }
         }
-
-        // ✅ NEW: if all real items selected, select "Select All"
+        
+        // NEW: if all real items selected, select "Select All"
         let allItemIndexes = Set(1...(viewModel.subcategoriesList.count))
         if allItemIndexes == indexes {
             indexes.insert(0)
         }
-
+        
         selectedIndexes = indexes
         updateSelection()
     }
-
-
+    
+    
     
     func bindData() {
         fullNameTF.text = dealData?.nameEnglish

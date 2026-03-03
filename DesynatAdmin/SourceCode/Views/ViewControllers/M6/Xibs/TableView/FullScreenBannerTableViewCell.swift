@@ -85,19 +85,19 @@ class FullScreenBannerTableViewCell: UITableViewCell {
             typeLabel.text = "Category"
         }
         
-//        if let status = categorizeDeal(from: data?.startDate ?? "", to: data?.endDate ?? "") {
-//            statusLabel.isHidden = false
-//            if status == .upcoming {
-//                statusLabel.text = "Upcoming"
-//                statusLabel.textColor = .black
-//            } else if status == .active {
-//                statusLabel.text = "Active"
-//                statusLabel.textColor = UIColor(hexString: "#68CA44")
-//            } else {
-//                statusLabel.text = "Expired"
-//                statusLabel.textColor = .red
-//            }
-//        }
+        //        if let status = categorizeDeal(from: data?.startDate ?? "", to: data?.endDate ?? "") {
+        //            statusLabel.isHidden = false
+        //            if status == .upcoming {
+        //                statusLabel.text = "Upcoming"
+        //                statusLabel.textColor = .black
+        //            } else if status == .active {
+        //                statusLabel.text = "Active"
+        //                statusLabel.textColor = UIColor(hexString: "#68CA44")
+        //            } else {
+        //                statusLabel.text = "Expired"
+        //                statusLabel.textColor = .red
+        //            }
+        //        }
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -157,21 +157,21 @@ class FullScreenBannerTableViewCell: UITableViewCell {
     
     func categorizeDeal(from fromDateString: String,
                         to toDateString: String) -> BannerStatus? {
-
+        
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         formatter.timeZone = TimeZone.current
-
+        
         guard let fromDate = formatter.date(from: fromDateString),
               let toDate = formatter.date(from: toDateString) else {
             return nil
         }
-
+        
         let calendar = Calendar.current
         let now = Date()
-
+        
         let startOfFromDate = calendar.startOfDay(for: fromDate)
-
+        
         // End of "to" day → 23:59:59
         let endOfToDate = calendar.date(
             bySettingHour: 23,
@@ -179,20 +179,20 @@ class FullScreenBannerTableViewCell: UITableViewCell {
             second: 59,
             of: toDate
         )!
-
+        
         if now < startOfFromDate {
             return .upcoming
         }
-
+        
         if now <= endOfToDate {
             return .active
         }
-
+        
         // Expired
         return .expired
     }
-
-
+    
+    
 }
 
 enum BannerStatus {

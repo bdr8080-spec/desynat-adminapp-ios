@@ -58,20 +58,20 @@ class FilterForDealsViewController: UIViewController {
     
     @IBAction func submitdidTapped(_ sender: Any) {
         var filter = ProductFilterModelOnBrand()
-
-           if let brand = sleectedBrand, !brand.isEmpty {
-               filter.brandName = brand
-           }
-
-           onApplyFilter?(filter)
-           dismiss(animated: true)
+        
+        if let brand = sleectedBrand, !brand.isEmpty {
+            filter.brandName = brand
+        }
+        
+        onApplyFilter?(filter)
+        dismiss(animated: true)
     }
     
     @IBAction func clearDidTapped(_ sender: Any) {
         sleectedBrand = nil
-            titleLabel.text = "Select Brand"
-            onClearFilter?()
-            dismiss(animated: true)
+        titleLabel.text = "Select Brand"
+        onClearFilter?()
+        dismiss(animated: true)
     }
     
     private func handleUISetup() {

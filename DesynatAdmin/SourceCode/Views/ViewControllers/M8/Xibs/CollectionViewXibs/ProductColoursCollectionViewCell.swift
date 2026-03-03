@@ -8,12 +8,12 @@
 import UIKit
 
 class ProductColoursCollectionViewCell: UICollectionViewCell {
-
-  @IBOutlet weak var borderView: UIView!
-  @IBOutlet weak var mainView: CustomView!
-  
+    
+    @IBOutlet weak var borderView: UIView!
+    @IBOutlet weak var mainView: CustomView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
 }

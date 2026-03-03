@@ -8,13 +8,13 @@
 import Foundation
 
 class AffiliatedCommissionViewModel {
-  
-  private var hostVC: AffiliatedCommissionViewController
+    
+    private var hostVC: AffiliatedCommissionViewController
     var commissionData: [CommissionPercentageModel] = []
-  
-  init(hostVC: AffiliatedCommissionViewController) {
-    self.hostVC = hostVC
-  }
+    
+    init(hostVC: AffiliatedCommissionViewController) {
+        self.hostVC = hostVC
+    }
     
     func getAffiliatedCommissionByCity() {
         WebService.sharedInstance.getAffiliateCommissionByCities { [weak self] (result) in

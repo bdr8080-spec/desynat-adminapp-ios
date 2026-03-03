@@ -59,109 +59,48 @@ class PromotionalBannerDetaislViewController: UIViewController {
     
     @IBAction func toggleButtonDidTapped(_ sender: Any) {
         let newStatus = toggleStatus == "1" ? "0" : "1"
-            let param: [String: Any] = ["banner_id": bannerId]
-
-            viewModel.upadteBannerStatus(param: param) { [weak self] success in
-                guard let self = self, success else { return }
-
-                DispatchQueue.main.async {
-                    // Update SINGLE source
-                    self.toggleStatus = newStatus
-                    self.bannerListData?.status = newStatus
-
-                    self.updateToggleUI()
-
-                    let message = newStatus == "1"
-                        ? "Banner activated successfully"
-                        : "Banner deactivated successfully"
-
-                    CommonUtils.showToast(message: message)
-
-                    if let data = self.bannerListData {
-                        self.onStatusUpdated?(data)
-                    }
+        let param: [String: Any] = ["banner_id": bannerId]
+        
+        viewModel.upadteBannerStatus(param: param) { [weak self] success in
+            guard let self = self, success else { return }
+            
+            DispatchQueue.main.async {
+                // Update SINGLE source
+                self.toggleStatus = newStatus
+                self.bannerListData?.status = newStatus
+                
+                self.updateToggleUI()
+                
+                let message = newStatus == "1"
+                ? "Banner activated successfully"
+                : "Banner deactivated successfully"
+                
+                CommonUtils.showToast(message: message)
+                
+                if let data = self.bannerListData {
+                    self.onStatusUpdated?(data)
                 }
             }
-//        let newStatus = toggleStatus == "1" ? "0" : "1"
-//
-//            let param: [String: Any] = ["banner_id": bannerId ]
-//
-//            viewModel.upadteBannerStatus(param: param) { [weak self] success in
-//                guard let self = self else { return }
-//
-//                DispatchQueue.main.async {
-//                    if success {
-//                        // 1️⃣ Update local toggle
-//                        self.toggleStatus = newStatus
-//                        self.updateToggleUI()
-//
-//                        // 2️⃣ Update model object
-//                        self.bannerListData?.status = "\(newStatus)"
-//
-//                        // 3️⃣ Send updated model back
-//                        if let data = self.bannerListData {
-//                            self.onStatusUpdated?(data)
-//                        }
-//                        let message = newStatus == "1"
-//                                            ? "Banner activated successfully"
-//                                            : "Banner deactivated successfully"
-//                        CommonUtils.showToast(message: message)
-//                    }
-//                }
-//            }
+        }
     }
-    
-//    private func updateToggleUI() {
-//        statusImageView.image = toggleStatus == "1"
-//            ? UIImage(named: "toggleOn")   // Unblocked
-//            : UIImage(named: "toggleOff")  // Blocked
-//        
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "yyyy-MM-dd"
-//        formatter.locale = Locale(identifier: "en_US_POSIX")
-//        
-//        let today = Calendar.current.startOfDay(for: Date())
-//        if bannerListData?.status == "1" {
-//            if let startDateStr = bannerListData?.startDate,
-//               let endDateStr = bannerListData?.endDate,
-//               let startDate = formatter.date(from: startDateStr),
-//               let endDate = formatter.date(from: endDateStr) {
-//                
-//                let start = Calendar.current.startOfDay(for: startDate)
-//                let end = Calendar.current.startOfDay(for: endDate)
-//                
-//                if today < start {
-//                    statusLabel.text = "Upcoming"
-//                } else if today > end {
-//                    statusLabel.text = "Inactive"
-//                } else {
-//                    statusLabel.text = "Active"
-//                }
-//            } else {
-//                statusLabel.text = "Upcoming"
-//            }
-//        } else {
-//            statusLabel.text = "Inactive"
-//        }
-//    }
     
     private func updateToggleUI() {
         // Toggle image
         statusImageView.image = toggleStatus == "1"
-            ? UIImage(named: "toggleOn")
-            : UIImage(named: "toggleOff")
-
+        ? UIImage(named: "toggleOn")
+        : UIImage(named: "toggleOff")
+        
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         formatter.locale = Locale(identifier: "en_US_POSIX")
-
+        
         let today = Calendar.current.startOfDay(for: Date())
-
+        
         guard toggleStatus == "1" else {
             statusLabel.text = "Inactive"
             return
         }
-
+        
         guard
             let startDateStr = bannerListData?.startDate,
             let endDateStr = bannerListData?.endDate,
@@ -171,10 +110,10 @@ class PromotionalBannerDetaislViewController: UIViewController {
             statusLabel.text = "Upcoming"
             return
         }
-
+        
         let start = Calendar.current.startOfDay(for: startDate)
         let end = Calendar.current.startOfDay(for: endDate)
-
+        
         if today < start {
             statusLabel.text = "Upcoming"
         } else if today > end {
@@ -183,7 +122,7 @@ class PromotionalBannerDetaislViewController: UIViewController {
             statusLabel.text = "Active"
         }
     }
-
+    
     
     func bindData() {
         if let imageUrlString = bannerListData?.uploadBanner,

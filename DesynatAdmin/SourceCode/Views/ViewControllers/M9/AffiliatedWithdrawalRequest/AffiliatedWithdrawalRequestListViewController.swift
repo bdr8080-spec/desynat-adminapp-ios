@@ -8,7 +8,7 @@
 import UIKit
 
 class AffiliatedWithdrawalRequestListViewController: UIViewController {
-
+    
     @IBOutlet weak var rejectedLabel: UILabel!
     @IBOutlet weak var rejectedBottomLabel: UILabel!
     @IBOutlet weak var approvedLabel: UILabel!

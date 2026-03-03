@@ -42,7 +42,7 @@ class AffiliatedUserDetailsViewModel {
             }
         }
     }
-
+    
     
     func AcceptUserRequest(param: [String: Any]) {
         WebService.shared.acceptAffilaitedUsersRequest(param: param) { [weak self] response in

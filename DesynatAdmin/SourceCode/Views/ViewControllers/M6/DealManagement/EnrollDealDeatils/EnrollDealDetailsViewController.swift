@@ -44,8 +44,8 @@ class EnrollDealDetailsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-            viewModel.currentPage = 1
-            viewModel.getAllProductsList()
+        viewModel.currentPage = 1
+        viewModel.getAllProductsList()
     }
     
     @IBAction func backDidTapped(_ sender: Any) {
@@ -72,21 +72,21 @@ class EnrollDealDetailsViewController: UIViewController {
     
     @IBAction func nextDidTapped(_ sender: Any) {
         guard viewModel.currentPage < viewModel.totalPages else { return }
-            viewModel.currentPage += 1
-            reloadPaginationUI()
+        viewModel.currentPage += 1
+        reloadPaginationUI()
     }
     
     @IBAction func previousDidTapped(_ sender: Any) {
         guard viewModel.currentPage > 1 else { return }
-            viewModel.currentPage -= 1
-            reloadPaginationUI()
+        viewModel.currentPage -= 1
+        reloadPaginationUI()
     }
     
     func configData(data: SellerDealrecord?) {
         usernameLabel.text = "\(data?.sellerDetails?.firstName ?? "") \(data?.sellerDetails?.lastName ?? "")"
         locationLabel.text = "\(data?.sellerDetails?.countryDetails?.name ?? "")"
         addedProductsLabel.text = "\(data?.productCount ?? 0) Products"
-//        productAddedLabel.text = data?.?.description
+        //        productAddedLabel.text = data?.?.description
         
     }
     
@@ -111,22 +111,22 @@ class EnrollDealDetailsViewController: UIViewController {
     }
     
     func reloadPaginationUI() {
-
+        
         let hasData = !viewModel.paginatedProducts.isEmpty
-
+        
         noDataFoundLabel.isHidden = hasData
         productCollectionView.isHidden = !hasData
-
+        
         pagecountLabel.text = String(
             format: "%02d of %02d",
             viewModel.currentPage,
             viewModel.totalPages
         )
-
+        
         productCollectionView.reloadData()
         updatePaginationButtonImages()
     }
-
+    
     
 }
 
@@ -138,19 +138,15 @@ extension EnrollDealDetailsViewController: UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: "DealDetailsCollectionViewCell",
-                for: indexPath
-            ) as! DealDetailsCollectionViewCell
+            withReuseIdentifier: "DealDetailsCollectionViewCell",
+            for: indexPath
+        ) as! DealDetailsCollectionViewCell
+        
+        let product = viewModel.paginatedProducts[indexPath.item]
 
-            let product = viewModel.paginatedProducts[indexPath.item]
-
-//            if type == 1 {
-//                cell.statusButtonOutlet.isHidden = false
-//            } else {
-                cell.statusButtonOutlet.isHidden = true
-//            }
+        cell.statusButtonOutlet.isHidden = true
         cell.configDealData(data: product, categoryName: viewModel.productsList?.categoryDetails?.name ?? "", subCategoryName: viewModel.productsList?.subCategoryDetails?.nameEnglish ?? "")
-            return cell
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -161,7 +157,6 @@ extension EnrollDealDetailsViewController: UICollectionViewDelegate, UICollectio
     }
     
 }
-
 
 extension EnrollDealDetailsViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

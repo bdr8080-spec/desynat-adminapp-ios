@@ -251,11 +251,6 @@ struct ZoneInfoDetails: Codable {
     }
 }
 
-// MARK: - Coordinate
-//struct Coordinate: Codable {
-//    let lat, lng: String?
-//}
-
 // MARK: - OrderDetail
 struct OrderDetail: Codable {
     let id: Int?

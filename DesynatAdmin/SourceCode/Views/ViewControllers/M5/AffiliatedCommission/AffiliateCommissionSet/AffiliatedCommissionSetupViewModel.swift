@@ -9,11 +9,11 @@ import Foundation
 
 
 class AffiliatedCommissionSetupViewModel {
-  
-  private var hostVC: AffiliatedCommissionSetupViewController?
-  
-  init(hostVC: AffiliatedCommissionSetupViewController? = nil) {
-    self.hostVC = hostVC
-  }
-  
+    
+    private var hostVC: AffiliatedCommissionSetupViewController?
+    
+    init(hostVC: AffiliatedCommissionSetupViewController? = nil) {
+        self.hostVC = hostVC
+    }
+    
 }

@@ -49,7 +49,6 @@ class AffiliatedUsersListViewController: UIViewController {
         }
     }
     
-    
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }

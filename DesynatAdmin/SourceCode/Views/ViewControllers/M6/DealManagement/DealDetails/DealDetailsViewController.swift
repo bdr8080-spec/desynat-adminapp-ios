@@ -86,6 +86,18 @@ class DealDetailsViewController: UIViewController {
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
+    @IBAction func statusDidTapped(_ sender: Any) {
+        viewModel.upadteDealStatus(param: ["deal_id": dealId])
+    }
+    
+    @IBAction func deleteDidTapped(_ sender: Any) {
+        guard let gift = dealData else { return }
+        self.showConfirmationAlert(msg: "Are you sure you want to delete this deal?"){ [weak self] in
+            guard let self = self else { return }
+            self.viewModel.deleteDealDetails(param: ["deal_id": gift.id ?? 0])
+        }
+    }
+    
     private func reloadPaginationUI() {
         let hasData = viewModel.totalItems > 0
         
@@ -135,19 +147,6 @@ class DealDetailsViewController: UIViewController {
         )
     }
     
-    
-    
-    @IBAction func statusDidTapped(_ sender: Any) {
-        viewModel.upadteDealStatus(param: ["deal_id": dealId])
-    }
-    
-    @IBAction func deleteDidTapped(_ sender: Any) {
-        guard let gift = dealData else { return }
-        self.showConfirmationAlert(msg: "Are you sure you want to delete this deal?"){ [weak self] in
-            guard let self = self else { return }
-            self.viewModel.deleteDealDetails(param: ["deal_id": gift.id ?? 0])
-        }
-    }
     
     func bindData() {
         titleLabel.text = dealData?.nameEnglish

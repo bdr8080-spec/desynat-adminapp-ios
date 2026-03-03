@@ -35,11 +35,11 @@ class AffiliatedCommissionViewController: UIViewController {
 
 
 extension AffiliatedCommissionViewController: UITableViewDelegate, UITableViewDataSource {
-  
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return viewModel.commissionData.count
-  }
-  
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.commissionData.count
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AffiliatedCommissionTableViewCell", for: indexPath) as! AffiliatedCommissionTableViewCell
         let data = viewModel.commissionData[indexPath.row]
@@ -55,9 +55,9 @@ extension AffiliatedCommissionViewController: UITableViewDelegate, UITableViewDa
         }
         return cell
     }
-  
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-   
-  }
-  
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
 }

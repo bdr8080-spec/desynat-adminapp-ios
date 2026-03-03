@@ -8,7 +8,7 @@
 import UIKit
 
 class EnrolledSellerTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var productAddedLabel: UILabel!
     @IBOutlet weak var productSoldLabel: UILabel!
@@ -18,10 +18,10 @@ class EnrolledSellerTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
@@ -29,7 +29,7 @@ class EnrolledSellerTableViewCell: UITableViewCell {
         nameLabel.text = "\(data?.sellerDetails?.firstName ?? "") \(data?.sellerDetails?.lastName ?? "")"
         locationLabel.text = "\(data?.sellerDetails?.countryDetails?.name ?? "")"
         productAddedLabel.text = "\(data?.productCount ?? 0) Products"
-//        productAddedLabel.text = data?.?.description
+        //        productAddedLabel.text = data?.?.description
         
     }
     

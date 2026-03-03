@@ -20,7 +20,7 @@ struct GiftCardsListDataModel: Codable {
     let perPage: Int?
     let prevPageURL: String?
     let to, total: Int?
-
+    
     enum CodingKeys: String, CodingKey {
         case currentPage = "current_page"
         case data
@@ -45,7 +45,7 @@ struct GiftCardsList: Codable {
     let image: String?
     let status: Int?
     let createdAt, updatedAt: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case nameEnglish = "name_english"

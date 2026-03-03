@@ -8,17 +8,17 @@
 import UIKit
 
 class OrdersManagementCategoryCollectionViewCell: UICollectionViewCell {
-
-  @IBOutlet weak var titleLabel: UILabel!
-  @IBOutlet weak var mainImageView: UIImageView!
-  
-  override func awakeFromNib() {
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var mainImageView: UIImageView!
+    
+    override func awakeFromNib() {
         super.awakeFromNib()
     }
-  
-  func configure(title: String) {
-         titleLabel.text = title
-     }
-
+    
+    func configure(title: String) {
+        titleLabel.text = title
+    }
+    
 }
 

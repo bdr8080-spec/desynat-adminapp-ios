@@ -8,12 +8,12 @@
 import UIKit
 
 class ColorsCollectionViewCell: UICollectionViewCell {
-  
-  @IBOutlet weak var mainView: CustomView!
-  
-  override func awakeFromNib() {
-        super.awakeFromNib()
     
+    @IBOutlet weak var mainView: CustomView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
     }
-
+    
 }

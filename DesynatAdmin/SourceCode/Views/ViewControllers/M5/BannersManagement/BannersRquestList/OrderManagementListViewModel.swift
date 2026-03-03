@@ -21,18 +21,18 @@ enum FilterContext {
 
 
 class OrderManagementListViewModel {
-
+    
     // MARK: - Pagination
     private(set) var currentPage: Int = 1
     private(set) var totalPage: Int = 1
-
+    
     // MARK: - Data
     private(set) var orders: [OrderData] = []
     private(set) var refresHandler : HandleTableRefresh?
     var orderDetail : OrderData?
     var driverList: [DeliveryBoyListModel] = []
     
-
+    
     // MARK: - State
     var currentCategory: OrderCategory = .active
     private var searchTimer: Timer?
@@ -43,22 +43,22 @@ class OrderManagementListViewModel {
     
     private var categoryFilters: [OrderCategory: FilterInfo] = [:]
     var filterInfo: FilterInfo {
-           get {
-               categoryFilters[currentCategory] ?? FilterInfo()
-           }
-           set {
-               categoryFilters[currentCategory] = newValue
-           }
-       }
-
+        get {
+            categoryFilters[currentCategory] ?? FilterInfo()
+        }
+        set {
+            categoryFilters[currentCategory] = newValue
+        }
+    }
+    
     // MARK: - Bindings
     var onDataUpdate: (() -> Void)?
     var onNoData: ((Bool) -> Void)?
-
+    
     // MARK: - Helpers
     var isLastPage: Bool { currentPage >= totalPage }
     var isFirstPage: Bool { currentPage <= 1 }
-
+    
     // MARK: - Category Change
     func setCategory(_ category: OrderCategory) {
         currentCategory = category
@@ -66,13 +66,13 @@ class OrderManagementListViewModel {
         totalPage = 1
         getData()
     }
-
+    
     // MARK: - Search
     func setSearch(_ string: String) {
         searchTimer?.invalidate()
         filterInfo.searchText = string
         currentPage = 1
-
+        
         searchTimer = Timer.scheduledTimer(
             timeInterval: 0.5,
             target: self,
@@ -81,11 +81,11 @@ class OrderManagementListViewModel {
             repeats: false
         )
     }
-
+    
     @objc private func handleSearch() {
         getData()
     }
-
+    
     // MARK: - Pagination
     func changePage(_ isPrevious: Bool) {
         if isPrevious {
@@ -99,51 +99,51 @@ class OrderManagementListViewModel {
     func setFilter(_ filter:FilterInfo) {
         self.filterInfo = filter
     }
-
+    
     // MARK: - API Call
     func getData() {
-
+        
         let limit = 3
         let searchText = filterInfo.searchText
         let country = filterInfo.country?.name ?? ""
-
+        
         var params: [String: Any] = [
             APIKeys.limit: limit,
             APIKeys.page: currentPage
         ]
-
+        
         if !searchText.isEmpty {
             params[APIKeys.search] = searchText
         }
         if !country.isEmpty {
             params[APIKeys.countryName] = country
         }
-      
-      if let startDate = filterInfo.startDate {
-              params["from_date"] = CommonUtils.getDateString(from: startDate, format: "yyyy-MM-dd")
-          }
-          
-          if let endDate = filterInfo.endDate {
-              params["to_date"] = CommonUtils.getDateString(from: endDate, format: "yyyy-MM-dd")
-          }
-
+        
+        if let startDate = filterInfo.startDate {
+            params["from_date"] = CommonUtils.getDateString(from: startDate, format: "yyyy-MM-dd")
+        }
+        
+        if let endDate = filterInfo.endDate {
+            params["to_date"] = CommonUtils.getDateString(from: endDate, format: "yyyy-MM-dd")
+        }
+        
         let completion: (OrderListModel) -> Void = { data in
             self.totalPage = data.lastPage ?? 1
             self.orders = data.data ?? []
             self.onNoData?(self.orders.isEmpty)
             self.onDataUpdate?()
         }
-
+        
         switch currentCategory {
         case .active:
             WebService.shared.getActiveOrders(parameter: params, completion: completion)
-
+            
         case .returnExchange:
             WebService.shared.getReturnOrders(parameter: params, completion: completion)
-
+            
         case .completed:
             WebService.shared.getCompletedOrders(parameter: params, completion: completion)
-
+            
         case .cancelled:
             WebService.shared.getCancelledOrders(parameter: params, completion: completion)
         }
@@ -163,7 +163,7 @@ class OrderManagementListViewModel {
             guard let self = self else { return }
             driverList = response
             refresHandler?.refreshTable(for: "")
-          
+            
             completion()
         }
     }

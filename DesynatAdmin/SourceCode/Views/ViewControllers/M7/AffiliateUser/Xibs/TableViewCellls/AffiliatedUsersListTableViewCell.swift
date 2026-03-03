@@ -74,8 +74,8 @@ class AffiliatedUsersListTableViewCell: UITableViewCell {
         joinedDateLabel.text = "Joined on \(result)"
         mobileLabel.text = "\(data.countryCode ?? "")-\(data.mobile ?? "")"
         emailLabel.text = data.email
-//        totalOrdersLabek.text = data.or
-//        totalEarningsLabel.text = data.ea
+        //        totalOrdersLabek.text = data.or
+        //        totalEarningsLabel.text = data.ea
         reasonLabel.text = data.rejectReason
         countryLabel.text = data.countryDetails?.name
     }

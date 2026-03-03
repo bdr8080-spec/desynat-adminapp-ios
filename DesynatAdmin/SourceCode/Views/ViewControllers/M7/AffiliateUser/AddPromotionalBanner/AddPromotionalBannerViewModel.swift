@@ -47,7 +47,7 @@ class AddPromotionalBannerViewModel {
         if errorMessage == .none &&
             hostVC.selectedImageUrl.isEmpty &&
             hostVC.pickedImage == nil {//}&&
-//            hostVC.pickedGifData == nil {
+            //            hostVC.pickedGifData == nil {
             errorMessage = .SelectBannerImage
         }
         
@@ -148,28 +148,6 @@ class AddPromotionalBannerViewModel {
             completion(url)
         }
     }
-    
-//    func uploadFullScreenBanner(
-//        file: Any,
-//        isImage: Bool,
-//        isGif: Bool = false,
-//        keyParam: [String: Any],
-//        completion: @escaping(String) -> Void
-//    ) {
-//        let mime: MultipartUpload.Mime = isGif ? .gif : (isImage ? .image : .pdf)
-//        
-//        let param = MultipartUpload(
-//            fileName: "image",
-//            file: file,
-//            mimeType: mime
-//        )
-//        
-//        WebService.sharedInstance.uploadFullScreenBanner(withParams: param, param: keyParam) {
-//            url, msg, code in
-//            completion(url)
-//        }
-//    }
-    
     
     func convertDateString(
         _ dateString: String,

@@ -81,16 +81,65 @@ class OrderManagementDetailsViewController: UIViewController {
         productTableView.rowHeight = UITableView.automaticDimension
         productTableView.estimatedRowHeight = 260
         productTableView.isScrollEnabled = false
-        //    // Observe contentSize safely (will deliver initial value too)
         productTableView.addObserver(self, forKeyPath: "contentSize", options: [.new, .initial], context: nil)
+        getOrderDetailsAndHandleData()
+    }
+    
+    @IBAction func backDidTapped(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func assignDriverDidTapped(_ sender: Any) {
+        let nextVC = DriversListViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
+        nextVC.orderId = self.viewModel.orderDetail?.id ?? 0
+        nextVC.driverIsAssigned = { driverId, driver in
+            self.assignDriverView.isHidden = true
+            self.driverDetailsView.isHidden = false
+            self.lblDriverName.text = driver.fullNameEnglish
+            if let imageUrlString = driver.profilePic,
+               let url = URL(string: imageUrlString) {
+                self.imgDriver.sd_imageIndicator = SDWebImageActivityIndicator.gray
+                self.imgDriver.sd_imageIndicator?.startAnimatingIndicator()
+                self.imgDriver.sd_setImage(with: url, placeholderImage: UIImage(named: "userProfile"))
+            } else {
+                self.imgDriver.image = UIImage(named: "userProfile")
+            }
+            self.viewModel.assignDriver(orderId: self.orderId ?? 0, driverId: driverId) {
+                
+            }
+        }
+        self.navigationController?.present(nextVC, animated: true)
+    }
+    
+    @IBAction func editDriverDidTapped(_ sender: Any) {
+        let nextVC = DriversListViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
+        nextVC.orderId = self.viewModel.orderDetail?.id ?? 0
+        nextVC.driverIsAssigned = { driverId, driver in
+            self.assignDriverView.isHidden = true
+            self.driverDetailsView.isHidden = false
+            self.lblDriverName.text = driver.fullNameEnglish
+            self.viewModel.assignDriver(orderId: self.orderId ?? 0, driverId: driverId) {
+            }
+        }
+        self.navigationController?.present(nextVC, animated: true)
+    }
+    
+    @IBAction func downloadInvoiceDidTapped(_ sender: Any) {
+        let orderId = self.viewModel.orderDetail?.order?.orderID ?? ""
+        let urlString = "http://157.241.119.72/Invoice/\(orderId)"
+        
+        guard let url = URL(string: urlString) else {
+            showAlert(msg: "Invalid invoice URL")
+            return
+        }
+        
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+    
+    func getOrderDetailsAndHandleData() {
         self.viewModel.getOrderDetail(orderId: self.orderId ?? 0) {
             self.lblSellerName.text = "\(self.viewModel.orderDetail?.productDetails?.sellerDetails?.firstName ?? "") \(self.viewModel.orderDetail?.productDetails?.sellerDetails?.lastName ?? "")"
-            
-            //      let fullIdString = self.viewModel.orderDetail?.orderID.map { String(describing: $0) } ?? ""
-            //      let last7OrderID = fullIdString.count >= 7 ? String(fullIdString.suffix(7)) : fullIdString
-            //      self.lblOrderId.text = "#\(last7OrderID)"
             self.lblOrderId.text = "#\(self.viewModel.orderDetail?.id ?? 0)"
-            //      let id = self.viewModel.orderDetail?.id
             self.lblDateTime.text = CommonUtils.getDateStrings(
                 from: Date(iso8601String: String.getString(self.viewModel.orderDetail?.createdAt)),
                 format: "dd/MM/yyyy 'at' hh:mm a"
@@ -158,18 +207,7 @@ class OrderManagementDetailsViewController: UIViewController {
                 self.lblStatus.textColor = UIColor(hexString: "#D91A1B")
                 self.editAssignDriverButtonOutlet.isHidden = true
                 self.assignDriverView.isHidden = true
-                //        case "3": //Returned
-                //          self.activateStep(0, title: "Confirmed")
-                //          self.activateStep(1, title: "Shipped")
-                //          self.activateStep(2, title: "On the Way")
-                //          self.activateStep(3, title: "Returned")
-                //          self.returnDetailsStackView.isHidden = false
-                //          self.retunrDetailsTitleLabel.text = "Return Details"
-                //          self.retunrExchangeReasonLabel.text = self.viewModel.orderDetail?.returnReason
-                //          self.lblReturnId.text = "#\(self.viewModel.orderDetail?.orderID ?? 0)"
-                //          self.lblRequestedOn.text = self.viewModel.orderDetail?.updatedAt?.formattedPlacedDate() ?? ""
-                //          self.lblStatus.text = "Return"
-                //          self.editAssignDriverButtonOutlet.isHidden = true
+                
             default:
                 switch deliveryStatus {
                 case "1":
@@ -206,7 +244,7 @@ class OrderManagementDetailsViewController: UIViewController {
                     default:
                         print("")
                     }
-            
+                    
                     if reApprove == "1" && returnType == "1" || returnType == "2" {
                         
                         self.activateStep(0, title: "Confirmed")
@@ -239,7 +277,7 @@ class OrderManagementDetailsViewController: UIViewController {
                     
                     guard let ratingData = userRatingDone else { return }
                     
-                    /// ✅ PRODUCT RATING CHECK
+                    /// PRODUCT RATING CHECK
                     let productReview = ratingData.productReview ?? ""
                     let productRatingValue = Double(ratingData.productRating ?? "") ?? 0
                     
@@ -256,7 +294,7 @@ class OrderManagementDetailsViewController: UIViewController {
                         self.prodcuctReviewtitleLabel.isHidden = true
                     }
                     
-                    /// ✅ SELLER RATING CHECK
+                    /// SELLER RATING CHECK
                     let sellerReview = ratingData.storeReview ?? ""
                     let sellerRatingValue = Double(ratingData.storeRating ?? "") ?? 0
                     
@@ -276,7 +314,7 @@ class OrderManagementDetailsViewController: UIViewController {
                         self.lblStatus.text = "Exchange Request"
                         self.activateStep(0, title: "Confirmed")
                         self.activateStep(1, title: "In Progress")
-//                        self.img2.image = .shipped
+                        //                        self.img2.image = .shipped
                         self.img3.image = .ontheWay
                         self.img4.image = .delivered
                         self.lbl3.text = "Picked &\nExchange"
@@ -285,17 +323,7 @@ class OrderManagementDetailsViewController: UIViewController {
                         if isPicked == "1" {
                             self.activateStep(2, title: "Picked &\nExchange")
                             let exchangeOrderDetails = self.viewModel.orderDetail?.exchangeOrderDetails?.deliveryStatus ?? "0"
-                            if exchangeOrderDetails == "3"
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            {
+                            if exchangeOrderDetails == "3" {
                                 self.activateStep(3, title: "Completed")
                                 self.lblStatus.text = "Delivered"
                             }
@@ -361,8 +389,6 @@ class OrderManagementDetailsViewController: UIViewController {
             }
         }
     }
-    
-    
     
     func buildFullAddress(from details: DeliveryDetails?) -> String {
         guard let details = details else { return "" }
@@ -454,57 +480,6 @@ class OrderManagementDetailsViewController: UIViewController {
             self.view.setNeedsLayout()
             self.view.layoutIfNeeded()
         }
-    }
-    
-    @IBAction func backDidTapped(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    @IBAction func assignDriverDidTapped(_ sender: Any) {
-        let nextVC = DriversListViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
-        nextVC.orderId = self.viewModel.orderDetail?.id ?? 0
-        nextVC.driverIsAssigned = { driverId, driver in
-            self.assignDriverView.isHidden = true
-            self.driverDetailsView.isHidden = false
-            self.lblDriverName.text = driver.fullNameEnglish
-            if let imageUrlString = driver.profilePic,
-               let url = URL(string: imageUrlString) {
-                self.imgDriver.sd_imageIndicator = SDWebImageActivityIndicator.gray
-                self.imgDriver.sd_imageIndicator?.startAnimatingIndicator()
-                self.imgDriver.sd_setImage(with: url, placeholderImage: UIImage(named: "userProfile"))
-            } else {
-                self.imgDriver.image = UIImage(named: "userProfile")
-            }
-            self.viewModel.assignDriver(orderId: self.orderId ?? 0, driverId: driverId) {
-                
-            }
-        }
-        self.navigationController?.present(nextVC, animated: true)
-    }
-    
-    @IBAction func editDriverDidTapped(_ sender: Any) {
-        let nextVC = DriversListViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
-        nextVC.orderId = self.viewModel.orderDetail?.id ?? 0
-        nextVC.driverIsAssigned = { driverId, driver in
-            self.assignDriverView.isHidden = true
-            self.driverDetailsView.isHidden = false
-            self.lblDriverName.text = driver.fullNameEnglish
-            self.viewModel.assignDriver(orderId: self.orderId ?? 0, driverId: driverId) {
-            }
-        }
-        self.navigationController?.present(nextVC, animated: true)
-    }
-    
-    @IBAction func downloadInvoiceDidTapped(_ sender: Any) {
-        let orderId = self.viewModel.orderDetail?.order?.orderID ?? ""
-        let urlString = "http://157.241.119.72/Invoice/\(orderId)"
-        
-        guard let url = URL(string: urlString) else {
-            showAlert(msg: "Invalid invoice URL")
-            return
-        }
-        
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
     
