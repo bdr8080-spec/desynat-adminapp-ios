@@ -9,11 +9,13 @@ import UIKit
 
 class PromocodeFilterViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var toTextField: UITextField!
     @IBOutlet weak var fromTextField: UITextField!
     @IBOutlet weak var countryLabel: CustomLabelFont!
     
+    // MARK: - Property Decalaration
     let datePicker = UIDatePicker()
     private var activeTextField: UITextField?
     var countryCode: Int = 0
@@ -23,6 +25,7 @@ class PromocodeFilterViewController: UIViewController {
     var onClearFilter: (() -> Void)?
     var allowPastDates: Bool = false
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         handleUISetup()
@@ -31,6 +34,7 @@ class PromocodeFilterViewController: UIViewController {
         }
     }
     
+    // MARK: - Button's Action
     @IBAction func dismissDidTapped(_ sender: Any) {
         self.dismiss(animated: true)
     }
@@ -72,6 +76,7 @@ class PromocodeFilterViewController: UIViewController {
         }
     }
     
+    //MARK: Function's declaration
     private func handleUISetup() {
         headerView.layer.cornerRadius = 24
         headerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -160,9 +165,9 @@ extension PromocodeFilterViewController {
     }
 }
 
-
+//MARK: UITextFieldDelegate Methods
 extension PromocodeFilterViewController: UITextFieldDelegate {
-
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
         let formatter = DateFormatter()

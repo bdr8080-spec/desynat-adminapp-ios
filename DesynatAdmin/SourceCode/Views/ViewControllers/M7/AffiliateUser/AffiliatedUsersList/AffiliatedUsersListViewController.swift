@@ -9,6 +9,7 @@ import UIKit
 
 class AffiliatedUsersListViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var rejectedLabel: UILabel!
     @IBOutlet weak var rejectedBottomLabel: UILabel!
     @IBOutlet weak var approvedLabel: UILabel!
@@ -26,10 +27,12 @@ class AffiliatedUsersListViewController: UIViewController {
         }
     }
     
+    // MARK: - Property Decalaration
     private var searchWorkItem: DispatchWorkItem?
     private lazy var viewModel = AffiliatedUsersListViewModel(hostVC: self)
     var userType: AffiliatedUsersListType = .newUsers
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         serachTF.delegate = self
@@ -49,6 +52,7 @@ class AffiliatedUsersListViewController: UIViewController {
         }
     }
     
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -122,6 +126,7 @@ class AffiliatedUsersListViewController: UIViewController {
         viewModel.goToPreviousPage(type: userType)
     }
     
+    //MARK: Function's declaration
     func updateTabUI() {
         newLabel.textColor = userType == .newUsers ? .darkBrown : UIColor(hexString: "#C0BBBB")
         newBottomLabel.backgroundColor = userType == .newUsers ? .darkBrown : UIColor(hexString: "#C0BBBB")
@@ -154,6 +159,7 @@ class AffiliatedUsersListViewController: UIViewController {
     }
 }
 
+// MARK: - TABLE VIEW METHODS
 extension AffiliatedUsersListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -192,6 +198,7 @@ extension AffiliatedUsersListViewController: UITableViewDataSource, UITableViewD
     
 }
 
+//MARK: UITextFieldDelegate Methods
 extension AffiliatedUsersListViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

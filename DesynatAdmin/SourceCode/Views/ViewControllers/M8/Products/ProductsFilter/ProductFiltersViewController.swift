@@ -9,6 +9,7 @@ import UIKit
 
 class ProductFiltersViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var filterTableView: UITableView!
     @IBOutlet weak var headerView: UIView!
     
@@ -42,18 +43,18 @@ class ProductFiltersViewController: UIViewController {
         return filtersOptions
     }
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         registerXib()
         setupUI()
         prepareFilters()
-        
         if !selectedCategoryIDs.isEmpty {
             getAllsubcategoryApi(id: Int(selectedCategoryIDs))
         }
     }
     
-    // MARK: - Apply Button
+    // MARK: - Button's Action
     @IBAction func applyDidTapped(_ sender: Any) {
         onFilterApplied?(selectedCountryIDs,
                          selectedCategoryIDs,
@@ -73,7 +74,7 @@ class ProductFiltersViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    // MARK: - UI Setup
+    //MARK: Function's declaration
     func setupUI() {
         headerView.layer.cornerRadius = 32
         headerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -169,8 +170,7 @@ class ProductFiltersViewController: UIViewController {
     }
 }
 
-// MARK: - TableView
-
+// MARK: - TABLE VIEW METHODS
 extension ProductFiltersViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {

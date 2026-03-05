@@ -8,35 +8,40 @@
 import UIKit
 
 class AddAmountForUserViewController: UIViewController {
-
-  @IBOutlet weak var headerView: UIView!
-  @IBOutlet weak var amountTextFiled: UITextField!
-  
-  private lazy var viewModel = AddAmountViewModel(hostVC: self)
-  var userId: Int? = 0
-  var onAmountAdded: (() -> Void)?
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    headerView.layer.cornerRadius = 24
-    headerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-    headerView.clipsToBounds = true
-    amountTextFiled.delegate = self
-  }
-  
-  
-  @IBAction func dismissDidTapped(_ sender: Any) {
-    self.dismiss(animated: true)
-  }
-  
-  @IBAction func applyDidTapped(_ sender: Any) {
-    if viewModel.validFields() {
-        viewModel.addAmountAPI()
+    
+    // MARK: - IBOutlet's
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var amountTextFiled: UITextField!
+    
+    // MARK: - Property Decalaration
+    private lazy var viewModel = AddAmountViewModel(hostVC: self)
+    var userId: Int? = 0
+    var onAmountAdded: (() -> Void)?
+    
+    // MARK: - View's LifeCycle Methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        headerView.layer.cornerRadius = 24
+        headerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        headerView.clipsToBounds = true
+        amountTextFiled.delegate = self
     }
-  }
-
+    
+    // MARK: - Button's Action
+    @IBAction func dismissDidTapped(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
+    @IBAction func applyDidTapped(_ sender: Any) {
+        if viewModel.validFields() {
+            viewModel.addAmountAPI()
+        }
+    }
+    
+    //MARK: Function's declaration
 }
 
+//MARK: UITextFieldDelegate Methods
 extension AddAmountForUserViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField,
@@ -50,12 +55,12 @@ extension AddAmountForUserViewController: UITextFieldDelegate {
         guard let stringRange = Range(range, in: currentText) else { return false }
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
         
-        // 1️⃣ Limit to 7 characters
+        // Limit to 7 characters
         if updatedText.count > 7 {
             return false
         }
         
-        // 2️⃣ Prevent starting with "0"
+        // Prevent starting with "0"
         if updatedText.count == 1 && updatedText == "0" {
             return false
         }

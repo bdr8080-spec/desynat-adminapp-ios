@@ -102,6 +102,7 @@ final class MultiSelectDropdownView: UIView {
     }
 }
 
+// MARK: - TABLE VIEW METHODS
 extension MultiSelectDropdownView: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -109,15 +110,8 @@ extension MultiSelectDropdownView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: "DropDownCheckboxCell", for: indexPath) as! DropDownCheckboxCell
-
-//        let isSelected = selectedIndexes.contains(indexPath.row)
         cell.titleLabel?.text = items[indexPath.row]
-//        cell.checkboxImageView?.image = isSelected
-//        ? .selectedCheckBox//UIImage(named: "checkbox_checked")
-//        : .unslectedCheckbox //UIImage(named: "checkbox_unchecked")
         let isSelected = selectedIndexes.contains(indexPath.row)
         cell.checkboxImageView?.image = isSelected
             ? .selectedCheckBox
@@ -125,29 +119,6 @@ extension MultiSelectDropdownView: UITableViewDelegate, UITableViewDataSource {
 
         return cell
     }
-
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//        let index = indexPath.row
-//
-//        // SELECT ALL
-//        if index == 0 {
-//            if selectedIndexes.count == items.count - 1 {
-//                selectedIndexes.removeAll()
-//            } else {
-//                selectedIndexes = Set(1..<items.count)
-//            }
-//        } else {
-//            if selectedIndexes.contains(index) {
-//                selectedIndexes.remove(index)
-//            } else {
-//                selectedIndexes.insert(index)
-//            }
-//        }
-//
-//        tableView.reloadData()
-//        onSelectionChanged?(selectedIndexes)
-//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 

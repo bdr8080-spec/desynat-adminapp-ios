@@ -9,6 +9,7 @@ import UIKit
 
 class EnrollDealDetailsViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var totalRevenueView: CustomView!
     @IBOutlet weak var noDataFoundLabel: UILabel!
     @IBOutlet weak var nextButton: UIButton!
@@ -24,6 +25,8 @@ class EnrollDealDetailsViewController: UIViewController {
             productCollectionView.registerCellFromNib(cellID: "DealDetailsCollectionViewCell")
         }
     }
+    
+    // MARK: - Property Decalaration
     var type: Int = 0
     private lazy var viewModel = EnrollDealDetailsViewModel(hostVC: self)
     private var searchWorkItem: DispatchWorkItem?
@@ -31,6 +34,7 @@ class EnrollDealDetailsViewController: UIViewController {
     var sellerId: Int? = 0
     var appliedDealFilter = DealFilterModel()
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTF.delegate = self
@@ -48,6 +52,7 @@ class EnrollDealDetailsViewController: UIViewController {
         viewModel.getAllProductsList()
     }
     
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -82,6 +87,7 @@ class EnrollDealDetailsViewController: UIViewController {
         reloadPaginationUI()
     }
     
+    //MARK: Function's declaration
     func configData(data: SellerDealrecord?) {
         usernameLabel.text = "\(data?.sellerDetails?.firstName ?? "") \(data?.sellerDetails?.lastName ?? "")"
         locationLabel.text = "\(data?.sellerDetails?.countryDetails?.name ?? "")"
@@ -130,6 +136,7 @@ class EnrollDealDetailsViewController: UIViewController {
     
 }
 
+// MARK: - COLLECTION VIEW METHODS
 extension EnrollDealDetailsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -143,7 +150,7 @@ extension EnrollDealDetailsViewController: UICollectionViewDelegate, UICollectio
         ) as! DealDetailsCollectionViewCell
         
         let product = viewModel.paginatedProducts[indexPath.item]
-
+        
         cell.statusButtonOutlet.isHidden = true
         cell.configDealData(data: product, categoryName: viewModel.productsList?.categoryDetails?.name ?? "", subCategoryName: viewModel.productsList?.subCategoryDetails?.nameEnglish ?? "")
         return cell
@@ -158,6 +165,7 @@ extension EnrollDealDetailsViewController: UICollectionViewDelegate, UICollectio
     
 }
 
+//MARK: UITextFieldDelegate Methods
 extension EnrollDealDetailsViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let currentText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? ""

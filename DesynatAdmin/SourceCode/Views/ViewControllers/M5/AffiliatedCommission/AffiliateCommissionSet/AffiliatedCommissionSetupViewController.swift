@@ -9,16 +9,19 @@ import UIKit
 
 class AffiliatedCommissionSetupViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var saveChangesButton: CustomButton!
     @IBOutlet weak var taxTF: UITextField!
     @IBOutlet weak var headerView: UIView!
     
+    // MARK: - Property Decalaration
     private lazy var viewModel = AffiliatedCommissionSetupViewModel(hostVC: self)
     var countryID: Int? = 0
     var taxAmount: String?
     var taxAmountSet: ((_ amount: String) -> Void)?
     var originalTaxValue: Double = 0.0
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         handleUISetup()
@@ -32,7 +35,7 @@ class AffiliatedCommissionSetupViewController: UIViewController {
         
     }
     
-    
+    // MARK: - Button's Action
     @IBAction func saveChangesDidTapped(_ sender: Any) {
         self.dismiss(animated: true) {
             guard let text = self.taxTF.text, !text.isEmpty else {
@@ -67,6 +70,7 @@ class AffiliatedCommissionSetupViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
+    //MARK: Function's declaration
     private func handleUISetup() {
         headerView.layer.cornerRadius = 24
         headerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -99,6 +103,7 @@ class AffiliatedCommissionSetupViewController: UIViewController {
     
 }
 
+//MARK: UITextFieldDelegate Methods
 extension AffiliatedCommissionSetupViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

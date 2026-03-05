@@ -10,6 +10,7 @@ import FSCalendar
 
 class LiveRequestListManagementViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var liveRequestTbleViewHieghtConstarint: NSLayoutConstraint!
     @IBOutlet weak var noLiveRequestDataFoundLabel: UILabel!
     @IBOutlet weak var noLiveRequestTimeSlotFoundLabel: UILabel!
@@ -20,7 +21,6 @@ class LiveRequestListManagementViewController: UIViewController {
             countryTableView.registerCellFromNib(cellID: "CountryTableViewCell")
         }
     }
-    
     @IBOutlet weak var timeSlotsTableView: TableViewDynamicHeight! {
         didSet {
             timeSlotsTableView.registerCellFromNib(cellID: "LiveRequestListViewCell")
@@ -63,6 +63,7 @@ class LiveRequestListManagementViewController: UIViewController {
     @IBOutlet weak var btnNextPage: UIButton!
     @IBOutlet weak var selectCountryView: UIView!
     
+    // MARK: - Property Decalaration
     private var searchWorkItem: DispatchWorkItem?
     var liveRequestTimeslotISSelcted: Bool = true
     var selectedTab: SelectedLiveRequestTab = .new
@@ -94,6 +95,7 @@ class LiveRequestListManagementViewController: UIViewController {
         return formatter
     }()
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTF.delegate = self
@@ -114,6 +116,7 @@ class LiveRequestListManagementViewController: UIViewController {
         }
     }
     
+    // MARK: - Button's Action
     @IBAction func liveRequestTimeSlotDidTapped(_ sender: Any) {
         liveReuqestTimeButtonOutlet.setImage(UIImage(named: "btnGradient"), for: .normal)
         liveRequestTimeLabel.textColor = .white
@@ -181,7 +184,6 @@ class LiveRequestListManagementViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    
     @IBAction func allDidTapped(_ sender: Any) {
         selectedTab = .new
         updateTabUI()
@@ -190,7 +192,6 @@ class LiveRequestListManagementViewController: UIViewController {
         viewModel.getLiveRequest()
     }
     
-    
     @IBAction func approvedDidTapped(_ sender: Any) {
         selectedTab = .approved
         updateTabUI()
@@ -198,7 +199,6 @@ class LiveRequestListManagementViewController: UIViewController {
         searchTF.text = ""
         viewModel.getLiveRequest()
     }
-    
     
     @IBAction func rejectedDidTapped(_ sender: Any) {
         selectedTab = .rejected
@@ -235,6 +235,7 @@ class LiveRequestListManagementViewController: UIViewController {
         viewModel.goToPreviousPage()
     }
     
+    //MARK: Function's declaration
     func updateTimeSlotTableHeight() {
         timeSlotsTableView.layoutIfNeeded()
         if !viewModel.slectedTimeSlot.isEmpty {
@@ -383,6 +384,7 @@ class LiveRequestListManagementViewController: UIViewController {
     
 }
 
+// MARK: - TABLE VIEW METHODS
 extension LiveRequestListManagementViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == liveREquestTableView {
@@ -538,6 +540,7 @@ extension LiveRequestListManagementViewController: FSCalendarDelegate, FSCalenda
     
 }
 
+//MARK: UITextFieldDelegate Methods
 extension LiveRequestListManagementViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

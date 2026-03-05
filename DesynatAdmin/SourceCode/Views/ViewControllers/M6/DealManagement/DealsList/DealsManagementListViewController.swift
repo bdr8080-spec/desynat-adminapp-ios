@@ -9,6 +9,7 @@ import UIKit
 
 class DealsManagementListViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var searchTF: BindableTextField!
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
@@ -24,16 +25,16 @@ class DealsManagementListViewController: UIViewController {
         }
     }
     
+    // MARK: - Property Decalaration
     var type: Int = 1
     private lazy var viewModel = DealsManagementListViewModel(hostVC: self)
     private var searchWorkItem: DispatchWorkItem?
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTF.delegate = self
         updatePaginationButtonImages()
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,6 +47,7 @@ class DealsManagementListViewController: UIViewController {
         }
     }
     
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -88,6 +90,7 @@ class DealsManagementListViewController: UIViewController {
         viewModel.goToPreviousPage(type: type)
     }
     
+    //MARK: Function's declaration
     func updatePaginationButtonImages() {
         // Previous Button
         if viewModel.currentPage == 1 {
@@ -110,6 +113,7 @@ class DealsManagementListViewController: UIViewController {
     
 }
 
+// MARK: - TABLE VIEW METHODS
 extension DealsManagementListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -136,6 +140,7 @@ extension DealsManagementListViewController: UITableViewDelegate, UITableViewDat
     
 }
 
+//MARK: UITextFieldDelegate Methods
 extension DealsManagementListViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

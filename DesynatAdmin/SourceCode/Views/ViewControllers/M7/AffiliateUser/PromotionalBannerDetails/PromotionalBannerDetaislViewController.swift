@@ -10,6 +10,7 @@ import SDWebImage
 
 class PromotionalBannerDetaislViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var categoryStackView: UIStackView!
     @IBOutlet weak var categorynameLabel: UILabel!
     @IBOutlet weak var subcatgeoryStackView: UIStackView!
@@ -21,6 +22,7 @@ class PromotionalBannerDetaislViewController: UIViewController {
     @IBOutlet weak var endDateLabel: UILabel!
     @IBOutlet weak var startDateLabel: UILabel!
     
+    // MARK: - Property Decalaration
     var bannerId: Int = 0
     var bannerListData: GetPromotionalBannersList?
     private lazy var viewModel = PromotionalBannerDetailsViewModel(hostVC: self)
@@ -28,11 +30,13 @@ class PromotionalBannerDetaislViewController: UIViewController {
     private var toggleStatus: String = "0"
     var onStatusUpdated: ((GetPromotionalBannersList) -> Void)?
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.getPromotionalScreenBannerDetailsList()
     }
     
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -84,6 +88,7 @@ class PromotionalBannerDetaislViewController: UIViewController {
         }
     }
     
+    //MARK: Function's declaration
     private func updateToggleUI() {
         // Toggle image
         statusImageView.image = toggleStatus == "1"

@@ -9,6 +9,7 @@ import UIKit
 
 class PromocodeDetailsViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var percentageOffLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var statusToggleImageView: UIImageView!
@@ -20,14 +21,17 @@ class PromocodeDetailsViewController: UIViewController {
     @IBOutlet weak var startDateLabel: UILabel!
     @IBOutlet weak var endDateLabel: UILabel!
     
+    // MARK: - Property Decalaration
     var promocodeDetails: PromocodeList?
     private lazy var viewModel = PromocodeDetailsViewModel(hostVC: self)
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         configData()
     }
     
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -52,6 +56,7 @@ class PromocodeDetailsViewController: UIViewController {
         viewModel.upadtePromocodeStatus(param: ["promocode_id": card.id ?? 0])
     }
     
+    //MARK: Function's declaration
     func configData() {
         percentageOffLabel.text = "Flat \(promocodeDetails?.discountPercent ?? "")% OFF" //promocodeDetails?.nameEnglish
         percentageOffDescriptionLabel.text = "Flat \(promocodeDetails?.discountPercent ?? "")% Off On minimum order \(promocodeDetails?.minOrderValue ?? "")"

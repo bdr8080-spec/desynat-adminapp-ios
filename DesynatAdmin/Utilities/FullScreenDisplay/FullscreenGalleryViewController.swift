@@ -23,7 +23,8 @@ class FullscreenGalleryViewController: UIViewController,
         layout.minimumInteritemSpacing = 0
         return UICollectionView(frame: .zero, collectionViewLayout: layout)
     }()
-
+    
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
 

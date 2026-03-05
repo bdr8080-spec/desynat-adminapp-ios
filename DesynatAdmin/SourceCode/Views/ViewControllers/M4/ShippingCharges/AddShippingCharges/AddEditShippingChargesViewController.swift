@@ -9,6 +9,7 @@ import UIKit
 
 class AddEditShippingChargesViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var toTF: UITextField!
     @IBOutlet weak var fromTF: UITextField!
     @IBOutlet weak var delieryChargeTF: UITextField!
@@ -16,12 +17,14 @@ class AddEditShippingChargesViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var headerView: UIView!
     
+    // MARK: - Property Decalaration
     var commingReason: ComingReasonAtAddEditShipping = .add
     var shippingInfo: ShippingChargesList?
     private lazy var viewModel = AddEditShippingChargesViewModel(hostVC: self)
     var changesAreDone: (() -> Void)?
     var countryId: Int? = 0
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetup()
@@ -29,10 +32,10 @@ class AddEditShippingChargesViewController: UIViewController {
         setupTextFieldDelegates()
     }
     
+    // MARK: - Button's Action
     @IBAction func dismissDidTapped(_ sender: Any) {
         self.dismiss(animated: true)
     }
-    
     
     @IBAction func saveChangesDidTapped(_ sender: Any) {
         guard validateFields() else { return }
@@ -53,6 +56,7 @@ class AddEditShippingChargesViewController: UIViewController {
         
     }
     
+    //MARK: Function's declaration
     private func setupTextFieldDelegates() {
         fromTF.delegate = self
         toTF.delegate = self
@@ -119,7 +123,7 @@ class AddEditShippingChargesViewController: UIViewController {
     
 }
 
-
+//MARK: UITextFieldDelegate Methods
 extension AddEditShippingChargesViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

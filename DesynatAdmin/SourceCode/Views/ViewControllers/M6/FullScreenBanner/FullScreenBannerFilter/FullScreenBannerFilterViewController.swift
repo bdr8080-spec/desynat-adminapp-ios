@@ -9,6 +9,7 @@ import UIKit
 
 class FullScreenBannerFilterViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var countryView: UIView!
     @IBOutlet weak var typeCollectionView: UICollectionView! {
         didSet {
@@ -21,6 +22,7 @@ class FullScreenBannerFilterViewController: UIViewController {
     @IBOutlet weak var fromTextField: UITextField!
     @IBOutlet weak var countryLabel: CustomLabelFont!
     
+    // MARK: - Property Decalaration
     let datePicker = UIDatePicker()
     private var activeTextField: UITextField?
     var countryName: String = ""
@@ -33,6 +35,7 @@ class FullScreenBannerFilterViewController: UIViewController {
     let typeForPromotionalScreenBanner = ["Home Top", "Home Bottom", "Category"]
     var selectedIndexOfType: Int? = -1
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         handleUISetup()
@@ -47,6 +50,7 @@ class FullScreenBannerFilterViewController: UIViewController {
         }
     }
     
+    // MARK: - Button's Action
     @IBAction func dismissDidTapped(_ sender: Any) {
         self.dismiss(animated: true)
     }
@@ -100,6 +104,7 @@ class FullScreenBannerFilterViewController: UIViewController {
         }
     }
     
+    //MARK: Function's declaration
     private func handleUISetup() {
         headerView.layer.cornerRadius = 24
         headerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -125,6 +130,7 @@ class FullScreenBannerFilterViewController: UIViewController {
     
 }
 
+// MARK: - COLLECTION VIEW METHODS
 extension FullScreenBannerFilterViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch bannerType {
@@ -225,7 +231,7 @@ extension FullScreenBannerFilterViewController {
     }
 }
 
-
+//MARK: UITextFieldDelegate Methods
 extension FullScreenBannerFilterViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField

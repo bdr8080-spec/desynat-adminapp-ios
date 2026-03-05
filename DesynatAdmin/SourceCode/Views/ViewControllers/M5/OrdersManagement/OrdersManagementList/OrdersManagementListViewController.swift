@@ -9,6 +9,7 @@ import UIKit
 
 class OrdersManagementListViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var collectionViewMainView: CustomView!
     @IBOutlet weak var categorriesCollectionView: UICollectionView! {
         didSet {
@@ -30,10 +31,12 @@ class OrdersManagementListViewController: UIViewController {
     @IBOutlet weak var btnPreviousPage: UIButton!
     @IBOutlet weak var btnNextPage: UIButton!
     
+    // MARK: - Property Decalaration
     private var orderCategoriesList = ["Active", "Return & Exchange", "Completed", "Cancelled"]
     private lazy var viewModel = OrderManagementListViewModel()
     private var selecetedCategoryId: Int = 0
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,30 +50,7 @@ class OrdersManagementListViewController: UIViewController {
         viewModel.setCategory(.active)
     }
     
-    private func setupBinding() {
-        
-        viewModel.onDataUpdate = { [weak self] in
-            guard let self else { return }
-            self.ordersTableView.reloadData()
-            self.refreshPageActionButton()
-        }
-        
-        viewModel.onNoData = { [weak self] isEmpty in
-            guard let self else { return }
-            self.noDataFoundLabel.isHidden = !isEmpty
-            self.ordersTableView.isHidden = isEmpty
-        }
-    }
-    
-    private func refreshPageActionButton() {
-        btnNextPage.isUserInteractionEnabled = !viewModel.isLastPage
-        btnPreviousPage.isUserInteractionEnabled = !viewModel.isFirstPage
-        btnNextPage.setImage(viewModel.isLastPage ? .lightnextimage : .nextRight, for: .normal)
-        btnPreviousPage.setImage(viewModel.isFirstPage ? .previousLeft : .darkpreviousimage, for: .normal)
-        lblPageCount.text =
-        "\(viewModel.currentPage < 10 ? "0" : "")\(viewModel.currentPage) of \(viewModel.totalPage < 10 ? "0" : "")\(viewModel.totalPage)"
-    }
-    
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -97,8 +77,35 @@ class OrdersManagementListViewController: UIViewController {
     @IBAction func handlePreviousPage(_ sender: UIButton) {
         viewModel.changePage(true)
     }
+    
+    //MARK: Function's declaration
+    private func setupBinding() {
+        
+        viewModel.onDataUpdate = { [weak self] in
+            guard let self else { return }
+            self.ordersTableView.reloadData()
+            self.refreshPageActionButton()
+        }
+        
+        viewModel.onNoData = { [weak self] isEmpty in
+            guard let self else { return }
+            self.noDataFoundLabel.isHidden = !isEmpty
+            self.ordersTableView.isHidden = isEmpty
+        }
+    }
+    
+    private func refreshPageActionButton() {
+        btnNextPage.isUserInteractionEnabled = !viewModel.isLastPage
+        btnPreviousPage.isUserInteractionEnabled = !viewModel.isFirstPage
+        btnNextPage.setImage(viewModel.isLastPage ? .lightnextimage : .nextRight, for: .normal)
+        btnPreviousPage.setImage(viewModel.isFirstPage ? .previousLeft : .darkpreviousimage, for: .normal)
+        lblPageCount.text =
+        "\(viewModel.currentPage < 10 ? "0" : "")\(viewModel.currentPage) of \(viewModel.totalPage < 10 ? "0" : "")\(viewModel.totalPage)"
+    }
+    
 }
 
+// MARK: - COLLECTION VIEW METHODS
 extension OrdersManagementListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -155,6 +162,7 @@ extension OrdersManagementListViewController: UICollectionViewDelegate, UICollec
     }
 }
 
+// MARK: - TABLE VIEW METHODS
 extension OrdersManagementListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

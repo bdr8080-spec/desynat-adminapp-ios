@@ -10,6 +10,8 @@ enum CountryCityListTableType:String {
     case country,cities
 }
 class CountryCityListViewController: UIViewController {
+    
+    // MARK: - IBOutlet's
     @IBOutlet weak var viewCountryContainer: CustomView!
     @IBOutlet weak var lblSelectedCountry: CustomLabelFont!
     @IBOutlet weak var lblNodata: UILabel!
@@ -26,17 +28,50 @@ class CountryCityListViewController: UIViewController {
         }
     }
     
+    // MARK: - Property Decalaration
     private var viewModel : CountryCityViewModel = CountryCityViewModel()
     private var isCountryExpanded : Bool = false
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpUi()
         self.setData()
     }
+    
+    // MARK: - Button's Action
+    @IBAction func handleAddCity(_ sender: UIButton) {
+        let vc = SelectCitiesViewController.viewFromNIB
+        vc.setCountry(String.getString(self.viewModel.selectedCountry?.id)) { cityId in
+            self.viewModel.addCity(id: cityId) {
+                self.viewModel.getCities()
+            }
+        }
+        self.presentVC(vc,withAnimation: false,modalPresentationStyle: .overCurrentContext)
+    }
+    
+    @IBAction func handleChooseCountry(_ sender: UIButton) {
+        self.isCountryExpanded = !isCountryExpanded
+        self.refreshCountrySelection()
+    }
+    
+    @IBAction func handleNextPage(_ sender: UIButton) {
+        self.viewModel.changePage(false)
+        self.refreshPageActionButton()
+    }
+    
+    @IBAction func handlePreviousPage(_ sender: UIButton) {
+        self.viewModel.changePage(true)
+        self.refreshPageActionButton()
+    }
+    @IBAction func handleBack(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    //MARK: Function's declaration
     private func setUpUi() {
         self.viewModel.setRefreshHandler(self,cityActionHandler: self)
-
+        
         self.tblCities.register(ServiceCitiesTableViewCell.self)
         self.tblCities.delegate = self
         self.tblCities.dataSource = self
@@ -75,37 +110,9 @@ class CountryCityListViewController: UIViewController {
         self.viewCountryContainer.isHidden = !self.isCountryExpanded
     }
     
-    @IBAction func handleAddCity(_ sender: UIButton) {
-        let vc = SelectCitiesViewController.viewFromNIB
-        vc.setCountry(String.getString(self.viewModel.selectedCountry?.id)) { cityId in
-            self.viewModel.addCity(id: cityId) {
-                self.viewModel.getCities()
-            }
-        }
-        self.presentVC(vc,withAnimation: false,modalPresentationStyle: .overCurrentContext)
-    }
-    
-    
-    @IBAction func handleChooseCountry(_ sender: UIButton) {
-        self.isCountryExpanded = !isCountryExpanded
-        self.refreshCountrySelection()
-    }
-
-    @IBAction func handleNextPage(_ sender: UIButton) {
-        self.viewModel.changePage(false)
-        self.refreshPageActionButton()
-    }
-    
-    @IBAction func handlePreviousPage(_ sender: UIButton) {
-        self.viewModel.changePage(true)
-        self.refreshPageActionButton()
-    }
-    @IBAction func handleBack(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    
 }
+
+// MARK: - TABLE VIEW METHODS
 extension CountryCityListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -139,11 +146,11 @@ extension CountryCityListViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch tableView {
         case tblCities:
-//            if (self.viewModel.arrayPlans.count > indexPath.row) {
-//                let vc = SubscriptionDetailViewController.viewFromNIB
-//                vc.setVM(SubscriptionDetailViewModel(data: viewModel.arrayPlans[indexPath.row]))
-//                self.navigate(to: vc)
-//            }
+            //            if (self.viewModel.arrayPlans.count > indexPath.row) {
+            //                let vc = SubscriptionDetailViewController.viewFromNIB
+            //                vc.setVM(SubscriptionDetailViewModel(data: viewModel.arrayPlans[indexPath.row]))
+            //                self.navigate(to: vc)
+            //            }
             break
         case tblCountry:
             if (self.viewModel.countryListData.count > indexPath.row) {
@@ -160,7 +167,7 @@ extension CountryCityListViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        viewWillLayoutSubviews()
+        //        viewWillLayoutSubviews()
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         tableView == self.tblCities ? 76 : UITableView.automaticDimension

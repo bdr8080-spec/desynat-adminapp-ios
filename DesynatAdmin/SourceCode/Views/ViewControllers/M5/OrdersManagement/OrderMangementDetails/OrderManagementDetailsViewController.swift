@@ -11,7 +11,7 @@ import Cosmos
 
 class OrderManagementDetailsViewController: UIViewController {
     
-    //MARK: IBOUTLETS
+    // MARK: - IBOutlet's
     @IBOutlet weak var assignDriverView: UIView!
     @IBOutlet weak var driverDetailsView: UIView!
     @IBOutlet weak var productTableView: UITableView! {
@@ -66,16 +66,16 @@ class OrderManagementDetailsViewController: UIViewController {
     @IBOutlet weak var prodcuctReviewtitleLabel: UILabel!
     @IBOutlet weak var sellerReviewTitleLabel: UILabel!
     
-    //MARK: VARIABLES
+    // MARK: - Property Decalaration
     private lazy var viewModel = OrderManagementListViewModel()
     var orderId: Int?
     lazy var stepImages: [StepImage] = [
         StepImage(selected: "confirmedOrder", unselected: "confirmedOrder"),
         StepImage(selected: "shippedDone", unselected: "shipped"),
         StepImage(selected: "ontheWayDone", unselected: "ontheWay"),
-        StepImage(selected: "deliveredDone", unselected: "delivered"),
-    ]
+        StepImage(selected: "deliveredDone", unselected: "delivered"),]
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         productTableView.rowHeight = UITableView.automaticDimension
@@ -85,6 +85,7 @@ class OrderManagementDetailsViewController: UIViewController {
         getOrderDetailsAndHandleData()
     }
     
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -136,6 +137,7 @@ class OrderManagementDetailsViewController: UIViewController {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
+    //MARK: Function's declaration
     func getOrderDetailsAndHandleData() {
         self.viewModel.getOrderDetail(orderId: self.orderId ?? 0) {
             self.lblSellerName.text = "\(self.viewModel.orderDetail?.productDetails?.sellerDetails?.firstName ?? "") \(self.viewModel.orderDetail?.productDetails?.sellerDetails?.lastName ?? "")"
@@ -481,10 +483,9 @@ class OrderManagementDetailsViewController: UIViewController {
             self.view.layoutIfNeeded()
         }
     }
-    
-    
 }
 
+// MARK: - TABLE VIEW METHODS
 extension OrderManagementDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

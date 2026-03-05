@@ -10,20 +10,22 @@ import DropDown
 
 class BannersMangementFilterViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var toTextField: UITextField!
     @IBOutlet weak var fromTextField: UITextField!
     @IBOutlet weak var countryLabel: CustomLabelFont!
     
+    // MARK: - Property Decalaration
     private var viewModel : BannersMangementFilterViewModel = BannersMangementFilterViewModel()
     private var isCountryExpanded : Bool = false
     private var callBackFromApplyFilter : ((FilterInfo) -> Void)?
     private var lastEditedTextField : UITextField?
     private let datePicker = UIDatePicker()
-    
     private var context: FilterContext?
     private var callBack: ((FilterInfo) -> Void)?
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         handleUISetup()
@@ -33,32 +35,7 @@ class BannersMangementFilterViewController: UIViewController {
         }
     }
     
-    func configure(
-        context: FilterContext,
-        filter: FilterInfo,
-        callBack: @escaping (FilterInfo) -> Void
-    ) {
-        self.context = context
-        self.viewModel.setFilter(filter)
-        self.callBack = callBack
-    }
-    
-    
-    func setIntitial(_ filterInfo:FilterInfo,callBack:@escaping((FilterInfo) -> Void))  {
-        self.viewModel.setFilter(filterInfo)
-        self.callBackFromApplyFilter = callBack
-    }
-    
-    func setData() {
-        let filterInfo = viewModel.filterInfo
-        if let startDate = filterInfo.startDate {
-            self.fromTextField.text = CommonUtils.getDateString(from: startDate,format: "dd/MM/yyyy")
-        }
-        if let endDate = filterInfo.endDate {
-            self.toTextField.text = CommonUtils.getDateString(from: endDate,format: "dd/MM/yyyy")
-        }
-    }
-    
+    // MARK: - Button's Action
     @IBAction func dismissDidTapped(_ sender: Any) {
         self.dismiss(animated: true)
     }
@@ -73,7 +50,6 @@ class BannersMangementFilterViewController: UIViewController {
         callBack?(viewModel.filterInfo)
         dismiss(animated: true)
     }
-    
     
     @IBAction func countryDidTapped(_ sender: UIButton) {
         let countryNames = viewModel.countryListData.map { country -> String in
@@ -102,12 +78,40 @@ class BannersMangementFilterViewController: UIViewController {
         dropDown.show()
     }
     
+    //MARK: Function's declaration
     private func handleUISetup() {
         headerView.layer.cornerRadius = 24
         headerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         headerView.clipsToBounds = true
         setUpTextFields()
     }
+    
+    func configure(
+        context: FilterContext,
+        filter: FilterInfo,
+        callBack: @escaping (FilterInfo) -> Void
+    ) {
+        self.context = context
+        self.viewModel.setFilter(filter)
+        self.callBack = callBack
+    }
+    
+    
+    func setIntitial(_ filterInfo:FilterInfo,callBack:@escaping((FilterInfo) -> Void))  {
+        self.viewModel.setFilter(filterInfo)
+        self.callBackFromApplyFilter = callBack
+    }
+    
+    func setData() {
+        let filterInfo = viewModel.filterInfo
+        if let startDate = filterInfo.startDate {
+            self.fromTextField.text = CommonUtils.getDateString(from: startDate,format: "dd/MM/yyyy")
+        }
+        if let endDate = filterInfo.endDate {
+            self.toTextField.text = CommonUtils.getDateString(from: endDate,format: "dd/MM/yyyy")
+        }
+    }
+    
 }
 
 extension BannersMangementFilterViewController {

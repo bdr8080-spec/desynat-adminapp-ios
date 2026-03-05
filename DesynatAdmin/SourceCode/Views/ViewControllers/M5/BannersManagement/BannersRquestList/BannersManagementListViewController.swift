@@ -15,8 +15,7 @@ class BannersManagementListViewController: UIViewController, HandleTableRefresh 
         refreshPageActionButton()
     }
     
-    
-    
+    // MARK: - IBOutlet's
     @IBOutlet weak var txtFieldSearch: BindableTextField! {
         didSet {
             self.txtFieldSearch.bind(callback: {self.viewModel.setSearch($0)})
@@ -34,15 +33,16 @@ class BannersManagementListViewController: UIViewController, HandleTableRefresh 
             bannersTableView.registerCellFromNib(cellID: "BannersManagementListTableViewCell")
         }
     }
-    
     @IBOutlet weak var pageTitleLabel: UILabel!
     @IBOutlet weak var lblPageCount: UILabel!
     @IBOutlet weak var btnPreviousPage: UIButton!
     @IBOutlet weak var btnNextPage: UIButton!
     
+    // MARK: - Property Decalaration
     var type: BannersSelectedListType = .new
     private var viewModel : BannersManagementListViewModel = BannersManagementListViewModel()
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,31 +56,7 @@ class BannersManagementListViewController: UIViewController, HandleTableRefresh 
         viewModel.changeTab(.new)
     }
     
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        //      setUpUi()
-        //      
-        //      // Default tab = New
-        //      viewModel.changeTab(.new)
-    }
-    
-    private func setUpUi() {
-        self.bannersTableView.dataSource = self
-        self.bannersTableView.delegate = self
-        self.bannersTableView.separatorStyle = .none
-        self.viewModel.setRefreshHandler(self,sellerActionHandler: self)
-        self.refreshPageActionButton()
-    }
-    
-    private func refreshPageActionButton() {
-        self.btnNextPage.setImage(self.viewModel.isLastPage ? .lightnextimage : .nextRight, for: .normal)
-        self.btnNextPage.isUserInteractionEnabled = !self.viewModel.isLastPage
-        self.btnPreviousPage.setImage(self.viewModel.isFirstPage ? .previousLeft : .darkpreviousimage, for: .normal)
-        self.btnPreviousPage.isUserInteractionEnabled = !self.viewModel.isFirstPage
-        self.lblPageCount.text = "\(self.viewModel.currentPage < 10 ? "0" : "")\(self.viewModel.currentPage) of \(self.viewModel.totalPage < 10 ? "0" : "")\(self.viewModel.totalPage)"
-    }
-    
+    // MARK: - Button's Action
     @IBAction func nowDidTapped(_ sender: Any) {
         handleNewAction()
         pageTitleLabel.text = "Banner requests"
@@ -125,6 +101,22 @@ class BannersManagementListViewController: UIViewController, HandleTableRefresh 
         self.present(vc, animated: true)
     }
     
+    //MARK: Function's declaration
+    private func setUpUi() {
+        self.bannersTableView.dataSource = self
+        self.bannersTableView.delegate = self
+        self.bannersTableView.separatorStyle = .none
+        self.viewModel.setRefreshHandler(self,sellerActionHandler: self)
+        self.refreshPageActionButton()
+    }
+    
+    private func refreshPageActionButton() {
+        self.btnNextPage.setImage(self.viewModel.isLastPage ? .lightnextimage : .nextRight, for: .normal)
+        self.btnNextPage.isUserInteractionEnabled = !self.viewModel.isLastPage
+        self.btnPreviousPage.setImage(self.viewModel.isFirstPage ? .previousLeft : .darkpreviousimage, for: .normal)
+        self.btnPreviousPage.isUserInteractionEnabled = !self.viewModel.isFirstPage
+        self.lblPageCount.text = "\(self.viewModel.currentPage < 10 ? "0" : "")\(self.viewModel.currentPage) of \(self.viewModel.totalPage < 10 ? "0" : "")\(self.viewModel.totalPage)"
+    }
     
     private func handleApproveAction() {
         nowButton.setImage(UIImage(named: ""), for: .normal)
@@ -177,7 +169,7 @@ class BannersManagementListViewController: UIViewController, HandleTableRefresh 
     
 }
 
-
+// MARK: - TABLE VIEW METHODS
 extension BannersManagementListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -192,15 +184,7 @@ extension BannersManagementListViewController: UITableViewDelegate, UITableViewD
         }
         return cell
     }
-    
-    //  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //    if self.viewModel.arraySellers.count > indexPath.row {
-    //      let vc = BannersManagementDetailsViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
-    //      vc.detailData = self.viewModel.arraySellers[indexPath.row]
-    //      vc.type = type
-    //      self.navigationController?.pushViewController(vc, animated: true)
-    //    }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let vc = BannersManagementDetailsViewController
@@ -228,10 +212,7 @@ extension BannersManagementListViewController: UITableViewDelegate, UITableViewD
         }
         
         navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    //  }
-    
+    } 
 }
 
 

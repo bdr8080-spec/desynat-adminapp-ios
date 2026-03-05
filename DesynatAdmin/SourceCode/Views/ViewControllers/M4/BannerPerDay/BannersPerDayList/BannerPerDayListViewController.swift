@@ -9,6 +9,7 @@ import UIKit
 
 class BannerPerDayListViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var noDataFoundLabel: UILabel!
     @IBOutlet weak var topButton: CustomButton!
     @IBOutlet weak var topLabel: UILabel!
@@ -22,9 +23,11 @@ class BannerPerDayListViewController: UIViewController {
         }
     }
     
+    // MARK: - Property Decalaration
     var type: Int = 1 //1-top,2-bottom,3-sub category
     private lazy var viewModel = BannerPerDayListViewModel(hostVC: self)
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         topButton.layer.cornerRadius = 5
@@ -37,6 +40,7 @@ class BannerPerDayListViewController: UIViewController {
         viewModel.getAllBannersPerDay()
     }
     
+    // MARK: - Button's Action
     @IBAction func topDidTapped(_ sender: Any) {
         topButton.setImage(UIImage(named: "topTabbar"), for: .normal)
         topButton.layer.cornerRadius = 5
@@ -91,7 +95,7 @@ class BannerPerDayListViewController: UIViewController {
     
 }
 
-
+// MARK: - TABLE VIEW METHODS
 extension BannerPerDayListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.bannersListData.count

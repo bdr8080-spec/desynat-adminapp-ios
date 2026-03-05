@@ -18,6 +18,7 @@ class AffiliatedWithdrawalTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -36,6 +37,10 @@ class AffiliatedWithdrawalTableViewCell: UITableViewCell {
     func configData(requestType: AffiliatedWithdrawalListType) {
         actionStackView.isHidden = true
         statusView.isHidden = true
+//        self.lblDateTime.text = CommonUtils.getDateStrings(
+//            from: Date(iso8601String: String.getString(self.viewModel.orderDetail?.createdAt)),
+//            format: "dd/MM/yyyy 'at' hh:mm a"
+//        )
         switch requestType {
         case .newRequest:
             actionStackView.isHidden = false
@@ -48,6 +53,22 @@ class AffiliatedWithdrawalTableViewCell: UITableViewCell {
             statusLabel.text = "Rejected"
             statusLabel.textColor = UIColor(hexString: "#D53B36")
         }
+    }
+    
+    private func convertISOToDMY(_ isoString: String) -> String? {
+        // ISO8601 parser
+        let isoFormatter = ISO8601DateFormatter()
+        isoFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        
+        // Parse to Date
+        guard let date = isoFormatter.date(from: isoString) else {
+            return nil
+        }
+        
+        // Output formatter
+        let outputFormatter = DateFormatter() //21/04/2024 at 07:30 PM
+        outputFormatter.dateFormat = "dd/MM/yyyy at hh:mm a" //"dd/MM/yyyy 'at' hh:mm a"
+        return outputFormatter.string(from: date)
     }
     
 }

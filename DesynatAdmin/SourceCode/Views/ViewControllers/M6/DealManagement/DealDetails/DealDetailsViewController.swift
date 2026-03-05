@@ -10,6 +10,7 @@ import SDWebImage
 
 class DealDetailsViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var subCategoryLabel: UILabel!
     @IBOutlet weak var totalSellerLabel: UILabel!
@@ -24,7 +25,6 @@ class DealDetailsViewController: UIViewController {
             enrollTableView.registerCellFromNib(cellID: "EnrolledSellerTableViewCell")
         }
     }
-    
     @IBOutlet weak var hotDealsLaebl: UILabel!
     @IBOutlet weak var hotDealsView: UIView!
     @IBOutlet weak var hotDealsstackView: UIStackView!
@@ -35,12 +35,13 @@ class DealDetailsViewController: UIViewController {
     @IBOutlet weak var activeButtonStackView: UIStackView!
     @IBOutlet weak var revenueDetailsView: CustomView!
     
+    // MARK: - Property Decalaration
     var type: Int = 1 // 1 active 2 expired
     var dealId: Int = 0
     var dealData: DealListManagementList?
     private lazy var viewModel = DealDetailsViewModel(hostVC: self)
     
-    
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         if type == 1 {
@@ -63,6 +64,7 @@ class DealDetailsViewController: UIViewController {
         viewModel.getDealDetailsList()
     }
     
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -98,6 +100,7 @@ class DealDetailsViewController: UIViewController {
         }
     }
     
+    //MARK: Function's declaration
     private func reloadPaginationUI() {
         let hasData = viewModel.totalItems > 0
         
@@ -200,6 +203,7 @@ class DealDetailsViewController: UIViewController {
     }
 }
 
+// MARK: - TABLE VIEW METHODS
 extension DealDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

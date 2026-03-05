@@ -10,6 +10,8 @@ import GoogleMaps
 import GooglePlaces
 
 class AddZoneViewController: UIViewController {
+    
+    // MARK: - IBOutlet's
     @IBOutlet weak var txtFieldNameEnglish: BindableTextField! {
         didSet {
             txtFieldNameEnglish.bind(callback: {self.viewModel.setEnglishName($0)})
@@ -26,20 +28,24 @@ class AddZoneViewController: UIViewController {
     @IBOutlet weak var btnCurrentLocation: CustomButtonFont!
     @IBOutlet weak var txtFieldSearch: BindableTextField!
     @IBOutlet weak var lblTitle: UILabel!
-    
     @IBOutlet weak var viewSearch: UIView!
     @IBOutlet weak var btnSubmitt: CustomButton!
-    private var viewModel : AddZoneViewModel = AddZoneViewModel()
     @IBOutlet weak var mapView: GMSMapView!
+    
+    // MARK: - Property Decalaration
+    private var viewModel : AddZoneViewModel = AddZoneViewModel()
     private(set) var isForView : Bool = false
     private var titleString : String = ""
     private var markers: [GMSMarker] = []
     private(set) var isInitalLoad : Bool = true
+    
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         txtFieldNameArabic.delegate = self
         self.setUpUi()
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         if self.viewModel.data.coordinates.isEmpty {
             self.searchLocation(text: "\(String.getString(self.viewModel.cityInfo?.name))\(String.getString(self.viewModel.cityInfo?.countryName))") { placeId in
@@ -55,9 +61,45 @@ class AddZoneViewController: UIViewController {
             self.cameraMoveToLocation(isForCurrent: false)
             self.setAreaPolyGon()
         }
-       
+        
     }
     
+    // MARK: - Button's Action
+    @IBAction func tapUndo(_ sender: Any) {
+        let needRefresh = self.viewModel.undoLPath()
+        if (needRefresh) {
+            if let lastMarker = self.markers.popLast() {
+                lastMarker.map = nil
+            }
+            self.btnUndu.isHidden = self.viewModel.data.coordinates.isEmpty
+            self.refreshPath()
+        }
+    }
+    
+    @IBAction func handleBack(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    @IBAction func handleSubmit(_ sender: Any) {
+        let errorMesage = self.viewModel.data.validate()
+        if (errorMesage != .none) {
+            self.showAlert(msg: errorMesage.value())
+            return
+        }
+        self.viewModel.addZone {
+            let vc = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
+            vc.setTitle("Zone \(self.viewModel.isForEdit ? "Updated" : "Added")\nsuccessfully!")
+            vc.callBackDismiss = {
+                self.navigationController?.popViewController(animated: true)
+            }
+            self.presentVC(vc,modalPresentationStyle: .overCurrentContext)
+        }
+    }
+    
+    @IBAction func handleCurrentLocation(_ sender: Any) {
+        self.cameraMoveToLocation(isForCurrent: true)
+    }
+    
+    //MARK: Function's declaration
     func searchLocation(text:String,_ completion:@escaping (String) -> Void)  {
         let placesClient : GMSPlacesClient = GMSPlacesClient.shared()
         let filter = GMSAutocompleteFilter()
@@ -111,10 +153,6 @@ class AddZoneViewController: UIViewController {
         
         self.mapView.settings.myLocationButton = false
         self.mapView.padding = UIEdgeInsets(top: 0, left: 0, bottom: 30, right: 0)
-        
-//        if !viewModel.data.coordinates.isEmpty {
-//
-//        }
         self.btnCurrentLocation.isHidden = true
         self.imgPin.isHidden = true
         if (!self.viewModel.isForEdit) {
@@ -153,13 +191,6 @@ class AddZoneViewController: UIViewController {
     let polygon = GMSPolygon()
     
     private func setAreaPolyGon() {
-//        let polyGon = GMSCircle(position: CLLocationCoordinate2DMake(coordinates.latitude, coordinates.longitude), radius:(10 * 0.62) * 1609.0)
-        //        polyGon.fillColor = UIColor(hexString: "#6C88E3").withAlphaComponent(0.5)
-        //        polyGon.strokeColor = .clear
-        //        polyGon.strokeWidth = 0.0
-        //        polyGon.map = self.mapView
-        //        let path = GMSMutablePath()
-        //        self.polyGonPath?.add(coordinates)
         self.polyGonPath = GMSMutablePath()
         self.viewModel.data.coordinates.forEach({polyGonPath?.add($0)})
         if let polyGonPath {
@@ -194,44 +225,9 @@ class AddZoneViewController: UIViewController {
         }
     }
     
-    @IBAction func tapUndo(_ sender: Any) {
-        let needRefresh = self.viewModel.undoLPath()
-        if (needRefresh) {
-            if let lastMarker = self.markers.popLast() {
-                lastMarker.map = nil
-            }
-            self.btnUndu.isHidden = self.viewModel.data.coordinates.isEmpty
-            self.refreshPath()
-        }
-    }
-    
-    @IBAction func handleBack(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-    }
-    @IBAction func handleSubmit(_ sender: Any) {
-        let errorMesage = self.viewModel.data.validate()
-        if (errorMesage != .none) {
-            self.showAlert(msg: errorMesage.value())
-            return
-        }
-        self.viewModel.addZone {
-            let vc = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
-            vc.setTitle("Zone \(self.viewModel.isForEdit ? "Updated" : "Added")\nsuccessfully!")
-            vc.callBackDismiss = {
-                self.navigationController?.popViewController(animated: true)
-            }
-            self.presentVC(vc,modalPresentationStyle: .overCurrentContext)
-        }
-    }
-    
-    @IBAction func handleCurrentLocation(_ sender: Any) {
-        self.cameraMoveToLocation(isForCurrent: true)
-    }
 }
 extension AddZoneViewController : GMSMapViewDelegate  {
     func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
-        //        self.getAddressFromCameraPosition(cameraPosition: position)
-        
         LocationManager.getCityAndStateCountry(lat: position.target.latitude, long: position.target.longitude) { string in
             if(!self.isInitalLoad) {
                 self.txtFieldSearch.text = string
@@ -244,12 +240,6 @@ extension AddZoneViewController : GMSMapViewDelegate  {
             return
         }
         LocationManager.sharedInstance.reverseGeocodeCoordinate(coordinate) { address ,cityName in
-//            if (cityName.lowercased() == String.getString(self.viewModel.cityInfo?.name)) {
-//            let marker = GMSMarker(position: coordinate)
-//            marker.icon = UIImage(named: "ic_map_point") // ← use your custom icon or a default one
-//            marker.map = self.mapView
-//            self.markers.append(marker)
-            
             let marker = GMSMarker(position: coordinate)
             let size: CGFloat = 10
             UIGraphicsBeginImageContextWithOptions(CGSize(width: size, height: size), false, 0.0)
@@ -262,19 +252,18 @@ extension AddZoneViewController : GMSMapViewDelegate  {
             marker.groundAnchor = CGPoint(x: 0.5, y: 0.5)
             marker.map = self.mapView
             self.markers.append(marker)
-
+            
             
             self.btnUndu.isHidden = false
             self.viewModel.setLocation(coordinate)
             self.refreshPath()
-//            } else {
-//                self.showAlert(msg: "The given coordinate is not in \(String.getString(self.viewModel.cityInfo?.name)) city")
-//            }
         }
         
     }
-
+    
 }
+
+//MARK: UITextFieldDelegate Methods
 extension AddZoneViewController : UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let currentText = (textField.text! as NSString).replacingCharacters(in: range, with: string)
@@ -331,14 +320,6 @@ extension AddZoneViewController : GMSAutocompleteViewControllerDelegate {
                     
                 }
             }
-//            let layer = self.mapView.featureLayer(of: .administrativeAreaLevel1)
-//
-//            // Define a style with purple
-//            let style = FeatureStyle(fill: .purple.withAlphaComponent(0.5), stroke: .purple, strokeWidth: 3.0)
-//
-//            // Apply the style to a single boundary.
-//            layer.style = { ($0.placeID == String.getString(place.placeID)/* Hana, HI */) ? style : nil }
-            
             viewController.dismiss(animated: true, completion: nil)
         }
         
@@ -347,7 +328,7 @@ extension AddZoneViewController : GMSAutocompleteViewControllerDelegate {
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
         // TODO: handle the error.
         print("Error: ", error.localizedDescription)
-            viewController.dismiss(animated: true, completion: nil)
+        viewController.dismiss(animated: true, completion: nil)
     }
     
     // User canceled the operation.

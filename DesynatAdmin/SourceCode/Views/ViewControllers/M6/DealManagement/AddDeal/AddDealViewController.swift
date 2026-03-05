@@ -11,6 +11,7 @@ import DropDown
 
 class AddDealViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var toTF: UITextField!
     @IBOutlet weak var fromTf: UITextField!
     @IBOutlet weak var discountTF: UITextField!
@@ -26,6 +27,7 @@ class AddDealViewController: UIViewController {
         }
     }
     
+    // MARK: - Property Decalaration
     var comingforEdit: Bool = false
     private lazy var viewModel = AddDealViewModel(hostVC: self)
     var selectedImageUrl: String = ""
@@ -34,7 +36,6 @@ class AddDealViewController: UIViewController {
     var dealData: DealListManagementList?
     var selectedIndexes = Set<Int>()
     var selectedIds: [String] = []
-    
     var subCategoryNames: [String] {
         return ["Select All"] + viewModel.subcategoriesList.map {
             $0.nameEnglish ?? ""
@@ -42,12 +43,14 @@ class AddDealViewController: UIViewController {
     }
     private var subCategoryDropdown: MultiSelectDropdownView?
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.getAllCategory()
         initialSetUp()
     }
     
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -102,6 +105,7 @@ class AddDealViewController: UIViewController {
         }
     }
     
+    //MARK: Function's declaration
     private func updateSelection() {
         
         let validIndexes = selectedIndexes
@@ -208,6 +212,7 @@ class AddDealViewController: UIViewController {
     }
 }
 
+// MARK: - COLLECTION VIEW METHODS
 extension AddDealViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -242,6 +247,7 @@ extension AddDealViewController: UICollectionViewDelegate, UICollectionViewDataS
     
 }
 
+//MARK: UITextFieldDelegate Methods
 extension AddDealViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

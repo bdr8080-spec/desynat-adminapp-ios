@@ -8,6 +8,8 @@
 import UIKit
 
 class AddPlanViewController: UIViewController {
+    
+    // MARK: - IBOutlet's
     @IBOutlet weak var viewCountryContainer: CustomView!
     @IBOutlet weak var lblSelectedCountry: CustomLabelFont!
     @IBOutlet weak var lnlFlag: CustomLabelFont!
@@ -22,9 +24,7 @@ class AddPlanViewController: UIViewController {
             newPriceTextField.bind(callback: {self.viewModel.setnewPrice($0)})
         }
     }
-    
     @IBOutlet weak var lblNewDurationType: CustomLabelFont!
-   
     @IBOutlet weak var txtFieldEnglishPlanName: BindableTextField! {
         didSet {
             txtFieldEnglishPlanName.bind(callback: {self.viewModel.setPlanEnglishName($0)})
@@ -40,15 +40,12 @@ class AddPlanViewController: UIViewController {
             txtFieldDuration.bind(callback: {self.viewModel.setDuration($0)})
         }
     }
-    
     @IBOutlet weak var textNewDuration: BindableTextField!
     {
         didSet {
             textNewDuration.bind(callback: {self.viewModel.setnewDuration($0)})
         }
     }
-    
-    
     @IBOutlet weak var lblDurationTyp: CustomLabelFont!
     @IBOutlet weak var viewDurationSeletion: UIView!
     @IBOutlet weak var txtFielNoVideos: BindableTextField! {
@@ -82,92 +79,27 @@ class AddPlanViewController: UIViewController {
             txtFieldComission.bind(callback: {self.viewModel.setComission($0)})
         }
     }
-    
     @IBOutlet weak var btnAdd: CustomButton!
     @IBOutlet weak var btnOpen: CustomButton!
     @IBOutlet weak var btnClose: CustomButton!
     @IBOutlet weak var btnYes: CustomButton!
     @IBOutlet weak var btnNo: CustomButton!
-    
     @IBOutlet weak var viewComission: UIView!
+    
+    
+    // MARK: - Property Decalaration
     private var isCountryExpanded : Bool = false
     private(set) var viewModel : AddSubscriptionPlansViewModel = AddSubscriptionPlansViewModel()
     private(set) var subscriptionInfo: PlanInfo = PlanInfo()
-
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.setUpUi()
         self.setData()
     }
     
-    func setIntial(_ data:PlanInfo) {
-        self.viewModel.setData(data)
-    }
-    
-    func setCountry(_ country: GetCountryDataModel) {
-        self.subscriptionInfo.country = country
-    }
-
-    private func setUpUi() {
-        self.viewModel.setRefreshHandler(self)
-        self.txtFieldArabicPlanName.delegate = self
-        self.txtFieldEnglishPlanName.delegate = self
-        self.tblCountry.register(CountryTableViewCell.self)
-        self.tblCountry.dataSource = self
-        self.tblCountry.delegate = self
-        self.txtFieldDuration.delegate = self
-        self.tblCountry.separatorStyle = .none
-        self.lblTitle.text = self.viewModel.isForEdit ? "Update plan" : "Create New Plan"
-        self.btnAdd.setTitle(self.viewModel.isForEdit ? "Update" : "Add", for: .normal)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            self.btnAdd.applyGradient(colours: [UIColor.init(hexString: "#DFBF8F"), UIColor.init(hexString: "#6E4527")],gradientDirection: .topToBottom,cornerRadius: 5)
-        }
-        self.lblDurationTyp.text = self.viewModel.subscriptionInfo.durationType.title
-        self.lblNewDurationType.text = self.viewModel.subscriptionInfo.NewdurationType.title
-
-    }
-    
-    func setData() {
-        self.viewModel.getAllCountry {
-            self.refreshCountrySelection()
-        }
-        if (self.viewModel.isForEdit) {
-            self.priceLabel.text = "Old Price"
-            self.durationLabel.text = "Old Duration"
-            self.newPriceView.isHidden = false
-            self.newDurationView.isHidden = false
-            self.txtFieldEnglishPlanName.text = self.viewModel.subscriptionInfo.planNameEnglish
-            self.txtFieldArabicPlanName.text = self.viewModel.subscriptionInfo.planNameArabic
-            self.txtFieldDuration.text = String.getString(self.viewModel.subscriptionInfo.duration)
-            self.textNewDuration.text = String.getString(self.viewModel.subscriptionInfo.Newduration)
-
-            self.txtFielNoVideos.text = String.getString(self.viewModel.subscriptionInfo.noOfVideos)
-            self.txtFielNoProducts.text = String.getString(self.viewModel.subscriptionInfo.noOfProducts)
-            self.txtFielNoHighlights.text = String.getString(self.viewModel.subscriptionInfo.noOfHighlights)
-            self.txtFielNoEmployee.text = String.getString(self.viewModel.subscriptionInfo.noOfEmployee)
-            self.txtFieldPrice.text = String.getString(self.viewModel.subscriptionInfo.price)
-            self.newPriceTextField.text = String.getString(self.viewModel.subscriptionInfo.NewPrice)
-            self.txtFieldComission.text = String.getString(self.viewModel.subscriptionInfo.comission)
-        } else {
-            self.priceLabel.text = "Price"
-            self.durationLabel.text = "Duration"
-            self.newPriceView.isHidden = true
-            self.newDurationView.isHidden = true
-        }
-        self.selectComission(self.viewModel.subscriptionInfo.isComission)
-        self.viewComission.isHidden = !self.viewModel.subscriptionInfo.isComission
-        self.selectStoryOpen(self.viewModel.subscriptionInfo.isStoryOpen)
-    }
-    func selectStoryOpen(_ bool:Bool) {
-        self.btnOpen.setImage(bool ? .radioSelected : .radioUnselected, for: .normal)
-        self.btnClose.setImage(!bool ? .radioSelected : .radioUnselected, for: .normal)
-    }
-    func selectComission(_ bool:Bool) {
-        self.btnYes.setImage(bool ? .radioSelected : .radioUnselected, for: .normal)
-        self.btnNo.setImage(!bool ? .radioSelected : .radioUnselected, for: .normal)
-    }
+    // MARK: - Button's Action
     @IBAction func handleChooseCountry(_ sender: Any) {
         self.isCountryExpanded = !isCountryExpanded
         self.refreshCountrySelection()
@@ -213,7 +145,6 @@ class AddPlanViewController: UIViewController {
             }
         }
     }
-
     
     @IBAction func handleBack(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -226,6 +157,7 @@ class AddPlanViewController: UIViewController {
         }
     }
     
+    //MARK: Function's declaration
     func refreshCountrySelection() {
         if let countryListData = viewModel.subscriptionInfo.country {
             self.lblSelectedCountry.text = String.getString(countryListData.name)
@@ -236,8 +168,76 @@ class AddPlanViewController: UIViewController {
         self.lnlFlag.isHidden = !self.isCountryExpanded
         self.viewCountryContainer.isHidden = !self.isCountryExpanded
     }
-
+    
+    func setIntial(_ data:PlanInfo) {
+        self.viewModel.setData(data)
+    }
+    
+    func setCountry(_ country: GetCountryDataModel) {
+        self.subscriptionInfo.country = country
+    }
+    
+    private func setUpUi() {
+        self.viewModel.setRefreshHandler(self)
+        self.txtFieldArabicPlanName.delegate = self
+        self.txtFieldEnglishPlanName.delegate = self
+        self.tblCountry.register(CountryTableViewCell.self)
+        self.tblCountry.dataSource = self
+        self.tblCountry.delegate = self
+        self.txtFieldDuration.delegate = self
+        self.tblCountry.separatorStyle = .none
+        self.lblTitle.text = self.viewModel.isForEdit ? "Update plan" : "Create New Plan"
+        self.btnAdd.setTitle(self.viewModel.isForEdit ? "Update" : "Add", for: .normal)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.btnAdd.applyGradient(colours: [UIColor.init(hexString: "#DFBF8F"), UIColor.init(hexString: "#6E4527")],gradientDirection: .topToBottom,cornerRadius: 5)
+        }
+        self.lblDurationTyp.text = self.viewModel.subscriptionInfo.durationType.title
+        self.lblNewDurationType.text = self.viewModel.subscriptionInfo.NewdurationType.title
+        
+    }
+    
+    func setData() {
+        self.viewModel.getAllCountry {
+            self.refreshCountrySelection()
+        }
+        if (self.viewModel.isForEdit) {
+            self.priceLabel.text = "Old Price"
+            self.durationLabel.text = "Old Duration"
+            self.newPriceView.isHidden = false
+            self.newDurationView.isHidden = false
+            self.txtFieldEnglishPlanName.text = self.viewModel.subscriptionInfo.planNameEnglish
+            self.txtFieldArabicPlanName.text = self.viewModel.subscriptionInfo.planNameArabic
+            self.txtFieldDuration.text = String.getString(self.viewModel.subscriptionInfo.duration)
+            self.textNewDuration.text = String.getString(self.viewModel.subscriptionInfo.Newduration)
+            
+            self.txtFielNoVideos.text = String.getString(self.viewModel.subscriptionInfo.noOfVideos)
+            self.txtFielNoProducts.text = String.getString(self.viewModel.subscriptionInfo.noOfProducts)
+            self.txtFielNoHighlights.text = String.getString(self.viewModel.subscriptionInfo.noOfHighlights)
+            self.txtFielNoEmployee.text = String.getString(self.viewModel.subscriptionInfo.noOfEmployee)
+            self.txtFieldPrice.text = String.getString(self.viewModel.subscriptionInfo.price)
+            self.newPriceTextField.text = String.getString(self.viewModel.subscriptionInfo.NewPrice)
+            self.txtFieldComission.text = String.getString(self.viewModel.subscriptionInfo.comission)
+        } else {
+            self.priceLabel.text = "Price"
+            self.durationLabel.text = "Duration"
+            self.newPriceView.isHidden = true
+            self.newDurationView.isHidden = true
+        }
+        self.selectComission(self.viewModel.subscriptionInfo.isComission)
+        self.viewComission.isHidden = !self.viewModel.subscriptionInfo.isComission
+        self.selectStoryOpen(self.viewModel.subscriptionInfo.isStoryOpen)
+    }
+    func selectStoryOpen(_ bool:Bool) {
+        self.btnOpen.setImage(bool ? .radioSelected : .radioUnselected, for: .normal)
+        self.btnClose.setImage(!bool ? .radioSelected : .radioUnselected, for: .normal)
+    }
+    func selectComission(_ bool:Bool) {
+        self.btnYes.setImage(bool ? .radioSelected : .radioUnselected, for: .normal)
+        self.btnNo.setImage(!bool ? .radioSelected : .radioUnselected, for: .normal)
+    }
 }
+
+// MARK: - TABLE VIEW METHODS
 extension AddPlanViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -263,7 +263,7 @@ extension AddPlanViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        viewWillLayoutSubviews()
+        //        viewWillLayoutSubviews()
     }
     
 }
@@ -273,6 +273,8 @@ extension AddPlanViewController :HandleTableRefresh {
         
     }
 }
+
+//MARK: UITextFieldDelegate Methods
 extension AddPlanViewController:UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         var validation: StringValidation?

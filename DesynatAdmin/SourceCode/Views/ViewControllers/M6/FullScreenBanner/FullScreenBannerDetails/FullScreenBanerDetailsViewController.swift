@@ -10,6 +10,7 @@ import SDWebImage
 
 class FullScreenBanerDetailsViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var coountryView: UIStackView!
     @IBOutlet weak var typeTitleLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
@@ -21,12 +22,14 @@ class FullScreenBanerDetailsViewController: UIViewController {
     @IBOutlet weak var startDateLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     
+    // MARK: - Property Decalaration
     var bannerId: Int = 0
     var giftsListData: FullScreenBannerDataList?
     var bannerListData: GetPromotionalBannersList?
     private lazy var viewModel = FullScreenBannerDetailsViewModel(hostVC: self)
     var bannerType: BannerMangementType = .fullScreen
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         typeTitleLabel.text = "Type"
@@ -34,6 +37,7 @@ class FullScreenBanerDetailsViewController: UIViewController {
         
     }
     
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -47,8 +51,6 @@ class FullScreenBanerDetailsViewController: UIViewController {
             viewModel.getFullScreenBannerDetailsList()
         }
         self.navigationController?.pushViewController(vc, animated: false)
-        
-        
     }
     
     @IBAction func deleteDidTapped(_ sender: Any) {
@@ -65,6 +67,7 @@ class FullScreenBanerDetailsViewController: UIViewController {
         }
     }
     
+    //MARK: Function's declaration
     func bindData() {
         titleLabel.text = giftsListData?.title
         if let imageUrlString = giftsListData?.image,

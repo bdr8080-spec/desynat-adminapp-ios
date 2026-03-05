@@ -27,7 +27,7 @@ class OTPViewController: UIViewController {
     @IBOutlet weak var labelTimer: UILabel!
     @IBOutlet weak var phoneNumberLabel: UILabel!
     
-    // MARK: - Variables
+    // MARK: - Property Decalaration
     var comingReason: ComingReasonAtOTPScreen = .forgotPassword
     var remainingTime = 90
     var otpTimer: Timer?
@@ -36,7 +36,7 @@ class OTPViewController: UIViewController {
     var otpDigits = ""
     lazy private var viewModel = OTPViewModel(hostVC: self)
     
-    // MARK: - Lifecycle
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTextFields()
@@ -45,8 +45,8 @@ class OTPViewController: UIViewController {
         textField1.becomeFirstResponder()
         phoneNumberLabel.text = phoneNumber
     }
-    
-    // MARK: - Actions
+
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
@@ -64,7 +64,7 @@ class OTPViewController: UIViewController {
         viewModel.resendOtpAPI()
     }
     
-    // MARK: - Timer Handling
+    //MARK: Function's declaration
     func startTimer() {
         remainingTime = 90
         resendView.isHidden = true
@@ -79,6 +79,15 @@ class OTPViewController: UIViewController {
                                         repeats: true)
     }
     
+    // MARK: - Setup
+    func setupTextFields() {
+        [textField1, textField2, textField3, textField4, textField5, textField6].forEach {
+            $0?.delegate = self
+            $0?.keyboardType = .numberPad
+        }
+    }
+    
+    
     @objc func updateTimer() {
         remainingTime -= 1
         labelTimer.text = "\(String(format: "00:%02d", remainingTime)) Sec"
@@ -89,17 +98,9 @@ class OTPViewController: UIViewController {
             timerView.isHidden = true
         }
     }
-    
-    // MARK: - Setup
-    func setupTextFields() {
-        [textField1, textField2, textField3, textField4, textField5, textField6].forEach {
-            $0?.delegate = self
-            $0?.keyboardType = .numberPad
-        }
-    }
 }
 
-// MARK: - UITextFieldDelegate
+//MARK: UITextFieldDelegate Methods
 extension OTPViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

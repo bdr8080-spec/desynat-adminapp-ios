@@ -9,17 +9,16 @@ import UIKit
 import Cosmos
 
 class SellerDetailViewController: UIViewController {
+    
+    // MARK: - IBOutlet's
     @IBOutlet weak var btnPending: CustomButton!
     @IBOutlet weak var btnSwitch: CustomButton!
     @IBOutlet weak var btnOtherInfo: CustomButton!
     @IBOutlet weak var btnSellerInfo: CustomButton!
-    
-    
     @IBOutlet weak var viewTabContainer: UIView!
     @IBOutlet weak var lblSellerName: UILabel!
     @IBOutlet weak var viewSellerrating: CosmosView!
     @IBOutlet weak var viewSwitchTab: UIView!
-    
     @IBOutlet weak var viewSellerInfo: UIView!
     @IBOutlet weak var viewReels: UIView!
     @IBOutlet weak var collectionHeighLights: UICollectionView!
@@ -36,22 +35,18 @@ class SellerDetailViewController: UIViewController {
     @IBOutlet weak var lblSellerBio: UILabel!
     @IBOutlet weak var imgSellerProfile: CustomImageView!
     @IBOutlet weak var imgSellerCover: UIImageView!
-    
     @IBOutlet weak var viewOtherInfo: UIView!
     @IBOutlet weak var lblStoreSellerName: UILabel!
     @IBOutlet weak var imgStoreSellerImage: CustomImageView!
-    
     @IBOutlet weak var stackCanceReason: UIStackView!
     @IBOutlet weak var lblStoreSellerMobileNumber: UILabel!
     @IBOutlet weak var lblStoreSellerEmail: UILabel!
     @IBOutlet weak var lblStoreSellerCountry: UILabel!
     @IBOutlet weak var lblStoreSellerJoinedOn: UILabel!
-    
     @IBOutlet weak var viewStoreImage: UIView!
     @IBOutlet weak var viewStoreSellerInfo: UIView!
     @IBOutlet weak var imgStoreImage: CustomImageView!
     @IBOutlet weak var lblCancelledReason: UILabel!
-    
     @IBOutlet weak var viewStoreName: UIView!
     @IBOutlet weak var lblStoreName: UILabel!
     @IBOutlet weak var viewStoreAddress: UIView!
@@ -63,7 +58,6 @@ class SellerDetailViewController: UIViewController {
     @IBOutlet weak var viewBio: UIView!
     @IBOutlet weak var viewStoreInfo: CustomView!
     @IBOutlet weak var lblBio: UILabel!
-    
     @IBOutlet weak var viewOwnerDocuments: UIView!
     @IBOutlet weak var stackOwnerDocument: UIStackView!
     @IBOutlet weak var collectionOwnerDocuments: UICollectionView!
@@ -71,21 +65,15 @@ class SellerDetailViewController: UIViewController {
     @IBOutlet weak var imgOwnerDoc2: CustomImageView!
     @IBOutlet weak var viewOwnerDoc1: UIView!
     @IBOutlet weak var viewOwnerDoc2: UIView!
-
-
     @IBOutlet weak var viewStoreDocuments: UIView!
     @IBOutlet weak var stackStoreDocument: UIStackView!
     @IBOutlet weak var collectionStoreDocuments: UICollectionView!
     @IBOutlet weak var viewStoreDoc1: UIView!
     @IBOutlet weak var viewStoreDoc2: UIView!
-
     @IBOutlet weak var imgStoreDoc1: CustomImageView!
     @IBOutlet weak var imgStoreDoc2: CustomImageView!
-    
-    
     @IBOutlet weak var stackBankDetail: UIStackView!
     @IBOutlet weak var viewBankDetail: CustomView!
-    
     @IBOutlet weak var viewAccountType: UIView!
     @IBOutlet weak var lblAccountType: UILabel!
     @IBOutlet weak var viewIBAN: UIView!
@@ -101,24 +89,76 @@ class SellerDetailViewController: UIViewController {
     @IBOutlet weak var imgProofAccount: CustomImageView!
     @IBOutlet weak var tblPlans: TableViewDynamicHeight!
     @IBOutlet weak var btnReject: CustomButton!
-    
     @IBOutlet weak var lblPlacePlans: UILabel!
     @IBOutlet weak var lblPlaceHighlights: UILabel!
     @IBOutlet weak var lblPlaceReels: UILabel!
     @IBOutlet weak var btnAccept: CustomButton!
     @IBOutlet weak var viewBottomAction: UIView!
     @IBOutlet weak var lctBottomMainStack: NSLayoutConstraint!
+    
+    // MARK: - Property Decalaration
     private var viewModel : SellerDetailViewModel = SellerDetailViewModel()
     
-    enum DetailTab:Int {
-        case sellerInfo = 0,otherInfo
-    }
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpUi()
         self.setData()
     }
     
+    // MARK: - Button's Action
+    @IBAction func handleBack(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func handleTabSwitch(_ sender: UIButton) {
+        if let type = DetailTab(rawValue: sender.tag) {
+            self.switchTab(type)
+        }
+    }
+    
+    @IBAction func handleReject(_ sender: Any) {
+        let vc = RejectReasonViewController.viewFromNIB
+        vc.needToShowButtonStackView = true
+        vc.setCallback { reason,type in
+            self.viewModel.rejectSeller(reason: reason,type: type) {
+                DispatchQueue.main.async {
+                    let succesVC = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
+                    succesVC.setTitle("Seller rejected\nsuccessfully!")
+                    succesVC.callBackDismiss = {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                    vc.dismiss(animated: false)
+                    self.presentVC(succesVC)
+                }
+            }
+        }
+        self.presentVC(vc,withAnimation: false,modalPresentationStyle: .overCurrentContext)
+    }
+    
+    @IBAction func handleAccept(_ sender: Any) {
+        self.viewModel.approveSeller {
+            DispatchQueue.main.async {
+                let vc = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
+                vc.setTitle("Seller approved\nsuccessfully!")
+                vc.callBackDismiss = {
+                    self.navigationController?.popViewController(animated: true)
+                }
+                self.presentVC(vc,modalPresentationStyle: .overCurrentContext)
+            }
+        }
+        
+    }
+    
+    @IBAction func handleSwitch(_ sender: Any) {
+        self.viewModel.updateStatusSellers {
+            self.viewModel.setActive(!self.viewModel.isActive)
+            self.btnSwitch.setImage(self.viewModel.isActive ? .toggleOn : .toggleOff , for: .normal)
+        }
+        
+    }
+    
+    //MARK: Function's declaration
     func setInitial(_ sellerData:SellerListInfo) {
         self.viewModel.setData(sellerData)
     }
@@ -292,58 +332,9 @@ class SellerDetailViewController: UIViewController {
             self.navigate(to:vc)
         }
     }
-    
-    @IBAction func handleBack(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    @IBAction func handleTabSwitch(_ sender: UIButton) {
-        if let type = DetailTab(rawValue: sender.tag) {
-            self.switchTab(type)
-        }
-    }
-    
-    @IBAction func handleReject(_ sender: Any) {
-        let vc = RejectReasonViewController.viewFromNIB
-      vc.needToShowButtonStackView = true
-        vc.setCallback { reason,type in
-            self.viewModel.rejectSeller(reason: reason,type: type) {
-                DispatchQueue.main.async {
-                    let succesVC = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
-                    succesVC.setTitle("Seller rejected\nsuccessfully!")
-                    succesVC.callBackDismiss = {
-                        self.navigationController?.popViewController(animated: true)
-                    }
-                    vc.dismiss(animated: false)
-                    self.presentVC(succesVC)
-                }
-            }
-        }
-        self.presentVC(vc,withAnimation: false,modalPresentationStyle: .overCurrentContext)
-    }
-    
-    @IBAction func handleAccept(_ sender: Any) {
-        self.viewModel.approveSeller {
-            DispatchQueue.main.async {
-                let vc = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
-                vc.setTitle("Seller approved\nsuccessfully!")
-                vc.callBackDismiss = {
-                    self.navigationController?.popViewController(animated: true)
-                }
-                self.presentVC(vc,modalPresentationStyle: .overCurrentContext)
-            }
-        }
-    
-    }
-    
-    @IBAction func handleSwitch(_ sender: Any) {
-        self.viewModel.updateStatusSellers {
-            self.viewModel.setActive(!self.viewModel.isActive)
-            self.btnSwitch.setImage(self.viewModel.isActive ? .toggleOn : .toggleOff , for: .normal)
-        }
-        
-    }
 }
+
+// MARK: - TABLE VIEW METHODS
 extension SellerDetailViewController:UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.viewModel.arrayPlans.count
@@ -360,5 +351,8 @@ extension SellerDetailViewController:UITableViewDataSource,UITableViewDelegate {
         return UITableViewCell(frame: .zero)
     }
     
-    
+}
+
+enum DetailTab:Int {
+    case sellerInfo = 0,otherInfo
 }

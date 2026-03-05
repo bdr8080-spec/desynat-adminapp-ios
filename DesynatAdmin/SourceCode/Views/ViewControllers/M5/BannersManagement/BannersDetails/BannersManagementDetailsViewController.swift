@@ -9,6 +9,7 @@ import UIKit
 
 class BannersManagementDetailsViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var acceptView: UIView!
     @IBOutlet weak var rejectView: UIView!
     @IBOutlet weak var banneImageView: UIImageView!
@@ -32,13 +33,14 @@ class BannersManagementDetailsViewController: UIViewController {
     @IBOutlet weak var toggleImageView: UIImageView!
     @IBOutlet weak var toggleButtonOutlet: UIButton!
     
-    //MARK: VARIABLE
+    // MARK: - Property Decalaration
     var type: BannersSelectedListType = .new
     var detailData = BannerListInfo()
     private var viewModel : BannersManagementListViewModel = BannersManagementListViewModel()
     private var toggleStatus: Int = 0
     var onStatusUpdated: ((BannerListInfo) -> Void)?
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         if type == .new { //new
@@ -66,6 +68,87 @@ class BannersManagementDetailsViewController: UIViewController {
         }
     }
     
+    // MARK: - Button's Action
+    @IBAction func bannerImageDidTapped(_ sender: Any) {
+        let nextVC = SizeChartViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
+        nextVC.sizeChartUrl = detailData.image
+        self.navigationController?.present(nextVC, animated: true)
+    }
+    
+    @IBAction func toggleButtonDidTapped(_ sender: Any) {
+        let newStatus = toggleStatus == 1 ? 0 : 1
+        
+        let param: [String: Any] = [
+            "id": detailData.id,
+            //                "status": newStatus
+        ]
+        
+        viewModel.upadteBannerStatus(param: param) { [weak self] success in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                if success {
+                    // Update local toggle
+                    self.toggleStatus = newStatus
+                    self.updateToggleUI()
+                    
+                    // Update model object
+                    self.detailData.bannerBlockStatus = "\(newStatus)"
+                    
+                    // Send updated model back
+                    self.onStatusUpdated?(self.detailData)
+                    let message = newStatus == 1
+                    ? "Banner activated successfully"
+                    : "Banner deactivated successfully"
+                    CommonUtils.showToast(message: message)
+                }
+            }
+        }
+    }
+    
+    @IBAction func rejectDidTapped(_ sender: Any) {
+        let vc = RejectReasonViewController.viewFromNIB
+        vc.needToShowButtonStackView = false
+        vc.setCallback { reason,type in
+            self.viewModel.rejectBanner(id: self.detailData.id, reason: reason) {
+                DispatchQueue.main.async {
+                    let succesVC = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
+                    succesVC.setTitle("Banner rejected\nsuccessfully!")
+                    succesVC.callBackDismiss = {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                    vc.dismiss(animated: false)
+                    self.presentVC(succesVC)
+                }
+            }
+        }
+        self.presentVC(vc,withAnimation: false,modalPresentationStyle: .overCurrentContext)
+    }
+    
+    @IBAction func acceptDidTapped(_ sender: Any) {
+        viewModel.acceptBanner(id: self.detailData.id) {
+            DispatchQueue.main.async {
+                let vc = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
+                vc.setTitle("Banner approved\nsuccessfully!")
+                vc.callBackDismiss = {
+                    self.navigationController?.popViewController(animated: true)
+                }
+                self.presentVC(vc,modalPresentationStyle: .overCurrentContext)
+            }
+        }
+    }
+    
+    @IBAction func backDidTapped(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    //MARK: Function's declaration
+    func initialSetUp() {
+        banneImageView.layer.cornerRadius = 8
+        banneImageView.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
+        banneImageView.clipsToBounds = true
+        
+    }
     
     func setData() {
         self.lblName.text = detailData.name
@@ -126,92 +209,6 @@ class BannersManagementDetailsViewController: UIViewController {
         toggleImageView.image = toggleStatus == 1
         ? UIImage(named: "toggleOn")   // Unblocked
         : UIImage(named: "toggleOff")  // Blocked
-    }
-    
-    @IBAction func bannerImageDidTapped(_ sender: Any) {
-        let nextVC = SizeChartViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
-        nextVC.sizeChartUrl = detailData.image
-        self.navigationController?.present(nextVC, animated: true)
-    }
-    
-    @IBAction func toggleButtonDidTapped(_ sender: Any) {
-        let newStatus = toggleStatus == 1 ? 0 : 1
-        
-        let param: [String: Any] = [
-            "id": detailData.id,
-            //                "status": newStatus
-        ]
-        
-        viewModel.upadteBannerStatus(param: param) { [weak self] success in
-            guard let self = self else { return }
-            
-            DispatchQueue.main.async {
-                if success {
-                    // 1️⃣ Update local toggle
-                    self.toggleStatus = newStatus
-                    self.updateToggleUI()
-                    
-                    // 2️⃣ Update model object
-                    self.detailData.bannerBlockStatus = "\(newStatus)"
-                    
-                    // 3️⃣ Send updated model back
-                    self.onStatusUpdated?(self.detailData)
-                    let message = newStatus == 1
-                    ? "Banner activated successfully"
-                    : "Banner deactivated successfully"
-                    
-                    //                                        self.view.showToast(message)
-                    CommonUtils.showToast(message: message)
-                }
-            }
-        }
-    }
-    
-    
-    
-    
-    @IBAction func rejectDidTapped(_ sender: Any) {
-        let vc = RejectReasonViewController.viewFromNIB
-        vc.needToShowButtonStackView = false
-        vc.setCallback { reason,type in
-            self.viewModel.rejectBanner(id: self.detailData.id, reason: reason) {
-                DispatchQueue.main.async {
-                    let succesVC = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
-                    succesVC.setTitle("Banner rejected\nsuccessfully!")
-                    succesVC.callBackDismiss = {
-                        self.navigationController?.popViewController(animated: true)
-                    }
-                    vc.dismiss(animated: false)
-                    self.presentVC(succesVC)
-                }
-            }
-        }
-        self.presentVC(vc,withAnimation: false,modalPresentationStyle: .overCurrentContext)
-    }
-    
-    
-    @IBAction func acceptDidTapped(_ sender: Any) {
-        viewModel.acceptBanner(id: self.detailData.id) {
-            DispatchQueue.main.async {
-                let vc = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
-                vc.setTitle("Banner approved\nsuccessfully!")
-                vc.callBackDismiss = {
-                    self.navigationController?.popViewController(animated: true)
-                }
-                self.presentVC(vc,modalPresentationStyle: .overCurrentContext)
-            }
-        }
-    }
-    
-    @IBAction func backDidTapped(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    func initialSetUp() {
-        banneImageView.layer.cornerRadius = 8
-        banneImageView.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
-        banneImageView.clipsToBounds = true
-        
     }
 }
 

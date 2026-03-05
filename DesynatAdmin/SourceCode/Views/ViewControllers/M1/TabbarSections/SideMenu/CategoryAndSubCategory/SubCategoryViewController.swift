@@ -9,6 +9,7 @@ import UIKit
 
 class SubCategoryViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var noDataFoundLabel: UILabel!
     @IBOutlet weak var previousButton: UIButton!
@@ -21,10 +22,12 @@ class SubCategoryViewController: UIViewController {
         }
     }
     
+    // MARK: - Property Decalaration
     var categoryId: String = ""
     private lazy var viewModel = SubcategoryViewModel(hostVC: self)
     private var searchWorkItem: DispatchWorkItem?
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTextField.delegate = self
@@ -37,6 +40,7 @@ class SubCategoryViewController: UIViewController {
         viewModel.getAllsubcategory(param: ["category_id": categoryId])
     }
     
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: false)
     }
@@ -58,7 +62,7 @@ class SubCategoryViewController: UIViewController {
         viewModel.goToPreviousPage(param: ["category_id": categoryId])
     }
     
-    
+    //MARK: Function's declaration
     func updatePaginationButtonImages() {
         // Previous Button
         if viewModel.currentPage == 1 {
@@ -68,7 +72,7 @@ class SubCategoryViewController: UIViewController {
             previousButton.setImage(UIImage(named: "darkpreviousimage"), for: .normal)
             previousButton.isUserInteractionEnabled = true
         }
-
+        
         // Next Button
         if viewModel.currentPage >= viewModel.totalPages {
             nextButton.setImage(UIImage(named: "lightnextimage"), for: .normal)
@@ -81,6 +85,7 @@ class SubCategoryViewController: UIViewController {
     
 }
 
+// MARK: - COLLECTION VIEW METHODS
 extension SubCategoryViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -109,6 +114,7 @@ extension SubCategoryViewController: UICollectionViewDataSource, UICollectionVie
     
 }
 
+//MARK: UITextFieldDelegate Methods
 extension SubCategoryViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let currentText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? ""

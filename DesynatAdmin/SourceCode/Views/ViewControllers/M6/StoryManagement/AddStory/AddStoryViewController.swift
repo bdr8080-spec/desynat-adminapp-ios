@@ -10,20 +10,24 @@ import Photos
 
 class AddStoryViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var contentCollectionView: UICollectionView! {
         didSet {
             contentCollectionView.registerCellFromNib(cellID: "SelectVideoFromGalleryCollectionViewCell")
         }
     }
     
+    // MARK: - Property Decalaration
     var galleryAssets: [PHAsset] = []
     private lazy var viewModel = AddStoryViewModel(hostVC: self)
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchGalleryAssets()
     }
     
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -44,6 +48,7 @@ class AddStoryViewController: UIViewController {
         present(picker, animated: true)
     }
     
+    //MARK: Function's declaration
     func fetchGalleryAssets() {
         let status = PHPhotoLibrary.authorizationStatus()
         if status == .authorized || status == .limited {
@@ -71,6 +76,7 @@ class AddStoryViewController: UIViewController {
     
 }
 
+// MARK: - COLLECTION VIEW METHODS
 extension AddStoryViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return galleryAssets.count

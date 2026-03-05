@@ -9,13 +9,15 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 
-class LocationViewController: UIViewController, UITextFieldDelegate {
+class LocationViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var currentLocationButton: CustomButton!
     @IBOutlet weak var txtSearch: UITextField!
     @IBOutlet weak var viewMap: GMSMapView!
     @IBOutlet weak var lblLocation: UILabel!
     
+    // MARK: - Property Decalaration
     var locationFor = ""
     var currentLocation:String?
     var latitude:Double?
@@ -31,62 +33,46 @@ class LocationViewController: UIViewController, UITextFieldDelegate {
     var country = ""
     var pincode = ""
     var locationMarker = GMSMarker()
-  var preSelectedLat: Double?
-  var preSelectedLng: Double?
+    var preSelectedLat: Double?
+    var preSelectedLng: Double?
     
-  override func viewDidLoad() {
-      super.viewDidLoad()
-      
-      txtSearch.delegate = self
-      viewMap.delegate = self
-      
-      // Setup location manager
-      locationManager.delegate = self
-      locationManager.desiredAccuracy = kCLLocationAccuracyBest
-      locationManager.requestWhenInUseAuthorization()
-      locationManager.startUpdatingLocation()
-      
-      // Smart: Use pre-selected > current location > fallback
-      let targetLat: Double
-      let targetLng: Double
-      let zoom: Float
-      
-      if let lat = preSelectedLat, let lng = preSelectedLng, lat != 0, lng != 0 {
-          targetLat = lat
-          targetLng = lng
-          zoom = ZOOM_LEVEL_HIGH  // Zoom in if user already picked a place
-      } else {
-          targetLat = LocationManager.sharedInstance.location?.latitude ?? 28.6139  // Default: Delhi (or your city)
-          targetLng = LocationManager.sharedInstance.location?.longitude ?? 77.2090
-          zoom = 12
-      }
-      
-      let camera = GMSCameraPosition.camera(withLatitude: targetLat, longitude: targetLng, zoom: zoom)
-      viewMap.camera = camera
-//      locationMarker.position = CLLocationCoordinate2D(latitude: targetLat, longitude: targetLng)
-//      locationMarker.map = viewMap
-      reverseGeocodeCoordinate(CLLocationCoordinate2D(latitude: targetLat, longitude: targetLng))
-    let img = UIImage(named: "mark")?.withRenderingMode(.alwaysTemplate)
-    currentLocationButton.setImage(img, for: .normal)
-    currentLocationButton.tintColor = UIColor.darkBrown
-  }
+    // MARK: - View's LifeCycle Methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        txtSearch.delegate = self
+        viewMap.delegate = self
+        
+        // Setup location manager
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
+        // Smart: Use pre-selected > current location > fallback
+        let targetLat: Double
+        let targetLng: Double
+        let zoom: Float
+        
+        if let lat = preSelectedLat, let lng = preSelectedLng, lat != 0, lng != 0 {
+            targetLat = lat
+            targetLng = lng
+            zoom = ZOOM_LEVEL_HIGH  // Zoom in if user already picked a place
+        } else {
+            targetLat = LocationManager.sharedInstance.location?.latitude ?? 28.6139  // Default: Delhi (or your city)
+            targetLng = LocationManager.sharedInstance.location?.longitude ?? 77.2090
+            zoom = 12
+        }
+        
+        let camera = GMSCameraPosition.camera(withLatitude: targetLat, longitude: targetLng, zoom: zoom)
+        viewMap.camera = camera
+        reverseGeocodeCoordinate(CLLocationCoordinate2D(latitude: targetLat, longitude: targetLng))
+        let img = UIImage(named: "mark")?.withRenderingMode(.alwaysTemplate)
+        currentLocationButton.setImage(img, for: .normal)
+        currentLocationButton.tintColor = UIColor.darkBrown
+    }
     
-  func googleMapSetup() {
-      viewMap.isMyLocationEnabled = false
-      viewMap.delegate = self
-
-      // If preselected location exists, show it
-      if let preLat = preSelectedLat, let preLong = preSelectedLng {
-          self.latitude = preLat
-          self.longitude = preLong
-//        viewMap.settings.myLocationButton = false
-          let camera = GMSCameraPosition.camera(withLatitude: preLat, longitude: preLong, zoom: 12)
-          self.viewMap.camera = camera
-//          addMarker(at: CLLocationCoordinate2D(latitude: preLat, longitude: preLong))
-      }
-  }
-
-    
+    // MARK: - Button's Action
     @IBAction func btnBack(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -112,35 +98,45 @@ class LocationViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.popViewController(animated: true)
         
     }
-  
-//  func addMarker(at coordinate: CLLocationCoordinate2D) {
-//      locationMarker.map = nil // Remove previous marker
-//      locationMarker = GMSMarker(position: coordinate)
-//      locationMarker.map = viewMap
-//  }
-
+    
+    //MARK: Function's declaration
+    func googleMapSetup() {
+        viewMap.isMyLocationEnabled = false
+        viewMap.delegate = self
+        
+        // If preselected location exists, show it
+        if let preLat = preSelectedLat, let preLong = preSelectedLng {
+            self.latitude = preLat
+            self.longitude = preLong
+            //        viewMap.settings.myLocationButton = false
+            let camera = GMSCameraPosition.camera(withLatitude: preLat, longitude: preLong, zoom: 12)
+            self.viewMap.camera = camera
+            //          addMarker(at: CLLocationCoordinate2D(latitude: preLat, longitude: preLong))
+        }
+    }
+    
 }
 
 extension LocationViewController: CLLocationManagerDelegate,GMSMapViewDelegate {
-  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-      guard let location = locations.last else { return }
-
-      // Only move camera if no preselected location
-      if preSelectedLat == nil && preSelectedLng == nil {
-          let coordinate = location.coordinate
-          self.latitude = coordinate.latitude
-          self.longitude = coordinate.longitude
-
-          let camera = GMSCameraPosition.camera(withLatitude: coordinate.latitude,
-                                                longitude: coordinate.longitude,
-                                                zoom: 12)
-          self.viewMap.animate(to: camera)
-//          addMarker(at: coordinate)
-      }
-
-      locationManager.stopUpdatingLocation()
-  }
-
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        
+        // Only move camera if no preselected location
+        if preSelectedLat == nil && preSelectedLng == nil {
+            let coordinate = location.coordinate
+            self.latitude = coordinate.latitude
+            self.longitude = coordinate.longitude
+            
+            let camera = GMSCameraPosition.camera(withLatitude: coordinate.latitude,
+                                                  longitude: coordinate.longitude,
+                                                  zoom: 12)
+            self.viewMap.animate(to: camera)
+            //          addMarker(at: coordinate)
+        }
+        
+        locationManager.stopUpdatingLocation()
+    }
+    
     
     func mapView(_ mapView: GMSMapView, idleAt cameraPosition: GMSCameraPosition) {
         self.latitude = cameraPosition.target.latitude
@@ -195,8 +191,8 @@ extension LocationViewController: CLLocationManagerDelegate,GMSMapViewDelegate {
             }
         }
     }
-
-
+    
+    
     
     
 }
@@ -217,7 +213,11 @@ extension LocationViewController: GMSAutocompleteViewControllerDelegate {
     func wasCancelled(_ viewController: GMSAutocompleteViewController) {
         dismiss(animated: true, completion: nil)
     }
-    
+}
+
+//MARK: UITextFieldDelegate Methods
+extension LocationViewController: UITextFieldDelegate{
+   
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == txtSearch{
             self.txtSearch.resignFirstResponder()

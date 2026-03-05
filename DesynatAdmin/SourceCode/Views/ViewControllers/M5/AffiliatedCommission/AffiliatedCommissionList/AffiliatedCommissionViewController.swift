@@ -9,6 +9,7 @@ import UIKit
 
 class AffiliatedCommissionViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var noDataFoundLabel: UILabel!
     @IBOutlet weak var affiliatedTableView: UITableView! {
         didSet {
@@ -16,8 +17,10 @@ class AffiliatedCommissionViewController: UIViewController {
         }
     }
     
+    // MARK: - Property Decalaration
     private lazy var viewModel = AffiliatedCommissionViewModel(hostVC: self)
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -27,13 +30,15 @@ class AffiliatedCommissionViewController: UIViewController {
         viewModel.getAffiliatedCommissionByCity()
     }
     
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     
+    //MARK: Function's declaration
 }
 
-
+// MARK: - TABLE VIEW METHODS
 extension AffiliatedCommissionViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -54,10 +59,6 @@ extension AffiliatedCommissionViewController: UITableViewDelegate, UITableViewDa
             self.navigationController?.present(nextVC, animated: true)
         }
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
     }
     
 }

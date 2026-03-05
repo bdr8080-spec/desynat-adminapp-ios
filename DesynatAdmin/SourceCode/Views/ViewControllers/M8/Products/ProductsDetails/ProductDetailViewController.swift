@@ -11,6 +11,7 @@ import SDWebImage
 
 class ProductDetailViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var brandTitleLabel: UILabel!
     @IBOutlet weak var storeLocationLabel: UILabel!
     @IBOutlet weak var storeNameLabel: UILabel!
@@ -60,25 +61,23 @@ class ProductDetailViewController: UIViewController {
             productImageCollectionView.registerCellFromNib(cellID: "ProductDetailImageCollectionViewCell")
         }
     }
-    
     @IBOutlet weak var colorsCollectionView: UICollectionView! {
         didSet {
             colorsCollectionView.registerCellFromNib(cellID: "ProductColoursCollectionViewCell")
         }
     }
-    
     @IBOutlet weak var sizeCollectionView: UICollectionView! {
         didSet {
             sizeCollectionView.registerCellFromNib(cellID: "SizeVariantCollectionViewCell")
         }
     }
-    
     @IBOutlet weak var specificationTableView: UITableView! {
         didSet {
             specificationTableView.registerCellFromNib(cellID: "ListTableViewCell")
         }
     }
     
+    // MARK: - Property Decalaration
     private lazy var viewModel = ProductDetailsViewModel(hostVC: self)
     private var selectedColourIndex = 0
     private var selectedSizeIndex = 0
@@ -90,6 +89,7 @@ class ProductDetailViewController: UIViewController {
     var coloursList: [Color] = []
     var sizesList: [Color] = []
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -107,7 +107,7 @@ class ProductDetailViewController: UIViewController {
         }
     }
     
-    
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -142,6 +142,7 @@ class ProductDetailViewController: UIViewController {
         self.navigationController?.present(nextVC, animated: true)
     }
     
+    //MARK: Function's declaration
     func formatDateString(_ isoDateString: String) -> String {
         let inputFormatter = DateFormatter()
         inputFormatter.locale = Locale(identifier: "en_US_POSIX")
@@ -335,6 +336,7 @@ class ProductDetailViewController: UIViewController {
     
 }
 
+// MARK: - COLLECTION VIEW METHODS
 extension ProductDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -462,6 +464,7 @@ extension ProductDetailViewController: UICollectionViewDelegate, UICollectionVie
     }
 }
 
+// MARK: - TABLE VIEW METHODS
 extension ProductDetailViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -9,11 +9,13 @@ import UIKit
 
 class AffiliatedUserFilterViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var toTextField: UITextField!
     @IBOutlet weak var fromTextField: UITextField!
     @IBOutlet weak var countryLabel: CustomLabelFont!
     
+    // MARK: - Property Decalaration
     let datePicker = UIDatePicker()
     private var activeTextField: UITextField?
     var countryName: String = ""
@@ -22,6 +24,7 @@ class AffiliatedUserFilterViewController: UIViewController {
     var onApplyFilter: ((FullScreenBannerFilterModel) -> Void)?
     var onClearFilter: (() -> Void)?
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         handleUISetup()
@@ -30,6 +33,7 @@ class AffiliatedUserFilterViewController: UIViewController {
         }
     }
     
+    // MARK: - Button's Action
     @IBAction func dismissDidTapped(_ sender: Any) {
         self.dismiss(animated: true)
     }
@@ -71,6 +75,7 @@ class AffiliatedUserFilterViewController: UIViewController {
         }
     }
     
+    //MARK: Function's declaration
     private func handleUISetup() {
         headerView.layer.cornerRadius = 24
         headerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -91,7 +96,6 @@ class AffiliatedUserFilterViewController: UIViewController {
         fromTextField.text = selectedFilter.fromDate
         toTextField.text = selectedFilter.toDate
     }
-    
     
 }
 
@@ -158,7 +162,7 @@ extension AffiliatedUserFilterViewController {
     }
 }
 
-
+//MARK: UITextFieldDelegate Methods
 extension AffiliatedUserFilterViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField

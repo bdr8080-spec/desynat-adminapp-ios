@@ -9,6 +9,7 @@ import UIKit
 
 class FullScreenBannerViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var fullscreenButton: CustomButton!
     @IBOutlet weak var fullscreenLabel: UILabel!
     @IBOutlet weak var promotionalLabel: UILabel!
@@ -24,10 +25,12 @@ class FullScreenBannerViewController: UIViewController {
         }
     }
     
+    // MARK: - Property Decalaration
     private lazy var viewModel = FullScreenBannerViewModel(hostVC: self)
     private var searchWorkItem: DispatchWorkItem?
     var bannerType: BannerMangementType = .fullScreen
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTextField.delegate = self
@@ -45,6 +48,7 @@ class FullScreenBannerViewController: UIViewController {
         }
     }
     
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -119,6 +123,7 @@ class FullScreenBannerViewController: UIViewController {
         viewModel.getPromotionalBanners()
     }
     
+    //MARK: Function's declaration
     func updatePaginationButtonImages() {
         // Previous Button
         if viewModel.currentPage == 1 {
@@ -141,6 +146,7 @@ class FullScreenBannerViewController: UIViewController {
     
 }
 
+// MARK: - TABLE VIEW METHODS
 extension FullScreenBannerViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -181,6 +187,7 @@ extension FullScreenBannerViewController: UITableViewDelegate, UITableViewDataSo
     
 }
 
+//MARK: UITextFieldDelegate Methods
 extension FullScreenBannerViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let currentText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? ""

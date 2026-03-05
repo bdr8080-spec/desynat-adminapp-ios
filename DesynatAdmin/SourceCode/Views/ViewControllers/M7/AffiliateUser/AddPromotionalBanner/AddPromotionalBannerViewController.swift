@@ -10,6 +10,7 @@ import SDWebImage
 
 class AddPromotionalBannerViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var numberOfDaysView: CustomView!
     @IBOutlet weak var subCategoryView: UIView!
@@ -26,6 +27,7 @@ class AddPromotionalBannerViewController: UIViewController {
         }
     }
     
+    // MARK: - Property Decalaration
     let datePicker = UIDatePicker()
     private var activeTextField: UITextField?
     var selectedImageUrl: String = ""
@@ -36,11 +38,11 @@ class AddPromotionalBannerViewController: UIViewController {
     var forTypeList = ["Home Top", "Home Bottom", "Category"]
     var selectedPositionIndex: Int = 0 //type 1 mobile,2-web
     var pickedImage: UIImage?
-    //    var pickedGifData: Data?
     var pickedFileName: String = ""
     var isGifSelected: Bool = false
     private var isImageChanged: Bool = false
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         numberOfDaysView.isHidden = true
@@ -56,6 +58,7 @@ class AddPromotionalBannerViewController: UIViewController {
         }
     }
     
+    // MARK: - Button's Action
     @IBAction func positionDropDownDidTapped(_ sender: UIButton) {
         kSharedAppDelegate.dropDown(dataSource: forTypeList, anchorView: sender) { index, item in
             self.positionLabel.text = item
@@ -121,54 +124,13 @@ class AddPromotionalBannerViewController: UIViewController {
         }
     }
     
+    //MARK: Function's declaration
     private func updateCategoryVisibility() {
         let isCategorySelected = (selectedPositionIndex == 3) // Category
         
         categoryView.isHidden = !isCategorySelected
         subCategoryView.isHidden = !isCategorySelected
     }
-    
-    
-    //    private func uploadBannerThenSubmit() {
-    //        
-    //        let keyParam: [String: Any] = ["type": selectedPositionIndex]
-    //        
-    //        // Edit flow WITHOUT image change
-    //        if isComingForEdit, !isImageChanged {
-    //            submitFinalApi()
-    //            return
-    //        }
-    //        
-    //        // GIF upload
-    //        if isGifSelected, let gifData = pickedGifData {
-    //            viewModel.uploadFullScreenBanner(
-    //                file: gifData,
-    //                isImage: false,
-    //                isGif: true,
-    //                keyParam: keyParam
-    //            ) { [weak self] url in
-    //                self?.selectedImageUrl = url
-    //                self?.submitFinalApi()
-    //            }
-    //            return
-    //        }
-    //        
-    //        // Image upload
-    //        if let image = pickedImage {
-    //            viewModel.uploadFullScreenBanner(
-    //                file: image,
-    //                isImage: true,
-    //                keyParam: keyParam
-    //            ) { [weak self] url in
-    //                self?.selectedImageUrl = url
-    //                self?.submitFinalApi()
-    //            }
-    //            return
-    //        }
-    //        
-    //        // Add flow safety
-    //        showAlert(msg: "Please select image")
-    //    }
     
     func calculateTotalDays() {
         guard
@@ -347,6 +309,7 @@ extension AddPromotionalBannerViewController {
     }
 }
 
+//MARK: UITextFieldDelegate Methods
 extension AddPromotionalBannerViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
@@ -366,6 +329,7 @@ extension AddPromotionalBannerViewController: UITextFieldDelegate {
     }
 }
 
+// MARK: - COLLECTION VIEW METHODS
 extension AddPromotionalBannerViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

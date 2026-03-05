@@ -9,18 +9,21 @@ import UIKit
 
 class AddNewBrandViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var submitTitleLabel: UILabel!
     @IBOutlet weak var brandImageView: CustomImageView!
     @IBOutlet weak var brandNameArabicTextField: UITextField!
     @IBOutlet weak var brandNameEnglishTextField: UITextField!
     @IBOutlet weak var titleLabel: UILabel!
     
+    // MARK: - Property Decalaration
     lazy private var viewModel = AddBrandViewModel(hostVC: self)
     var selectedImageUrl: String = ""
     var isComingForEdit: Bool = false
     var brandData: GetBrandDataList?
     var onBrandUpdated: ((GetBrandDataList) -> Void)?
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         brandNameEnglishTextField.delegate = self
@@ -35,6 +38,7 @@ class AddNewBrandViewController: UIViewController {
         }
     }
     
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -56,9 +60,9 @@ class AddNewBrandViewController: UIViewController {
                 self.brandImageView.image = image
             }
             guard let compressedImage = image.jpegData(compressionQuality: 0.25),
-                          let finalImage = UIImage(data: compressedImage) else {
-                        return
-                    }
+                  let finalImage = UIImage(data: compressedImage) else {
+                return
+            }
             
             self.viewModel.uploadDocument(file: finalImage, isImage: true) { [weak self] uploadedUrl in
                 guard let self = self else { return }
@@ -69,6 +73,7 @@ class AddNewBrandViewController: UIViewController {
         }
     }
     
+    //MARK: Function's declaration
     func bindData() {
         brandNameEnglishTextField.text = brandData?.nameEnglish
         brandNameArabicTextField.text = brandData?.nameArabic
@@ -84,6 +89,7 @@ class AddNewBrandViewController: UIViewController {
     
 }
 
+//MARK: UITextFieldDelegate Methods
 extension AddNewBrandViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -93,12 +99,6 @@ extension AddNewBrandViewController: UITextFieldDelegate {
         if string.isEmpty { return true }
         
         if textField == brandNameEnglishTextField {
-            // Block spaces
-            //if string == " " { return false }
-            
-            // Allow only English alphabets
-            //            let englishPattern = "^[A-Za-z ]+$"
-            //            return string.range(of: englishPattern, options: .regularExpression) != nil
             if currentText.hasPrefix(" ") {
                 return false
             }

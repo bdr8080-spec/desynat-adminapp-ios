@@ -12,6 +12,7 @@ import AVKit
 
 class StoryManagemnetViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var storyCollectionView: UICollectionView! {
         didSet {
             storyCollectionView.registerCellFromNib(cellID: "StoryManagemnetCollectionViewCell")
@@ -19,9 +20,11 @@ class StoryManagemnetViewController: UIViewController {
         }
     }
     
+    // MARK: - Property Decalaration
     private lazy var viewModel = StoryManagemnetListViewModel(hostVC: self)
     private var player: AVPlayer?
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,16 +35,19 @@ class StoryManagemnetViewController: UIViewController {
         viewModel.resetAndFetchStories()
     }
     
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     
+    //MARK: Function's declaration
     func bindData() {
         storyCollectionView.reloadData()
     }
     
 }
 
+// MARK: - COLLECTION VIEW METHODS
 extension StoryManagemnetViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

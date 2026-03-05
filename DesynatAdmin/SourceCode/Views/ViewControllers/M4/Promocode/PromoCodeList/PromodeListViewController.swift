@@ -9,7 +9,7 @@ import UIKit
 
 class PromodeListViewController: UIViewController {
     
-    
+    // MARK: - IBOutlet's
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var pageCountLabel: UILabel!
@@ -21,9 +21,11 @@ class PromodeListViewController: UIViewController {
         }
     }
     
+    // MARK: - Property Decalaration
     private lazy var viewModel = PromodeListViewModel(hostVC: self)
     private var searchWorkItem: DispatchWorkItem?
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTextField.delegate = self
@@ -36,6 +38,7 @@ class PromodeListViewController: UIViewController {
         viewModel.getAllPromocode()
     }
     
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -73,6 +76,7 @@ class PromodeListViewController: UIViewController {
         viewModel.goToPreviousPage()
     }
     
+    //MARK: Function's declaration
     func updatePaginationButtonImages() {
         // Previous Button
         if viewModel.currentPage == 1 {
@@ -95,6 +99,7 @@ class PromodeListViewController: UIViewController {
     
 }
 
+// MARK: - TABLE VIEW METHODS
 extension PromodeListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.promocodeListData.count
@@ -115,6 +120,7 @@ extension PromodeListViewController: UITableViewDelegate, UITableViewDataSource 
     
 }
 
+//MARK: UITextFieldDelegate Methods
 extension PromodeListViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

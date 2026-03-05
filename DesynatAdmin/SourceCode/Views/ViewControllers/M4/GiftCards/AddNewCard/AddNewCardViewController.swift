@@ -9,18 +9,21 @@ import UIKit
 
 class AddNewCardViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var submitTitleLabel: UILabel!
     @IBOutlet weak var cardImageView: CustomImageView!
     @IBOutlet weak var cardNameArabicTextField: UITextField!
     @IBOutlet weak var cardNameEnglishTextField: UITextField!
     @IBOutlet weak var titleLabel: UILabel!
     
+    // MARK: - Property Decalaration
     lazy private var viewModel = AddNewCardViewModel(hostVC: self)
     var selectedImageUrl: String = ""
     var isComingForEdit: Bool = false
     var giftsListData: GiftCardsList?
     var onCardUpdated: ((GiftCardsList) -> Void)?
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         cardNameArabicTextField.delegate = self
@@ -35,6 +38,7 @@ class AddNewCardViewController: UIViewController {
         }
     }
     
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -69,6 +73,7 @@ class AddNewCardViewController: UIViewController {
         }
     }
     
+    //MARK: Function's declaration
     func bindData() {
         cardNameEnglishTextField.text = giftsListData?.nameEnglish
         cardNameArabicTextField.text = giftsListData?.nameArabic
@@ -82,6 +87,7 @@ class AddNewCardViewController: UIViewController {
     
 }
 
+//MARK: UITextFieldDelegate Methods
 extension AddNewCardViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

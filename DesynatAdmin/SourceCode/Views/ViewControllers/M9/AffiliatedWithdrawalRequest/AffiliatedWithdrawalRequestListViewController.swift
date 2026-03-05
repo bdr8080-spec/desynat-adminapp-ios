@@ -9,6 +9,7 @@ import UIKit
 
 class AffiliatedWithdrawalRequestListViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var rejectedLabel: UILabel!
     @IBOutlet weak var rejectedBottomLabel: UILabel!
     @IBOutlet weak var approvedLabel: UILabel!
@@ -25,10 +26,12 @@ class AffiliatedWithdrawalRequestListViewController: UIViewController {
         }
     }
     
+    // MARK: - Property Decalaration
     private var searchWorkItem: DispatchWorkItem?
     private lazy var viewModel = AffiliatedWithdrawalRequestListViewModel(hostVC: self)
     var requestType: AffiliatedWithdrawalListType = .newRequest
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         updatePaginationButtonImages()
@@ -47,6 +50,7 @@ class AffiliatedWithdrawalRequestListViewController: UIViewController {
         }
     }
     
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -61,12 +65,10 @@ class AffiliatedWithdrawalRequestListViewController: UIViewController {
     
     @IBAction func approvedDidTapped(_ sender: Any) {
         handleApprovedSelection()
-        listTableView.reloadData()
     }
     
     @IBAction func rejectedDidTapped(_ sender: Any) {
         handleRejectedSelection()
-        listTableView.reloadData()
     }
     
     @IBAction func nextDidTapped(_ sender: Any) {
@@ -77,11 +79,13 @@ class AffiliatedWithdrawalRequestListViewController: UIViewController {
         viewModel.goToPreviousPage(type: requestType)
     }
     
+    //MARK: Function's declaration
     private func handleApprovedSelection() {
         requestType = .approvedRequest
         updateTabUI()
         viewModel.currentPage = 1
         viewModel.fetchApprovedAffiliatedUsersList()
+        listTableView.reloadData()
     }
     
     private func handleRejectedSelection() {
@@ -89,6 +93,7 @@ class AffiliatedWithdrawalRequestListViewController: UIViewController {
         updateTabUI()
         viewModel.currentPage = 1
         viewModel.fetchRejectedAffiliatedUsersList()
+        listTableView.reloadData()
     }
     
     func updateTabUI() {
@@ -123,6 +128,7 @@ class AffiliatedWithdrawalRequestListViewController: UIViewController {
     }
 }
 
+// MARK: - TABLE VIEW METHODS
 extension AffiliatedWithdrawalRequestListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

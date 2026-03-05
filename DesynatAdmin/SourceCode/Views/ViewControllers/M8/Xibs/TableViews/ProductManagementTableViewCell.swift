@@ -101,6 +101,7 @@ class ProductManagementTableViewCell: UITableViewCell {
     
 }
 
+// MARK: - COLLECTION VIEW METHODS
 extension ProductManagementTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

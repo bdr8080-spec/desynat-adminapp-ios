@@ -10,6 +10,7 @@ import SDWebImage
 
 class AffiliatedUserDetailsViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var swiftView: UIView!
     @IBOutlet weak var ibanView: UIView!
     @IBOutlet weak var accountTypeLabel: UILabel!
@@ -39,10 +40,12 @@ class AffiliatedUserDetailsViewController: UIViewController {
     @IBOutlet weak var totalEarningsLabel: UILabel!
     @IBOutlet weak var reasonLabel: UILabel!
     
+    // MARK: - Property Decalaration
     var userType: AffiliatedUsersListType = .newUsers
     private lazy var viewModel = AffiliatedUserDetailsViewModel(hostVC: self)
     var userId: Int? = 0
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         initailSetupUI()
@@ -53,6 +56,7 @@ class AffiliatedUserDetailsViewController: UIViewController {
         viewModel.getAffilitaedUserDetails()
     }
     
+    // MARK: - Button's Action
     @IBAction func statusToggleDidTapped(_ sender: Any) {
         viewModel.upadteUserStatus(param: ["user_id": userId ?? 0])
     }
@@ -81,6 +85,7 @@ class AffiliatedUserDetailsViewController: UIViewController {
         viewModel.AcceptUserRequest(param: param)
     }
     
+    //MARK: Function's declaration
     func initailSetupUI() {
         approvedStackView.isHidden = true
         rejectedStackView.isHidden = true

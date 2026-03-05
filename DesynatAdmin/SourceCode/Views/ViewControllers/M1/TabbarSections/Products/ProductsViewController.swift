@@ -9,6 +9,7 @@ import UIKit
 
 class ProductsViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var searchTF: UITextField!
     @IBOutlet weak var noDataFoundLabel: UILabel!
     @IBOutlet weak var productsTableView: UITableView! {
@@ -17,8 +18,10 @@ class ProductsViewController: UIViewController {
         }
     }
     
+    // MARK: - Property Decalaration
     private lazy var viewModel = ProductsViewModel(hostVC: self)
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTF.delegate = self
@@ -32,6 +35,7 @@ class ProductsViewController: UIViewController {
         viewModel.resetAndFetchProducts()
     }
     
+    // MARK: - Button's Action
     @IBAction func filterDidTapped(_ sender: Any) {
         let nextVC = ProductFiltersViewController.instantiate(fromAppStoryboard: .Home)
         
@@ -39,7 +43,7 @@ class ProductsViewController: UIViewController {
         nextVC.categoriesList = viewModel.categoriesList
         nextVC.subCategoriesList = viewModel.subcategoriesList
         nextVC.brandsList = viewModel.brandsList
-    
+        
         nextVC.selectedCountryIDs = viewModel.appliedFilter?.countryIDs ?? []
         nextVC.selectedCategoryIDs = viewModel.appliedFilter?.categoryId ?? ""
         nextVC.selectedSubCategoryIDs = viewModel.appliedFilter?.subcategoryIDs ?? []
@@ -69,6 +73,7 @@ class ProductsViewController: UIViewController {
         
     }
     
+    //MARK: Function's declaration
     func toggleStatus(at index: Int) {
         let productID = viewModel.productsListData[index].id ?? 0
         let params = ["id": productID]
@@ -92,6 +97,7 @@ class ProductsViewController: UIViewController {
     
 }
 
+// MARK: - TABLE VIEW METHODS
 extension ProductsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -117,7 +123,7 @@ extension ProductsViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension ProductsViewController: UIScrollViewDelegate {
-  
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard scrollView == productsTableView else { return }
         let offsetY = scrollView.contentOffset.y
@@ -130,6 +136,7 @@ extension ProductsViewController: UIScrollViewDelegate {
     
 }
 
+//MARK: UITextFieldDelegate Methods
 extension ProductsViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

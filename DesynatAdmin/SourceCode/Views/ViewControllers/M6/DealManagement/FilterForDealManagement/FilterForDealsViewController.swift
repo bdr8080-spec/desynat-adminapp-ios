@@ -10,15 +10,18 @@ import DropDown
 
 class FilterForDealsViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var titleLabel: CustomLabelFont!
     @IBOutlet weak var headerView: UIView!
     
+    // MARK: - Property Decalaration
     private var brandList: [GetBrandDataList] = []
     var selectedFilter = ProductFilterModelOnBrand()
     var onApplyFilter: ((ProductFilterModelOnBrand) -> Void)?
     var onClearFilter: (() -> Void)?
     var sleectedBrand: String? = ""
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         handleUISetup()
@@ -28,6 +31,7 @@ class FilterForDealsViewController: UIViewController {
         }
     }
     
+    // MARK: - Button's Action
     @IBAction func dismissDidTapped(_ sender: Any) {
         self.dismiss(animated: true)
     }
@@ -74,6 +78,7 @@ class FilterForDealsViewController: UIViewController {
         dismiss(animated: true)
     }
     
+    //MARK: Function's declaration
     private func handleUISetup() {
         headerView.layer.cornerRadius = 24
         headerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]

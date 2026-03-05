@@ -9,13 +9,16 @@ import UIKit
 
 class AddPricePerDayViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var amountTF: UITextField!
     @IBOutlet weak var headerView: UIView!
     
+    // MARK: - Property Decalaration
     var bannerDetails: BannersPerDayListDataModel?
     private lazy var viewModel = AddPricePerDayViewModel(hostVC: self)
     var onChangesAreDone: (() -> Void)?
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         handleUISetup()
@@ -23,6 +26,7 @@ class AddPricePerDayViewController: UIViewController {
         amountTF.text = bannerDetails?.perDayPrice
     }
     
+    // MARK: - Button's Action
     @IBAction func saveChangesDidTapped(_ sender: Any) {
         guard let text = amountTF.text, !text.isEmpty else {
             showAlert(msg: "Please enter price")
@@ -35,6 +39,7 @@ class AddPricePerDayViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
+    //MARK: Function's declaration
     private func handleUISetup() {
         headerView.layer.cornerRadius = 24
         headerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -43,6 +48,7 @@ class AddPricePerDayViewController: UIViewController {
     
 }
 
+//MARK: UITextFieldDelegate Methods
 extension AddPricePerDayViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

@@ -11,19 +11,19 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-
     
+    // MARK: - Property Decalaration
     private lazy var viewModel = LoginViewModel(loginHostVC: self)
-//    var countryCode: String = LocationManager.sharedInstance.getCurrentLocationCode().dialCode
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         passwordTextField.isSecureTextEntry = true
         passwordTextField.delegate = self
         emailTextField.delegate = self
     }
-    
 
+    // MARK: - Button's Action
     @IBAction func loginDidTapped(_ sender: Any) {
         if viewModel.validFields() {
             viewModel.loginApi()
@@ -34,16 +34,15 @@ class LoginViewController: UIViewController {
         let vc = ForgotPasswordViewController.instantiate(fromAppStoryboard: .Main)
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
 
     @IBAction func passwordEyeToggle(_ sender: UIButton) {
         sender.isSelected.toggle()
         passwordTextField.isSecureTextEntry.toggle()
     }
     
-    
 }
 
+//MARK: UITextFieldDelegate Methods
 extension LoginViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

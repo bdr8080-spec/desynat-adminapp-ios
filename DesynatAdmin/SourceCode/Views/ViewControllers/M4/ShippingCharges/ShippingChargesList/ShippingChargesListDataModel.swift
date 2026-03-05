@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 // MARK: - ShippingChargesDataModel
 struct ShippingChargesDataModel: Codable {
     let id: Int?

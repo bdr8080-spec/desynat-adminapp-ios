@@ -157,7 +157,6 @@ class AffiliatedWithdrawalRequestListViewModel {
 //        }
     }
     
-    
     func goToNextPage(type: AffiliatedWithdrawalListType) {
         guard currentPage < totalPages else { return }
         currentPage += 1

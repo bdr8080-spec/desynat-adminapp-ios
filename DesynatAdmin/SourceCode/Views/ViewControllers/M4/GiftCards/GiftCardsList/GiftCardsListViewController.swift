@@ -9,6 +9,7 @@ import UIKit
 
 class GiftCardsListViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var searchTF: UITextField!
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
@@ -20,9 +21,11 @@ class GiftCardsListViewController: UIViewController {
         }
     }
     
+    // MARK: - Property Decalaration
     private lazy var viewModel = GiftCardsListViewModel(hostVC: self)
     private var searchWorkItem: DispatchWorkItem?
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTF.delegate = self
@@ -35,6 +38,7 @@ class GiftCardsListViewController: UIViewController {
         viewModel.getAllCards()
     }
     
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -53,6 +57,7 @@ class GiftCardsListViewController: UIViewController {
         viewModel.goToPreviousPage()
     }
     
+    //MARK: Function's declaration
     func updatePaginationButtonImages() {
         if viewModel.currentPage == 1 {
             previousButton.setImage(UIImage(named: "previousLeft"), for: .normal)
@@ -74,6 +79,7 @@ class GiftCardsListViewController: UIViewController {
     
 }
 
+// MARK: - TABLE VIEW METHODS
 extension GiftCardsListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.giftsListData.count
@@ -94,6 +100,7 @@ extension GiftCardsListViewController: UITableViewDelegate, UITableViewDataSourc
     
 }
 
+//MARK: UITextFieldDelegate Methods
 extension GiftCardsListViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let currentText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? ""

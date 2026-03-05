@@ -9,19 +9,23 @@ import UIKit
 
 class GiftCardDetailsViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var statusImageView: UIImageView!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var cardNameLabel: UILabel!
     @IBOutlet weak var cardImageView: CustomImageView!
     
+    // MARK: - Property Decalaration
     var giftsListData: GiftCardsList?
     private lazy var viewModel = GiftCardDetailsViewModel(hostVC: self)
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         bindData()
     }
     
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -52,6 +56,7 @@ class GiftCardDetailsViewController: UIViewController {
         }
     }
     
+    //MARK: Function's declaration
     func bindData() {
         cardNameLabel.text = giftsListData?.nameEnglish
         if let imageUrlString = giftsListData?.image,

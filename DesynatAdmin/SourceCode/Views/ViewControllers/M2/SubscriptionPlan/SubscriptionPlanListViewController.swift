@@ -8,21 +8,54 @@
 import UIKit
 
 class SubscriptionPlanListViewController: UIViewController {
+    
+    // MARK: - IBOutlet's
     @IBOutlet weak var viewCountryContainer: CustomView!
     @IBOutlet weak var lblSelectedCountry: CustomLabelFont!
     @IBOutlet weak var lblNodata: UILabel!
     @IBOutlet weak var tblCountry: TableViewDynamicHeight!
     @IBOutlet weak var lnlFlag: CustomLabelFont!
     @IBOutlet weak var tblPlans: UITableView!
+    
+    // MARK: - Property Decalaration
     private var viewModel : SubscriptionPlanViewModel = SubscriptionPlanViewModel()
     private var isCountryExpanded : Bool = false
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpUi()
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         self.setData()
+    }
+    
+    // MARK: - Button's Action
+    @IBAction func handleAddPlan(_ sender: Any) {
+        //self.navigate(to: AddPlanViewController.viewFromNIB)
+        let vc = AddPlanViewController.viewFromNIB
+        if let selected = self.viewModel.selectedCountry {
+            vc.viewModel.setCountry(selected)
+        }
+        self.navigate(to: vc)
+    }
+    
+    @IBAction func handleChooseCountry(_ sender: Any) {
+        self.isCountryExpanded = !isCountryExpanded
+        self.refreshCountrySelection()
+    }
+    
+    //MARK: Function's declaration
+    func refreshCountrySelection() {
+        if let countryListData = viewModel.selectedCountry {
+            self.lblSelectedCountry.text = String.getString(countryListData.name)
+            self.lnlFlag.text = String.getString(countryListData.flag)
+        } else {
+            self.lblSelectedCountry.text = ""
+        }
+        self.lnlFlag.isHidden = !self.isCountryExpanded
+        self.viewCountryContainer.isHidden = !self.isCountryExpanded
     }
     
     private func setUpUi() {
@@ -42,33 +75,9 @@ class SubscriptionPlanListViewController: UIViewController {
             self.refreshCountrySelection()
         }
     }
-    
-    @IBAction func handleAddPlan(_ sender: Any) {
-        //self.navigate(to: AddPlanViewController.viewFromNIB)
-        let vc = AddPlanViewController.viewFromNIB
-        if let selected = self.viewModel.selectedCountry {
-            vc.viewModel.setCountry(selected)
-        }
-        self.navigate(to: vc)
-    }
-    
-    @IBAction func handleChooseCountry(_ sender: Any) {
-        self.isCountryExpanded = !isCountryExpanded
-        self.refreshCountrySelection()
-    }
-    
-    func refreshCountrySelection() {
-        if let countryListData = viewModel.selectedCountry {
-            self.lblSelectedCountry.text = String.getString(countryListData.name)
-            self.lnlFlag.text = String.getString(countryListData.flag)
-        } else {
-            self.lblSelectedCountry.text = ""
-        }
-        self.lnlFlag.isHidden = !self.isCountryExpanded
-        self.viewCountryContainer.isHidden = !self.isCountryExpanded
-    }
-
 }
+
+// MARK: - TABLE VIEW METHODS
 extension SubscriptionPlanListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -119,11 +128,6 @@ extension SubscriptionPlanListViewController: UITableViewDelegate, UITableViewDa
         }
         
     }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        viewWillLayoutSubviews()
-    }
-    
 }
 extension SubscriptionPlanListViewController:HandleTableRefresh {
     func refreshTable(for string: String) {

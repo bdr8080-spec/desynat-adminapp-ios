@@ -8,30 +8,52 @@
 import UIKit
 
 class ApplyFilterViewController: UIViewController {
+    
+    // MARK: - IBOutlet's
     @IBOutlet weak var btnClear: CustomButton!
     @IBOutlet weak var viewCountryContainer: CustomView!
     @IBOutlet weak var lblSelectedCountry: CustomLabelFont!
-    
     @IBOutlet weak var viewMain: CustomView!
     @IBOutlet weak var lnlFlag: CustomLabelFont!
     @IBOutlet weak var txtFieldFrom: UITextField!
     @IBOutlet weak var txtFieldTo: UITextField!
     @IBOutlet weak var tblCountry: TableViewDynamicHeight!
     
-    
+    // MARK: - Property Decalaration
     private var viewModel : FilterViewModel = FilterViewModel()
     private var isCountryExpanded : Bool = false
     private var callBackFromApplyFilter : ((FilterInfo) -> Void)?
     private var lastEditedTextField : UITextField?
     private let datePicker = UIDatePicker()
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.setUpUi()
         self.setData()
     }
     
+    // MARK: - Button's Action
+    @IBAction func handleClose(_ sender: Any) {
+        self.dismiss(animated: false)
+    }
+    
+    @IBAction func handleCountrySelection(_ sender: Any) {
+        isCountryExpanded = !isCountryExpanded
+        self.refreshCountrySelection()
+    }
+    
+    @IBAction func handleClearFilter(_ sender: Any) {
+        self.callBackFromApplyFilter?(FilterInfo())
+        self.dismiss(animated: false)
+    }
+    
+    @IBAction func handleApplyFilter(_ sender: Any) {
+        self.callBackFromApplyFilter?(viewModel.filterInfo)
+        self.dismiss(animated: false)
+    }
+    
+    //MARK: Function's declaration
     func setIntitial(_ filterInfo:FilterInfo,callBack:@escaping((FilterInfo) -> Void))  {
         self.viewModel.setFilter(filterInfo)
         self.callBackFromApplyFilter = callBack
@@ -52,7 +74,7 @@ class ApplyFilterViewController: UIViewController {
         self.viewModel.getAllCountry {
             self.refreshCountrySelection()
         }
-         let filterInfo = viewModel.filterInfo
+        let filterInfo = viewModel.filterInfo
         if let startDate = filterInfo.startDate {
             self.txtFieldFrom.text = CommonUtils.getDateString(from: startDate,format: "dd/MM/yyyy")
         }
@@ -140,27 +162,9 @@ class ApplyFilterViewController: UIViewController {
         view.endEditing(true)
     }
     
-    @IBAction func handleClose(_ sender: Any) {
-        self.dismiss(animated: false)
-    }
-    
-    @IBAction func handleCountrySelection(_ sender: Any) {
-        isCountryExpanded = !isCountryExpanded
-        self.refreshCountrySelection()
-    }
-    
-    @IBAction func handleClearFilter(_ sender: Any) {
-        self.callBackFromApplyFilter?(FilterInfo())
-        self.dismiss(animated: false)
-    }
-    
-    @IBAction func handleApplyFilter(_ sender: Any) {
-        self.callBackFromApplyFilter?(viewModel.filterInfo)
-        self.dismiss(animated: false)
-    }
 }
 
-
+// MARK: - TABLE VIEW METHODS
 extension ApplyFilterViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -180,10 +184,6 @@ extension ApplyFilterViewController: UITableViewDelegate, UITableViewDataSource 
             self.viewModel.setCountry(data)
             self.refreshCountrySelection()
         }
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        viewWillLayoutSubviews()
     }
     
 }

@@ -8,10 +8,11 @@
 import UIKit
 
 class DriverDetailsViewController: UIViewController {
-  
-  @IBOutlet weak var registrtionCertificateView: UIView!
-  @IBOutlet weak var pollutionCertificateView: UIView!
-  @IBOutlet weak var profileImageView: CustomImageView!
+    
+    // MARK: - IBOutlet's
+    @IBOutlet weak var registrtionCertificateView: UIView!
+    @IBOutlet weak var pollutionCertificateView: UIView!
+    @IBOutlet weak var profileImageView: CustomImageView!
     @IBOutlet weak var fullNameInEnglishLabel: UILabel!
     @IBOutlet weak var mobileLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
@@ -31,39 +32,43 @@ class DriverDetailsViewController: UIViewController {
     @IBOutlet weak var registrationCertificationFrontImagViw: CustomImageView!
     @IBOutlet weak var registrationCertificationBackImagViw: CustomImageView!
     
-private lazy var viewModel = DriverDetailsViewModel(hostVC: self)
-  var userId: Int = 0
+    // MARK: - Property Decalaration
+    private lazy var viewModel = DriverDetailsViewModel(hostVC: self)
+    var userId: Int = 0
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-      super.viewWillAppear(animated)
+        super.viewWillAppear(animated)
         viewModel.getDriverDetails()
     }
     
-  @IBAction func editDidTapped(_ sender: Any) {
-    let vc = AddNewDriverViewController.instantiate(fromAppStoryboard: .ReasonManagement)
-    vc.isComingForEdit = true
-    vc.userId = userId
-    self.navigationController?.pushViewController(vc, animated: false)
-  }
-  
-  
-  @IBAction func backDidTapped(_ sender: Any) {
-    self.navigationController?.popViewController(animated: true)
-  }
+    // MARK: - Button's Action
+    @IBAction func editDidTapped(_ sender: Any) {
+        let vc = AddNewDriverViewController.instantiate(fromAppStoryboard: .ReasonManagement)
+        vc.isComingForEdit = true
+        vc.userId = userId
+        self.navigationController?.pushViewController(vc, animated: false)
+    }
+    
+    
+    @IBAction func backDidTapped(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
     
     @IBAction func deleteDidTapped(_ sender: Any) {
         self.showConfirmationAlert(msg: "Are you sure you want to delete this user?") { [weak self] in
-          guard let self = self else { return }
-          let param: [String: Any] = ["user_id": userId]
-          viewModel.deleteBoy(param: param)
+            guard let self = self else { return }
+            let param: [String: Any] = ["user_id": userId]
+            viewModel.deleteBoy(param: param)
         }
     }
     
+    //MARK: Function's declaration
     func configData(data: DeliveryBoysList) {
         // MARK: - Text Fields
         fullNameInEnglishLabel.text = data.fullNameEnglish
@@ -76,9 +81,9 @@ private lazy var viewModel = DriverDetailsViewModel(hostVC: self)
             data.city,
             data.state
         ]
-        .compactMap { $0 }
-        .filter { !$0.isEmpty }
-        .joined(separator: ", ")
+            .compactMap { $0 }
+            .filter { !$0.isEmpty }
+            .joined(separator: ", ")
         
         vehicleNameTF.text = data.vehicleName
         vehicleRegistrationTF.text = data.vehicleRegNo
@@ -97,20 +102,16 @@ private lazy var viewModel = DriverDetailsViewModel(hostVC: self)
         drivingLcenseBackImageView.setImage(with: data.drivingLicense?.first(where: { $0.isFront == 0})?.documentPath ?? "")
         
         vehicleInsuranceImageView.setImage(with: data.vehicleInsurance?.first?.documentPath)
-      let pollutionUrl = data.pollutionPaper?.first?.documentPath ?? ""
-
+        let pollutionUrl = data.pollutionPaper?.first?.documentPath ?? ""
+        
         pollutionCertificateView.isHidden = pollutionUrl.isEmpty
-      
+        
         pollutionPaperImageView.setImage(with: data.pollutionPaper?.first?.documentPath)
         
-      let registrationURL = data.registrationCertificate?.first(where: { $0.isFront == 1})?.documentPath ?? ""
-      registrtionCertificateView.isHidden = registrationURL.isEmpty
+        let registrationURL = data.registrationCertificate?.first(where: { $0.isFront == 1})?.documentPath ?? ""
+        registrtionCertificateView.isHidden = registrationURL.isEmpty
         registrationCertificationFrontImagViw.setImage(with: data.registrationCertificate?.first(where: { $0.isFront == 1})?.documentPath)
         registrationCertificationBackImagViw.setImage(with: data.registrationCertificate?.first(where: { $0.isFront == 0})?.documentPath)
     }
     
-    
-    
-    
-  
 }

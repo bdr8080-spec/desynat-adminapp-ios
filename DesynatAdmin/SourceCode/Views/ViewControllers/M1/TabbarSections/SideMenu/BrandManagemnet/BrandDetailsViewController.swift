@@ -8,20 +8,24 @@
 import UIKit
 
 class BrandDetailsViewController: UIViewController {
-
+    
+    // MARK: - IBOutlet's
     @IBOutlet weak var statusImageView: UIImageView!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var brandNameLabel: UILabel!
     @IBOutlet weak var brandImageView: CustomImageView!
     
+    // MARK: - Property Decalaration
     var brandData: GetBrandDataList?
     private lazy var viewModel = BrandDetailsViewModel(hostVC: self)
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         bindData()
     }
-
+    
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -46,7 +50,6 @@ class BrandDetailsViewController: UIViewController {
         viewModel.upadteBrandStatus(param: ["brand_id": brand.id ?? 0])
     }
     
-    
     @IBAction func deleteDidTapped(_ sender: Any) {
         guard let brand = brandData else { return }
         self.showConfirmationAlert(msg: "Are you sure you want to delete this brand?"){ [weak self] in
@@ -55,6 +58,7 @@ class BrandDetailsViewController: UIViewController {
         }
     }
     
+    //MARK: Function's declaration
     func bindData() {
         brandNameLabel.text = brandData?.nameEnglish
         if let imageUrlString = brandData?.image,

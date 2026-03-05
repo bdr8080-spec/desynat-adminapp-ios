@@ -9,6 +9,7 @@ import UIKit
 
 class AddPromocodeViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var promocodeEnglishTF: UITextField!
     @IBOutlet weak var countryTF: UITextField!
     @IBOutlet weak var promocodeArabicTF: UITextField!
@@ -22,6 +23,7 @@ class AddPromocodeViewController: UIViewController {
     @IBOutlet weak var startDateTF: UITextField!
     @IBOutlet weak var endDateTF: UITextField!
     
+    // MARK: - Property Decalaration
     var isComingForEdit: Bool = false
     private lazy var viewModel = AddPromocodeViewModel(hostVC: self)
     var countryCode: Int? = 0
@@ -30,6 +32,7 @@ class AddPromocodeViewController: UIViewController {
     var selectedOrderType: Int = 1 // 1 = First Order, 2 = Every Order
     var promocodeDetails: PromocodeList?
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.getAllCountry()
@@ -39,6 +42,7 @@ class AddPromocodeViewController: UIViewController {
         confidData()
     }
     
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -100,6 +104,7 @@ class AddPromocodeViewController: UIViewController {
         }
     }
     
+    //MARK: Function's declaration
     func confidData() {
         countryTF.text = promocodeDetails?.countryInfo?.name
         countryCode = promocodeDetails?.countryID
@@ -138,6 +143,7 @@ class AddPromocodeViewController: UIViewController {
     }
 }
 
+//MARK: UITextFieldDelegate Methods
 extension AddPromocodeViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField,

@@ -9,15 +9,18 @@ import UIKit
 
 class SetDefaultDeliveryfeeViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var taxTF: UITextField!
     @IBOutlet weak var headerView: UIView!
     
+    // MARK: - Property Decalaration
     private lazy var viewModel = SetDefaultDeliveryfeeViewModel(hostVC: self)
     var countryID: Int? = 0
     var taxAmount: String?
     var taxDefaultAmountSet: ((_ amount: String) -> Void)?
     var originalTaxValue: Double = 0.0
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         handleUISetup()
@@ -29,6 +32,7 @@ class SetDefaultDeliveryfeeViewController: UIViewController {
         }
     }
     
+    // MARK: - Button's Action
     @IBAction func saveChangesDidTapped(_ sender: Any) {
         handleDefaultTaxUpdate()
         
@@ -38,6 +42,7 @@ class SetDefaultDeliveryfeeViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
+    //MARK: Function's declaration
     private func handleUISetup() {
         headerView.layer.cornerRadius = 24
         headerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -82,6 +87,7 @@ class SetDefaultDeliveryfeeViewController: UIViewController {
     
 }
 
+//MARK: UITextFieldDelegate Methods
 extension SetDefaultDeliveryfeeViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField,

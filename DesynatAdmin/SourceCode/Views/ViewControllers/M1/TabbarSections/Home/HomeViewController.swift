@@ -9,6 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var toDateTextField: UITextField!
     @IBOutlet weak var fromDateTextField: UITextField!
     @IBOutlet weak var usernameLabel: UILabel!
@@ -63,6 +64,7 @@ class HomeViewController: UIViewController {
         }
     }
     
+    // MARK: - Property Decalaration
     private var durationArray = ["Today", "Week", "Month", "Year"]
     private var durationSelectedIndex: Int = 0
     let datePicker = UIDatePicker()
@@ -70,6 +72,7 @@ class HomeViewController: UIViewController {
     private var selectedCountryIndex: Int = 0
     private lazy var viewModel = HomeViewModel(hostVC: self)
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         uiSetup()
@@ -88,7 +91,8 @@ class HomeViewController: UIViewController {
             self.countryTableViewHeightConstarint.constant = self.countryTableView.contentSize.height
         }
     }
-    
+
+    // MARK: - Button's Action
     @IBAction func profileButtonAction(_ sender: Any) {
         let vc = SideMenuViewController.instantiate(fromAppStoryboard: .SideMenu)
         self.navigationController?.pushViewController(vc, animated: false)
@@ -110,6 +114,7 @@ class HomeViewController: UIViewController {
         countryDropDownView.isHidden = true
     }
     
+    //MARK: Function's declaration
     private func bindData() {
         totalUserRegisteredLabel.text = "Total users registered (2380)"
         totalAffiliatedLabel.text = "Total Affiliated registered (2380)"
@@ -131,6 +136,7 @@ class HomeViewController: UIViewController {
     
 }
 
+// MARK: - COLLECTION VIEW METHODS
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return durationArray.count
@@ -154,6 +160,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
 }
 
+// MARK: - TABLE VIEW METHODS
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -182,7 +189,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
-extension HomeViewController {
+//MARK: UITextFieldDelegate Methods
+extension HomeViewController: UITextFieldDelegate {
     private func setUpTextFields() {
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.datePickerMode = .date
@@ -221,9 +229,7 @@ extension HomeViewController {
     @objc private func cancelDatePicker() {
         view.endEditing(true)
     }
-}
-
-extension HomeViewController: UITextFieldDelegate {
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
     }

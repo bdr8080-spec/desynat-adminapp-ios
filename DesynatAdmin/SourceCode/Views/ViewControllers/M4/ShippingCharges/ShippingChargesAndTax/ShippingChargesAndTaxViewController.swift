@@ -9,6 +9,7 @@ import UIKit
 
 class ShippingChargesAndTaxViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var defaultDeliveryFeeLabel: UILabel!
     @IBOutlet weak var bottomButtonsView: UIView!
     @IBOutlet weak var taxAmountLabel: UILabel!
@@ -24,6 +25,7 @@ class ShippingChargesAndTaxViewController: UIViewController {
         }
     }
     
+    // MARK: - Property Decalaration
     var countryId: Int? = 0
     var flag: String? = ""
     var countryName: String? = ""
@@ -33,6 +35,7 @@ class ShippingChargesAndTaxViewController: UIViewController {
     var taxAmount: String? = ""
     var defaultTaxAmount: String? = ""
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         populateCountryData()
@@ -40,6 +43,7 @@ class ShippingChargesAndTaxViewController: UIViewController {
         viewModel.getDefaultDeliveryFees()
     }
     
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -108,6 +112,7 @@ class ShippingChargesAndTaxViewController: UIViewController {
         self.navigationController?.present(nextVC, animated: true)
     }
     
+    //MARK: Function's declaration
     func updatePageLabel() {
         guard let total = viewModel.shippingTaxDetails?.count else { return }
         let totalPages = Int(ceil(Double(total) / Double(itemsPerPage)))
@@ -184,6 +189,7 @@ class ShippingChargesAndTaxViewController: UIViewController {
     
 }
 
+// MARK: - TABLE VIEW METHODS
 extension ShippingChargesAndTaxViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

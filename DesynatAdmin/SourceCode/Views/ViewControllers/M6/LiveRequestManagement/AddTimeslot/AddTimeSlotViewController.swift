@@ -9,6 +9,7 @@ import UIKit
 
 class AddTimeSlotViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var fromHHLabel: UILabel!
     @IBOutlet weak var fromMMLabel: UILabel!
@@ -17,6 +18,7 @@ class AddTimeSlotViewController: UIViewController {
     @IBOutlet weak var toMMLabel: UILabel!
     @IBOutlet weak var toAMLabel: UILabel!
     
+    // MARK: - Property Decalaration
     var countryId: Int = 0
     var selectedDate: String = "" // e.g., "2026-01-05"
     var selectedFromDate: String = ""
@@ -46,7 +48,7 @@ class AddTimeSlotViewController: UIViewController {
     private lazy var viewModel = AddTimeSlotViewModel(hostVC: self)
     var slectedTimeSlot: LiveRequestListDataModel?
     
-    // MARK: - Lifecycle
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         handleUISetup()
@@ -57,7 +59,7 @@ class AddTimeSlotViewController: UIViewController {
         }
     }
     
-    // MARK: - Button Actions
+    // MARK: - Button's Action
     @IBAction func dismissDidTapped(_ sender: Any) {
         self.dismiss(animated: true)
     }
@@ -114,12 +116,6 @@ class AddTimeSlotViewController: UIViewController {
             return
         }
         
-        //    guard let fromDate = formatter.date(from: "\(fromHour):\(fromMinute) \(fromAmPm)"),
-        //          let toDate = formatter.date(from: "\(toHour):\(toMinute) \(toAmPm)") else {
-        //      showAlert(msg: "Please select From and to Times")
-        //      return
-        //    }
-        
         // Check if From < To
         if fromDate >= toDate {
             showAlert(msg: "From time must be earlier than To time")
@@ -142,7 +138,7 @@ class AddTimeSlotViewController: UIViewController {
         }
     }
     
-    // MARK: - UI Setup
+    //MARK: Function's declaration
     private func handleUISetup() {
         headerView.layer.cornerRadius = 24
         headerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]

@@ -10,6 +10,7 @@ import SDWebImage
 
 class AddAdvertisementViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var forTypeLabel: CustomLabelFont!
     @IBOutlet weak var mainImageView: CustomImageView!
     @IBOutlet weak var toTextField: UITextField!
@@ -17,25 +18,27 @@ class AddAdvertisementViewController: UIViewController {
     @IBOutlet weak var countryLabel: CustomLabelFont!
     @IBOutlet weak var titleTextField: UITextField!
     
-    let datePicker = UIDatePicker()
+    // MARK: - Property Decalaration
+    private lazy var viewModel = AddAdvertisementViewModel(hostVC: self)
+    private var isImageChanged: Bool = false
     private var activeTextField: UITextField?
+    let datePicker = UIDatePicker()
     var countryId: Int = 0
     var selectedImageUrl: String = ""
-    private lazy var viewModel = AddAdvertisementViewModel(hostVC: self)
     var isComingForEdit: Bool = false
     var giftsListData: FullScreenBannerDataList?
     var onCardUpdated: ((FullScreenBannerDataList) -> Void)?
     var forTypeList = ["App Banner", "Web Banner"]
     var selectedForType: Int = 0 //type 1 mobile,2-web
-    func selectedAspectRatio() -> BannerAspectRatio {
-        return selectedForType == 1 ? .mobile : .web
-    }
     var pickedImage: UIImage?
     var pickedGifData: Data?
     var pickedFileName: String = ""
     var isGifSelected: Bool = false
-    private var isImageChanged: Bool = false
+    func selectedAspectRatio() -> BannerAspectRatio {
+        return selectedForType == 1 ? .mobile : .web
+    }
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTextFields()
@@ -45,6 +48,7 @@ class AddAdvertisementViewController: UIViewController {
         }
     }
     
+    // MARK: - Button's Action
     @IBAction func countryDidTapped(_ sender: UIButton) {
         let countryNames = viewModel.countryListData.map { country -> String in
             let name = country.name ?? ""
@@ -96,19 +100,6 @@ class AddAdvertisementViewController: UIViewController {
         }
     }
     
-    private func processCameraImage(_ image: UIImage) -> UIImage {
-        
-        let aspect = selectedAspectRatio()
-        
-        let targetSize: CGSize = (aspect == .mobile)
-        ? CGSize(width: 1080, height: 1920)   // Mobile 9:16
-        : CGSize(width: 1920, height: 1080)   // Web 16:9
-        
-        let croppedImage = image.cropToAspectRatio(aspect.value)
-        return croppedImage.resize(to: targetSize)
-    }
-    
-    
     @IBAction func backDidTapped(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -154,6 +145,18 @@ class AddAdvertisementViewController: UIViewController {
         showAlert(msg: "Please select image")
     }
     
+    //MARK: Function's declaration
+    private func processCameraImage(_ image: UIImage) -> UIImage {
+        
+        let aspect = selectedAspectRatio()
+        
+        let targetSize: CGSize = (aspect == .mobile)
+        ? CGSize(width: 1080, height: 1920)   // Mobile 9:16
+        : CGSize(width: 1920, height: 1080)   // Web 16:9
+        
+        let croppedImage = image.cropToAspectRatio(aspect.value)
+        return croppedImage.resize(to: targetSize)
+    }
     
     private func submitFinalApi() {
         if isComingForEdit {
@@ -268,7 +271,7 @@ extension AddAdvertisementViewController {
     }
 }
 
-
+//MARK: UITextFieldDelegate Methods
 extension AddAdvertisementViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField

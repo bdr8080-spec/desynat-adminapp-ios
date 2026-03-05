@@ -8,6 +8,8 @@
 import UIKit
 
 class CityZoneListViewController: UIViewController {
+    
+    // MARK: - IBOutlet's
     @IBOutlet weak var lblNodata: UILabel!
     @IBOutlet weak var tblZones: UITableView!
     @IBOutlet weak var txtFielSearch: BindableTextField! {
@@ -16,29 +18,20 @@ class CityZoneListViewController: UIViewController {
         }
     }
     
+    // MARK: - Property Decalaration
     private var viewModel : ZoneViewModel = ZoneViewModel()
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpUi()
-    }
-    
-    func setCity(_ cityInfo:CitiesInfo)  {
-        self.viewModel.setCity(cityInfo)
-    }
-    
-    private func setUpUi() {
-        self.viewModel.setRefreshHandler(self,zoneActionHandler: self)
-        self.tblZones.register(ServiceCitiesTableViewCell.self)
-        self.tblZones.delegate = self
-        self.tblZones.dataSource = self
-        self.tblZones.separatorStyle = .none
     }
     
     override func viewDidAppear(_ animated: Bool) {
         self.viewModel.getZones()
     }
     
+    // MARK: - Button's Action
     @IBAction func handleBack(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -50,7 +43,22 @@ class CityZoneListViewController: UIViewController {
         }
         self.navigate(to: vc)
     }
+    
+    //MARK: Function's declaration
+    func setCity(_ cityInfo:CitiesInfo)  {
+        self.viewModel.setCity(cityInfo)
+    }
+    
+    private func setUpUi() {
+        self.viewModel.setRefreshHandler(self,zoneActionHandler: self)
+        self.tblZones.register(ServiceCitiesTableViewCell.self)
+        self.tblZones.delegate = self
+        self.tblZones.dataSource = self
+        self.tblZones.separatorStyle = .none
+    }
 }
+
+// MARK: - TABLE VIEW METHODS
 extension CityZoneListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -73,10 +81,10 @@ extension CityZoneListViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        viewWillLayoutSubviews()
+        //        viewWillLayoutSubviews()
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-         76
+        76
     }
     
 }

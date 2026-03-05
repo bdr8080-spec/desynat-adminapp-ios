@@ -8,8 +8,9 @@
 import UIKit
 
 class SubscriptionDetailViewController: UIViewController {
-    @IBOutlet weak var lblDuration: CustomLabelFont!
     
+    // MARK: - IBOutlet's
+    @IBOutlet weak var lblDuration: CustomLabelFont!
     @IBOutlet weak var btnSwitch: CustomButton!
     @IBOutlet weak var btnActive: CustomButton!
     @IBOutlet weak var stackFeature: UIStackView!
@@ -17,20 +18,59 @@ class SubscriptionDetailViewController: UIViewController {
     @IBOutlet weak var viewPlanTitleBack: CustomView!
     @IBOutlet weak var lblPrice: CustomLabelFont!
     @IBOutlet weak var lblPlanName: CustomLabelFont!
+    
+    // MARK: - Property Decalaration
     private var viewModel : SubscriptionDetailViewModel?
+    
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewMain.isHidden = true
         self.setUpUi()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.setData()
+    }
+    
+    // MARK: - Button's Action
+    @IBAction func handleSwitch(_ sender: Any) {
+        self.viewModel?.setActive(!(self.viewModel?.data.isActive ?? false)) {
+            self.refreshStatus()
+        }
+    }
+    
+    @IBAction func handleBack(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func handleDelete(_ sender: Any) {
+        self.showConfirmationAlert(msg: "Are you sure you want\nto delete the plan?") {
+            self.viewModel?.deletePlan {
+                let vc = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
+                vc.setTitle("Subscription plan deleted\nsuccessfully!")
+                vc.callBackDismiss = {
+                    self.navigationController?.popViewController(animated: true)
+                }
+                self.presentVC(vc,modalPresentationStyle: .overCurrentContext)
+            }
+        }
+    }
+    
+    @IBAction func handleEdit(_ sender: Any) {
+        let vc = AddPlanViewController.viewFromNIB
+        if let data = self.viewModel?.data {
+            vc.setIntial(data)
+        }
+        self.navigate(to: vc)
+    }
+    
+    //MARK: Function's declaration
     func setVM(_ vm:SubscriptionDetailViewModel)  {
         self.viewModel = vm
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        self.setData()
-    }
     private func setUpUi() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.viewPlanTitleBack.applyGradient(colours: [.init(hexString: "#5E5E5E"),.init(hexString: "#1A1A1A"),.init(hexString: "#1A1A1A")],gradientDirection: .leftToRight,cornerRadius: 16,corners: [.layerMinXMaxYCorner,.layerMaxXMaxYCorner])
@@ -74,36 +114,6 @@ class SubscriptionDetailViewController: UIViewController {
         self.btnActive.setTitle(isActive ? "Active" : "InActive", for: .normal)
         self.btnActive.setTitleColor(.init(hexString: isActive ? "#1A900D" : "#6E4527"), for: .normal)
         self.btnSwitch.setImage(isActive ? .toggleOn : .toggleOff, for: .normal)
-    }
-    @IBAction func handleSwitch(_ sender: Any) {
-        self.viewModel?.setActive(!(self.viewModel?.data.isActive ?? false)) {
-            self.refreshStatus()
-        }
-    }
-    
-    @IBAction func handleBack(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    @IBAction func handleDelete(_ sender: Any) {
-        self.showConfirmationAlert(msg: "Are you sure you want\nto delete the plan?") {
-            self.viewModel?.deletePlan {
-                let vc = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
-                vc.setTitle("Subscription plan deleted\nsuccessfully!")
-                vc.callBackDismiss = {
-                    self.navigationController?.popViewController(animated: true)
-                }
-                self.presentVC(vc,modalPresentationStyle: .overCurrentContext)
-            }
-        }
-    }
-    
-    @IBAction func handleEdit(_ sender: Any) {
-        let vc = AddPlanViewController.viewFromNIB
-        if let data = self.viewModel?.data {
-            vc.setIntial(data)
-        }
-        self.navigate(to: vc)
     }
     
     func getView(_ title:NSAttributedString) -> SubscriptionFeatureInfoView {

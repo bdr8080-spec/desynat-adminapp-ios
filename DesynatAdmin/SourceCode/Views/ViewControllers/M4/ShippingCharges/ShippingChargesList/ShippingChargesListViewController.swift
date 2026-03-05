@@ -9,14 +9,18 @@ import UIKit
 
 class ShippingChargesListViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var noDataFoundLabel: UILabel!
     @IBOutlet weak var shippingTableView: UITableView! {
         didSet {
             shippingTableView.registerCellFromNib(cellID: "ShippingChargesListTableViewCell")
         }
     }
+    
+    // MARK: - Property Decalaration
     private lazy var viewModel = ShippingChargesViewModel(hostVC: self)
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,12 +31,15 @@ class ShippingChargesListViewController: UIViewController {
         viewModel.getAllshippingTaxList()
     }
     
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     
+    //MARK: Function's declaration
 }
 
+// MARK: - TABLE VIEW METHODS
 extension ShippingChargesListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.shippingDetails?.count ?? 0
