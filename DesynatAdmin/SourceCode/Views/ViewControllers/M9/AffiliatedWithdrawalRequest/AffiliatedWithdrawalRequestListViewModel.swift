@@ -22,6 +22,7 @@ class AffiliatedWithdrawalRequestListViewModel {
     init(hostVC: AffiliatedWithdrawalRequestListViewController) {
         self.hostVC = hostVC
     }
+    
     // Helper
 //    func filter(for type: AffiliatedWithdrawalListType) -> FullScreenBannerFilterModel {
 //        switch type {
@@ -231,6 +232,3 @@ class AffiliatedWithdrawalRequestListViewModel {
     }
     
 }
-
-
-

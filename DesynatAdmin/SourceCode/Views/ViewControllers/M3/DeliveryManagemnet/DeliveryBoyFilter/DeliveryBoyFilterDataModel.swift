@@ -16,7 +16,6 @@ struct DriverFilterModel {
     }
 }
 
-
 struct ProductFilterModelOnBrand {
     var brandName: String?
     var brandId: Int?
