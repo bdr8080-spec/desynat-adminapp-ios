@@ -152,7 +152,8 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             let nextVC = AffiliatedWithdrawalRequestListViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
             self.navigationController?.pushViewController(nextVC, animated: true)
         case "Notifications Management":
-            print("➡️ Navigating to Notifications Management")
+            let nextVC = NotificationsListViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+            self.navigationController?.pushViewController(nextVC, animated: true)
         case "Story Management":
             let nextVC = StoryManagemnetViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
             self.navigationController?.pushViewController(nextVC, animated: true)
