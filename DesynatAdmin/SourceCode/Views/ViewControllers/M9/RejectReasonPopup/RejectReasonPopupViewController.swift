@@ -15,7 +15,7 @@ class RejectReasonPopupViewController: UIViewController {
     
     // MARK: - Property Decalaration
     private lazy var viewModel = RejectReasonPopupViewModel(hostVC: self)
-    var onChangesAreDone: (() -> Void)?
+    var onChangesAreDone: ((String) -> Void)?
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
@@ -25,8 +25,14 @@ class RejectReasonPopupViewController: UIViewController {
     
     // MARK: - Button's Action
     @IBAction func saveChangesDidTapped(_ sender: Any) {
-        onChangesAreDone?()
-        self.dismiss(animated: true)
+        if (self.reasonTextView.text.isEmpty) {
+            self.showAlert(msg: "Please enter reason")
+            return
+        }
+        self.reasonTextView.becomeFirstResponder()
+        self.dismiss(animated: true) {
+            self.onChangesAreDone?(self.reasonTextView.text)
+        }
     }
     
     @IBAction func dismissDidTapepd(_ sender: Any) {

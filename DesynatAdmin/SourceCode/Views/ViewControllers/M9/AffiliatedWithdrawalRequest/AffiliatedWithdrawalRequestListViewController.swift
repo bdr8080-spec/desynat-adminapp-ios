@@ -80,7 +80,7 @@ class AffiliatedWithdrawalRequestListViewController: UIViewController {
     }
     
     //MARK: Function's declaration
-    private func handleApprovedSelection() {
+    func handleApprovedSelection() {
         requestType = .approvedRequest
         updateTabUI()
         viewModel.currentPage = 1
@@ -88,7 +88,7 @@ class AffiliatedWithdrawalRequestListViewController: UIViewController {
         listTableView.reloadData()
     }
     
-    private func handleRejectedSelection() {
+    func handleRejectedSelection() {
         requestType = .rejectedRequest
         updateTabUI()
         viewModel.currentPage = 1
@@ -132,23 +132,25 @@ class AffiliatedWithdrawalRequestListViewController: UIViewController {
 extension AffiliatedWithdrawalRequestListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4//viewModel.affilitaitedUsersList.count
+        return viewModel.affilitaitedUsersList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AffiliatedWithdrawalTableViewCell", for: indexPath) as! AffiliatedWithdrawalTableViewCell
-        //let data = viewModel.affilitaitedUsersList[indexPath.row]
-        cell.configData(requestType: requestType)//, data: data)
+        let data = viewModel.affilitaitedUsersList[indexPath.row]
+        cell.configData(requestType: requestType, data: data)
         cell.onAcceptTap = { [weak self] in
-            //let param: [String: Any] = ["user_id": data.id ?? 0]
-            // CALL API HERE
-            self?.handleApprovedSelection()
+            let param: [String: Any] = ["req_id": data.id ?? 0,
+                                        "transaction_id": data.id ?? 0,
+                                        "payment_status": 1]
+            self?.viewModel.AcceptUserRequest(param: param)
         }
         cell.onRejectTap = {
             let vc = RejectReasonPopupViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
-            vc.onChangesAreDone = { [weak self] in
-                //
-                self?.handleRejectedSelection()
+            vc.onChangesAreDone = { reason in
+                let param: [String: Any] = ["req_id": data.id ?? 0,
+                                            "reject_reason": reason]
+                self.viewModel.RejectUserRequest(param: param)
             }
             self.presentVC(vc,withAnimation: false,modalPresentationStyle: .overCurrentContext)
         }

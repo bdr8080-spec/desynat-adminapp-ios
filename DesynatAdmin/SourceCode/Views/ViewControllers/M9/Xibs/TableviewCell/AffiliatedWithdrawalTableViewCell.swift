@@ -9,9 +9,15 @@ import UIKit
 
 class AffiliatedWithdrawalTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var bankAccountLabel: CustomLabelFont!
     @IBOutlet weak var statusLabel: CustomLabelFont!
     @IBOutlet weak var actionStackView: UIStackView!
     @IBOutlet weak var statusView: UIStackView!
+    @IBOutlet weak var requestIDLabel: CustomLabelFont!
+    @IBOutlet weak var requestedByIDLabel: CustomLabelFont!
+    @IBOutlet weak var requestedOnLabel: CustomLabelFont!
+    @IBOutlet weak var availableAmountLabel: CustomLabelFont!
+    @IBOutlet weak var requestedAmountLabel: CustomLabelFont!
     
     var onRejectTap: (() -> Void)?
     var onAcceptTap: (() -> Void)?
@@ -34,13 +40,15 @@ class AffiliatedWithdrawalTableViewCell: UITableViewCell {
         onAcceptTap?()
     }
     
-    func configData(requestType: AffiliatedWithdrawalListType) {
+    func configData(requestType: AffiliatedWithdrawalListType, data: AffiliatedWithdrawalList?) {
         actionStackView.isHidden = true
         statusView.isHidden = true
-//        self.lblDateTime.text = CommonUtils.getDateStrings(
-//            from: Date(iso8601String: String.getString(self.viewModel.orderDetail?.createdAt)),
-//            format: "dd/MM/yyyy 'at' hh:mm a"
-//        )
+        requestIDLabel.text = "#\(data?.requestID ?? "0")"
+        requestedByIDLabel.text =  "\(data?.affiliateDetails?.fullName ?? "") | \(data?.affiliateDetails?.countryDetails?.name ?? "")"//
+        requestedOnLabel.text = formatDate(data?.createdAt ?? "")
+        bankAccountLabel.text = maskAccountNumber(data?.bankDetails?.accountNo ?? "")
+        availableAmountLabel.text = CommonUtils.formatPriceStringInput(data?.totalEarning)
+        requestedAmountLabel.text = CommonUtils.formatPriceStringInput(data?.amount)
         switch requestType {
         case .newRequest:
             actionStackView.isHidden = false
@@ -55,19 +63,33 @@ class AffiliatedWithdrawalTableViewCell: UITableViewCell {
         }
     }
     
-    private func convertISOToDMY(_ isoString: String) -> String? {
-        // ISO8601 parser
-        let isoFormatter = ISO8601DateFormatter()
-        isoFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-        
-        // Parse to Date
-        guard let date = isoFormatter.date(from: isoString) else {
-            return nil
+    func maskAccountNumber(_ accountNumber: String) -> String {
+        guard accountNumber.count > 8 else {
+            return accountNumber
         }
         
-        // Output formatter
-        let outputFormatter = DateFormatter() //21/04/2024 at 07:30 PM
-        outputFormatter.dateFormat = "dd/MM/yyyy at hh:mm a" //"dd/MM/yyyy 'at' hh:mm a"
+        let firstFour = accountNumber.prefix(5)
+        let lastFour = accountNumber.suffix(3)
+        let maskedCount = accountNumber.count - 8
+        let maskedPart = String(repeating: "X", count: maskedCount)
+        
+        return "\(firstFour)\(maskedPart)\(lastFour)"
+    }
+    
+    func formatDate(_ isoDate: String) -> String {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'"
+        inputFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
+
+        guard let date = inputFormatter.date(from: isoDate) else {
+            return ""
+        }
+
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = "dd/MM/yyyy 'at' hh:mm a"
+        outputFormatter.timeZone = TimeZone.current
+
         return outputFormatter.string(from: date)
     }
     

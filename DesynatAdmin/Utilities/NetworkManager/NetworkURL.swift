@@ -191,6 +191,11 @@ enum NetworkEndPoint: String {
     case getDefaultShippingFees         = "api/admin/get_default_shipping_fee"
     case updateDefaultShippingFees         = "api/admin/update_default_shipping_fee"
     
+    //M9
+    case getWithdrawRequests         = "api/admin/get_withdraw_requests"
+    case rejectWithdrawRequests         = "api/admin/reject_withdraw_request"
+    case approveWithdrawRequests         = "api/admin/approve_withdraw_request"
+    
     func withBaseURL() -> String {
         return "\(BaseURL.value())\(self.rawValue)"
     }
