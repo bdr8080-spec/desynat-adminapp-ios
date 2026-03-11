@@ -9,6 +9,10 @@ import UIKit
 
 class AffiliatedWithdrawalTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var transactionLabel: CustomLabelFont!
+    @IBOutlet weak var transactionSackView: UIStackView!
+    @IBOutlet weak var rejectedReasonLabel: CustomLabelFont!
+    @IBOutlet weak var rejectedREasonStackView: UIStackView!
     @IBOutlet weak var bankAccountLabel: CustomLabelFont!
     @IBOutlet weak var statusLabel: CustomLabelFont!
     @IBOutlet weak var actionStackView: UIStackView!
@@ -43,21 +47,27 @@ class AffiliatedWithdrawalTableViewCell: UITableViewCell {
     func configData(requestType: AffiliatedWithdrawalListType, data: AffiliatedWithdrawalList?) {
         actionStackView.isHidden = true
         statusView.isHidden = true
+        rejectedREasonStackView.isHidden = true
+        transactionSackView.isHidden = true
         requestIDLabel.text = "#\(data?.requestID ?? "0")"
         requestedByIDLabel.text =  "\(data?.affiliateDetails?.fullName ?? "") | \(data?.affiliateDetails?.countryDetails?.name ?? "")"//
         requestedOnLabel.text = formatDate(data?.createdAt ?? "")
         bankAccountLabel.text = maskAccountNumber(data?.bankDetails?.accountNo ?? "")
         availableAmountLabel.text = CommonUtils.formatPriceStringInput(data?.totalEarning)
         requestedAmountLabel.text = CommonUtils.formatPriceStringInput(data?.amount)
+        rejectedReasonLabel.text = data?.rejectReason
+        transactionLabel.text = "#\(data?.requestID ?? "0")"//"#\(data?.transactionID ?? "0")"
         switch requestType {
         case .newRequest:
             actionStackView.isHidden = false
         case .approvedRequest:
             statusView.isHidden = false
+            transactionSackView.isHidden = false
             statusLabel.text = "Completed"
             statusLabel.textColor = UIColor(hexString: "#17854C")
         case .rejectedRequest:
             statusView.isHidden = false
+            rejectedREasonStackView.isHidden = false
             statusLabel.text = "Rejected"
             statusLabel.textColor = UIColor(hexString: "#D53B36")
         }

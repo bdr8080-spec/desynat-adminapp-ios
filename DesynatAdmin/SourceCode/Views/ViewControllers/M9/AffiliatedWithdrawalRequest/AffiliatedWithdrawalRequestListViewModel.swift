@@ -202,6 +202,16 @@ class AffiliatedWithdrawalRequestListViewModel {
         }
     }
     
+    func transferAmountForWithdrawRequest(param: [String: Any]) {
+//        withdraw_request_id":2
+        WebService.shared.transferAmountForWithdrawRequest(param: param) { [weak self] response in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+               // Will get trasaction id from here and then call AcceptUserRequest api here
+            }
+        }
+    }
+    
     func RejectUserRequest(param: [String: Any]) {
         WebService.shared.rejectAffilatedWithdrwalRequestRequest(param: param) { [weak self] response in
             guard let self = self else { return }
