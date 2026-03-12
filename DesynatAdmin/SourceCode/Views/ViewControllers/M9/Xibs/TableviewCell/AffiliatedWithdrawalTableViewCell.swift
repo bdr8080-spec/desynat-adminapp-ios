@@ -50,7 +50,9 @@ class AffiliatedWithdrawalTableViewCell: UITableViewCell {
         rejectedREasonStackView.isHidden = true
         transactionSackView.isHidden = true
         requestIDLabel.text = "#\(data?.requestID ?? "0")"
-        requestedByIDLabel.text =  "\(data?.affiliateDetails?.fullName ?? "") | \(data?.affiliateDetails?.countryDetails?.name ?? "")"//
+//        requestedByIDLabel.text =  "\(data?.affiliateDetails?.fullName ?? "") | \(data?.affiliateDetails?.countryDetails?.name ?? "")"
+//        affiliate detail -> address detail -> country detail -> name
+        requestedByIDLabel.text =  "\(data?.affiliateDetails?.fullName ?? "") | \(data?.affiliateDetails?.addressDetails?.countryDetails?.name ?? "")"
         requestedOnLabel.text = formatDate(data?.createdAt ?? "")
         bankAccountLabel.text = maskAccountNumber(data?.bankDetails?.accountNo ?? "")
         availableAmountLabel.text = CommonUtils.formatPriceStringInput(data?.totalEarning)

@@ -87,6 +87,7 @@ struct AffiliateDetails: Codable {
     let lang: String?
     let createdAt, updatedAt: String?
     let countryDetails: CountryDetails?
+    let addressDetails: AddressDetails?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -113,5 +114,6 @@ struct AffiliateDetails: Codable {
         case createdAt = "created_at"
         case updatedAt = "updated_at"
         case countryDetails = "country_details"
+        case addressDetails = "address_details"
     }
 }
