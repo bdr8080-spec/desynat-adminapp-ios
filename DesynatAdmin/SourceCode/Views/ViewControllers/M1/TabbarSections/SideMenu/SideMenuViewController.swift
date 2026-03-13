@@ -42,13 +42,13 @@ class SideMenuViewController: UIViewController {
         SideMenuModel(title: "Deals Management", image: "dealsManagement"),
         SideMenuModel(title: "Affiliate User Management", image: "userManagemnet"),
         SideMenuModel(title: "Affiliate withdrawal requests", image: "affilateWithdraw"),
+        SideMenuModel(title: "Notifications Management", image: "notificationBell"),
+        SideMenuModel(title: "CMS", image: "cms"),
         
         SideMenuModel(title: "Sub Admin", image: "subadmin"),
         SideMenuModel(title: "Refund Management", image: "refundManagemnt"),
-        SideMenuModel(title: "Notifications Management", image: "notificationBell"),
         SideMenuModel(title: "Ticket Management", image: "ticketManagemnt"),
         SideMenuModel(title: "Seller Payouts", image: "sellerPayout"),
-        SideMenuModel(title: "CMS", image: "cms"),
         SideMenuModel(title: "Support Chat", image: "support")]
     private lazy var viewModel = SideMenuViewModel(hostVC: self)
     
@@ -178,7 +178,8 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             let vc = ReasonManagementViewController.instantiate(fromAppStoryboard: .ReasonManagement)
             self.navigationController?.pushViewController(vc, animated: false)
         case "CMS":
-            print("➡️ Navigating to CMS")
+            let nextVC = CMSTermsConditionViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+            self.navigationController?.pushViewController(nextVC, animated: true)
         case "Support Chat":
             print("➡️ Navigating to Support Chat")
         default:
