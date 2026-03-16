@@ -134,38 +134,38 @@ enum NetworkEndPoint: String {
     case assignDriver = "api/admin/assign_driver"
     case updateBannerRequestStatus = "api/admin/block_unblock_banner_req"
     
-  //FULL SCREEN BANNER MANAGEMENT
-  case getFullScreenBanners = "api/admin/get_full_banners"
-  case getFullScreenDetailsBanners = "api/admin/get_banner_detail"
-  case allUserCountry = "api/all_country"
-  case addFullScreenBanner = "api/admin/add_full_banner"
-  case updateFullScreenBanner = "api/admin/update_full_banner"
-  case deleteFullScreenBanner = "api/admin/delete_full_banner"
-  
-  //M6
-  case getAllActiveDeals = "api/admin/get_active_deals"
-  case getAllExpiredDeals = "api/admin/get_expired_deals"
-  case addNewDeal = "api/admin/add_deal"
-  case editDealDetails = "api/admin/update_deal"
-  case getDealDetails = "api/admin/get_deal_detail"
-  case updateDealStatus = "api/admin/block_unblock_deal"
-  case deleteDealDetails = "api/admin/delete_deal"
-  
-  case addTimeSlots = "api/admin/add_timeslot"
-  case editTimeSlots = "api/admin/update_timeslot"
-  case getLiveRequestTimeSlots = "api/admin/get_timeslots"
-  case updateStatusLiveRequestTimeSlots = "api/admin/block_unblock_timeslot"
-  case deleteLiveRequestTimeSlots = "api/admin/delete_timeslot"
-  case getLiveRequestTime = "api/admin/get_live_requests"
-  case acceptLiveRequest = "api/admin/accept_live_request"
-  case rejectLiveRequest = "api/admin/reject_live_request"
-  
-  case getAdminStories = "api/admin/get_admin_stories"
-  case deleteAdminStories = "api/admin/delete_story"
-  case uploadImageAndVideo = "api/uploadFile"
-  case uploadAdminStory = "api/admin/add_story"
-  case uploadFullScreenBanner = "api/uploadWithResolution"
-  
+    //FULL SCREEN BANNER MANAGEMENT
+    case getFullScreenBanners = "api/admin/get_full_banners"
+    case getFullScreenDetailsBanners = "api/admin/get_banner_detail"
+    case allUserCountry = "api/all_country"
+    case addFullScreenBanner = "api/admin/add_full_banner"
+    case updateFullScreenBanner = "api/admin/update_full_banner"
+    case deleteFullScreenBanner = "api/admin/delete_full_banner"
+    
+    //M6
+    case getAllActiveDeals = "api/admin/get_active_deals"
+    case getAllExpiredDeals = "api/admin/get_expired_deals"
+    case addNewDeal = "api/admin/add_deal"
+    case editDealDetails = "api/admin/update_deal"
+    case getDealDetails = "api/admin/get_deal_detail"
+    case updateDealStatus = "api/admin/block_unblock_deal"
+    case deleteDealDetails = "api/admin/delete_deal"
+    
+    case addTimeSlots = "api/admin/add_timeslot"
+    case editTimeSlots = "api/admin/update_timeslot"
+    case getLiveRequestTimeSlots = "api/admin/get_timeslots"
+    case updateStatusLiveRequestTimeSlots = "api/admin/block_unblock_timeslot"
+    case deleteLiveRequestTimeSlots = "api/admin/delete_timeslot"
+    case getLiveRequestTime = "api/admin/get_live_requests"
+    case acceptLiveRequest = "api/admin/accept_live_request"
+    case rejectLiveRequest = "api/admin/reject_live_request"
+    
+    case getAdminStories = "api/admin/get_admin_stories"
+    case deleteAdminStories = "api/admin/delete_story"
+    case uploadImageAndVideo = "api/uploadFile"
+    case uploadAdminStory = "api/admin/add_story"
+    case uploadFullScreenBanner = "api/uploadWithResolution"
+    
     
     //M7
     case getNewAffilaitedUsers = "api/admin/get_new_affilaited_users"
@@ -196,6 +196,16 @@ enum NetworkEndPoint: String {
     case rejectWithdrawRequests         = "api/admin/reject_withdraw_request"
     case approveWithdrawRequests         = "api/admin/approve_withdraw_request"
     case transferAmountForWithdrawRequests         = "api/admin/transfer_withdraw_request"
+    
+    //M10
+    case getTermsCondition               = "api/admin/get_terms_condition"
+    case getReturnPolicy                 = "api/admin/get_return_policy"
+    case getAboutUs                      = "api/admin/get_about_us"
+    case getCancellationPolicy           = "api/admin/get_cancellation_policy"
+    case getExchangePolicy               = "api/admin/get_exchange_policy"
+    case getContacts                     = "api/admin/get_contact_us"
+    case getFAQ                          = "api/admin/get_faq"
+    
     
     func withBaseURL() -> String {
         return "\(BaseURL.value())\(self.rawValue)"

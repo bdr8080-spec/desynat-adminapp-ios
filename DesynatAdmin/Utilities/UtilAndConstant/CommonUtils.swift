@@ -1,4 +1,5 @@
 import Foundation
+import WebKit
 import Photos
 import UIKit
 import SVProgressHUD
@@ -277,6 +278,65 @@ class CommonUtils {
             SVProgressHUD.dismiss()
         }
     }
+    
+//    static func loadHTMLContent(_ content: String, webView: WKWebView) {
+//        
+//        let html = """
+//        <html>
+//        <head>
+//        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//        <style>
+//            body {
+//                font-size: 14px;
+//                font-family: -apple-system;
+//                padding:0;
+//                margin:0;
+//            }
+//        </style>
+//        </head>
+//        <body>
+//        \(content)
+//        </body>
+//        </html>
+//        """
+//
+//        webView.loadHTMLString(html, baseURL: nil)
+//    }
+    
+    static func loadHTMLContent(_ content: String, webView: WKWebView) {
+
+        let html = """
+        <html>
+        <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                word-wrap: break-word;
+                -webkit-text-size-adjust: 100%;
+            }
+
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            table {
+                width: 100% !important;
+            }
+        </style>
+        </head>
+        <body>
+        \(content)
+        </body>
+        </html>
+        """
+
+        webView.loadHTMLString(html, baseURL: nil)
+    }
+    
     static func getDateString(from date: Date, format: String = "dd MMM yy") -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
