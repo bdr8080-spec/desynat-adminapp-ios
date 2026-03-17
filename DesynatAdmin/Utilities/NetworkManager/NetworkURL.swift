@@ -205,6 +205,10 @@ enum NetworkEndPoint: String {
     case getExchangePolicy               = "api/admin/get_exchange_policy"
     case getContacts                     = "api/admin/get_contact_us"
     case getFAQ                          = "api/admin/get_faq"
+    case getSentNotificationsList        = "api/admin/get_send_notifications_list"
+    case getMyNotificationsList          = "api/admin/get_my_notifications_list"
+    case markReadNotifications           = "api/admin/mark_notification_as_read"
+    case sendNotifications               = "api/admin/send_notification"
     
     
     func withBaseURL() -> String {

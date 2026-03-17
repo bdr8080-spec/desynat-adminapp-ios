@@ -9,6 +9,12 @@ import UIKit
 
 class ContactUsTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var supporttypeImageView: UIImageView!
+    
+    var onEditAction: (() -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,4 +26,8 @@ class ContactUsTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func editDidTapped(_ sender: Any) {
+        onEditAction?()
+    }
+
 }

@@ -43,6 +43,23 @@ extension ContactUsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactUsTableViewCell", for: indexPath) as! ContactUsTableViewCell
+        switch indexPath.row {
+        case 0:
+            cell.titleLabel.text = "Support Email Address"
+            cell.descriptionLabel.text = viewModel.contactListData?.contentEnglish?.email
+            cell.supporttypeImageView.image = .supportEmailIcon
+        case 1:
+            cell.titleLabel.text = "Support Contact Number"
+            cell.descriptionLabel.text = viewModel.contactListData?.contentEnglish?.mobile
+            cell.supporttypeImageView.image = .supportContact
+        default:
+            cell.titleLabel.text = "Support Contact Number"
+            cell.descriptionLabel.text = viewModel.contactListData?.contentEnglish?.whatsapp
+            cell.supporttypeImageView.image = .whatsappIcon
+        }
+        cell.onEditAction = {
+            
+        }
         return cell
     }
     

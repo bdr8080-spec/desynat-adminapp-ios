@@ -67,7 +67,6 @@ class UserManagementViewModel {
           }
       }
   }
-
   
   func goToNextPage() {
     guard currentPage < totalPages else { return }

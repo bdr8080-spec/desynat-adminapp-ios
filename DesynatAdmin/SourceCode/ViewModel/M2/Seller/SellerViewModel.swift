@@ -219,53 +219,6 @@ class SellerViewModel {
                 self.totalPage = data.lastPage ?? 1
                 self.refreshArray(for: .new, data.data ?? [])
             }
-//            self.arraySellers = [
-//                SellerListInfo(
-//                    name: "Alisha Khan",
-//                    country: "Alisha Khan",
-//                    joinedOn: "21/02/2025 ",
-//                    mobileNumber: "+965- 28392018391",
-//                    email: "alisha.khan@gmail.com",
-//                    status: .new,
-//                    handler: self.sellerActionHandler
-//                ),
-//                SellerListInfo(
-//                    name: "Alisha Khan",
-//                    country: "Alisha Khan",
-//                    joinedOn: "21/02/2025 ",
-//                    mobileNumber: "+965- 28392018391",
-//                    email: "alisha.khan@gmail.com",
-//                    status: .new,
-//                    handler: self.sellerActionHandler
-//                ),
-//                SellerListInfo(
-//                    name: "Alisha Khan",
-//                    country: "Alisha Khan",
-//                    joinedOn: "21/02/2025 ",
-//                    mobileNumber: "+965- 28392018391",
-//                    email: "alisha.khan@gmail.com",
-//                    status: .new,
-//                    handler: self.sellerActionHandler
-//                ),
-//                SellerListInfo(
-//                    name: "Alisha Khan",
-//                    country: "Alisha Khan",
-//                    joinedOn: "21/02/2025 ",
-//                    mobileNumber: "+965- 28392018391",
-//                    email: "alisha.khan@gmail.com",
-//                    status: .new,
-//                    handler: self.sellerActionHandler
-//                ),
-//                SellerListInfo(
-//                    name: "Alisha Khan",
-//                    country: "Alisha Khan",
-//                    joinedOn: "21/02/2025 ",
-//                    mobileNumber: "+965- 28392018391",
-//                    email: "alisha.khan@gmail.com",
-//                    status: .new,
-//                    handler: self.sellerActionHandler
-//                ),
-//            ]
         case .approved:
             
             if (country > 0) {
@@ -285,63 +238,6 @@ class SellerViewModel {
                 self.totalPage = data.lastPage ?? 1
                 self.refreshArray(for: .approved, data.data ?? [])
             }
-//            self.arraySellers = [
-//                SellerListInfo(
-//                    name: "Alisha Khan",
-//                    country: "Alisha Khan",
-//                    joinedOn: "21/02/2025 ",
-//                    mobileNumber: "+965- 28392018391",
-//                    totalOrders: "30",
-//                    totalEarning: "KD 1230",
-//                    email: "alisha.khan@gmail.com",
-//                    status: .approved,
-//                    handler: self.sellerActionHandler
-//                ),
-//                SellerListInfo(
-//                    name: "Alisha Khan",
-//                    country: "Alisha Khan",
-//                    joinedOn: "21/02/2025 ",
-//                    mobileNumber: "+965- 28392018391",
-//                    totalOrders: "30",
-//                    totalEarning: "KD 1230",
-//                    email: "alisha.khan@gmail.com",
-//                    status: .approved,
-//                    handler: self.sellerActionHandler
-//                ),
-//                SellerListInfo(
-//                    name: "Alisha Khan",
-//                    country: "Alisha Khan",
-//                    joinedOn: "21/02/2025 ",
-//                    mobileNumber: "+965- 28392018391",
-//                    totalOrders: "30",
-//                    totalEarning: "KD 1230",
-//                    email: "alisha.khan@gmail.com",
-//                    status: .approved,
-//                    handler: self.sellerActionHandler
-//                ),
-//                SellerListInfo(
-//                    name: "Alisha Khan",
-//                    country: "Alisha Khan",
-//                    joinedOn: "21/02/2025 ",
-//                    mobileNumber: "+965- 28392018391",
-//                    totalOrders: "30",
-//                    totalEarning: "KD 1230",
-//                    email: "alisha.khan@gmail.com",
-//                    status: .approved,
-//                    handler: self.sellerActionHandler
-//                ),
-//                SellerListInfo(
-//                    name: "Alisha Khan",
-//                    country: "Alisha Khan",
-//                    joinedOn: "21/02/2025 ",
-//                    mobileNumber: "+965- 28392018391",
-//                    totalOrders: "30",
-//                    totalEarning: "KD 1230",
-//                    email: "alisha.khan@gmail.com",
-//                    status: .approved,
-//                    handler: self.sellerActionHandler
-//                ),
-//            ]
         case .reject:
             if (country > 0) {
                 paramter[APIKeys.country_id2] = country
@@ -352,7 +248,6 @@ class SellerViewModel {
             if (!toDate.isEmpty) {
                 paramter[APIKeys.to_date2] = toDate
             }
-//            
             if (!searchText.isEmpty) {
                 paramter[APIKeys.search] = searchText
             }
@@ -360,60 +255,7 @@ class SellerViewModel {
                 self.totalPage = data.lastPage ?? 1
                 self.refreshArray(for: .reject, data.data ?? [])
             }
-//            self.arraySellers = [
-//                SellerListInfo(
-//                    name: "Alisha Khan",
-//                    country: "Alisha Khan",
-//                    joinedOn: "21/02/2025 ",
-//                    mobileNumber: "+965- 28392018391",
-//                    reason: "lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor elit.",
-//                    email: "alisha.khan@gmail.com",
-//                    status: .reject,
-//                    handler: self.sellerActionHandler
-//                ),
-//                SellerListInfo(
-//                    name: "Alisha Khan",
-//                    country: "Alisha Khan",
-//                    joinedOn: "21/02/2025 ",
-//                    mobileNumber: "+965- 28392018391",
-//                    reason: "lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor elit.",
-//                    email: "alisha.khan@gmail.com",
-//                    status: .reject,
-//                    handler: self.sellerActionHandler
-//                ),
-//                SellerListInfo(
-//                    name: "Alisha Khan",
-//                    country: "Alisha Khan",
-//                    joinedOn: "21/02/2025 ",
-//                    mobileNumber: "+965- 28392018391",
-//                    reason: "lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor elit.",
-//                    email: "alisha.khan@gmail.com",
-//                    status: .reject,
-//                    handler: self.sellerActionHandler
-//                ),
-//                SellerListInfo(
-//                    name: "Alisha Khan",
-//                    country: "Alisha Khan",
-//                    joinedOn: "21/02/2025 ",
-//                    mobileNumber: "+965- 28392018391",
-//                    reason: "lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor elit.",
-//                    email: "alisha.khan@gmail.com",
-//                    status: .reject,
-//                    handler: self.sellerActionHandler
-//                ),
-//                SellerListInfo(
-//                    name: "Alisha Khan",
-//                    country: "Alisha Khan",
-//                    joinedOn: "21/02/2025 ",
-//                    mobileNumber: "+965- 28392018391",
-//                    reason: "lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor elit.",
-//                    email: "alisha.khan@gmail.com",
-//                    status: .reject,
-//                    handler: self.sellerActionHandler
-//                ),
-//            ]
         }
-        
     }
     
     func getAllCountry(_ completion:@escaping(() -> Void) ) {

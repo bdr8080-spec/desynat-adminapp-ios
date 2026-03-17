@@ -61,6 +61,9 @@
                                 <state key="normal" image="pencilEdit">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                 </state>
+                                <connections>
+                                    <action selector="editDidTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="u8w-DQ-n4o"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -95,6 +98,11 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="descriptionLabel" destination="qfJ-G8-jiB" id="X1B-2O-cGG"/>
+                <outlet property="supporttypeImageView" destination="z9y-47-ZZe" id="PLB-9v-Wcy"/>
+                <outlet property="titleLabel" destination="l3s-pM-yg9" id="s9j-kr-ivc"/>
+            </connections>
             <point key="canvasLocation" x="56.488549618320612" y="24.647887323943664"/>
         </tableViewCell>
     </objects>

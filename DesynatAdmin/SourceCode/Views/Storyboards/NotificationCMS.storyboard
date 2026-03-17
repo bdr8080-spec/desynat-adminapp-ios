@@ -175,6 +175,9 @@
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="deliveryFilter"/>
+                                                <connections>
+                                                    <action selector="filterDidTapped:" destination="89d-9J-XGd" eventType="touchUpInside" id="2VB-rs-031"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -233,6 +236,9 @@
                                                 <integer key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="previousButtonDidTapped:" destination="89d-9J-XGd" eventType="touchUpInside" id="5wz-T5-4tj"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01 of 01" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RXx-0I-uUw">
                                         <rect key="frame" x="66" y="8.6666666666666305" width="261" height="22.666666666666671"/>
@@ -253,6 +259,9 @@
                                                 <integer key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="nextButtonDidTapped:" destination="89d-9J-XGd" eventType="touchUpInside" id="CJp-QI-8HU"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -292,6 +301,10 @@
                     </view>
                     <connections>
                         <outlet property="listTableView" destination="lhW-g0-t3G" id="qNk-p2-0bc"/>
+                        <outlet property="nextButton" destination="3FZ-h8-Y3g" id="fww-vg-Ckf"/>
+                        <outlet property="noDataFoundLabel" destination="8JH-GQ-Jww" id="4q0-ns-mxw"/>
+                        <outlet property="pageCountLabel" destination="RXx-0I-uUw" id="a5L-p1-qAq"/>
+                        <outlet property="previousButton" destination="5Pg-sp-Upm" id="57x-bG-IgK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dzh-Do-WNW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -608,7 +621,7 @@
                                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yle-ru-slt">
                                                                         <rect key="frame" x="0.0" y="0.0" width="345" height="50"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iuB-aT-78V">
+                                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="iuB-aT-78V">
                                                                             <size key="itemSize" width="128" height="128"/>
                                                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -652,7 +665,7 @@
                                                                     <constraint firstAttribute="width" constant="18" id="hdb-7D-U8B"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select Customer" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l1n-Xy-wcX">
+                                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select Users" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l1n-Xy-wcX">
                                                                 <rect key="frame" x="45" y="5" width="261" height="40"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                                                 <textInputTraits key="textInputTraits"/>
@@ -787,8 +800,12 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="decriptionInArabicTF" destination="3FD-TV-XX2" id="M9Y-8W-n4w"/>
+                        <outlet property="decriptionInEnglishTF" destination="Iqg-Rt-P1l" id="pKU-A3-U7Q"/>
                         <outlet property="selectedUserNameTF" destination="l1n-Xy-wcX" id="w5m-Gb-zcG"/>
                         <outlet property="sendToCollectionView" destination="yle-ru-slt" id="qF0-gj-afB"/>
+                        <outlet property="titleInArabicTF" destination="bQf-tg-6G9" id="5IA-1g-qIi"/>
+                        <outlet property="titleInEnglishTF" destination="GaV-dL-vR6" id="CIp-Gx-JeX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="poL-Lb-tYh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1653,6 +1670,88 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HW7-Dn-G5h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1636" y="773"/>
+        </scene>
+        <!--My Notifications List View Controller-->
+        <scene sceneID="yJU-3v-dqp">
+            <objects>
+                <viewController storyboardIdentifier="MyNotificationsListViewController" id="IWW-OK-WlB" customClass="MyNotificationsListViewController" customModule="DesynatAdmin" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Bfy-2O-Ojq">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2IC-t6-LS8">
+                                <rect key="frame" x="0.0" y="118" width="393" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mgo-rY-7tt">
+                                        <rect key="frame" x="24" y="0.0" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="SVi-NR-p31"/>
+                                            <constraint firstAttribute="width" constant="40" id="vLe-bI-vmF"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="leftVector"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="imageDirection">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="backDidTapped:" destination="IWW-OK-WlB" eventType="touchUpInside" id="jD6-Be-Hwo"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Notifications" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nw1-VU-3wd">
+                                        <rect key="frame" x="64" y="8.6666666666666732" width="265" height="22.666666666666671"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="mgo-rY-7tt" firstAttribute="leading" secondItem="2IC-t6-LS8" secondAttribute="leading" constant="24" id="59o-X6-WCe"/>
+                                    <constraint firstItem="nw1-VU-3wd" firstAttribute="centerY" secondItem="mgo-rY-7tt" secondAttribute="centerY" id="7k0-AO-tha"/>
+                                    <constraint firstAttribute="bottom" secondItem="mgo-rY-7tt" secondAttribute="bottom" id="BvB-JA-3dP"/>
+                                    <constraint firstItem="nw1-VU-3wd" firstAttribute="leading" secondItem="mgo-rY-7tt" secondAttribute="trailing" id="TaX-cq-ADH"/>
+                                    <constraint firstItem="mgo-rY-7tt" firstAttribute="top" secondItem="2IC-t6-LS8" secondAttribute="top" id="VoF-2e-B8E"/>
+                                    <constraint firstItem="nw1-VU-3wd" firstAttribute="centerX" secondItem="2IC-t6-LS8" secondAttribute="centerX" id="fDk-bW-97C"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ttU-tI-ouS">
+                                <rect key="frame" x="24" y="178" width="345" height="606"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="IWW-OK-WlB" id="eRC-gg-9fl"/>
+                                    <outlet property="delegate" destination="IWW-OK-WlB" id="esC-Un-kwY"/>
+                                </connections>
+                            </tableView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Result found " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NOO-rW-AhP">
+                                <rect key="frame" x="131.33333333333337" y="439.66666666666669" width="130.66666666666663" height="22.666666666666686"/>
+                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="zt4-Yh-SXB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="2IC-t6-LS8" firstAttribute="leading" secondItem="zt4-Yh-SXB" secondAttribute="leading" id="4jO-dD-47k"/>
+                            <constraint firstItem="2IC-t6-LS8" firstAttribute="trailing" secondItem="zt4-Yh-SXB" secondAttribute="trailing" id="5Ub-Ux-Kca"/>
+                            <constraint firstItem="NOO-rW-AhP" firstAttribute="centerX" secondItem="zt4-Yh-SXB" secondAttribute="centerX" id="Byg-7p-OIm"/>
+                            <constraint firstItem="NOO-rW-AhP" firstAttribute="centerY" secondItem="zt4-Yh-SXB" secondAttribute="centerY" id="T0N-ZH-A4E"/>
+                            <constraint firstItem="zt4-Yh-SXB" firstAttribute="trailing" secondItem="ttU-tI-ouS" secondAttribute="trailing" constant="24" id="dQf-Et-UrC"/>
+                            <constraint firstItem="ttU-tI-ouS" firstAttribute="leading" secondItem="zt4-Yh-SXB" secondAttribute="leading" constant="24" id="eIw-pZ-YDb"/>
+                            <constraint firstItem="ttU-tI-ouS" firstAttribute="top" secondItem="2IC-t6-LS8" secondAttribute="bottom" constant="20" id="gjl-r0-lHG"/>
+                            <constraint firstItem="2IC-t6-LS8" firstAttribute="top" secondItem="zt4-Yh-SXB" secondAttribute="top" id="kjN-gq-6cC"/>
+                            <constraint firstItem="zt4-Yh-SXB" firstAttribute="bottom" secondItem="ttU-tI-ouS" secondAttribute="bottom" id="tpN-c5-s8I"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="listTableView" destination="ttU-tI-ouS" id="HdK-ri-CgS"/>
+                        <outlet property="noDataFoundLabel" destination="NOO-rW-AhP" id="dPq-Rv-V9Q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Li6-z2-zop" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1636" y="72"/>
         </scene>
     </scenes>
     <resources>

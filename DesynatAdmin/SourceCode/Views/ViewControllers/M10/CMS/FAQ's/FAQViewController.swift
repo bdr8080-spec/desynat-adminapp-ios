@@ -24,7 +24,7 @@ class FAQViewController: UIViewController {
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        viewModel.getFAQRequest()
     }
     
     // MARK: - Button's Action

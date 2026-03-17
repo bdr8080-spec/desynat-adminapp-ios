@@ -11,7 +11,7 @@ class ContactUsViewModel {
     
     private var hostVC: ContactUsViewController
     var termsAndConditonData: CMSTermsConditionDataModel?
-    var contactListData: [FAQListDataModel]?
+    var contactListData: ContactUsDataModel?
     
     init(hostVC: ContactUsViewController) {
         self.hostVC = hostVC

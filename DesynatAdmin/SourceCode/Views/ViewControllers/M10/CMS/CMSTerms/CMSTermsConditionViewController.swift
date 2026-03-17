@@ -157,12 +157,15 @@ extension CMSTermsConditionViewController: UITableViewDelegate, UITableViewDataS
             self.navigationController?.pushViewController(nextVC, animated: true)
         case .faqs:
             let nextVC = FAQViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+            nextVC.selectedUserType = selectedUserType
             self.navigationController?.pushViewController(nextVC, animated: true)
         case .contactUs:
             let nextVC = ContactUsViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+            nextVC.selectedUserType = selectedUserType
             self.navigationController?.pushViewController(nextVC, animated: true)
         default:
             let nextVC = CMSDetailsViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+            nextVC.selectedUserType = selectedUserType
             self.navigationController?.pushViewController(nextVC, animated: true)
         }
     }

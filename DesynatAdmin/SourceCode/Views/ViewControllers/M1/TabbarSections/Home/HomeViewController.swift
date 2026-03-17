@@ -114,6 +114,11 @@ class HomeViewController: UIViewController {
         countryDropDownView.isHidden = true
     }
     
+    @IBAction func bellDidTapped(_ sender: Any) {
+        let nextVC = MyNotificationsListViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+    
     //MARK: Function's declaration
     private func bindData() {
         totalUserRegisteredLabel.text = "Total users registered (2380)"

@@ -21,13 +21,17 @@ class SelectUsersForNotificationsViewController: UIViewController {
     
     // MARK: - Property Decalaration
     private var selectedUserIds: Set<Int> = []
-    var onUserSelected: (([Int]) -> Void)?
-    var usersCount = 14
+    var onUserSelected: (([SelectableUser]) -> Void)?
+    var usersList: [SelectableUser] = []
+    var preselectedUserIds: Set<Int> = []
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         handleUISetup()
+        selectedUserIds = preselectedUserIds
+        
+        updateSelectAllState() // important
     }
     
     override func viewDidLayoutSubviews() {
@@ -37,19 +41,21 @@ class SelectUsersForNotificationsViewController: UIViewController {
     
     // MARK: - Button's Action
     @IBAction func submitDidTapped(_ sender: Any) {
-        onUserSelected?(Array(selectedUserIds))
+        let selectedUsers = usersList.filter {
+            selectedUserIds.contains($0.id)
+        }
+        onUserSelected?(selectedUsers)
         self.dismiss(animated: true)
     }
     
     @IBAction func selectAllDidTapped(_ sender: Any) {
-        if selectedUserIds.count == usersCount {
+        if selectedUserIds.count == usersList.count {
             selectedUserIds.removeAll()
-            selectAllButton.setImage(.unseletedCheckBox, for: .normal)
         } else {
-            selectedUserIds = Set(0..<usersCount)
-            selectAllButton.setImage(.filledCheckBox, for: .normal)
+            selectedUserIds = Set(usersList.map { $0.id })
         }
         
+        updateSelectAllState() // 🔥 important
         listTableView.reloadData()
     }
     
@@ -64,6 +70,14 @@ class SelectUsersForNotificationsViewController: UIViewController {
         headerView.clipsToBounds = true
     }
     
+    private func updateSelectAllState() {
+        if !usersList.isEmpty && selectedUserIds.count == usersList.count {
+            selectAllButton.setImage(.filledCheckBox, for: .normal)
+        } else {
+            selectAllButton.setImage(.unseletedCheckBox, for: .normal)
+        }
+    }
+    
     func handleHeightOfCustomerTableView() {
         DispatchQueue.main.async {
             let height = self.listTableView.contentSize.height
@@ -76,12 +90,14 @@ class SelectUsersForNotificationsViewController: UIViewController {
 extension SelectUsersForNotificationsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return usersCount
+        return usersList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SelectUsersTableViewCell", for: indexPath) as! SelectUsersTableViewCell
-        if selectedUserIds.contains(indexPath.row) {
+        let user = usersList[indexPath.row]
+        cell.titleLabel.text = user.name
+        if selectedUserIds.contains(user.id) {
             cell.mainImageView.image = .filledCheckBox
         } else {
             cell.mainImageView.image = .unseletedCheckBox
@@ -90,20 +106,17 @@ extension SelectUsersForNotificationsViewController: UITableViewDataSource, UITa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if selectedUserIds.contains(indexPath.row) {
-                selectedUserIds.remove(indexPath.row)
-            } else {
-                selectedUserIds.insert(indexPath.row)
-            }
-
-            // Update Select All button state
-            if selectedUserIds.count == 14 {
-                selectAllButton.setImage(.filledCheckBox, for: .normal)
-            } else {
-                selectAllButton.setImage(.unseletedCheckBox, for: .normal)
-            }
-
-            listTableView.reloadRows(at: [indexPath], with: .none)
+        let user = usersList[indexPath.row]
+        
+        if selectedUserIds.contains(user.id) {
+            selectedUserIds.remove(user.id)
+        } else {
+            selectedUserIds.insert(user.id)
+        }
+        
+        updateSelectAllState() // 🔥 important
+        
+        tableView.reloadRows(at: [indexPath], with: .none)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
