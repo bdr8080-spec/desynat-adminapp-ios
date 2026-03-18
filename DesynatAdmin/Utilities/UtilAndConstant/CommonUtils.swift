@@ -337,6 +337,8 @@ class CommonUtils {
         webView.loadHTMLString(html, baseURL: nil)
     }
     
+    
+    
     static func getDateString(from date: Date, format: String = "dd MMM yy") -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format

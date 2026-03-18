@@ -29,6 +29,12 @@ class FAQViewController: UIViewController {
     
     // MARK: - Button's Action
     @IBAction func addDidTapped(_ sender: Any) {
+        let nextVC = AddFAQViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+        nextVC.isComingForEdit = false
+        nextVC.onChangesAreDone = { [weak self] in
+            self?.viewModel.getFAQRequest()
+        }
+        self.navigationController?.present(nextVC, animated: true)
     }
     
     @IBAction func backDidTapped(_ sender: Any) {
@@ -56,6 +62,21 @@ extension FAQViewController: UITableViewDelegate, UITableViewDataSource {
         }
         let data = viewModel.faqListData?[indexPath.row]
         cell.configData(data: data, index: indexPath.row)
+        cell.onEditTapped = { [weak self] in
+            let nextVC = AddFAQViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+            nextVC.isComingForEdit = true
+            nextVC.faqData = data
+            nextVC.onChangesAreDone = { [weak self] in
+                self?.viewModel.getFAQRequest()
+            }
+            self?.navigationController?.present(nextVC, animated: true)
+        }
+        cell.onDeleteTapped = { [weak self] in
+            self?.showConfirmationAlert(msg: "Are you sure you want to delete this faq?") { [weak self] in
+                guard let self = self else { return }
+                viewModel.deleteFAQRequest(id: data?.id ?? 0)
+            }
+        }
         return cell
     }
     

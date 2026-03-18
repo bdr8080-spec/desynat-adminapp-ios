@@ -48,17 +48,32 @@ extension ContactUsViewController: UITableViewDataSource, UITableViewDelegate {
             cell.titleLabel.text = "Support Email Address"
             cell.descriptionLabel.text = viewModel.contactListData?.contentEnglish?.email
             cell.supporttypeImageView.image = .supportEmailIcon
+            cell.onEditAction = {
+                let nextVC = EditContactUsViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+                nextVC.comingReason = .email
+                nextVC.contactListData = self.viewModel.contactListData
+                self.navigationController?.present(nextVC, animated: true)
+            }
         case 1:
             cell.titleLabel.text = "Support Contact Number"
             cell.descriptionLabel.text = viewModel.contactListData?.contentEnglish?.mobile
             cell.supporttypeImageView.image = .supportContact
+            cell.onEditAction = {
+                let nextVC = EditContactUsViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+                nextVC.comingReason = .phoneNumber
+                nextVC.contactListData = self.viewModel.contactListData
+                self.navigationController?.present(nextVC, animated: true)
+            }
         default:
             cell.titleLabel.text = "Support Contact Number"
             cell.descriptionLabel.text = viewModel.contactListData?.contentEnglish?.whatsapp
             cell.supporttypeImageView.image = .whatsappIcon
-        }
-        cell.onEditAction = {
-            
+            cell.onEditAction = {
+                let nextVC = EditContactUsViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+                nextVC.comingReason = .whatsApp
+                nextVC.contactListData = self.viewModel.contactListData
+                self.navigationController?.present(nextVC, animated: true)
+            }
         }
         return cell
     }

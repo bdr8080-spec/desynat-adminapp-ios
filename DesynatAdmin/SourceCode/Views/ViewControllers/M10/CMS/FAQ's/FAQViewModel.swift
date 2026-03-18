@@ -25,4 +25,11 @@ class FAQViewModel {
             hostVC.listTableView.reloadData()
         }
     }
+    
+    func deleteFAQRequest(id: Int) {
+        let param: [String: Any] = ["id": id]
+        WebService.shared.deleteFaqService(parameter: param) { [weak self] response in
+            self?.getFAQRequest()
+        }
+    }
 }

@@ -27,12 +27,22 @@ class CMSTermsConditionViewController: UIViewController {
             cmsTableView.registerCellFromNib(cellID: "CMSTableViewCell")
         }
     }
+    @IBOutlet weak var cmsTF: BindableTextField!
     
     // MARK: - Property Decalaration
-    private var cmsArray: [CmsArray] = [.returnPolicy, .aboutUs, .cancellationPolicy, .exchangePolicy, .faqs, .contactUs]
+    private var cmsArray: [CmsArray] = [.termsAndCondition, .returnPolicy, .aboutUs, .cancellationPolicy, .exchangePolicy, .faqs, .contactUs]
     var isCMSListHidden: Bool = false
     var selectedUserType = 1
     private lazy var viewModel = CMSTermsConditionViewModel(hostVC: self)
+    private var selectedCms: CmsArray = .termsAndCondition {
+        didSet {
+            cmsTF.text = selectedCms.rawValue
+            cmsTableView.reloadData()
+        }
+    }
+    private var filteredCmsArray: [CmsArray] {
+        return cmsArray.filter { $0 != selectedCms }
+    }
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
@@ -41,6 +51,7 @@ class CMSTermsConditionViewController: UIViewController {
         arabicContentWebView.scrollView.isScrollEnabled = false
         englishContentWebView.navigationDelegate = self
         arabicContentWebView.navigationDelegate = self
+        selectedCms = .termsAndCondition
         viewModel.getTermsAndConditionRequest()
     }
     
@@ -65,7 +76,7 @@ class CMSTermsConditionViewController: UIViewController {
         deliveryBoyLabel.textColor = .black
         deliveryBoyButton.setImage(UIImage(named: ""), for: .normal)
         selectedUserType = 1
-        viewModel.getTermsAndConditionRequest()
+        callCMSApi()
     }
     
     @IBAction func sellerDidTapped(_ sender: Any) {
@@ -76,7 +87,7 @@ class CMSTermsConditionViewController: UIViewController {
         deliveryBoyLabel.textColor = .black
         deliveryBoyButton.setImage(UIImage(named: ""), for: .normal)
         selectedUserType = 2
-        viewModel.getTermsAndConditionRequest()
+        callCMSApi()
     }
     
     @IBAction func deliveryboyDidTapped(_ sender: Any) {
@@ -87,7 +98,7 @@ class CMSTermsConditionViewController: UIViewController {
         deliveryBoyLabel.textColor = .white
         deliveryBoyButton.setImage(.btnGradient, for: .normal)
         selectedUserType = 3
-        viewModel.getTermsAndConditionRequest()
+        callCMSApi()
     }
     
     @IBAction func TermsAndCondition(_ sender: Any) {
@@ -103,75 +114,119 @@ class CMSTermsConditionViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    //MARK: Function's declaration
+    @IBAction func englishEditDidTapped(_ sender: Any) {
+        let nextVC = EditCMSReasonViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+        nextVC.selectedUserType = self.selectedUserType
+        nextVC.comingForArabic = false
+        nextVC.cmsType = self.selectedCms
+        nextVC.changesAreDone = { [weak self] in
+            self?.callCMSApi()
+        }
+        nextVC.termsAndConditonData = viewModel.termsAndConditonData
+        self.navigationController?.present(nextVC, animated: true)
+    }
     
+    @IBAction func arabicEditDidTapped(_ sender: Any) {
+        let nextVC = EditCMSReasonViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+        nextVC.selectedUserType = self.selectedUserType
+        nextVC.comingForArabic = true
+        nextVC.cmsType = self.selectedCms
+        nextVC.changesAreDone = { [weak self] in
+            self?.callCMSApi()
+        }
+        nextVC.termsAndConditonData = viewModel.termsAndConditonData
+        self.navigationController?.present(nextVC, animated: true)
+    }
+    
+    //MARK: Function's declaration
+    private func callCMSApi() {
+        switch selectedCms {
+        case .termsAndCondition:
+            viewModel.getTermsAndConditionRequest()
+        case .returnPolicy:
+            viewModel.getReturnPolicyRequest()
+        case .aboutUs:
+            viewModel.getAboutUsRequest()
+        case .cancellationPolicy:
+            viewModel.getCancellationPolicyRequest()
+        case .exchangePolicy:
+            viewModel.getExchangePolicyRequest()
+        default:
+            viewModel.getTermsAndConditionRequest() // fallback
+        }
+    }
 }
 
 //MARK: WKNavigation Delegate functions
 extension CMSTermsConditionViewController: WKNavigationDelegate {
     
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        
-        webView.evaluateJavaScript("document.body.scrollHeight") { [weak self] height, _ in
-            
-            guard let self = self else { return }
-            
-            if let height = height as? CGFloat {
-                
-                let fixedHeight = height + 20
-                
-                if webView == self.englishContentWebView {
-                    self.englishWebViewHeight.constant = fixedHeight
-                } else {
-                    self.arabicWebViewHeight.constant = fixedHeight
-                }
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) { webView.evaluateJavaScript("document.body.scrollHeight") { [weak self] height, _ in
+        guard let self = self else { return }
+        if let height = height as? CGFloat {
+            let fixedHeight = height + 20
+            if webView == self.englishContentWebView {
+                self.englishWebViewHeight.constant = fixedHeight
+            } else {
+                self.arabicWebViewHeight.constant = fixedHeight
             }
         }
+    }
     }
 }
 
 // MARK: - TABLE VIEW METHODS
 extension CMSTermsConditionViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cmsArray.count
+        return filteredCmsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CMSTableViewCell", for: indexPath) as! CMSTableViewCell
-        cell.titleLabel.text = cmsArray[indexPath.row].rawValue
-        if indexPath.row == cmsArray.count - 1 {
-            cell.separatorLabel.isHidden = true
-        } else {
-            cell.separatorLabel.isHidden = false
-        }
+        
+        let item = filteredCmsArray[indexPath.row]
+        cell.titleLabel.text = item.rawValue
+        cell.separatorLabel.isHidden = indexPath.row == filteredCmsArray.count - 1
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cmsType = cmsArray[indexPath.row]
-        switch cmsType {
+        
+        let selectedItem = filteredCmsArray[indexPath.row]
+        
+        // Update selected
+        selectedCms = selectedItem
+        
+        // Hide dropdown
+        cmsOptionView.isHidden = true
+        isCMSListHidden = false
+        
+        switch selectedItem {
         case .returnPolicy:
-            let nextVC = CMSDetailsViewController.instantiate(fromAppStoryboard: .NotificationCMS)
-            nextVC.selectedUserType = selectedUserType
-            nextVC.cmsType = cmsType
-            self.navigationController?.pushViewController(nextVC, animated: true)
+            viewModel.getReturnPolicyRequest()
+        case .aboutUs:
+            viewModel.getAboutUsRequest()
+        case .cancellationPolicy:
+            viewModel.getCancellationPolicyRequest()
+        case .exchangePolicy:
+            viewModel.getExchangePolicyRequest()
+        case .termsAndCondition:
+            viewModel.getTermsAndConditionRequest()
         case .faqs:
             let nextVC = FAQViewController.instantiate(fromAppStoryboard: .NotificationCMS)
             nextVC.selectedUserType = selectedUserType
-            self.navigationController?.pushViewController(nextVC, animated: true)
+            navigationController?.pushViewController(nextVC, animated: true)
         case .contactUs:
             let nextVC = ContactUsViewController.instantiate(fromAppStoryboard: .NotificationCMS)
             nextVC.selectedUserType = selectedUserType
-            self.navigationController?.pushViewController(nextVC, animated: true)
-        default:
-            let nextVC = CMSDetailsViewController.instantiate(fromAppStoryboard: .NotificationCMS)
-            nextVC.selectedUserType = selectedUserType
-            self.navigationController?.pushViewController(nextVC, animated: true)
+            navigationController?.pushViewController(nextVC, animated: true)
         }
     }
 }
 
 enum CmsArray: String {
+    case termsAndCondition = "Terms & Condition"
     case returnPolicy = "Return Policy"
     case aboutUs = "About Us"
     case cancellationPolicy = "Cancellation Policy"

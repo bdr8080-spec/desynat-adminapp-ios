@@ -25,4 +25,44 @@ class CMSTermsConditionViewModel {
             CommonUtils.loadHTMLContent(response.contentArabic ?? "N/A", webView: hostVC.arabicContentWebView)
         }
     }
+    
+    func getReturnPolicyRequest() {
+        let param: [String: Any] = ["type": hostVC.selectedUserType]
+        WebService.shared.getReturnPolicyService(parameter: param) { [weak self] response in
+            guard let self = self else { return }
+            termsAndConditonData = response
+            CommonUtils.loadHTMLContent(response.contentEnglish ?? "N/A", webView: hostVC.englishContentWebView)
+            CommonUtils.loadHTMLContent(response.contentArabic ?? "N/A", webView: hostVC.arabicContentWebView)
+        }
+    }
+    
+    func getAboutUsRequest() {
+        let param: [String: Any] = ["type": hostVC.selectedUserType]
+        WebService.shared.getReturnPolicyService(parameter: param) { [weak self] response in
+            guard let self = self else { return }
+            termsAndConditonData = response
+            CommonUtils.loadHTMLContent(response.contentEnglish ?? "N/A", webView: hostVC.englishContentWebView)
+            CommonUtils.loadHTMLContent(response.contentArabic ?? "N/A", webView: hostVC.arabicContentWebView)
+        }
+    }
+    
+    func getCancellationPolicyRequest() {
+        let param: [String: Any] = ["type": hostVC.selectedUserType]
+        WebService.shared.getCancellationPolicyService(parameter: param) { [weak self] response in
+            guard let self = self else { return }
+            termsAndConditonData = response
+            CommonUtils.loadHTMLContent(response.contentEnglish ?? "N/A", webView: hostVC.englishContentWebView)
+            CommonUtils.loadHTMLContent(response.contentArabic ?? "N/A", webView: hostVC.arabicContentWebView)
+        }
+    }
+    
+    func getExchangePolicyRequest() {
+        let param: [String: Any] = ["type": hostVC.selectedUserType]
+        WebService.shared.getExchangePolicyService(parameter: param) { [weak self] response in
+            guard let self = self else { return }
+            termsAndConditonData = response
+            CommonUtils.loadHTMLContent(response.contentEnglish ?? "N/A", webView: hostVC.englishContentWebView)
+            CommonUtils.loadHTMLContent(response.contentArabic ?? "N/A", webView: hostVC.arabicContentWebView)
+        }
+    }
 }

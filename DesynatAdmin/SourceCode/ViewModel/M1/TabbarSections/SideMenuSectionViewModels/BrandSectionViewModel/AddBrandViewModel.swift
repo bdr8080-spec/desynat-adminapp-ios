@@ -80,5 +80,6 @@ class AddBrandViewModel: NSObject {
             completion(url)
         }
     }
+    
 }
 

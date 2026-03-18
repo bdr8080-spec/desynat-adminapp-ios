@@ -26,25 +26,25 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="maM-u0-cG7" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="407" height="166"/>
+                        <rect key="frame" x="0.0" y="0.0" width="407" height="199"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vk8-9P-KQ1">
-                                <rect key="frame" x="12" y="15" width="383" height="136"/>
+                                <rect key="frame" x="12" y="15" width="383" height="134"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q5J-if-AmK">
-                                        <rect key="frame" x="0.0" y="0.0" width="383" height="28"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="383" height="26"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Q1. Lorem ipsum dolor sit amet." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0O-tM-Cqe">
-                                                <rect key="frame" x="0.0" y="5" width="350" height="18"/>
+                                                <rect key="frame" x="0.0" y="5" width="352" height="16"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="upwardVector" translatesAutoresizingMaskIntoConstraints="NO" id="Da8-3s-gEM">
-                                                <rect key="frame" x="365" y="5" width="18" height="18"/>
+                                                <rect key="frame" x="367" y="5" width="16" height="16"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="18" id="10R-a6-06J"/>
-                                                    <constraint firstAttribute="width" constant="18" id="FZA-fd-pzt"/>
+                                                    <constraint firstAttribute="height" constant="16" id="10R-a6-06J"/>
+                                                    <constraint firstAttribute="width" constant="16" id="FZA-fd-pzt"/>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
@@ -60,7 +60,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6TV-Q4-pqN">
-                                        <rect key="frame" x="0.0" y="28" width="383" height="108"/>
+                                        <rect key="frame" x="0.0" y="26" width="383" height="108"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PbG-Vt-MOE">
                                                 <rect key="frame" x="0.0" y="5" width="383" height="98"/>
@@ -80,13 +80,42 @@
                                     </view>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="n4a-oA-a1a">
+                                <rect key="frame" x="327" y="154" width="68" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jZF-KZ-RS8">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="pencilEdit"/>
+                                        <connections>
+                                            <action selector="editDidTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="5wc-nn-RRp"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G0l-eo-dBe">
+                                        <rect key="frame" x="38" y="0.0" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="G0l-eo-dBe" secondAttribute="height" multiplier="1:1" id="5JG-EC-ZBG"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="ic_delete_city"/>
+                                        <connections>
+                                            <action selector="binDidTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hfp-OF-YKx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="EMv-CX-dfL"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vk8-9P-KQ1" firstAttribute="top" secondItem="maM-u0-cG7" secondAttribute="top" constant="15" id="5WI-8z-Kl8"/>
+                            <constraint firstAttribute="bottom" secondItem="n4a-oA-a1a" secondAttribute="bottom" constant="15" id="D8f-od-ECy"/>
                             <constraint firstAttribute="trailing" secondItem="vk8-9P-KQ1" secondAttribute="trailing" constant="12" id="eZS-hH-H3L"/>
+                            <constraint firstItem="n4a-oA-a1a" firstAttribute="top" secondItem="vk8-9P-KQ1" secondAttribute="bottom" constant="5" id="fx5-gy-BVI"/>
                             <constraint firstItem="vk8-9P-KQ1" firstAttribute="leading" secondItem="maM-u0-cG7" secondAttribute="leading" constant="12" id="pNt-TN-w1J"/>
-                            <constraint firstAttribute="bottom" secondItem="vk8-9P-KQ1" secondAttribute="bottom" constant="15" id="pqn-5s-wLZ"/>
+                            <constraint firstItem="n4a-oA-a1a" firstAttribute="trailing" secondItem="vk8-9P-KQ1" secondAttribute="trailing" id="zeO-7O-WK3"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -120,6 +149,8 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="ic_delete_city" width="24" height="24"/>
+        <image name="pencilEdit" width="24" height="24"/>
         <image name="upwardVector" width="17.666666030883789" height="9.6666669845581055"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

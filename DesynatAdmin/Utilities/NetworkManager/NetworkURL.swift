@@ -209,6 +209,15 @@ enum NetworkEndPoint: String {
     case getMyNotificationsList          = "api/admin/get_my_notifications_list"
     case markReadNotifications           = "api/admin/mark_notification_as_read"
     case sendNotifications               = "api/admin/send_notification"
+    case createUpdateTermsCondition      = "api/admin/create_update_terms_condition"
+    case createUpdateReturn              = "api/admin/create_update_return_policy"
+    case createUpdateAboutUs             = "api/admin/create_update_about_us"
+    case createUpdateCancellation        = "api/admin/create_update_cancellation_policy"
+    case createUpdateExchangePolicy      = "api/admin/create_update_exchange_policy"
+    case addFAQ                          = "api/admin/add_faq"
+    case updateFAQ                       = "api/admin/update_faq"
+    case deleteFAQ                       = ""
+    case createUpdateContactUs           = "api/admin/create_update_contact_us"
     
     
     func withBaseURL() -> String {

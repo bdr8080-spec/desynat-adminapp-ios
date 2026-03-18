@@ -147,10 +147,13 @@ extension SendNewNotificationViewController: UITextFieldDelegate {
         if string.isEmpty { return true }
         
         if textField == titleInEnglishTF {
+            // Prevent starting with space
             if currentText.hasPrefix(" ") {
                 return false
             }
-            validation = StringValidation(string: currentText, characterCount: 90, validation: .firstName)
+            
+            // Only limit length
+            return currentText.count <= 100
         }
         
         if textField == titleInArabicTF {

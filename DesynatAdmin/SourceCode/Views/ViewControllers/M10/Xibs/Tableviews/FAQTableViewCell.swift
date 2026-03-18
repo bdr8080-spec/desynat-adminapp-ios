@@ -15,6 +15,9 @@ class FAQTableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionView: CustomView!
     @IBOutlet weak var decsriptionLabel: UILabel!
     
+    var onEditTapped: (() -> Void)?
+    var onDeleteTapped: (() -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,6 +27,14 @@ class FAQTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    @IBAction func editDidTapped(_ sender: Any) {
+        onEditTapped?()
+    }
+    
+    @IBAction func binDidTapped(_ sender: Any) {
+        onDeleteTapped?()
     }
     
     func configData(data: FAQListDataModel?, index: Int) {

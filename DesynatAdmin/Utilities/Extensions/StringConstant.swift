@@ -123,6 +123,10 @@ enum AlertConstant: String {
     case enterNotificationDescInEng =  "Please enter description in english"
     case enterNotificationDescInArabic =  "Please enter description in arabic"
     case selectRoleForNotification =  "Please select role"
+    case enterQuestionInEng =  "Please enter question in english"
+    case enterQuestionInArab =  "Please enter question in arabic"
+    case enterAnswerInEng =  "Please enter answer in english"
+    case enterAnswerInArab =  "Please enter answer in arabic"
     
     func value() -> String {
         return self.rawValue
