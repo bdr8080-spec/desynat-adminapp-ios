@@ -160,7 +160,8 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
         case "Ticket Management":
             print("➡️ Navigating to Ticket Management")
         case "Seller Payouts":
-            print("➡️ Navigating to Seller Payouts")
+            let nextVC = SellerPayoutListViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+            self.navigationController?.pushViewController(nextVC, animated: true)
         case "Deals Management":
             let nextVC = DealsManagementListViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
             self.navigationController?.pushViewController(nextVC, animated: true)

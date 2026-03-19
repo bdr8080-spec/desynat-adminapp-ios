@@ -43,7 +43,9 @@ extension MyNotificationsListViewController: UITableViewDelegate, UITableViewDat
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedNotificationId = viewModel.notificationSentList[indexPath.row].id ?? 0
-        viewModel.markReadNotificationsRequest()
+        if viewModel.notificationSentList[indexPath.row].isRead == 0 {
+            selectedNotificationId = viewModel.notificationSentList[indexPath.row].id ?? 0
+            viewModel.markReadNotificationsRequest()
+        }
     }
 }

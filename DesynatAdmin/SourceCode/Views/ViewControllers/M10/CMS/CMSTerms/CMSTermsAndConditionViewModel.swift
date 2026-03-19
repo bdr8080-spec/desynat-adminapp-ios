@@ -21,6 +21,9 @@ class CMSTermsConditionViewModel {
         WebService.shared.getTermsConditionService(parameter: param) { [weak self] response in
             guard let self = self else { return }
             termsAndConditonData = response
+            self.hostVC.englishWebViewHeight.constant = 1
+            self.hostVC.arabicWebViewHeight.constant = 1
+            self.hostVC.view.layoutIfNeeded()
             CommonUtils.loadHTMLContent(response.contentEnglish ?? "N/A", webView: hostVC.englishContentWebView)
             CommonUtils.loadHTMLContent(response.contentArabic ?? "N/A", webView: hostVC.arabicContentWebView)
         }
@@ -31,6 +34,9 @@ class CMSTermsConditionViewModel {
         WebService.shared.getReturnPolicyService(parameter: param) { [weak self] response in
             guard let self = self else { return }
             termsAndConditonData = response
+            self.hostVC.englishWebViewHeight.constant = 1
+            self.hostVC.arabicWebViewHeight.constant = 1
+            self.hostVC.view.layoutIfNeeded()
             CommonUtils.loadHTMLContent(response.contentEnglish ?? "N/A", webView: hostVC.englishContentWebView)
             CommonUtils.loadHTMLContent(response.contentArabic ?? "N/A", webView: hostVC.arabicContentWebView)
         }
@@ -41,6 +47,9 @@ class CMSTermsConditionViewModel {
         WebService.shared.getReturnPolicyService(parameter: param) { [weak self] response in
             guard let self = self else { return }
             termsAndConditonData = response
+            self.hostVC.englishWebViewHeight.constant = 1
+            self.hostVC.arabicWebViewHeight.constant = 1
+            self.hostVC.view.layoutIfNeeded()
             CommonUtils.loadHTMLContent(response.contentEnglish ?? "N/A", webView: hostVC.englishContentWebView)
             CommonUtils.loadHTMLContent(response.contentArabic ?? "N/A", webView: hostVC.arabicContentWebView)
         }
@@ -51,6 +60,9 @@ class CMSTermsConditionViewModel {
         WebService.shared.getCancellationPolicyService(parameter: param) { [weak self] response in
             guard let self = self else { return }
             termsAndConditonData = response
+            self.hostVC.englishWebViewHeight.constant = 1
+            self.hostVC.arabicWebViewHeight.constant = 1
+            self.hostVC.view.layoutIfNeeded()
             CommonUtils.loadHTMLContent(response.contentEnglish ?? "N/A", webView: hostVC.englishContentWebView)
             CommonUtils.loadHTMLContent(response.contentArabic ?? "N/A", webView: hostVC.arabicContentWebView)
         }
@@ -61,6 +73,9 @@ class CMSTermsConditionViewModel {
         WebService.shared.getExchangePolicyService(parameter: param) { [weak self] response in
             guard let self = self else { return }
             termsAndConditonData = response
+            self.hostVC.englishWebViewHeight.constant = 1
+            self.hostVC.arabicWebViewHeight.constant = 1
+            self.hostVC.view.layoutIfNeeded()
             CommonUtils.loadHTMLContent(response.contentEnglish ?? "N/A", webView: hostVC.englishContentWebView)
             CommonUtils.loadHTMLContent(response.contentArabic ?? "N/A", webView: hostVC.arabicContentWebView)
         }

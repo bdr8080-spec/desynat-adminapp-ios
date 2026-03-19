@@ -53,6 +53,18 @@ class CMSTermsConditionViewController: UIViewController {
         arabicContentWebView.navigationDelegate = self
         selectedCms = .termsAndCondition
         viewModel.getTermsAndConditionRequest()
+        //        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleOutsideTap))
+        //        tapGesture.cancelsTouchesInView = false
+        //        self.view.addGestureRecognizer(tapGesture)
+        //        [englishContentWebView, arabicContentWebView].forEach {
+        //            let tap = UITapGestureRecognizer(target: self, action: #selector(handleOutsideTap))
+        //            tap.cancelsTouchesInView = false
+        //            $0?.addGestureRecognizer(tap)
+        //        }
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleOutsideTap))
+        tapGesture.cancelsTouchesInView = false
+        tapGesture.delegate = self
+        self.view.addGestureRecognizer(tapGesture)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,11 +73,11 @@ class CMSTermsConditionViewController: UIViewController {
         isCMSListHidden = false
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        englishWebViewHeight.constant = englishContentWebView.scrollView.contentSize.height
-        arabicWebViewHeight.constant = arabicContentWebView.scrollView.contentSize.height
-    }
+    //    override func viewDidLayoutSubviews() {
+    //        super.viewDidLayoutSubviews()
+    //        englishWebViewHeight.constant = englishContentWebView.scrollView.contentSize.height
+    //        arabicWebViewHeight.constant = arabicContentWebView.scrollView.contentSize.height
+    //    }
     
     // MARK: - Button's Action
     @IBAction func userDidTapped(_ sender: Any) {
@@ -155,23 +167,48 @@ class CMSTermsConditionViewController: UIViewController {
             viewModel.getTermsAndConditionRequest() // fallback
         }
     }
+    
 }
 
 //MARK: WKNavigation Delegate functions
 extension CMSTermsConditionViewController: WKNavigationDelegate {
     
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) { webView.evaluateJavaScript("document.body.scrollHeight") { [weak self] height, _ in
-        guard let self = self else { return }
-        if let height = height as? CGFloat {
-            let fixedHeight = height + 20
-            if webView == self.englishContentWebView {
-                self.englishWebViewHeight.constant = fixedHeight
-            } else {
-                self.arabicWebViewHeight.constant = fixedHeight
+//    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+//        webView.evaluateJavaScript("document.body.scrollHeight") { [weak self] height, _ in
+//            guard let self = self else { return }
+//            if let height = height as? CGFloat {
+//                let fixedHeight = height + 20
+//                if webView == self.englishContentWebView {
+//                    self.englishWebViewHeight.constant = fixedHeight
+//                } else {
+//                    self.arabicWebViewHeight.constant = fixedHeight
+//                }
+//            }
+//        }
+//    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            webView.evaluateJavaScript("document.body.scrollHeight") { [weak self] height, _ in
+                guard let self = self else { return }
+                
+                if let height = height as? CGFloat {
+                    let fixedHeight = height + 20
+                    
+                    if webView == self.englishContentWebView {
+                        self.englishWebViewHeight.constant = fixedHeight
+                    } else {
+                        self.arabicWebViewHeight.constant = fixedHeight
+                    }
+                    
+                    // 🔥 IMPORTANT: Force layout update
+                    self.view.layoutIfNeeded()
+                }
             }
         }
     }
-    }
+    
 }
 
 // MARK: - TABLE VIEW METHODS
@@ -222,6 +259,32 @@ extension CMSTermsConditionViewController: UITableViewDelegate, UITableViewDataS
             nextVC.selectedUserType = selectedUserType
             navigationController?.pushViewController(nextVC, animated: true)
         }
+    }
+}
+
+extension CMSTermsConditionViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        
+        let touchView = touch.view
+        
+        // If tapping inside dropdown → ignore
+        if let view = touchView, view.isDescendant(of: cmsOptionView) {
+            return false
+        }
+        
+        // If tapping inside tableView → ignore (so selection works)
+        if let view = touchView, view.isDescendant(of: cmsTableView) {
+            return false
+        }
+        
+        // Allow tap everywhere else (including webview)
+        return true
+    }
+    
+    @objc private func handleOutsideTap() {
+        cmsOptionView.isHidden = true
+        isCMSListHidden = false
     }
 }
 

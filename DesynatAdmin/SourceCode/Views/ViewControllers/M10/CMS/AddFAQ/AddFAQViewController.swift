@@ -14,6 +14,8 @@ class AddFAQViewController: UIViewController {
     @IBOutlet weak var questionArabicTF: UITextField!
     @IBOutlet weak var answerEnglishTF: UITextField!
     @IBOutlet weak var answerArabicTF: UITextField!
+    @IBOutlet weak var headerLabel: UILabel!
+    @IBOutlet weak var buttonTitleLabel: UILabel!
     
     private lazy var viewModel = AddFAQViewModel(hostVC: self)
     var isComingForEdit: Bool = false
@@ -29,10 +31,15 @@ class AddFAQViewController: UIViewController {
         answerEnglishTF.delegate = self
         answerArabicTF.delegate = self
         if isComingForEdit {
+            headerLabel.text = "Edit FAQ"
+            buttonTitleLabel.text = "Submit"
             questionEngTF.text = faqData?.questionEnglish
             questionArabicTF.text = faqData?.questionArabic
             answerEnglishTF.text = faqData?.answerEnglish
             answerArabicTF.text = faqData?.answerArabic
+        } else {
+            headerLabel.text = "Add FAQ"
+            buttonTitleLabel.text = "Add"
         }
     }
     

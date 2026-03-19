@@ -27,7 +27,7 @@ class NotificationsListTableViewCell: UITableViewCell {
         titleLabel.text = data?.titleEnglish
         descriptionLabel.text = data?.descriptionEnglish
         if let receivers = data?.receiverDetails, !receivers.isEmpty {
-            let firstName = receivers.first?.fullNameEnglish ?? ""
+            let firstName = receivers.first?.fullName ?? receivers.first?.fullNameEnglish ?? ""
             let remainingCount = receivers.count - 1
             if remainingCount > 0 {
                 sentToNameLabel.text = "Sent To - \(firstName) + \(remainingCount)"

@@ -27,7 +27,7 @@ class MyNotificationsListViewModel {
     
     func markReadNotificationsRequest() {
         let param: [String:Any] = ["notification_id": [hostVC.selectedNotificationId]]
-        WebService.shared.markReadNotificationsService() { [weak self] response in
+        WebService.shared.markReadNotificationsService(param: param) { [weak self] response in
             guard let self = self else { return }
             getMyNotificationsListRequest()
         }
