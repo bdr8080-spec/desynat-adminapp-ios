@@ -15,29 +15,29 @@ class AffiliatedUsersListViewModel {
     var totalPages: Int = 1
     var searchText: String = ""
     var newUsersFilter = FullScreenBannerFilterModel()
-        var approvedUsersFilter = FullScreenBannerFilterModel()
-        var rejectedUsersFilter = FullScreenBannerFilterModel()
+    var approvedUsersFilter = FullScreenBannerFilterModel()
+    var rejectedUsersFilter = FullScreenBannerFilterModel()
     
     init(hostVC: AffiliatedUsersListViewController? = nil) {
         self.hostVC = hostVC
     }
     
     // Helper
-        func filter(for type: AffiliatedUsersListType) -> FullScreenBannerFilterModel {
-            switch type {
-            case .newUsers: return newUsersFilter
-            case .approvedUsers: return approvedUsersFilter
-            case .rejectedUsers: return rejectedUsersFilter
-            }
+    func filter(for type: AffiliatedUsersListType) -> FullScreenBannerFilterModel {
+        switch type {
+        case .newUsers: return newUsersFilter
+        case .approvedUsers: return approvedUsersFilter
+        case .rejectedUsers: return rejectedUsersFilter
         }
-
-        func setFilter(_ filter: FullScreenBannerFilterModel, for type: AffiliatedUsersListType) {
-            switch type {
-            case .newUsers: newUsersFilter = filter
-            case .approvedUsers: approvedUsersFilter = filter
-            case .rejectedUsers: rejectedUsersFilter = filter
-            }
+    }
+    
+    func setFilter(_ filter: FullScreenBannerFilterModel, for type: AffiliatedUsersListType) {
+        switch type {
+        case .newUsers: newUsersFilter = filter
+        case .approvedUsers: approvedUsersFilter = filter
+        case .rejectedUsers: rejectedUsersFilter = filter
         }
+    }
     
     func fetchNewAffiliatedUsersList() {
         let filter = newUsersFilter
@@ -215,20 +215,20 @@ class AffiliatedUsersListViewModel {
         from inputFormat: String = "dd/MM/yyyy",
         to outputFormat: String = "yyyy-MM-dd"
     ) -> String? {
-
+        
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = inputFormat
         inputFormatter.locale = Locale(identifier: "en_US_POSIX")
-
+        
         guard let date = inputFormatter.date(from: dateString) else {
             return nil
         }
-
+        
         let outputFormatter = DateFormatter()
         outputFormatter.dateFormat = outputFormat
         outputFormatter.locale = Locale(identifier: "en_US_POSIX")
-
+        
         return outputFormatter.string(from: date)
     }
-
+    
 }

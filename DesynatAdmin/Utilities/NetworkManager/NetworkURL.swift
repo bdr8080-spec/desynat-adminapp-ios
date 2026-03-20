@@ -208,6 +208,7 @@ enum NetworkEndPoint: String {
     case getSentNotificationsList        = "api/admin/get_send_notifications_list"
     case getMyNotificationsList          = "api/admin/get_my_notifications_list"
     case markReadNotifications           = "api/admin/mark_notification_as_read"
+    case markAllReadNotifications        = "api/admin/mark_all_notification_as_read"
     case sendNotifications               = "api/admin/send_notification"
     case createUpdateTermsCondition      = "api/admin/create_update_terms_condition"
     case createUpdateReturn              = "api/admin/create_update_return_policy"
@@ -216,7 +217,7 @@ enum NetworkEndPoint: String {
     case createUpdateExchangePolicy      = "api/admin/create_update_exchange_policy"
     case addFAQ                          = "api/admin/add_faq"
     case updateFAQ                       = "api/admin/update_faq"
-    case deleteFAQ                       = ""
+    case deleteFAQ                       = "api/admin/delete_faq"
     case createUpdateContactUs           = "api/admin/create_update_contact_us"
     
     

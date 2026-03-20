@@ -44,10 +44,10 @@ class SideMenuViewController: UIViewController {
         SideMenuModel(title: "Affiliate withdrawal requests", image: "affilateWithdraw"),
         SideMenuModel(title: "Notifications Management", image: "notificationBell"),
         SideMenuModel(title: "CMS", image: "cms"),
+        SideMenuModel(title: "Ticket Management", image: "ticketManagemnt"),
         
         SideMenuModel(title: "Sub Admin", image: "subadmin"),
         SideMenuModel(title: "Refund Management", image: "refundManagemnt"),
-        SideMenuModel(title: "Ticket Management", image: "ticketManagemnt"),
         SideMenuModel(title: "Seller Payouts", image: "sellerPayout"),
         SideMenuModel(title: "Support Chat", image: "support")]
     private lazy var viewModel = SideMenuViewModel(hostVC: self)
@@ -158,7 +158,8 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             let nextVC = StoryManagemnetViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
             self.navigationController?.pushViewController(nextVC, animated: true)
         case "Ticket Management":
-            print("➡️ Navigating to Ticket Management")
+            let nextVC = TicketManagementListViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+            self.navigationController?.pushViewController(nextVC, animated: true)
         case "Seller Payouts":
             let nextVC = SellerPayoutListViewController.instantiate(fromAppStoryboard: .NotificationCMS)
             self.navigationController?.pushViewController(nextVC, animated: true)

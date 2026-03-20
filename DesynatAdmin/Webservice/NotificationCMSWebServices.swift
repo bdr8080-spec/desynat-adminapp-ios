@@ -138,9 +138,9 @@ extension WebService {
         }
     }
     
-    func getMyNotificationsListService(completion: @escaping([NotificationsList]) -> Void) {
+    func getMyNotificationsListService(param: [String:Any], completion: @escaping(NotificationsListDataModel) -> Void) {
         CommonUtils.showHud(show: true)
-        NetworkManager.shared.request(withAPI: .endpoint(.getMyNotificationsList),requestMethod: .get, requestModel: [NotificationsList].self) { result, code in
+        NetworkManager.shared.request(withAPI: .endpoint(.getMyNotificationsList),requestMethod: .get, requestParams: param, requestModel: NotificationsListDataModel.self) { result, code in
             CommonUtils.showHud(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
@@ -157,6 +157,22 @@ extension WebService {
     func markReadNotificationsService(param: [String:Any], completion: @escaping(EmptyModel) -> Void) {
         CommonUtils.showHud(show: true)
         NetworkManager.shared.request(withAPI: .endpoint(.markReadNotifications),requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+            CommonUtils.showHud(show: false)
+            self.evaluateWebServiceResponse(response: result) { response, message, error in
+                guard let response = response else {
+                    if let error {
+                        UIApplication.shared.topViewController()?.showAlert(msg: error)
+                    }
+                    return
+                }
+                completion(response)
+            }
+        }
+    }
+    
+    func markAllReadNotificationsService(param: [String:Any], completion: @escaping(EmptyModel) -> Void) {
+        CommonUtils.showHud(show: true)
+        NetworkManager.shared.request(withAPI: .endpoint(.markAllReadNotifications),requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
             CommonUtils.showHud(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {

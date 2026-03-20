@@ -9,6 +9,9 @@ import UIKit
 
 class ManageSellerPayoutViewController: UIViewController {
 
+    @IBOutlet weak var nextButtonOutlet: UIButton!
+    @IBOutlet weak var previousButtonOutlet: UIButton!
+    @IBOutlet weak var pageLabel: UILabel!
     @IBOutlet weak var listTableView: UITableView! {
         didSet {
             listTableView.registerCellFromNib(cellID: "ManagePayoutTableViewCell")
@@ -30,6 +33,15 @@ class ManageSellerPayoutViewController: UIViewController {
         }
         self.navigationController?.present(nextVC, animated: true)
     }
+    
+    @IBAction func nextDidTapped(_ sender: Any) {
+        
+    }
+    
+    @IBAction func previousDidTapped(_ sender: Any) {
+        
+    }
+    
 }
 
 extension ManageSellerPayoutViewController: UITableViewDelegate, UITableViewDataSource {

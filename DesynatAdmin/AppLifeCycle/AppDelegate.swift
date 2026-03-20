@@ -100,6 +100,7 @@ extension AppDelegate {
     // Called when APNs registration succeeds
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        kSharedUserDefaults.saveModelFor(key: .deviceToken, value: token)
         print("Device Token: \(token)")
     }
     
@@ -117,7 +118,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler:
                                 @escaping (UNNotificationPresentationOptions) -> Void) {
-        
         completionHandler([.banner, .sound, .badge])
     }
     
@@ -125,10 +125,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
-        
         let userInfo = response.notification.request.content.userInfo
         print("Notification Data: \(userInfo)")
-        
         completionHandler()
     }
+    
 }

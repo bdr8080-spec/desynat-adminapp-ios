@@ -27,7 +27,7 @@ class FAQViewModel {
     }
     
     func deleteFAQRequest(id: Int) {
-        let param: [String: Any] = ["id": id]
+        let param: [String: Any] = ["faq_id": id]
         WebService.shared.deleteFaqService(parameter: param) { [weak self] response in
             self?.getFAQRequest()
         }
