@@ -308,6 +308,7 @@
                         <outlet property="noDataFoundLabel" destination="8JH-GQ-Jww" id="4q0-ns-mxw"/>
                         <outlet property="pageCountLabel" destination="RXx-0I-uUw" id="a5L-p1-qAq"/>
                         <outlet property="previousButton" destination="5Pg-sp-Upm" id="57x-bG-IgK"/>
+                        <outlet property="serachTF" destination="d8J-iP-rw6" id="SqL-Nl-J45"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dzh-Do-WNW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1054,7 +1055,7 @@
                                                         </constraints>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                        <state key="normal" image="topTabbar"/>
+                                                        <state key="normal" image="btnGradient"/>
                                                         <connections>
                                                             <action selector="userDidTapped:" destination="7Az-Wo-4TP" eventType="touchUpInside" id="wgW-pb-5Ze"/>
                                                         </connections>
@@ -1248,7 +1249,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Oe8-4U-abh">
-                                <rect key="frame" x="24" y="309" width="345" height="407"/>
+                                <rect key="frame" x="24" y="299" width="345" height="501"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qOe-GA-tr2" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="345" height="38"/>
@@ -1301,18 +1302,43 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <wkWebView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J1A-3w-Acy">
-                                        <rect key="frame" x="0.0" y="63" width="345" height="128"/>
+                                        <rect key="frame" x="0.0" y="63" width="345" height="100"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="128" id="kSE-PA-CnL"/>
+                                            <constraint firstAttribute="height" constant="100" id="kSE-PA-CnL"/>
                                         </constraints>
                                         <wkWebViewConfiguration key="configuration">
                                             <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                             <wkPreferences key="preferences"/>
                                         </wkWebViewConfiguration>
                                     </wkWebView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="23I-Ps-bNt">
+                                        <rect key="frame" x="0.0" y="188" width="345" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AWR-cp-XX8">
+                                                <rect key="frame" x="245" y="0.0" width="100" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="hRB-fZ-83P"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Read More">
+                                                    <color key="titleColor" name="darkBrown"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="englishDidTapped:" destination="7Az-Wo-4TP" eventType="touchUpInside" id="Bvv-IR-EhP"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="AWR-cp-XX8" firstAttribute="top" secondItem="23I-Ps-bNt" secondAttribute="top" id="O0H-lk-3U5"/>
+                                            <constraint firstAttribute="trailing" secondItem="AWR-cp-XX8" secondAttribute="trailing" id="ajS-PF-X2q"/>
+                                            <constraint firstAttribute="bottom" secondItem="AWR-cp-XX8" secondAttribute="bottom" id="xNe-QJ-q0W"/>
+                                        </constraints>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lxi-3o-QP1" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="216" width="345" height="38"/>
+                                        <rect key="frame" x="0.0" y="263" width="345" height="38"/>
                                         <subviews>
                                             <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Arabic" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fEX-BN-Zo4" customClass="BindableTextField" customModule="DesynatAdmin" customModuleProvider="target">
                                                 <rect key="frame" x="12" y="0.0" width="263" height="38"/>
@@ -1362,16 +1388,41 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <wkWebView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ONs-xi-2Xb">
-                                        <rect key="frame" x="0.0" y="279" width="345" height="128"/>
+                                        <rect key="frame" x="0.0" y="326" width="345" height="100"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="128" id="d71-ej-xWU"/>
+                                            <constraint firstAttribute="height" constant="100" id="d71-ej-xWU"/>
                                         </constraints>
                                         <wkWebViewConfiguration key="configuration">
                                             <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                             <wkPreferences key="preferences"/>
                                         </wkWebViewConfiguration>
                                     </wkWebView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A1X-co-fdW">
+                                        <rect key="frame" x="0.0" y="451" width="345" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R4h-M8-1wI">
+                                                <rect key="frame" x="245" y="0.0" width="100" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="MGA-cu-jS2"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Read More">
+                                                    <color key="titleColor" name="darkBrown"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="arbicReadMoreDidTapped:" destination="7Az-Wo-4TP" eventType="touchUpInside" id="fmG-VW-8qR"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="R4h-M8-1wI" firstAttribute="top" secondItem="A1X-co-fdW" secondAttribute="top" id="8jA-3P-4uF"/>
+                                            <constraint firstAttribute="trailing" secondItem="R4h-M8-1wI" secondAttribute="trailing" id="NaN-yF-Ch8"/>
+                                            <constraint firstAttribute="bottom" secondItem="R4h-M8-1wI" secondAttribute="bottom" id="eGe-sW-ZdE"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                             </stackView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dc7-jY-h5Q" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
@@ -1411,19 +1462,19 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Dc7-jY-h5Q" firstAttribute="leading" secondItem="nHb-0H-owB" secondAttribute="leading" id="1G2-Cg-va5"/>
+                            <constraint firstItem="Oe8-4U-abh" firstAttribute="top" secondItem="nHb-0H-owB" secondAttribute="bottom" constant="20" id="3Kq-E8-Ucg"/>
                             <constraint firstItem="zpw-5O-ZZQ" firstAttribute="trailing" secondItem="PbB-jm-Br7" secondAttribute="trailing" constant="24" id="5mJ-jv-j54"/>
                             <constraint firstItem="Dc7-jY-h5Q" firstAttribute="top" secondItem="nHb-0H-owB" secondAttribute="bottom" id="68t-2v-ftu"/>
                             <constraint firstItem="dkj-ip-G9C" firstAttribute="top" secondItem="zpw-5O-ZZQ" secondAttribute="top" id="9DA-S3-UTx"/>
-                            <constraint firstItem="Oe8-4U-abh" firstAttribute="top" secondItem="nHb-0H-owB" secondAttribute="bottom" constant="30" id="9N6-A9-m4d"/>
                             <constraint firstItem="dkj-ip-G9C" firstAttribute="trailing" secondItem="zpw-5O-ZZQ" secondAttribute="trailing" id="APp-fU-4xV"/>
-                            <constraint firstItem="Oe8-4U-abh" firstAttribute="leading" secondItem="nHb-0H-owB" secondAttribute="leading" id="IwL-Gf-MwJ"/>
+                            <constraint firstItem="nHb-0H-owB" firstAttribute="leading" secondItem="Oe8-4U-abh" secondAttribute="leading" id="IV6-mZ-AMq"/>
                             <constraint firstItem="dkj-ip-G9C" firstAttribute="leading" secondItem="zpw-5O-ZZQ" secondAttribute="leading" id="LBj-am-xZF"/>
+                            <constraint firstItem="nHb-0H-owB" firstAttribute="trailing" secondItem="Oe8-4U-abh" secondAttribute="trailing" id="Mfm-Tc-53c"/>
                             <constraint firstItem="nHb-0H-owB" firstAttribute="top" secondItem="PbB-jm-Br7" secondAttribute="bottom" constant="20" id="UaK-mV-mbR"/>
                             <constraint firstItem="zpw-5O-ZZQ" firstAttribute="trailing" secondItem="nHb-0H-owB" secondAttribute="trailing" constant="24" id="c5Q-Xf-NbG"/>
                             <constraint firstItem="nHb-0H-owB" firstAttribute="leading" secondItem="zpw-5O-ZZQ" secondAttribute="leading" constant="24" id="cGs-Jd-jQr"/>
                             <constraint firstItem="PbB-jm-Br7" firstAttribute="top" secondItem="dkj-ip-G9C" secondAttribute="bottom" constant="25" id="dkz-AV-wyA"/>
                             <constraint firstItem="Dc7-jY-h5Q" firstAttribute="trailing" secondItem="nHb-0H-owB" secondAttribute="trailing" id="jxQ-mT-PP1"/>
-                            <constraint firstItem="Oe8-4U-abh" firstAttribute="trailing" secondItem="nHb-0H-owB" secondAttribute="trailing" id="lW3-vJ-tQd"/>
                             <constraint firstItem="PbB-jm-Br7" firstAttribute="leading" secondItem="zpw-5O-ZZQ" secondAttribute="leading" constant="24" id="s7n-kp-c2L"/>
                         </constraints>
                     </view>
@@ -3622,8 +3673,8 @@
         <image name="filledCheckBox" width="18" height="18"/>
         <image name="leftVector" width="9.6666669845581055" height="17.666666030883789"/>
         <image name="nextRight" width="32" height="32"/>
-        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus" width="64" height="64"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plusAdd" width="14" height="14"/>
         <image name="previousLeft" width="32" height="32"/>
         <image name="search" width="20" height="20"/>

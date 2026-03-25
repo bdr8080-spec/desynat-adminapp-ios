@@ -37,11 +37,11 @@ class NotificationsListTableViewCell: UITableViewCell {
         } else {
             sentToNameLabel.text = "Sent To -"
         }
-        if data?.isRead == 1 {
-            mainImageView.image = .selectedBellIcon
-        } else {
-            mainImageView.image = .unselectedBellIcon
-        }
+//        if data?.isRead == 1 {
+//            mainImageView.image = .selectedBellIcon
+//        } else {
+//            mainImageView.image = .unselectedBellIcon
+//        }
         sentTimeLabel.text = formatISODateToDayMonthYear(data?.createdAt ?? "")
     }
     

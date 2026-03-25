@@ -66,48 +66,110 @@ class AddFAQViewController: UIViewController {
     
 }
 
+////MARK: UITextFieldDelegate Methods
+//extension AddFAQViewController: UITextFieldDelegate {
+//
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        let currentText = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+//        var validation: StringValidation?
+//
+//        if string.isEmpty { return true }
+//
+//        if textField == questionEngTF || textField == answerEnglishTF{
+//            // Prevent starting with space
+//            if currentText.hasPrefix(" ") {
+//                return false
+//            }
+//
+//            // Only limit length
+//            return currentText.count <= 500
+//        }
+//
+//        if textField == questionArabicTF || textField == answerArabicTF {
+//
+//            // Allowed Arabic Unicode ranges + spaces
+//            let allowedSet = CharacterSet(charactersIn: "\u{0600}"..."\u{06FF}")
+//                .union(CharacterSet(charactersIn: "\u{0750}"..."\u{077F}"))
+//                .union(CharacterSet(charactersIn: "\u{08A0}"..."\u{08FF}"))
+//                .union(CharacterSet.whitespaces)
+//
+//            // Check every character (handles paste)
+//            for scalar in string.unicodeScalars {
+//                if !allowedSet.contains(scalar) {
+//                    CommonUtils.showToast(message: "Please switch to Arabic keyboard")
+//                    return false
+//                }
+//            }
+//
+//            return true
+//        }
+//
+//        if let data = validation {
+//            return data.validate()
+//        } else {
+//            return true
+//        }
+//    }
+//}
+
+
 //MARK: UITextFieldDelegate Methods
 extension AddFAQViewController: UITextFieldDelegate {
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let currentText = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-        var validation: StringValidation?
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
         
+        let currentText = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        
+        // Allow backspace
         if string.isEmpty { return true }
         
-        if textField == questionEngTF || textField == answerEnglishTF{
-            // Prevent starting with space
-            if currentText.hasPrefix(" ") {
+        // ---------------------------
+        // MARK: English TextFields
+        // ---------------------------
+        if textField == questionEngTF || textField == answerEnglishTF {
+
+            
+            if !isAllowedEnglish(currentText) {
+                CommonUtils.showToast(message: "Please switch to English keyboard")
+                return false
+            }
+        }
+        
+        // ---------------------------
+        // MARK: Arabic TextFields
+        // ---------------------------
+        if textField == questionArabicTF || textField == answerArabicTF {
+            
+            if !isAllowedArabic(currentText) {
+                CommonUtils.showToast(message: "Please switch to Arabic keyboard")
                 return false
             }
             
-            // Only limit length
-            return currentText.count <= 500
-        }
-        
-        if textField == questionArabicTF || textField == answerArabicTF {
-            
-            // Allowed Arabic Unicode ranges + spaces
-            let allowedSet = CharacterSet(charactersIn: "\u{0600}"..."\u{06FF}")
-                .union(CharacterSet(charactersIn: "\u{0750}"..."\u{077F}"))
-                .union(CharacterSet(charactersIn: "\u{08A0}"..."\u{08FF}"))
-                .union(CharacterSet.whitespaces)
-            
-            // Check every character (handles paste)
-            for scalar in string.unicodeScalars {
-                if !allowedSet.contains(scalar) {
-                    CommonUtils.showToast(message: "Please switch to Arabic keyboard")
-                    return false
-                }
-            }
-            
             return true
         }
         
-        if let data = validation {
-            return data.validate()
-        } else {
-            return true
-        }
+        return true
+    }
+    
+    private func isAllowedEnglish(_ string: String) -> Bool {
+        let allowedSet = CharacterSet(charactersIn:
+            "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .,?!'-()\"&@#$%^*+=:;/\\"
+        ).union(.whitespacesAndNewlines)
+        
+        return string.unicodeScalars.allSatisfy { allowedSet.contains($0) || $0.properties.isEmoji }
+    }
+
+    private func isAllowedArabic(_ string: String) -> Bool {
+        let allowedSet = CharacterSet(charactersIn: "\u{0600}"..."\u{06FF}")
+            .union(CharacterSet(charactersIn: "\u{0750}"..."\u{077F}"))
+            .union(CharacterSet(charactersIn: "\u{08A0}"..."\u{08FF}"))
+            .union(CharacterSet(charactersIn: "\u{FB50}"..."\u{FDFF}"))
+            .union(CharacterSet(charactersIn: "\u{FE70}"..."\u{FEFF}"))
+            .union(.whitespacesAndNewlines)
+        
+        return string.unicodeScalars.allSatisfy { allowedSet.contains($0) || $0.properties.isEmoji }
     }
 }
+

@@ -18,22 +18,13 @@ class CMSDetailsViewController: UIViewController {
     private lazy var viewModel = CMSDetailsViewModel(hostVC: self)
     var selectedUserType = 1
     var cmsType: CmsArray = .returnPolicy
+    var comingForArabic: Bool = false
+    var termsAndConditonData: CMSTermsConditionDataModel?
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        switch cmsType {
-        case .returnPolicy:
-            viewModel.getReturnPolicyRequest()
-        case .aboutUs:
-            viewModel.getAboutUsRequest()
-        case .cancellationPolicy:
-            viewModel.getCancellationPolicyRequest()
-        case .exchangePolicy:
-            viewModel.getExchangePolicyRequest()
-        default:
-            viewModel.getReturnPolicyRequest()
-        }
+        handleUI()
     }
     
     // MARK: - Button's Action
@@ -43,5 +34,24 @@ class CMSDetailsViewController: UIViewController {
     
     
     //MARK: Function's declaration
-    
+    private func handleUI() {
+        switch cmsType {
+        case .termsAndCondition:
+            titleLabel.text = "Terms & Condition"
+        case .returnPolicy:
+            titleLabel.text = "Return Policy"
+        case .aboutUs:
+            titleLabel.text = "About Us"
+        case .cancellationPolicy:
+            titleLabel.text = "Cancellation Policy"
+        default:
+            titleLabel.text = "Exchange Policy"
+        }
+        if comingForArabic {
+            CommonUtils.loadHTMLContent(termsAndConditonData?.contentArabic ?? "N/A", webView: contentView)
+            
+        } else {
+            CommonUtils.loadHTMLContent(termsAndConditonData?.contentEnglish ?? "N/A", webView: contentView)
+        }
+    }
 }

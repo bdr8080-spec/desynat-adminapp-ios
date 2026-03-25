@@ -1,15 +1,14 @@
 //
-//  File.swift
-//  DesynatAdmin
+//  UITextViewExtension.swift
+//  Altair
 //
-//  Created by fluper on 16/12/25.
+//  Created by Rakhi Kumari on 23/09/25.
 //
-
-
+ 
 import UIKit
-
+ 
 private var kPlaceholderLabelKey: UInt8 = 0
-
+ 
 extension UITextView: UITextViewDelegate {
     
     @IBInspectable var placeholderTextView: String? {

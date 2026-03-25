@@ -1,8 +1,8 @@
 import Foundation
 
 enum BaseURL {
-    static let development  = "http://157.241.119.72/"
-    static let release      = "http://157.241.119.72/"
+    static let development  = "https://desynat.com/"//"http://157.241.119.72/"
+    static let release      = "https://desynat.com/"//"http://157.241.119.72/"
     
     static func value() -> String {
         switch BuildConfiguration.shared.environment {
@@ -219,6 +219,7 @@ enum NetworkEndPoint: String {
     case updateFAQ                       = "api/admin/update_faq"
     case deleteFAQ                       = "api/admin/delete_faq"
     case createUpdateContactUs           = "api/admin/create_update_contact_us"
+    case countOfNotifcation              = "api/admin/get_admin_notifications_count"
     
     
     func withBaseURL() -> String {

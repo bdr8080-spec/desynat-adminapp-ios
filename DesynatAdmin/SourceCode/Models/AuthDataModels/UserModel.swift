@@ -8,10 +8,10 @@
 
 // MARK: - UserModel
 struct UserModel: Codable {
-    let id: Int?
+    let id, deviceType: Int?
     let fullName, countryCode, mobile, email, profileImage: String?
     let emailVerifiedAt: String?
-    let otp, otpVerify, deviceType: String?
+    let otp, otpVerify: String?
     let fcmToken: String?
     let createdAt, updatedAt, accessToken: String?
     

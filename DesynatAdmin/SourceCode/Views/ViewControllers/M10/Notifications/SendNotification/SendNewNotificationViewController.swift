@@ -147,29 +147,16 @@ extension SendNewNotificationViewController: UITextFieldDelegate {
         if string.isEmpty { return true }
         
         if textField == titleInEnglishTF {
-            // Prevent starting with space
-            if currentText.hasPrefix(" ") {
+            if !isAllowedEnglish(currentText) {
+                CommonUtils.showToast(message: "Please switch to English keyboard")
                 return false
             }
-            
-            // Only limit length
-            return currentText.count <= 100
         }
         
         if textField == titleInArabicTF {
-            
-            // Allowed Arabic Unicode ranges + spaces
-            let allowedSet = CharacterSet(charactersIn: "\u{0600}"..."\u{06FF}")
-                .union(CharacterSet(charactersIn: "\u{0750}"..."\u{077F}"))
-                .union(CharacterSet(charactersIn: "\u{08A0}"..."\u{08FF}"))
-                .union(CharacterSet.whitespaces)
-            
-            // Check every character (handles paste)
-            for scalar in string.unicodeScalars {
-                if !allowedSet.contains(scalar) {
-                    CommonUtils.showToast(message: "Please switch to Arabic keyboard")
-                    return false
-                }
+            if !isAllowedArabic(currentText) {
+                CommonUtils.showToast(message: "Please switch to Arabic keyboard")
+                return false
             }
             
             return true
@@ -180,6 +167,25 @@ extension SendNewNotificationViewController: UITextFieldDelegate {
         } else {
             return true
         }
+    }
+    
+    private func isAllowedEnglish(_ string: String) -> Bool {
+        let allowedSet = CharacterSet(charactersIn:
+            "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .,?!'-()\"&@#$%^*+=:;/\\"
+        ).union(.whitespacesAndNewlines)
+        
+        return string.unicodeScalars.allSatisfy { allowedSet.contains($0) || $0.properties.isEmoji }
+    }
+
+    private func isAllowedArabic(_ string: String) -> Bool {
+        let allowedSet = CharacterSet(charactersIn: "\u{0600}"..."\u{06FF}")
+            .union(CharacterSet(charactersIn: "\u{0750}"..."\u{077F}"))
+            .union(CharacterSet(charactersIn: "\u{08A0}"..."\u{08FF}"))
+            .union(CharacterSet(charactersIn: "\u{FB50}"..."\u{FDFF}"))
+            .union(CharacterSet(charactersIn: "\u{FE70}"..."\u{FEFF}"))
+            .union(.whitespacesAndNewlines)
+        
+        return string.unicodeScalars.allSatisfy { allowedSet.contains($0) || $0.properties.isEmoji }
     }
 }
 
@@ -198,31 +204,19 @@ extension SendNewNotificationViewController: UITextViewDelegate {
         
         // MARK: - English Description
         if textView == decriptionInEnglishTF {
-            
-            if currentText.hasPrefix(" ") {
+            decriptionInEnglishTF.placeholderTextView = ""
+            if !isAllowedEnglish(currentText) {
+                CommonUtils.showToast(message: "Please switch to English keyboard")
                 return false
             }
-            
-            validation = StringValidation(
-                string: currentText,
-                characterCount: 250,   // you can change limit
-                validation: .firstName
-            )
         }
         
         // MARK: - Arabic Description
         if textView == decriptionInArabicTF {
-            
-            let allowedSet = CharacterSet(charactersIn: "\u{0600}"..."\u{06FF}")
-                .union(CharacterSet(charactersIn: "\u{0750}"..."\u{077F}"))
-                .union(CharacterSet(charactersIn: "\u{08A0}"..."\u{08FF}"))
-                .union(.whitespacesAndNewlines)
-            
-            for scalar in text.unicodeScalars {
-                if !allowedSet.contains(scalar) {
-                    CommonUtils.showToast(message: "Please switch to Arabic keyboard")
-                    return false
-                }
+            decriptionInArabicTF.placeholderTextView = ""
+            if !isAllowedArabic(currentText) {
+                CommonUtils.showToast(message: "Please switch to Arabic keyboard")
+                return false
             }
             
             return true

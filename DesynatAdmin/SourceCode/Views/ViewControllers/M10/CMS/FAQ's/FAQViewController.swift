@@ -31,6 +31,7 @@ class FAQViewController: UIViewController {
     @IBAction func addDidTapped(_ sender: Any) {
         let nextVC = AddFAQViewController.instantiate(fromAppStoryboard: .NotificationCMS)
         nextVC.isComingForEdit = false
+        nextVC.selectedUserType = self.selectedUserType
         nextVC.onChangesAreDone = { [weak self] in
             self?.viewModel.getFAQRequest()
         }
@@ -66,6 +67,7 @@ extension FAQViewController: UITableViewDelegate, UITableViewDataSource {
             let nextVC = AddFAQViewController.instantiate(fromAppStoryboard: .NotificationCMS)
             nextVC.isComingForEdit = true
             nextVC.faqData = data
+            nextVC.selectedUserType = self?.selectedUserType ?? 1
             nextVC.onChangesAreDone = { [weak self] in
                 self?.viewModel.getFAQRequest()
             }

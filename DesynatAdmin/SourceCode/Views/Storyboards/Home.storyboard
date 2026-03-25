@@ -81,18 +81,67 @@
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                 <state key="normal" image="AX"/>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OIQ-d4-U8E">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q6Z-ZO-VHX">
                                                                 <rect key="frame" x="35" y="0.0" width="35" height="35"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OIQ-d4-U8E">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="35" id="qqb-1a-C9R"/>
+                                                                            <constraint firstAttribute="width" secondItem="OIQ-d4-U8E" secondAttribute="height" id="x9G-Pe-Ht0"/>
+                                                                        </constraints>
+                                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                        <state key="normal" image="homeBell"/>
+                                                                        <connections>
+                                                                            <action selector="bellDidTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="pJ1-ho-ef2"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ig-bU-Lk4" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
+                                                                        <rect key="frame" x="15" y="0.0" width="20" height="20"/>
+                                                                        <subviews>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btnGradient" translatesAutoresizingMaskIntoConstraints="NO" id="cK7-ue-Y4M" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="circleCorner" value="YES"/>
+                                                                                </userDefinedRuntimeAttributes>
+                                                                            </imageView>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JLl-g9-ZUO">
+                                                                                <rect key="frame" x="2" y="2" width="16" height="16"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstItem="JLl-g9-ZUO" firstAttribute="leading" secondItem="7ig-bU-Lk4" secondAttribute="leading" constant="2" id="2CI-18-r05"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="JLl-g9-ZUO" secondAttribute="bottom" constant="2" id="BM7-JJ-q7Y"/>
+                                                                            <constraint firstItem="JLl-g9-ZUO" firstAttribute="top" secondItem="7ig-bU-Lk4" secondAttribute="top" constant="2" id="EE0-ae-asY"/>
+                                                                            <constraint firstItem="cK7-ue-Y4M" firstAttribute="top" secondItem="7ig-bU-Lk4" secondAttribute="top" id="Eus-F9-i3r"/>
+                                                                            <constraint firstItem="cK7-ue-Y4M" firstAttribute="leading" secondItem="7ig-bU-Lk4" secondAttribute="leading" id="Gd0-Oc-Muj"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="cK7-ue-Y4M" secondAttribute="trailing" id="N3T-4n-cq8"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="cK7-ue-Y4M" secondAttribute="bottom" id="gyN-jL-IKv"/>
+                                                                            <constraint firstAttribute="height" constant="20" id="mfr-AQ-FR9"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="JLl-g9-ZUO" secondAttribute="trailing" constant="2" id="qFx-pM-PNc"/>
+                                                                            <constraint firstAttribute="width" constant="20" id="v91-63-kPy"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="circleCorner" value="YES"/>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </view>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="35" id="qqb-1a-C9R"/>
-                                                                    <constraint firstAttribute="width" secondItem="OIQ-d4-U8E" secondAttribute="height" id="x9G-Pe-Ht0"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="OIQ-d4-U8E" secondAttribute="bottom" id="00w-BI-tVV"/>
+                                                                    <constraint firstItem="7ig-bU-Lk4" firstAttribute="top" secondItem="OIQ-d4-U8E" secondAttribute="top" id="AK1-rn-riS"/>
+                                                                    <constraint firstAttribute="width" secondItem="Q6Z-ZO-VHX" secondAttribute="height" multiplier="1:1" id="Fhi-Yb-een"/>
+                                                                    <constraint firstItem="7ig-bU-Lk4" firstAttribute="trailing" secondItem="OIQ-d4-U8E" secondAttribute="trailing" id="PNF-uT-hEl"/>
+                                                                    <constraint firstItem="OIQ-d4-U8E" firstAttribute="top" secondItem="Q6Z-ZO-VHX" secondAttribute="top" id="jDC-ls-DF7"/>
+                                                                    <constraint firstAttribute="height" constant="35" id="jwL-UL-g2c"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="OIQ-d4-U8E" secondAttribute="trailing" id="r2m-x1-yqV"/>
+                                                                    <constraint firstItem="OIQ-d4-U8E" firstAttribute="leading" secondItem="Q6Z-ZO-VHX" secondAttribute="leading" id="ss9-Ec-xzI"/>
                                                                 </constraints>
-                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                                <state key="normal" image="homeBell"/>
-                                                                <connections>
-                                                                    <action selector="bellDidTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="pJ1-ho-ef2"/>
-                                                                </connections>
-                                                            </button>
+                                                            </view>
                                                         </subviews>
                                                     </stackView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I9k-OT-oAT">
@@ -1129,13 +1178,13 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FMq-oP-TMd">
-                                                                        <rect key="frame" x="12" y="10.000000000000002" width="38.666666666666657" height="19.666666666666671"/>
+                                                                        <rect key="frame" x="12" y="10.000000000000002" width="38.666666666666664" height="19.666666666666671"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="120" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JXx-zm-AY7">
-                                                                        <rect key="frame" x="12" y="41.333333333333258" width="38.666666666666657" height="33.666666666666657"/>
+                                                                        <rect key="frame" x="12" y="41.333333333333258" width="38.666666666666664" height="33.666666666666657"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="24"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -1692,6 +1741,8 @@ Visit Website</string>
                         <outlet property="inactiveSellerLabel" destination="jRg-4k-E1J" id="srM-SX-eRM"/>
                         <outlet property="newOrderLabel" destination="JXx-zm-AY7" id="qO2-Ae-qTj"/>
                         <outlet property="newTicketLabel" destination="mrR-QI-OgA" id="6IY-5F-CIm"/>
+                        <outlet property="notificationCountLabel" destination="JLl-g9-ZUO" id="9bC-VV-Llp"/>
+                        <outlet property="notificationCountView" destination="7ig-bU-Lk4" id="dmJ-6c-LKD"/>
                         <outlet property="ongoingOrderLabel" destination="eQj-Ks-d2U" id="fFc-Y1-7N3"/>
                         <outlet property="resolvedLabel" destination="phX-RO-hn9" id="BtX-B9-JB8"/>
                         <outlet property="revenueDetailsView" destination="76X-wK-2Xb" id="keI-Qb-Oqu"/>
@@ -2919,7 +2970,7 @@ Visit Website</string>
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zFx-LI-0xa">
-                                                                <rect key="frame" x="0.0" y="63.333333333333478" width="307" height="19.666666666666664"/>
+                                                                <rect key="frame" x="0.0" y="63.333333333333478" width="307" height="19.66666666666665"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Review &amp; ratings allowed ? " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4k8-5A-VjV">
                                                                         <rect key="frame" x="0.0" y="0.0" width="189" height="19.666666666666668"/>

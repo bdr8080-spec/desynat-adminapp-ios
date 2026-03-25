@@ -23,6 +23,7 @@ class UserListFilterViewController: UIViewController {
     var selectedFilter = UserFilterModel()
     var onApplyFilter: ((UserFilterModel) -> Void)?
     var onClearFilter: (() -> Void)?
+    var disbaleFutureDateSelection: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
@@ -101,11 +102,40 @@ class UserListFilterViewController: UIViewController {
 }
 
 extension UserListFilterViewController {
+//    private func setUpTextFields() {
+//        datePicker.preferredDatePickerStyle = .wheels
+//        datePicker.datePickerMode = .date
+//        datePicker.minimumDate = nil
+//        datePicker.backgroundColor = .white
+//        
+//        let toolbar = UIToolbar()
+//        toolbar.sizeToFit()
+//        
+//        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneDatePicker))
+//        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+//        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker))
+//        toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+//        
+//        fromTextField.inputView = datePicker
+//        fromTextField.inputAccessoryView = toolbar
+//        toTextField.inputView = datePicker
+//        toTextField.inputAccessoryView = toolbar
+//        
+//        fromTextField.delegate = self
+//        toTextField.delegate = self
+//    }
+    
     private func setUpTextFields() {
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.datePickerMode = .date
-        datePicker.minimumDate = nil
         datePicker.backgroundColor = .white
+        
+        // 🔥 Key Change: Respect the disableFutureDateSelection flag
+        if disbaleFutureDateSelection {
+            datePicker.maximumDate = Date()   // Disable future dates
+        } else {
+            datePicker.maximumDate = nil      // Allow future dates
+        }
         
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
@@ -113,6 +143,7 @@ extension UserListFilterViewController {
         let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneDatePicker))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker))
+        
         toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         
         fromTextField.inputView = datePicker
@@ -165,10 +196,42 @@ extension UserListFilterViewController {
 
 //MARK: UITextFieldDelegate Methods
 extension UserListFilterViewController: UITextFieldDelegate {
+//    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        activeTextField = textField
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "dd/MM/yyyy"
+//        if textField == toTextField {
+//            if let fromText = fromTextField.text,
+//               let fromDate = formatter.date(from: fromText) {
+//                datePicker.minimumDate = fromDate
+//            } else {
+//                datePicker.minimumDate = nil
+//            }
+//        }
+//        if textField == fromTextField {
+//            datePicker.minimumDate = nil
+//        }
+//    }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
+        
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
+        
+        // Apply future date restriction
+        if disbaleFutureDateSelection {
+            datePicker.maximumDate = Date()
+        } else {
+            datePicker.maximumDate = nil
+        }
+        
+        // From Date: No minimum date
+        if textField == fromTextField {
+            datePicker.minimumDate = nil
+        }
+        
+        // To Date: Minimum date = From Date (if set)
         if textField == toTextField {
             if let fromText = fromTextField.text,
                let fromDate = formatter.date(from: fromText) {
@@ -176,9 +239,6 @@ extension UserListFilterViewController: UITextFieldDelegate {
             } else {
                 datePicker.minimumDate = nil
             }
-        }
-        if textField == fromTextField {
-            datePicker.minimumDate = nil
         }
     }
 }

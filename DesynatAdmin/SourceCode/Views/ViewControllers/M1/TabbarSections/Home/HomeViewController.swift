@@ -64,6 +64,9 @@ class HomeViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var notificationCountView: CustomView!
+    @IBOutlet weak var notificationCountLabel: UILabel!
+    
     // MARK: - Property Decalaration
     private var durationArray = ["Today", "Week", "Month", "Year"]
     private var durationSelectedIndex: Int = 0
@@ -90,6 +93,11 @@ class HomeViewController: UIViewController {
         DispatchQueue.main.async {
             self.countryTableViewHeightConstarint.constant = self.countryTableView.contentSize.height
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.getCountOfNotificationRequest()
     }
 
     // MARK: - Button's Action

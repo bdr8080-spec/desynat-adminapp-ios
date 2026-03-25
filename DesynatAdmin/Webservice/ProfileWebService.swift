@@ -20,6 +20,23 @@ extension WebService {
         }
     }
     
+    func getCountOfNotificationForService(completion:@escaping (_ user: Int)-> Void) {
+        CommonUtils.showHud(show: true)
+        NetworkManager.shared.request(withAPI: .endpoint(.countOfNotifcation), requestMethod: .get,requestModel: Int.self) { result, code in
+            
+            CommonUtils.showHud(show: false)
+            self.evaluateWebServiceResponse(response: result) { response, message,error in
+                guard let user = response else {
+                    if let error {
+                        UIApplication.shared.topViewController()?.showAlert(msg: error)
+                    }
+                    return
+                }
+                completion(user)
+            }
+        }
+    }
+    
     func getAllCategory(completion: @escaping([GetCategoryModel]) -> Void) {
         CommonUtils.showHud(show: true)
         NetworkManager.shared.request(withAPI: .endpoint(.getCategory), requestMethod: .get, requestModel: [GetCategoryModel].self) { result, code in
@@ -406,6 +423,22 @@ extension WebService {
           }
       }
   }
+    
+    func getAllUsersListWithoutPagination(completion: @escaping ([UsersListModel]) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getUsers), requestMethod: .get, requestModel: [UsersListModel].self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
   
   func getUserDetails(param: [String: Any], completion: @escaping (UsersListModel) -> Void) {
       CommonUtils.showHud(show: true)
@@ -538,6 +571,22 @@ extension WebService {
   func getAllDeliveryBoys(param: [String: Any], completion: @escaping (DeliveryBoysListDataModel) -> Void) {
       CommonUtils.showHud(show: true)
       NetworkManager.shared.request(withAPI: .endpoint(.getDeliveryBoysList), requestMethod: .get, requestParams: param, requestModel: DeliveryBoysListDataModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+    
+    func getAllDeliveryBoysWithoutPagination(completion: @escaping ([DeliveryBoysList]) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getDeliveryBoysList), requestMethod: .get, requestModel: [DeliveryBoysList].self) { result, code in
           CommonUtils.showHud(show: false)
           self.evaluateWebServiceResponse(response: result) { response, message, error in
               guard let response = response else {
@@ -1374,6 +1423,22 @@ extension WebService {
     func getApprovedAffilaitedUsersRequest(param: [String: Any], completion: @escaping (AffilitaitedUsersListDataModel) -> Void) {
       CommonUtils.showHud(show: true)
       NetworkManager.shared.request(withAPI: .endpoint(.getApprovedAffilaitedUsers), requestMethod: .get, requestParams: param, requestModel: AffilitaitedUsersListDataModel.self) { result, code in
+          CommonUtils.showHud(show: false)
+          self.evaluateWebServiceResponse(response: result) { response, message, error in
+              guard let response = response else {
+                  if let error {
+                      UIApplication.shared.topViewController()?.showAlert(msg: error)
+                  }
+                  return
+              }
+              completion(response)
+          }
+      }
+  }
+    
+    func getApprovedAffilaitedUsersRequestWithputPagination(completion: @escaping ([AffilitaitedUsersDataModel]) -> Void) {
+      CommonUtils.showHud(show: true)
+      NetworkManager.shared.request(withAPI: .endpoint(.getApprovedAffilaitedUsers), requestMethod: .get, requestModel: [AffilitaitedUsersDataModel].self) { result, code in
           CommonUtils.showHud(show: false)
           self.evaluateWebServiceResponse(response: result) { response, message, error in
               guard let response = response else {

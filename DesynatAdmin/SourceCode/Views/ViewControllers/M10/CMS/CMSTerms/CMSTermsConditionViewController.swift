@@ -53,14 +53,6 @@ class CMSTermsConditionViewController: UIViewController {
         arabicContentWebView.navigationDelegate = self
         selectedCms = .termsAndCondition
         viewModel.getTermsAndConditionRequest()
-        //        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleOutsideTap))
-        //        tapGesture.cancelsTouchesInView = false
-        //        self.view.addGestureRecognizer(tapGesture)
-        //        [englishContentWebView, arabicContentWebView].forEach {
-        //            let tap = UITapGestureRecognizer(target: self, action: #selector(handleOutsideTap))
-        //            tap.cancelsTouchesInView = false
-        //            $0?.addGestureRecognizer(tap)
-        //        }
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleOutsideTap))
         tapGesture.cancelsTouchesInView = false
         tapGesture.delegate = self
@@ -69,15 +61,10 @@ class CMSTermsConditionViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        selectedCms = .termsAndCondition
         cmsOptionView.isHidden = true
         isCMSListHidden = false
     }
-    
-    //    override func viewDidLayoutSubviews() {
-    //        super.viewDidLayoutSubviews()
-    //        englishWebViewHeight.constant = englishContentWebView.scrollView.contentSize.height
-    //        arabicWebViewHeight.constant = arabicContentWebView.scrollView.contentSize.height
-    //    }
     
     // MARK: - Button's Action
     @IBAction func userDidTapped(_ sender: Any) {
@@ -150,6 +137,24 @@ class CMSTermsConditionViewController: UIViewController {
         self.navigationController?.present(nextVC, animated: true)
     }
     
+    @IBAction func englishDidTapped(_ sender: Any) {
+        let nextVC = CMSDetailsViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+        nextVC.selectedUserType = self.selectedUserType
+        nextVC.comingForArabic = false
+        nextVC.cmsType = self.selectedCms
+        nextVC.termsAndConditonData = viewModel.termsAndConditonData
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+    
+    @IBAction func arbicReadMoreDidTapped(_ sender: Any) {
+        let nextVC = CMSDetailsViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+        nextVC.selectedUserType = self.selectedUserType
+        nextVC.comingForArabic = true
+        nextVC.cmsType = self.selectedCms
+        nextVC.termsAndConditonData = viewModel.termsAndConditonData
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+    
     //MARK: Function's declaration
     private func callCMSApi() {
         switch selectedCms {
@@ -173,20 +178,6 @@ class CMSTermsConditionViewController: UIViewController {
 //MARK: WKNavigation Delegate functions
 extension CMSTermsConditionViewController: WKNavigationDelegate {
     
-//    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-//        webView.evaluateJavaScript("document.body.scrollHeight") { [weak self] height, _ in
-//            guard let self = self else { return }
-//            if let height = height as? CGFloat {
-//                let fixedHeight = height + 20
-//                if webView == self.englishContentWebView {
-//                    self.englishWebViewHeight.constant = fixedHeight
-//                } else {
-//                    self.arabicWebViewHeight.constant = fixedHeight
-//                }
-//            }
-//        }
-//    }
-    
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -197,9 +188,9 @@ extension CMSTermsConditionViewController: WKNavigationDelegate {
                     let fixedHeight = height + 20
                     
                     if webView == self.englishContentWebView {
-                        self.englishWebViewHeight.constant = fixedHeight
+                        self.englishWebViewHeight.constant = 120
                     } else {
-                        self.arabicWebViewHeight.constant = fixedHeight
+                        self.arabicWebViewHeight.constant = 120 //fixedHeight
                     }
                     
                     // 🔥 IMPORTANT: Force layout update

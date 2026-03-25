@@ -23,7 +23,7 @@ class NotificationsListViewModel {
     func getAllSentNotificationRequest() {
         var params: [String : Any] = [:]
         params["page"] = currentPage
-        params["limit"] = 3
+        params["limit"] = 5
         if !searchText.isEmpty {
             params["search"] = searchText
         }

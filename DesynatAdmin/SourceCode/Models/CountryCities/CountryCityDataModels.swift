@@ -128,8 +128,8 @@ struct ZoneDataModel: Codable {
 }
 struct Coordinates: Codable {
 
-    var lat: Double?
-    var lng: Double?
+    var lat: String?
+    var lng: String?
 
     private enum CodingKeys: String, CodingKey {
         case lat = "lat"

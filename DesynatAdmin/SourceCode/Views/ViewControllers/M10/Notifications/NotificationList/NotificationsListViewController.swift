@@ -19,6 +19,7 @@ class NotificationsListViewController: UIViewController {
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var noDataFoundLabel: UILabel!
+    @IBOutlet weak var serachTF: BindableTextField!
     
     // MARK: - Property Decalaration
     private lazy var viewModel = NotificationsListViewModel(hostVC: self)
@@ -27,7 +28,7 @@ class NotificationsListViewController: UIViewController {
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        serachTF.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,6 +57,7 @@ class NotificationsListViewController: UIViewController {
     
     @IBAction func filterDidTapped(_ sender: Any) {
         let vc = UserListFilterViewController.instantiate(fromAppStoryboard: .ReasonManagement)
+        vc.disbaleFutureDateSelection = true
         vc.selectedFilter = viewModel.appliedFilter
         vc.onApplyFilter = { [weak self] filter in
             guard let self = self else { return }

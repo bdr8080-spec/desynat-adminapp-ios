@@ -91,33 +91,33 @@ class SendNewNotificationViewModel {
     }
     
     func getAllUsers(completion: @escaping () -> Void) {
-        WebService.shared.getAllUsers(param: [:]) { [weak self] response in
+        WebService.shared.getAllUsersListWithoutPagination { [weak self] response in
             guard let self = self else { return }
-            self.usersListData = response.data ?? []
+            self.usersListData = response
             completion()
         }
     }
     
     func getAllDeliveryBoy(completion: @escaping () -> Void) {
-        WebService.shared.getAllDeliveryBoys(param: [:]) { [weak self] response in
+        WebService.shared.getAllDeliveryBoysWithoutPagination { [weak self] response in
             guard let self = self else { return }
-            self.boysListData = response.data ?? []
+            self.boysListData = response
             completion()
         }
     }
 
     func getApprovedSellers(completion: @escaping () -> Void) {
-        WebService.shared.getApprovedSellers(parameter: [:]) { [weak self] response in
+        WebService.shared.getApprovedSellersWithoutPagination { [weak self] response in
             guard let self = self else { return }
-            self.sellersListData = response.data ?? []
+            self.sellersListData = response
             completion()
         }
     }
 
     func fetchApprovedAffiliatedUsersList(completion: @escaping () -> Void) {
-        WebService.shared.getApprovedAffilaitedUsersRequest(param: [:]) { [weak self] response in
+        WebService.shared.getApprovedAffilaitedUsersRequestWithputPagination{ [weak self] response in
             guard let self = self else { return }
-            self.affilitaitedUsersListData = response.data ?? []
+            self.affilitaitedUsersListData = response
             completion()
         }
     }

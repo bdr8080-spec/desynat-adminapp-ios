@@ -280,17 +280,31 @@ class CommonUtils {
     }
     
 //    static func loadHTMLContent(_ content: String, webView: WKWebView) {
-//        
+//
 //        let html = """
 //        <html>
 //        <head>
-//        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 //        <style>
 //            body {
-//                font-size: 14px;
-//                font-family: -apple-system;
-//                padding:0;
-//                margin:0;
+//                margin: 0;
+//                padding: 0;
+//                width: 100%;
+//                white-space: pre-wrap;      /* PRESERVE SPACES */
+//                word-wrap: break-word;
+//                line-height: 1.6;           /* IMPROVE READABILITY */
+//                -webkit-text-size-adjust: 120%; /* BOOST FONT SIZE */
+//                font-size: 14px;            /* FIX SMALL ARABIC FONT */
+//                font-family: -apple-system, BlinkMacSystemFontFont, Arial, sans-serif;
+//            }
+//
+//            img {
+//                max-width: 100%;
+//                height: auto;
+//            }
+//
+//            table {
+//                width: 100% !important;
 //            }
 //        </style>
 //        </head>
@@ -303,40 +317,115 @@ class CommonUtils {
 //        webView.loadHTMLString(html, baseURL: nil)
 //    }
     
+//    static func loadHTMLContent(_ content: String, webView: WKWebView) {
+//        
+//        // Important: Convert \u2028 (line separator) and other hidden characters if needed
+//        let cleanedContent = content
+//            .replacingOccurrences(of: "\u{2028}", with: "<br>")   // Line separator → visible break
+//            .replacingOccurrences(of: "\u{2029}", with: "<br><br>")
+//        
+//        let html = """
+//        <html>
+//        <head>
+//            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+//            <style>
+//                body {
+//                    margin: 15px;
+//                    padding: 0;
+//                    width: 100%;
+//                    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+//                    font-size: 16px;                    /* Better readable size */
+//                    line-height: 1.6;
+//                    -webkit-text-size-adjust: 100%;
+//                    white-space: pre-wrap !important;   /* This is the key */
+//                    word-wrap: break-word;
+//                    overflow-wrap: break-word;
+//                }
+//                
+//                /* Extra safety for preserving whitespace */
+//                p, div, span {
+//                    white-space: pre-wrap !important;
+//                }
+//                
+//                img {
+//                    max-width: 100%;
+//                    height: auto;
+//                }
+//                
+//                table {
+//                    width: 100% !important;
+//                }
+//            </style>
+//        </head>
+//        <body>
+//            \(cleanedContent)
+//        </body>
+//        </html>
+//        """
+//        
+//        webView.loadHTMLString(html, baseURL: nil)
+//    }
+    
     static func loadHTMLContent(_ content: String, webView: WKWebView) {
-
+        
+        let cleanedContent = content
+            .replacingOccurrences(of: "\u{2028}", with: "<br>")
+            .replacingOccurrences(of: "\u{2029}", with: "<br><br>")
+            .trimmingCharacters(in: .whitespacesAndNewlines) // IMPORTANT: remove leading blank lines
+        
         let html = """
         <html>
         <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-        <style>
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                word-wrap: break-word;
-                -webkit-text-size-adjust: 100%;
-            }
+            <meta name="viewport"
+                  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-            img {
-                max-width: 100%;
-                height: auto;
-            }
+            <style>
+                body {
+                    margin: 0;                           /* remove body margin */
+                    padding: 0;
+                    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+                    font-size: 16px;
+                    line-height: 1.6;
+                    -webkit-text-size-adjust: 100%;
+                    white-space: normal !important;      /* reset body */
+                }
 
-            table {
-                width: 100% !important;
-            }
-        </style>
+                /* Clean paragraphs completely */
+                p {
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    white-space: pre-wrap !important;
+                }
+
+                div, span {
+                    white-space: pre-wrap !important;
+                    margin: 0 !important;
+                    padding: 0 !important;
+                }
+
+                img {
+                    max-width: 100%;
+                    height: auto;
+                }
+
+                table {
+                    width: 100% !important;
+                }
+
+                /* Add controlled spacing between elements */
+                p + p {
+                   margin-top: 10px !important;
+                }
+            </style>
         </head>
         <body>
-        \(content)
+            <div style="padding: 12px;">\(cleanedContent)</div>
         </body>
         </html>
         """
-
+        
         webView.loadHTMLString(html, baseURL: nil)
     }
-    
     
     
     static func getDateString(from date: Date, format: String = "dd MMM yy") -> String {
