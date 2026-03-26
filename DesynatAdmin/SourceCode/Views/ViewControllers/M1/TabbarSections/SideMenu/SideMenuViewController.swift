@@ -116,7 +116,8 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             let vc = UserManagementViewController.instantiate(fromAppStoryboard: .ReasonManagement)
             self.navigationController?.pushViewController(vc, animated: false)
         case "Sub Admin":
-            print("➡️ Navigating to Sub Admin")
+            let nextVC = SubAdminListViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+            self.navigationController?.pushViewController(nextVC, animated: false)
         case "Affiliate User Management":
             let nextVC = AffiliatedUsersListViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
             self.navigationController?.pushViewController(nextVC, animated: false)

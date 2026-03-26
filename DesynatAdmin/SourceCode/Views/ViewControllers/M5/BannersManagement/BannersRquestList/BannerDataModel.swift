@@ -125,7 +125,8 @@ struct SellerDetails: Codable {
     var firstName, lastName, countryCode, mobile: String?
     var email, password, acceptTerms, otp: String?
     var otpVerify: String?
-    var deviceType, deviceToken: String?
+    var deviceToken: String?
+//    var deviceType, deviceToken: String?
     var adminVerify, storeInformation, bankInformation: String?
     var rejectReason, lang: String?
     var isBlock: Int?
@@ -144,7 +145,7 @@ struct SellerDetails: Codable {
         case acceptTerms = "accept_terms"
         case otp
         case otpVerify = "otp_verify"
-        case deviceType = "device_type"
+//        case deviceType = "device_type"
         case deviceToken = "device_token"
         case adminVerify = "admin_verify"
         case storeInformation = "store_information"
@@ -171,7 +172,7 @@ struct SellerDetails: Codable {
         self.acceptTerms = acceptTerms
         self.otp = otp
         self.otpVerify = otpVerify
-        self.deviceType = deviceType
+//        self.deviceType = deviceType
         self.deviceToken = deviceToken
         self.adminVerify = adminVerify
         self.storeInformation = storeInformation

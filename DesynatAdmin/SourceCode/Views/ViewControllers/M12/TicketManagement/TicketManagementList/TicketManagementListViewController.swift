@@ -53,7 +53,22 @@ class TicketManagementListViewController: UIViewController {
     }
     
     @IBAction func filterDidTapped(_ sender: Any) {
-        
+        let vc = UserListFilterViewController.instantiate(fromAppStoryboard: .ReasonManagement)
+        vc.disbaleFutureDateSelection = false
+//        vc.selectedFilter = viewModel.appliedFilter
+//        vc.onApplyFilter = { [weak self] filter in
+//            guard let self = self else { return }
+//            self.viewModel.appliedFilter = filter
+//            viewModel.currentPage = 1
+//            viewModel.getAllSentNotificationRequest()
+//        }
+//        vc.onClearFilter = { [weak self] in
+//            guard let self = self else { return }
+//            self.viewModel.appliedFilter = UserFilterModel()
+//            viewModel.currentPage = 1
+//            viewModel.getAllSentNotificationRequest()
+//        }
+        self.navigationController?.present(vc, animated: true)
     }
     
     @IBAction func nextDidTapped(_ sender: Any) {
@@ -156,10 +171,10 @@ extension TicketManagementListViewController: UITableViewDelegate, UITableViewDa
 //    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let vc = AffiliatedUserDetailsViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
+        let vc = TicketManagementDetailsViewController.instantiate(fromAppStoryboard: .NotificationCMS)
 //        vc.userType = userType
 //        vc.userId = viewModel.affilitaitedUsersList[indexPath.row].id
-//        self.navigationController?.pushViewController(vc, animated: false)
+        self.navigationController?.pushViewController(vc, animated: false)
     }
     
 }

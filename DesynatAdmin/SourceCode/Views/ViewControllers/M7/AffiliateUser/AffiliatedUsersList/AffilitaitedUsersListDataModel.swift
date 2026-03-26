@@ -44,7 +44,8 @@ struct AffilitaitedUsersDataModel: Codable {
     let email: String?
     let emailVerifiedAt: String?
     let password, document1, document2, otp: String?
-    let otpVerify, deviceType: String?
+    let otpVerify: String?
+//    let otpVerify, deviceType: String?
     let deviceToken, datumLet, long: String?
     let addressUpdateStatus, bankUpdateStatus, adminVerify: String?
     let rejectReason, rememberToken: String?
@@ -63,7 +64,7 @@ struct AffilitaitedUsersDataModel: Codable {
         case emailVerifiedAt = "email_verified_at"
         case password, document1, document2, otp
         case otpVerify = "otp_verify"
-        case deviceType = "device_type"
+//        case deviceType = "device_type"
         case deviceToken = "device_token"
         case datumLet = "let"
         case long

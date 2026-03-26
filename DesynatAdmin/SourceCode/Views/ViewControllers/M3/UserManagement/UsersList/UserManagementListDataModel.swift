@@ -43,7 +43,8 @@ struct UsersListModel: Codable {
     let fullName, countryCode, mobile, email: String?
     let emailVerifiedAt: String?
     let otp: String?
-    let otpVerify, deviceType: String?
+    let otpVerify: String?
+//    let otpVerify, deviceType: String?
     let deviceToken, datumLet, long: String?
     var status: String?
     let createdAt, updatedAt: String?
@@ -59,7 +60,7 @@ struct UsersListModel: Codable {
         case emailVerifiedAt = "email_verified_at"
         case otp
         case otpVerify = "otp_verify"
-        case deviceType = "device_type"
+//        case deviceType = "device_type"
         case deviceToken = "device_token"
         case datumLet = "let"
         case long, status

@@ -194,7 +194,8 @@ struct DriverDetails: Codable {
     let addressLine2, city, state, driverDetailsLet: String?
     let long: String?
     let countryID, zoneID: Int?
-    let otp, otpVerify, deviceType: String?
+    let otp, otpVerify: String?
+//    let otp, otpVerify, deviceType: String?
     let deviceToken: String?
     let vehicleName, vehicleRegNo, documentInformation, status: String?
     let onDuty, createdAt, updatedAt: String?
@@ -218,7 +219,7 @@ struct DriverDetails: Codable {
         case zoneID = "zone_id"
         case otp
         case otpVerify = "otp_verify"
-        case deviceType = "device_type"
+//        case deviceType = "device_type"
         case deviceToken = "device_token"
         case vehicleName = "vehicle_name"
         case vehicleRegNo = "vehicle_reg_no"

@@ -47,7 +47,7 @@ struct SellerDataModel: Codable {
     var acceptTerms: String?
     var otp: String?
     var otpVerify: String?
-    var deviceType: String?
+//    var deviceType: String?
     var deviceToken: String?
     var adminVerify: String?
     var storeInformation: String?
@@ -75,7 +75,7 @@ struct SellerDataModel: Codable {
         case acceptTerms = "accept_terms"
         case otp = "otp"
         case otpVerify = "otp_verify"
-        case deviceType = "device_type"
+//        case deviceType = "device_type"
         case deviceToken = "device_token"
         case adminVerify = "admin_verify"
         case storeInformation = "store_information"

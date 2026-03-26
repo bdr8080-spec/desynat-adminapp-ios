@@ -16,7 +16,8 @@ struct DeliveryBoyListModel: Codable {
     var addressLine2, city, state, datumLet: String?
     var long: String?
     var countryID, zoneID: Int?
-    var otp, otpVerify, deviceType, deviceToken: String?
+    var otp, otpVerify, deviceToken: String?
+//    var otp, otpVerify, deviceType, deviceToken: String?
     var vehicleName, vehicleRegNo, documentInformation, status: String?
     var onDuty, createdAt, updatedAt: String?
 
@@ -38,7 +39,7 @@ struct DeliveryBoyListModel: Codable {
         case zoneID = "zone_id"
         case otp
         case otpVerify = "otp_verify"
-        case deviceType = "device_type"
+//        case deviceType = "device_type"
         case deviceToken = "device_token"
         case vehicleName = "vehicle_name"
         case vehicleRegNo = "vehicle_reg_no"
