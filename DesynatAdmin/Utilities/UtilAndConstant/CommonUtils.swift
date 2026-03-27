@@ -18,6 +18,16 @@ class CommonUtils {
             return countryPicker.getDialCode(countryCode: NSLocale.current.identifier) ?? "+91"
         }
     }
+    static func getDictionary(_ dictData: Any?) -> Dictionary<String, Any> {
+        guard let dict = dictData as? Dictionary<String, Any> else {
+            guard let arr = dictData as? [Any] else {
+                return ["":""]
+            }
+            return getDictionary(arr.count > 0 ? arr[0] : ["":""])
+        }
+        return dict
+    }
+    
     
     static func formatPrice(_ amount: Double?, currency: String = "KD") -> String {
         guard let amount = amount else { return "0 \(currency)" }
@@ -110,6 +120,16 @@ class CommonUtils {
         }
     }
     
+    static func getModelFromAny<T:Decodable>(model:T.Type, data:Any, completion:(T)->()) {
+        do {
+            if let data = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted) {
+                let final = try JSONDecoder().decode(model, from: data)
+                completion(final)
+            }
+        } catch let err {
+            debugPrint("Err:\(err)")
+        }
+    }
     
     static func formatPriceStringInputDecimal(_ amount: String?, currency: String = "KD") -> String {
         guard

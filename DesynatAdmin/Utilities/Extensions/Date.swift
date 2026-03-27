@@ -862,6 +862,7 @@ public enum DateCustomFormat : String {
     case yyyy_MM_dd = "yyyy/MM/dd"
     case bookingTimestamp = "yyyy/MM/dd, h:mm a"
     case dd_MMM = "dd MMM"
+    case h_mm_a = "hh:mm a"
 }
 
 func convertDateString(_ dateString: String, dateFormat: DateCustomFormat = DateCustomFormat.reviewDate) -> String? {

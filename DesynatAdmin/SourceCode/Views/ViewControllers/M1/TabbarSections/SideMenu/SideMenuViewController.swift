@@ -184,6 +184,8 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             let nextVC = CMSTermsConditionViewController.instantiate(fromAppStoryboard: .NotificationCMS)
             self.navigationController?.pushViewController(nextVC, animated: true)
         case "Support Chat":
+            let vc = ChatInboxViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+            self.navigationController?.pushViewController(vc, animated: false)
             print("➡️ Navigating to Support Chat")
         default:
             print("⚠️ Unknown option selected")

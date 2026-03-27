@@ -8,22 +8,20 @@
 import UIKit
 
 class StaffDetailsViewController: UIViewController {
-
+    
     
     // MARK: - IBOutlet
-    @IBOutlet weak var eyeBtn: UIButton!
     @IBOutlet weak var isActiveLbl: UILabel!
     @IBOutlet weak var profileImageView: CustomImageView!
     @IBOutlet weak var mobileNumberLbl: UILabel!
     @IBOutlet weak var designationLbl: UILabel!
     @IBOutlet weak var emailLbl: UILabel!
     @IBOutlet weak var nameLbl: UILabel!
-    @IBOutlet weak var passwordLbl: UILabel!
     @IBOutlet weak var activeStatusbtn: UIButton!
     @IBOutlet weak var accessModuleTableView: UITableView!{
         didSet{
             accessModuleTableView.registerCellFromNib(cellID:
-            "AccessModuleTableViewCell")
+                                                        "AccessModuleTableViewCell")
         }
     }
     
@@ -35,15 +33,10 @@ class StaffDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        originalPassword = passwordLbl.text ?? ""
-        
-        passwordLbl.setSecureText(originalPassword)
-        eyeBtn.setImage(UIImage(named: "eyeClose"), for: .normal)
-        // Do any additional setup after loading the view.
     }
     
     // MARK: - Navigation
-
+    
     @IBAction func backBtnTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -59,21 +52,6 @@ class StaffDetailsViewController: UIViewController {
         let imageName: String = isActive ? "toggle_on": "toggle_off"
         activeStatusbtn.setImage(UIImage(named: imageName), for: .normal)
         
-    }
-    
-    @IBAction func eyebtntapped(_ sender: Any) {
-        isSecureTextEntry.toggle()
-            
-        if isSecureTextEntry {
-                // 🔒 Hidden state
-                eyeBtn.setImage(UIImage(named: "eyeClose"), for: .normal)
-                passwordLbl.setSecureText(originalPassword)
-                
-            } else {
-                // 👁 Visible state
-                eyeBtn.setImage(UIImage(named: "eye_open"), for: .normal)
-                passwordLbl.text = originalPassword
-            }
     }
     
 }
@@ -93,12 +71,6 @@ extension StaffDetailsViewController: UITableViewDataSource, UITableViewDelegate
             cell.radioimageView.image = .radioUnselected
             cell.collectionView.reloadData()
         }
-        //        cell.didSelectCollectionItem = { [weak self] collectionIndex in
-        //            guard let self = self else { return }
-        //            self.selectedRow = indexPath.row
-        //            self.selectedAccessModule = collectionIndex
-        //            self.accessModuleTableView.reloadData()
-        //        }
         return cell
     }
     
