@@ -86,6 +86,11 @@ class SideMenuViewController: UIViewController {
             self.sideMenuHeightConstaint.constant = self.sideMenuTableView.contentSize.height
         }
     }
+    @IBAction func editProfileBtnTapped(_ sender: Any) {
+        let vc  = EditProfileViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }
 
 // MARK: - TABLE VIEW METHODS
@@ -147,6 +152,8 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             let nextVC = AffiliatedCommissionViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
             self.navigationController?.pushViewController(nextVC, animated: false)
         case "Refund Management":
+            let vc = RefundManagementViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+            self.navigationController?.pushViewController(vc, animated: false)
             print("➡️ Navigating to Refund Management")
         case "Affiliate withdrawal requests":
             print("➡️ Navigating to Affiliate withdrawal requests")

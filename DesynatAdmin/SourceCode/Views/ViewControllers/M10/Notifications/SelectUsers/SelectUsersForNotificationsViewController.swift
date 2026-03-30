@@ -18,12 +18,14 @@ class SelectUsersForNotificationsViewController: UIViewController {
         }
     }
     @IBOutlet weak var selectAllButton: UIButton!
+    @IBOutlet weak var selectAllImageView: UIImageView!
     
     // MARK: - Property Decalaration
     private var selectedUserIds: Set<Int> = []
     var onUserSelected: (([SelectableUser]) -> Void)?
     var usersList: [SelectableUser] = []
     var preselectedUserIds: Set<Int> = []
+    var isComingWhenAllUserIsSelected: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
@@ -49,14 +51,25 @@ class SelectUsersForNotificationsViewController: UIViewController {
     }
     
     @IBAction func selectAllDidTapped(_ sender: Any) {
-        if selectedUserIds.count == usersList.count {
-            selectedUserIds.removeAll()
-        } else {
-            selectedUserIds = Set(usersList.map { $0.id })
-        }
+//        if selectedUserIds.count == usersList.count {
+//               selectedUserIds.removeAll()
+//           } else {
+//               selectedUserIds = Set(usersList.map { $0.id })
+//           }
+//           
+//           listTableView.reloadData()   // 🔥 first reload
+//           updateSelectAllState()
         
-        updateSelectAllState() // 🔥 important
-        listTableView.reloadData()
+        let allIds = Set(usersList.map { $0.id })
+            
+            if selectedUserIds == allIds {
+                selectedUserIds.removeAll()
+            } else {
+                selectedUserIds = allIds
+            }
+            
+            listTableView.reloadData()
+            updateSelectAllState()
     }
     
     @IBAction func dismissDidTapped(_ sender: Any) {
@@ -71,12 +84,27 @@ class SelectUsersForNotificationsViewController: UIViewController {
     }
     
     private func updateSelectAllState() {
-        if !usersList.isEmpty && selectedUserIds.count == usersList.count {
-            selectAllButton.setImage(.filledCheckBox, for: .normal)
+        let allIds = Set(usersList.map { $0.id })
+        
+        if !usersList.isEmpty && selectedUserIds == allIds {
+            selectAllImageView.image = .filledCheckBox
         } else {
-            selectAllButton.setImage(.unseletedCheckBox, for: .normal)
+            selectAllImageView.image = .unseletedCheckBox
         }
     }
+    
+//    private func updateSelectAllState() {
+//        if isComingWhenAllUserIsSelected {
+//            
+//        }
+//        DispatchQueue.main.async {
+//            if !self.usersList.isEmpty && self.selectedUserIds.count == self.usersList.count {
+//                self.selectAllImageView.image = .filledCheckBox
+//            } else {
+//                self.selectAllImageView.image = .unseletedCheckBox
+//            }
+//        }
+//    }
     
     func handleHeightOfCustomerTableView() {
         DispatchQueue.main.async {

@@ -68,25 +68,97 @@ class SendNewNotificationViewModel {
     }
     
     func sendNotificationsRequest() {
-        var param: [String: Any] = ["title_english": hostVC.titleInEnglishTF.text?.trimmed() ?? "",
-                                    "title_arabic": hostVC.titleInArabicTF.text?.trimmed() ?? "",
-                                    "description_english": hostVC.decriptionInEnglishTF.text?.trimmed() ?? "",
-                                    "description_arabic": hostVC.decriptionInArabicTF.text?.trimmed() ?? "",
-                                    "sender_type":1 ]//1-admin,2-user,3-seller,4-affiliate,5-driver
+        
+        var param: [String: Any] = [
+            "title_english": hostVC.titleInEnglishTF.text?.trimmed() ?? "",
+            "title_arabic": hostVC.titleInArabicTF.text?.trimmed() ?? "",
+            "description_english": hostVC.decriptionInEnglishTF.text?.trimmed() ?? "",
+            "description_arabic": hostVC.decriptionInArabicTF.text?.trimmed() ?? "",
+            "sender_type": 1
+        ]
+        
         switch hostVC.selectedRoleIndex {
+            
         case 0:
+            // 👉 ALL → send everything
             param["user_id"] = hostVC.selecteUserId
-        case 1:
             param["seller_id"] = hostVC.selecteDealerId
-        case 2:
             param["driver_id"] = hostVC.selecteDriverId
+            param["affiliate_id"] = hostVC.selecteAffilatedId
+            
+        case 1:
+            param["user_id"] = hostVC.selecteUserId
+            
+        case 2:
+            param["seller_id"] = hostVC.selecteDealerId
+            
+        case 3:
+            param["driver_id"] = hostVC.selecteDriverId
+            
+        case 4:
+            param["affiliate_id"] = hostVC.selecteAffilatedId
+            
         default:
-            param["affiliate_id"] = hostVC.selecteDriverId
+            break
         }
+        
+        hitSendNotificationAPI(param: param)
+    }
+    
+    private func hitSendNotificationAPI(param: [String: Any]) {
+        print("param===>\(param)")
         WebService.shared.sendNotificationsService(parameter: param) { [weak self] response in
             guard let self = self else { return }
             CommonUtils.showToast(message: "New Notification sent successfully")
             self.hostVC.navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    private func fetchAllIdsAndSend(param: [String: Any]) {
+        
+        let group = DispatchGroup()
+        
+        var allUserIds: [Int] = []
+        var allSellerIds: [Int] = []
+        var allDriverIds: [Int] = []
+        var allAffiliateIds: [Int] = []
+        
+        // Users
+        group.enter()
+        getAllUsers {
+            allUserIds = self.usersListData.compactMap { $0.id }
+            group.leave()
+        }
+        
+        // Sellers
+        group.enter()
+        getApprovedSellers {
+            allSellerIds = self.sellersListData.compactMap { $0.id }
+            group.leave()
+        }
+        
+        // Drivers
+        group.enter()
+        getAllDeliveryBoy {
+            allDriverIds = self.boysListData.compactMap { $0.id }
+            group.leave()
+        }
+        
+        // Affiliates
+        group.enter()
+        fetchApprovedAffiliatedUsersList {
+            allAffiliateIds = self.affilitaitedUsersListData.compactMap { $0.id }
+            group.leave()
+        }
+        
+        group.notify(queue: .main) {
+            var updatedParam = param
+            updatedParam["user_id"] = allUserIds
+            updatedParam["seller_id"] = allSellerIds
+            updatedParam["driver_id"] = allDriverIds
+            updatedParam["affiliate_id"] = allAffiliateIds
+            
+            self.hitSendNotificationAPI(param: updatedParam)
         }
     }
     
@@ -126,7 +198,7 @@ class SendNewNotificationViewModel {
         
         switch roleIndex {
             
-        case 0: // Customer
+        case 1: // Customer
             getAllUsers {
                 let data = self.usersListData.map {
                     SelectableUser(id: $0.id ?? 0, name: $0.fullName ?? "")
@@ -134,7 +206,7 @@ class SendNewNotificationViewModel {
                 completion(data)
             }
             
-        case 1: // Seller
+        case 2: // Seller
             getApprovedSellers {
                 let data = self.sellersListData.map {
                     SelectableUser(id: $0.id ?? 0, name: ($0.firstName ?? "") + ($0.lastName ?? ""))
@@ -142,7 +214,7 @@ class SendNewNotificationViewModel {
                 completion(data)
             }
             
-        case 2: // Driver
+        case 3: // Driver
             getAllDeliveryBoy {
                 let data = self.boysListData.map {
                     SelectableUser(id: $0.id ?? 0, name: $0.fullNameEnglish ?? "")
@@ -150,13 +222,15 @@ class SendNewNotificationViewModel {
                 completion(data)
             }
             
-        default: // Affiliate
+        case 4: // Affiliate
             fetchApprovedAffiliatedUsersList {
                 let data = self.affilitaitedUsersListData.map {
                     SelectableUser(id: $0.id ?? 0, name: $0.fullName ?? "")
                 }
                 completion(data)
             }
+        default:
+            print("all")
         }
     }
 }
