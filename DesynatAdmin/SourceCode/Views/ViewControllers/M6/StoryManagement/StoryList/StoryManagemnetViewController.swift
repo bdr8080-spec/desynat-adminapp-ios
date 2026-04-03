@@ -7,7 +7,6 @@
 
 import UIKit
 import AVFoundation
-import UIKit
 import AVKit
 
 class StoryManagemnetViewController: UIViewController {

@@ -3,318 +3,434 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 54;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		183C29DD6DE04D22CA29BAE61F5C530B /* AgoraRtcEngine_iOS */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 7D7BE1C7BA0A706DACAE76329822BA50 /* Build configuration list for PBXAggregateTarget "AgoraRtcEngine_iOS" */;
+			buildPhases = (
+				4ADCCF1EE25517194697A524ABEDD36C /* [CP] Copy XCFrameworks */,
+			);
+			dependencies = (
+				DA09A1C1C0026CAB39AD374C772D5E3E /* PBXTargetDependency */,
+			);
+			name = AgoraRtcEngine_iOS;
+		};
+		2F7F7AAA1C81C1ECBEECAABE3C3609AC /* AgoraInfra_iOS */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 6AC986F8353D7D8FD502D9D6E938C5AA /* Build configuration list for PBXAggregateTarget "AgoraInfra_iOS" */;
+			buildPhases = (
+				0D149E6301791F149B3D66666328CB01 /* [CP] Copy XCFrameworks */,
+			);
+			dependencies = (
+			);
+			name = AgoraInfra_iOS;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
-		01C14B76205EFB8A22BA213D2CA15378 /* RangeSeekSlider-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A9206F6E1794AA723B195B9994AC7C0 /* RangeSeekSlider-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0C643B434D66DB0022C3D00582D0E55A /* Pods-DesynatAdmin-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DDCA2060010DFABC072C05D70E99C78 /* Pods-DesynatAdmin-dummy.m */; };
-		0D31A4B5EB697C93EFA2FD74B0FCD2C9 /* ScalingCarousel-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EB8EDEFB9AE581B854C0785B7890711E /* ScalingCarousel-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1B9310D40E6D08AA4E03B17D0D38E7A2 /* FTIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 601FEA4CC328C37BE42BAEA2E65F4B7B /* FTIndicator.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		1E2BE84449FBD41214B5F9688823E7C0 /* SwiftyGifManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69EAD91CF981D89C78E35FAA9A06EF /* SwiftyGifManager.swift */; };
-		22BDD5C6208A8F22DA9BE721B3CF8CD3 /* ScalingCarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF4974B5D81B9AC016F18B3E2BE8A18 /* ScalingCarouselCell.swift */; };
-		23A1FE1D4CC66F3BBF1C1B69EF6837CD /* SwiftyGif-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 46096B50C52966B603B93D55350F1695 /* SwiftyGif-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		34D86F4481D9328BF45B637B906B3122 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 543B56292D357C3C5AAD6AF749B048FA /* Foundation.framework */; };
-		3962B5C7042F2C35DC344CBFC785D66D /* NSImage+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547BCD67B0799BFD17F2A1CEB040F114 /* NSImage+SwiftyGif.swift */; };
-		470E2DC42ECFE1615048204EAF7CAEE0 /* NSImageView+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACD7748DB66CF94EF7AA0C2D5F496E1 /* NSImageView+SwiftyGif.swift */; };
-		485D3FFAD4D88E53FB1CD633F0FB06C4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 543B56292D357C3C5AAD6AF749B048FA /* Foundation.framework */; };
-		49E21F3D852BB38CFC48FA88555B20D9 /* RangeSeekSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E2DCD1DFD45F348781424BC84EBE20 /* RangeSeekSlider.swift */; };
-		5033262924C5F16FEEA3004DB73B8F8A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 543B56292D357C3C5AAD6AF749B048FA /* Foundation.framework */; };
-		515E22E4255B6073C1897BDDB091A2B8 /* DropDown+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFAC6A8661F23112C3E12E17AB71D2 /* DropDown+Appearance.swift */; };
-		606D29197B9CF63764C1068C35A0BD4E /* FTIndicator-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F1F90F27B07E1156D6B609AFAC64A0 /* FTIndicator-dummy.m */; };
-		6304393A3D0BC2CE6AFA2057FCE9CCF3 /* FTNotificationIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = 53A332DE6AAF19C650C86DF9B9663033 /* FTNotificationIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		671829DD0C79F0117735D4F719618094 /* FTProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6265B29FF666F818443247DF0380ED97 /* FTProgressIndicator.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -DOS_OBJECT_USE_OBJC=0"; }; };
-		68E1653C561E14BBEAC9CF4873570D58 /* DropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AB73F196C1FEF358E1E383294CB4E03 /* DropDownCell.xib */; };
-		6A3A4303B4F573E5A9DCF39CA0906999 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 361EE39606F77A62E58D3A8534B4F6D7 /* UIKit.framework */; };
-		74012B832FAF67F8D62A2B27CDAFE8B5 /* DPDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAC144376212B9CA16CDAEB29AD6179 /* DPDConstants.swift */; };
-		794C4C3BF3A130CCFB58C45C0379E7A8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 543B56292D357C3C5AAD6AF749B048FA /* Foundation.framework */; };
-		7A9BF4B59C5B1A26A89A0796C7CD2EFA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 543B56292D357C3C5AAD6AF749B048FA /* Foundation.framework */; };
-		84459C4824533C9C4FD12AFC941F3CE1 /* DropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FE309A5FB1795459E28B9A5151FA29 /* DropDown.swift */; };
-		853C8E732FC9F53B04221DF97F180A94 /* RangeSeekSlider-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 32939F91E95F2DD665AD093EFEEA2716 /* RangeSeekSlider-dummy.m */; };
-		87D2858CE2FBC581BBDCFA004284E930 /* Pods-DesynatAdmin-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 33695F79FF9E4AAB786EE4B43C722864 /* Pods-DesynatAdmin-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		89A72A55273CE358DC4E7600F785C37B /* DPDKeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EE3ADB8059B5D8379C63DB9639529E /* DPDKeyboardListener.swift */; };
-		8B11A47761135C2924D113424178D942 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 543B56292D357C3C5AAD6AF749B048FA /* Foundation.framework */; };
-		907338727C09F65DB75AA7AB9E10C3B4 /* DropDown-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F9BD85402F363D98CB0A073BE39EF3B4 /* DropDown-dummy.m */; };
-		960E80B5AC786C041120272AEFE44771 /* UIImage+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FBE04594A9D53B59BA0979CC6E5953 /* UIImage+SwiftyGif.swift */; };
-		A0016E72454D6910AC407DA034FFA31D /* FTIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = D5F749AEEC8DFCAFD663E587FA834BDD /* FTIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B461410081972F40B0E3EDA01D755239 /* FTNotificationIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7966C292FAB6FFB76346BF3FC15047E2 /* FTNotificationIndicator.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -DOS_OBJECT_USE_OBJC=0"; }; };
-		B605D8E655E3DC6669C897E11C537470 /* SwiftyGif.h in Headers */ = {isa = PBXBuildFile; fileRef = F3DAB0FF1EB28795368991050264317E /* SwiftyGif.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B73E510E851686F8184E26986A470458 /* DPDUIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F453AB3BFE12A429BFD84523A5F4CFCC /* DPDUIView+Extension.swift */; };
-		B7C4E7F64A42CE08BE5D5D7FB23ADEF6 /* ScalingCarouselLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B052FB34ED336EAE15F8B4B6AC028 /* ScalingCarouselLayout.swift */; };
-		B82270962FACF165361E37871BA8A67E /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = EB944C1CBF6CF1FCDD30CE657BEAE303 /* PrivacyInfo.xcprivacy */; };
-		BC10B0AC01A227629FC23F330004BA44 /* FTProgressIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = 91BEC39B05D806623865AA88C73CBB1B /* FTProgressIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BDC10974A8641F01C5665C61EA37A153 /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C820C04E77AB79F9CE51BC84A3BF0842 /* DropDownCell.swift */; };
-		BE26C82C6E464F3836266E981E6387D4 /* SwiftyGif-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9A377AD2A226F396D8C567B1035FAF /* SwiftyGif-dummy.m */; };
-		BE4C3DCF476B0FB3686D36572F143D8F /* FTToastIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC5F335205D773683FFE2A090A05131E /* FTToastIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C6B36F97817B7C0C82F8726E7E5FCE7E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77CB9340FB50BA6D5B04E6D1D1593077 /* CoreGraphics.framework */; };
-		CFAB2051CB1BE0E083784B45116AEDFD /* UIImageView+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F8B507D179ADAA583A44D263E0588 /* UIImageView+SwiftyGif.swift */; };
-		D506EEA15970BFD77B164FC9D4113DAF /* ScalingCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A32027132950CA6BB705C35E43DD5 /* ScalingCarouselView.swift */; };
-		DE9F3CB1D40A4934EAD482D6FF7E3015 /* ObjcAssociatedWeakObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D83FCE49D47A7BA95340EC96A45DD7 /* ObjcAssociatedWeakObject.swift */; };
-		DF965BDED7E88B3C59B16489773E6E2C /* TapticEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C05EF81938088C8DD523A18BE4DAEE /* TapticEngine.swift */; };
-		E05BE4ED4EF9A081A7E0B6BDEDA6DBD5 /* FTToastIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD492F60D5EE5C5D33C0CECB4DEFCC0 /* FTToastIndicator.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -DOS_OBJECT_USE_OBJC=0"; }; };
-		E0A8C46EEE733B55971B1CC5ED65C9AA /* DropDown-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEA189F4A203B973F9A505945F4EB20 /* DropDown-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA92C0C93A09CC295F35C842188B3B74 /* ScalingCarousel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AE037FCECF214B64F4AA428C9DB5E756 /* ScalingCarousel-dummy.m */; };
-		EDCFF664B3C204A300AC398E4B79481B /* FTIndicator-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D64D2E07E6A8A7B6D30C5060DB342023 /* FTIndicator-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F483C2520A10EF17FD63D4607F61FEB4 /* RangeSeekSliderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AB646AF9A426B9D210B0A8D02A5861 /* RangeSeekSliderDelegate.swift */; };
-		F877E39644C3D9D6F3FB9BE8A8631A2F /* FTProgressIndicator.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A35ED59BDD0596101AA56AE80D8A0A7 /* FTProgressIndicator.bundle */; };
-		FEFCB8DEF8B8AC851E3B03AE49DD50AD /* SwiftyGif-SwiftyGif in Resources */ = {isa = PBXBuildFile; fileRef = 0A37DE9A55F6CEA1AF18BDEF878BF1F5 /* SwiftyGif-SwiftyGif */; };
+		03A0E011F67713B5CABEB24D5C20E053 /* DPDKeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F18273AE543EF3B158487DC886C052 /* DPDKeyboardListener.swift */; };
+		0ABF927E9C3D6229823AEC42F16356E8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F74CDD0F204E4DE08261A6ACA555047 /* Foundation.framework */; };
+		0CBC261525FB8A693CF9FF73B1C99389 /* DropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354110ADD7731992AC69648D0086D420 /* DropDown.swift */; };
+		10E1A46382FCE1B047A647076A21822A /* FTIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = B43A53154FA27DF265A6CC28EC5E6495 /* FTIndicator.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		1FD13161FE1479A187B914B86C494D66 /* RangeSeekSlider-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5400C67450036A6C1189CE3EC90F72 /* RangeSeekSlider-dummy.m */; };
+		21522E8BAAE97772E92F3943202B758C /* SwiftyGif-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AE9BC66EBF3B853C8C6561BB9E8E165D /* SwiftyGif-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		29F1D9FADE401C87C762D05F2B8BB286 /* DPDUIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99180DA403B2C8DF610EE0D53F11B51A /* DPDUIView+Extension.swift */; };
+		34692DFC8B6C00379FA395C90AF0BF78 /* ScalingCarousel-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B989C880B3307501FB88C5994CE8C16C /* ScalingCarousel-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3ABF241698D97BA6E0EAABAF693A3095 /* ScalingCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B63EDAEBEE1239E7F72E56C3E1BD4FB /* ScalingCarouselView.swift */; };
+		44A92BD6A7CC8DE76494A085164FE472 /* NSImage+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7B9352D93416FE3B983AA129F5ED34 /* NSImage+SwiftyGif.swift */; };
+		48C7E29D6720C8D86A0390664C053A2A /* FTProgressIndicator.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5E81D94C9178D5A106A9CF0245E4C682 /* FTProgressIndicator.bundle */; };
+		48F328E430C33B23EB1880CB16E71FDC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F74CDD0F204E4DE08261A6ACA555047 /* Foundation.framework */; };
+		4D9B752F37D0EF99306F946EDA8A456B /* RangeSeekSlider-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E8DB22F26DF2C2F0E1204E19E974E32 /* RangeSeekSlider-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4EBCA879E8D63ADBFFCF2A41B78024C8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6A872B5A57F0829ED105CBC6570AE6 /* CoreGraphics.framework */; };
+		4FCA85271F651693A24D1F56D3325255 /* FTNotificationIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 990BBF118424B0BEDDB02580F78DB747 /* FTNotificationIndicator.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -DOS_OBJECT_USE_OBJC=0"; }; };
+		517CF65970B20A23E33AA7C44ECA7E20 /* RangeSeekSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E28CA51B4595BC724F621B5EAC9B8B /* RangeSeekSlider.swift */; };
+		560CEEB2B821881CB864D5418AC664BC /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE89FD4B8B89EAF90C7FB6604FBE9D2 /* DropDownCell.swift */; };
+		578BE9CA4EC5BE2927ACA0271B178555 /* FTIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = DDC3EC0CE9B48EB4A058AC267E46DB04 /* FTIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		58414F6E60D8084B2070FA1166AB2E1E /* FTIndicator-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D9F0B99379816AA44A23BA70CAAEC96B /* FTIndicator-dummy.m */; };
+		59F9D1B6BE203AF9CFF9177330776F9A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F74CDD0F204E4DE08261A6ACA555047 /* Foundation.framework */; };
+		5D043141CC2DA5DF01D3FF3BFFCBAA7F /* UIImageView+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F58EDA98B2ADC37A1798363F4444D5 /* UIImageView+SwiftyGif.swift */; };
+		5D5B97FA9366714EAB37D1A8DB04A6E5 /* DPDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DD36F17CD277D206E22E01F1031863 /* DPDConstants.swift */; };
+		6425D3D67337F091084503C361D6F23C /* Pods-DesynatAdmin-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 33695F79FF9E4AAB786EE4B43C722864 /* Pods-DesynatAdmin-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6A72B739D52D83ECFF7E96AFF26AB577 /* UIImage+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F334E7A70F55E1387D219CC0678FFB0 /* UIImage+SwiftyGif.swift */; };
+		6A8CEAC3326863F09F8D79464BBA2C3D /* DropDown+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD64DB7F8F8A7E53B9B78FDBA7E8959 /* DropDown+Appearance.swift */; };
+		6B928141B37AB6DA35D31CA62870897F /* FTNotificationIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = A38FA20E1E0E621777032737C8E22C51 /* FTNotificationIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		757417BA342829DDADC7E31C6A4C62F6 /* FTToastIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 145EDF4DDEB8FD36B03F306CF2F9EC29 /* FTToastIndicator.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -DOS_OBJECT_USE_OBJC=0"; }; };
+		7BB0546DA257AB7377A55B52E29E2524 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F74CDD0F204E4DE08261A6ACA555047 /* Foundation.framework */; };
+		8688D6D0F29874BF2CF2155F9CD21A87 /* TapticEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C5FC3866488932412698202B874B9D /* TapticEngine.swift */; };
+		8B7B169F3BAD8C4239134DE7876A5595 /* FTToastIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A798C2012C1CAA2CBFBB76A42AB02CC /* FTToastIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8E07223DB3D2743E1253E5D3526A14CD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F1BB16A9DC931B1D2C69F0A8B499CB /* UIKit.framework */; };
+		8F4C1E872A283192888BA0C6D4A74797 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F74CDD0F204E4DE08261A6ACA555047 /* Foundation.framework */; };
+		933093C5E43D7E9BC502A28B7D371924 /* DropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7FD47755729E657778F5655F562CFD4 /* DropDownCell.xib */; };
+		999253842B8244633FEF4EADCF8B7B9A /* SwiftyGif-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0695411490F1DE8A64BF5596AC24C3CB /* SwiftyGif-dummy.m */; };
+		9D3911EFEC414CF24FD0EBFEACA5F1E2 /* FTProgressIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = ADD06F8C764BF06BF29ACF0A42E10ACB /* FTProgressIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9D45243582C808F6F88C78F4540CC4B9 /* ObjcAssociatedWeakObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36A3A86033E83CCD0A2CE6836DCE792 /* ObjcAssociatedWeakObject.swift */; };
+		9FDE02B4BDF6E28E0CDF0622EA9559BC /* DropDown-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C322E39C6838B88CE017498CF9A6346 /* DropDown-dummy.m */; };
+		A4659B725777EB2731C4F056A59BE83D /* SwiftyGif.h in Headers */ = {isa = PBXBuildFile; fileRef = FEACF5CFF6FF7183B3DAD2D3889DB3E6 /* SwiftyGif.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AC6B571F0C8900F0D72B4A68BBC3DE64 /* FTIndicator-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F583F11CE164246F1AF3A16FD40612E /* FTIndicator-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ADA6CC7EE505342EA63EC876FF0EEDB0 /* DropDown-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EE5A788FD3826B3734916616F7DFB88 /* DropDown-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AE4E4B274A652ED362AE57211ED07D63 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 66DF23B7C6E25C299ECB840B29E165D9 /* PrivacyInfo.xcprivacy */; };
+		BEC562573E6C82A1FC8BCA87080A35E9 /* ScalingCarouselLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309F3636B397180F815C15E423FE17E6 /* ScalingCarouselLayout.swift */; };
+		C4637B3497FCC2DF78809E144241B225 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F74CDD0F204E4DE08261A6ACA555047 /* Foundation.framework */; };
+		C9B2111B50CAB17C92CC286E436CF3FF /* NSImageView+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4C59A85EB057B3F3C59392A0CEC467 /* NSImageView+SwiftyGif.swift */; };
+		D2C48346115244F1D54C5C2C3152F160 /* FTProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA799F3EC1BD3F5A5683BD864F70377 /* FTProgressIndicator.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -DOS_OBJECT_USE_OBJC=0"; }; };
+		D6B933482B38BFA1DF90C920B831765F /* ScalingCarousel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EA30E739CECA3EF3B996BB582766EBD6 /* ScalingCarousel-dummy.m */; };
+		DE20025E65378775662C9C32D18A931F /* SwiftyGifManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1831E1E8048D8BCD6ADC0D01D26268CE /* SwiftyGifManager.swift */; };
+		E7122B270D5F75D05DBD2A6D2E11336E /* Pods-DesynatAdmin-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DDCA2060010DFABC072C05D70E99C78 /* Pods-DesynatAdmin-dummy.m */; };
+		EA1FA712BBF299C3726ADD186CEC904C /* RangeSeekSliderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FC8C48268F6B722906614F9C793DFE /* RangeSeekSliderDelegate.swift */; };
+		F41CA210E56B3043EDD75C851FB4061B /* SwiftyGif-SwiftyGif in Resources */ = {isa = PBXBuildFile; fileRef = 0A37DE9A55F6CEA1AF18BDEF878BF1F5 /* SwiftyGif-SwiftyGif */; };
+		F57A87D6F7201F6365648CAA130BFD27 /* ScalingCarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87383BB9EEF2D8EA4EFA26EC20EA1ABD /* ScalingCarouselCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2180096E7B6335203BEFB7F558654749 /* PBXContainerItemProxy */ = {
+		2A162BF0C4B484F1237ED5E394D0148A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 176E48377247D5011E906CB1A39E71BA;
-			remoteInfo = "SwiftyGif-SwiftyGif";
+			remoteGlobalIDString = 2F7F7AAA1C81C1ECBEECAABE3C3609AC;
+			remoteInfo = AgoraInfra_iOS;
 		};
-		45A645652F25DFD07996048D095D070B /* PBXContainerItemProxy */ = {
+		3AA113B7C7A23B784CF3E1B0FADA4785 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 15AEBAFA43912F898FC2E1A73025C946;
 			remoteInfo = SwiftyGif;
 		};
-		47F11C6F3B2A3259693078FE3B222329 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4AFB864B337D1F74C1D79F4FC8F6C67F;
-			remoteInfo = RangeSeekSlider;
-		};
-		6CA7FEC74314ECC13374D487D5ED4790 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E9F9401E9C74C0C393164FD8D86D0068;
-			remoteInfo = DropDown;
-		};
-		CF25A4258DD96785F4A98E6D84D44E04 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B957A4FD9E608C9E3554AB85D106B08D;
-			remoteInfo = FTIndicator;
-		};
-		D25C43C0287FD164D8E695D2DB375C10 /* PBXContainerItemProxy */ = {
+		57ECD2215509601BC3FAED37C3845CF5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 7050FECE58DF970CF84F4FE403CA67D9;
 			remoteInfo = ScalingCarousel;
 		};
+		5E9A91D700EFF312380CA3877558E972 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 176E48377247D5011E906CB1A39E71BA;
+			remoteInfo = "SwiftyGif-SwiftyGif";
+		};
+		7F503C5D504508BAC46E344DF244D8C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E9F9401E9C74C0C393164FD8D86D0068;
+			remoteInfo = DropDown;
+		};
+		90DD46198539A67790F706566700B8E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4AFB864B337D1F74C1D79F4FC8F6C67F;
+			remoteInfo = RangeSeekSlider;
+		};
+		922004D23FDBDE33E01E942AF5BB312A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 183C29DD6DE04D22CA29BAE61F5C530B;
+			remoteInfo = AgoraRtcEngine_iOS;
+		};
+		965A2573B62BC6423B6B56D3A8FA9FE2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B957A4FD9E608C9E3554AB85D106B08D;
+			remoteInfo = FTIndicator;
+		};
+		E5F8A40A0D41AC4BFBABE60A8310E16E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2F7F7AAA1C81C1ECBEECAABE3C3609AC;
+			remoteInfo = AgoraInfra_iOS;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		03AB027071D6CD6492896D6518349EF5 /* SwiftyGif.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyGif.debug.xcconfig; sourceTree = "<group>"; };
-		045B052FB34ED336EAE15F8B4B6AC028 /* ScalingCarouselLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScalingCarouselLayout.swift; path = Sources/ScalingCarousel/ScalingCarouselLayout.swift; sourceTree = "<group>"; };
+		00A1DFFFC4DA7912BFBE8C3043AC8E79 /* FTIndicator-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FTIndicator-prefix.pch"; sourceTree = "<group>"; };
+		00B4F35CEE0A401925F3D5A1A90F00C1 /* ResourceBundle-SwiftyGif-SwiftyGif-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-SwiftyGif-SwiftyGif-Info.plist"; sourceTree = "<group>"; };
+		0132231C2927D85A9B6E02E0E9AF3BFA /* SwiftyGif.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyGif.release.xcconfig; sourceTree = "<group>"; };
+		0695411490F1DE8A64BF5596AC24C3CB /* SwiftyGif-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftyGif-dummy.m"; sourceTree = "<group>"; };
 		0A37DE9A55F6CEA1AF18BDEF878BF1F5 /* SwiftyGif-SwiftyGif */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "SwiftyGif-SwiftyGif"; path = SwiftyGif.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		0D9A377AD2A226F396D8C567B1035FAF /* SwiftyGif-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftyGif-dummy.m"; sourceTree = "<group>"; };
+		0A7F0F61A3EFD04A1DAC1CC614D0E437 /* DropDown.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DropDown.release.xcconfig; sourceTree = "<group>"; };
+		0CA98C735F11D7D8ECE82B538A41C4F5 /* RangeSeekSlider.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RangeSeekSlider.debug.xcconfig; sourceTree = "<group>"; };
+		0D5400C67450036A6C1189CE3EC90F72 /* RangeSeekSlider-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RangeSeekSlider-dummy.m"; sourceTree = "<group>"; };
+		0FCBEF48249F61578C5709EA41B0BDD7 /* AgoraLipSyncExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraLipSyncExtension.xcframework; sourceTree = "<group>"; };
+		107235AA466CFD8DCE82ACEDFF10DCF6 /* Agorafdkaac.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = Agorafdkaac.xcframework; sourceTree = "<group>"; };
 		118083A4A176F276774B22E776350196 /* Pods-DesynatAdmin-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DesynatAdmin-acknowledgements.plist"; sourceTree = "<group>"; };
-		14F1F90F27B07E1156D6B609AFAC64A0 /* FTIndicator-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FTIndicator-dummy.m"; sourceTree = "<group>"; };
-		16AFAC6A8661F23112C3E12E17AB71D2 /* DropDown+Appearance.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DropDown+Appearance.swift"; path = "DropDown/src/DropDown+Appearance.swift"; sourceTree = "<group>"; };
-		1ACD7748DB66CF94EF7AA0C2D5F496E1 /* NSImageView+SwiftyGif.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSImageView+SwiftyGif.swift"; path = "SwiftyGif/NSImageView+SwiftyGif.swift"; sourceTree = "<group>"; };
-		2122A1111E3A788914680758F12307AF /* ResourceBundle-SwiftyGif-SwiftyGif-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-SwiftyGif-SwiftyGif-Info.plist"; sourceTree = "<group>"; };
-		240CF6090C45F36805BC36CDFD447FCD /* DropDown-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DropDown-prefix.pch"; sourceTree = "<group>"; };
+		1458BF90A3C40CA503E1AB55C68B9140 /* SwiftyGif.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SwiftyGif.modulemap; sourceTree = "<group>"; };
+		145EDF4DDEB8FD36B03F306CF2F9EC29 /* FTToastIndicator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTToastIndicator.m; path = FTIndicator/FTToastIndicator/FTToastIndicator.m; sourceTree = "<group>"; };
+		146A0C9B9AFAE24793E9B434BD6F21B3 /* AgoraAiEchoCancellationExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraAiEchoCancellationExtension.xcframework; sourceTree = "<group>"; };
+		14D84EB5E7242F1FF28DBB4186D8D0DB /* AgoraVideoQualityAnalyzerExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraVideoQualityAnalyzerExtension.xcframework; sourceTree = "<group>"; };
+		1831E1E8048D8BCD6ADC0D01D26268CE /* SwiftyGifManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftyGifManager.swift; path = SwiftyGif/SwiftyGifManager.swift; sourceTree = "<group>"; };
+		1936CF9740406854537E056F55BF81B1 /* RangeSeekSlider-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RangeSeekSlider-prefix.pch"; sourceTree = "<group>"; };
+		1A798C2012C1CAA2CBFBB76A42AB02CC /* FTToastIndicator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTToastIndicator.h; path = FTIndicator/FTToastIndicator/FTToastIndicator.h; sourceTree = "<group>"; };
+		1D4C59A85EB057B3F3C59392A0CEC467 /* NSImageView+SwiftyGif.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSImageView+SwiftyGif.swift"; path = "SwiftyGif/NSImageView+SwiftyGif.swift"; sourceTree = "<group>"; };
+		1E7B9352D93416FE3B983AA129F5ED34 /* NSImage+SwiftyGif.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSImage+SwiftyGif.swift"; path = "SwiftyGif/NSImage+SwiftyGif.swift"; sourceTree = "<group>"; };
+		22E3CABE69B66B3A8EF3A59EA0F19058 /* AgoraVideoEncoderExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraVideoEncoderExtension.xcframework; sourceTree = "<group>"; };
 		24E96286E41476A4E7F4D8742B9B16D7 /* ScalingCarousel */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ScalingCarousel; path = ScalingCarousel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		277B110638D0EAD1F16A8E5FB8351FB0 /* FTIndicator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FTIndicator.debug.xcconfig; sourceTree = "<group>"; };
-		2B601A740E9781E1BF183FD73DD5E5DD /* RangeSeekSlider.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RangeSeekSlider.debug.xcconfig; sourceTree = "<group>"; };
-		2DF4974B5D81B9AC016F18B3E2BE8A18 /* ScalingCarouselCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScalingCarouselCell.swift; path = Sources/ScalingCarousel/ScalingCarouselCell.swift; sourceTree = "<group>"; };
-		32939F91E95F2DD665AD093EFEEA2716 /* RangeSeekSlider-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RangeSeekSlider-dummy.m"; sourceTree = "<group>"; };
-		32AB646AF9A426B9D210B0A8D02A5861 /* RangeSeekSliderDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RangeSeekSliderDelegate.swift; path = Sources/RangeSeekSliderDelegate.swift; sourceTree = "<group>"; };
+		2684F7FD55F3943638ABC7DE03B30B91 /* ScalingCarousel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ScalingCarousel.modulemap; sourceTree = "<group>"; };
+		26C5FC3866488932412698202B874B9D /* TapticEngine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TapticEngine.swift; path = Sources/TapticEngine.swift; sourceTree = "<group>"; };
+		28C4057282CD7E54F8E4F1F12093D610 /* DropDown-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "DropDown-Info.plist"; sourceTree = "<group>"; };
+		28F1BB16A9DC931B1D2C69F0A8B499CB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		2D076CA815F04A6E17714C44DA64AA11 /* ScalingCarousel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ScalingCarousel.debug.xcconfig; sourceTree = "<group>"; };
+		2EA799F3EC1BD3F5A5683BD864F70377 /* FTProgressIndicator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTProgressIndicator.m; path = FTIndicator/FTProgressIndicator/FTProgressIndicator.m; sourceTree = "<group>"; };
+		2F334E7A70F55E1387D219CC0678FFB0 /* UIImage+SwiftyGif.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImage+SwiftyGif.swift"; path = "SwiftyGif/UIImage+SwiftyGif.swift"; sourceTree = "<group>"; };
+		309F3636B397180F815C15E423FE17E6 /* ScalingCarouselLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScalingCarouselLayout.swift; path = Sources/ScalingCarousel/ScalingCarouselLayout.swift; sourceTree = "<group>"; };
+		30F23F220CC96B709309DA7E12DAB7AF /* SwiftyGif-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SwiftyGif-Info.plist"; sourceTree = "<group>"; };
+		31163107744EE5C732A34660EA3FCDC6 /* AgoraRtcEngine_iOS-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "AgoraRtcEngine_iOS-xcframeworks.sh"; sourceTree = "<group>"; };
 		33695F79FF9E4AAB786EE4B43C722864 /* Pods-DesynatAdmin-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-DesynatAdmin-umbrella.h"; sourceTree = "<group>"; };
-		3467BFEA7D420E9BE8B98A34152F956C /* DropDown-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "DropDown-Info.plist"; sourceTree = "<group>"; };
-		361EE39606F77A62E58D3A8534B4F6D7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		369D2DFF424E20662D3CF54E85EC39F7 /* ScalingCarousel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ScalingCarousel.modulemap; sourceTree = "<group>"; };
-		45D0A117DFDC32D72731724AA60F8B3F /* DropDown.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DropDown.release.xcconfig; sourceTree = "<group>"; };
-		46096B50C52966B603B93D55350F1695 /* SwiftyGif-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyGif-umbrella.h"; sourceTree = "<group>"; };
-		4639DD7FB69247A8F9FBA253BF7D40BD /* SwiftyGif.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SwiftyGif.modulemap; sourceTree = "<group>"; };
-		47C05EF81938088C8DD523A18BE4DAEE /* TapticEngine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TapticEngine.swift; path = Sources/TapticEngine.swift; sourceTree = "<group>"; };
-		4A35ED59BDD0596101AA56AE80D8A0A7 /* FTProgressIndicator.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = FTProgressIndicator.bundle; path = FTIndicator/FTProgressIndicator/FTProgressIndicator.bundle; sourceTree = "<group>"; };
-		5066A0836116347DCF88E7F81FB0FF70 /* FTIndicator.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FTIndicator.modulemap; sourceTree = "<group>"; };
-		53A332DE6AAF19C650C86DF9B9663033 /* FTNotificationIndicator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTNotificationIndicator.h; path = FTIndicator/FTNotificationIndicator/FTNotificationIndicator.h; sourceTree = "<group>"; };
-		543B56292D357C3C5AAD6AF749B048FA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		547BCD67B0799BFD17F2A1CEB040F114 /* NSImage+SwiftyGif.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSImage+SwiftyGif.swift"; path = "SwiftyGif/NSImage+SwiftyGif.swift"; sourceTree = "<group>"; };
-		5E382F5F783A185D7C25D52E95FD62A7 /* SwiftyGif-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SwiftyGif-Info.plist"; sourceTree = "<group>"; };
-		601FEA4CC328C37BE42BAEA2E65F4B7B /* FTIndicator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTIndicator.m; path = FTIndicator/FTIndicator.m; sourceTree = "<group>"; };
-		6265B29FF666F818443247DF0380ED97 /* FTProgressIndicator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTProgressIndicator.m; path = FTIndicator/FTProgressIndicator/FTProgressIndicator.m; sourceTree = "<group>"; };
+		354110ADD7731992AC69648D0086D420 /* DropDown.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DropDown.swift; path = DropDown/src/DropDown.swift; sourceTree = "<group>"; };
+		3C322E39C6838B88CE017498CF9A6346 /* DropDown-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DropDown-dummy.m"; sourceTree = "<group>"; };
+		3CF7BEC6AD05AFD486F1F1F051B6ACEB /* AgoraRtcKit.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraRtcKit.xcframework; sourceTree = "<group>"; };
+		40DD36F17CD277D206E22E01F1031863 /* DPDConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDConstants.swift; path = DropDown/helpers/DPDConstants.swift; sourceTree = "<group>"; };
+		4165A4BF908CC0AD02C8C98A9C771EDE /* RangeSeekSlider-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "RangeSeekSlider-Info.plist"; sourceTree = "<group>"; };
+		42A1502B757C77B087E4C1DBBE696818 /* SwiftyGif.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyGif.debug.xcconfig; sourceTree = "<group>"; };
+		462AADE87A542EF4ED25D53C9B231B58 /* AgoraAiNoiseSuppressionExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraAiNoiseSuppressionExtension.xcframework; sourceTree = "<group>"; };
+		468C73D15C49F8C021906264F768FBE4 /* Agoraffmpeg.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = Agoraffmpeg.xcframework; sourceTree = "<group>"; };
+		4B63EDAEBEE1239E7F72E56C3E1BD4FB /* ScalingCarouselView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScalingCarouselView.swift; path = Sources/ScalingCarousel/ScalingCarouselView.swift; sourceTree = "<group>"; };
+		4FC4DBB3D9E6BAC77389DDFDC5CAA8C1 /* AgoraSoundTouch.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraSoundTouch.xcframework; sourceTree = "<group>"; };
+		506072867C5B01B553996601D0389018 /* AgoraInfra_iOS-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "AgoraInfra_iOS-xcframeworks.sh"; sourceTree = "<group>"; };
+		558827EBFCC6416C0845ECE6C9996997 /* FTIndicator-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "FTIndicator-Info.plist"; sourceTree = "<group>"; };
+		55F18273AE543EF3B158487DC886C052 /* DPDKeyboardListener.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDKeyboardListener.swift; path = DropDown/helpers/DPDKeyboardListener.swift; sourceTree = "<group>"; };
+		5788F58009F7F8DFAA852484730FB18E /* AgoraAudioBeautyExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraAudioBeautyExtension.xcframework; sourceTree = "<group>"; };
+		5CBCD51F7598F0D3FBA5DDC7C6911494 /* AgoraInfra_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AgoraInfra_iOS.release.xcconfig; sourceTree = "<group>"; };
+		5E81D94C9178D5A106A9CF0245E4C682 /* FTProgressIndicator.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = FTProgressIndicator.bundle; path = FTIndicator/FTProgressIndicator/FTProgressIndicator.bundle; sourceTree = "<group>"; };
+		62B71F34377DC43B96D7CE7FD8620556 /* AgoraContentInspectExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraContentInspectExtension.xcframework; sourceTree = "<group>"; };
+		632E0C22DE7615722394CE3EFC77FFD3 /* video_enc.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = video_enc.xcframework; sourceTree = "<group>"; };
 		648352729B2241E9C506B38F3BE3D280 /* Pods-DesynatAdmin-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DesynatAdmin-frameworks.sh"; sourceTree = "<group>"; };
-		65F20D1E7A7655473C91758789CCA3B8 /* RangeSeekSlider-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "RangeSeekSlider-Info.plist"; sourceTree = "<group>"; };
-		6A3985A91440FF508581D5B815B408AC /* FTIndicator-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "FTIndicator-Info.plist"; sourceTree = "<group>"; };
-		6A9206F6E1794AA723B195B9994AC7C0 /* RangeSeekSlider-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RangeSeekSlider-umbrella.h"; sourceTree = "<group>"; };
-		6FAC144376212B9CA16CDAEB29AD6179 /* DPDConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDConstants.swift; path = DropDown/helpers/DPDConstants.swift; sourceTree = "<group>"; };
+		66DF23B7C6E25C299ECB840B29E165D9 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = SwiftyGif/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		6F583F11CE164246F1AF3A16FD40612E /* FTIndicator-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FTIndicator-umbrella.h"; sourceTree = "<group>"; };
+		70E28CA51B4595BC724F621B5EAC9B8B /* RangeSeekSlider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RangeSeekSlider.swift; path = Sources/RangeSeekSlider.swift; sourceTree = "<group>"; };
 		7478A1345859F0D198885EE675C9450C /* Pods-DesynatAdmin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DesynatAdmin.release.xcconfig"; sourceTree = "<group>"; };
-		77CB9340FB50BA6D5B04E6D1D1593077 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
-		7966C292FAB6FFB76346BF3FC15047E2 /* FTNotificationIndicator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTNotificationIndicator.m; path = FTIndicator/FTNotificationIndicator/FTNotificationIndicator.m; sourceTree = "<group>"; };
+		74CBE0B5EE0C2F63D860D5BBE02E1A86 /* AgoraRtcEngine_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AgoraRtcEngine_iOS.debug.xcconfig; sourceTree = "<group>"; };
+		76564AEEFD3D15E6D5175D880581A4CD /* FTIndicator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FTIndicator.release.xcconfig; sourceTree = "<group>"; };
 		7AD67EFB9A7864151301DC2890207AA2 /* SwiftyGif */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftyGif; path = SwiftyGif.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7B69EAD91CF981D89C78E35FAA9A06EF /* SwiftyGifManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftyGifManager.swift; path = SwiftyGif/SwiftyGifManager.swift; sourceTree = "<group>"; };
-		880B420F5E1578E9D9B5A3AF8104C980 /* ScalingCarousel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ScalingCarousel.debug.xcconfig; sourceTree = "<group>"; };
-		898A32027132950CA6BB705C35E43DD5 /* ScalingCarouselView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScalingCarouselView.swift; path = Sources/ScalingCarousel/ScalingCarouselView.swift; sourceTree = "<group>"; };
-		8AB73F196C1FEF358E1E383294CB4E03 /* DropDownCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = DropDownCell.xib; path = DropDown/resources/DropDownCell.xib; sourceTree = "<group>"; };
+		7EE5A788FD3826B3734916616F7DFB88 /* DropDown-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DropDown-umbrella.h"; sourceTree = "<group>"; };
+		80918EC29CEBF12016B09F398C82E86E /* SwiftyGif-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyGif-prefix.pch"; sourceTree = "<group>"; };
+		80C4463EBEFFB7A148D602500E6E3945 /* AgoraFaceCaptureExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraFaceCaptureExtension.xcframework; sourceTree = "<group>"; };
+		857B78B2A5B7484ECFBAB18AE9660A4A /* RangeSeekSlider.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RangeSeekSlider.release.xcconfig; sourceTree = "<group>"; };
+		87383BB9EEF2D8EA4EFA26EC20EA1ABD /* ScalingCarouselCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScalingCarouselCell.swift; path = Sources/ScalingCarousel/ScalingCarouselCell.swift; sourceTree = "<group>"; };
 		8DDCA2060010DFABC072C05D70E99C78 /* Pods-DesynatAdmin-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DesynatAdmin-dummy.m"; sourceTree = "<group>"; };
-		91BEC39B05D806623865AA88C73CBB1B /* FTProgressIndicator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTProgressIndicator.h; path = FTIndicator/FTProgressIndicator/FTProgressIndicator.h; sourceTree = "<group>"; };
-		93FBE04594A9D53B59BA0979CC6E5953 /* UIImage+SwiftyGif.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImage+SwiftyGif.swift"; path = "SwiftyGif/UIImage+SwiftyGif.swift"; sourceTree = "<group>"; };
-		9AEA189F4A203B973F9A505945F4EB20 /* DropDown-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DropDown-umbrella.h"; sourceTree = "<group>"; };
+		8F74CDD0F204E4DE08261A6ACA555047 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		93C89F2CFB8E86B24E2AC08302C20CE9 /* AgoraVideoAv1EncoderExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraVideoAv1EncoderExtension.xcframework; sourceTree = "<group>"; };
+		94AAC17825621822DEDA8CC232DDA142 /* AgoraAiEchoCancellationLLExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraAiEchoCancellationLLExtension.xcframework; sourceTree = "<group>"; };
+		94D6793B3ED88E446F9FB5AD36DB9EFB /* FTIndicator.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FTIndicator.modulemap; sourceTree = "<group>"; };
+		95C549E84ADE3F08972DEA82B4308389 /* DropDown.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DropDown.debug.xcconfig; sourceTree = "<group>"; };
+		96C033DCAA16DA67054DC3F66D279FA3 /* aosl.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = aosl.xcframework; sourceTree = "<group>"; };
+		97F58EDA98B2ADC37A1798363F4444D5 /* UIImageView+SwiftyGif.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImageView+SwiftyGif.swift"; path = "SwiftyGif/UIImageView+SwiftyGif.swift"; sourceTree = "<group>"; };
+		984BAD72969882FE483C5CDC3476E740 /* AgoraAiNoiseSuppressionLLExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraAiNoiseSuppressionLLExtension.xcframework; sourceTree = "<group>"; };
+		990BBF118424B0BEDDB02580F78DB747 /* FTNotificationIndicator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTNotificationIndicator.m; path = FTIndicator/FTNotificationIndicator/FTNotificationIndicator.m; sourceTree = "<group>"; };
+		99180DA403B2C8DF610EE0D53F11B51A /* DPDUIView+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DPDUIView+Extension.swift"; path = "DropDown/helpers/DPDUIView+Extension.swift"; sourceTree = "<group>"; };
+		9A6A872B5A57F0829ED105CBC6570AE6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		9B6725B782188F18CB76A740433F14E4 /* DropDown */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DropDown; path = DropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9CD492F60D5EE5C5D33C0CECB4DEFCC0 /* FTToastIndicator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTToastIndicator.m; path = FTIndicator/FTToastIndicator/FTToastIndicator.m; sourceTree = "<group>"; };
 		9CD6491470B6ADA3AFD7C3B01FC2E622 /* Pods-DesynatAdmin-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DesynatAdmin-Info.plist"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9E8DB22F26DF2C2F0E1204E19E974E32 /* RangeSeekSlider-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RangeSeekSlider-umbrella.h"; sourceTree = "<group>"; };
 		A2440A65A1EAC283492783917119A15A /* Pods-DesynatAdmin-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DesynatAdmin-acknowledgements.markdown"; sourceTree = "<group>"; };
-		A5B3F11200B405C05F439F66E6BAFD08 /* FTIndicator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FTIndicator.release.xcconfig; sourceTree = "<group>"; };
-		A5E4CA23E027F981A9755E27B17AE9A8 /* RangeSeekSlider.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RangeSeekSlider.release.xcconfig; sourceTree = "<group>"; };
+		A38FA20E1E0E621777032737C8E22C51 /* FTNotificationIndicator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTNotificationIndicator.h; path = FTIndicator/FTNotificationIndicator/FTNotificationIndicator.h; sourceTree = "<group>"; };
 		A5FF86815A172B2D5FBB33528EB522DF /* Pods-DesynatAdmin */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-DesynatAdmin"; path = Pods_DesynatAdmin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A9EE3ADB8059B5D8379C63DB9639529E /* DPDKeyboardListener.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDKeyboardListener.swift; path = DropDown/helpers/DPDKeyboardListener.swift; sourceTree = "<group>"; };
-		AC5F335205D773683FFE2A090A05131E /* FTToastIndicator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTToastIndicator.h; path = FTIndicator/FTToastIndicator/FTToastIndicator.h; sourceTree = "<group>"; };
-		AE037FCECF214B64F4AA428C9DB5E756 /* ScalingCarousel-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ScalingCarousel-dummy.m"; sourceTree = "<group>"; };
-		B0C8D2EAFEE50E5903F82F0BBFA7A371 /* DropDown.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = DropDown.modulemap; sourceTree = "<group>"; };
+		AB0477FE8E9F88EF032BAC48C357C940 /* AgoraFaceDetectionExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraFaceDetectionExtension.xcframework; sourceTree = "<group>"; };
+		AB0B9715C7413ED4E93E31F6F018DC0B /* AgoraInfra_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AgoraInfra_iOS.debug.xcconfig; sourceTree = "<group>"; };
+		ADD06F8C764BF06BF29ACF0A42E10ACB /* FTProgressIndicator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTProgressIndicator.h; path = FTIndicator/FTProgressIndicator/FTProgressIndicator.h; sourceTree = "<group>"; };
+		AE9BC66EBF3B853C8C6561BB9E8E165D /* SwiftyGif-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyGif-umbrella.h"; sourceTree = "<group>"; };
+		B43A53154FA27DF265A6CC28EC5E6495 /* FTIndicator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTIndicator.m; path = FTIndicator/FTIndicator.m; sourceTree = "<group>"; };
 		B97B12EFB4400A1AD180C797BE7CD633 /* Pods-DesynatAdmin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DesynatAdmin.debug.xcconfig"; sourceTree = "<group>"; };
+		B989C880B3307501FB88C5994CE8C16C /* ScalingCarousel-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ScalingCarousel-umbrella.h"; sourceTree = "<group>"; };
 		C027A7405E856E45431E9E1E7913015F /* RangeSeekSlider */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RangeSeekSlider; path = RangeSeekSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C1FE309A5FB1795459E28B9A5151FA29 /* DropDown.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DropDown.swift; path = DropDown/src/DropDown.swift; sourceTree = "<group>"; };
-		C5202CD7AABA9319ECE46154AFF3D157 /* RangeSeekSlider.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = RangeSeekSlider.modulemap; sourceTree = "<group>"; };
-		C65FCC73649902A9903523C9E9B896AA /* RangeSeekSlider-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RangeSeekSlider-prefix.pch"; sourceTree = "<group>"; };
-		C820C04E77AB79F9CE51BC84A3BF0842 /* DropDownCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DropDownCell.swift; path = DropDown/src/DropDownCell.swift; sourceTree = "<group>"; };
-		CBDA24F06B6737FA37CADCF9150FAD59 /* ScalingCarousel-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ScalingCarousel-Info.plist"; sourceTree = "<group>"; };
+		C5FC8C48268F6B722906614F9C793DFE /* RangeSeekSliderDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RangeSeekSliderDelegate.swift; path = Sources/RangeSeekSliderDelegate.swift; sourceTree = "<group>"; };
 		CC9121AC5A6A67555773F3AF643E8787 /* FTIndicator */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FTIndicator; path = FTIndicator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD37D9D74ADCFB2168560C19C4D4E815 /* AgoraSpatialAudioExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraSpatialAudioExtension.xcframework; sourceTree = "<group>"; };
+		D06122C102DC9F77060D1D515EEB77A5 /* FTIndicator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FTIndicator.debug.xcconfig; sourceTree = "<group>"; };
 		D082D15D6FE0ABCF1D430D6912919B23 /* Pods-DesynatAdmin.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-DesynatAdmin.modulemap"; sourceTree = "<group>"; };
-		D46F8B507D179ADAA583A44D263E0588 /* UIImageView+SwiftyGif.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImageView+SwiftyGif.swift"; path = "SwiftyGif/UIImageView+SwiftyGif.swift"; sourceTree = "<group>"; };
-		D5F749AEEC8DFCAFD663E587FA834BDD /* FTIndicator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTIndicator.h; path = FTIndicator/FTIndicator.h; sourceTree = "<group>"; };
-		D64D2E07E6A8A7B6D30C5060DB342023 /* FTIndicator-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FTIndicator-umbrella.h"; sourceTree = "<group>"; };
-		D80063FD01F535F157DC0E452DF88DD1 /* DropDown.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DropDown.debug.xcconfig; sourceTree = "<group>"; };
-		DCEC9E1A3FF783E9C8CD2B88428F2A15 /* SwiftyGif.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyGif.release.xcconfig; sourceTree = "<group>"; };
-		E5D83FCE49D47A7BA95340EC96A45DD7 /* ObjcAssociatedWeakObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObjcAssociatedWeakObject.swift; path = SwiftyGif/ObjcAssociatedWeakObject.swift; sourceTree = "<group>"; };
-		EB8EDEFB9AE581B854C0785B7890711E /* ScalingCarousel-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ScalingCarousel-umbrella.h"; sourceTree = "<group>"; };
-		EB944C1CBF6CF1FCDD30CE657BEAE303 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = SwiftyGif/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		ED001214156B39EDD78A8CBD22EBF2F7 /* ScalingCarousel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ScalingCarousel.release.xcconfig; sourceTree = "<group>"; };
-		F0B854D67B909859CD54544CD7C6422B /* FTIndicator-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FTIndicator-prefix.pch"; sourceTree = "<group>"; };
-		F2E2DCD1DFD45F348781424BC84EBE20 /* RangeSeekSlider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RangeSeekSlider.swift; path = Sources/RangeSeekSlider.swift; sourceTree = "<group>"; };
-		F3DAB0FF1EB28795368991050264317E /* SwiftyGif.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SwiftyGif.h; path = SwiftyGif/SwiftyGif.h; sourceTree = "<group>"; };
-		F453AB3BFE12A429BFD84523A5F4CFCC /* DPDUIView+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DPDUIView+Extension.swift"; path = "DropDown/helpers/DPDUIView+Extension.swift"; sourceTree = "<group>"; };
-		F808A48866D89C2FEAB31689ADE6DB26 /* SwiftyGif-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyGif-prefix.pch"; sourceTree = "<group>"; };
-		F928C599018056652995337577909CAE /* ScalingCarousel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ScalingCarousel-prefix.pch"; sourceTree = "<group>"; };
-		F9BD85402F363D98CB0A073BE39EF3B4 /* DropDown-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DropDown-dummy.m"; sourceTree = "<group>"; };
+		D0EF22EE2D5DE87E1218392EDD84D84D /* AgoraRtcEngine_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AgoraRtcEngine_iOS.release.xcconfig; sourceTree = "<group>"; };
+		D32185DCFDBE2B6E949CD162225F7931 /* ScalingCarousel-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ScalingCarousel-Info.plist"; sourceTree = "<group>"; };
+		D9F0B99379816AA44A23BA70CAAEC96B /* FTIndicator-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FTIndicator-dummy.m"; sourceTree = "<group>"; };
+		DBC6163598E24DFE39081531E593FD27 /* ScalingCarousel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ScalingCarousel.release.xcconfig; sourceTree = "<group>"; };
+		DCD4BA531E3E826C91AB885D5B5577CC /* AgoraVideoSegmentationExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraVideoSegmentationExtension.xcframework; sourceTree = "<group>"; };
+		DDC3EC0CE9B48EB4A058AC267E46DB04 /* FTIndicator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTIndicator.h; path = FTIndicator/FTIndicator.h; sourceTree = "<group>"; };
+		E6E817C8FF0A613E5085F753D87CA070 /* AgoraReplayKitExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraReplayKitExtension.xcframework; sourceTree = "<group>"; };
+		E734851C26062FE75CB27C2055857176 /* ScalingCarousel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ScalingCarousel-prefix.pch"; sourceTree = "<group>"; };
+		E7FD47755729E657778F5655F562CFD4 /* DropDownCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = DropDownCell.xib; path = DropDown/resources/DropDownCell.xib; sourceTree = "<group>"; };
+		EA30E739CECA3EF3B996BB582766EBD6 /* ScalingCarousel-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ScalingCarousel-dummy.m"; sourceTree = "<group>"; };
+		EA717882756AEE20C10614A22DC68352 /* RangeSeekSlider.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = RangeSeekSlider.modulemap; sourceTree = "<group>"; };
+		EBD64DB7F8F8A7E53B9B78FDBA7E8959 /* DropDown+Appearance.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DropDown+Appearance.swift"; path = "DropDown/src/DropDown+Appearance.swift"; sourceTree = "<group>"; };
+		EDE89FD4B8B89EAF90C7FB6604FBE9D2 /* DropDownCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DropDownCell.swift; path = DropDown/src/DropDownCell.swift; sourceTree = "<group>"; };
+		EEF2C194EE876BC78BF7CD5EBF58F361 /* video_dec.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = video_dec.xcframework; sourceTree = "<group>"; };
+		F056C1326CF5F642B7CA88175457308F /* DropDown.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = DropDown.modulemap; sourceTree = "<group>"; };
+		F36A3A86033E83CCD0A2CE6836DCE792 /* ObjcAssociatedWeakObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObjcAssociatedWeakObject.swift; path = SwiftyGif/ObjcAssociatedWeakObject.swift; sourceTree = "<group>"; };
+		F869C564E7E466B9ABE9AFBEF82FD02C /* AgoraClearVisionExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraClearVisionExtension.xcframework; sourceTree = "<group>"; };
+		F8884A8F41209EA5AEA71DA80FCF1BF5 /* DropDown-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DropDown-prefix.pch"; sourceTree = "<group>"; };
+		FEACF5CFF6FF7183B3DAD2D3889DB3E6 /* SwiftyGif.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SwiftyGif.h; path = SwiftyGif/SwiftyGif.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		38E59D0F954749873C0E7BE0B690DADD /* Frameworks */ = {
+		0234D9B31D5F350CB36A22360206A8B0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C6B36F97817B7C0C82F8726E7E5FCE7E /* CoreGraphics.framework in Frameworks */,
-				7A9BF4B59C5B1A26A89A0796C7CD2EFA /* Foundation.framework in Frameworks */,
-				6A3A4303B4F573E5A9DCF39CA0906999 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3EDE34524C84C45A9870D5BE34E7B9C0 /* Frameworks */ = {
+		2639DE3DA61C50D2B173920DA3F7BFAC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				485D3FFAD4D88E53FB1CD633F0FB06C4 /* Foundation.framework in Frameworks */,
+				48F328E430C33B23EB1880CB16E71FDC /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4073D9FB9869A07B74FD88BD2AE6B3CF /* Frameworks */ = {
+		5B00406D76C51B3B46DDE7B2994DAB77 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B11A47761135C2924D113424178D942 /* Foundation.framework in Frameworks */,
+				C4637B3497FCC2DF78809E144241B225 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7D15805B5A338CA0EE6C72A0D40A3C15 /* Frameworks */ = {
+		87598DB7386578BD58AAD02A9FF8CB35 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				794C4C3BF3A130CCFB58C45C0379E7A8 /* Foundation.framework in Frameworks */,
+				59F9D1B6BE203AF9CFF9177330776F9A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		808BE4E171BD75B6477EC2B77490C2B1 /* Frameworks */ = {
+		87E318614AD86D7A2FE4ED5673ED9E00 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34D86F4481D9328BF45B637B906B3122 /* Foundation.framework in Frameworks */,
+				4EBCA879E8D63ADBFFCF2A41B78024C8 /* CoreGraphics.framework in Frameworks */,
+				7BB0546DA257AB7377A55B52E29E2524 /* Foundation.framework in Frameworks */,
+				8E07223DB3D2743E1253E5D3526A14CD /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A0ECA485B6CF5A7F5C0D46089B37B432 /* Frameworks */ = {
+		B1AD4AE119250DE068268EFE0A0A8DA4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5033262924C5F16FEEA3004DB73B8F8A /* Foundation.framework in Frameworks */,
+				0ABF927E9C3D6229823AEC42F16356E8 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D06AB330FF7EC5E6275E31A285848E60 /* Frameworks */ = {
+		C9145E0B21390631162CEDBDEFFBEC69 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F4C1E872A283192888BA0C6D4A74797 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0030C7E884D39B936F762F8E521F9F15 /* ReplayKit */ = {
+			isa = PBXGroup;
+			children = (
+				1292DC7F7DAC6175F90F5F3DBCC3E3B9 /* Frameworks */,
+			);
+			name = ReplayKit;
+			sourceTree = "<group>";
+		};
 		03C5C200A0787E300053CFA8F53CA094 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				37E9A611B7FA8B84E0117394CA54DC92 /* iOS */,
+				46931A4A35EF02235D765EC23D907607 /* iOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		136EC3C7E4D21BABF687CCCE050F978F /* Resources */ = {
+		0527E9C0E8A1AF31043620775216FC60 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				146A0C9B9AFAE24793E9B434BD6F21B3 /* AgoraAiEchoCancellationExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		09E8907DF593BC9971C271889BC42094 /* FTProgressIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				AA21FA08106D86CCCDC69EB4E118D7BF /* Resources */,
+			);
+			name = FTProgressIndicator;
+			sourceTree = "<group>";
+		};
+		0D1628FF12AE806164B690DAFF57F19E /* SpatialAudio */ = {
+			isa = PBXGroup;
+			children = (
+				4F58D1B7AE70D2F2642908F9FC9DF888 /* Frameworks */,
+			);
+			name = SpatialAudio;
+			sourceTree = "<group>";
+		};
+		11A729B183374E3DFF5A5542322B3D56 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				66DF23B7C6E25C299ECB840B29E165D9 /* PrivacyInfo.xcprivacy */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		1C338E8FA439FED3C424DD628C1510D1 /* Support Files */ = {
+		1292DC7F7DAC6175F90F5F3DBCC3E3B9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B0C8D2EAFEE50E5903F82F0BBFA7A371 /* DropDown.modulemap */,
-				F9BD85402F363D98CB0A073BE39EF3B4 /* DropDown-dummy.m */,
-				3467BFEA7D420E9BE8B98A34152F956C /* DropDown-Info.plist */,
-				240CF6090C45F36805BC36CDFD447FCD /* DropDown-prefix.pch */,
-				9AEA189F4A203B973F9A505945F4EB20 /* DropDown-umbrella.h */,
-				D80063FD01F535F157DC0E452DF88DD1 /* DropDown.debug.xcconfig */,
-				45D0A117DFDC32D72731724AA60F8B3F /* DropDown.release.xcconfig */,
+				E6E817C8FF0A613E5085F753D87CA070 /* AgoraReplayKitExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1B4BBB1DF1225C3D4B463B7089CFC3C2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0FCBEF48249F61578C5709EA41B0BDD7 /* AgoraLipSyncExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		22FE674D708703C92738059DF43B9277 /* FTIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				DDC3EC0CE9B48EB4A058AC267E46DB04 /* FTIndicator.h */,
+				B43A53154FA27DF265A6CC28EC5E6495 /* FTIndicator.m */,
+				A38FA20E1E0E621777032737C8E22C51 /* FTNotificationIndicator.h */,
+				990BBF118424B0BEDDB02580F78DB747 /* FTNotificationIndicator.m */,
+				ADD06F8C764BF06BF29ACF0A42E10ACB /* FTProgressIndicator.h */,
+				2EA799F3EC1BD3F5A5683BD864F70377 /* FTProgressIndicator.m */,
+				1A798C2012C1CAA2CBFBB76A42AB02CC /* FTToastIndicator.h */,
+				145EDF4DDEB8FD36B03F306CF2F9EC29 /* FTToastIndicator.m */,
+				FC912CCE648F73DF7F3F34A5DA89B87F /* FTNotificationIndicator */,
+				09E8907DF593BC9971C271889BC42094 /* FTProgressIndicator */,
+				F90B49AB81FF27E47DF4DD895E3A51C8 /* FTToastIndicator */,
+				863C8CD35A582F199584D7ABEC87C937 /* Resources */,
+				3C7EF0D3BE1A2DA39C8DCB2711F6051A /* Support Files */,
+			);
+			name = FTIndicator;
+			path = FTIndicator;
+			sourceTree = "<group>";
+		};
+		2D110021B4972B26E6639694827D7C34 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				984BAD72969882FE483C5CDC3476E740 /* AgoraAiNoiseSuppressionLLExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3749EC3548048A343387931B0D002DFE /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				506072867C5B01B553996601D0389018 /* AgoraInfra_iOS-xcframeworks.sh */,
+				AB0B9715C7413ED4E93E31F6F018DC0B /* AgoraInfra_iOS.debug.xcconfig */,
+				5CBCD51F7598F0D3FBA5DDC7C6911494 /* AgoraInfra_iOS.release.xcconfig */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/DropDown";
-			sourceTree = "<group>";
-		};
-		2EEEEEC6A39969BAACB8ED6DB3A2E40A /* FTNotificationIndicator */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = FTNotificationIndicator;
-			sourceTree = "<group>";
-		};
-		36EBB15888C88B91FF0D605CFD873E70 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				C5202CD7AABA9319ECE46154AFF3D157 /* RangeSeekSlider.modulemap */,
-				32939F91E95F2DD665AD093EFEEA2716 /* RangeSeekSlider-dummy.m */,
-				65F20D1E7A7655473C91758789CCA3B8 /* RangeSeekSlider-Info.plist */,
-				C65FCC73649902A9903523C9E9B896AA /* RangeSeekSlider-prefix.pch */,
-				6A9206F6E1794AA723B195B9994AC7C0 /* RangeSeekSlider-umbrella.h */,
-				2B601A740E9781E1BF183FD73DD5E5DD /* RangeSeekSlider.debug.xcconfig */,
-				A5E4CA23E027F981A9755E27B17AE9A8 /* RangeSeekSlider.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/RangeSeekSlider";
-			sourceTree = "<group>";
-		};
-		37E9A611B7FA8B84E0117394CA54DC92 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				77CB9340FB50BA6D5B04E6D1D1593077 /* CoreGraphics.framework */,
-				543B56292D357C3C5AAD6AF749B048FA /* Foundation.framework */,
-				361EE39606F77A62E58D3A8534B4F6D7 /* UIKit.framework */,
-			);
-			name = iOS;
+			path = "../Target Support Files/AgoraInfra_iOS";
 			sourceTree = "<group>";
 		};
 		3A41CFD2F84369E0E72C3A72660EDDEB /* Products */ = {
@@ -331,60 +447,73 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		512025176CF6332E30AACC0CD8745C73 /* FTToastIndicator */ = {
+		3C7EF0D3BE1A2DA39C8DCB2711F6051A /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-			);
-			name = FTToastIndicator;
-			sourceTree = "<group>";
-		};
-		5160543FFAF962F086278C047B7E2D7A /* FTIndicator */ = {
-			isa = PBXGroup;
-			children = (
-				D5F749AEEC8DFCAFD663E587FA834BDD /* FTIndicator.h */,
-				601FEA4CC328C37BE42BAEA2E65F4B7B /* FTIndicator.m */,
-				53A332DE6AAF19C650C86DF9B9663033 /* FTNotificationIndicator.h */,
-				7966C292FAB6FFB76346BF3FC15047E2 /* FTNotificationIndicator.m */,
-				91BEC39B05D806623865AA88C73CBB1B /* FTProgressIndicator.h */,
-				6265B29FF666F818443247DF0380ED97 /* FTProgressIndicator.m */,
-				AC5F335205D773683FFE2A090A05131E /* FTToastIndicator.h */,
-				9CD492F60D5EE5C5D33C0CECB4DEFCC0 /* FTToastIndicator.m */,
-				2EEEEEC6A39969BAACB8ED6DB3A2E40A /* FTNotificationIndicator */,
-				D28D2543B106B0FC7603420C218141D4 /* FTProgressIndicator */,
-				512025176CF6332E30AACC0CD8745C73 /* FTToastIndicator */,
-				BF32709C7686D260F02C8EE6DAA286B8 /* Resources */,
-				E37F837FB3FB4EEF51FD5E833FB147A1 /* Support Files */,
-			);
-			name = FTIndicator;
-			path = FTIndicator;
-			sourceTree = "<group>";
-		};
-		5954D82FF14A43813C768B27F255AF7C /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				2122A1111E3A788914680758F12307AF /* ResourceBundle-SwiftyGif-SwiftyGif-Info.plist */,
-				4639DD7FB69247A8F9FBA253BF7D40BD /* SwiftyGif.modulemap */,
-				0D9A377AD2A226F396D8C567B1035FAF /* SwiftyGif-dummy.m */,
-				5E382F5F783A185D7C25D52E95FD62A7 /* SwiftyGif-Info.plist */,
-				F808A48866D89C2FEAB31689ADE6DB26 /* SwiftyGif-prefix.pch */,
-				46096B50C52966B603B93D55350F1695 /* SwiftyGif-umbrella.h */,
-				03AB027071D6CD6492896D6518349EF5 /* SwiftyGif.debug.xcconfig */,
-				DCEC9E1A3FF783E9C8CD2B88428F2A15 /* SwiftyGif.release.xcconfig */,
+				94D6793B3ED88E446F9FB5AD36DB9EFB /* FTIndicator.modulemap */,
+				D9F0B99379816AA44A23BA70CAAEC96B /* FTIndicator-dummy.m */,
+				558827EBFCC6416C0845ECE6C9996997 /* FTIndicator-Info.plist */,
+				00A1DFFFC4DA7912BFBE8C3043AC8E79 /* FTIndicator-prefix.pch */,
+				6F583F11CE164246F1AF3A16FD40612E /* FTIndicator-umbrella.h */,
+				D06122C102DC9F77060D1D515EEB77A5 /* FTIndicator.debug.xcconfig */,
+				76564AEEFD3D15E6D5175D880581A4CD /* FTIndicator.release.xcconfig */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/SwiftyGif";
+			path = "../Target Support Files/FTIndicator";
 			sourceTree = "<group>";
 		};
-		6313173BA1255EB22DB9038A2B8E3194 /* Pods */ = {
+		45D1E4D1A75C927FF0EFDF96190685FE /* RangeSeekSlider */ = {
 			isa = PBXGroup;
 			children = (
-				B8CA630BB60EFEE2D6FAAA625774ACF9 /* DropDown */,
-				5160543FFAF962F086278C047B7E2D7A /* FTIndicator */,
-				7F604F74C2D4E624080EEDE195BA4C33 /* RangeSeekSlider */,
-				FEED03659BEEF6AD9D69F8C442E774A3 /* ScalingCarousel */,
-				8A9C24289B48A69564A05E733C0B6843 /* SwiftyGif */,
+				70E28CA51B4595BC724F621B5EAC9B8B /* RangeSeekSlider.swift */,
+				C5FC8C48268F6B722906614F9C793DFE /* RangeSeekSliderDelegate.swift */,
+				26C5FC3866488932412698202B874B9D /* TapticEngine.swift */,
+				B244C59B8FFE75C19A5DB8152CAA3049 /* Support Files */,
 			);
-			name = Pods;
+			name = RangeSeekSlider;
+			path = RangeSeekSlider;
+			sourceTree = "<group>";
+		};
+		46931A4A35EF02235D765EC23D907607 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				9A6A872B5A57F0829ED105CBC6570AE6 /* CoreGraphics.framework */,
+				8F74CDD0F204E4DE08261A6ACA555047 /* Foundation.framework */,
+				28F1BB16A9DC931B1D2C69F0A8B499CB /* UIKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		4D5DFAB786550C9CCCFA9877BAD34B1F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5788F58009F7F8DFAA852484730FB18E /* AgoraAudioBeautyExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4F58D1B7AE70D2F2642908F9FC9DF888 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CD37D9D74ADCFB2168560C19C4D4E815 /* AgoraSpatialAudioExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		526AC2E1D7FA783705B00CB6DC33583A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				94AAC17825621822DEDA8CC232DDA142 /* AgoraAiEchoCancellationLLExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		53B54B9AEBC740B9E5DACCC984DB4CFC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				93C89F2CFB8E86B24E2AC08302C20CE9 /* AgoraVideoAv1EncoderExtension.xcframework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		67457073D1272124A2B9453A887A0B25 /* Targets Support Files */ = {
@@ -395,57 +524,247 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		7F604F74C2D4E624080EEDE195BA4C33 /* RangeSeekSlider */ = {
+		6B4B96E600DDC0A65A5ED7E3C7508271 /* FaceDetection */ = {
 			isa = PBXGroup;
 			children = (
-				F2E2DCD1DFD45F348781424BC84EBE20 /* RangeSeekSlider.swift */,
-				32AB646AF9A426B9D210B0A8D02A5861 /* RangeSeekSliderDelegate.swift */,
-				47C05EF81938088C8DD523A18BE4DAEE /* TapticEngine.swift */,
-				36EBB15888C88B91FF0D605CFD873E70 /* Support Files */,
+				F8999AA0ED7335B126D3E7BC0AC00162 /* Frameworks */,
 			);
-			name = RangeSeekSlider;
-			path = RangeSeekSlider;
+			name = FaceDetection;
 			sourceTree = "<group>";
 		};
-		8A9C24289B48A69564A05E733C0B6843 /* SwiftyGif */ = {
+		6C465F832F9D142BE292A6FE9B7A2061 /* VQA */ = {
 			isa = PBXGroup;
 			children = (
-				547BCD67B0799BFD17F2A1CEB040F114 /* NSImage+SwiftyGif.swift */,
-				1ACD7748DB66CF94EF7AA0C2D5F496E1 /* NSImageView+SwiftyGif.swift */,
-				E5D83FCE49D47A7BA95340EC96A45DD7 /* ObjcAssociatedWeakObject.swift */,
-				F3DAB0FF1EB28795368991050264317E /* SwiftyGif.h */,
-				7B69EAD91CF981D89C78E35FAA9A06EF /* SwiftyGifManager.swift */,
-				93FBE04594A9D53B59BA0979CC6E5953 /* UIImage+SwiftyGif.swift */,
-				D46F8B507D179ADAA583A44D263E0588 /* UIImageView+SwiftyGif.swift */,
-				DE4F2E1CBF0ABBCF3BAC8CBAE29C972C /* Resources */,
-				5954D82FF14A43813C768B27F255AF7C /* Support Files */,
+				8AE316102391D3C4836CD083D5140FF8 /* Frameworks */,
+			);
+			name = VQA;
+			sourceTree = "<group>";
+		};
+		704727F5FBDC394418EBD4E1660C3201 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				62B71F34377DC43B96D7CE7FD8620556 /* AgoraContentInspectExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		76615CC9E21267E981507820D8569678 /* AIAEC */ = {
+			isa = PBXGroup;
+			children = (
+				0527E9C0E8A1AF31043620775216FC60 /* Frameworks */,
+			);
+			name = AIAEC;
+			sourceTree = "<group>";
+		};
+		78210A379DE5524712BAB4CD18A5D797 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				462AADE87A542EF4ED25D53C9B231B58 /* AgoraAiNoiseSuppressionExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		78296428397478946E25FF6BE3465FE3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				96C033DCAA16DA67054DC3F66D279FA3 /* aosl.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7E9F5ACA2513F98D54CEEACAE39AC25E /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				31163107744EE5C732A34660EA3FCDC6 /* AgoraRtcEngine_iOS-xcframeworks.sh */,
+				74CBE0B5EE0C2F63D860D5BBE02E1A86 /* AgoraRtcEngine_iOS.debug.xcconfig */,
+				D0EF22EE2D5DE87E1218392EDD84D84D /* AgoraRtcEngine_iOS.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/AgoraRtcEngine_iOS";
+			sourceTree = "<group>";
+		};
+		863C8CD35A582F199584D7ABEC87C937 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5E81D94C9178D5A106A9CF0245E4C682 /* FTProgressIndicator.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		872726D12D05F9A82B6C7F0A32EED0F2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				80C4463EBEFFB7A148D602500E6E3945 /* AgoraFaceCaptureExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8AE316102391D3C4836CD083D5140FF8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				14D84EB5E7242F1FF28DBB4186D8D0DB /* AgoraVideoQualityAnalyzerExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8C2AE2B32F43CF47E2748FFBB1D2D8A3 /* AINS */ = {
+			isa = PBXGroup;
+			children = (
+				78210A379DE5524712BAB4CD18A5D797 /* Frameworks */,
+			);
+			name = AINS;
+			sourceTree = "<group>";
+		};
+		8D871885227B5AFA3E97506513499600 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				F056C1326CF5F642B7CA88175457308F /* DropDown.modulemap */,
+				3C322E39C6838B88CE017498CF9A6346 /* DropDown-dummy.m */,
+				28C4057282CD7E54F8E4F1F12093D610 /* DropDown-Info.plist */,
+				F8884A8F41209EA5AEA71DA80FCF1BF5 /* DropDown-prefix.pch */,
+				7EE5A788FD3826B3734916616F7DFB88 /* DropDown-umbrella.h */,
+				95C549E84ADE3F08972DEA82B4308389 /* DropDown.debug.xcconfig */,
+				0A7F0F61A3EFD04A1DAC1CC614D0E437 /* DropDown.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/DropDown";
+			sourceTree = "<group>";
+		};
+		8DCE4FD116F3A04D17E080365D0A98CB /* VirtualBackground */ = {
+			isa = PBXGroup;
+			children = (
+				EB6B51E4BC0E569894B3A08D6B898DF3 /* Frameworks */,
+			);
+			name = VirtualBackground;
+			sourceTree = "<group>";
+		};
+		94A55557AB72C8CF510F74F25D7803D8 /* SwiftyGif */ = {
+			isa = PBXGroup;
+			children = (
+				1E7B9352D93416FE3B983AA129F5ED34 /* NSImage+SwiftyGif.swift */,
+				1D4C59A85EB057B3F3C59392A0CEC467 /* NSImageView+SwiftyGif.swift */,
+				F36A3A86033E83CCD0A2CE6836DCE792 /* ObjcAssociatedWeakObject.swift */,
+				FEACF5CFF6FF7183B3DAD2D3889DB3E6 /* SwiftyGif.h */,
+				1831E1E8048D8BCD6ADC0D01D26268CE /* SwiftyGifManager.swift */,
+				2F334E7A70F55E1387D219CC0678FFB0 /* UIImage+SwiftyGif.swift */,
+				97F58EDA98B2ADC37A1798363F4444D5 /* UIImageView+SwiftyGif.swift */,
+				11A729B183374E3DFF5A5542322B3D56 /* Resources */,
+				DFE758E3FC9BFA196DF0BF4961DBB8DD /* Support Files */,
 			);
 			name = SwiftyGif;
 			path = SwiftyGif;
 			sourceTree = "<group>";
 		};
-		B8CA630BB60EFEE2D6FAAA625774ACF9 /* DropDown */ = {
+		95C50BFD1B9FDB59CA5926873E974797 /* AudioBeauty */ = {
 			isa = PBXGroup;
 			children = (
-				6FAC144376212B9CA16CDAEB29AD6179 /* DPDConstants.swift */,
-				A9EE3ADB8059B5D8379C63DB9639529E /* DPDKeyboardListener.swift */,
-				F453AB3BFE12A429BFD84523A5F4CFCC /* DPDUIView+Extension.swift */,
-				C1FE309A5FB1795459E28B9A5151FA29 /* DropDown.swift */,
-				16AFAC6A8661F23112C3E12E17AB71D2 /* DropDown+Appearance.swift */,
-				C820C04E77AB79F9CE51BC84A3BF0842 /* DropDownCell.swift */,
-				E788BF2802573898AE77D49A73F53C96 /* Resources */,
-				1C338E8FA439FED3C424DD628C1510D1 /* Support Files */,
+				4D5DFAB786550C9CCCFA9877BAD34B1F /* Frameworks */,
+			);
+			name = AudioBeauty;
+			sourceTree = "<group>";
+		};
+		98DA6E732B9C326332A1A93475B69B09 /* ScalingCarousel */ = {
+			isa = PBXGroup;
+			children = (
+				87383BB9EEF2D8EA4EFA26EC20EA1ABD /* ScalingCarouselCell.swift */,
+				309F3636B397180F815C15E423FE17E6 /* ScalingCarouselLayout.swift */,
+				4B63EDAEBEE1239E7F72E56C3E1BD4FB /* ScalingCarouselView.swift */,
+				EC49B973DD4DEE2D0105B57D85BB20B8 /* Support Files */,
+			);
+			name = ScalingCarousel;
+			path = ScalingCarousel;
+			sourceTree = "<group>";
+		};
+		9EA9CD7D27F84315B212A11C0292C719 /* RtcBasic */ = {
+			isa = PBXGroup;
+			children = (
+				9F1FE02A48F7ECECD40348798AB07343 /* Frameworks */,
+			);
+			name = RtcBasic;
+			sourceTree = "<group>";
+		};
+		9F1FE02A48F7ECECD40348798AB07343 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				107235AA466CFD8DCE82ACEDFF10DCF6 /* Agorafdkaac.xcframework */,
+				468C73D15C49F8C021906264F768FBE4 /* Agoraffmpeg.xcframework */,
+				3CF7BEC6AD05AFD486F1F1F051B6ACEB /* AgoraRtcKit.xcframework */,
+				4FC4DBB3D9E6BAC77389DDFDC5CAA8C1 /* AgoraSoundTouch.xcframework */,
+				EEF2C194EE876BC78BF7CD5EBF58F361 /* video_dec.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A0D4F6E1BD8C858784219A770BD1BDF1 /* ClearVision */ = {
+			isa = PBXGroup;
+			children = (
+				E6F31B6D62A9D196EDEC5955BE11DBB6 /* Frameworks */,
+			);
+			name = ClearVision;
+			sourceTree = "<group>";
+		};
+		A2890A9D69C51E3E023EBBCEB527EDA7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E7FD47755729E657778F5655F562CFD4 /* DropDownCell.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		AA21FA08106D86CCCDC69EB4E118D7BF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		B02BD6B5227D6C1563B46F3049F31DC8 /* AgoraInfra_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				78296428397478946E25FF6BE3465FE3 /* Frameworks */,
+				3749EC3548048A343387931B0D002DFE /* Support Files */,
+			);
+			name = AgoraInfra_iOS;
+			path = AgoraInfra_iOS;
+			sourceTree = "<group>";
+		};
+		B244C59B8FFE75C19A5DB8152CAA3049 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				EA717882756AEE20C10614A22DC68352 /* RangeSeekSlider.modulemap */,
+				0D5400C67450036A6C1189CE3EC90F72 /* RangeSeekSlider-dummy.m */,
+				4165A4BF908CC0AD02C8C98A9C771EDE /* RangeSeekSlider-Info.plist */,
+				1936CF9740406854537E056F55BF81B1 /* RangeSeekSlider-prefix.pch */,
+				9E8DB22F26DF2C2F0E1204E19E974E32 /* RangeSeekSlider-umbrella.h */,
+				0CA98C735F11D7D8ECE82B538A41C4F5 /* RangeSeekSlider.debug.xcconfig */,
+				857B78B2A5B7484ECFBAB18AE9660A4A /* RangeSeekSlider.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/RangeSeekSlider";
+			sourceTree = "<group>";
+		};
+		CB676335B551ED646F2835243B2EF53F /* AINSLL */ = {
+			isa = PBXGroup;
+			children = (
+				2D110021B4972B26E6639694827D7C34 /* Frameworks */,
+			);
+			name = AINSLL;
+			sourceTree = "<group>";
+		};
+		CDAEB9C22F43567E18B455A4755C1D2B /* DropDown */ = {
+			isa = PBXGroup;
+			children = (
+				40DD36F17CD277D206E22E01F1031863 /* DPDConstants.swift */,
+				55F18273AE543EF3B158487DC886C052 /* DPDKeyboardListener.swift */,
+				99180DA403B2C8DF610EE0D53F11B51A /* DPDUIView+Extension.swift */,
+				354110ADD7731992AC69648D0086D420 /* DropDown.swift */,
+				EBD64DB7F8F8A7E53B9B78FDBA7E8959 /* DropDown+Appearance.swift */,
+				EDE89FD4B8B89EAF90C7FB6604FBE9D2 /* DropDownCell.swift */,
+				A2890A9D69C51E3E023EBBCEB527EDA7 /* Resources */,
+				8D871885227B5AFA3E97506513499600 /* Support Files */,
 			);
 			name = DropDown;
 			path = DropDown;
-			sourceTree = "<group>";
-		};
-		BF32709C7686D260F02C8EE6DAA286B8 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				4A35ED59BDD0596101AA56AE80D8A0A7 /* FTProgressIndicator.bundle */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 		CEDE88C77DF04E58D79B79B77E8FD0BB /* Pods-DesynatAdmin */ = {
@@ -470,131 +789,231 @@
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				03C5C200A0787E300053CFA8F53CA094 /* Frameworks */,
-				6313173BA1255EB22DB9038A2B8E3194 /* Pods */,
+				D02DA288E320E39A2C77B5F9D7F697C7 /* Pods */,
 				3A41CFD2F84369E0E72C3A72660EDDEB /* Products */,
 				67457073D1272124A2B9453A887A0B25 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		D28D2543B106B0FC7603420C218141D4 /* FTProgressIndicator */ = {
+		D02DA288E320E39A2C77B5F9D7F697C7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				136EC3C7E4D21BABF687CCCE050F978F /* Resources */,
+				B02BD6B5227D6C1563B46F3049F31DC8 /* AgoraInfra_iOS */,
+				DA2E8044DBFC3260145B4E7EE2070F08 /* AgoraRtcEngine_iOS */,
+				CDAEB9C22F43567E18B455A4755C1D2B /* DropDown */,
+				22FE674D708703C92738059DF43B9277 /* FTIndicator */,
+				45D1E4D1A75C927FF0EFDF96190685FE /* RangeSeekSlider */,
+				98DA6E732B9C326332A1A93475B69B09 /* ScalingCarousel */,
+				94A55557AB72C8CF510F74F25D7803D8 /* SwiftyGif */,
 			);
-			name = FTProgressIndicator;
+			name = Pods;
 			sourceTree = "<group>";
 		};
-		DE4F2E1CBF0ABBCF3BAC8CBAE29C972C /* Resources */ = {
+		D1DB8FAE992098E9A3FC0A6BFC324805 /* FaceCapture */ = {
 			isa = PBXGroup;
 			children = (
-				EB944C1CBF6CF1FCDD30CE657BEAE303 /* PrivacyInfo.xcprivacy */,
+				872726D12D05F9A82B6C7F0A32EED0F2 /* Frameworks */,
 			);
-			name = Resources;
+			name = FaceCapture;
 			sourceTree = "<group>";
 		};
-		E37F837FB3FB4EEF51FD5E833FB147A1 /* Support Files */ = {
+		D39657C4FB86085E8DDA3C124C70F0D2 /* LipSync */ = {
 			isa = PBXGroup;
 			children = (
-				5066A0836116347DCF88E7F81FB0FF70 /* FTIndicator.modulemap */,
-				14F1F90F27B07E1156D6B609AFAC64A0 /* FTIndicator-dummy.m */,
-				6A3985A91440FF508581D5B815B408AC /* FTIndicator-Info.plist */,
-				F0B854D67B909859CD54544CD7C6422B /* FTIndicator-prefix.pch */,
-				D64D2E07E6A8A7B6D30C5060DB342023 /* FTIndicator-umbrella.h */,
-				277B110638D0EAD1F16A8E5FB8351FB0 /* FTIndicator.debug.xcconfig */,
-				A5B3F11200B405C05F439F66E6BAFD08 /* FTIndicator.release.xcconfig */,
+				1B4BBB1DF1225C3D4B463B7089CFC3C2 /* Frameworks */,
+			);
+			name = LipSync;
+			sourceTree = "<group>";
+		};
+		DA2E8044DBFC3260145B4E7EE2070F08 /* AgoraRtcEngine_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				76615CC9E21267E981507820D8569678 /* AIAEC */,
+				DEC05774968BE743BA87ECAC67E6E8C7 /* AIAECLL */,
+				8C2AE2B32F43CF47E2748FFBB1D2D8A3 /* AINS */,
+				CB676335B551ED646F2835243B2EF53F /* AINSLL */,
+				95C50BFD1B9FDB59CA5926873E974797 /* AudioBeauty */,
+				A0D4F6E1BD8C858784219A770BD1BDF1 /* ClearVision */,
+				FADD22F22503DC187C2F7E0BADD746DF /* ContentInspect */,
+				D1DB8FAE992098E9A3FC0A6BFC324805 /* FaceCapture */,
+				6B4B96E600DDC0A65A5ED7E3C7508271 /* FaceDetection */,
+				D39657C4FB86085E8DDA3C124C70F0D2 /* LipSync */,
+				0030C7E884D39B936F762F8E521F9F15 /* ReplayKit */,
+				9EA9CD7D27F84315B212A11C0292C719 /* RtcBasic */,
+				0D1628FF12AE806164B690DAFF57F19E /* SpatialAudio */,
+				7E9F5ACA2513F98D54CEEACAE39AC25E /* Support Files */,
+				F76FA9B65777DACED9EE864FC13FE4B3 /* VideoAv1CodecEnc */,
+				E19FCB98048205CC8E5B63B5CD4ED24E /* VideoCodecEnc */,
+				8DCE4FD116F3A04D17E080365D0A98CB /* VirtualBackground */,
+				6C465F832F9D142BE292A6FE9B7A2061 /* VQA */,
+			);
+			name = AgoraRtcEngine_iOS;
+			path = AgoraRtcEngine_iOS;
+			sourceTree = "<group>";
+		};
+		DEC05774968BE743BA87ECAC67E6E8C7 /* AIAECLL */ = {
+			isa = PBXGroup;
+			children = (
+				526AC2E1D7FA783705B00CB6DC33583A /* Frameworks */,
+			);
+			name = AIAECLL;
+			sourceTree = "<group>";
+		};
+		DFE758E3FC9BFA196DF0BF4961DBB8DD /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				00B4F35CEE0A401925F3D5A1A90F00C1 /* ResourceBundle-SwiftyGif-SwiftyGif-Info.plist */,
+				1458BF90A3C40CA503E1AB55C68B9140 /* SwiftyGif.modulemap */,
+				0695411490F1DE8A64BF5596AC24C3CB /* SwiftyGif-dummy.m */,
+				30F23F220CC96B709309DA7E12DAB7AF /* SwiftyGif-Info.plist */,
+				80918EC29CEBF12016B09F398C82E86E /* SwiftyGif-prefix.pch */,
+				AE9BC66EBF3B853C8C6561BB9E8E165D /* SwiftyGif-umbrella.h */,
+				42A1502B757C77B087E4C1DBBE696818 /* SwiftyGif.debug.xcconfig */,
+				0132231C2927D85A9B6E02E0E9AF3BFA /* SwiftyGif.release.xcconfig */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/FTIndicator";
+			path = "../Target Support Files/SwiftyGif";
 			sourceTree = "<group>";
 		};
-		E788BF2802573898AE77D49A73F53C96 /* Resources */ = {
+		E19FCB98048205CC8E5B63B5CD4ED24E /* VideoCodecEnc */ = {
 			isa = PBXGroup;
 			children = (
-				8AB73F196C1FEF358E1E383294CB4E03 /* DropDownCell.xib */,
+				E85F515A38B7BFD67A1D606710D36779 /* Frameworks */,
 			);
-			name = Resources;
+			name = VideoCodecEnc;
 			sourceTree = "<group>";
 		};
-		F7D4496982DBC09CBDE86838DD1C5917 /* Support Files */ = {
+		E6F31B6D62A9D196EDEC5955BE11DBB6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				369D2DFF424E20662D3CF54E85EC39F7 /* ScalingCarousel.modulemap */,
-				AE037FCECF214B64F4AA428C9DB5E756 /* ScalingCarousel-dummy.m */,
-				CBDA24F06B6737FA37CADCF9150FAD59 /* ScalingCarousel-Info.plist */,
-				F928C599018056652995337577909CAE /* ScalingCarousel-prefix.pch */,
-				EB8EDEFB9AE581B854C0785B7890711E /* ScalingCarousel-umbrella.h */,
-				880B420F5E1578E9D9B5A3AF8104C980 /* ScalingCarousel.debug.xcconfig */,
-				ED001214156B39EDD78A8CBD22EBF2F7 /* ScalingCarousel.release.xcconfig */,
+				F869C564E7E466B9ABE9AFBEF82FD02C /* AgoraClearVisionExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E85F515A38B7BFD67A1D606710D36779 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				22E3CABE69B66B3A8EF3A59EA0F19058 /* AgoraVideoEncoderExtension.xcframework */,
+				632E0C22DE7615722394CE3EFC77FFD3 /* video_enc.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EB6B51E4BC0E569894B3A08D6B898DF3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DCD4BA531E3E826C91AB885D5B5577CC /* AgoraVideoSegmentationExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EC49B973DD4DEE2D0105B57D85BB20B8 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				2684F7FD55F3943638ABC7DE03B30B91 /* ScalingCarousel.modulemap */,
+				EA30E739CECA3EF3B996BB582766EBD6 /* ScalingCarousel-dummy.m */,
+				D32185DCFDBE2B6E949CD162225F7931 /* ScalingCarousel-Info.plist */,
+				E734851C26062FE75CB27C2055857176 /* ScalingCarousel-prefix.pch */,
+				B989C880B3307501FB88C5994CE8C16C /* ScalingCarousel-umbrella.h */,
+				2D076CA815F04A6E17714C44DA64AA11 /* ScalingCarousel.debug.xcconfig */,
+				DBC6163598E24DFE39081531E593FD27 /* ScalingCarousel.release.xcconfig */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/ScalingCarousel";
 			sourceTree = "<group>";
 		};
-		FEED03659BEEF6AD9D69F8C442E774A3 /* ScalingCarousel */ = {
+		F76FA9B65777DACED9EE864FC13FE4B3 /* VideoAv1CodecEnc */ = {
 			isa = PBXGroup;
 			children = (
-				2DF4974B5D81B9AC016F18B3E2BE8A18 /* ScalingCarouselCell.swift */,
-				045B052FB34ED336EAE15F8B4B6AC028 /* ScalingCarouselLayout.swift */,
-				898A32027132950CA6BB705C35E43DD5 /* ScalingCarouselView.swift */,
-				F7D4496982DBC09CBDE86838DD1C5917 /* Support Files */,
+				53B54B9AEBC740B9E5DACCC984DB4CFC /* Frameworks */,
 			);
-			name = ScalingCarousel;
-			path = ScalingCarousel;
+			name = VideoAv1CodecEnc;
+			sourceTree = "<group>";
+		};
+		F8999AA0ED7335B126D3E7BC0AC00162 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AB0477FE8E9F88EF032BAC48C357C940 /* AgoraFaceDetectionExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F90B49AB81FF27E47DF4DD895E3A51C8 /* FTToastIndicator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = FTToastIndicator;
+			sourceTree = "<group>";
+		};
+		FADD22F22503DC187C2F7E0BADD746DF /* ContentInspect */ = {
+			isa = PBXGroup;
+			children = (
+				704727F5FBDC394418EBD4E1660C3201 /* Frameworks */,
+			);
+			name = ContentInspect;
+			sourceTree = "<group>";
+		};
+		FC912CCE648F73DF7F3F34A5DA89B87F /* FTNotificationIndicator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = FTNotificationIndicator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		0C216FC1CAF7B2FF85B577CAB6B9B42E /* Headers */ = {
+		595923CE8A8FE87C0CDB44F2717FA7D6 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0016E72454D6910AC407DA034FFA31D /* FTIndicator.h in Headers */,
-				EDCFF664B3C204A300AC398E4B79481B /* FTIndicator-umbrella.h in Headers */,
-				6304393A3D0BC2CE6AFA2057FCE9CCF3 /* FTNotificationIndicator.h in Headers */,
-				BC10B0AC01A227629FC23F330004BA44 /* FTProgressIndicator.h in Headers */,
-				BE4C3DCF476B0FB3686D36572F143D8F /* FTToastIndicator.h in Headers */,
+				ADA6CC7EE505342EA63EC876FF0EEDB0 /* DropDown-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6FC6AAD451ED76F56C0AEF3555E544D5 /* Headers */ = {
+		6A591E7C50C18F65B575A82C9CE0FC32 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87D2858CE2FBC581BBDCFA004284E930 /* Pods-DesynatAdmin-umbrella.h in Headers */,
+				34692DFC8B6C00379FA395C90AF0BF78 /* ScalingCarousel-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7927886923A4D082ECEF5F0F2754CF37 /* Headers */ = {
+		94B0A97F971A5A639D4837CD5C4B799F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01C14B76205EFB8A22BA213D2CA15378 /* RangeSeekSlider-umbrella.h in Headers */,
+				4D9B752F37D0EF99306F946EDA8A456B /* RangeSeekSlider-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		97CE91431E229797751455423C79CA4F /* Headers */ = {
+		9A12D5B48BA86F835887C823F84E720B /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0A8C46EEE733B55971B1CC5ED65C9AA /* DropDown-umbrella.h in Headers */,
+				578BE9CA4EC5BE2927ACA0271B178555 /* FTIndicator.h in Headers */,
+				AC6B571F0C8900F0D72B4A68BBC3DE64 /* FTIndicator-umbrella.h in Headers */,
+				6B928141B37AB6DA35D31CA62870897F /* FTNotificationIndicator.h in Headers */,
+				9D3911EFEC414CF24FD0EBFEACA5F1E2 /* FTProgressIndicator.h in Headers */,
+				8B7B169F3BAD8C4239134DE7876A5595 /* FTToastIndicator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BD20E9D697990F7CDEA7AD3961D6DE7B /* Headers */ = {
+		AB75B26B9F9A62C883A50284A5EDAB2F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B605D8E655E3DC6669C897E11C537470 /* SwiftyGif.h in Headers */,
-				23A1FE1D4CC66F3BBF1C1B69EF6837CD /* SwiftyGif-umbrella.h in Headers */,
+				A4659B725777EB2731C4F056A59BE83D /* SwiftyGif.h in Headers */,
+				21522E8BAAE97772E92F3943202B758C /* SwiftyGif-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C9231B4255EA6233939DCCDDA81695EA /* Headers */ = {
+		AC16D89249205620102ACC81C8B69120 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D31A4B5EB697C93EFA2FD74B0FCD2C9 /* ScalingCarousel-umbrella.h in Headers */,
+				6425D3D67337F091084503C361D6F23C /* Pods-DesynatAdmin-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,17 +1022,17 @@
 /* Begin PBXNativeTarget section */
 		15AEBAFA43912F898FC2E1A73025C946 /* SwiftyGif */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 36448E6DC2F9AE2DC8186259D8545CA8 /* Build configuration list for PBXNativeTarget "SwiftyGif" */;
+			buildConfigurationList = D588C60C506354EE3F6D13A8868045B9 /* Build configuration list for PBXNativeTarget "SwiftyGif" */;
 			buildPhases = (
-				BD20E9D697990F7CDEA7AD3961D6DE7B /* Headers */,
-				F56BA31DEFF1155F27B655C95F5CC12B /* Sources */,
-				7D15805B5A338CA0EE6C72A0D40A3C15 /* Frameworks */,
-				425A96B63DDB161D7861802AD47B52C0 /* Resources */,
+				AB75B26B9F9A62C883A50284A5EDAB2F /* Headers */,
+				06D3748D1CC9BB5E55188A796925DC96 /* Sources */,
+				B1AD4AE119250DE068268EFE0A0A8DA4 /* Frameworks */,
+				120267E61A5D2E18062A875146665F4E /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				8FA13D58F5C94940DC230D1525B4D65D /* PBXTargetDependency */,
+				8E9F16BF4DF1CA948713B264395A8948 /* PBXTargetDependency */,
 			);
 			name = SwiftyGif;
 			productName = SwiftyGif;
@@ -622,11 +1041,11 @@
 		};
 		176E48377247D5011E906CB1A39E71BA /* SwiftyGif-SwiftyGif */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E01BD0CFEBA6DCCC4A5D95117CC1A383 /* Build configuration list for PBXNativeTarget "SwiftyGif-SwiftyGif" */;
+			buildConfigurationList = AFC6B28F08966687322F63346FF5CA0D /* Build configuration list for PBXNativeTarget "SwiftyGif-SwiftyGif" */;
 			buildPhases = (
-				2D5673A248F45A3A582588DE1D3EEAD9 /* Sources */,
-				D06AB330FF7EC5E6275E31A285848E60 /* Frameworks */,
-				11045A4BF30C25AA25784A5AE89493C9 /* Resources */,
+				D8B849546DE3D1139E3953590CC3AEBC /* Sources */,
+				0234D9B31D5F350CB36A22360206A8B0 /* Frameworks */,
+				9A5F06F96182E5CEE7064B501ADB38D5 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -639,12 +1058,12 @@
 		};
 		4AFB864B337D1F74C1D79F4FC8F6C67F /* RangeSeekSlider */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1C568D8A321A5E172E8A7F0E9EA04B16 /* Build configuration list for PBXNativeTarget "RangeSeekSlider" */;
+			buildConfigurationList = 11B0313D2E3E5C2CBA45B7C8061A3AAB /* Build configuration list for PBXNativeTarget "RangeSeekSlider" */;
 			buildPhases = (
-				7927886923A4D082ECEF5F0F2754CF37 /* Headers */,
-				BDC3D0AA3ED5E6560FD9E5D9EBBFFF03 /* Sources */,
-				38E59D0F954749873C0E7BE0B690DADD /* Frameworks */,
-				768D17AA2F8C3EC734757606E1D0F89B /* Resources */,
+				94B0A97F971A5A639D4837CD5C4B799F /* Headers */,
+				68C7F36FADAE796430612893602A5452 /* Sources */,
+				87E318614AD86D7A2FE4ED5673ED9E00 /* Frameworks */,
+				E07526FA5E02E33A100E808EE699BB94 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -657,21 +1076,23 @@
 		};
 		533F1CC65B389379DC14437DA17142FA /* Pods-DesynatAdmin */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A661CCD4C59A29121232F13FE672423F /* Build configuration list for PBXNativeTarget "Pods-DesynatAdmin" */;
+			buildConfigurationList = 893CA9967B813D54921D6AF0E7FF173A /* Build configuration list for PBXNativeTarget "Pods-DesynatAdmin" */;
 			buildPhases = (
-				6FC6AAD451ED76F56C0AEF3555E544D5 /* Headers */,
-				20CBE85D14E04E1576C144D07A4FEF79 /* Sources */,
-				A0ECA485B6CF5A7F5C0D46089B37B432 /* Frameworks */,
-				3068674ABC8B96A579640A15239C39FC /* Resources */,
+				AC16D89249205620102ACC81C8B69120 /* Headers */,
+				30C10782A0BEC4BF7252B70A39E81066 /* Sources */,
+				C9145E0B21390631162CEDBDEFFBEC69 /* Frameworks */,
+				65A5F0C6915EE573B2CCE046B89718AB /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9A46EE41F507149B2640774A07F89754 /* PBXTargetDependency */,
-				31048ED2635F6A98E598B1038ACAB486 /* PBXTargetDependency */,
-				61BDD8D9DE0B0240C43252BFDB84FC51 /* PBXTargetDependency */,
-				DCC6DE332899740139457A89DEC9B385 /* PBXTargetDependency */,
-				3C114F30B2427F274E85E10B95C8B735 /* PBXTargetDependency */,
+				18C2E3229F5DC0CF7BE223898067A9EC /* PBXTargetDependency */,
+				0B0941DB879D3FA238FA2FC222B67643 /* PBXTargetDependency */,
+				4AF16EA4D5EB0DBEF8E32E7488EB3689 /* PBXTargetDependency */,
+				506F59974D55C69E333268240DCE5EC7 /* PBXTargetDependency */,
+				D924E8DF9AE9E212CEA5E3F678FC9B6F /* PBXTargetDependency */,
+				5E1E12902F53291427526EE3B4E25801 /* PBXTargetDependency */,
+				C7587B3F7575BC894DBF325E4006AF76 /* PBXTargetDependency */,
 			);
 			name = "Pods-DesynatAdmin";
 			productName = Pods_DesynatAdmin;
@@ -680,12 +1101,12 @@
 		};
 		7050FECE58DF970CF84F4FE403CA67D9 /* ScalingCarousel */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4EDB84A81E6827C22A77B81A3DCA0784 /* Build configuration list for PBXNativeTarget "ScalingCarousel" */;
+			buildConfigurationList = 00B6D60C2FEDE52E6E9A0C18814D89FB /* Build configuration list for PBXNativeTarget "ScalingCarousel" */;
 			buildPhases = (
-				C9231B4255EA6233939DCCDDA81695EA /* Headers */,
-				7BEF8472DE83648A83AB507AF963E942 /* Sources */,
-				3EDE34524C84C45A9870D5BE34E7B9C0 /* Frameworks */,
-				8B031D16AFB50A432A62BAB8ACCD1231 /* Resources */,
+				6A591E7C50C18F65B575A82C9CE0FC32 /* Headers */,
+				32216FF58136CB573841B4972CEF7078 /* Sources */,
+				2639DE3DA61C50D2B173920DA3F7BFAC /* Frameworks */,
+				A742DBA5ABAAC7954735E5D1E9BC31E1 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -698,12 +1119,12 @@
 		};
 		B957A4FD9E608C9E3554AB85D106B08D /* FTIndicator */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DB038B8E4320B2FF17F394C4051DB632 /* Build configuration list for PBXNativeTarget "FTIndicator" */;
+			buildConfigurationList = 9CD2941F6C52E979AAD620DDFFCCA659 /* Build configuration list for PBXNativeTarget "FTIndicator" */;
 			buildPhases = (
-				0C216FC1CAF7B2FF85B577CAB6B9B42E /* Headers */,
-				5710582A08E317EC983672A98EADDC88 /* Sources */,
-				4073D9FB9869A07B74FD88BD2AE6B3CF /* Frameworks */,
-				FFDA002D52C75EE503B59362933B8B81 /* Resources */,
+				9A12D5B48BA86F835887C823F84E720B /* Headers */,
+				7EADBB6D606142500833965BBEC15627 /* Sources */,
+				5B00406D76C51B3B46DDE7B2994DAB77 /* Frameworks */,
+				BB1563AC5FD0219EA22867ACCEBF6C78 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -716,12 +1137,12 @@
 		};
 		E9F9401E9C74C0C393164FD8D86D0068 /* DropDown */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 53052E6CBA1E65D6EF818199E617AC68 /* Build configuration list for PBXNativeTarget "DropDown" */;
+			buildConfigurationList = CDD137D28ED0FBA041AED9222FFE03BF /* Build configuration list for PBXNativeTarget "DropDown" */;
 			buildPhases = (
-				97CE91431E229797751455423C79CA4F /* Headers */,
-				48864C435B3DB37698CF568C638CF98F /* Sources */,
-				808BE4E171BD75B6477EC2B77490C2B1 /* Frameworks */,
-				EFDE5B37A62BFF2F9A9BD2023B960CD7 /* Resources */,
+				595923CE8A8FE87C0CDB44F2717FA7D6 /* Headers */,
+				3C3BB2DB7E15234590C51CA5A8ADE901 /* Sources */,
+				87598DB7386578BD58AAD02A9FF8CB35 /* Frameworks */,
+				704CF34E7B04222580977AEB840AC031 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -738,11 +1159,11 @@
 		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -750,10 +1171,14 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			minimizedProjectReferenceProxies = 0;
+			preferredProjectObjectVersion = 77;
 			productRefGroup = 3A41CFD2F84369E0E72C3A72660EDDEB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				2F7F7AAA1C81C1ECBEECAABE3C3609AC /* AgoraInfra_iOS */,
+				183C29DD6DE04D22CA29BAE61F5C530B /* AgoraRtcEngine_iOS */,
 				E9F9401E9C74C0C393164FD8D86D0068 /* DropDown */,
 				B957A4FD9E608C9E3554AB85D106B08D /* FTIndicator */,
 				533F1CC65B389379DC14437DA17142FA /* Pods-DesynatAdmin */,
@@ -766,258 +1191,239 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		11045A4BF30C25AA25784A5AE89493C9 /* Resources */ = {
+		120267E61A5D2E18062A875146665F4E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B82270962FACF165361E37871BA8A67E /* PrivacyInfo.xcprivacy in Resources */,
+				F41CA210E56B3043EDD75C851FB4061B /* SwiftyGif-SwiftyGif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3068674ABC8B96A579640A15239C39FC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		425A96B63DDB161D7861802AD47B52C0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FEFCB8DEF8B8AC851E3B03AE49DD50AD /* SwiftyGif-SwiftyGif in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		768D17AA2F8C3EC734757606E1D0F89B /* Resources */ = {
+		65A5F0C6915EE573B2CCE046B89718AB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8B031D16AFB50A432A62BAB8ACCD1231 /* Resources */ = {
+		704CF34E7B04222580977AEB840AC031 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				933093C5E43D7E9BC502A28B7D371924 /* DropDownCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A5F06F96182E5CEE7064B501ADB38D5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE4E4B274A652ED362AE57211ED07D63 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A742DBA5ABAAC7954735E5D1E9BC31E1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EFDE5B37A62BFF2F9A9BD2023B960CD7 /* Resources */ = {
+		BB1563AC5FD0219EA22867ACCEBF6C78 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68E1653C561E14BBEAC9CF4873570D58 /* DropDownCell.xib in Resources */,
+				48C7E29D6720C8D86A0390664C053A2A /* FTProgressIndicator.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FFDA002D52C75EE503B59362933B8B81 /* Resources */ = {
+		E07526FA5E02E33A100E808EE699BB94 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F877E39644C3D9D6F3FB9BE8A8631A2F /* FTProgressIndicator.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0D149E6301791F149B3D66666328CB01 /* [CP] Copy XCFrameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/AgoraInfra_iOS/AgoraInfra_iOS-xcframeworks-input-files.xcfilelist",
+			);
+			name = "[CP] Copy XCFrameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/AgoraInfra_iOS/AgoraInfra_iOS-xcframeworks-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/AgoraInfra_iOS/AgoraInfra_iOS-xcframeworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4ADCCF1EE25517194697A524ABEDD36C /* [CP] Copy XCFrameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/AgoraRtcEngine_iOS/AgoraRtcEngine_iOS-xcframeworks-input-files.xcfilelist",
+			);
+			name = "[CP] Copy XCFrameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/AgoraRtcEngine_iOS/AgoraRtcEngine_iOS-xcframeworks-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/AgoraRtcEngine_iOS/AgoraRtcEngine_iOS-xcframeworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		20CBE85D14E04E1576C144D07A4FEF79 /* Sources */ = {
+		06D3748D1CC9BB5E55188A796925DC96 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C643B434D66DB0022C3D00582D0E55A /* Pods-DesynatAdmin-dummy.m in Sources */,
+				44A92BD6A7CC8DE76494A085164FE472 /* NSImage+SwiftyGif.swift in Sources */,
+				C9B2111B50CAB17C92CC286E436CF3FF /* NSImageView+SwiftyGif.swift in Sources */,
+				9D45243582C808F6F88C78F4540CC4B9 /* ObjcAssociatedWeakObject.swift in Sources */,
+				999253842B8244633FEF4EADCF8B7B9A /* SwiftyGif-dummy.m in Sources */,
+				DE20025E65378775662C9C32D18A931F /* SwiftyGifManager.swift in Sources */,
+				6A72B739D52D83ECFF7E96AFF26AB577 /* UIImage+SwiftyGif.swift in Sources */,
+				5D043141CC2DA5DF01D3FF3BFFCBAA7F /* UIImageView+SwiftyGif.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2D5673A248F45A3A582588DE1D3EEAD9 /* Sources */ = {
+		30C10782A0BEC4BF7252B70A39E81066 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7122B270D5F75D05DBD2A6D2E11336E /* Pods-DesynatAdmin-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		48864C435B3DB37698CF568C638CF98F /* Sources */ = {
+		32216FF58136CB573841B4972CEF7078 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74012B832FAF67F8D62A2B27CDAFE8B5 /* DPDConstants.swift in Sources */,
-				89A72A55273CE358DC4E7600F785C37B /* DPDKeyboardListener.swift in Sources */,
-				B73E510E851686F8184E26986A470458 /* DPDUIView+Extension.swift in Sources */,
-				84459C4824533C9C4FD12AFC941F3CE1 /* DropDown.swift in Sources */,
-				515E22E4255B6073C1897BDDB091A2B8 /* DropDown+Appearance.swift in Sources */,
-				907338727C09F65DB75AA7AB9E10C3B4 /* DropDown-dummy.m in Sources */,
-				BDC10974A8641F01C5665C61EA37A153 /* DropDownCell.swift in Sources */,
+				D6B933482B38BFA1DF90C920B831765F /* ScalingCarousel-dummy.m in Sources */,
+				F57A87D6F7201F6365648CAA130BFD27 /* ScalingCarouselCell.swift in Sources */,
+				BEC562573E6C82A1FC8BCA87080A35E9 /* ScalingCarouselLayout.swift in Sources */,
+				3ABF241698D97BA6E0EAABAF693A3095 /* ScalingCarouselView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5710582A08E317EC983672A98EADDC88 /* Sources */ = {
+		3C3BB2DB7E15234590C51CA5A8ADE901 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B9310D40E6D08AA4E03B17D0D38E7A2 /* FTIndicator.m in Sources */,
-				606D29197B9CF63764C1068C35A0BD4E /* FTIndicator-dummy.m in Sources */,
-				B461410081972F40B0E3EDA01D755239 /* FTNotificationIndicator.m in Sources */,
-				671829DD0C79F0117735D4F719618094 /* FTProgressIndicator.m in Sources */,
-				E05BE4ED4EF9A081A7E0B6BDEDA6DBD5 /* FTToastIndicator.m in Sources */,
+				5D5B97FA9366714EAB37D1A8DB04A6E5 /* DPDConstants.swift in Sources */,
+				03A0E011F67713B5CABEB24D5C20E053 /* DPDKeyboardListener.swift in Sources */,
+				29F1D9FADE401C87C762D05F2B8BB286 /* DPDUIView+Extension.swift in Sources */,
+				0CBC261525FB8A693CF9FF73B1C99389 /* DropDown.swift in Sources */,
+				6A8CEAC3326863F09F8D79464BBA2C3D /* DropDown+Appearance.swift in Sources */,
+				9FDE02B4BDF6E28E0CDF0622EA9559BC /* DropDown-dummy.m in Sources */,
+				560CEEB2B821881CB864D5418AC664BC /* DropDownCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7BEF8472DE83648A83AB507AF963E942 /* Sources */ = {
+		68C7F36FADAE796430612893602A5452 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA92C0C93A09CC295F35C842188B3B74 /* ScalingCarousel-dummy.m in Sources */,
-				22BDD5C6208A8F22DA9BE721B3CF8CD3 /* ScalingCarouselCell.swift in Sources */,
-				B7C4E7F64A42CE08BE5D5D7FB23ADEF6 /* ScalingCarouselLayout.swift in Sources */,
-				D506EEA15970BFD77B164FC9D4113DAF /* ScalingCarouselView.swift in Sources */,
+				517CF65970B20A23E33AA7C44ECA7E20 /* RangeSeekSlider.swift in Sources */,
+				1FD13161FE1479A187B914B86C494D66 /* RangeSeekSlider-dummy.m in Sources */,
+				EA1FA712BBF299C3726ADD186CEC904C /* RangeSeekSliderDelegate.swift in Sources */,
+				8688D6D0F29874BF2CF2155F9CD21A87 /* TapticEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BDC3D0AA3ED5E6560FD9E5D9EBBFFF03 /* Sources */ = {
+		7EADBB6D606142500833965BBEC15627 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49E21F3D852BB38CFC48FA88555B20D9 /* RangeSeekSlider.swift in Sources */,
-				853C8E732FC9F53B04221DF97F180A94 /* RangeSeekSlider-dummy.m in Sources */,
-				F483C2520A10EF17FD63D4607F61FEB4 /* RangeSeekSliderDelegate.swift in Sources */,
-				DF965BDED7E88B3C59B16489773E6E2C /* TapticEngine.swift in Sources */,
+				10E1A46382FCE1B047A647076A21822A /* FTIndicator.m in Sources */,
+				58414F6E60D8084B2070FA1166AB2E1E /* FTIndicator-dummy.m in Sources */,
+				4FCA85271F651693A24D1F56D3325255 /* FTNotificationIndicator.m in Sources */,
+				D2C48346115244F1D54C5C2C3152F160 /* FTProgressIndicator.m in Sources */,
+				757417BA342829DDADC7E31C6A4C62F6 /* FTToastIndicator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F56BA31DEFF1155F27B655C95F5CC12B /* Sources */ = {
+		D8B849546DE3D1139E3953590CC3AEBC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3962B5C7042F2C35DC344CBFC785D66D /* NSImage+SwiftyGif.swift in Sources */,
-				470E2DC42ECFE1615048204EAF7CAEE0 /* NSImageView+SwiftyGif.swift in Sources */,
-				DE9F3CB1D40A4934EAD482D6FF7E3015 /* ObjcAssociatedWeakObject.swift in Sources */,
-				BE26C82C6E464F3836266E981E6387D4 /* SwiftyGif-dummy.m in Sources */,
-				1E2BE84449FBD41214B5F9688823E7C0 /* SwiftyGifManager.swift in Sources */,
-				960E80B5AC786C041120272AEFE44771 /* UIImage+SwiftyGif.swift in Sources */,
-				CFAB2051CB1BE0E083784B45116AEDFD /* UIImageView+SwiftyGif.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		31048ED2635F6A98E598B1038ACAB486 /* PBXTargetDependency */ = {
+		0B0941DB879D3FA238FA2FC222B67643 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = FTIndicator;
-			target = B957A4FD9E608C9E3554AB85D106B08D /* FTIndicator */;
-			targetProxy = CF25A4258DD96785F4A98E6D84D44E04 /* PBXContainerItemProxy */;
+			name = AgoraRtcEngine_iOS;
+			target = 183C29DD6DE04D22CA29BAE61F5C530B /* AgoraRtcEngine_iOS */;
+			targetProxy = 922004D23FDBDE33E01E942AF5BB312A /* PBXContainerItemProxy */;
 		};
-		3C114F30B2427F274E85E10B95C8B735 /* PBXTargetDependency */ = {
+		18C2E3229F5DC0CF7BE223898067A9EC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = SwiftyGif;
-			target = 15AEBAFA43912F898FC2E1A73025C946 /* SwiftyGif */;
-			targetProxy = 45A645652F25DFD07996048D095D070B /* PBXContainerItemProxy */;
+			name = AgoraInfra_iOS;
+			target = 2F7F7AAA1C81C1ECBEECAABE3C3609AC /* AgoraInfra_iOS */;
+			targetProxy = E5F8A40A0D41AC4BFBABE60A8310E16E /* PBXContainerItemProxy */;
 		};
-		61BDD8D9DE0B0240C43252BFDB84FC51 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = RangeSeekSlider;
-			target = 4AFB864B337D1F74C1D79F4FC8F6C67F /* RangeSeekSlider */;
-			targetProxy = 47F11C6F3B2A3259693078FE3B222329 /* PBXContainerItemProxy */;
-		};
-		8FA13D58F5C94940DC230D1525B4D65D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "SwiftyGif-SwiftyGif";
-			target = 176E48377247D5011E906CB1A39E71BA /* SwiftyGif-SwiftyGif */;
-			targetProxy = 2180096E7B6335203BEFB7F558654749 /* PBXContainerItemProxy */;
-		};
-		9A46EE41F507149B2640774A07F89754 /* PBXTargetDependency */ = {
+		4AF16EA4D5EB0DBEF8E32E7488EB3689 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = DropDown;
 			target = E9F9401E9C74C0C393164FD8D86D0068 /* DropDown */;
-			targetProxy = 6CA7FEC74314ECC13374D487D5ED4790 /* PBXContainerItemProxy */;
+			targetProxy = 7F503C5D504508BAC46E344DF244D8C1 /* PBXContainerItemProxy */;
 		};
-		DCC6DE332899740139457A89DEC9B385 /* PBXTargetDependency */ = {
+		506F59974D55C69E333268240DCE5EC7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FTIndicator;
+			target = B957A4FD9E608C9E3554AB85D106B08D /* FTIndicator */;
+			targetProxy = 965A2573B62BC6423B6B56D3A8FA9FE2 /* PBXContainerItemProxy */;
+		};
+		5E1E12902F53291427526EE3B4E25801 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ScalingCarousel;
 			target = 7050FECE58DF970CF84F4FE403CA67D9 /* ScalingCarousel */;
-			targetProxy = D25C43C0287FD164D8E695D2DB375C10 /* PBXContainerItemProxy */;
+			targetProxy = 57ECD2215509601BC3FAED37C3845CF5 /* PBXContainerItemProxy */;
+		};
+		8E9F16BF4DF1CA948713B264395A8948 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "SwiftyGif-SwiftyGif";
+			target = 176E48377247D5011E906CB1A39E71BA /* SwiftyGif-SwiftyGif */;
+			targetProxy = 5E9A91D700EFF312380CA3877558E972 /* PBXContainerItemProxy */;
+		};
+		C7587B3F7575BC894DBF325E4006AF76 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftyGif;
+			target = 15AEBAFA43912F898FC2E1A73025C946 /* SwiftyGif */;
+			targetProxy = 3AA113B7C7A23B784CF3E1B0FADA4785 /* PBXContainerItemProxy */;
+		};
+		D924E8DF9AE9E212CEA5E3F678FC9B6F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RangeSeekSlider;
+			target = 4AFB864B337D1F74C1D79F4FC8F6C67F /* RangeSeekSlider */;
+			targetProxy = 90DD46198539A67790F706566700B8E1 /* PBXContainerItemProxy */;
+		};
+		DA09A1C1C0026CAB39AD374C772D5E3E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AgoraInfra_iOS;
+			target = 2F7F7AAA1C81C1ECBEECAABE3C3609AC /* AgoraInfra_iOS */;
+			targetProxy = 2A162BF0C4B484F1237ED5E394D0148A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		083D6329062A868DED204FD984C26F5E /* Debug */ = {
+		1DFC42CC1774F5A1638BF206E6F84DA7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 880B420F5E1578E9D9B5A3AF8104C980 /* ScalingCarousel.debug.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGNING_ALLOWED = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/ScalingCarousel/ScalingCarousel-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/ScalingCarousel/ScalingCarousel-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/ScalingCarousel/ScalingCarousel.modulemap";
-				PRODUCT_MODULE_NAME = ScalingCarousel;
-				PRODUCT_NAME = ScalingCarousel;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		3DFB7BCC1493E1BADEB28690A5687C45 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B97B12EFB4400A1AD180C797BE7CD633 /* Pods-DesynatAdmin.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGNING_ALLOWED = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-DesynatAdmin/Pods-DesynatAdmin-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-DesynatAdmin/Pods-DesynatAdmin.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		3F8D63607F84E79FD19D242920CAAB31 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 277B110638D0EAD1F16A8E5FB8351FB0 /* FTIndicator.debug.xcconfig */;
+			baseConfigurationReference = 857B78B2A5B7484ECFBAB18AE9660A4A /* RangeSeekSlider.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGNING_ALLOWED = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1028,42 +1434,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/FTIndicator/FTIndicator-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/FTIndicator/FTIndicator-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/FTIndicator/FTIndicator.modulemap";
-				PRODUCT_MODULE_NAME = FTIndicator;
-				PRODUCT_NAME = FTIndicator;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		625B7C229E3A2588306D11750287C755 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A5E4CA23E027F981A9755E27B17AE9A8 /* RangeSeekSlider.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGNING_ALLOWED = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_PREFIX_HEADER = "Target Support Files/RangeSeekSlider/RangeSeekSlider-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "Target Support Files/RangeSeekSlider/RangeSeekSlider-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1078,6 +1452,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1086,46 +1461,9 @@
 			};
 			name = Release;
 		};
-		651E856B42CFAB90328AFF09CB0BE863 /* Release */ = {
+		2A4BC382E1C8BD6FCC22765FC430B24E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ED001214156B39EDD78A8CBD22EBF2F7 /* ScalingCarousel.release.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGNING_ALLOWED = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/ScalingCarousel/ScalingCarousel-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/ScalingCarousel/ScalingCarousel-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/ScalingCarousel/ScalingCarousel.modulemap";
-				PRODUCT_MODULE_NAME = ScalingCarousel;
-				PRODUCT_NAME = ScalingCarousel;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		6E37E55EF8565DEC913A1079F2B40A0B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A5B3F11200B405C05F439F66E6BAFD08 /* FTIndicator.release.xcconfig */;
+			baseConfigurationReference = 0132231C2927D85A9B6E02E0E9AF3BFA /* SwiftyGif.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGNING_ALLOWED = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1136,82 +1474,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/FTIndicator/FTIndicator-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/FTIndicator/FTIndicator-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/FTIndicator/FTIndicator.modulemap";
-				PRODUCT_MODULE_NAME = FTIndicator;
-				PRODUCT_NAME = FTIndicator;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		73E85C0A966B4A50081BBB9CF4092CF3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7478A1345859F0D198885EE675C9450C /* Pods-DesynatAdmin.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGNING_ALLOWED = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-DesynatAdmin/Pods-DesynatAdmin-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-DesynatAdmin/Pods-DesynatAdmin.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		82936170A0FEE135E3FFAE6126040375 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 03AB027071D6CD6492896D6518349EF5 /* SwiftyGif.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGNING_ALLOWED = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_PREFIX_HEADER = "Target Support Files/SwiftyGif/SwiftyGif-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "Target Support Files/SwiftyGif/SwiftyGif-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1226,16 +1492,18 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
-		90F4039893C9A3F101D1832EC4466534 /* Debug */ = {
+		3D2908C492963315750A80ABBFC26835 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2B601A740E9781E1BF183FD73DD5E5DD /* RangeSeekSlider.debug.xcconfig */;
+			baseConfigurationReference = 0CA98C735F11D7D8ECE82B538A41C4F5 /* RangeSeekSlider.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGNING_ALLOWED = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1246,7 +1514,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_PREFIX_HEADER = "Target Support Files/RangeSeekSlider/RangeSeekSlider-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "Target Support Files/RangeSeekSlider/RangeSeekSlider-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1261,6 +1532,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1268,9 +1540,228 @@
 			};
 			name = Debug;
 		};
-		96BE6B959885BC9AC88E4AD2CA2346A7 /* Debug */ = {
+		4AD0BA964B78A5B7AE7983E4FB6FB95D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 03AB027071D6CD6492896D6518349EF5 /* SwiftyGif.debug.xcconfig */;
+			baseConfigurationReference = 95C549E84ADE3F08972DEA82B4308389 /* DropDown.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/DropDown/DropDown-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/DropDown/DropDown-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/DropDown/DropDown.modulemap";
+				PRODUCT_MODULE_NAME = DropDown;
+				PRODUCT_NAME = DropDown;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		4CC58EB72A95204CB8D35B92C66923B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 76564AEEFD3D15E6D5175D880581A4CD /* FTIndicator.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/FTIndicator/FTIndicator-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/FTIndicator/FTIndicator-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/FTIndicator/FTIndicator.modulemap";
+				PRODUCT_MODULE_NAME = FTIndicator;
+				PRODUCT_NAME = FTIndicator;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		4FDF3181F1DC926BDED9BF16BCC6E845 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A7F0F61A3EFD04A1DAC1CC614D0E437 /* DropDown.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/DropDown/DropDown-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/DropDown/DropDown-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/DropDown/DropDown.modulemap";
+				PRODUCT_MODULE_NAME = DropDown;
+				PRODUCT_NAME = DropDown;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		545B9496B9E51A77A34A98211B32488E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 74CBE0B5EE0C2F63D860D5BBE02E1A86 /* AgoraRtcEngine_iOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGNING_ALLOWED = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		64DD6E84E0630E3A02CD05C15CA95D6F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7478A1345859F0D198885EE675C9450C /* Pods-DesynatAdmin.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGNING_ALLOWED = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				INFOPLIST_FILE = "Target Support Files/Pods-DesynatAdmin/Pods-DesynatAdmin-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-DesynatAdmin/Pods-DesynatAdmin.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		78D18A632E62741BF7CFF84101A6A220 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DBC6163598E24DFE39081531E593FD27 /* ScalingCarousel.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGNING_ALLOWED = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/ScalingCarousel/ScalingCarousel-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/ScalingCarousel/ScalingCarousel-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/ScalingCarousel/ScalingCarousel.modulemap";
+				PRODUCT_MODULE_NAME = ScalingCarousel;
+				PRODUCT_NAME = ScalingCarousel;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		79C56BD546C0C30D3337462E42461586 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42A1502B757C77B087E4C1DBBE696818 /* SwiftyGif.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGNING_ALLOWED = NO;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/SwiftyGif";
@@ -1285,7 +1776,7 @@
 			};
 			name = Debug;
 		};
-		A3CA710B05DD0D38FF0C61760F3B99FB /* Debug */ = {
+		8C9963745FD01B6B3EF95F9CE58D9F10 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1338,7 +1829,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1351,81 +1842,9 @@
 			};
 			name = Debug;
 		};
-		B98E9C6A530526336C530205660ABE3A /* Release */ = {
+		8F8FFFA69C7CD201D27D370011B3BED1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DCEC9E1A3FF783E9C8CD2B88428F2A15 /* SwiftyGif.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGNING_ALLOWED = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SwiftyGif/SwiftyGif-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SwiftyGif/SwiftyGif-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/SwiftyGif/SwiftyGif.modulemap";
-				PRODUCT_MODULE_NAME = SwiftyGif;
-				PRODUCT_NAME = SwiftyGif;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		C24518E891FAA59668669823639498EB /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 45D0A117DFDC32D72731724AA60F8B3F /* DropDown.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGNING_ALLOWED = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/DropDown/DropDown-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/DropDown/DropDown-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/DropDown/DropDown.modulemap";
-				PRODUCT_MODULE_NAME = DropDown;
-				PRODUCT_NAME = DropDown;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		D99DDEF1BEAA1966341F793D8E1C15CA /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DCEC9E1A3FF783E9C8CD2B88428F2A15 /* SwiftyGif.release.xcconfig */;
+			baseConfigurationReference = 0132231C2927D85A9B6E02E0E9AF3BFA /* SwiftyGif.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGNING_ALLOWED = NO;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/SwiftyGif";
@@ -1440,7 +1859,145 @@
 			};
 			name = Release;
 		};
-		E2364721D6682F8B9E80045232309A09 /* Release */ = {
+		9A7E447D79DE0372A2A476A16A3FBC1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D06122C102DC9F77060D1D515EEB77A5 /* FTIndicator.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/FTIndicator/FTIndicator-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/FTIndicator/FTIndicator-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/FTIndicator/FTIndicator.modulemap";
+				PRODUCT_MODULE_NAME = FTIndicator;
+				PRODUCT_NAME = FTIndicator;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A5B582993CCC8DCBECF607E4E183B4E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D076CA815F04A6E17714C44DA64AA11 /* ScalingCarousel.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGNING_ALLOWED = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/ScalingCarousel/ScalingCarousel-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/ScalingCarousel/ScalingCarousel-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/ScalingCarousel/ScalingCarousel.modulemap";
+				PRODUCT_MODULE_NAME = ScalingCarousel;
+				PRODUCT_NAME = ScalingCarousel;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A74234DAAD938BE3BF6B471A9EE45A38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5CBCD51F7598F0D3FBA5DDC7C6911494 /* AgoraInfra_iOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGNING_ALLOWED = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AD2E66A0D2181F46D55A07664D89FF16 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B97B12EFB4400A1AD180C797BE7CD633 /* Pods-DesynatAdmin.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGNING_ALLOWED = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				INFOPLIST_FILE = "Target Support Files/Pods-DesynatAdmin/Pods-DesynatAdmin-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-DesynatAdmin/Pods-DesynatAdmin.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B9F3557045385CA606F5AF548D58B58A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1490,7 +2047,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1502,9 +2059,46 @@
 			};
 			name = Release;
 		};
-		E2CDE7BD114C532701D2E79C5CB4CAA8 /* Debug */ = {
+		D0BA3F9EF558559FA1C19DCAC1C84649 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D80063FD01F535F157DC0E452DF88DD1 /* DropDown.debug.xcconfig */;
+			baseConfigurationReference = AB0B9715C7413ED4E93E31F6F018DC0B /* AgoraInfra_iOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGNING_ALLOWED = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D997E4194A96734A6FE02CB6A11F2EA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0EF22EE2D5DE87E1218392EDD84D84D /* AgoraRtcEngine_iOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGNING_ALLOWED = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F3A4D0E0A6B59FA8CF27B4FD7E57CF84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42A1502B757C77B087E4C1DBBE696818 /* SwiftyGif.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGNING_ALLOWED = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1515,8 +2109,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/DropDown/DropDown-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/DropDown/DropDown-Info.plist";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftyGif/SwiftyGif-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/SwiftyGif/SwiftyGif-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1524,12 +2121,13 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MODULEMAP_FILE = "Target Support Files/DropDown/DropDown.modulemap";
-				PRODUCT_MODULE_NAME = DropDown;
-				PRODUCT_NAME = DropDown;
+				MODULEMAP_FILE = "Target Support Files/SwiftyGif/SwiftyGif.modulemap";
+				PRODUCT_MODULE_NAME = SwiftyGif;
+				PRODUCT_NAME = SwiftyGif;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1540,20 +2138,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1C568D8A321A5E172E8A7F0E9EA04B16 /* Build configuration list for PBXNativeTarget "RangeSeekSlider" */ = {
+		00B6D60C2FEDE52E6E9A0C18814D89FB /* Build configuration list for PBXNativeTarget "ScalingCarousel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				90F4039893C9A3F101D1832EC4466534 /* Debug */,
-				625B7C229E3A2588306D11750287C755 /* Release */,
+				A5B582993CCC8DCBECF607E4E183B4E2 /* Debug */,
+				78D18A632E62741BF7CFF84101A6A220 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		36448E6DC2F9AE2DC8186259D8545CA8 /* Build configuration list for PBXNativeTarget "SwiftyGif" */ = {
+		11B0313D2E3E5C2CBA45B7C8061A3AAB /* Build configuration list for PBXNativeTarget "RangeSeekSlider" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				82936170A0FEE135E3FFAE6126040375 /* Debug */,
-				B98E9C6A530526336C530205660ABE3A /* Release */,
+				3D2908C492963315750A80ABBFC26835 /* Debug */,
+				1DFC42CC1774F5A1638BF206E6F84DA7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1561,53 +2159,71 @@
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A3CA710B05DD0D38FF0C61760F3B99FB /* Debug */,
-				E2364721D6682F8B9E80045232309A09 /* Release */,
+				8C9963745FD01B6B3EF95F9CE58D9F10 /* Debug */,
+				B9F3557045385CA606F5AF548D58B58A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4EDB84A81E6827C22A77B81A3DCA0784 /* Build configuration list for PBXNativeTarget "ScalingCarousel" */ = {
+		6AC986F8353D7D8FD502D9D6E938C5AA /* Build configuration list for PBXAggregateTarget "AgoraInfra_iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				083D6329062A868DED204FD984C26F5E /* Debug */,
-				651E856B42CFAB90328AFF09CB0BE863 /* Release */,
+				D0BA3F9EF558559FA1C19DCAC1C84649 /* Debug */,
+				A74234DAAD938BE3BF6B471A9EE45A38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		53052E6CBA1E65D6EF818199E617AC68 /* Build configuration list for PBXNativeTarget "DropDown" */ = {
+		7D7BE1C7BA0A706DACAE76329822BA50 /* Build configuration list for PBXAggregateTarget "AgoraRtcEngine_iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E2CDE7BD114C532701D2E79C5CB4CAA8 /* Debug */,
-				C24518E891FAA59668669823639498EB /* Release */,
+				545B9496B9E51A77A34A98211B32488E /* Debug */,
+				D997E4194A96734A6FE02CB6A11F2EA5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A661CCD4C59A29121232F13FE672423F /* Build configuration list for PBXNativeTarget "Pods-DesynatAdmin" */ = {
+		893CA9967B813D54921D6AF0E7FF173A /* Build configuration list for PBXNativeTarget "Pods-DesynatAdmin" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3DFB7BCC1493E1BADEB28690A5687C45 /* Debug */,
-				73E85C0A966B4A50081BBB9CF4092CF3 /* Release */,
+				AD2E66A0D2181F46D55A07664D89FF16 /* Debug */,
+				64DD6E84E0630E3A02CD05C15CA95D6F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DB038B8E4320B2FF17F394C4051DB632 /* Build configuration list for PBXNativeTarget "FTIndicator" */ = {
+		9CD2941F6C52E979AAD620DDFFCCA659 /* Build configuration list for PBXNativeTarget "FTIndicator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3F8D63607F84E79FD19D242920CAAB31 /* Debug */,
-				6E37E55EF8565DEC913A1079F2B40A0B /* Release */,
+				9A7E447D79DE0372A2A476A16A3FBC1E /* Debug */,
+				4CC58EB72A95204CB8D35B92C66923B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E01BD0CFEBA6DCCC4A5D95117CC1A383 /* Build configuration list for PBXNativeTarget "SwiftyGif-SwiftyGif" */ = {
+		AFC6B28F08966687322F63346FF5CA0D /* Build configuration list for PBXNativeTarget "SwiftyGif-SwiftyGif" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				96BE6B959885BC9AC88E4AD2CA2346A7 /* Debug */,
-				D99DDEF1BEAA1966341F793D8E1C15CA /* Release */,
+				79C56BD546C0C30D3337462E42461586 /* Debug */,
+				8F8FFFA69C7CD201D27D370011B3BED1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CDD137D28ED0FBA041AED9222FFE03BF /* Build configuration list for PBXNativeTarget "DropDown" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4AD0BA964B78A5B7AE7983E4FB6FB95D /* Debug */,
+				4FDF3181F1DC926BDED9BF16BCC6E845 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D588C60C506354EE3F6D13A8868045B9 /* Build configuration list for PBXNativeTarget "SwiftyGif" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3A4D0E0A6B59FA8CF27B4FD7E57CF84 /* Debug */,
+				2A4BC382E1C8BD6FCC22765FC430B24E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

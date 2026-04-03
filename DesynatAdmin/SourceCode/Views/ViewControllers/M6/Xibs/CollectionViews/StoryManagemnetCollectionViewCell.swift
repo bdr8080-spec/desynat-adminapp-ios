@@ -89,8 +89,6 @@ class StoryManagemnetCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    
-    
     // MARK: - Load Image from URL
     private func loadImage(from url: URL) {
         URLSession.shared.dataTask(with: url) { [weak self] data, _, error in

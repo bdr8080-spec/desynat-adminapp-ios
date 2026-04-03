@@ -220,6 +220,8 @@ enum NetworkEndPoint: String {
     case deleteFAQ                       = "api/admin/delete_faq"
     case createUpdateContactUs           = "api/admin/create_update_contact_us"
     case countOfNotifcation              = "api/admin/get_admin_notifications_count"
+    case adminAllLiveRequest             = "api/admin/admin-all-live-request"
+    case generateAgoraToken             = "api/agora/token"
     
     
     func withBaseURL() -> String {

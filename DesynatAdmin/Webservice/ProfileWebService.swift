@@ -20,6 +20,39 @@ extension WebService {
         }
     }
     
+    func generateLiveStramingTokenService(param: [String: Any], completion:@escaping (_ user: AgroaTokenDataModel)-> Void) {
+        CommonUtils.showHud(show: true)
+        NetworkManager.shared.request(withAPI: .endpoint(.generateAgoraToken), requestMethod: .post, requestParams: param, requestModel: AgroaTokenDataModel.self) { result, code in
+            
+            CommonUtils.showHud(show: false)
+            self.evaluateWebServiceResponse(response: result) { response, message,error in
+                guard let user = response else {
+                    if let error {
+                        UIApplication.shared.topViewController()?.showAlert(msg: error)
+                    }
+                    return
+                }
+                completion(user)
+            }
+        }
+    }
+    
+    func adminAllLiveService(completion: @escaping([ShowLiveEvenetsDataModel]) -> Void) {
+        CommonUtils.showHud(show: true)
+        NetworkManager.shared.request(withAPI: .endpoint(.adminAllLiveRequest), requestMethod: .get, requestModel: [ShowLiveEvenetsDataModel].self) { result, code in
+            CommonUtils.showHud(show: false)
+            self.evaluateWebServiceResponse(response: result) { response, message, error in
+                guard let response = response else {
+                    if let error {
+                        UIApplication.shared.topViewController()?.showAlert(msg: error)
+                    }
+                    return
+                }
+                completion(response)
+            }
+        }
+    }
+    
     func getCountOfNotificationForService(completion:@escaping (_ user: Int)-> Void) {
         CommonUtils.showHud(show: true)
         NetworkManager.shared.request(withAPI: .endpoint(.countOfNotifcation), requestMethod: .get,requestModel: Int.self) { result, code in

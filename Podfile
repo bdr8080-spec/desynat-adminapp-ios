@@ -19,6 +19,7 @@ target 'DesynatAdmin' do
 #    pod 'JXPageControl'
     pod 'ScalingCarousel'
     pod 'RangeSeekSlider'
+    pod 'AgoraRtcEngine_iOS'
   end
 
 

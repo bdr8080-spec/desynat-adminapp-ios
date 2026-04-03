@@ -10,7 +10,7 @@ import UIKit
 class ShowViewController: UIViewController {
     
     // MARK: - IBOutlet's
-    
+    @IBOutlet weak var noDataFoundLabel: UILabel!
     @IBOutlet weak var countryLabel: CustomLabelFont!
     @IBOutlet weak var listTableView: UITableView! {
         didSet {
@@ -39,6 +39,7 @@ class ShowViewController: UIViewController {
         kSharedAppDelegate.dropDown(dataSource: countryNames, anchorView: sender) { index, item in
             let selectedCountry = self.viewModel.countryListData[index]
             self.countryLabel.text = selectedCountry.name
+            self.viewModel.adminAllLiveRequest(countryId: selectedCountry.id ?? 0)
         }
     }
     
@@ -48,17 +49,16 @@ class ShowViewController: UIViewController {
 
 extension ShowViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return viewModel.liveEventListData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventsTableViewCell", for: indexPath) as! EventsTableViewCell
+        cell.configData(data: viewModel.liveEventListData[indexPath.row])
         cell.onWatchLiveSelect = { [weak self] in
-            let nextVC = SellerLiveViewController.instantiate(fromAppStoryboard: .Home)
-            self?.navigationController?.pushViewController(nextVC, animated: true)
+            self?.viewModel.generateLiveStramingTokenRequest(id: self?.viewModel.liveEventListData[indexPath.row].id ?? 0)
         }
         return cell
     }
-    
-    
+
 }
