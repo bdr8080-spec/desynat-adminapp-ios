@@ -27,7 +27,7 @@ class ShowViewModel {
     
     func adminAllLiveRequest(countryId: Int) {
         let param: [String:Any] = ["country_id": countryId]
-        WebService.shared.adminAllLiveService(){ [weak self] response in
+        WebService.shared.adminAllLiveService(param: param){ [weak self] response in
             guard let self = self else { return }
             liveEventListData = response
             hostVC?.listTableView.reloadData()
@@ -43,6 +43,8 @@ class ShowViewModel {
             nextVC.isHost = false
             nextVC.token = response.token
             nextVC.uid = response.uid ?? UInt.random(in: 1...9999)
+            nextVC.appID = response.appID ?? ""
+            nextVC.channelName = response.channel ?? ""
             nextVC.modalPresentationStyle = .fullScreen
             self.hostVC?.navigationController?.present(nextVC, animated: false)
         }

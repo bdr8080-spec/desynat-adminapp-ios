@@ -99,11 +99,15 @@ class SubscriptionDetailViewController: UIViewController {
                     let storyStatus = data.isStoryOpen ? "Open" : "Close"
                     self.stackFeature.addArrangedSubview(self.getView("Stories: \(storyStatus)".makeAttributedString(attribute: [.font:UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12,weight: .semibold)], for: "\(storyStatus)")))
                 }
+                
                 if (data.noOfEmployee > 0) {
                     self.stackFeature.addArrangedSubview(self.getView("\(data.noOfEmployee) Store Employees ".makeAttributedString(attribute: [.font:UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12,weight: .semibold)], for: "")))
                 }
                 if (data.comission > 0) {
                     self.stackFeature.addArrangedSubview(self.getView("Commission: \(data.comission.clean)%".makeAttributedString(attribute: [.font:UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12,weight: .semibold)], for: "\(data.comission.clean)")))
+                }
+                if (data.isFreeMonths) {
+                    self.stackFeature.addArrangedSubview(self.getView("Number of Free Month: \(data.noOfFreeMonths)".makeAttributedString(attribute: [.font:UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12,weight: .semibold)], for: "\(data.noOfFreeMonths)")))
                 }
                 self.refreshStatus()
             }

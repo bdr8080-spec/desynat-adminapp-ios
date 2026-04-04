@@ -29,7 +29,7 @@ struct APIKeys {
     static let duration_type = "duration_type"
     static let newduration = "new_duration"
     static let newduration_type = "new_duration_type"
-
+    
     static let no_of_videos = "no_of_videos"
     static let no_of_products = "no_of_products"
     static let no_of_highlights = "no_of_highlights"
@@ -37,7 +37,7 @@ struct APIKeys {
     static let stories = "stories"
     static let price = "price"
     static let newprice = "discounted_price"
-
+    
     static let commission = "commission"
     static let commissionPercentage = "commission_percentage"
     static let plan_id = "plan_id"
@@ -51,8 +51,10 @@ struct APIKeys {
     static let bannerId            = "banner_id"
     static let bannerType            = "type"
     static let countryName            = "country_name"
+    static let isFreeMonths           = "is_free_months"
+    static let noOfFreeMonths       = "no_of_free_months"
+    static let productType       = "product_type"
     
-   
     static let discountedPrice = "discounted_price"
-//    static let discountedPrice = "discounted_price"
+    //    static let discountedPrice = "discounted_price"
 }

@@ -64,16 +64,24 @@ enum AlertConstant: String {
     case enterPlanPrice =  "Please enter plan price"
     case enterComission =  "Please enter comission"
     case comissionShouldLess100 =  "Comission should be equal or less than 100"
+    case noOfFreeMonthsShouldLess12 =  "No of free months should be equal or less than 12"
+    case enterFreeMonths = " Please enter free months"
     case  selectLocation = "Select Location"
     case  provideZoneBoundary = "Please provide zone boundary."
     case  enterEnglishName = "Please Enter Zone Name in english"
     case  enterArabicName = "Please Enter Zone Name in arabic"
     
-    
+    case durationShouldLessThan12 = "Duration should be less than 12 months"
+
+    case durationShouldBeOneYear = "For yearly plan, duration must be 1 year"
     case EnterReasonEnglish          = "Please enter reason in english"
     case EnterReasonArabic           = "Please enter reason in arabic"
     case enterAmount                 = "Please enter amount"
-    
+    case enterNewDuration = "Please enter new duration"
+
+    case selectNewDurationType = "Please select new duration type"
+
+    case enterNewPrice = "Please enter new price"
     
     case uploadProfilePicture = "Please upload profile image"
     case enterFullNameEnglish = "Please enter full name in english"

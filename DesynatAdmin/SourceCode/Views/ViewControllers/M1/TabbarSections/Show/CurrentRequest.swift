@@ -7,8 +7,14 @@
 
 // MARK: - AgroaTokenDataModel
 struct AgroaTokenDataModel: Codable {
-    let token: String?
+    let token, appID, channel: String?
     let uid: UInt?
+ 
+    enum CodingKeys: String, CodingKey {
+        case token
+        case appID = "appId"
+        case channel, uid
+    }
 }
 
 struct ShowLiveEvenetsDataModel: Codable {

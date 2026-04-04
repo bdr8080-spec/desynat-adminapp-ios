@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 import UIKit
 extension WebService {
+    
     func addPlan(paramter:[String:Any],completion: @escaping(SubscriptionPlanDataModel) -> Void) {
         CommonUtils.showHud(show: true)
         NetworkManager.shared.request(

@@ -10,6 +10,11 @@ import UIKit
 class AddPlanViewController: UIViewController {
     
     // MARK: - IBOutlet's
+    
+    @IBOutlet weak var noOfProductView: UIView!
+    @IBOutlet weak var freeMonthYesButton: CustomButton!
+    @IBOutlet weak var freeMonthNoButton: CustomButton!
+    
     @IBOutlet weak var viewCountryContainer: CustomView!
     @IBOutlet weak var lblSelectedCountry: CustomLabelFont!
     @IBOutlet weak var lnlFlag: CustomLabelFont!
@@ -85,6 +90,15 @@ class AddPlanViewController: UIViewController {
     @IBOutlet weak var btnYes: CustomButton!
     @IBOutlet weak var btnNo: CustomButton!
     @IBOutlet weak var viewComission: UIView!
+    @IBOutlet weak var btnDefined: CustomButton!
+    @IBOutlet weak var btnUnlimited: CustomButton!
+    
+    @IBOutlet weak var enterNumberOfMonths: BindableTextField!{
+        didSet {
+            enterNumberOfMonths.bind(callback: {self.viewModel.setFreeMonths($0)})
+        }
+    }
+    @IBOutlet weak var viewFreeMonths: CustomView!
     
     
     // MARK: - Property Decalaration
@@ -127,9 +141,29 @@ class AddPlanViewController: UIViewController {
         }
         self.viewModel.isComission(sender.tag == 0)
     }
+    @IBAction func handleProductTypeOption(_ sender: UIButton) {
+        self.btnDefined.setImage(sender.tag == 0 ? .radioSelected : .radioUnselected, for: .normal)
+        self.btnUnlimited.setImage(sender.tag == 1 ? .radioSelected : .radioUnselected, for: .normal)
+        self.noOfProductView.isHidden = sender.tag == 1
+        if (sender.tag == 1) {
+            self.txtFielNoProducts.text = ""
+        }
+        self.viewModel.productType(sender.tag == 0) // isko chnage karna hai
+        
+    }
+    @IBAction func handleFreeMonthsOption(_ sender: UIButton) {
+        self.freeMonthYesButton.setImage(sender.tag == 0 ? .radioSelected : .radioUnselected, for: .normal)
+        self.freeMonthNoButton.setImage(sender.tag == 1 ? .radioSelected : .radioUnselected, for: .normal)
+        self.viewFreeMonths.isHidden = sender.tag == 1
+        if (sender.tag == 1) {
+            self.enterNumberOfMonths.text = ""
+        }
+        self.viewModel.setIsFreeMonths(sender.tag == 0)
+        
+    }
     
     @IBAction func handleAdd(_ sender: Any) {
-        let validationMessage = self.viewModel.subscriptionInfo.validateData()
+        let validationMessage = self.viewModel.subscriptionInfo.validateData(isForEdit: viewModel.isForEdit)
         if (validationMessage != .none) {
             self.showAlert(msg: validationMessage.value())
             return
@@ -217,6 +251,7 @@ class AddPlanViewController: UIViewController {
             self.txtFieldPrice.text = String.getString(self.viewModel.subscriptionInfo.price)
             self.newPriceTextField.text = String.getString(self.viewModel.subscriptionInfo.NewPrice)
             self.txtFieldComission.text = String.getString(self.viewModel.subscriptionInfo.comission)
+            self.enterNumberOfMonths.text = String.getString(self.viewModel.subscriptionInfo.noOfFreeMonths)
         } else {
             self.priceLabel.text = "Price"
             self.durationLabel.text = "Duration"
@@ -225,7 +260,12 @@ class AddPlanViewController: UIViewController {
         }
         self.selectComission(self.viewModel.subscriptionInfo.isComission)
         self.viewComission.isHidden = !self.viewModel.subscriptionInfo.isComission
+        self.selectFreeMonths(self.viewModel.subscriptionInfo.isFreeMonths)
+        self.selectProductType(self.viewModel.subscriptionInfo.productType)
+        self.noOfProductView.isHidden = !self.viewModel.subscriptionInfo.productType
+        self.viewFreeMonths.isHidden = !self.viewModel.subscriptionInfo.isFreeMonths
         self.selectStoryOpen(self.viewModel.subscriptionInfo.isStoryOpen)
+
     }
     func selectStoryOpen(_ bool:Bool) {
         self.btnOpen.setImage(bool ? .radioSelected : .radioUnselected, for: .normal)
@@ -234,6 +274,14 @@ class AddPlanViewController: UIViewController {
     func selectComission(_ bool:Bool) {
         self.btnYes.setImage(bool ? .radioSelected : .radioUnselected, for: .normal)
         self.btnNo.setImage(!bool ? .radioSelected : .radioUnselected, for: .normal)
+    }
+    func selectFreeMonths(_ bool:Bool) {
+        self.freeMonthYesButton.setImage(bool ? .radioSelected : .radioUnselected, for: .normal)
+        self.freeMonthNoButton.setImage(!bool ? .radioSelected : .radioUnselected, for: .normal)
+    }
+    func selectProductType(_ bool:Bool) {
+        self.btnDefined.setImage(bool ? .radioSelected : .radioUnselected, for: .normal)
+        self.btnUnlimited.setImage(!bool ? .radioSelected : .radioUnselected, for: .normal)
     }
 }
 

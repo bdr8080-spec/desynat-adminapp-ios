@@ -37,9 +37,9 @@ extension WebService {
         }
     }
     
-    func adminAllLiveService(completion: @escaping([ShowLiveEvenetsDataModel]) -> Void) {
+    func adminAllLiveService(param: [String:Any], completion: @escaping([ShowLiveEvenetsDataModel]) -> Void) {
         CommonUtils.showHud(show: true)
-        NetworkManager.shared.request(withAPI: .endpoint(.adminAllLiveRequest), requestMethod: .get, requestModel: [ShowLiveEvenetsDataModel].self) { result, code in
+        NetworkManager.shared.request(withAPI: .endpoint(.adminAllLiveRequest), requestMethod: .get, requestParams: param, requestModel: [ShowLiveEvenetsDataModel].self) { result, code in
             CommonUtils.showHud(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {

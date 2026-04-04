@@ -7,6 +7,7 @@
 
 import Foundation
 struct PlanInfo {
+    
     var id:String = UUID().uuidString
     var country:GetCountryDataModel?
     var planNameEnglish:String = ""
@@ -16,16 +17,20 @@ struct PlanInfo {
     var noOfVideos:Int = 0
     var noOfProducts:Int = 0
     var noOfHighlights:Int = 0
+    var stories:Int = 0
+    
     var noOfEmployee:Int = 0
     var isStoryOpen:Bool = false
     var isComission:Bool = false
-    var price:Double = 0.0
+    var price:Double = -0.1
     var comission:Double = 0.0
     var isActive:Bool = false
-    var NewPrice:Double = 0.0
+    var NewPrice:Double = -0.1
     var Newduration:Double = 0.0
     var NewdurationType:DurationType = .year
-    
+    var isFreeMonths: Bool = false
+    var noOfFreeMonths: Int = 0
+    var productType: Bool = false
     
     static func makeInfo(_ data:SubscriptionPlanDataModel) -> Self {
         PlanInfo(
@@ -46,11 +51,14 @@ struct PlanInfo {
             isActive:   Int.getInt(data.status) == 1,
             NewPrice: Double.getDouble(data.discountedPrice),
             Newduration: Double.getDouble(data.newduration),
-            NewdurationType: DurationType(rawValue: Int.getInt(data.newdurationType)) ?? .none
+            NewdurationType: DurationType(rawValue: Int.getInt(data.newdurationType)) ?? .none,
+            isFreeMonths: Int.getInt(data.isFreeMonths) == 1,
+            noOfFreeMonths: Int.getInt(data.noOfFreeMonths),
+            productType: Int.getInt(data.productType) == 0
 
         )
     }
-    func validateData() -> AlertConstant{
+    func validateData(isForEdit: Bool = false) -> AlertConstant{
         if country == nil {
             return .selectCountry
         } else if planNameEnglish.trimmingCharacters(in: .whitespaces).isEmpty {
@@ -59,66 +67,147 @@ struct PlanInfo {
             return .enterArabicPlanName
         } else if duration <= 0.0 {
             return .enterPlanDuration
-        } else if noOfVideos <= 0 {
+        }// ✅ NEW VALIDATION START
+        if durationType == .month {
+            if duration >= 12 {
+                return .durationShouldLessThan12 // create this alert
+            }
+        } else if durationType == .year {
+            if duration != 1 {
+                return .durationShouldBeOneYear // create this alert
+            }
+        }
+        
+        if isForEdit {
+            if Newduration <= 0.0 {
+                        return .enterNewDuration
+                    }
+                    
+                    if NewdurationType == .none {
+                        return .selectNewDurationType
+                    }
+                    
+            if NewPrice == -0.1 {
+                        return .enterNewPrice
+                    }
+                    
+                    // same rule apply for new duration
+                    if NewdurationType == .month {
+                        if Newduration >= 12 {
+                            return .durationShouldLessThan12
+                        }
+                    } else if NewdurationType == .year {
+                        if Newduration != 1 {
+                            return .durationShouldBeOneYear
+                        }
+                    }
+        }
+        
+        else if noOfVideos <= 0 {
             return .enterNoOfVideo
-        } else if noOfProducts <= 0 {
-            return .enterNoOfProduct
+        } else if productType {
+            if noOfProducts <= 0 {
+                return .enterNoOfProduct
+            }
         } else if noOfHighlights <= 0 {
             return .enterNoOfHighlights
         } else if noOfEmployee <= 0 {
             return .enterNoOfEmployee
-        } else if price <= 0.0 {
+            //        } else if price <= 0.0 {
+            //            return .enterPlanPrice
+        } else if price == -0.1 {
             return .enterPlanPrice
         } else if isComission && comission <= 0.0 {
             return .enterComission
         } else if comission > 100 {
             return .comissionShouldLess100
+        } else if isComission && comission <= 0 {
+            return .enterComission
+        } else if isComission && comission > 100 {
+            return .comissionShouldLess100
+        } else if isFreeMonths {
+            if noOfFreeMonths <= 0 {
+                return .enterFreeMonths
+            }
+            
+            if noOfFreeMonths >= 12 {
+                return .noOfFreeMonthsShouldLess12
+            }
         }
         return .none
     }
     
-    var paratmer:[String:Any] {
-        [
-            APIKeys.country_id:Int.getInt(self.country?.id),
-            APIKeys.plan_name_english:self.planNameEnglish,
-            APIKeys.plan_name_arabic:self.planNameArabic,
-            APIKeys.duration:self.duration,
-            APIKeys.duration_type:self.durationType.rawValue,
-            APIKeys.no_of_videos:self.noOfVideos,
-            APIKeys.no_of_products:self.noOfProducts,
-            APIKeys.no_of_highlights:self.noOfHighlights,
-            APIKeys.no_of_employee:self.noOfEmployee,
-            APIKeys.stories:self.isStoryOpen ? 1 : 0,
-            APIKeys.price:self.price,
-            APIKeys.commission:self.isComission ? 1 :0,
-            APIKeys.commissionPercentage:self.comission,
-
+    var paratmer: [String: Any] {
+        
+        var params: [String: Any] = [
+            APIKeys.country_id: Int.getInt(self.country?.id),
+            APIKeys.plan_name_english: self.planNameEnglish,
+            APIKeys.plan_name_arabic: self.planNameArabic,
+            APIKeys.duration: self.duration,
+            APIKeys.duration_type: self.durationType.rawValue,
+            APIKeys.no_of_videos: self.noOfVideos,
+            APIKeys.no_of_highlights: self.noOfHighlights,
+            APIKeys.no_of_employee: self.noOfEmployee,
+            APIKeys.stories: self.isStoryOpen ? 1 : 0,
+            APIKeys.price: self.price,
+            APIKeys.commission: self.isComission ? 1 : 0,
+            APIKeys.commissionPercentage: self.isComission ? self.comission : 0
         ]
-    }
-    
-    var editParatmer:[String:Any] {
-        [
-            APIKeys.country_id:Int.getInt(self.country?.id),
-            APIKeys.plan_name_english:self.planNameEnglish,
-            APIKeys.plan_name_arabic:self.planNameArabic,
-            APIKeys.duration:self.duration,
-            APIKeys.duration_type:self.durationType.rawValue,
-            APIKeys.no_of_videos:self.noOfVideos,
-            APIKeys.no_of_products:self.noOfProducts,
-            APIKeys.no_of_highlights:self.noOfHighlights,
-            APIKeys.no_of_employee:self.noOfEmployee,
-            APIKeys.stories:self.isStoryOpen ? 1 : 0,
-            APIKeys.price:self.price,
-            APIKeys.commission:self.isComission ? 1 :0,
-            APIKeys.commissionPercentage:self.comission,
-            APIKeys.newprice:self.NewPrice,
-            APIKeys.newduration:self.Newduration,
-            APIKeys.newduration_type:self.NewdurationType.rawValue
-
-        ]
+        
+        // ✅ Product Type
+        params[APIKeys.productType] = self.productType ? 0 : 1
+        
+        if self.productType {
+            params[APIKeys.no_of_products] = self.noOfProducts
+        }
+        
+        // ✅ Free Months
+        params[APIKeys.isFreeMonths] = self.isFreeMonths ? 1 : 0
+        
+        if self.isFreeMonths {
+            params[APIKeys.noOfFreeMonths] = self.noOfFreeMonths
+        }
+        
+        return params
     }
     
     
+    var editParatmer: [String: Any] {
+        
+        var params: [String: Any] = [
+            APIKeys.country_id: Int.getInt(self.country?.id),
+            APIKeys.plan_name_english: self.planNameEnglish,
+            APIKeys.plan_name_arabic: self.planNameArabic,
+            APIKeys.duration: self.duration,
+            APIKeys.duration_type: self.durationType.rawValue,
+            APIKeys.no_of_videos: self.noOfVideos,
+            APIKeys.no_of_highlights: self.noOfHighlights,
+            APIKeys.no_of_employee: self.noOfEmployee,
+            APIKeys.stories: self.isStoryOpen ? 1 : 0,
+            APIKeys.price: self.price,
+            APIKeys.commission: self.isComission ? 1 : 0,
+            APIKeys.commissionPercentage: self.isComission ? self.comission : 0,
+            APIKeys.newprice: self.NewPrice,
+            APIKeys.newduration: self.Newduration,
+            APIKeys.newduration_type: self.NewdurationType.rawValue
+        ]
+        
+        // ✅ Product Type
+        params[APIKeys.productType] = self.productType ? 0 : 1
+        
+        if self.productType {
+            params[APIKeys.no_of_products] = self.noOfProducts
+        }
+        
+        // ✅ Free Months
+        params[APIKeys.isFreeMonths] = self.isFreeMonths ? 1 : 0
+        
+        if self.isFreeMonths {
+            params[APIKeys.noOfFreeMonths] = self.noOfFreeMonths
+        }
+        
+        return params
+    }
 }
 enum DurationType:Int,CaseIterable {
     case none,month = 1,year
@@ -197,6 +286,9 @@ class AddSubscriptionPlansViewModel {
     func setComission(_ string:String)  {
         self.subscriptionInfo.comission = Double.getDouble(string)
     }
+    func setFreeMonths(_ string:String)  {
+        self.subscriptionInfo.noOfFreeMonths = Int.getInt(string)
+    }
     func isComission(_ bool:Bool)  {
         self.subscriptionInfo.isComission = bool
     }
@@ -209,6 +301,12 @@ class AddSubscriptionPlansViewModel {
     func setCountry(_ country:GetCountryDataModel) {
         self.subscriptionInfo.country = country
         refresHandler?.refreshTable(for: "")
+    }
+    func setIsFreeMonths(_ value: Bool) {
+        self.subscriptionInfo.isFreeMonths = value
+    }
+    func productType(_ bool:Bool)  {
+        self.subscriptionInfo.productType = bool
     }
     
     
