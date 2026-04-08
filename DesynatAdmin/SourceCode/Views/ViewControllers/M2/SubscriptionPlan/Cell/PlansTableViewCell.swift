@@ -68,25 +68,60 @@ class PlansTableViewCell: ResuableTableCell {
         self.lblPrice.text = "KD \(data.price.clean)"
         self.lblDuration.text = "for \(data.duration.clean) \(data.durationType.title)"
         self.stackFeature.arrangedSubviews.forEach({$0.removeFromSuperview()})
+        let productText = data.productType ? "\(data.noOfProducts)" : "Unlimited"
+        self.stackFeature.addArrangedSubview(
+            self.getView(
+                "Number of Products: \(productText)".makeAttributedString(
+                    attribute: [
+                        .font: UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12, weight: .semibold)
+                    ],
+                    for: productText
+                )
+            )
+        )
         if (data.noOfVideos > 0) {
             self.stackFeature.addArrangedSubview(self.getView("Number of Videos (Reels): \(data.noOfVideos)".makeAttributedString(attribute: [.font:UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12,weight: .semibold)], for: "\(data.noOfVideos)")))
         }
-        if (data.noOfProducts > 0) {
-            self.stackFeature.addArrangedSubview(self.getView("Number of Products: \(data.noOfProducts)".makeAttributedString(attribute: [.font:UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12,weight: .semibold)], for: "\(data.noOfProducts)")))
-        }
+        
         if (data.noOfHighlights > 0) {
             self.stackFeature.addArrangedSubview(self.getView("Number of Highlights: \(data.noOfHighlights)".makeAttributedString(attribute: [.font:UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12,weight: .semibold)], for: "\(data.noOfHighlights)")))
         }
-        if (data.isStoryOpen) {
-            self.stackFeature.addArrangedSubview(self.getView("stories: \(data.stories)".makeAttributedString(attribute: [.font:UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12,weight: .semibold)], for: "\(data.isStoryOpen)")))
-        }
+
+        let statusText = data.stories == 1 ? "Open" : "Close"
+        self.stackFeature.addArrangedSubview(
+            self.getView(
+                "Stories: \(statusText)".makeAttributedString(
+                    attribute: [
+                        .font: UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12, weight: .semibold)
+                    ],
+                    for: statusText
+                )
+            )
+        )
+
         
         if (data.noOfEmployee > 0) {
             self.stackFeature.addArrangedSubview(self.getView("\(data.noOfEmployee) Store Employees ".makeAttributedString(attribute: [.font:UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12,weight: .semibold)], for: "")))
         }
-        if (data.comission > 0) {
-            self.stackFeature.addArrangedSubview(self.getView("Commission: \(data.comission.clean)%".makeAttributedString(attribute: [.font:UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12,weight: .semibold)], for: "\(data.comission.clean)")))
+
+        let commissionText: String
+
+        if data.comission > 0 {
+            commissionText = "\(data.comission.clean)%"
+        } else {
+            commissionText = "No"
         }
+
+        self.stackFeature.addArrangedSubview(
+            self.getView(
+                "Commission: \(commissionText)".makeAttributedString(
+                    attribute: [
+                        .font: UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12, weight: .semibold)
+                    ],
+                    for: commissionText
+                )
+            )
+        )
         if (data.isFreeMonths) {
             self.stackFeature.addArrangedSubview(self.getView("Number of Free Month: \(data.noOfFreeMonths)".makeAttributedString(attribute: [.font:UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12,weight: .semibold)], for: "\(data.noOfFreeMonths)")))
         }

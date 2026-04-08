@@ -43,6 +43,7 @@ struct PlanInfo {
             noOfVideos: Int.getInt(data.noOfVideos),
             noOfProducts: Int.getInt(data.noOfProducts),
             noOfHighlights: Int.getInt(data.noOfHighlights),
+            stories: Int.getInt(data.stories),
             noOfEmployee: Int.getInt(data.noOfEmployee),
             isStoryOpen:  Int.getInt(data.stories) == 1,
             isComission:   Int.getInt(data.commission) == 1,

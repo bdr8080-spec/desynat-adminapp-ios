@@ -102,29 +102,7 @@ class UserListFilterViewController: UIViewController {
 }
 
 extension UserListFilterViewController {
-//    private func setUpTextFields() {
-//        datePicker.preferredDatePickerStyle = .wheels
-//        datePicker.datePickerMode = .date
-//        datePicker.minimumDate = nil
-//        datePicker.backgroundColor = .white
-//        
-//        let toolbar = UIToolbar()
-//        toolbar.sizeToFit()
-//        
-//        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneDatePicker))
-//        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-//        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker))
-//        toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
-//        
-//        fromTextField.inputView = datePicker
-//        fromTextField.inputAccessoryView = toolbar
-//        toTextField.inputView = datePicker
-//        toTextField.inputAccessoryView = toolbar
-//        
-//        fromTextField.delegate = self
-//        toTextField.delegate = self
-//    }
-    
+
     private func setUpTextFields() {
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.datePickerMode = .date
@@ -196,22 +174,6 @@ extension UserListFilterViewController {
 
 //MARK: UITextFieldDelegate Methods
 extension UserListFilterViewController: UITextFieldDelegate {
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        activeTextField = textField
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "dd/MM/yyyy"
-//        if textField == toTextField {
-//            if let fromText = fromTextField.text,
-//               let fromDate = formatter.date(from: fromText) {
-//                datePicker.minimumDate = fromDate
-//            } else {
-//                datePicker.minimumDate = nil
-//            }
-//        }
-//        if textField == fromTextField {
-//            datePicker.minimumDate = nil
-//        }
-//    }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField

@@ -28,6 +28,36 @@ class CommonUtils {
         return dict
     }
     
+    static func generateThumbnail(url: URL, completion: @escaping (UIImage?) -> Void) {
+        let asset = AVURLAsset(url: url)
+        let imageGenerator = AVAssetImageGenerator(asset: asset)
+        imageGenerator.appliesPreferredTrackTransform = true
+        imageGenerator.maximumSize = CGSize(width: 800, height: 800)
+        
+        let timesToTry: [Double] = [0.0, 1.0, 2.0, 3.0]
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            for seconds in timesToTry {
+                let time = CMTime(seconds: seconds, preferredTimescale: 600)
+                do {
+                    let cgImage = try imageGenerator.copyCGImage(at: time, actualTime: nil)
+                    let thumbnail = UIImage(cgImage: cgImage)
+                    
+                    DispatchQueue.main.async {
+                        completion(thumbnail)
+                    }
+                    return
+                } catch {
+                    print("Thumbnail attempt at \(seconds)s failed: \(error.localizedDescription)")
+                }
+            }
+            
+            // All failed
+            DispatchQueue.main.async {
+                completion(UIImage(named: "placeholder"))
+            }
+        }
+    }
     
     static func formatPrice(_ amount: Double?, currency: String = "KD") -> String {
         guard let amount = amount else { return "0 \(currency)" }

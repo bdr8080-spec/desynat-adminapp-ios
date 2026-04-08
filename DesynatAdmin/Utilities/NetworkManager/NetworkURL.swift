@@ -41,8 +41,8 @@ enum NetworkEndPoint: String {
     case logoutUser                         = "api/admin/admin_logout"
     
     //Seller
-    case getNewSellers                         = "api/admin/get_new_sellers"
-    case getApprovedSellers                         = "api/admin/get_approved_sellers"
+    case getNewSellers                      = "api/admin/get_new_sellers"
+    case getApprovedSellers                 = "api/admin/get_approved_sellers"
     case getRejectedSellers                         = "api/admin/get_rejected_sellers"
     case getSellerDetail                         = "api/admin/get_seller_details"
     case acceptSeller                         = "api/admin/accept_seller"
@@ -221,7 +221,13 @@ enum NetworkEndPoint: String {
     case createUpdateContactUs           = "api/admin/create_update_contact_us"
     case countOfNotifcation              = "api/admin/get_admin_notifications_count"
     case adminAllLiveRequest             = "api/admin/admin-all-live-request"
-    case generateAgoraToken             = "api/agora/token"
+    case generateAgoraToken              = "api/agora/token"
+    
+    //M12
+    case getNewTickets                   = "api/admin/get_new_tickets"
+    case getOngoingTickets               = "api/admin/get_ongoing_tickets"
+    case getPastTickets                  = "api/admin/get_resolved_tickets"
+    case updateTicketsStatus             = "api/admin/update_ticket_status"
     
     
     func withBaseURL() -> String {

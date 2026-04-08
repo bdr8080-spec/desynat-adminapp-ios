@@ -6,18 +6,145 @@
 //
 
 import UIKit
+import SDWebImage
 
 class TicketManagementDetailsViewController: UIViewController {
-
+    
+    @IBOutlet weak var requestedByLbl: UILabel!
+    @IBOutlet weak var ticketStatusLbl: UILabel!
+    @IBOutlet weak var ticketIdLbl: UILabel!
+    @IBOutlet weak var submittedBy: UILabel!
+    @IBOutlet weak var ticketTypeLabel: UILabel!
+    @IBOutlet weak var raisedOnLabel: UILabel!
+    @IBOutlet weak var titleLabel: CustomLabelFont!
+    @IBOutlet weak var descriptionLabel: CustomLabelFont!
+    @IBOutlet weak var attachmnetImageView: CustomImageView!
+    @IBOutlet weak var attachmentStackView: UIStackView!
+    @IBOutlet weak var resolvedOnDateLabel: UILabel!
+    @IBOutlet weak var resolvedOnStackView: UIStackView!
+    @IBOutlet weak var statusUpdateTF: UITextField!
+    @IBOutlet weak var statusUpdateStackView: UIStackView!
+    @IBOutlet weak var updateStatusButtonView: UIStackView!
+    
+    var ticketDetails: TicketManagementList?
+    var ticketType: TiketListType = .newList
+    var statusUpdate = ["Pending", "Resolved"]
+    var selectedStatusIndex: Int? = -1
+    var isStatusUpdated: (() -> Void)?
+    private lazy var viewModel = TicketManagementDetailsViewModel(hostVC: self)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        configData()
     }
     
-
+    @IBAction func statusDidTapped(_ sender: UIButton) {
+        let statusName = statusUpdate.map { status -> String in
+            return status
+        }
+        kSharedAppDelegate.dropDown(dataSource: statusName, anchorView: sender) { index, item in
+            let selectedStatus = self.statusUpdate[index]
+            self.statusUpdateTF.text = selectedStatus
+            self.selectedStatusIndex = index
+        }
+    }
+    
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    @IBAction func attachmentDidTapped(_ sender: Any) {
+        guard let data = ticketDetails else { return }
+        if let file = data.file?.lowercased(),
+           file.hasSuffix(".pdf") {
+            openPDF(urlString: data.file ?? "")
+        } else {
+            attachmnetImageView.enableFullscreenZoom()
+        }
+    }
+    
+    @IBAction func updateStatusDidTapped(_ sender: Any) {
+        guard let selectedStatusIndex = self.selectedStatusIndex,  selectedStatusIndex != -1 else {
+            CommonUtils.showToast(message: "Please select status")
+            return
+        }
+        viewModel.updateStatusRequest()
+    }
+    
+    func configData() {
+        guard let data = ticketDetails else { return }
+        titleLabel.text = data.title ?? ""
+        ticketIdLbl.text = data.ticketID ?? ""
+        ticketTypeLabel.text = data.ticketTypeDetails?.name ?? ""
+        raisedOnLabel.text = convertServerDate(data.createdAt ?? "")
+        let status = statusType(status: data.status ?? 0)
+        ticketStatusLbl.text = status.text
+        ticketStatusLbl.textColor = status.color
+        descriptionLabel.text = data.description ?? ""
+        if let imageUrlString = data.file,
+           let url = URL(string: imageUrlString) {
+            attachmnetImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            attachmnetImageView.sd_imageIndicator?.startAnimatingIndicator()
+            attachmnetImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "uploadTicket"))
+        } else {
+            attachmnetImageView.image = UIImage(named: "uploadTicket")
+        }
+        resolvedOnStackView.isHidden = (data.status != 1)
+        resolvedOnDateLabel.text = convertServerDate(data.updatedAt ?? "")
+        attachmentStackView.isHidden = (data.file?.isEmpty ?? true)
+        switch ticketType {
+        case .pastList:
+            statusUpdateStackView.isHidden = true
+            updateStatusButtonView.isHidden = true
+        default:
+            statusUpdateStackView.isHidden = false
+            updateStatusButtonView.isHidden = false
+        }
+    }
+    
+    func statusType(status: Int) -> (text: String, color: UIColor) {
+        let state = TicketStatus(rawValue: status)
+        return (state?.text ?? "Unknown", state?.color ?? .gray)
+    }
+    
+    func convertServerDate(_ isoString: String) -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
+        
+        guard let date = formatter.date(from: isoString) else {
+            return isoString
+        }
+        
+        let outputFormatter = DateFormatter()
+        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        outputFormatter.dateFormat = "dd MMM yy, h:mm a"   // <- Output format
+        
+        return outputFormatter.string(from: date)
+    }
+    
+    func openPDF(urlString: String) {
+        let pdfVC = PDFViewerViewController()
+        pdfVC.pdfURLString = urlString
+        self.navigationController?.present(pdfVC, animated: true)
+    }
+}
 
+enum TicketStatus: Int {
+    case pending = 0
+    case resolved = 1
+    
+    var text: String {
+        switch self {
+        case .pending: return "Pending"
+        case .resolved: return "Resolved"
+        }
+    }
+    
+    var color: UIColor {
+        switch self {
+        case .pending: return UIColor(hexString: "#D72E04")   // red
+        case .resolved: return UIColor(hexString: "#0A8A20")  // green
+        }
+    }
 }

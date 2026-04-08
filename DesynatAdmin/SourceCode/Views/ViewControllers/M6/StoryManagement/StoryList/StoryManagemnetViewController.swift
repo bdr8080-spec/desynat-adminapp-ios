@@ -73,20 +73,57 @@ extension StoryManagemnetViewController: UICollectionViewDelegate, UICollectionV
         
     }
     
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        if indexPath.row == 0 {
+//            let nextVC = AddStoryViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
+//            self.navigationController?.pushViewController(nextVC, animated: true)
+//        } else {
+//            let media = viewModel.storiesList[indexPath.item - 1]
+//            guard let fileURLString = media.file,
+//                  let encodedURLString = fileURLString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+//                  let url = URL(string: encodedURLString) else { return }
+//            
+//            if let type = url.pathExtension.lowercased(), ["mp4", "mov", "m4v"].contains(type)  {
+//                player = AVPlayer(url: url) // retain player
+//                let playerVC = AVPlayerViewController()
+//                playerVC.player = player
+//                self.present(playerVC, animated: true) {
+//                    self.player?.play()
+//                }
+//            }
+//        }
+//    }
+    
+//    var player: AVPlayer?   // ✅ IMPORTANT (class level)
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         if indexPath.row == 0 {
             let nextVC = AddStoryViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
             self.navigationController?.pushViewController(nextVC, animated: true)
         } else {
-            let media = viewModel.storiesList[indexPath.item - 1]
-            guard let fileURLString = media.file,
-                  let encodedURLString = fileURLString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-                  let url = URL(string: encodedURLString) else { return }
             
-            if fileURLString.lowercased().contains(".mp4") {
-                player = AVPlayer(url: url) // retain player
+            let media = viewModel.storiesList[indexPath.item - 1]
+            
+            guard let fileURLString = media.file,
+                  let url = URL(string: fileURLString) else { return }
+            
+            // ✅ Detect video properly
+            let ext = url.pathExtension.lowercased()
+            
+            if ["mp4", "mov", "m4v"].contains(ext) {
+                
+                do {
+                    try AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback)
+                    try AVAudioSession.sharedInstance().setActive(true)
+                } catch {
+                    print("Audio session error:", error)
+                }
+                
+                player = AVPlayer(url: url)
                 let playerVC = AVPlayerViewController()
                 playerVC.player = player
+                
                 self.present(playerVC, animated: true) {
                     self.player?.play()
                 }

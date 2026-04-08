@@ -68,7 +68,7 @@ extension TabBarVC {
         case 3:
             childVC = SubscriptionPlanListViewController.viewFromNIB
         case 4:
-            childVC = PaymentsController.instantiate(fromAppStoryboard: .Home)
+            childVC = PaymentsController.instantiate(fromAppStoryboard: .Payment)
         default:
             return
         }

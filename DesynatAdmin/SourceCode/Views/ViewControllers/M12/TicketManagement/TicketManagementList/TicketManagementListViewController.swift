@@ -8,7 +8,7 @@
 import UIKit
 
 class TicketManagementListViewController: UIViewController {
-
+    
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var noDataFoundLabel: UILabel!
@@ -26,16 +26,18 @@ class TicketManagementListViewController: UIViewController {
         }
     }
     
-    var type: TicketManagementSelectedListType = .new
+    var ticketType: TiketListType = .newList
     private lazy var viewModel = TicketManagementListViewModel(hostVC: self)
+    private var searchWorkItem: DispatchWorkItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         handleNewAction()
         txtFieldSearch.delegate = self
         updatePaginationButtonImages()
+        viewModel.fetchNewTicketsList()
     }
-
+    
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -53,30 +55,48 @@ class TicketManagementListViewController: UIViewController {
     }
     
     @IBAction func filterDidTapped(_ sender: Any) {
-        let vc = UserListFilterViewController.instantiate(fromAppStoryboard: .ReasonManagement)
-        vc.disbaleFutureDateSelection = false
-//        vc.selectedFilter = viewModel.appliedFilter
-//        vc.onApplyFilter = { [weak self] filter in
-//            guard let self = self else { return }
-//            self.viewModel.appliedFilter = filter
-//            viewModel.currentPage = 1
-//            viewModel.getAllSentNotificationRequest()
-//        }
-//        vc.onClearFilter = { [weak self] in
-//            guard let self = self else { return }
-//            self.viewModel.appliedFilter = UserFilterModel()
-//            viewModel.currentPage = 1
-//            viewModel.getAllSentNotificationRequest()
-//        }
+        let vc = TicketManagementFilterViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+        vc.selectedFilter = viewModel.filter(for: ticketType)
+        vc.disbaleFutureDateSelection = true
+        vc.onApplyFilter = { [weak self] filter in
+            guard let self = self else { return }
+            
+            self.viewModel.setFilter(filter, for: self.ticketType)
+            self.viewModel.currentPage = 1
+            
+            switch self.ticketType {
+            case .newList:
+                self.viewModel.fetchNewTicketsList()
+            case .ongoingList:
+                self.viewModel.fetchOngoingList()
+            case .pastList:
+                self.viewModel.fetchPastList()
+            }
+        }
+        vc.onClearFilter = { [weak self] in
+            guard let self = self else { return }
+            
+            self.viewModel.setFilter(UserFilterModel(), for: self.ticketType)
+            self.viewModel.currentPage = 1
+            
+            switch self.ticketType {
+            case .newList:
+                self.viewModel.fetchNewTicketsList()
+            case .ongoingList:
+                self.viewModel.fetchOngoingList()
+            case .pastList:
+                self.viewModel.fetchPastList()
+            }
+        }
         self.navigationController?.present(vc, animated: true)
     }
     
     @IBAction func nextDidTapped(_ sender: Any) {
-        
+        viewModel.goToNextPage(type: ticketType)
     }
     
     @IBAction func previousDidTapped(_ sender: Any) {
-        
+        viewModel.goToPreviousPage(type: ticketType)
     }
     
     private func handleRejectAction() {
@@ -91,9 +111,10 @@ class TicketManagementListViewController: UIViewController {
         pastButton.layer.cornerRadius = 5
         pastButton.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         pastButton.clipsToBounds = true
-        type = .past
+        ticketType = .pastList
         txtFieldSearch.text = ""
-//        viewModel.changeTab(.reject)
+        viewModel.currentPage = 1
+        viewModel.fetchPastList()
     }
     
     private func handleApproveAction() {
@@ -106,9 +127,10 @@ class TicketManagementListViewController: UIViewController {
         pastButton.setImage(UIImage(named: ""), for: .normal)
         pastButton.layer.cornerRadius = 0
         pastLabel.textColor = UIColor.black
-        type = .ongoing
+        ticketType = .ongoingList
         txtFieldSearch.text = ""
-//        viewModel.changeTab(.approved)
+        viewModel.currentPage = 1
+        viewModel.fetchOngoingList()
     }
     
     private func handleNewAction() {
@@ -123,9 +145,10 @@ class TicketManagementListViewController: UIViewController {
         pastButton.setImage(UIImage(named: ""), for: .normal)
         pastButton.layer.cornerRadius = 0
         pastLabel.textColor = UIColor.black
-        type = .new
+        ticketType = .newList
         txtFieldSearch.text = ""
-//        viewModel.changeTab(.new)
+        viewModel.currentPage = 1
+        viewModel.fetchNewTicketsList()
     }
     
     func updatePaginationButtonImages() {
@@ -150,30 +173,22 @@ class TicketManagementListViewController: UIViewController {
 }
 
 extension TicketManagementListViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return viewModel.ticketsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TicketManagementTableViewCell", for: indexPath) as! TicketManagementTableViewCell
+        let data = viewModel.ticketsList[indexPath.row]
+        cell.configData(data: data, status: ticketType)
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return viewModel.affilitaitedUsersList.count
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "TicketManagementTableViewCell", for: indexPath) as! TicketManagementTableViewCell
-//        let data = viewModel.affilitaitedUsersList[indexPath.row]
-//        cell.configData(userType: userType, data: data)
-//        return cell
-//    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = TicketManagementDetailsViewController.instantiate(fromAppStoryboard: .NotificationCMS)
-//        vc.userType = userType
-//        vc.userId = viewModel.affilitaitedUsersList[indexPath.row].id
+        vc.ticketType = ticketType
+        vc.ticketDetails = viewModel.ticketsList[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: false)
     }
     
@@ -182,30 +197,25 @@ extension TicketManagementListViewController: UITableViewDelegate, UITableViewDa
 //MARK: UITextFieldDelegate Methods
 extension TicketManagementListViewController: UITextFieldDelegate {
     
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        let currentText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? ""
-//        searchWorkItem?.cancel()
-//        let workItem = DispatchWorkItem { [weak self] in
-//            guard let self = self else { return }
-//            self.viewModel.searchText = currentText
-//            self.viewModel.currentPage = 1
-//            switch userType {
-//            case .newUsers:
-//                self.viewModel.fetchNewAffiliatedUsersList()
-//            case .approvedUsers:
-//                self.viewModel.fetchApprovedAffiliatedUsersList()
-//            case .rejectedUsers:
-//                self.viewModel.fetchRejectedAffiliatedUsersList()
-//            }
-//        }
-//        searchWorkItem = workItem
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: workItem)
-//        return true
-//    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? ""
+        searchWorkItem?.cancel()
+        let workItem = DispatchWorkItem { [weak self] in
+            guard let self = self else { return }
+            self.viewModel.searchText = currentText
+            self.viewModel.currentPage = 1
+            switch ticketType {
+            case .newList:
+                self.viewModel.fetchNewTicketsList()
+            case .ongoingList:
+                self.viewModel.fetchOngoingList()
+            case .pastList:
+                self.viewModel.fetchPastList()
+            }
+        }
+        searchWorkItem = workItem
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: workItem)
+        return true
+    }
 }
 
-enum TicketManagementSelectedListType {
-    case new
-    case ongoing
-    case past
-}

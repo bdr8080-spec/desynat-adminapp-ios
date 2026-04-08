@@ -16,6 +16,7 @@ enum AppStoryboard : String {
     case AffiliatedBannerOrder
     case LiveStoryDealManagement
     case NotificationCMS
+    case Payment
 }
 
 extension AppStoryboard {

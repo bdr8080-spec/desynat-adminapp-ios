@@ -60,33 +60,57 @@ class StoryManagemnetCollectionViewCell: UICollectionViewCell {
         statusLabel.text = data.status == 1 ? "Active" : "Inactive"
         
         // ── Critical: always clear first! ──
-        mainImageView.image = nil   // ← prevents wrong/old image flash
-        playPauseImageView.isHidden = true
+//        mainImageView.image = nil   // ← prevents wrong/old image flash
+//        playPauseImageView.isHidden = true
+//        
+//        guard let fileURLString = data.file,
+//              let url = URL(string: fileURLString) else {
+//            mainImageView.image = UIImage(named: "placeholder")
+//            return
+//        }
+//        
+//        if fileURLString.lowercased().hasSuffix(".mp4") {
+//            playPauseImageView.isHidden = false
+//            
+//            generateThumbnail(url: url) { [weak self] image in
+//                DispatchQueue.main.async {
+//                    // Still check if cell is still showing this data (optional but safer)
+//                    if self?.mainImageView.image == nil || /* compare with data.id */ true {
+//                        self?.mainImageView.image = image ?? UIImage(named: "placeholder")
+//                    }
+//                }
+//            }
+//        } else {
+//            // Image
+//            playPauseImageView.isHidden = true
+//            mainImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+//            mainImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"))
+//            mainImageView.enableFullscreenZoom()
+//        }
         
-        guard let fileURLString = data.file,
-              let url = URL(string: fileURLString) else {
-            mainImageView.image = UIImage(named: "placeholder")
-            return
-        }
         
-        if fileURLString.lowercased().hasSuffix(".mp4") {
-            playPauseImageView.isHidden = false
-            
-            generateThumbnail(url: url) { [weak self] image in
-                DispatchQueue.main.async {
-                    // Still check if cell is still showing this data (optional but safer)
-                    if self?.mainImageView.image == nil || /* compare with data.id */ true {
-                        self?.mainImageView.image = image ?? UIImage(named: "placeholder")
-                    }
-                }
-            }
-        } else {
-            // Image
-            playPauseImageView.isHidden = true
-            mainImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
-            mainImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"))
+        let fileString = data.file ?? ""
+        let thumbnailString = data.thumbnail ?? ""
+        
+        // Detect video
+        let isVideo = fileString.lowercased().contains(".mp4")
+        
+        // Decide which URL to load
+        let finalURLString = isVideo ? thumbnailString : fileString
+        let url = URL(string: finalURLString)
+        playPauseImageView.isHidden = !isVideo
+        if !isVideo {
             mainImageView.enableFullscreenZoom()
         }
+        // Loader
+        mainImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        mainImageView.sd_imageIndicator?.startAnimatingIndicator()
+        
+        // Set image
+        mainImageView.sd_setImage(
+            with: url,
+            placeholderImage: UIImage(named: "placeholder")
+        )
     }
     
     // MARK: - Load Image from URL

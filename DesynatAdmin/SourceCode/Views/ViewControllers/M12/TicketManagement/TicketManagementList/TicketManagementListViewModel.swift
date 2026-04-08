@@ -10,37 +10,37 @@ import Foundation
 class TicketManagementListViewModel {
     
     private var hostVC: TicketManagementListViewController
-    var affilitaitedUsersList: [AffilitaitedUsersDataModel] = []
+    var ticketsList: [TicketManagementList] = []
     var currentPage: Int = 1
     var totalPages: Int = 1
     var searchText: String = ""
-    var newUsersFilter = FullScreenBannerFilterModel()
-    var approvedUsersFilter = FullScreenBannerFilterModel()
-    var rejectedUsersFilter = FullScreenBannerFilterModel()
+    var newListFilter = UserFilterModel()
+    var ongoingListFilter = UserFilterModel()
+    var pastListFilter = UserFilterModel()
     
     init(hostVC: TicketManagementListViewController) {
         self.hostVC = hostVC
     }
     
     // Helper
-    func filter(for type: AffiliatedUsersListType) -> FullScreenBannerFilterModel {
+    func filter(for type: TiketListType) -> UserFilterModel {
         switch type {
-        case .newUsers: return newUsersFilter
-        case .approvedUsers: return approvedUsersFilter
-        case .rejectedUsers: return rejectedUsersFilter
+        case .newList: return newListFilter
+        case .ongoingList: return ongoingListFilter
+        case .pastList: return pastListFilter
         }
     }
     
-    func setFilter(_ filter: FullScreenBannerFilterModel, for type: AffiliatedUsersListType) {
+    func setFilter(_ filter: UserFilterModel, for type: TiketListType) {
         switch type {
-        case .newUsers: newUsersFilter = filter
-        case .approvedUsers: approvedUsersFilter = filter
-        case .rejectedUsers: rejectedUsersFilter = filter
+        case .newList: newListFilter = filter
+        case .ongoingList: ongoingListFilter = filter
+        case .pastList: pastListFilter = filter
         }
     }
     
-    func fetchNewAffiliatedUsersList() {
-        let filter = newUsersFilter
+    func fetchNewTicketsList() {
+        let filter = newListFilter
         var params: [String : Any] = [:]
         params["page"] = currentPage
         params["limit"] = 3
@@ -48,9 +48,9 @@ class TicketManagementListViewModel {
             params["search"] = searchText
         }
         
-        if let country = filter.countryName {
-            params["country"] = country
-        }
+        //        if let country = filter.countryName {
+        //            params["country"] = country
+        //        }
         
         if let fromDate = filter.fromDate {
             params["from_date"] = convertDate(fromDate)
@@ -60,7 +60,7 @@ class TicketManagementListViewModel {
             params["to_date"] = convertDate(toDate)
         }
         
-        WebService.shared.getNewAffilaitedUsersRequest(param: params) { [weak self] response in
+        WebService.shared.getNewTicketsService(param: params) { [weak self] response in
             guard let self = self else { return }
             
             // Update page info
@@ -68,19 +68,19 @@ class TicketManagementListViewModel {
             self.totalPages = response.lastPage ?? 1
             
             // Update data
-            self.affilitaitedUsersList = response.data ?? []
+            self.ticketsList = response.data ?? []
             DispatchQueue.main.async {
                 self.hostVC.pageCountLabel.text = String(format: "%02d of %02d", self.currentPage, self.totalPages)
                 self.hostVC.listTableView.reloadData()
-                self.hostVC.noDataFoundLabel.isHidden = !self.affilitaitedUsersList.isEmpty
+                self.hostVC.noDataFoundLabel.isHidden = !self.ticketsList.isEmpty
                 self.hostVC.updatePaginationButtonImages()
             }
         }
     }
     
-    func fetchApprovedAffiliatedUsersList() {
+    func fetchOngoingList() {
         
-        let filter = approvedUsersFilter
+        let filter = ongoingListFilter
         var params: [String : Any] = [:]
         params["page"] = currentPage
         params["limit"] = 3
@@ -88,19 +88,19 @@ class TicketManagementListViewModel {
             params["search"] = searchText
         }
         
-        if let country = filter.countryName {
-            params["country1"] = country
-        }
+        //        if let country = filter.countryName {
+        //            params["country1"] = country
+        //        }
         
         if let fromDate = filter.fromDate {
-            params["from_date1"] = convertDate(fromDate)
+            params["from_date"] = convertDate(fromDate)
         }
         
         if let toDate = filter.toDate {
-            params["to_date1"] = convertDate(toDate)
+            params["to_date"] = convertDate(toDate)
         }
         
-        WebService.shared.getApprovedAffilaitedUsersRequest(param: params) { [weak self] response in
+        WebService.shared.getOngoingTicketsService(param: params) { [weak self] response in
             guard let self = self else { return }
             
             // Update page info
@@ -108,18 +108,18 @@ class TicketManagementListViewModel {
             self.totalPages = response.lastPage ?? 1
             
             // Update data
-            self.affilitaitedUsersList = response.data ?? []
+            self.ticketsList = response.data ?? []
             DispatchQueue.main.async {
                 self.hostVC.pageCountLabel.text = String(format: "%02d of %02d", self.currentPage, self.totalPages)
                 self.hostVC.listTableView.reloadData()
-                self.hostVC.noDataFoundLabel.isHidden = !self.affilitaitedUsersList.isEmpty
+                self.hostVC.noDataFoundLabel.isHidden = !self.ticketsList.isEmpty
                 self.hostVC.updatePaginationButtonImages()
             }
         }
     }
     
-    func fetchRejectedAffiliatedUsersList() {
-        let filter = rejectedUsersFilter
+    func fetchPastList() {
+        let filter = pastListFilter
         var params: [String : Any] = [:]
         params["page"] = currentPage
         params["limit"] = 3
@@ -127,19 +127,19 @@ class TicketManagementListViewModel {
             params["search"] = searchText
         }
         
-        if let country = filter.countryName {
-            params["country2"] = country
-        }
+        //        if let country = filter.countryName {
+        //            params["country2"] = country
+        //        }
         
         if let fromDate = filter.fromDate {
-            params["from_date2"] = convertDate(fromDate)
+            params["from_date"] = convertDate(fromDate)
         }
         
         if let toDate = filter.toDate {
-            params["to_date2"] = convertDate(toDate)
+            params["to_date"] = convertDate(toDate)
         }
         
-        WebService.shared.getRejectedAffilaitedUsersRequest(param: params) { [weak self] response in
+        WebService.shared.getPastTicketsService(param: params) { [weak self] response in
             guard let self = self else { return }
             
             // Update page info
@@ -147,40 +147,40 @@ class TicketManagementListViewModel {
             self.totalPages = response.lastPage ?? 1
             
             // Update data
-            self.affilitaitedUsersList = response.data ?? []
+            self.ticketsList = response.data ?? []
             DispatchQueue.main.async {
                 self.hostVC.pageCountLabel.text = String(format: "%02d of %02d", self.currentPage, self.totalPages)
                 self.hostVC.listTableView.reloadData()
-                self.hostVC.noDataFoundLabel.isHidden = !self.affilitaitedUsersList.isEmpty
+                self.hostVC.noDataFoundLabel.isHidden = !self.ticketsList.isEmpty
                 self.hostVC.updatePaginationButtonImages()
             }
         }
     }
     
     
-    func goToNextPage(type: AffiliatedUsersListType) {
+    func goToNextPage(type: TiketListType) {
         guard currentPage < totalPages else { return }
         currentPage += 1
         switch type {
-        case .newUsers:
-            fetchNewAffiliatedUsersList()
-        case .approvedUsers:
-            fetchApprovedAffiliatedUsersList()
-        case .rejectedUsers:
-            fetchRejectedAffiliatedUsersList()
+        case .newList:
+            fetchNewTicketsList()
+        case .ongoingList:
+            fetchOngoingList()
+        case .pastList:
+            fetchPastList()
         }
     }
     
-    func goToPreviousPage(type: AffiliatedUsersListType) {
+    func goToPreviousPage(type: TiketListType) {
         guard currentPage > 1 else { return }
         currentPage -= 1
         switch type {
-        case .newUsers:
-            fetchNewAffiliatedUsersList()
-        case .approvedUsers:
-            fetchApprovedAffiliatedUsersList()
-        case .rejectedUsers:
-            fetchRejectedAffiliatedUsersList()
+        case .newList:
+            fetchNewTicketsList()
+        case .ongoingList:
+            fetchOngoingList()
+        case .pastList:
+            fetchPastList()
         }
     }
     
@@ -205,4 +205,11 @@ class TicketManagementListViewModel {
         return outputFormatter.string(from: date)
     }
     
+}
+
+
+enum TiketListType: Int {
+    case newList = 1
+    case ongoingList = 2
+    case pastList = 3
 }

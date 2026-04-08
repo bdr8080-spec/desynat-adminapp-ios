@@ -41,14 +41,14 @@ struct AdminStoriesDataModel: Codable {
 struct AdminStoriesList: Codable {
     let id, type: Int?
     let sellerID: String?
-    let file: String?
+    let file, thumbnail: String?
     let status: Int?
     let createdAt, updatedAt: String?
 
     enum CodingKeys: String, CodingKey {
         case id, type
         case sellerID = "seller_id"
-        case file, status
+        case file, status, thumbnail
         case createdAt = "created_at"
         case updatedAt = "updated_at"
     }
