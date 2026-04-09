@@ -16,7 +16,7 @@ class TicketManagementDetailsViewModel {
     }
     
     func updateStatusRequest() {
-        let params: [String : Any] = ["ticket_id": hostVC.ticketDetails?.ticketID ?? 0,
+        let params: [String : Any] = ["ticket_id": hostVC.ticketDetails?.id ?? 0,
                                       "status": hostVC.selectedStatusIndex ?? 0] // //0-pending,1-resolved
         WebService.shared.updateTicketStatusService(param: params) { [weak self] response in
             guard let self = self else { return }

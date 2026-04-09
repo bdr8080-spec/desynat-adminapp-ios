@@ -28,7 +28,7 @@ class TicketManagementDetailsViewController: UIViewController {
     
     var ticketDetails: TicketManagementList?
     var ticketType: TiketListType = .newList
-    var statusUpdate = ["Pending", "Resolved"]
+    var statusUpdate = ["Resolved"]//["Pending", "Resolved"]
     var selectedStatusIndex: Int? = -1
     var isStatusUpdated: (() -> Void)?
     private lazy var viewModel = TicketManagementDetailsViewModel(hostVC: self)
@@ -45,7 +45,7 @@ class TicketManagementDetailsViewController: UIViewController {
         kSharedAppDelegate.dropDown(dataSource: statusName, anchorView: sender) { index, item in
             let selectedStatus = self.statusUpdate[index]
             self.statusUpdateTF.text = selectedStatus
-            self.selectedStatusIndex = index
+            self.selectedStatusIndex = index + 1
         }
     }
     
@@ -73,6 +73,7 @@ class TicketManagementDetailsViewController: UIViewController {
     
     func configData() {
         guard let data = ticketDetails else { return }
+        requestedByLbl.text = data.senderDetails?.fullNameEnglish
         titleLabel.text = data.title ?? ""
         ticketIdLbl.text = data.ticketID ?? ""
         ticketTypeLabel.text = data.ticketTypeDetails?.name ?? ""

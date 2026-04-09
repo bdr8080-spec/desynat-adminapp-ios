@@ -79,6 +79,8 @@ struct SenderDetails: Codable {
     let email: String?
     let emailVerifiedAt, otp: String?
     let otpVerify: String?
+    let fullNameEnglish: String?
+    let fullNameArabic: String?
 //    let otpVerify, deviceType: String?
     let fcmToken: String?
     let createdAt: String?
@@ -97,6 +99,8 @@ struct SenderDetails: Codable {
         case fcmToken = "fcm_token"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
+        case fullNameEnglish = "full_name_english"
+        case fullNameArabic = "full_name_arabic"
     }
 }
 

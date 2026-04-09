@@ -8,8 +8,8 @@
 import UIKit
 
 class PlansTableViewCell: ResuableTableCell {
-    @IBOutlet weak var lblDuration: CustomLabelFont!
     
+    @IBOutlet weak var lblDuration: CustomLabelFont!
     @IBOutlet weak var stackFeature: UIStackView!
     @IBOutlet weak var viewMain: CustomView!
     @IBOutlet weak var viewPlanTitleBack: CustomView!

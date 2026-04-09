@@ -25,7 +25,7 @@ class TicketManagementTableViewCell: UITableViewCell {
     }
     
     func configData(data: TicketManagementList?, status: TiketListType = .newList) {
-        requestedByLabel.text = data?.senderDetails?.fullName
+        requestedByLabel.text = data?.senderDetails?.fullNameEnglish
         ticketIdLabel.text = data?.ticketID
         submittedByLabel.text = senderType(role: data?.senderType ?? 1)
         ticketTypeLabel.text = data?.ticketTypeDetails?.name
@@ -36,7 +36,7 @@ class TicketManagementTableViewCell: UITableViewCell {
         case .ongoingList:
             statusLabel.text = "Ongoing"
         case .pastList:
-            statusLabel.text = "Past"
+            statusLabel.text = "Resolved"
         }
     }
     

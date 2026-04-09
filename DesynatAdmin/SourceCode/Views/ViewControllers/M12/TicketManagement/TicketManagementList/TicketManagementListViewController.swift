@@ -189,6 +189,18 @@ extension TicketManagementListViewController: UITableViewDelegate, UITableViewDa
         let vc = TicketManagementDetailsViewController.instantiate(fromAppStoryboard: .NotificationCMS)
         vc.ticketType = ticketType
         vc.ticketDetails = viewModel.ticketsList[indexPath.row]
+        vc.isStatusUpdated = { [weak self] in
+            guard let self else { return }
+            self.viewModel.currentPage = 1
+            switch ticketType {
+            case .newList:
+                self.viewModel.fetchNewTicketsList()
+            case .ongoingList:
+                self.viewModel.fetchOngoingList()
+            case .pastList:
+                self.viewModel.fetchPastList()
+            }
+        }
         self.navigationController?.pushViewController(vc, animated: false)
     }
     
