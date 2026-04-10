@@ -229,6 +229,10 @@ enum NetworkEndPoint: String {
     case getOngoingTickets                  = "api/admin/get_ongoing_tickets"
     case getPastTickets                     = "api/admin/get_resolved_tickets"
     case updateTicketsStatus                = "api/admin/update_ticket_status"
+    case getOrdersPayments                  = "api/admin/get_order_payments"
+    case getPlansPayments                   = "api/admin/get_plan_payments"
+    case getGiftCardsPayments               = "api/admin/get_giftcard_payments"
+    case getBannersPayments                 = "api/admin/get_banner_payments"
     
     
     func withBaseURL() -> String {

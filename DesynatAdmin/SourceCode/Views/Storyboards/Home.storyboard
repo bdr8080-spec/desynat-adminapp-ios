@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -29,7 +29,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NDC-LM-KJ8">
-                                <rect key="frame" x="0.0" y="100" width="375" height="583.99999999999955"/>
+                                <rect key="frame" x="0.0" y="100" width="375" height="584"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rVi-hT-ogN">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="2108.3333333333335"/>
@@ -3506,6 +3506,29 @@ the event</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q0r-yM-39v" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
+                                <rect key="frame" x="146.66666666666666" y="152" width="81.666666666666657" height="27"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Viewers: 1" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="qje-NM-Mhp">
+                                        <rect key="frame" x="11.999999999999996" y="5" width="57.666666666666657" height="17"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGrayColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="qje-NM-Mhp" secondAttribute="bottom" constant="5" id="0kU-nZ-jYu"/>
+                                    <constraint firstItem="qje-NM-Mhp" firstAttribute="leading" secondItem="Q0r-yM-39v" secondAttribute="leading" constant="12" id="7xH-2J-VM2"/>
+                                    <constraint firstAttribute="trailing" secondItem="qje-NM-Mhp" secondAttribute="trailing" constant="12" id="Jqb-RH-VmB"/>
+                                    <constraint firstItem="qje-NM-Mhp" firstAttribute="top" secondItem="Q0r-yM-39v" secondAttribute="top" constant="5" id="fNH-6G-4kI"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="IcV-6a-4ML">
                                 <rect key="frame" x="24" y="694" width="327" height="50"/>
                                 <subviews>
@@ -3622,9 +3645,11 @@ the event</string>
                             <constraint firstItem="ewz-mJ-MkN" firstAttribute="leading" secondItem="GZx-aH-BMr" secondAttribute="leading" id="BB1-g0-hqR"/>
                             <constraint firstItem="IcV-6a-4ML" firstAttribute="leading" secondItem="uGf-sq-aiZ" secondAttribute="leading" constant="24" id="CIA-XK-K86"/>
                             <constraint firstItem="ewz-mJ-MkN" firstAttribute="top" secondItem="GZx-aH-BMr" secondAttribute="top" id="D9m-Hu-dNO"/>
+                            <constraint firstItem="Q0r-yM-39v" firstAttribute="top" secondItem="mG7-sr-U3E" secondAttribute="bottom" constant="20" id="JY8-tz-rGa"/>
                             <constraint firstItem="uGf-sq-aiZ" firstAttribute="trailing" secondItem="IcV-6a-4ML" secondAttribute="trailing" constant="24" id="SVC-Wq-DmS"/>
                             <constraint firstItem="uGf-sq-aiZ" firstAttribute="top" secondItem="mG7-sr-U3E" secondAttribute="top" id="dxo-20-OTd"/>
                             <constraint firstItem="uGf-sq-aiZ" firstAttribute="bottom" secondItem="IcV-6a-4ML" secondAttribute="bottom" id="gUu-0X-Mnp"/>
+                            <constraint firstItem="Q0r-yM-39v" firstAttribute="centerX" secondItem="uGf-sq-aiZ" secondAttribute="centerX" id="hiM-7U-kjc"/>
                             <constraint firstAttribute="trailing" secondItem="ewz-mJ-MkN" secondAttribute="trailing" id="iD5-cK-L4P"/>
                             <constraint firstItem="5l3-kn-Qth" firstAttribute="centerX" secondItem="uGf-sq-aiZ" secondAttribute="centerX" id="iUn-0e-paL"/>
                             <constraint firstItem="5l3-kn-Qth" firstAttribute="centerY" secondItem="uGf-sq-aiZ" secondAttribute="centerY" id="qNz-Ao-cqO"/>
@@ -3638,6 +3663,7 @@ the event</string>
                         <outlet property="btnMute" destination="upH-59-ftw" id="Ar5-i9-ySK"/>
                         <outlet property="btnSwitch" destination="2fD-ah-uUU" id="w91-r9-m0x"/>
                         <outlet property="lblLive" destination="eTV-QV-vzJ" id="lN8-xD-CdX"/>
+                        <outlet property="lblUserCount" destination="qje-NM-Mhp" id="vup-87-8f2"/>
                         <outlet property="lblWaiting" destination="5l3-kn-Qth" id="Kun-UU-b0j"/>
                         <outlet property="muteView" destination="Uw6-jO-ARP" id="DmP-T8-BYU"/>
                         <outlet property="videoView" destination="ewz-mJ-MkN" id="mEq-vk-hU8"/>
@@ -3698,13 +3724,16 @@ the event</string>
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.2196078431372549" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -22,12 +22,10 @@ class PaymentsController: UIViewController {
     @IBOutlet weak var chooseMonthForHide: UIView!
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
-    @IBOutlet weak var tableViewHeightConstraints: NSLayoutConstraint!
+//    @IBOutlet weak var tableViewHeightConstraints: NSLayoutConstraint!
     @IBOutlet weak var paymentTableView: TableViewDynamicHeight!{
         didSet{
             paymentTableView.registerCellFromNib(cellID: "PaymentTableViewCell")
-            paymentTableView.delegate = self
-            paymentTableView.dataSource = self
         }
     }
     @IBOutlet weak var totalRevenueLbl: UILabel!
@@ -35,79 +33,92 @@ class PaymentsController: UIViewController {
     @IBOutlet weak var specialOrderLbl: UILabel!
     @IBOutlet weak var chooseMonthLbl: CustomLabelFont!
     @IBOutlet weak var chooseYear: CustomLabelFont!
-    
+    @IBOutlet weak var pagecountLabel: UILabel!
+    @IBOutlet weak var noDataFoundLabel: UILabel!
+    @IBOutlet weak var searchTF: UITextField!
     
     // MARK: - Property Decalaration
     var expandedIndex: IndexPath?
     var selectedTab: PaymentTab = .orders
+    private lazy var viewModel = PaymentsViewModel(hostVC: self)
+    private var searchWorkItem: DispatchWorkItem?
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
-        updateTabUI(selected: .orders)
         super.viewDidLoad()
-        
-    }
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        tableViewHeightConstraints.constant = paymentTableView.contentSize.height
+        searchTF.delegate = self
+        updateTabUI(selected: .orders)
+        viewModel.fetchOrdersList()
     }
     
     // MARK: - Button's Action
     @IBAction func orderBtnDidTapped(_ sender: Any) {
         selectedTab = .orders
         updateTabUI(selected: .orders)
-        paymentTableView.reloadData()
+        searchTF.text = ""
+        viewModel.currentPage = 1
+        viewModel.fetchOrdersList()
     }
     @IBAction func planBtnDidTapped(_ sender: Any) {
         selectedTab = .plans
         updateTabUI(selected: .plans)
-        paymentTableView.reloadData()
+        searchTF.text = ""
+        viewModel.currentPage = 1
+        viewModel.fetchPlansList()
     }
     @IBAction func giftCardBtnDidTapped(_ sender: Any) {
         selectedTab = .giftCards
         updateTabUI(selected: .giftCards)
-        paymentTableView.reloadData()
-        
+        searchTF.text = ""
+        viewModel.currentPage = 1
+        viewModel.fetchGiftCardsList()
     }
     @IBAction func bannerBtnDidTapped(_ sender: Any) {
         selectedTab = .banners
         updateTabUI(selected: .banners)
-        paymentTableView.reloadData()
+        searchTF.text = ""
+        viewModel.currentPage = 1
+        viewModel.fetchBannersList()
     }
+    
     @IBAction func filterDidTapped(_ sender: Any) {
         let vc = PaymentFilterViewController.instantiate(fromAppStoryboard: .Payment)
-        //        vc.selectedFilter = viewModel.filter(for: userType)
-        //
-        //        vc.onApplyFilter = { [weak self] filter in
-        //            guard let self = self else { return }
-        //
-        //            self.viewModel.setFilter(filter, for: self.userType)
-        //            self.viewModel.currentPage = 1
-        //
-        //            switch self.userType {
-        //            case .all:
-        //                self.viewModel.fetchAllSubAdminUsersList()
-        //            case .active:
-        //                self.viewModel.fetchActiveSubAdminsList()
-        //            case .inactive:
-        //                self.viewModel.fetchInactiveSubAdminList()
-        //            }
-        //        }
-        //        vc.onClearFilter = { [weak self] in
-        //            guard let self = self else { return }
-        //
-        //            self.viewModel.setFilter(FullScreenBannerFilterModel(), for: self.userType)
-        //            self.viewModel.currentPage = 1
-        //
-        //            switch self.userType {
-        //            case .all:
-        //                self.viewModel.fetchAllSubAdminUsersList()
-        //            case .active:
-        //                self.viewModel.fetchActiveSubAdminsList()
-        //            case .inactive:
-        //                self.viewModel.fetchInactiveSubAdminList()
-        //            }
-        //        }
+                vc.selectedFilter = viewModel.filter(for: selectedTab)
+        
+                vc.onApplyFilter = { [weak self] filter in
+                    guard let self = self else { return }
+        
+                    self.viewModel.setFilter(filter, for: self.selectedTab)
+                    self.viewModel.currentPage = 1
+        
+                    switch self.selectedTab {
+                    case .orders:
+                        self.viewModel.fetchOrdersList()
+                    case .plans:
+                        self.viewModel.fetchPlansList()
+                    case .giftCards:
+                        self.viewModel.fetchGiftCardsList()
+                    case .banners:
+                        self.viewModel.fetchBannersList()
+                    }
+                }
+                vc.onClearFilter = { [weak self] in
+                    guard let self = self else { return }
+        
+                    self.viewModel.setFilter(PaymentFilterModel(), for: self.selectedTab)
+                    self.viewModel.currentPage = 1
+        
+                    switch self.selectedTab {
+                    case .orders:
+                        self.viewModel.fetchOrdersList()
+                    case .plans:
+                        self.viewModel.fetchPlansList()
+                    case .giftCards:
+                        self.viewModel.fetchGiftCardsList()
+                    case .banners:
+                        self.viewModel.fetchBannersList()
+                    }
+                }
         self.navigationController?.present(vc, animated: true)
     }
     
@@ -157,25 +168,25 @@ class PaymentsController: UIViewController {
         }
     }
     
-    //    func updatePaginationButtonImages() {
-    //        // Previous Button
-    //        if viewModel.currentPage == 1 {
-    //            previousButton.setImage(UIImage(named: "previousLeft"), for: .normal)
-    //            previousButton.isUserInteractionEnabled = false
-    //        } else {
-    //            previousButton.setImage(UIImage(named: "darkpreviousimage"), for: .normal)
-    //            previousButton.isUserInteractionEnabled = true
-    //        }
-    //
-    //        // Next Button
-    //        if viewModel.currentPage >= viewModel.totalPages {
-    //            nextButton.setImage(UIImage(named: "lightnextimage"), for: .normal)
-    //            nextButton.isUserInteractionEnabled = false
-    //        } else {
-    //            nextButton.setImage(UIImage(named: "nextRight"), for: .normal)
-    //            nextButton.isUserInteractionEnabled = true
-    //        }
-    //    }
+        func updatePaginationButtonImages() {
+            // Previous Button
+            if viewModel.currentPage == 1 {
+                previousButton.setImage(UIImage(named: "previousLeft"), for: .normal)
+                previousButton.isUserInteractionEnabled = false
+            } else {
+                previousButton.setImage(UIImage(named: "darkpreviousimage"), for: .normal)
+                previousButton.isUserInteractionEnabled = true
+            }
+    
+            // Next Button
+            if viewModel.currentPage >= viewModel.totalPages {
+                nextButton.setImage(UIImage(named: "lightnextimage"), for: .normal)
+                nextButton.isUserInteractionEnabled = false
+            } else {
+                nextButton.setImage(UIImage(named: "nextRight"), for: .normal)
+                nextButton.isUserInteractionEnabled = true
+            }
+        }
     
     
 }
@@ -201,6 +212,37 @@ extension PaymentsController : UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 }
+
+//MARK: UITextFieldDelegate Methods
+extension PaymentsController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? ""
+        searchWorkItem?.cancel()
+        let workItem = DispatchWorkItem { [weak self] in
+            guard let self = self else { return }
+            self.viewModel.searchText = currentText
+            self.viewModel.currentPage = 1
+            switch selectedTab {
+            case .orders:
+                self.viewModel.fetchOrdersList()
+            case .plans:
+                self.viewModel.fetchPlansList()
+            case .giftCards:
+                self.viewModel.fetchGiftCardsList()
+            case .banners:
+                self.viewModel.fetchBannersList()
+            }
+        }
+        searchWorkItem = workItem
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: workItem)
+        return true
+    }
+}
+
+
+
+
 enum PaymentTab {
     case orders
     case plans

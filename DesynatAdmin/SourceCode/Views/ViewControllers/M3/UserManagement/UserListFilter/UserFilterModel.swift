@@ -16,7 +16,6 @@ struct UserFilterModel {
     }
 }
 
-
 struct FullScreenBannerFilterModel {
     var bannerType: Int?
     var bannerName: String?
@@ -26,5 +25,16 @@ struct FullScreenBannerFilterModel {
     
     var isEmpty: Bool {
         return bannerType == nil && bannerName == nil && countryName == nil && fromDate == nil && toDate == nil
+    }
+}
+
+struct PaymentFilterModel {
+    var countryId: Int?
+    var fromDate: String?
+    var toDate: String?
+    var status: String?
+    
+    var isEmpty: Bool {
+        return countryId == nil && fromDate == nil && toDate == nil && status == nil
     }
 }

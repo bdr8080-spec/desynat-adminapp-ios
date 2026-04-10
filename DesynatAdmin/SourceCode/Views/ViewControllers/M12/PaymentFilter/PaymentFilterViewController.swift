@@ -7,27 +7,29 @@
 
 import UIKit
 class PaymentFilterViewController: UIViewController {
-//    // MARK: - IBOutlet's
+    
+    // MARK: - IBOutlet's
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var toTextField: UITextField!
     @IBOutlet weak var fromTextField: UITextField!
     @IBOutlet weak var countryLabel: CustomLabelFont!
     @IBOutlet weak var statusLabel: CustomLabelFont!
-
-//    // MARK: - Property Decalaration
+    
+    
+    // MARK: - Property Decalaration
     let datePicker = UIDatePicker()
     private var activeTextField: UITextField?
     
-    var countryName: String = ""
+    var countryId: Int = -1
     
     private lazy var viewModel = PaymentFilterViewModel(hostVC: self)
     
-    var selectedFilter = FullScreenBannerFilterModel()
+    var selectedFilter = PaymentFilterModel()
     
-    var onApplyFilter: ((FullScreenBannerFilterModel) -> Void)?
+    var onApplyFilter: ((PaymentFilterModel) -> Void)?
     var onClearFilter: (() -> Void)?
-//
-//    // MARK: - View's LifeCycle Methods
+    
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,8 +39,8 @@ class PaymentFilterViewController: UIViewController {
             self?.applyPreselectedData()
         }
     }
-
-//    // MARK: - Button's Action
+    
+    // MARK: - Button's Action
     @IBAction func dismissDidTapped(_ sender: Any) {
         dismiss(animated: true)
     }
@@ -49,10 +51,10 @@ class PaymentFilterViewController: UIViewController {
     }
     
     @IBAction func applyDidTapped(_ sender: Any) {
-        var filter = FullScreenBannerFilterModel()
+        var filter = PaymentFilterModel()
         
-        if !countryName.isEmpty {
-            filter.countryName = countryName
+        if countryId != -1 {
+            filter.countryId = countryId
         }
         
         if let fromDate = fromTextField.text, !fromDate.isEmpty {
@@ -78,10 +80,10 @@ class PaymentFilterViewController: UIViewController {
         kSharedAppDelegate.dropDown(dataSource: countryNames, anchorView: sender) { index, item in
             let selectedCountry = self.viewModel.countryListData[index]
             self.countryLabel.text = selectedCountry.name
-            self.countryName = selectedCountry.name ?? ""
+            self.countryId = selectedCountry.id ?? 0
         }
     }
-
+    
     // MARK: - Function's declaration
     private func handleUISetup() {
         headerView.layer.cornerRadius = 24
@@ -93,11 +95,11 @@ class PaymentFilterViewController: UIViewController {
     
     private func applyPreselectedData() {
         // Preselect country
-        if let id = selectedFilter.countryName,
-           let selectedCountry = viewModel.countryListData.first(where: { $0.name == id }) {
+        if let id = selectedFilter.countryId,
+           let selectedCountry = viewModel.countryListData.first(where: { $0.id == id }) {
             
             countryLabel.text = selectedCountry.name
-            countryName = id
+            countryId = id
         }
         
         // Preselect date
