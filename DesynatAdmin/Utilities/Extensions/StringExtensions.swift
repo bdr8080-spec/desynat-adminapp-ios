@@ -8,13 +8,41 @@
 import Foundation
 
 extension String {
-    
-    func trimmed() -> String {
-        return trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+  
+  func trimmed() -> String {
+    return trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+  }
+  
+  func localiz(comment: String = "") -> String {
+    return NSLocalizedString(self, comment: comment)
+  }
+  
+  var roundedIntString: String {
+    if let value = Double(self) {
+      return "\(Int(value.rounded()))"
     }
-    
-    func localiz(comment: String = "") -> String {
-        return NSLocalizedString(self, comment: comment)
-    }
-    
+    return self
+  }
+  
 }
+
+extension String {
+  func formattedPlacedDate() -> String {
+    let inputFormatter = DateFormatter()
+    inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'"
+    inputFormatter.locale = Locale(identifier: "en_US_POSIX")
+    inputFormatter.timeZone = TimeZone(abbreviation: "UTC")
+    
+    guard let date = inputFormatter.date(from: self) else {
+      return ""
+    }
+    
+    let outputFormatter = DateFormatter()
+    outputFormatter.dateFormat = "dd/MM/yy 'at' h:mm a"
+    outputFormatter.locale = Locale.current
+    outputFormatter.timeZone = TimeZone.current
+    
+    return outputFormatter.string(from: date)
+  }
+}
+

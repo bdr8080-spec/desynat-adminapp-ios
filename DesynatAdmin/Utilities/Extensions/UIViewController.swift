@@ -14,85 +14,27 @@ extension UIViewController {
     
     private static var isAlertVisible = false
     
-//    public func showAlert(msg:String, completion:(()->())? = nil) {
-//        let alert = UIAlertController(title: Bundle.main.ApplicationName ?? "", message: msg, preferredStyle: .alert)
-//        alert.addAction(UIAlertAction(title: StringConstant.ok.value(), style: .default, handler: { _ in
-//            completion?()
-//        }))
-//        self.present(alert, animated: true)
-//    }
-    
-//    public func showAlert(title: String? = StringConstant.ok.value(), msg: String, completion: (() -> Void)? = nil) {
-//            // Prevent multiple alerts
-//            guard !UIViewController.isAlertVisible else { return }
-//            UIViewController.isAlertVisible = true
-//            
-//            DispatchQueue.main.async {
-//                let alert = UIAlertController(title: Bundle.main.ApplicationName ?? "",
-//                                              message: msg,
-//                                              preferredStyle: .alert)
-//                
-//                alert.addAction(UIAlertAction(title: title, style: .default, handler: { _ in
-//                    UIViewController.isAlertVisible = false   // reset flag
-//                    completion?()
-//                }))
-//                
-//                self.present(alert, animated: true)
-//            }
-//        }
-    
-    
     public func showAlert(buttonTitle: String? = nil, msg: String, completion: (() -> Void)? = nil) {
         // Prevent multiple alerts
         guard !UIViewController.isAlertVisible else { return }
         UIViewController.isAlertVisible = true
-
+        
         DispatchQueue.main.async {
             let alert = UIAlertController(
                 title: Bundle.main.ApplicationName ?? "",
                 message: msg,
                 preferredStyle: .alert
             )
-
+            
             let actionTitle = buttonTitle ?? StringConstant.ok.value()
             alert.addAction(UIAlertAction(title: actionTitle, style: .default, handler: { _ in
                 UIViewController.isAlertVisible = false
                 completion?()
             }))
-
+            
             self.present(alert, animated: true)
         }
     }
-    
-//    public func showConfirmationAlert(msg: String,completion: (() -> Void)? = nil) {
-//        // Prevent multiple alerts
-//        guard !UIViewController.isAlertVisible else { return }
-//        UIViewController.isAlertVisible = true
-//
-//        DispatchQueue.main.async {
-//            let alert = UIAlertController(
-//                title: Bundle.main.ApplicationName ?? "",
-//                message: msg,
-//                preferredStyle: .alert
-//            )
-//
-//            // Yes Action
-//            let yesButton = UIAlertAction(title: "Yes", style: .default) { _ in
-//                UIViewController.isAlertVisible = false
-//                completion?()
-//            }
-//
-//            // Cancel Action (just dismiss)
-//            let cancelButton = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-//                UIViewController.isAlertVisible = false
-//            }
-//
-//            alert.addAction(yesButton)
-//            alert.addAction(cancelButton)
-//
-//            self.present(alert, animated: true)
-//        }
-//    }
     
     public func showConfirmationAlert(
         msg: String,
@@ -101,38 +43,34 @@ extension UIViewController {
         // Prevent multiple alerts
         guard !UIViewController.isAlertVisible else { return }
         UIViewController.isAlertVisible = true
-
+        
         DispatchQueue.main.async {
             let alert = UIAlertController(
                 title: Bundle.main.ApplicationName ?? "",
                 message: msg,
                 preferredStyle: .alert
             )
-
+            
             // Yes Action
             let yesButton = UIAlertAction(title: "Yes", style: .default) { _ in
                 UIViewController.isAlertVisible = false
                 completion?()
             }
-
+            
             // Cancel Action (red color)
-            let cancelButton = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            let cancelButton = UIAlertAction(title: "No", style: .cancel) { _ in
                 UIViewController.isAlertVisible = false
             }
-
+            
             // Apply red color to Cancel button text
             cancelButton.setValue(UIColor.red, forKey: "titleTextColor")
-
+            
             alert.addAction(yesButton)
             alert.addAction(cancelButton)
-
+            
             self.present(alert, animated: true)
         }
     }
-
-
-
-
     
     static func convertPDFToImages(pdfURL: URL) -> [UIImage]? {
         guard let pdfDocument = PDFDocument(url: pdfURL) else {
@@ -158,59 +96,6 @@ extension UIViewController {
         }
         return images
     }
-    
-//    public func showAlert(msg: String, completion: (() -> ())? = nil) {
-//        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
-//
-//        // Image View
-//        let imageView = UIImageView(image: UIImage(named: "alertImg"))
-//        imageView.contentMode = .scaleAspectFit
-//        imageView.layer.cornerRadius = 6
-//        imageView.clipsToBounds = true
-//        imageView.translatesAutoresizingMaskIntoConstraints = false
-//        imageView.widthAnchor.constraint(equalToConstant: 60).isActive = true
-//        imageView.heightAnchor.constraint(equalToConstant: 60).isActive = true
-//
-//        // Message Label
-//        let messageLabel = UILabel()
-//        messageLabel.text = msg
-//        messageLabel.numberOfLines = 0
-//        messageLabel.textAlignment = .center
-//        messageLabel.font = UIFont.systemFont(ofSize: 14)
-//        messageLabel.textColor = .label
-//        messageLabel.translatesAutoresizingMaskIntoConstraints = false
-//
-//        // Separator Line
-//        let separator = UIView()
-//        separator.backgroundColor = UIColor.systemGray4
-//        separator.translatesAutoresizingMaskIntoConstraints = false
-//        separator.heightAnchor.constraint(equalToConstant: 1).isActive = true
-//
-//        // Stack View
-//        let stackView = UIStackView(arrangedSubviews: [imageView, messageLabel, separator])
-//        stackView.axis = .vertical
-//        stackView.spacing = 12
-//        stackView.alignment = .fill
-//        stackView.translatesAutoresizingMaskIntoConstraints = false
-//
-//        alert.view.addSubview(stackView)
-//
-//        NSLayoutConstraint.activate([
-//            stackView.topAnchor.constraint(equalTo: alert.view.topAnchor, constant: 20),
-//            stackView.leadingAnchor.constraint(equalTo: alert.view.leadingAnchor, constant: 20),
-//            stackView.trailingAnchor.constraint(equalTo: alert.view.trailingAnchor, constant: -20),
-//            stackView.bottomAnchor.constraint(lessThanOrEqualTo: alert.view.bottomAnchor, constant: -70),
-//            separator.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
-//            separator.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
-//        ])
-//
-//        // OK button
-//        alert.addAction(UIAlertAction(title: StringConstant.ok.value(), style: .default, handler: { _ in
-//            completion?()
-//        }))
-//
-//        self.present(alert, animated: true)
-//    }
     
     func getCurrentTime() -> String {
         let currentDate = Date()
@@ -269,8 +154,8 @@ extension UIViewController {
         }
         return "0.00"
     }
-
-
+    
+    
     func formattedMinimu(from amount: Float?) -> String {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
@@ -296,7 +181,7 @@ extension UIViewController {
         
         return "0.00"
     }
-
+    
     func formattedAmount(from amount: Double?) -> String {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
@@ -324,14 +209,14 @@ extension UIViewController {
         
         return "0.00"
     }
-
-
+    
+    
     func convertDateString(inputDateString: String, inputDateFormat: String, outputDateFormat: String) -> String? {
         // Step 1: Create a DateFormatter to parse the original string
         let originalDateFormatter = DateFormatter()
         originalDateFormatter.dateFormat = inputDateFormat
         originalDateFormatter.timeZone = TimeZone.current // Adjust timezone if necessary
-
+        
         // Step 2: Convert the string to a Date object
         if let date = originalDateFormatter.date(from: inputDateString) {
             
@@ -354,31 +239,14 @@ extension UIViewController {
     }
     
     func backController() {
-          let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
-          self.navigationController!.popToViewController(viewControllers[viewControllers.count - 2], animated: true)
-      }
+        let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
+        self.navigationController!.popToViewController(viewControllers[viewControllers.count - 2], animated: true)
+    }
     func backTwoController() {
-          let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
-          self.navigationController!.popToViewController(viewControllers[viewControllers.count - 3], animated: true)
-      }
-//    func backControllerOne() {
-//        guard let nav = self.navigationController else { return }
-//        let viewControllers = nav.viewControllers
-//        
-//        if viewControllers.count >= 2 {
-//            nav.popToViewController(viewControllers[viewControllers.count - 2], animated: true)
-//        } else {
-//            // No previous screen — decide what to do here
-//            // e.g., navigate to ProfileSelectionVC or dismiss
-//            let profileVC = ProfileSelectionVC.instantiate(fromAppStoryboard: .Main)
-//            let nc = UINavigationController(rootViewController: profileVC)
-//            nc.isNavigationBarHidden = true
-//            let sceneDelegate = UIApplication.shared.connectedScenes.first!.delegate as! SceneDelegate
-//            sceneDelegate.window!.rootViewController = nc
-//            sceneDelegate.window!.makeKeyAndVisible()
-//        }
-//    }
-
+        let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
+        self.navigationController!.popToViewController(viewControllers[viewControllers.count - 3], animated: true)
+    }
+    
 }
 
 
@@ -397,12 +265,108 @@ extension UINavigationController {
     }
     
     func popToViewController(ofClass: AnyClass, animated: Bool = true) {
-          if let vc = viewControllers.last(where: { $0.isKind(of: ofClass) }) {
+        if let vc = viewControllers.last(where: { $0.isKind(of: ofClass) }) {
             popToViewController(vc, animated: animated)
-          }
+        }
     }
-    
     
 }
 
 
+extension UIViewController {
+    func presentVC(
+        _ controller : UIViewController,
+        withNavigation isNavigation: Bool = false,
+        withAnimation isAnimate : Bool = true,
+        modalPresentationStyle style : UIModalPresentationStyle  = .overCurrentContext
+    ) {
+        var vc = controller
+        if (isNavigation) {
+            let navigationController = UINavigationController(rootViewController: vc)
+            navigationController.navigationBar.isHidden = true
+            navigationController.modalPresentationStyle = .overCurrentContext
+            vc = navigationController
+        }
+        vc.modalPresentationStyle = style
+        self.present(vc, animated: isAnimate)
+    }
+    func navigate(to controller : UIViewController,withAnimation animation:Bool = true) {
+        self.navigationController?.pushViewController(controller, animated: animation)
+    }
+}
+extension UIView {
+    func borderRadiusWithCornerMask(radius : CGFloat , cornerMask: CACornerMask = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner])  {
+        self.layer.cornerRadius = radius
+        self.layer.maskedCorners = cornerMask
+    }
+}
+extension UIView {
+    
+    func addGradientBorder(cornerRadius:CGFloat = 0.0,direction:GradiantDirection = .leftToRight,colors:[UIColor] = [.black,.black]) {
+        // Remove any existing gradient border layers to prevent duplicates
+        layer.sublayers?.filter { $0.name == "gradientBorderLayer" }.forEach { $0.removeFromSuperlayer() }
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = bounds
+        gradientLayer.colors = colors.map({$0.cgColor})  // Customize your gradient colors
+        
+        switch direction {
+        case .topToBottom:
+            gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+            gradientLayer.endPoint = CGPoint(x: 0.0, y: 1.0)
+        case .bottomToTop:
+            gradientLayer.startPoint = CGPoint(x: 1.0, y: 0.5)
+            gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.5)
+        case .leftToRight:
+            gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+            gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
+        case .rightToLeft:
+            gradientLayer.startPoint = CGPoint(x: 1.0, y: 0.5)
+            gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.5)
+        }
+        gradientLayer.name = "gradientBorderLayer" // Assign a name for easy identification
+        
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.lineWidth = 1.5 // Customize border width
+        shapeLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath // Use button's corner radius
+        shapeLayer.strokeColor = UIColor.black.cgColor // This color will be masked by the gradient
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        
+        gradientLayer.mask = shapeLayer
+        layer.addSublayer(gradientLayer)
+    }
+    enum GradiantDirection {
+        case leftToRight
+        case rightToLeft
+        case topToBottom
+        case bottomToTop
+    }
+    
+    func appendDashedBorder(rect:CGRect? = nil,radius:CGFloat = 5,gap:NSNumber = 2,dashWidth:NSNumber = 4,color:UIColor = UIColor.clear) {
+        
+        
+        let yourViewShapeLayer: CAShapeLayer = CAShapeLayer()
+        let frame = rect ?? self.bounds
+        yourViewShapeLayer.frame = frame
+        yourViewShapeLayer.bounds = frame
+        yourViewShapeLayer.position = CGPoint(x: frame.width/2, y: frame.height/2)
+        yourViewShapeLayer.fillColor = UIColor.white.cgColor
+        yourViewShapeLayer.strokeColor =  color.cgColor
+        yourViewShapeLayer.lineWidth = 1
+        yourViewShapeLayer.lineJoin = CAShapeLayerLineJoin.round
+        yourViewShapeLayer.lineDashPattern = [dashWidth,gap]
+        yourViewShapeLayer.path = UIBezierPath(roundedRect: frame, cornerRadius: radius).cgPath
+        if let layer = self.layer.sublayers?.first(where: {$0 is CAShapeLayer}) {
+            layer.frame = frame
+            self.layoutIfNeeded()
+        } else {
+            self.layer.insertSublayer(yourViewShapeLayer, at: 0)
+        }
+        
+    }
+}
+extension UIView {
+    class func fromNib<T: UIView>() -> T {
+        return Bundle(for: T.self).loadNibNamed(String(describing: T.self), owner: nil, options: nil)![0] as! T
+    }
+}

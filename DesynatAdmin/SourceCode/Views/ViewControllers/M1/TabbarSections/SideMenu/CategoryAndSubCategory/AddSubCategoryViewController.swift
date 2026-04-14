@@ -8,13 +8,15 @@
 import UIKit
 
 class AddSubCategoryViewController: UIViewController {
-
+    
+    // MARK: - IBOutlet's
     @IBOutlet weak var submitLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subCategoryArabicTextField: UITextField!
     @IBOutlet weak var mainImageView: CustomImageView!
     @IBOutlet weak var subCategoryTextField: UITextField!
     
+    // MARK: - Property Decalaration
     var categoryId: String = ""
     lazy private var viewModel = AddSubCategoryViewModel(hostVC: self)
     var selectedImageUrl: String = ""
@@ -22,6 +24,7 @@ class AddSubCategoryViewController: UIViewController {
     var subCategoryData: GetSubCategoryDataList?
     var onSubCategoryUpdated: ((GetSubCategoryDataList) -> Void)?
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         subCategoryTextField.delegate = self
@@ -36,6 +39,7 @@ class AddSubCategoryViewController: UIViewController {
         }
     }
     
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -57,9 +61,9 @@ class AddSubCategoryViewController: UIViewController {
                 self.mainImageView.image = image
             }
             guard let compressedImage = image.jpegData(compressionQuality: 0.25),
-                          let finalImage = UIImage(data: compressedImage) else {
-                        return
-                    }
+                  let finalImage = UIImage(data: compressedImage) else {
+                return
+            }
             self.viewModel.uploadDocument(file: finalImage, isImage: true) { [weak self] uploadedUrl in
                 guard let self = self else { return }
                 DispatchQueue.main.async {
@@ -69,6 +73,7 @@ class AddSubCategoryViewController: UIViewController {
         }
     }
     
+    //MARK: Function's declaration
     func bindData() {
         subCategoryTextField.text = subCategoryData?.nameEnglish
         subCategoryArabicTextField.text = subCategoryData?.nameArabic
@@ -84,6 +89,7 @@ class AddSubCategoryViewController: UIViewController {
     
 }
 
+//MARK: UITextFieldDelegate Methods
 extension AddSubCategoryViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -100,23 +106,23 @@ extension AddSubCategoryViewController: UITextFieldDelegate {
         }
         
         if textField == subCategoryArabicTextField {
-                    
-                    // Allowed Arabic Unicode ranges + spaces
-                    let allowedSet = CharacterSet(charactersIn: "\u{0600}"..."\u{06FF}")
-                        .union(CharacterSet(charactersIn: "\u{0750}"..."\u{077F}"))
-                        .union(CharacterSet(charactersIn: "\u{08A0}"..."\u{08FF}"))
-                        .union(CharacterSet.whitespaces)
-                    
-                    // Check every character (handles paste)
-                    for scalar in string.unicodeScalars {
-                        if !allowedSet.contains(scalar) {
-                            CommonUtils.showToast(message: "Please switch to Arabic keyboard")
-                            return false
-                        }
-                    }
-                    
-                    return true
+            
+            // Allowed Arabic Unicode ranges + spaces
+            let allowedSet = CharacterSet(charactersIn: "\u{0600}"..."\u{06FF}")
+                .union(CharacterSet(charactersIn: "\u{0750}"..."\u{077F}"))
+                .union(CharacterSet(charactersIn: "\u{08A0}"..."\u{08FF}"))
+                .union(CharacterSet.whitespaces)
+            
+            // Check every character (handles paste)
+            for scalar in string.unicodeScalars {
+                if !allowedSet.contains(scalar) {
+                    CommonUtils.showToast(message: "Please switch to Arabic keyboard")
+                    return false
                 }
+            }
+            
+            return true
+        }
         
         return true
     }

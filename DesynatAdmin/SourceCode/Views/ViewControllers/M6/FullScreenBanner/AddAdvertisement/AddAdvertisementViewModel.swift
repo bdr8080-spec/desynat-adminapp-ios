@@ -1,0 +1,180 @@
+//
+//  AddAdvertisementViewModel.swift
+//  DesynatAdmin
+//
+//  Created by fluper on 08/01/26.
+//
+
+import Foundation
+
+class AddAdvertisementViewModel {
+    
+    private var hostVC: AddAdvertisementViewController
+    var countryListData: [GetAllUserCountryModel] = []
+    
+    init(hostVC: AddAdvertisementViewController) {
+        self.hostVC = hostVC
+    }
+    
+    func validFields() -> Bool {
+        var errorMessage: AlertConstant = .none
+        
+        //Image
+        if errorMessage == .none &&
+            hostVC.selectedImageUrl.isEmpty &&
+            hostVC.pickedImage == nil &&
+            hostVC.pickedGifData == nil {
+            errorMessage = .SelectBannerImage
+        }
+        
+        //Title
+        let title = String.getString(hostVC.titleTextField.text)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if errorMessage == .none && title.isEmpty {
+            errorMessage = .EnterAdvTitle
+        }
+        
+        //Country
+        if errorMessage == .none && hostVC.countryId == 0 {
+            errorMessage = .selectCountry
+        }
+        
+        //ForType
+        if errorMessage == .none && hostVC.selectedForType == 0 { //type 1 mobile,2-web
+            errorMessage = .selectForType
+        }
+        
+        //From Date
+        let fromDate = String.getString(hostVC.fromTextField.text)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if errorMessage == .none && fromDate.isEmpty {
+            errorMessage = .SelectFromDate
+        }
+        
+        //To Date
+        let toDate = String.getString(hostVC.toTextField.text)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if errorMessage == .none && toDate.isEmpty {
+            errorMessage = .SelectToDate
+        }
+        
+        if errorMessage != .none {
+            hostVC.showAlert(msg: errorMessage.rawValue)
+            hostVC.view.endEditing(true)
+            return false
+        }
+        
+        hostVC.view.endEditing(true)
+        return true
+    }
+    
+    
+    func getAllCountry() {
+        WebService.shared.getAllUsersCountryList(){ [weak self] response in
+            guard let self = self else { return }
+            countryListData = response
+        }
+    }
+    
+    func addAdvertisementApi() {
+        let apiFromDate = convertDateString(hostVC.fromTextField.text ?? "",from: "dd/MM/yyyy",to: "yyyy-MM-dd")
+        let apiToDate = convertDateString(hostVC.toTextField.text ?? "",from: "dd/MM/yyyy",to: "yyyy-MM-dd")
+        
+        
+        let params: [String:Any] = [
+            "image": hostVC.selectedImageUrl,
+            "country_id": hostVC.countryId,
+            "title": hostVC.titleTextField.text?.trimmed() ?? "",
+            "type": hostVC.selectedForType,
+            "start_date": apiFromDate,//hostVC.fromTextField.text?.trimmed() ?? "", //"2026-01-01",
+            "end_date": apiToDate ]//hostVC.toTextField.text?.trimmed() ?? ""]
+        
+        WebService.sharedInstance.addAdvertisement(param: params) { (response) in
+            DispatchQueue.main.async {
+                CommonUtils.showToast(message: "Advertisement added succesfully")
+                self.hostVC.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
+    
+    func editAdvertisementApi() {
+        let apiFromDate = convertDateString(hostVC.fromTextField.text ?? "",from: "dd/MM/yyyy",to: "yyyy-MM-dd")
+        let apiToDate = convertDateString(hostVC.toTextField.text ?? "",from: "dd/MM/yyyy",to: "yyyy-MM-dd")
+        let params: [String:Any] = [
+            "banner_id": hostVC.giftsListData?.id ?? 0,
+            "image": hostVC.selectedImageUrl,
+            "country_id": hostVC.countryId,
+            "type": hostVC.selectedForType,
+            "title": hostVC.titleTextField.text?.trimmed() ?? "",
+            "start_date": apiFromDate, //hostVC.fromTextField.text?.trimmed() ?? "",
+            "end_date": apiToDate ]//hostVC.toTextField.text?.trimmed() ?? ""]
+        
+        WebService.sharedInstance.editAdvertisement(param: params) { (response) in
+            DispatchQueue.main.async {
+                CommonUtils.showToast(message: "Advertisement updated succesfully")
+                self.hostVC.onCardUpdated?(response)
+                self.hostVC.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
+    
+    func uploadDocument(file: Any, isImage: Bool, completion: @escaping(String) -> Void) {
+        let param:MultipartUpload = MultipartUpload(fileName: "image", file: file, mimeType: isImage ? .image : .pdf)
+        WebService.sharedInstance.uploadFile(withParams: param) { url, msg, code in
+            completion(url)
+        }
+    }
+    
+    //  func uploadFullScreenBanner(file: Any, isImage: Bool, keyParam: [String: Any], completion: @escaping(String) -> Void) {
+    //    let param:MultipartUpload = MultipartUpload(fileName: "image", file: file, mimeType: isImage ? .image : .pdf)
+    //    WebService.sharedInstance.uploadFullScreenBanner(withParams: param, param: keyParam) { url, msg, code in
+    //      completion(url)
+    //    }
+    //  }
+    
+    func uploadFullScreenBanner(
+        file: Any,
+        isImage: Bool,
+        isGif: Bool = false,
+        keyParam: [String: Any],
+        completion: @escaping(String) -> Void
+    ) {
+        let mime: MultipartUpload.Mime = isGif ? .gif : (isImage ? .image : .pdf)
+        
+        let param = MultipartUpload(
+            fileName: "image",
+            file: file,
+            mimeType: mime
+        )
+        
+        WebService.sharedInstance.uploadFullScreenBanner(withParams: param, param: keyParam) {
+            url, msg, code in
+            completion(url)
+        }
+    }
+    
+    
+    func convertDateString(
+        _ dateString: String,
+        from inputFormat: String,
+        to outputFormat: String
+    ) -> String {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = inputFormat
+        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = outputFormat
+        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        guard let date = inputFormatter.date(from: dateString) else {
+            return ""
+        }
+        return outputFormatter.string(from: date)
+    }
+    
+}
+

@@ -7,8 +7,17 @@ struct MultipartUpload {
     enum Mime:String {
         case Video = "video/mp4"
         case image = "image/jpeg"
+      case gif   = "image/gif"
         case pdf   = "application/pdf"
     }
+  
+//  enum MimeType: String {
+//      case image = "image/jpeg"
+//      case gif   = "image/gif"
+//      case pdf   = "application/pdf"
+//      case Video = "video/mp4"
+//  }
+
     
     var fileName:String
     var file:Any
@@ -20,6 +29,8 @@ struct MultipartUpload {
         self.mimeType = mimeType
     }
 }
+
+
 
 enum NetworkError: Error {
     case noResponseData
@@ -104,3 +115,4 @@ enum HTTPStatusCode: Int, Decodable {
     static let Sucess = [SUCCESS, CREATED, ACCEPTED, NO_CONTENT]
     static let Failure = [BAD_REQUEST, FORBIDDEN, NOT_FOUND, METHOD_NOT_ALLOWED, DATA_EXIST, CONFLICT, INTERNAL_SERVER_ERROR]
 }
+

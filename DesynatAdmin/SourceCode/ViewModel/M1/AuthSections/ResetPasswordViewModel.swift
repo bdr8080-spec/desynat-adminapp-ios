@@ -27,9 +27,10 @@ class ResetPasswordViewModel: NSObject {
             // Validate create password
             if createPassword.isEmpty {
                 errorMessage = .EnterNewPassword
-            } else if !createPassword.isValidPassword() {
-                errorMessage = .InvalidPasswordFormat
             }
+//        else if !createPassword.isValidPassword() {
+//                errorMessage = .InvalidPasswordFormat
+//            }
             // Validate confirm password
             else if confirmPassword.isEmpty {
                 errorMessage = .EnterConfirmPassword
@@ -61,6 +62,7 @@ class ResetPasswordViewModel: NSObject {
     }
 }
 
+//MARK: UITextFieldDelegate Methods
 extension ResetPasswordViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == createPasswordTextField || textField == confirmPasswordTextField {

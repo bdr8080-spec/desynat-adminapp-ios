@@ -6,16 +6,16 @@
 ////
 //
 import Foundation
-import UIKit                 
+import UIKit
 
 extension SceneDelegate {
-   
+    
     // Navigate to Home Vc
     public func navigateToUserHomeVc() {
         let vc = TabBarVC.instantiate(fromAppStoryboard: .Home)
         navigateTo(vc: vc)
     }
-
+    
     // Logout current user and navigate to loginVc
     func logoutUser() {
         Global.shared.user = nil
@@ -27,8 +27,8 @@ extension SceneDelegate {
     public func navigateToLoginVc() {
         navigateTo(vc: LoginViewController.instantiate(fromAppStoryboard: .Main))
     }
-
-   //Pass custom vc to make it root controller
+    
+    //Pass custom vc to make it root controller
     public func navigateTo(vc:UIViewController) {
         let nc = UINavigationController(rootViewController: vc)
         nc.isNavigationBarHidden = true
@@ -38,4 +38,3 @@ extension SceneDelegate {
     }
     
 }
-

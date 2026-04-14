@@ -8,16 +8,20 @@
 import UIKit
 
 class ForgotPasswordViewController: UIViewController {
-
+    
+    // MARK: - IBOutlet's
     @IBOutlet weak var emailAddressTextField: UITextField!
     
+    // MARK: - Property Decalaration
     private lazy var viewModel = ForgotPasswordViewModel(hostVC: self)
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         emailAddressTextField.delegate = self
     }
     
+    // MARK: - Button's Action
     @IBAction func continueDidTapped(_ sender: Any) {
         if viewModel.validFields() {
             viewModel.forgotPasswordApi()
@@ -27,9 +31,10 @@ class ForgotPasswordViewController: UIViewController {
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
-
+    
 }
 
+//MARK: UITextFieldDelegate Methods
 extension ForgotPasswordViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField,

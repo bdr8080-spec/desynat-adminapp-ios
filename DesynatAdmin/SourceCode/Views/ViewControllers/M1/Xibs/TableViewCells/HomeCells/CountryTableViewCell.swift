@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CountryTableViewCell: UITableViewCell {
+class CountryTableViewCell: ResuableTableCell {
 
     @IBOutlet weak var countryImageView: UIImageView!
     @IBOutlet weak var countryLabel: CustomLabelFont!
@@ -25,9 +25,16 @@ class CountryTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configData(data: GetCountryDataModel) {
+    func configData(data: GetCountryDataModel,isSelected:Bool) {
         countryLabel.text = data.name
         countryFlagEmojiLabel.text = data.flag
+        self.selectedImageView.image = UIImage(named: isSelected ? "radioSelected" : "radioUnselected")
+    }
+    
+    func configCityData(data: CountryCitiesDataModel,isSelected:Bool) {
+        countryLabel.text = data.name
+        countryFlagEmojiLabel.isHidden = true
+        self.selectedImageView.image = UIImage(named: isSelected ? "radioSelected" : "radioUnselected")
     }
     
 }

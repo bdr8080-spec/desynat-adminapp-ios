@@ -11,6 +11,12 @@ enum AppStoryboard : String {
     case Main
     case Home
     case SideMenu
+    case ReasonManagement
+    case ShippingPromocode
+    case AffiliatedBannerOrder
+    case LiveStoryDealManagement
+    case NotificationCMS
+    case Payment
 }
 
 extension AppStoryboard {
@@ -52,6 +58,7 @@ extension UIViewController {
     static func instantiate(fromAppStoryboard appStoryboard: AppStoryboard) -> Self {
         return appStoryboard.viewController(self)
     }
+    static var viewFromNIB : Self {
+        return Self(nibName: String(describing: Self.self), bundle: nil) as Self
+    }
 }
-
-

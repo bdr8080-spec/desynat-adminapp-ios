@@ -52,8 +52,7 @@ extension WebService {
                 if let error {
                     UIApplication.shared.topViewController()?.showAlert(msg: error)
                 } else if let response {
-//                    CommonUtils.showToast(message: message ?? "Opt sent to your email address succesfully")
-                    CommonUtils.showToastForOTP(message: "Opt sent to your email address succesfully")
+                    CommonUtils.showToastForOTP(message: "OTP sent to your email address succesfully")
                     completion(response)
                 }
             }
@@ -90,14 +89,3 @@ extension WebService {
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-

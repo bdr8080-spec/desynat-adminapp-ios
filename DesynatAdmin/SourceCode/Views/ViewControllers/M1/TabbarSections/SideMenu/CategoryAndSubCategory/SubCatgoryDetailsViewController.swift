@@ -9,20 +9,24 @@ import UIKit
 
 class SubCatgoryDetailsViewController: UIViewController {
     
+    // MARK: - IBOutlet's
     @IBOutlet weak var statusImageView: UIImageView!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var statusButton: UIButton!
     @IBOutlet weak var mainImageView: CustomImageView!
     @IBOutlet weak var subCatgeoryLabel: UILabel!
     
+    // MARK: - Property Decalaration
     var subCategoryData: GetSubCategoryDataList?
     private lazy var viewModel = SubCatgoryDetailsViewModel(hostVC: self)
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         bindData()
     }
     
+    // MARK: - Button's Action
     @IBAction func backDidTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: false)
     }
@@ -56,6 +60,7 @@ class SubCatgoryDetailsViewController: UIViewController {
     @IBAction func uploadImageDidTapped(_ sender: Any) {
     }
     
+    //MARK: Function's declaration
     func bindData() {
         subCatgeoryLabel.text = subCategoryData?.nameEnglish
         if let imageUrlString = subCategoryData?.image,

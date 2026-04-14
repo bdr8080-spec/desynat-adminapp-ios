@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Light.ttf">
+            <string>Poppins-Light</string>
+        </array>
+        <array key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="118" id="KGk-i7-Jjw" customClass="ChatInboxTableViewCell" customModule="DesynatAdmin" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="118"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="118"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TFh-6k-Mae" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pj3-s0-5Dp" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
+                                <rect key="frame" x="12" y="12" width="58" height="58"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userProfile" translatesAutoresizingMaskIntoConstraints="NO" id="IAO-mT-Aqy" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
+                                        <rect key="frame" x="3" y="3" width="52" height="52"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="IAO-mT-Aqy" secondAttribute="height" multiplier="1:1" id="lDq-df-bV0"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="circleCorner" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="58" id="1Wb-2P-l0k"/>
+                                    <constraint firstAttribute="height" constant="58" id="CkZ-W8-Lvq"/>
+                                    <constraint firstItem="IAO-mT-Aqy" firstAttribute="height" secondItem="pj3-s0-5Dp" secondAttribute="height" multiplier="0.9" id="RnU-V0-EPH"/>
+                                    <constraint firstItem="IAO-mT-Aqy" firstAttribute="centerY" secondItem="pj3-s0-5Dp" secondAttribute="centerY" id="Uka-b6-t1e"/>
+                                    <constraint firstItem="IAO-mT-Aqy" firstAttribute="centerX" secondItem="pj3-s0-5Dp" secondAttribute="centerX" id="xQ0-cH-eMo"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="circleCorner" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.090196078430000007" green="0.090196078430000007" blue="0.090196078430000007" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2lR-aZ-5gi">
+                                <rect key="frame" x="82" y="15.666666666666668" width="226" height="50.666666666666657"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Max jacobson" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rlF-cb-L94">
+                                        <rect key="frame" x="0.0" y="0.0" width="226" height="19.666666666666668"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you, bro!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tuB-8Q-ouk">
+                                        <rect key="frame" x="0.0" y="19.666666666666671" width="226" height="17"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                        <color key="textColor" red="0.090196078430000007" green="0.090196078430000007" blue="0.090196078430000007" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yesterday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRK-FV-Dx7">
+                                        <rect key="frame" x="0.0" y="36.666666666666671" width="226" height="14"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="10"/>
+                                        <color key="textColor" red="0.090196078430000007" green="0.090196078430000007" blue="0.090196078430000007" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="pj3-s0-5Dp" firstAttribute="leading" secondItem="TFh-6k-Mae" secondAttribute="leading" constant="12" id="2ad-v0-2qg"/>
+                            <constraint firstItem="2lR-aZ-5gi" firstAttribute="leading" secondItem="pj3-s0-5Dp" secondAttribute="trailing" constant="12" id="SDm-PV-oTU"/>
+                            <constraint firstAttribute="trailing" secondItem="2lR-aZ-5gi" secondAttribute="trailing" constant="12" id="YEr-nF-H8p"/>
+                            <constraint firstItem="pj3-s0-5Dp" firstAttribute="top" secondItem="TFh-6k-Mae" secondAttribute="top" constant="12" id="jPs-jy-sGD"/>
+                            <constraint firstItem="2lR-aZ-5gi" firstAttribute="centerY" secondItem="pj3-s0-5Dp" secondAttribute="centerY" id="pHt-0E-dTE"/>
+                            <constraint firstItem="pj3-s0-5Dp" firstAttribute="centerY" secondItem="TFh-6k-Mae" secondAttribute="centerY" id="q1U-OO-gPp"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="12"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" red="0.090196078430000007" green="0.090196078430000007" blue="0.090196078430000007" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="TFh-6k-Mae" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Xv6-92-qCC"/>
+                    <constraint firstAttribute="trailing" secondItem="TFh-6k-Mae" secondAttribute="trailing" id="gxA-L7-cNm"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="TFh-6k-Mae" secondAttribute="bottom" constant="16" id="kak-as-dxd"/>
+                    <constraint firstItem="TFh-6k-Mae" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="tJW-fr-uZl"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <point key="canvasLocation" x="-119.08396946564885" y="141.5492957746479"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="userProfile" width="32" height="32"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

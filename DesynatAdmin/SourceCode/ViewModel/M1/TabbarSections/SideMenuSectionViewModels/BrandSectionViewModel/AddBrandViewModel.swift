@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 class AddBrandViewModel: NSObject {
+    
     private var hostVC: AddNewBrandViewController
     
     init(hostVC: AddNewBrandViewController) {
@@ -79,5 +80,6 @@ class AddBrandViewModel: NSObject {
             completion(url)
         }
     }
+    
 }
 

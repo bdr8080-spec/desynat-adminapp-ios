@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zW6-LW-y4g">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zW6-LW-y4g">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -28,23 +28,23 @@
             <objects>
                 <viewController storyboardIdentifier="SelectLanguageViewController" id="BYZ-38-t0r" customClass="SelectLanguageViewController" customModule="DesynatAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="3do-nz-deS">
-                                <rect key="frame" x="20" y="118" width="353" height="318"/>
+                                <rect key="frame" x="20" y="100" width="335" height="318"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select language" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jf8-ri-seu">
-                                        <rect key="frame" x="0.0" y="0.0" width="353" height="22.666666666666668"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="22.666666666666668"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pAc-ag-l7x">
-                                        <rect key="frame" x="0.0" y="42.66666666666665" width="353" height="87.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="42.66666666666665" width="335" height="87.333333333333314"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JNd-1A-U4T">
-                                                <rect key="frame" x="0.0" y="10" width="353" height="67.333333333333329"/>
+                                                <rect key="frame" x="0.0" y="10" width="335" height="67.333333333333329"/>
                                                 <string key="text">Choose the language and continue to get the 
 experience the app in your preferred language.</string>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
@@ -61,10 +61,10 @@ experience the app in your preferred language.</string>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ghs-O8-WZX">
-                                        <rect key="frame" x="0.0" y="150" width="353" height="110"/>
+                                        <rect key="frame" x="0.0" y="150" width="335" height="110"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dqc-qU-2MA" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="353" height="45"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="45"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radioSelected" translatesAutoresizingMaskIntoConstraints="NO" id="XOR-li-d2V">
                                                         <rect key="frame" x="16" y="12.666666666666686" width="20" height="20"/>
@@ -83,7 +83,7 @@ experience the app in your preferred language.</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gOy-cy-cxc">
-                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="45"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="45"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain"/>
                                                         <connections>
@@ -115,7 +115,7 @@ experience the app in your preferred language.</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BjZ-wU-asb" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="65" width="353" height="45"/>
+                                                <rect key="frame" x="0.0" y="65" width="335" height="45"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radioUnselected" translatesAutoresizingMaskIntoConstraints="NO" id="uAk-JV-CCe">
                                                         <rect key="frame" x="16" y="12.666666666666686" width="20" height="20"/>
@@ -134,7 +134,7 @@ experience the app in your preferred language.</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLP-LL-gT8">
-                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="45"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="45"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain"/>
                                                         <connections>
@@ -171,10 +171,10 @@ experience the app in your preferred language.</string>
                                         </constraints>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="392-HZ-D6F">
-                                        <rect key="frame" x="0.0" y="280" width="353" height="38"/>
+                                        <rect key="frame" x="0.0" y="280" width="335" height="38"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6y-fP-w4T" customClass="CustomButton" customModule="DesynatAdmin" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="353" height="38"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6y-fP-w4T" customClass="CustomButton" customModule="DesynatAdmin" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="38"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="38" id="TNi-fD-xff"/>
@@ -192,7 +192,7 @@ experience the app in your preferred language.</string>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continue" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afb-c8-gaf">
-                                                <rect key="frame" x="144.33333333333334" y="9.3333333333333162" width="64.666666666666657" height="19.666666666666671"/>
+                                                <rect key="frame" x="135.33333333333334" y="9.3333333333333162" width="64.666666666666657" height="19.666666666666671"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -236,58 +236,58 @@ experience the app in your preferred language.</string>
             <objects>
                 <viewController storyboardIdentifier="LoginViewController" id="7kr-ow-iSp" customClass="LoginViewController" customModule="DesynatAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UKg-r3-UTv">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginLogo" translatesAutoresizingMaskIntoConstraints="NO" id="jKa-Lc-ZyS">
-                                <rect key="frame" x="59" y="118" width="275" height="65"/>
+                                <rect key="frame" x="50" y="100" width="275" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="jKa-Lc-ZyS" secondAttribute="height" multiplier="275:65" id="1ir-L6-XLE"/>
                                     <constraint firstAttribute="height" constant="65" id="VMz-m8-5Ur"/>
                                 </constraints>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Mo-UV-3r5">
-                                <rect key="frame" x="0.0" y="218" width="393" height="566"/>
+                                <rect key="frame" x="0.0" y="200" width="375" height="544"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I6o-8a-GwC">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="566"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="544"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gCP-ao-hAt" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="0.0" width="353" height="397"/>
+                                                <rect key="frame" x="20" y="0.0" width="335" height="397"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Ie5-kN-RrV">
-                                                        <rect key="frame" x="8" y="12" width="337" height="370"/>
+                                                        <rect key="frame" x="8" y="12" width="319" height="370"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfC-IM-ZAh">
-                                                                <rect key="frame" x="0.0" y="0.0" width="337" height="31"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="319" height="31"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="22"/>
                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome back ! " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yJq-jd-OLL">
-                                                                <rect key="frame" x="0.0" y="36" width="337" height="31"/>
+                                                                <rect key="frame" x="0.0" y="36" width="319" height="31"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="22"/>
                                                                 <color key="textColor" name="darkBrown"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZxE-eP-kai">
-                                                                <rect key="frame" x="0.0" y="72" width="337" height="20"/>
+                                                                <rect key="frame" x="0.0" y="72" width="319" height="20"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20" id="YLY-3F-8i0"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VKQ-Vy-Owo">
-                                                                <rect key="frame" x="0.0" y="97" width="337" height="80"/>
+                                                                <rect key="frame" x="0.0" y="97" width="319" height="80"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFc-f3-Czi">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="337" height="25"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="319" height="25"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HOG-II-I3W" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="30" width="337" height="50"/>
+                                                                        <rect key="frame" x="0.0" y="30" width="319" height="50"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="email" translatesAutoresizingMaskIntoConstraints="NO" id="g4C-xc-w0n">
                                                                                 <rect key="frame" x="18" y="14" width="22" height="22"/>
@@ -297,7 +297,7 @@ experience the app in your preferred language.</string>
                                                                                 </constraints>
                                                                             </imageView>
                                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mEU-vb-0WA">
-                                                                                <rect key="frame" x="55" y="5" width="262" height="40"/>
+                                                                                <rect key="frame" x="55" y="5" width="244" height="40"/>
                                                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                                                                 <textInputTraits key="textInputTraits"/>
                                                                             </textField>
@@ -337,16 +337,16 @@ experience the app in your preferred language.</string>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8uw-6D-EEX">
-                                                                <rect key="frame" x="0.0" y="182" width="337" height="80"/>
+                                                                <rect key="frame" x="0.0" y="182" width="319" height="80"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9pT-3U-2g4">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="337" height="25"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="319" height="25"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MSj-LU-b4F" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="30" width="337" height="50"/>
+                                                                        <rect key="frame" x="0.0" y="30" width="319" height="50"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="1NG-ie-XGU">
                                                                                 <rect key="frame" x="18" y="14" width="22" height="22"/>
@@ -356,12 +356,12 @@ experience the app in your preferred language.</string>
                                                                                 </constraints>
                                                                             </imageView>
                                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VAe-Mb-WhJ">
-                                                                                <rect key="frame" x="55" y="5" width="220" height="40"/>
+                                                                                <rect key="frame" x="55" y="5" width="202" height="40"/>
                                                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                                                                 <textInputTraits key="textInputTraits"/>
                                                                             </textField>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLq-M1-pRz">
-                                                                                <rect key="frame" x="295" y="14" width="22" height="22"/>
+                                                                                <rect key="frame" x="277" y="14" width="22" height="22"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="22" id="eio-km-nLV"/>
                                                                                     <constraint firstAttribute="width" constant="22" id="lP1-aE-feA"/>
@@ -411,10 +411,10 @@ experience the app in your preferred language.</string>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N9Y-Gv-WgM">
-                                                                <rect key="frame" x="0.0" y="267" width="337" height="40"/>
+                                                                <rect key="frame" x="0.0" y="267" width="319" height="40"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sTZ-q2-hWd" customClass="CustomButton" customModule="DesynatAdmin" customModuleProvider="target">
-                                                                        <rect key="frame" x="78.666666666666686" y="5" width="180" height="30"/>
+                                                                        <rect key="frame" x="69.666666666666686" y="5" width="180" height="30"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="30" id="DJ5-PX-GlB"/>
@@ -439,17 +439,17 @@ experience the app in your preferred language.</string>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gkG-Lk-wGS">
-                                                                <rect key="frame" x="0.0" y="312" width="337" height="15"/>
+                                                                <rect key="frame" x="0.0" y="312" width="319" height="15"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="15" id="Few-Gi-KYZ"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="05u-wz-2IR">
-                                                                <rect key="frame" x="0.0" y="332" width="337" height="38"/>
+                                                                <rect key="frame" x="0.0" y="332" width="319" height="38"/>
                                                                 <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="02N-KX-Yjp" customClass="CustomButton" customModule="DesynatAdmin" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="337" height="38"/>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="02N-KX-Yjp" customClass="CustomButton" customModule="DesynatAdmin" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="319" height="38"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="38" id="BrN-Wp-z70"/>
@@ -467,7 +467,7 @@ experience the app in your preferred language.</string>
                                                                         </connections>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GuR-pA-fLo">
-                                                                        <rect key="frame" x="149.66666666666666" y="9.333333333333373" width="37.666666666666657" height="19.666666666666671"/>
+                                                                        <rect key="frame" x="140.66666666666666" y="9.333333333333373" width="37.666666666666657" height="19.666666666666671"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -552,20 +552,20 @@ experience the app in your preferred language.</string>
             <objects>
                 <viewController storyboardIdentifier="OTPViewController" title="OTPVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yXs-kg-3rl" customClass="OTPViewController" customModule="DesynatAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mBe-M6-Jdh">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QIc-51-f59">
-                                <rect key="frame" x="0.0" y="118" width="393" height="666"/>
+                                <rect key="frame" x="0.0" y="100" width="375" height="644"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A verification code has been sent to" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8CH-lQ-Dyg">
-                                        <rect key="frame" x="20" y="302.33333333333331" width="353" height="22.666666666666686"/>
+                                        <rect key="frame" x="20" y="302.33333333333331" width="335" height="22.666666666666686"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                                         <color key="textColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+971 1 123 123 1234" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AGT-sc-fA5">
-                                        <rect key="frame" x="20" y="330" width="353" height="22.666666666666686"/>
+                                        <rect key="frame" x="20" y="330" width="335" height="22.666666666666686"/>
                                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -588,26 +588,26 @@ experience the app in your preferred language.</string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OTP Verification" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X1Y-xx-Qns">
-                                        <rect key="frame" x="132.66666666666666" y="8.6666666666666732" width="127.66666666666666" height="22.666666666666671"/>
+                                        <rect key="frame" x="123.66666666666666" y="8.6666666666666732" width="127.66666666666666" height="22.666666666666671"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="otp" translatesAutoresizingMaskIntoConstraints="NO" id="PzE-vf-Nny">
-                                        <rect key="frame" x="108.66666666666669" y="77.333333333333343" width="176" height="185.00000000000003"/>
+                                        <rect key="frame" x="99.666666666666686" y="77.333333333333343" width="176" height="185.00000000000003"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="185" id="9hY-YN-h2a"/>
                                             <constraint firstAttribute="width" constant="176" id="UQh-6h-ArK"/>
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gtI-cV-qq9">
-                                        <rect key="frame" x="20" y="382.66666666666669" width="353" height="50"/>
+                                        <rect key="frame" x="20" y="382.66666666666669" width="335" height="50"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C6d-H0-Dbr" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="50.666666666666664" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="47.666666666666664" height="50"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Dc-q6-Sgn">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50.666666666666664" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="47.666666666666664" height="50"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -633,10 +633,10 @@ experience the app in your preferred language.</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oog-oO-1HD" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                <rect key="frame" x="60.666666666666671" y="0.0" width="50.333333333333329" height="50"/>
+                                                <rect key="frame" x="57.666666666666671" y="0.0" width="47.333333333333329" height="50"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u4O-ME-86J">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50.333333333333336" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="47.333333333333336" height="50"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -662,10 +662,10 @@ experience the app in your preferred language.</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ETS-Jg-M0J" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                <rect key="frame" x="121.00000000000001" y="0.0" width="50.666666666666671" height="50"/>
+                                                <rect key="frame" x="115.00000000000001" y="0.0" width="47.666666666666671" height="50"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dRo-4X-VK2">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50.666666666666664" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="47.666666666666664" height="50"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -691,10 +691,10 @@ experience the app in your preferred language.</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lXK-U7-uPg" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                <rect key="frame" x="181.66666666666666" y="0.0" width="50.333333333333343" height="50"/>
+                                                <rect key="frame" x="172.66666666666666" y="0.0" width="47.333333333333343" height="50"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B3k-nd-vKi">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50.333333333333336" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="47.333333333333336" height="50"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -720,10 +720,10 @@ experience the app in your preferred language.</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eWE-mD-2wl" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                <rect key="frame" x="241.99999999999997" y="0.0" width="50.666666666666657" height="50"/>
+                                                <rect key="frame" x="230" y="0.0" width="47.666666666666686" height="50"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Et-52-8uc">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50.666666666666664" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="47.666666666666664" height="50"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -749,10 +749,10 @@ experience the app in your preferred language.</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XS9-6z-SEF" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                <rect key="frame" x="302.66666666666669" y="0.0" width="50.333333333333314" height="50"/>
+                                                <rect key="frame" x="287.66666666666669" y="0.0" width="47.333333333333314" height="50"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lgp-VL-JVN">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50.333333333333336" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="47.333333333333336" height="50"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -783,7 +783,7 @@ experience the app in your preferred language.</string>
                                         </constraints>
                                     </stackView>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o0C-Eu-d3s" userLabel="ResendView">
-                                        <rect key="frame" x="133.66666666666666" y="467.66666666666663" width="125.99999999999997" height="26"/>
+                                        <rect key="frame" x="124.66666666666669" y="467.66666666666663" width="126" height="26"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sof-1f-KZd">
                                                 <rect key="frame" x="0.0" y="0.0" width="126" height="26"/>
@@ -808,7 +808,7 @@ experience the app in your preferred language.</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XgL-7F-XW9" userLabel="TimerView">
-                                        <rect key="frame" x="119.66666666666667" y="470.66666666666663" width="153.66666666666663" height="26"/>
+                                        <rect key="frame" x="110.66666666666667" y="470.66666666666663" width="153.66666666666663" height="26"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resend OTP in" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XY9-MG-qxU">
                                                 <rect key="frame" x="0.0" y="0.0" width="85.333333333333329" height="26"/>
@@ -835,10 +835,10 @@ experience the app in your preferred language.</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JCU-yQ-284">
-                                        <rect key="frame" x="20" y="536.66666666666663" width="353" height="38"/>
+                                        <rect key="frame" x="20" y="536.66666666666663" width="335" height="38"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fez-0B-40u" customClass="CustomButton" customModule="DesynatAdmin" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="353" height="38"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fez-0B-40u" customClass="CustomButton" customModule="DesynatAdmin" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="38"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="38" id="Znv-Pn-gqM"/>
@@ -856,7 +856,7 @@ experience the app in your preferred language.</string>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verify" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BtE-3Q-taf">
-                                                <rect key="frame" x="156.33333333333334" y="9.333333333333373" width="40.333333333333343" height="19.666666666666671"/>
+                                                <rect key="frame" x="147.33333333333334" y="9.333333333333373" width="40.333333333333343" height="19.666666666666671"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -937,21 +937,21 @@ experience the app in your preferred language.</string>
             <objects>
                 <viewController storyboardIdentifier="RegisterationSuccessViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rFR-FZ-3Zv" customClass="RegisterationSuccessViewController" customModule="DesynatAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="D8z-Nw-qtX">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aX5-bV-zCj" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                <rect key="frame" x="40" y="302.66666666666669" width="313" height="247.00000000000006"/>
+                                <rect key="frame" x="40" y="282.66666666666669" width="295" height="247.00000000000006"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="done" translatesAutoresizingMaskIntoConstraints="NO" id="0e2-G0-wzW">
-                                        <rect key="frame" x="114.66666666666666" y="48" width="84" height="84"/>
+                                        <rect key="frame" x="105.66666666666666" y="48" width="84" height="84"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="84" id="GiF-4d-hKe"/>
                                             <constraint firstAttribute="width" constant="84" id="mzb-pO-xrA"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you for sinning up with DESYNAT" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6rk-97-YUZ">
-                                        <rect key="frame" x="18" y="157" width="277" height="45"/>
+                                        <rect key="frame" x="18" y="157" width="259" height="45"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -984,6 +984,7 @@ experience the app in your preferred language.</string>
                     </view>
                     <connections>
                         <outlet property="descriptionLabel" destination="6rk-97-YUZ" id="E6w-b1-odg"/>
+                        <outlet property="mainImageView" destination="0e2-G0-wzW" id="3HP-TV-zaP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ft3-Tu-9pd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -995,11 +996,11 @@ experience the app in your preferred language.</string>
             <objects>
                 <viewController storyboardIdentifier="ForgotPasswordViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Vc5-TY-arw" customClass="ForgotPasswordViewController" customModule="DesynatAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yVG-KE-Z4J">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cHV-kN-tSw">
-                                <rect key="frame" x="0.0" y="118" width="393" height="666"/>
+                                <rect key="frame" x="0.0" y="100" width="375" height="644"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tgh-mq-t19">
                                         <rect key="frame" x="24" y="0.0" width="40" height="40"/>
@@ -1019,13 +1020,13 @@ experience the app in your preferred language.</string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot Password" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q7m-PV-avw">
-                                        <rect key="frame" x="129.66666666666669" y="8.6666666666666732" width="133.66666666666669" height="22.666666666666671"/>
+                                        <rect key="frame" x="120.66666666666667" y="8.6666666666666732" width="133.66666666666663" height="22.666666666666671"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1F4-TC-Jzt">
-                                        <rect key="frame" x="20" y="66.333333333333343" width="353" height="39.333333333333343"/>
+                                        <rect key="frame" x="20" y="66.333333333333343" width="335" height="39.333333333333343"/>
                                         <string key="text">Please select an option to get verified then we’ll
 send an OTP to verify that it’s you</string>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
@@ -1033,19 +1034,19 @@ send an OTP to verify that it’s you</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="V5W-28-N6b">
-                                        <rect key="frame" x="20" y="130.66666666666666" width="353" height="80"/>
+                                        <rect key="frame" x="20" y="130.66666666666666" width="335" height="80"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L21-HT-6Sc">
-                                                <rect key="frame" x="0.0" y="0.0" width="353" height="80"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="80"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pES-Vk-Mwi">
-                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="25"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="25"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vFc-Jq-UJz" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="30.000000000000028" width="353" height="50"/>
+                                                        <rect key="frame" x="0.0" y="30.000000000000028" width="335" height="50"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="email" translatesAutoresizingMaskIntoConstraints="NO" id="ibm-U7-aTh">
                                                                 <rect key="frame" x="18" y="14" width="22" height="22"/>
@@ -1055,7 +1056,7 @@ send an OTP to verify that it’s you</string>
                                                                 </constraints>
                                                             </imageView>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Registered Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ajy-aV-fu0">
-                                                                <rect key="frame" x="55" y="5" width="278" height="40"/>
+                                                                <rect key="frame" x="55" y="5" width="260" height="40"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
@@ -1097,10 +1098,10 @@ send an OTP to verify that it’s you</string>
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KRw-8m-GXG">
-                                        <rect key="frame" x="20" y="245.66666666666669" width="353" height="38"/>
+                                        <rect key="frame" x="20" y="245.66666666666669" width="335" height="38"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8xt-1N-dYZ" customClass="CustomButton" customModule="DesynatAdmin" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="353" height="38"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8xt-1N-dYZ" customClass="CustomButton" customModule="DesynatAdmin" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="38"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="38" id="uu0-lX-zlS"/>
@@ -1118,7 +1119,7 @@ send an OTP to verify that it’s you</string>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continue" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zxZ-xJ-kQA">
-                                                <rect key="frame" x="144.33333333333334" y="9.3333333333333162" width="64.666666666666657" height="19.666666666666671"/>
+                                                <rect key="frame" x="135.33333333333334" y="9.3333333333333162" width="64.666666666666657" height="19.666666666666671"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -1175,11 +1176,11 @@ send an OTP to verify that it’s you</string>
             <objects>
                 <viewController storyboardIdentifier="ResetPasswordViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wZF-Pg-kMv" customClass="ResetPasswordViewController" customModule="DesynatAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HRI-Pp-4Ae">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fS1-k8-mBm">
-                                <rect key="frame" x="0.0" y="118" width="393" height="666"/>
+                                <rect key="frame" x="0.0" y="100" width="375" height="644"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YuK-O6-sUs">
                                         <rect key="frame" x="24" y="0.0" width="40" height="40"/>
@@ -1199,19 +1200,19 @@ send an OTP to verify that it’s you</string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reset Password" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21d-qq-PJi">
-                                        <rect key="frame" x="133.33333333333334" y="8.6666666666666732" width="126.66666666666666" height="22.666666666666671"/>
+                                        <rect key="frame" x="124.33333333333331" y="8.6666666666666732" width="126.66666666666669" height="22.666666666666671"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Great! Now you can create your new password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2KK-vP-Tey">
-                                        <rect key="frame" x="20" y="61.333333333333336" width="353" height="19.666666666666664"/>
+                                        <rect key="frame" x="20" y="61.333333333333336" width="335" height="19.666666666666664"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OwD-dK-bqq">
-                                        <rect key="frame" x="20" y="96" width="353" height="59"/>
+                                        <rect key="frame" x="20" y="96" width="335" height="59"/>
                                         <string key="text">Your password must  be at least 8 characters 
 and should include a combination of numbers,
 letters and special characters.</string>
@@ -1220,27 +1221,27 @@ letters and special characters.</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="xLd-J1-xo5">
-                                        <rect key="frame" x="20" y="185" width="353" height="165"/>
+                                        <rect key="frame" x="20" y="185" width="335" height="165"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yMA-8N-2rl">
-                                                <rect key="frame" x="0.0" y="0.0" width="353" height="75"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="75"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create New Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UCY-Kr-sXV">
-                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="20"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="20"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R9i-lu-qBr" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="25" width="353" height="50"/>
+                                                        <rect key="frame" x="0.0" y="25" width="335" height="50"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter New Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rWQ-B2-elM">
-                                                                <rect key="frame" x="20" y="5" width="269" height="40"/>
+                                                                <rect key="frame" x="20" y="5" width="251" height="40"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                             </textField>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UjB-oc-KAd">
-                                                                <rect key="frame" x="309" y="13" width="24" height="24"/>
+                                                                <rect key="frame" x="291" y="13" width="24" height="24"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="24" id="H72-Wv-L8f"/>
                                                                     <constraint firstAttribute="height" constant="24" id="MRw-CK-92n"/>
@@ -1288,24 +1289,24 @@ letters and special characters.</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k2X-3n-gVZ">
-                                                <rect key="frame" x="0.0" y="90" width="353" height="75"/>
+                                                <rect key="frame" x="0.0" y="90" width="335" height="75"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm New Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O88-3z-fkD">
-                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="20"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="20"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Efr-do-VIU" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="25" width="353" height="50"/>
+                                                        <rect key="frame" x="0.0" y="25" width="335" height="50"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Re-Enter New Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6OO-Mm-fg2">
-                                                                <rect key="frame" x="20" y="5" width="269" height="40"/>
+                                                                <rect key="frame" x="20" y="5" width="251" height="40"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                             </textField>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E2e-dg-twg">
-                                                                <rect key="frame" x="309" y="13" width="24" height="24"/>
+                                                                <rect key="frame" x="291" y="13" width="24" height="24"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="24" id="R5g-3Y-8fN"/>
                                                                     <constraint firstAttribute="width" constant="24" id="eWn-NW-1eF"/>
@@ -1355,10 +1356,10 @@ letters and special characters.</string>
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vLe-VG-INZ">
-                                        <rect key="frame" x="20" y="385" width="353" height="38"/>
+                                        <rect key="frame" x="20" y="385" width="335" height="38"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8q-2g-E7o" customClass="CustomButton" customModule="DesynatAdmin" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="353" height="38"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8q-2g-E7o" customClass="CustomButton" customModule="DesynatAdmin" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="38"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="38" id="XG3-vL-lEG"/>
@@ -1376,7 +1377,7 @@ letters and special characters.</string>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Done" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a80-Rt-4PV">
-                                                <rect key="frame" x="158.33333333333334" y="9.333333333333373" width="36.666666666666657" height="19.666666666666671"/>
+                                                <rect key="frame" x="149.33333333333334" y="9.3333333333333162" width="36.666666666666657" height="19.666666666666671"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -1472,7 +1473,7 @@ letters and special characters.</string>
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

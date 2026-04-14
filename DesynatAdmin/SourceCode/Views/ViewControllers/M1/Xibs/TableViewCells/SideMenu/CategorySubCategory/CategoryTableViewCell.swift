@@ -36,16 +36,6 @@ class CategoryTableViewCell: UITableViewCell {
     func configData(data: GetCategoryModel) {
         titleLabel.text = data.name
         descriptionLabel.text = data.description
-//        if let imageUrlString = data.image,
-//           let url = URL(string: imageUrlString) {
-//            leftImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "categorySub"))
-//            rightImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "categorySub"))
-//        } else {
-//            leftImageView.image = UIImage(named: "categorySub")
-//            rightImageView.image = UIImage(named: "categorySub")
-//        }
-        
-        
         if let imageUrlString = data.image,
                let url = URL(string: imageUrlString) {
 

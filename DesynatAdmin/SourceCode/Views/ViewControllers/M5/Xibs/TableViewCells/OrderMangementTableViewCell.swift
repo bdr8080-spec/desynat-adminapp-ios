@@ -1,0 +1,56 @@
+//
+//  OrderMangementTableViewCell.swift
+//  DesynatAdmin
+//
+//  Created by fluper on 17/12/25.
+//
+
+import UIKit
+
+class OrderMangementTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var transactionStackView: UIStackView!
+    @IBOutlet weak var assignDriverStackView: UIStackView!
+    @IBOutlet weak var assignDriverView: UIView!
+    @IBOutlet weak var lblOrderID: UILabel!
+    @IBOutlet weak var lblSellerName: UILabel!
+    @IBOutlet weak var lblTransactionId: UILabel!
+    @IBOutlet weak var lblOrderOn: UILabel!
+    @IBOutlet weak var lblOrderType: UILabel!
+    @IBOutlet weak var lblTotalAmount: UILabel!
+    
+    var assignDriverTapped: (() -> Void)?
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+    }
+    
+    func configure(data: OrderData) {
+        self.lblSellerName.text = "\(data.productDetails?.sellerDetails?.firstName ?? "") \(data.productDetails?.sellerDetails?.lastName ?? "")"
+        self.lblOrderID.text = "#\(data.id ?? 0)"
+        
+        let fullTransactionIdString = data.order?.transactionID.map { String(describing: $0) } ?? ""
+        let last7TransactionID = fullTransactionIdString.count >= 7 ? String(fullTransactionIdString.suffix(7)) : fullTransactionIdString
+        if last7TransactionID.isEmpty {
+            transactionStackView.isHidden = true
+        } else {
+            transactionStackView.isHidden = false
+        }
+        self.lblTransactionId.text = "#\(last7TransactionID)"
+        self.lblOrderOn.text = CommonUtils.getDateStrings(
+            from: Date(iso8601String: String.getString(data.createdAt)),
+            format: "dd/MM/yyyy 'at' hh:mm a"
+        )
+        self.lblTotalAmount.text = "\(data.order?.totalAmount ?? "") KD"
+    }
+    
+    @IBAction func assignDriverDidTapped(_ sender: Any) {
+        assignDriverTapped?()
+    }
+    
+}

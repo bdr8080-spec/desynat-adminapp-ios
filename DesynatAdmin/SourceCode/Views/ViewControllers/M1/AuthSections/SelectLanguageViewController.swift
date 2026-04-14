@@ -8,18 +8,19 @@
 import UIKit
 
 class SelectLanguageViewController: UIViewController {
-
+    
+    // MARK: - IBOutlet's
     @IBOutlet weak var arabicView: CustomView!
     @IBOutlet weak var englishView: CustomView!
     @IBOutlet weak var imgArabic: UIImageView!
     @IBOutlet weak var imgEnglish: UIImageView!
     
+    // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-//        LocationManager.sharedInstance.startUpdatingLocation()
     }
-
     
+    // MARK: - Button's Action
     @IBAction func btnSelectLanguage(_ sender: UIButton) {
         if sender.tag == 0 {
             imgArabic.image = UIImage(named: "radioUnselected")

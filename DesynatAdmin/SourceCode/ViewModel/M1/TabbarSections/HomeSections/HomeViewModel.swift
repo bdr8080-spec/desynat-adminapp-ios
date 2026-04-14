@@ -17,6 +17,17 @@ class HomeViewModel {
         self.hostVC = hostVC
     }
     
+    func getCountOfNotificationRequest(){
+        WebService.sharedInstance.getCountOfNotificationForService { [self] count in
+            if count > 0 {
+                self.hostVC.notificationCountView.isHidden = false
+                self.hostVC.notificationCountLabel.text = count.description
+            } else {
+                self.hostVC.notificationCountView.isHidden = true
+            }
+        }
+    }
+    
     func getAllCountry() {
         WebService.shared.getAllCountry(){ [weak self] response in
             guard let self = self else { return }
