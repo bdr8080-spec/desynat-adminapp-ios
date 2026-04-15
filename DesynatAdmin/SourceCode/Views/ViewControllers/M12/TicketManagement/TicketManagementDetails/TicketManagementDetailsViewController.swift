@@ -10,6 +10,7 @@ import SDWebImage
 
 class TicketManagementDetailsViewController: UIViewController {
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var requestedByLbl: UILabel!
     @IBOutlet weak var ticketStatusLbl: UILabel!
     @IBOutlet weak var ticketIdLbl: UILabel!
@@ -28,7 +29,7 @@ class TicketManagementDetailsViewController: UIViewController {
     
     var ticketDetails: TicketManagementList?
     var ticketType: TiketListType = .newList
-    var statusUpdate = ["Resolved"]//["Pending", "Resolved"]
+    var statusUpdate = ["Pending", "Resolved"]
     var selectedStatusIndex: Int? = -1
     var isStatusUpdated: (() -> Void)?
     private lazy var viewModel = TicketManagementDetailsViewModel(hostVC: self)
@@ -39,14 +40,26 @@ class TicketManagementDetailsViewController: UIViewController {
     }
     
     @IBAction func statusDidTapped(_ sender: UIButton) {
-        let statusName = statusUpdate.map { status -> String in
-            return status
-        }
-        kSharedAppDelegate.dropDown(dataSource: statusName, anchorView: sender) { index, item in
-            let selectedStatus = self.statusUpdate[index]
-            self.statusUpdateTF.text = selectedStatus
-            self.selectedStatusIndex = index + 1
-        }
+        let buttonFrame = sender.convert(sender.bounds, to: scrollView)
+            
+        let currentOffset = scrollView.contentOffset.y
+            scrollView.setContentOffset(CGPoint(x: 0, y: currentOffset + 100), animated: true)
+            // Show dropdown AFTER slight delay (important)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                let statusName = self.statusUpdate
+                
+                kSharedAppDelegate.dropDown(
+                    dataSource: statusName,
+                    anchorView: sender
+                ) { index, item in
+                    let selectedStatus = self.statusUpdate[index]
+                    self.statusUpdateTF.text = selectedStatus
+                    self.selectedStatusIndex = index
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                    self.scrollView.setContentOffset(.zero, animated: true)
+                                }
+                }
+            }
     }
     
     @IBAction func backDidTapped(_ sender: Any) {
@@ -73,7 +86,20 @@ class TicketManagementDetailsViewController: UIViewController {
     
     func configData() {
         guard let data = ticketDetails else { return }
-        requestedByLbl.text = data.senderDetails?.fullNameEnglish
+        var fullname: String? = ""
+        let senderTypeRequest = data.senderType ?? 1
+        
+        switch senderTypeRequest {
+        case 2:
+            fullname  = "\(data.senderDetails?.firstName ?? "") \(data.senderDetails?.lastName ?? "")"
+        case 4:
+            fullname  = data.senderDetails?.fullNameEnglish
+        default:
+            fullname = data.senderDetails?.fullName
+        }
+        
+        requestedByLbl.text = fullname
+        //requestedByLbl.text = data.senderDetails?.fullNameEnglish
         titleLabel.text = data.title ?? ""
         ticketIdLbl.text = data.ticketID ?? ""
         ticketTypeLabel.text = data.ticketTypeDetails?.name ?? ""
@@ -95,8 +121,8 @@ class TicketManagementDetailsViewController: UIViewController {
         attachmentStackView.isHidden = (data.file?.isEmpty ?? true)
         switch ticketType {
         case .pastList:
-            statusUpdateStackView.isHidden = true
-            updateStatusButtonView.isHidden = true
+            statusUpdateStackView.isHidden = false
+            updateStatusButtonView.isHidden = false
         default:
             statusUpdateStackView.isHidden = false
             updateStatusButtonView.isHidden = false

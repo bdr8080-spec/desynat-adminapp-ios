@@ -21,6 +21,7 @@ class LiveStreamingViewController: UIViewController {
     @IBOutlet weak var lblWaiting: UILabel!
     @IBOutlet weak var muteView: UIView!
     @IBOutlet weak var lblUserCount: UILabel!
+    @IBOutlet weak var viewerountView: CustomView!
     
     // MARK: - Agora
     var agoraKit: AgoraRtcEngineKit!
@@ -38,8 +39,9 @@ class LiveStreamingViewController: UIViewController {
         setupAgora()
         if isHost {
             btnGoLive.isHidden = true
-//            btnGoLive.isHidden = true
-                    lblWaiting.isHidden = true
+            //            btnGoLive.isHidden = true
+            lblWaiting.isHidden = true
+            viewerountView.isHidden = false
             muteView.isHidden = false
             
             // ... host setup
@@ -49,13 +51,23 @@ class LiveStreamingViewController: UIViewController {
             btnSwitch.isHidden = true
             btnGoLive.isHidden = true
             lblWaiting.isHidden = false
+            viewerountView.isHidden = true
             muteView.isHidden = true
-//                    lblWaiting.text = "Wait for the host to start the event"
+            //                    lblWaiting.text = "Wait for the host to start the event"
         }
         joinChannel()
         startUserCountTimer()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        stopUserCountTimer()
+    }
+    
+    private func stopUserCountTimer() {
+        userCountTimer?.invalidate()
+        userCountTimer=nil
+    }
     // Timer & API (same for host/audience)
     private func startUserCountTimer() {
         userCountTimer?.invalidate()
@@ -67,58 +79,59 @@ class LiveStreamingViewController: UIViewController {
     
     private func fetchTotalUsersFromAPI() {
         let urlString = "https://api.agora.io/dev/v1/channel/user/\(appID)/\(channelName)"
-
+        
         guard let url = URL(string: urlString) else {
             print("❌ Invalid URL")
             return
         }
-
+        
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("Basic MGRkZjAzNTkzMDJjNGUzYjk5NTI4MmI0NDQ3MGUyNWU6YzI1OGMyZTBlNTc4NDIwZmJkYjBlNDNiYWY1YjFlZTM=", forHTTPHeaderField: "Authorization")
-
+        
         URLSession.shared.dataTask(with: request) { data, response, error in
             
             if let data = data {
                 print("🔍 RAW RESPONSE STRING:")
                 print(String(data: data, encoding: .utf8) ?? "Unable to decode")
             }
-
+            
             if let error = error {
                 print("❌ Error:", error.localizedDescription)
                 return
             }
-
+            
             guard let data = data,
                   let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
                 print("❌ JSON parse failed")
                 return
             }
-
+            
             print("📌 Parsed JSON:", json)
-
+            
             // FIX: Read values inside "data" dictionary
             guard let dataObj = json["data"] as? [String: Any] else {
                 print("❌ 'data' object missing")
                 return
             }
-
+            
             let broadcasters = (dataObj["broadcasters"] as? [Any])?.count ?? 0
             let audience = (dataObj["audience"] as? [Any])?.count ?? 0
             let audienceTotal = dataObj["audience_total"] as? Int ?? audience
-
+            
             let total = broadcasters + audienceTotal
-
+            
             DispatchQueue.main.async {
                 self.lblUserCount.text = "Viewers: \(total)"
                 print("👥 TOTAL users: \(total) | Broadcasters: \(broadcasters) | Audience: \(audienceTotal)")
             }
-
+            
         }.resume()
     }
     
     deinit {
         cleanupAgora()
+        stopUserCountTimer()
     }
     
     // MARK: - Agora Setup
@@ -206,7 +219,7 @@ class LiveStreamingViewController: UIViewController {
             isMuted.toggle()
             // Mute ALL remote audio streams (host's audio)
             agoraKit.muteAllRemoteAudioStreams(isMuted)
-//            btnMute.setTitle(isMuted ? "Unmute Stream" : "Mute Stream", for: .normal)
+            //            btnMute.setTitle(isMuted ? "Unmute Stream" : "Mute Stream", for: .normal)
             print("🔇 Stream \(isMuted ? "muted" : "unmuted")")
             lblLive.text = isMuted ? "Unmute" : "Mute"
         case 4:
@@ -227,6 +240,7 @@ extension LiveStreamingViewController: AgoraRtcEngineDelegate {
         if !isHost {
             DispatchQueue.main.async {
                 self.lblWaiting.isHidden = true
+                self.viewerountView.isHidden = false
                 self.muteView.isHidden = false
                 self.setupRemoteVideo(uid: uid)
             }
@@ -237,6 +251,7 @@ extension LiveStreamingViewController: AgoraRtcEngineDelegate {
         print("🚪 Remote Left: \(uid)")
         DispatchQueue.main.async {
             self.lblWaiting.isHidden = false
+            self.viewerountView.isHidden = true
             self.lblWaiting.text = "Host has ended the streaming"
             self.muteView.isHidden = true
             self.clearVideoView()
@@ -246,17 +261,18 @@ extension LiveStreamingViewController: AgoraRtcEngineDelegate {
         }
     }
     
-//    func rtcEngine(_ engine: AgoraRtcEngineKit, reportRtcStats stats: AgoraChannelStats) {
-//        let totalUsers = Int(stats.userCount)
-//        DispatchQueue.main.async {
-//            self.lblUserCount.text = "Users: \(totalUsers)"
-//            print("👥 Total users in channel: \(totalUsers)")  // Optional log
-//        }
-//    }
+    //    func rtcEngine(_ engine: AgoraRtcEngineKit, reportRtcStats stats: AgoraChannelStats) {
+    //        let totalUsers = Int(stats.userCount)
+    //        DispatchQueue.main.async {
+    //            self.lblUserCount.text = "Users: \(totalUsers)"
+    //            print("👥 Total users in channel: \(totalUsers)")  // Optional log
+    //        }
+    //    }
     
     func rtcEngine(_ engine: AgoraRtcEngineKit, didOccurError errorCode: AgoraErrorCode) {
         print("❌ Agora Error: \(errorCode.rawValue)")
         self.lblWaiting.isHidden = false
+        self.viewerountView.isHidden = true
         self.muteView.isHidden = true
     }
 }

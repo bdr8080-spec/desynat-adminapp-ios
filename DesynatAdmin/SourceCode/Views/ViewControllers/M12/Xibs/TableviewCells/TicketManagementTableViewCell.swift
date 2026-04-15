@@ -24,19 +24,42 @@ class TicketManagementTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    func statusType(status: Int) -> (text: String, color: UIColor) {
+        let state = TicketStatus(rawValue: status)
+        return (state?.text ?? "Unknown", state?.color ?? .gray)
+    }
+    
     func configData(data: TicketManagementList?, status: TiketListType = .newList) {
-        requestedByLabel.text = data?.senderDetails?.fullNameEnglish
+        var fullname: String? = ""
+        let senderTypeRequest = data?.senderType ?? 1
+        
+        switch senderTypeRequest {
+        case 2:
+            fullname  = "\(data?.senderDetails?.firstName ?? "") \(data?.senderDetails?.lastName ?? "")"
+        case 4:
+            fullname  = data?.senderDetails?.fullNameEnglish
+        default:
+            fullname = data?.senderDetails?.fullName
+        }
+        requestedByLabel.text = fullname
         ticketIdLabel.text = data?.ticketID
         submittedByLabel.text = senderType(role: data?.senderType ?? 1)
         ticketTypeLabel.text = data?.ticketTypeDetails?.name
         raisedOnLabel.text = convertServerDate(data?.createdAt ?? "")
         switch status {
+            
         case .newList:
             statusLabel.text = "Pending"
+            let status = statusType(status: data?.status ?? 0)
+            statusLabel.textColor = status.color
         case .ongoingList:
+            let status = statusType(status: data?.status ?? 0)
             statusLabel.text = "Ongoing"
+            statusLabel.textColor = status.color
         case .pastList:
+            let status = statusType(status: data?.status ?? 0)
             statusLabel.text = "Resolved"
+            statusLabel.textColor = status.color
         }
     }
     

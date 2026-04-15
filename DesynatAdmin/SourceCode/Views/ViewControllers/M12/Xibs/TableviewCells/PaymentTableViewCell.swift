@@ -30,6 +30,7 @@ class PaymentTableViewCell: UITableViewCell {
     @IBOutlet weak var orderDiscount: UILabel!
     @IBOutlet weak var orderSellerName: UILabel!
     @IBOutlet weak var orderCommission: UILabel!
+    @IBOutlet weak var transactionstackView: UIStackView!
     
     //Plan
     @IBOutlet weak var planTransactionId: UILabel!
@@ -43,6 +44,7 @@ class PaymentTableViewCell: UITableViewCell {
     @IBOutlet weak var giftCardtotalAmount: UILabel!
     @IBOutlet weak var giftCardPaymentmode: UILabel!
     @IBOutlet weak var giftCardCountry: UILabel!
+    @IBOutlet weak var giftCardTrasnctionStackView: UIStackView!
     
     var isViewMore: (() -> Void)?
     override func awakeFromNib() {
@@ -59,13 +61,8 @@ class PaymentTableViewCell: UITableViewCell {
     @IBAction func viewLessAndMoreBtn(_ sender: UIButton) {
         isViewMore?()
     }
-//    func configure(isExpanded: Bool) {
-//            forHideView.isHidden = !isExpanded
-//            let title = isExpanded ? "View Less" : "More info"
-//            viewMoreButton.setTitle(title, for: .normal)
-//        }
     
-    func configure(isExpanded: Bool, tab: PaymentTab) {
+    func configure(isExpanded: Bool, tab: PaymentTab, data: PaymentList?) {
         
         forHideView.isHidden = !isExpanded
         let title = isExpanded ? "View Less" : "More info"
@@ -82,22 +79,101 @@ class PaymentTableViewCell: UITableViewCell {
             orderStackView.isHidden = false
             titleUserName.text = "User Name"
             orderIdTitle.text = "Order Id"
+            titleValue.text = data?.userDetails?.fullName
+            orderValue.text = "#\(data?.order?.id ?? 0)"
             
         case .plans:
             planStackView.isHidden = false
             titleUserName.text = "Seller name"
             orderIdTitle.text = "Plan name"
+            titleValue.text = "\(data?.sellerDetails?.firstName ?? "") \(data?.sellerDetails?.lastName ?? "")"
+            orderValue.text = data?.planInfo?.planNameEnglish
             
         case .giftCards :
             giftAndBannerStackView.isHidden = false
             titleUserName.text = "Purchased By"
             orderIdTitle.text = "Card Type"
+            titleValue.text = data?.userDetails?.fullName
+            orderValue.text = data?.giftDetails?.nameEnglish
+            giftCardtotalAmount.text = CommonUtils.formatPriceStringInput(data?.amount)
+            giftCardCountry.text = data?.userDetails?.countryInfo?.name
             
         case .banners:
             giftAndBannerStackView.isHidden = false
             titleUserName.text = "Purchased By"
             orderIdTitle.text = "Request Id"
+            titleValue.text = "\(data?.sellerDetails?.firstName ?? "") \(data?.sellerDetails?.lastName ?? "")"
+            orderValue.text = "#\(data?.orderID ?? "0")"
+            giftCardtotalAmount.text = CommonUtils.formatPriceStringInput(data?.price)
+            giftCardCountry.text = data?.sellerDetails?.storeInfo?.countryInfo?.name
+            giftCardPaymentmode.text = "Online"
         }
+        configureData(data: data, tab: tab)
+    }
+    
+    func configureData(data: PaymentList?, tab: PaymentTab) {
+        orderTransactionId.text = "#\(data?.order?.transactionID ?? "0")"
+        orderedOn.text = formatDate(data?.order?.createdAt ?? "")
+        orderTotalAmount.text = CommonUtils.formatPrice(data?.total_paid_amount)
+        let paymentMethod = data?.order?.paymentMethod
+        transactionstackView.isHidden = true
+        switch paymentMethod {
+        case "1":
+            self.orderPaymentMode.text = "Online"
+            transactionstackView.isHidden = false
+        case "2":
+            self.orderPaymentMode.text = "In-App Wallet"
+        case "3":
+            self.orderPaymentMode.text = "COD"
+        default:
+            self.orderPaymentMode.text = "COD"
+        }
+        orderAppliedPromoCode.text = data?.promocodeValue
+        orderDiscount.text = CommonUtils.formatPrice(data?.totalDiscount)
+        orderSellerName.text = "\(data?.productDetails?.sellerDetails?.firstName ?? "") \(data?.productDetails?.sellerDetails?.lastName ?? "")"
+        orderCommission.text = "\(CommonUtils.formatPriceStringInput(data?.adminCommission))"
+        
+        //Plan
+        planTransactionId.text = "#\(data?.transactionId ?? "0")"
+        planPurchasedOn.text = formatDate(data?.createdAt ?? "")
+        planTotalAmount.text = CommonUtils.formatPriceStringInput(data?.amount)
+        planPaymentMode.text = data?.paymentMethod
+        
+        //Gift Card And Banner
+        giftCardTransactionId.text = "#\(data?.transactionId ?? "0")"
+        giftCardPurchasedOn.text = formatDate(data?.createdAt ?? "")
+        
+        let paymentMethodCard = data?.paymentMethod
+        giftCardTrasnctionStackView.isHidden = true
+        if tab == .giftCards {
+            switch paymentMethodCard {
+            case "1":
+                self.giftCardPaymentmode.text = "Online"
+                giftCardTrasnctionStackView.isHidden = false
+            case "2":
+                self.giftCardPaymentmode.text = "In-App Wallet"
+            case "3":
+                self.giftCardPaymentmode.text = "COD"
+            default:
+                self.giftCardPaymentmode.text = "COD"
+            }
+        }
+        
+    }
+    
+    func formatDate(_ isoDateString: String) -> String {
+        let inputFormatter = ISO8601DateFormatter()
+        inputFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        
+        guard let date = inputFormatter.date(from: isoDateString) else {
+            return "Invalid date"
+        }
+        
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = "dd/MM/yyyy 'at' hh:mm a"
+        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        return outputFormatter.string(from: date)
     }
     
 }

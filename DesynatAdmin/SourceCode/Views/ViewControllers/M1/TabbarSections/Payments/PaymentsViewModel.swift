@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 class PaymentsViewModel {
     
     private var hostVC: PaymentsController
@@ -32,6 +31,10 @@ class PaymentsViewModel {
         case .giftCards: return giftCardsFilter
         case .banners: return bannersFilter
         }
+    }
+    
+    func resetFilter(for type: PaymentTab) {
+        setFilter(PaymentFilterModel(), for: type)
     }
     
     func setFilter(_ filter: PaymentFilterModel, for type: PaymentTab) {
@@ -64,6 +67,10 @@ class PaymentsViewModel {
             params["to_date"] = convertDate(toDate)
         }
         
+        if let status = filter.status {
+            params["status"] = status
+        }
+        
         WebService.shared.fetchOrdersListService(param: params) { [weak self] response in
             guard let self = self else { return }
             
@@ -74,9 +81,15 @@ class PaymentsViewModel {
             // Update data
             self.paymentList = response.orders?.data ?? []
             DispatchQueue.main.async {
+                self.hostVC.totalRevenueLbl.text = CommonUtils.formatPrice(response.totalRevenue ?? 0.0)
+                self.hostVC.orderCommissionLbl.text = CommonUtils.formatPrice(response.totalCommission ?? 0.0)
+                self.hostVC.specialOrderLbl.text = CommonUtils.formatPrice(response.totalCustomOrderRevenue ?? 0.0)
                 self.hostVC.pagecountLabel.text = String(format: "%02d of %02d", self.currentPage, self.totalPages)
                 self.hostVC.paymentTableView.reloadData()
+                self.hostVC.paymentTableView.layoutIfNeeded()
+                self.hostVC.heightOfTableViewConstarint.constant = self.hostVC.paymentTableView.contentSize.height
                 self.hostVC.noDataFoundLabel.isHidden = !self.paymentList.isEmpty
+                self.hostVC.paginationBottomView.isHidden = self.paymentList.isEmpty
                 self.hostVC.updatePaginationButtonImages()
             }
         }
@@ -104,6 +117,10 @@ class PaymentsViewModel {
             params["to_date"] = convertDate(toDate)
         }
         
+        if let status = filter.status {
+            params["status"] = status
+        }
+        
         WebService.shared.fetchPlansListService(param: params) { [weak self] response in
             guard let self = self else { return }
             
@@ -114,9 +131,13 @@ class PaymentsViewModel {
             // Update data
             self.paymentList = response.orders?.data ?? []
             DispatchQueue.main.async {
+                self.hostVC.totalRevenueLbl.text = CommonUtils.formatPrice(response.totalRevenue ?? 0.0)
                 self.hostVC.pagecountLabel.text = String(format: "%02d of %02d", self.currentPage, self.totalPages)
                 self.hostVC.paymentTableView.reloadData()
+                self.hostVC.paymentTableView.layoutIfNeeded()
+                self.hostVC.heightOfTableViewConstarint.constant = self.hostVC.paymentTableView.contentSize.height
                 self.hostVC.noDataFoundLabel.isHidden = !self.paymentList.isEmpty
+                self.hostVC.paginationBottomView.isHidden = self.paymentList.isEmpty
                 self.hostVC.updatePaginationButtonImages()
             }
         }
@@ -142,6 +163,10 @@ class PaymentsViewModel {
         if let toDate = filter.toDate {
             params["to_date"] = convertDate(toDate)
         }
+
+        if let status = filter.status {
+            params["status"] = status
+        }
         
         WebService.shared.fetchGiftCardsListService(param: params) { [weak self] response in
             guard let self = self else { return }
@@ -153,16 +178,20 @@ class PaymentsViewModel {
             // Update data
             self.paymentList = response.orders?.data ?? []
             DispatchQueue.main.async {
+                self.hostVC.totalRevenueLbl.text = CommonUtils.formatPrice(response.totalRevenue ?? 0.0)
                 self.hostVC.pagecountLabel.text = String(format: "%02d of %02d", self.currentPage, self.totalPages)
                 self.hostVC.paymentTableView.reloadData()
+                self.hostVC.paymentTableView.layoutIfNeeded()
+                self.hostVC.heightOfTableViewConstarint.constant = self.hostVC.paymentTableView.contentSize.height
                 self.hostVC.noDataFoundLabel.isHidden = !self.paymentList.isEmpty
+                self.hostVC.paginationBottomView.isHidden = self.paymentList.isEmpty
                 self.hostVC.updatePaginationButtonImages()
             }
         }
     }
     
     func fetchBannersList() {
-        let filter = giftCardsFilter
+        let filter = bannersFilter
         var params: [String : Any] = [:]
         params["page"] = currentPage
         params["limit"] = 3
@@ -181,6 +210,17 @@ class PaymentsViewModel {
         if let toDate = filter.toDate {
             params["to_date"] = convertDate(toDate)
         }
+//        if let fromDate = filter.fromDate {
+//            params["from_date"] = fromDate
+//        }
+//
+//        if let toDate = filter.toDate {
+//            params["to_date"] = toDate
+//        }
+        
+        if let status = filter.status {
+            params["status"] = status
+        }
         
         WebService.shared.fetchBannersListService(param: params) { [weak self] response in
             guard let self = self else { return }
@@ -192,9 +232,13 @@ class PaymentsViewModel {
             // Update data
             self.paymentList = response.orders?.data ?? []
             DispatchQueue.main.async {
+                self.hostVC.totalRevenueLbl.text = CommonUtils.formatPrice(response.totalRevenue ?? 0.0)
                 self.hostVC.pagecountLabel.text = String(format: "%02d of %02d", self.currentPage, self.totalPages)
                 self.hostVC.paymentTableView.reloadData()
+                self.hostVC.paymentTableView.layoutIfNeeded()
+                self.hostVC.heightOfTableViewConstarint.constant = self.hostVC.paymentTableView.contentSize.height
                 self.hostVC.noDataFoundLabel.isHidden = !self.paymentList.isEmpty
+                self.hostVC.paginationBottomView.isHidden = self.paymentList.isEmpty
                 self.hostVC.updatePaginationButtonImages()
             }
         }

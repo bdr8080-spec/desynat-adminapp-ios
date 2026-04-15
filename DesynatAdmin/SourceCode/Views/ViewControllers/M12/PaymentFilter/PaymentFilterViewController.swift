@@ -15,28 +15,32 @@ class PaymentFilterViewController: UIViewController {
     @IBOutlet weak var countryLabel: CustomLabelFont!
     @IBOutlet weak var statusLabel: CustomLabelFont!
     
-    
     // MARK: - Property Decalaration
-    let datePicker = UIDatePicker()
     private var activeTextField: UITextField?
-    
-    var countryId: Int = -1
-    
     private lazy var viewModel = PaymentFilterViewModel(hostVC: self)
-    
+    private var statusArray = ["Pending", "Rejected", "Completed"]
     var selectedFilter = PaymentFilterModel()
-    
     var onApplyFilter: ((PaymentFilterModel) -> Void)?
     var onClearFilter: (() -> Void)?
+    var countryId: Int = -1
+    let datePicker = UIDatePicker()
+    var selectedStatus: Int?
+    var selectedTab: PaymentTab = .orders
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         handleUISetup()
-        
-        viewModel.getAllCountry { [weak self] in
-            self?.applyPreselectedData()
+        switch selectedTab {
+        case .orders, .giftCards:
+            viewModel.getAllCountryRequest { [weak self] in
+                self?.applyPreselectedData()
+            }
+            
+        case .plans, .banners:
+            viewModel.getCountryRequest { [weak self] in
+                self?.applyPreselectedData()
+            }
         }
     }
     
@@ -46,6 +50,8 @@ class PaymentFilterViewController: UIViewController {
     }
     
     @IBAction func clearDidTapped(_ sender: Any) {
+        selectedStatus = nil
+        statusLabel.text = "Select Status"
         onClearFilter?()
         dismiss(animated: true)
     }
@@ -65,22 +71,52 @@ class PaymentFilterViewController: UIViewController {
             filter.toDate = toDate
         }
         
+        // ✅ Add this
+        if let status = selectedStatus {
+            filter.status = status
+        }
+        
         onApplyFilter?(filter)
         dismiss(animated: true)
     }
     
     @IBAction func countryDidTapped(_ sender: UIButton) {
-        let countryNames = viewModel.countryListData.map { country -> String in
-            let name = country.name ?? ""
-            let dialCode = country.dialCode ?? ""
-            let flag = country.flag ?? "🇰🇼"
-            return "\(flag)  \(name) (\(dialCode))"
+        switch selectedTab {
+            
+        case .orders, .giftCards:
+            let countryNames = viewModel.allCountryListData.map {
+                "\($0.flag1 ?? "🇰🇼") \($0.name ?? "") (\($0.dialCode ?? ""))"
+            }
+            kSharedAppDelegate.dropDown(dataSource: countryNames, anchorView: sender) { index, _ in
+                let selectedCountry = self.viewModel.allCountryListData[index]
+                self.countryLabel.text = selectedCountry.name
+                self.countryId = selectedCountry.id ?? 0
+            }
+            
+        case .plans, .banners:
+            let countryNames = viewModel.countryListData.map {
+                "\($0.flag ?? "🇰🇼") \($0.name ?? "") (\($0.dialCode ?? ""))"
+            }
+            kSharedAppDelegate.dropDown(dataSource: countryNames, anchorView: sender) { index, _ in
+                let selectedCountry = self.viewModel.countryListData[index]
+                self.countryLabel.text = selectedCountry.name
+                self.countryId = selectedCountry.id ?? 0
+            }
         }
-        
-        kSharedAppDelegate.dropDown(dataSource: countryNames, anchorView: sender) { index, item in
-            let selectedCountry = self.viewModel.countryListData[index]
-            self.countryLabel.text = selectedCountry.name
-            self.countryId = selectedCountry.id ?? 0
+    }
+    
+    @IBAction func statusDidTapped(_ sender: UIButton) {
+        kSharedAppDelegate.dropDown(dataSource: statusArray, anchorView: sender) { index, item in
+            
+            self.statusLabel.text = item
+            
+            // Map index → API value
+            switch index {
+            case 0: self.selectedStatus = 1   // Pending
+            case 1: self.selectedStatus = 2   // Rejected
+            case 2: self.selectedStatus = 3   // Completed
+            default: self.selectedStatus = nil
+            }
         }
     }
     
@@ -95,16 +131,36 @@ class PaymentFilterViewController: UIViewController {
     
     private func applyPreselectedData() {
         // Preselect country
-        if let id = selectedFilter.countryId,
-           let selectedCountry = viewModel.countryListData.first(where: { $0.id == id }) {
-            
-            countryLabel.text = selectedCountry.name
-            countryId = id
+        if let id = selectedFilter.countryId {
+            switch selectedTab {
+            case .orders, .giftCards:
+                if let selectedCountry = viewModel.allCountryListData.first(where: { $0.id == id }) {
+                    countryLabel.text = selectedCountry.name
+                    countryId = id
+                }
+            case .plans, .banners:
+                if let selectedCountry = viewModel.countryListData.first(where: { $0.id == id }) {
+                    countryLabel.text = selectedCountry.name
+                    countryId = id
+                }
+            }
         }
         
         // Preselect date
         fromTextField.text = selectedFilter.fromDate
         toTextField.text = selectedFilter.toDate
+        
+        // ✅ Status restore
+        if let status = selectedFilter.status {
+            selectedStatus = status
+            
+            switch status {
+            case 1: statusLabel.text = "Pending"
+            case 2: statusLabel.text = "Rejected"
+            case 3: statusLabel.text = "Completed"
+            default: statusLabel.text = "Select Status"
+            }
+        }
     }
 }
 extension PaymentFilterViewController {

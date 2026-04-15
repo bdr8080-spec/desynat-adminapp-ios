@@ -32,7 +32,7 @@ struct PaymentFilterModel {
     var countryId: Int?
     var fromDate: String?
     var toDate: String?
-    var status: String?
+    var status: Int?
     
     var isEmpty: Bool {
         return countryId == nil && fromDate == nil && toDate == nil && status == nil

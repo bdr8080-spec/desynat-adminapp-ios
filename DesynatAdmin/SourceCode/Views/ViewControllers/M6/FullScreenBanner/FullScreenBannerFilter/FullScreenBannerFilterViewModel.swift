@@ -23,5 +23,4 @@ class FullScreenBannerFilterViewModel {
       completion?()
     }
   }
-  
 }

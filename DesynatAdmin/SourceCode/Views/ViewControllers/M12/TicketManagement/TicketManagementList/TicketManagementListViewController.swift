@@ -191,6 +191,8 @@ extension TicketManagementListViewController: UITableViewDelegate, UITableViewDa
         vc.ticketDetails = viewModel.ticketsList[indexPath.row]
         vc.isStatusUpdated = { [weak self] in
             guard let self else { return }
+            ticketType = .pastList
+            handleRejectAction()
             self.viewModel.currentPage = 1
             switch ticketType {
             case .newList:

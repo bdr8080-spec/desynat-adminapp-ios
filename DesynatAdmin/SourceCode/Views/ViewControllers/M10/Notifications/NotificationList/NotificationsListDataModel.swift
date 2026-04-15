@@ -74,7 +74,7 @@ struct NotificationsList: Codable {
 struct SenderDetails: Codable {
     let id: Int?
     let profilePic: String?
-    let fullName: String?
+    let fullName, firstName, lastName: String?
     let countryCode, mobile: String?
     let email: String?
     let emailVerifiedAt, otp: String?
@@ -101,6 +101,8 @@ struct SenderDetails: Codable {
         case updatedAt = "updated_at"
         case fullNameEnglish = "full_name_english"
         case fullNameArabic = "full_name_arabic"
+        case lastName = "last_name"
+        case firstName = "first_name"
     }
 }
 

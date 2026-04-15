@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -327,7 +327,9 @@
                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                                <state key="normal" title="More Info"/>
+                                                                <state key="normal" title="More Info">
+                                                                    <color key="titleColor" red="0.43137254899999999" green="0.27058823529999998" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                </state>
                                                                 <connections>
                                                                     <action selector="viewLessAndMoreBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="4Qz-Uq-gAT"/>
                                                                 </connections>
@@ -547,7 +549,8 @@
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="elG-hi-AAq" customClass="CustomLabelFont" customModule="DesynatAdmin" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="40" height="18"/>
-                                                        <string key="text">Country</string>
+                                                        <string key="text">Country
+</string>
                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
                                                         <color key="textColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -612,6 +615,7 @@
                 <outlet property="giftCardPaymentmode" destination="32w-xT-9cw" id="ShP-an-1vF"/>
                 <outlet property="giftCardPurchasedOn" destination="eaw-hD-aVf" id="wMw-VJ-HNj"/>
                 <outlet property="giftCardTransactionId" destination="nCN-s1-qAP" id="6Ab-Ac-GZr"/>
+                <outlet property="giftCardTrasnctionStackView" destination="Lul-XC-f7z" id="cAP-Jb-T5D"/>
                 <outlet property="giftCardtotalAmount" destination="52i-Jb-o24" id="lYk-UE-Uwc"/>
                 <outlet property="orderAppliedPromoCode" destination="JST-AY-ptF" id="Jst-5b-J6I"/>
                 <outlet property="orderCommission" destination="mG0-LS-l0h" id="zy7-0M-Qk2"/>
@@ -631,6 +635,7 @@
                 <outlet property="planTransactionId" destination="Y9G-dg-0xz" id="aBv-it-ssO"/>
                 <outlet property="titleUserName" destination="N3b-sd-vTa" id="Tp5-Hd-teK"/>
                 <outlet property="titleValue" destination="isT-e3-YuX" id="wty-Wz-IKG"/>
+                <outlet property="transactionstackView" destination="dZT-Bl-zJs" id="amB-b5-w1a"/>
                 <outlet property="viewMoreButton" destination="R9S-7O-TaA" id="nH7-eL-IDA"/>
             </connections>
             <point key="canvasLocation" x="-59.541984732824424" y="-316.19718309859155"/>
