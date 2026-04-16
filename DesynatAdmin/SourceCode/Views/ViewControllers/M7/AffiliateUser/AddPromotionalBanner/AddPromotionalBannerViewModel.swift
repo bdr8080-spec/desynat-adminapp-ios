@@ -10,11 +10,11 @@ import Foundation
 class AddPromotionalBannerViewModel {
     
     private var hostVC: AddPromotionalBannerViewController
-    //  var countryListData: [GetAllUserCountryModel] = []
     var categoryListData: [GetCategoryModel] = []
     var selectedCategoriesId: Int? = -1
     var selectedSubCategoriesId: Int? = -1
     var subcategoriesList: [GetSubCategoryDataList] = []
+    var countryListData: [GetAllUserCountryModel] = []
     
     init(hostVC: AddPromotionalBannerViewController) {
         self.hostVC = hostVC
@@ -49,6 +49,11 @@ class AddPromotionalBannerViewModel {
             hostVC.pickedImage == nil {//}&&
             //            hostVC.pickedGifData == nil {
             errorMessage = .SelectBannerImage
+        }
+        
+        //Country
+        if errorMessage == .none && hostVC.countryId == 0 {
+            errorMessage = .selectCountry
         }
         
         //ForType
@@ -101,6 +106,7 @@ class AddPromotionalBannerViewModel {
             "banner_position": hostVC.selectedPositionIndex,
             "upload_banner": hostVC.selectedImageUrl,
             "start_date": apiFromDate,
+            "country_id": hostVC.countryId,
             "end_date": apiToDate,
             "total_days": hostVC.lblTotalDays.text ?? "",
         ]
@@ -123,6 +129,7 @@ class AddPromotionalBannerViewModel {
         var params: [String:Any] = [
             "banner_id": hostVC.giftsListData?.id ?? 0,
             "banner_position": hostVC.selectedPositionIndex,
+            "country_id": hostVC.countryId,
             "upload_banner": hostVC.selectedImageUrl,
             "start_date": apiFromDate,
             "end_date": apiToDate,
@@ -166,6 +173,13 @@ class AddPromotionalBannerViewModel {
             return ""
         }
         return outputFormatter.string(from: date)
+    }
+    
+    func getAllCountry() {
+        WebService.shared.getAllUsersCountryList(){ [weak self] response in
+            guard let self = self else { return }
+            countryListData = response
+        }
     }
     
 }

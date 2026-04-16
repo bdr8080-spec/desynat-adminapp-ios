@@ -26,12 +26,12 @@ class AddPromotionalBannerViewController: UIViewController {
             selectCategoryCollectionview.registerCellFromNib(cellID: "DurationCollectionViewCell")
         }
     }
+    @IBOutlet weak var countryLabel: CustomLabelFont!
     
     // MARK: - Property Decalaration
-    let datePicker = UIDatePicker()
     private var activeTextField: UITextField?
-    var selectedImageUrl: String = ""
     private lazy var viewModel = AddPromotionalBannerViewModel(hostVC: self)
+    private var isImageChanged: Bool = false
     var isComingForEdit: Bool = false
     var giftsListData: GetPromotionalBannersList?
     var onCardUpdated: ((GetPromotionalBannersList) -> Void)?
@@ -40,11 +40,14 @@ class AddPromotionalBannerViewController: UIViewController {
     var pickedImage: UIImage?
     var pickedFileName: String = ""
     var isGifSelected: Bool = false
-    private var isImageChanged: Bool = false
+    var selectedImageUrl: String = ""
+    let datePicker = UIDatePicker()
+    var countryId: Int = 0
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.getAllCountry()
         numberOfDaysView.isHidden = true
         categoryView.isHidden = true
         subCategoryView.isHidden = true
@@ -124,6 +127,21 @@ class AddPromotionalBannerViewController: UIViewController {
         }
     }
     
+    @IBAction func selectCountryDidTapped(_ sender: UIButton) {
+        let countryNames = viewModel.countryListData.map { country -> String in
+            let name = country.name ?? ""
+            let dialCode = country.dialCode ?? ""
+            let flag = country.flag1 ?? "🇰🇼"
+            return "\(flag)  \(name) (\(dialCode))"
+        }
+        
+        kSharedAppDelegate.dropDown(dataSource: countryNames, anchorView: sender) { index, item in
+            let selectedCountry = self.viewModel.countryListData[index]
+            self.countryLabel.text = selectedCountry.name
+            self.countryId = selectedCountry.id ?? 0
+        }
+    }
+    
     //MARK: Function's declaration
     private func updateCategoryVisibility() {
         let isCategorySelected = (selectedPositionIndex == 3) // Category
@@ -189,7 +207,8 @@ class AddPromotionalBannerViewController: UIViewController {
         selectedPositionIndex = Int(giftsListData?.bannerPosition ?? "1") ?? 1
         positionLabel.text = forTypeList[selectedPositionIndex - 1]
         updateCategoryVisibility()
-        
+        countryLabel.text = giftsListData?.countryInfo?.name
+        countryId = giftsListData?.countryInfo?.id ?? 0
         // Category specific logic
         if selectedPositionIndex == 3 {
             populateCategoryAndSubCategory()

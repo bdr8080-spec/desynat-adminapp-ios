@@ -52,7 +52,8 @@ struct GetPromotionalBannersList: Codable {
     var status, createdAt, updatedAt: String?
     let categoryDetails: CategoryDetails?
     let subcategoryDetails: SubcategoryDetails?
-
+    let countryInfo: CountryInfo?
+    
     enum CodingKeys: String, CodingKey {
         case id
         case orderID = "order_id"
@@ -74,5 +75,6 @@ struct GetPromotionalBannersList: Codable {
         case updatedAt = "updated_at"
         case categoryDetails = "category_details"
         case subcategoryDetails = "subcategory_details"
+        case countryInfo = "country_info"
     }
 }

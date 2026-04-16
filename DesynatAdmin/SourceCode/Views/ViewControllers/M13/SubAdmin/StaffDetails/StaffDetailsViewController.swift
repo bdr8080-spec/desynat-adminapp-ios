@@ -51,7 +51,15 @@ class StaffDetailsViewController: UIViewController {
         isActive.toggle()
         let imageName: String = isActive ? "toggle_on": "toggle_off"
         activeStatusbtn.setImage(UIImage(named: imageName), for: .normal)
-        
+    }
+    
+    @IBAction func deleteDidTapped(_ sender: Any) {
+//        guard let gift = bannerListData else { return }
+        self.showConfirmationAlert(msg: "Are you sure you want to delete this sub admin?"){ [weak self] in
+            guard let self = self else { return }
+//            let param:[String:Any] = ["banner_id": bannerId]
+//            viewModel.deletePromtoionalBanner(param: param)
+        }
     }
     
 }
@@ -59,7 +67,6 @@ extension StaffDetailsViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AccessModuleTableViewCell") as! AccessModuleTableViewCell
-        //        cell.rowIndex = indexPath.row
         if selectedRow == indexPath.row {
             cell.selectedIndex = -1
             cell.isOuterRowSelected = true

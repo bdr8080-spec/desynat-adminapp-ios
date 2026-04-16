@@ -9,22 +9,23 @@ import Foundation
 import UIKit
 
 class ChangePassowrdViewModel:NSObject{
-    private var hostVC:ChangePassowrdViewController
+    private var hostVC: ChangePassowrdViewController
     
     init(hostVC: ChangePassowrdViewController) {
         self.hostVC = hostVC
     }
     
-//    func changePasswordApi(){
+    func changePasswordApi(){
 //        let param:[String:Any] = [
 //            "old_password":self.hostVC.txtOldPassword.text ?? "",
 //            "new_password":self.hostVC.txtNewPass.text ?? "",
 //            "confirm_password":self.hostVC.txtConfirmPass.text ?? ""
 //        ]
 //        WebService.sharedInstance.changePasswordService(param : param) { user in
-//            self.hostVC.navigationController?.popViewController(animated: true)
+            CommonUtils.showToast(message: "Password is updated successfully")
+            self.hostVC.navigationController?.popViewController(animated: true)
 //        }
-//    }
+    }
 //    
     
     

@@ -10,6 +10,7 @@ import SDWebImage
 
 class TicketManagementDetailsViewController: UIViewController {
     
+    @IBOutlet weak var attachmnetButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var requestedByLbl: UILabel!
     @IBOutlet weak var ticketStatusLbl: UILabel!
@@ -60,6 +61,7 @@ class TicketManagementDetailsViewController: UIViewController {
                                 }
                 }
             }
+        
     }
     
     @IBAction func backDidTapped(_ sender: Any) {
@@ -127,6 +129,13 @@ class TicketManagementDetailsViewController: UIViewController {
             statusUpdateStackView.isHidden = false
             updateStatusButtonView.isHidden = false
         }
+        if let file = data.file?.lowercased(),
+           file.hasSuffix(".pdf") {
+            attachmnetButton.isUserInteractionEnabled = true
+        } else {
+            attachmnetButton.isUserInteractionEnabled = false
+        }
+        attachmnetImageView.enableFullscreenZoom()
     }
     
     func statusType(status: Int) -> (text: String, color: UIColor) {

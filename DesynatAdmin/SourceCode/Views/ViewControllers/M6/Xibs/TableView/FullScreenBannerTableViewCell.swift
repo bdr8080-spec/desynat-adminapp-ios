@@ -37,7 +37,6 @@ class FullScreenBannerTableViewCell: UITableViewCell {
     
     func configData(data: FullScreenBannerDataList?) {
         titleStackView.isHidden = false
-        countrystackView.isHidden = false
         titleLabel.text = data?.title
         if let imageUrlString = data?.image,
            let url = URL(string: imageUrlString) {
@@ -63,7 +62,6 @@ class FullScreenBannerTableViewCell: UITableViewCell {
     
     func configDataForPromotionalBanner(data: GetPromotionalBannersList?) {
         titleStackView.isHidden = true
-        countrystackView.isHidden = true
         if let imageUrlString = data?.uploadBanner,
            let url = URL(string: imageUrlString) {
             mainImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
@@ -75,7 +73,7 @@ class FullScreenBannerTableViewCell: UITableViewCell {
         if let startDate = convertDateFormat(data?.startDate ?? "") {
             startDateLabel.text = startDate
         }
-        
+        countryLabel.text = data?.countryInfo?.name
         endDateLabel.text = convertDateFormat(data?.endDate ?? "")
         if data?.bannerPosition == "1" {
             typeLabel.text = "Home Top"
@@ -84,21 +82,6 @@ class FullScreenBannerTableViewCell: UITableViewCell {
         } else {
             typeLabel.text = "Category"
         }
-        
-        //        if let status = categorizeDeal(from: data?.startDate ?? "", to: data?.endDate ?? "") {
-        //            statusLabel.isHidden = false
-        //            if status == .upcoming {
-        //                statusLabel.text = "Upcoming"
-        //                statusLabel.textColor = .black
-        //            } else if status == .active {
-        //                statusLabel.text = "Active"
-        //                statusLabel.textColor = UIColor(hexString: "#68CA44")
-        //            } else {
-        //                statusLabel.text = "Expired"
-        //                statusLabel.textColor = .red
-        //            }
-        //        }
-        
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         formatter.locale = Locale(identifier: "en_US_POSIX")

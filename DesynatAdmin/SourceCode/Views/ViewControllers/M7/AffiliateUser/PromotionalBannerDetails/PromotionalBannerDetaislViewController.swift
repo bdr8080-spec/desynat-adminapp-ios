@@ -21,6 +21,7 @@ class PromotionalBannerDetaislViewController: UIViewController {
     @IBOutlet weak var cardImageView: CustomImageView!
     @IBOutlet weak var endDateLabel: UILabel!
     @IBOutlet weak var startDateLabel: UILabel!
+    @IBOutlet weak var countryNameLabel: UILabel!
     
     // MARK: - Property Decalaration
     var bannerId: Int = 0
@@ -143,6 +144,7 @@ class PromotionalBannerDetaislViewController: UIViewController {
         endDateLabel.text = convertDateFormat(bannerListData?.endDate ?? "")
         subcatgeoryStackView.isHidden = true
         categoryStackView.isHidden = true
+        countryNameLabel.text = bannerListData?.countryInfo?.name
         if bannerListData?.bannerPosition == "1" {
             positionLabel.text = "Home Top"
         } else if bannerListData?.bannerPosition == "2" {

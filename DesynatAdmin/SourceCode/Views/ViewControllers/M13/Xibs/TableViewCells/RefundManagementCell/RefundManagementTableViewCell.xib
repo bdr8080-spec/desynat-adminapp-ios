@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -368,7 +368,17 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="cancelledReturnedOnDateLabel" destination="bLU-z8-CcI" id="V7g-h4-s8Z"/>
+                <outlet property="countryNameLabel" destination="MwS-jd-ydc" id="aFH-5k-0Th"/>
                 <outlet property="forHideView" destination="z8M-xN-Cvf" id="1HN-He-ra1"/>
+                <outlet property="orderIdLabel" destination="ldw-pa-CsN" id="l5O-hw-KOP"/>
+                <outlet property="orderedOnLbael" destination="KgZ-oj-Nqe" id="Xs5-RL-N7L"/>
+                <outlet property="rejectedReasonLabel" destination="VSv-1S-aza" id="XmK-rZ-lXc"/>
+                <outlet property="sellerNameLabel" destination="SDg-y0-Mzb" id="2hF-8r-Gp7"/>
+                <outlet property="statusLabel" destination="ben-3x-mDL" id="loS-mS-1Rb"/>
+                <outlet property="totalAmountLabel" destination="otJ-sV-4Zk" id="X5U-fx-Brn"/>
+                <outlet property="transactionId" destination="G2s-RQ-VFG" id="j5Y-TV-VjJ"/>
+                <outlet property="usernameLabel" destination="chy-xv-ucJ" id="zAA-jL-jkk"/>
                 <outlet property="viewMoreButton" destination="LCF-5M-meQ" id="Y0W-vW-O0w"/>
             </connections>
             <point key="canvasLocation" x="-15.267175572519083" y="235.21126760563382"/>

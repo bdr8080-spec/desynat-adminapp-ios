@@ -36,7 +36,6 @@ class SubAdminListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         serachTF.delegate = self
-        updatePaginationButtonImages()
     }
     
     override func viewWillAppear(_ animated: Bool) {

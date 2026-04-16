@@ -28,9 +28,9 @@ class SideMenuViewModel {
             hostVC.emailLabel.text = savedUser.email
             if let imageUrlString = savedUser.profileImage,
                let url = URL(string: imageUrlString) {
-                hostVC.userProfileImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "userProfile"))
+                hostVC.userProfileImageView.sd_setImage(with: url, placeholderImage: .userProfile)
             } else {
-                hostVC.userProfileImageView.image = UIImage(named: "userProfile")
+                hostVC.userProfileImageView.image = .userProfile
             }
         }
     }
