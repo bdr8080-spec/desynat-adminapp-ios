@@ -68,7 +68,7 @@ class AddNewStaffViewModel {
         }
         
         if hostVC.selectedRoleIndex == -1 {
-            errorMessage = .selectRole
+            errorMessage = .selectRoleForNotification
         }
         
         let password = String.getString(hostVC.passwordTxtField.text).trimmingCharacters(in: .whitespacesAndNewlines)
