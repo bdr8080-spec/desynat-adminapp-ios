@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class HomeViewController: UIViewController {
     
@@ -85,7 +86,6 @@ class HomeViewController: UIViewController {
         selectedCountryView.isHidden = false
         extraSpaceLabel.isHidden = true
         viewModel.getAllCountry()
-        viewModel.getUserData()
     }
     
     override func viewWillLayoutSubviews() {
@@ -98,6 +98,7 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.getCountOfNotificationRequest()
+        viewModel.getUserProfile()
     }
 
     // MARK: - Button's Action

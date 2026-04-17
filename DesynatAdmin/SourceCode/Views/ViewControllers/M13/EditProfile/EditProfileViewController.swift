@@ -90,6 +90,10 @@ class EditProfileViewController: UIViewController {
         }
         fullnameTF.text = data?.fullName
         emailIdTF.text = data?.email
+        mobileTF.text = data?.mobile
+        countryCode = data?.countryCode ?? "+965"
+        countryCodeTF.text = data?.countryCode
+        userProfileImageView.enableFullscreenZoom()
     }
     
 }

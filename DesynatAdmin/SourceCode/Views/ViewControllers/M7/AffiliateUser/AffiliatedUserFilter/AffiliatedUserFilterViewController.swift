@@ -23,6 +23,7 @@ class AffiliatedUserFilterViewController: UIViewController {
     var selectedFilter = FullScreenBannerFilterModel()
     var onApplyFilter: ((FullScreenBannerFilterModel) -> Void)?
     var onClearFilter: (() -> Void)?
+    var disbaleFutureDateSelection: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
@@ -100,11 +101,18 @@ class AffiliatedUserFilterViewController: UIViewController {
 }
 
 extension AffiliatedUserFilterViewController {
+    
     private func setUpTextFields() {
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.datePickerMode = .date
-        datePicker.minimumDate = nil
         datePicker.backgroundColor = .white
+        
+        // 🔥 Key Change: Respect the disableFutureDateSelection flag
+        if disbaleFutureDateSelection {
+            datePicker.maximumDate = Date()   // Disable future dates
+        } else {
+            datePicker.maximumDate = nil      // Allow future dates
+        }
         
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
@@ -112,6 +120,7 @@ extension AffiliatedUserFilterViewController {
         let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneDatePicker))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker))
+        
         toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         
         fromTextField.inputView = datePicker
@@ -164,10 +173,26 @@ extension AffiliatedUserFilterViewController {
 
 //MARK: UITextFieldDelegate Methods
 extension AffiliatedUserFilterViewController: UITextFieldDelegate {
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
+        
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
+        
+        // Apply future date restriction
+        if disbaleFutureDateSelection {
+            datePicker.maximumDate = Date()
+        } else {
+            datePicker.maximumDate = nil
+        }
+        
+        // From Date: No minimum date
+        if textField == fromTextField {
+            datePicker.minimumDate = nil
+        }
+        
+        // To Date: Minimum date = From Date (if set)
         if textField == toTextField {
             if let fromText = fromTextField.text,
                let fromDate = formatter.date(from: fromText) {
@@ -175,9 +200,6 @@ extension AffiliatedUserFilterViewController: UITextFieldDelegate {
             } else {
                 datePicker.minimumDate = nil
             }
-        }
-        if textField == fromTextField {
-            datePicker.minimumDate = nil
         }
     }
 }

@@ -165,7 +165,6 @@ enum NetworkEndPoint: String {
     case uploadAdminStory                   = "api/admin/add_story"
     case uploadFullScreenBanner             = "api/uploadWithResolution"
     
-    
     //M7
     case getNewAffilaitedUsers              = "api/admin/get_new_affilaited_users"
     case getApprovedAffilaitedUsers         = "api/admin/get_approved_affilaited_users"
@@ -233,6 +232,11 @@ enum NetworkEndPoint: String {
     case getPlansPayments                   = "api/admin/get_plan_payments"
     case getGiftCardsPayments               = "api/admin/get_giftcard_payments"
     case getBannersPayments                 = "api/admin/get_banner_payments"
+    
+    //M13
+    case accountSetting                     = "api/admin/account_setting"
+    case updatePassword                     = "api/admin/update_password"
+    case getProfile                         = "api/admin/get_profile"
     
     
     func withBaseURL() -> String {

@@ -64,21 +64,24 @@ class EditProfileViewModel {
     }
     
     func editProfileRequest() {
-        let params: [String:Any] = [:]
-        //        WebService.sharedInstance.editBrand(param: params) { (response) in
-        //            DispatchQueue.main.async {
-        CommonUtils.showToast(message: "Profile is updated Succesfully ")
-        self.hostVC.navigationController?.popViewController(animated: true)
-        //            }
-        //        }
+        let params: [String:Any] = ["profile_pic": hostVC.selectedImageUrl,
+                                    "email": hostVC.emailIdTF.text ?? "",
+                                    "country_code": hostVC.countryCode,
+                                    "mobile": hostVC.mobileTF.text ?? "",
+                                    "full_name": hostVC.fullnameTF.text ?? ""]
+        WebService.sharedInstance.editProfileService(withParams: params) { (response) in
+            DispatchQueue.main.async {
+                CommonUtils.showToast(message: "Profile is updated Succesfully ")
+                self.hostVC.navigationController?.popViewController(animated: true)
+            }
+        }
     }
     
-    func getUserProfile(){
-        //        WebService.sharedInstance.getUserProfile { [weak self] response in
-        //            guard let self else { return }
-        //            userProfile = response
-        hostVC.configData()
-        //        }
+    func getUserProfile() {
+        if let savedUser: UserModel = kSharedUserDefaults.retrieveModelFor(key: .user, model: UserModel.self) {
+            userProfile = savedUser
+            hostVC.configData()
+        }
     }
     
     func uploadDocument(file: Any, isImage: Bool, completion: @escaping(String) -> Void) {

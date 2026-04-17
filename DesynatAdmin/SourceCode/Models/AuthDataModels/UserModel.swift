@@ -29,6 +29,6 @@ struct UserModel: Codable {
         case createdAt = "created_at"
         case updatedAt = "updated_at"
         case accessToken
-        case profileImage = "profile_image"
+        case profileImage = "profile_pic"
     }
 }

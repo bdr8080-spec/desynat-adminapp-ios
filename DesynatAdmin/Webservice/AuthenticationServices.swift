@@ -88,4 +88,50 @@ extension WebService {
         }
     }
     
+    func editProfileService(withParams dictParams: Dictionary<String, Any>, completion: @escaping (_ user: UserModel) -> Void) {
+        CommonUtils.showHud(show: true)
+        NetworkManager.shared.request(withAPI: .endpoint(.accountSetting), requestMethod: .post, requestParams: dictParams, encoding: JSONEncoding.default, requestModel: UserModel.self) { result, code in
+            CommonUtils.showHud(show: false)
+            self.evaluateWebServiceResponse(response: result) { response, message, error in
+                if let error {
+                    UIApplication.shared.topViewController()?.showAlert(msg: error)
+                } else if let response {
+                    Global.shared.user = response
+                    kSharedUserDefaults.saveModelFor(key: .user, value: response)
+                    completion(response)
+                }
+            }
+        }
+    }
+    
+    func changePasswordService(withParams dictParams: Dictionary<String, Any>, completion: @escaping (_ user: EmptyModel) -> Void) {
+        CommonUtils.showHud(show: true)
+        NetworkManager.shared.request(withAPI: .endpoint(.updatePassword), requestMethod: .post, requestParams: dictParams, encoding: JSONEncoding.default, requestModel: EmptyModel.self) { result, code in
+            CommonUtils.showHud(show: false)
+            self.evaluateWebServiceResponse(response: result) { response, message, error in
+                if let error {
+                    UIApplication.shared.topViewController()?.showAlert(msg: error)
+                } else if let response {
+                    completion(response)
+                }
+            }
+        }
+    }
+    
+    func getProfileService(completion: @escaping (_ user: UserModel) -> Void) {
+        CommonUtils.showHud(show: true)
+        NetworkManager.shared.request(withAPI: .endpoint(.getProfile), requestMethod: .get, encoding: JSONEncoding.default, requestModel: UserModel.self) { result, code in
+            CommonUtils.showHud(show: false)
+            self.evaluateWebServiceResponse(response: result) { response, message, error in
+                if let error {
+                    UIApplication.shared.topViewController()?.showAlert(msg: error)
+                } else if let response {
+                    Global.shared.user = response
+                    kSharedUserDefaults.saveModelFor(key: .user, value: response)
+                    completion(response)
+                }
+            }
+        }
+    }
+    
 }

@@ -83,7 +83,7 @@ class SubAdminListViewController: UIViewController {
     @IBAction func filterDidTapped(_ sender: Any) {
         let vc = AffiliatedUserFilterViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
         vc.selectedFilter = viewModel.filter(for: userType)
-        
+        vc.disbaleFutureDateSelection = true
         vc.onApplyFilter = { [weak self] filter in
             guard let self = self else { return }
             

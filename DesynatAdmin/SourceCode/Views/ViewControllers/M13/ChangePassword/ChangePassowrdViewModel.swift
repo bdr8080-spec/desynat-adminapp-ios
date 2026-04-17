@@ -8,7 +8,8 @@
 import Foundation
 import UIKit
 
-class ChangePassowrdViewModel:NSObject{
+class ChangePassowrdViewModel:NSObject {
+    
     private var hostVC: ChangePassowrdViewController
     
     init(hostVC: ChangePassowrdViewController) {
@@ -16,17 +17,13 @@ class ChangePassowrdViewModel:NSObject{
     }
     
     func changePasswordApi(){
-//        let param:[String:Any] = [
-//            "old_password":self.hostVC.txtOldPassword.text ?? "",
-//            "new_password":self.hostVC.txtNewPass.text ?? "",
-//            "confirm_password":self.hostVC.txtConfirmPass.text ?? ""
-//        ]
-//        WebService.sharedInstance.changePasswordService(param : param) { user in
+        let param:[String:Any] = [
+            "old_password": self.hostVC.txtOldPassword.text ?? "",
+            "new_password": self.hostVC.txtNewPass.text ?? "",
+            "confirm_password": self.hostVC.txtConfirmPass.text ?? ""]
+        WebService.sharedInstance.changePasswordService(withParams : param) { user in
             CommonUtils.showToast(message: "Password is updated successfully")
             self.hostVC.navigationController?.popViewController(animated: true)
-//        }
+        }
     }
-//    
-    
-    
 }

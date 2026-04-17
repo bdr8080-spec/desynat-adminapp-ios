@@ -127,7 +127,8 @@ class OrderManagementDetailsViewController: UIViewController {
     
     @IBAction func downloadInvoiceDidTapped(_ sender: Any) {
         let orderId = self.viewModel.orderDetail?.order?.orderID ?? ""
-        let urlString = "http://157.241.119.72/Invoice/\(orderId)"
+        let urlString = "\(BaseURL.value())Invoice/\(orderId)"
+//        let urlString = "https://desynat.com/Invoice/\(orderId)"
         
         guard let url = URL(string: urlString) else {
             showAlert(msg: "Invalid invoice URL")

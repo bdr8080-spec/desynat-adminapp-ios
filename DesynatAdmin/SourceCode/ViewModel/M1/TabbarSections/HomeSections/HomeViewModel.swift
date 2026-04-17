@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SDWebImage
 
 class HomeViewModel {
     
@@ -36,15 +37,18 @@ class HomeViewModel {
         }
     }
     
-    func getUserData() {
-        if let savedUser: UserModel = kSharedUserDefaults.retrieveModelFor(key: .user, model: UserModel.self) {
-            hostVC.usernameLabel.text = savedUser.fullName
+    func getUserProfile(){
+        WebService.sharedInstance.getProfileService { [weak self] savedUser in
+            guard let self else { return }
             if let imageUrlString = savedUser.profileImage,
                let url = URL(string: imageUrlString) {
-                hostVC.userProfileImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "userProfile"))
+                hostVC.userProfileImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+                hostVC.userProfileImageView.sd_imageIndicator?.startAnimatingIndicator()
+                hostVC.userProfileImageView.sd_setImage(with: url, placeholderImage: .userProfile)
             } else {
-                hostVC.userProfileImageView.image = UIImage(named: "userProfile")
+                hostVC.userProfileImageView.image = .userProfile
             }
+            hostVC.usernameLabel.text = "Hi \(savedUser.fullName ?? "")"
         }
     }
 

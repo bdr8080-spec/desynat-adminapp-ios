@@ -45,16 +45,19 @@ class AddNewStaffViewController: UIViewController {
     private lazy var viewModel = AddNewStaffViewModel(hostVC: self)
     var selectedImageUrl: String = ""
     var countryCode: String = "+965"
-    var comingReason: comingFrom?
+    var comingReason: comingFrom = .addNewStaff
     let roles = ["Manager", "Officer", "Sales employee"]
     var selectedRow: Int?
+    var moduleNames = ["Dashboard", "Orders", "Users", "Reports", "Settings"]
+    var moduleSelctedData: [ModulSelctedData] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fullNameInEnglishTF.delegate = self
         fullNameInArabicTF.delegate = self
+        initialSetup()
         viewModel.getAllCountry() {
-            self.initialSetup()
+            self.configData()
         }
     }
     
@@ -162,9 +165,6 @@ class AddNewStaffViewController: UIViewController {
             editStaffView.isHidden = false
             addNewStaffView.isHidden = true
             addBtnLbl.text = "Save changes"
-            configData()
-        case nil:
-            return
         }
     }
     
@@ -217,32 +217,58 @@ extension AddNewStaffViewController: UICollectionViewDataSource, UICollectionVie
 extension AddNewStaffViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return moduleNames.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AccessModuleTableViewCell") as! AccessModuleTableViewCell
-        if selectedRow == indexPath.row {
-            cell.selectedIndex = -1
-            cell.isOuterRowSelected = true
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AccessModuleTableViewCell",for: indexPath) as! AccessModuleTableViewCell
+        let moduleId = indexPath.row + 1
+        cell.titleView.text = moduleNames[indexPath.row]
+        cell.moduleId = moduleId
+        cell.viewSelected = false
+        cell.actionSelected = false
+        cell.isRowSelected = false
+        cell.radioimageView.image = .radioUnselected
+        if let data = moduleSelctedData.first(where: { $0.moduleId == moduleId }) {
+            cell.isRowSelected = true
+            cell.viewSelected = data.viewSelcted == 1
+            cell.actionSelected = data.actionIsSelected == 1
             cell.radioimageView.image = .radioSelected
-            cell.collectionView.reloadData()
-        } else {
-            cell.selectedIndex = -1
-            cell.isOuterRowSelected = false
-            cell.radioimageView.image = .radioUnselected
-            cell.collectionView.reloadData()
         }
+        cell.selectionUpdated = { [weak self] moduleId, view, action in
+            self?.updateSelection(moduleId: moduleId,viewSelected: view,actionSelected: action)
+        }
+        cell.collectionView.reloadData()
         return cell
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        viewWillLayoutSubviews()
+    func tableView(_ tableView: UITableView,didSelectRowAt indexPath: IndexPath) {
+        let moduleId = indexPath.row + 1
+        if let index = moduleSelctedData.firstIndex(where: { $0.moduleId == moduleId }) {
+            moduleSelctedData.remove(at: index)
+        } else {
+            let obj = ModulSelctedData(moduleId: moduleId,viewSelcted: 1,actionIsSelected: 0)
+            moduleSelctedData.append(obj)
+        }
+        tableView.reloadRows(at: [indexPath], with: .none)
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedRow = indexPath.row
-        tableView.reloadData()
+    func updateSelection(moduleId: Int, viewSelected: Bool, actionSelected: Bool) {
+        if let index = moduleSelctedData.firstIndex(where: { $0.moduleId == moduleId }) {
+            if viewSelected == false && actionSelected == false {
+                moduleSelctedData.remove(at: index)
+            } else {
+                moduleSelctedData[index].viewSelcted = viewSelected ? 1 : 0
+                moduleSelctedData[index].actionIsSelected = actionSelected ? 1 : 0
+            }
+        } else {
+            if viewSelected || actionSelected {
+                let obj = ModulSelctedData(moduleId: moduleId,viewSelcted: viewSelected ? 1 : 0,actionIsSelected: actionSelected ? 1 : 0)
+                moduleSelctedData.append(obj)
+            }
+        }
+        let indexPath = IndexPath(row: moduleId - 1, section: 0)
+        accessModuleTableView.reloadRows(at: [indexPath], with: .none)
     }
 }
 
@@ -276,7 +302,6 @@ extension AddNewStaffViewController: UITextFieldDelegate {
         let allowedSet = CharacterSet(charactersIn:
                                         "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .,?!'-()\"&@#$%^*+=:;/\\"
         ).union(.whitespacesAndNewlines)
-        
         return string.unicodeScalars.allSatisfy { allowedSet.contains($0) || $0.properties.isEmoji }
     }
     
@@ -287,7 +312,6 @@ extension AddNewStaffViewController: UITextFieldDelegate {
             .union(CharacterSet(charactersIn: "\u{FB50}"..."\u{FDFF}"))
             .union(CharacterSet(charactersIn: "\u{FE70}"..."\u{FEFF}"))
             .union(.whitespacesAndNewlines)
-        
         return string.unicodeScalars.allSatisfy { allowedSet.contains($0) || $0.properties.isEmoji }
     }
 }
