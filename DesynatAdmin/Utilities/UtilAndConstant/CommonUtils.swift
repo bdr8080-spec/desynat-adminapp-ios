@@ -604,7 +604,8 @@ class CommonUtils {
         let baseURL = "https://maps.googleapis.com/maps/api/place/details/json"
         let parameters = [
             "place_id": placeID,
-            "key": "AIzaSyAekJV3oxQlPy_OWHCxPYfFw5CnrD-Wzkg"
+//            "key": "AIzaSyAekJV3oxQlPy_OWHCxPYfFw5CnrD-Wzkg"
+            "key": "AIzaSyB5LK7zzKS4q9ov0R4LFLgaRyPZdZsTKz4"
         ]
         
         var urlComponents = URLComponents(string: baseURL)

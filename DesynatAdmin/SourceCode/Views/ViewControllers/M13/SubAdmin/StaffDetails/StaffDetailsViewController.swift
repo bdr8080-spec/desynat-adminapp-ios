@@ -9,7 +9,6 @@ import UIKit
 
 class StaffDetailsViewController: UIViewController {
     
-    
     // MARK: - IBOutlet
     @IBOutlet weak var isActiveLbl: UILabel!
     @IBOutlet weak var profileImageView: CustomImageView!
@@ -32,6 +31,7 @@ class StaffDetailsViewController: UIViewController {
     var selectedRow: Int?
     var moduleNames = ["Dashboard", "Orders", "Users", "Reports", "Settings"]
     var moduleSelctedData: [ModulSelctedData] = []
+    var staffDetails: StaffDetails?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +46,7 @@ class StaffDetailsViewController: UIViewController {
     @IBAction func editProfileBtntapped(_ sender: Any) {
         let vc = AddNewStaffViewController.instantiate(fromAppStoryboard: .NotificationCMS)
         vc.comingReason = .editStaff
+        vc.staffDetails = staffDetails
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

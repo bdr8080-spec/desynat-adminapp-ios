@@ -25,9 +25,9 @@ class SubAdminTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configUserData(data: AffilitaitedUsersDataModel) {
+    func configUserData(data: StaffDetails) {
         usernameLabel.text = data.fullName
-        if let imageUrlString = data.profileImage,
+        if let imageUrlString = data.profilePic,
            let url = URL(string: imageUrlString) {
             userProfileImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
             userProfileImageView.sd_imageIndicator?.startAnimatingIndicator()
@@ -39,7 +39,7 @@ class SubAdminTableViewCell: UITableViewCell {
         joinedDateLabel.text = "Joined on \(result)"
         phoneNumberLabel.text = "\(data.countryCode ?? "")-\(data.mobile ?? "")"
         emailLabel.text = data.email
-        countryLabel.text = data.countryDetails?.name
+        countryLabel.text = data.countryInfo?.name
     }
     
     private func convertISOToDMY(_ isoString: String) -> String? {

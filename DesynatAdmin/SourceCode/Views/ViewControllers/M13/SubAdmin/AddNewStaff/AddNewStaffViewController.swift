@@ -45,11 +45,12 @@ class AddNewStaffViewController: UIViewController {
     private lazy var viewModel = AddNewStaffViewModel(hostVC: self)
     var selectedImageUrl: String = ""
     var countryCode: String = "+965"
+    var countryID: Int = 1
     var comingReason: comingFrom = .addNewStaff
     let roles = ["Manager", "Officer", "Sales employee"]
     var selectedRow: Int?
-    var moduleNames = ["Dashboard", "Orders", "Users", "Reports", "Settings"]
     var moduleSelctedData: [ModulSelctedData] = []
+    var staffDetails: StaffDetails?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +59,9 @@ class AddNewStaffViewController: UIViewController {
         initialSetup()
         viewModel.getAllCountry() {
             self.configData()
+        }
+        viewModel.getAllAdminModulesRequest() {
+            self.accessModuleTableView.reloadData()
         }
     }
     
@@ -132,6 +136,7 @@ class AddNewStaffViewController: UIViewController {
             let selectedCountry = self.viewModel.countryListData[index]
             self.countryCodeTF.text = selectedCountry.dialCode
             self.countryCode = selectedCountry.dialCode ?? "+965"
+            self.countryID = selectedCountry.id ?? 1
         }
     }
     
@@ -168,9 +173,33 @@ class AddNewStaffViewController: UIViewController {
         }
     }
     
+//    func configData() {
+//        guard let data = staffDetails else { return }
+//        if let imageUrlString = data.profilePic,
+//           let url = URL(string: imageUrlString) {
+//            selectedImageUrl = imageUrlString
+//            userProfileImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+//            userProfileImageView.sd_imageIndicator?.startAnimatingIndicator()
+//            userProfileImageView.sd_setImage(with: url, placeholderImage: .userProfile)
+//        } else {
+//            userProfileImageView.image = .userProfile
+//        }
+//        fullNameInEnglishTF.text = data.fullName
+//        fullNameInArabicTF.text = data.fullNameInArabic
+//        emailTF.text = data.email
+//        mobileTF.text = data.mobile
+//        countryID = Int(data.countryID ?? "1") ?? 1
+//        countryCode = data.countryCode ?? "+965"
+//        passwordTxtField.text = data.unhashedPassword
+//        confirmPasswortTxtField.text = data.unhashedPassword
+//        
+//    }
+    
     func configData() {
-        let data = viewModel.userProfile
-        if let imageUrlString = data?.profileImage,
+        guard let data = staffDetails else { return }
+
+        // MARK: Profile
+        if let imageUrlString = data.profilePic,
            let url = URL(string: imageUrlString) {
             selectedImageUrl = imageUrlString
             userProfileImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
@@ -179,7 +208,50 @@ class AddNewStaffViewController: UIViewController {
         } else {
             userProfileImageView.image = .userProfile
         }
-        
+
+        // MARK: Basic Data
+        fullNameInEnglishTF.text = data.fullName
+        fullNameInArabicTF.text = data.fullNameInArabic
+        emailTF.text = data.email
+        mobileTF.text = data.mobile
+
+        countryID = Int(data.countryID ?? "1") ?? 1
+        countryCode = data.countryCode ?? "+965"
+        countryCodeTF.text = data.countryCode ?? "+965"
+
+        passwordTxtField.text = data.unhashedPassword
+        confirmPasswortTxtField.text = data.unhashedPassword
+
+        // MARK: Role
+        if let role = data.selectedRole {
+            selectedRoleIndex = role - 1
+            roleSelectionCollectionView.reloadData()
+        }
+
+        // MARK: Selected Modules Only
+        moduleSelctedData.removeAll()
+
+        if let permissions = data.permissionDetails {
+            for permission in permissions {
+                let moduleId = permission.moduleID ?? 0
+
+                // match with all modules api list
+                if viewModel.adminModulesListData.contains(where: { $0.id == moduleId }) {
+                    let obj = ModulSelctedData(
+                        moduleId: moduleId,
+                        viewSelcted: permission.canView ?? 0,
+                        actionIsSelected: permission.canAction ?? 0
+                    )
+                    moduleSelctedData.append(obj)
+                }
+            }
+        }
+
+        accessModuleTableView.reloadData()
+
+        DispatchQueue.main.async {
+            self.tableViewHeightConstraint.constant = self.accessModuleTableView.contentSize.height
+        }
     }
     
 }
@@ -217,13 +289,13 @@ extension AddNewStaffViewController: UICollectionViewDataSource, UICollectionVie
 extension AddNewStaffViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return moduleNames.count
+        return viewModel.adminModulesListData.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AccessModuleTableViewCell",for: indexPath) as! AccessModuleTableViewCell
         let moduleId = indexPath.row + 1
-        cell.titleView.text = moduleNames[indexPath.row]
+        cell.titleView.text = viewModel.adminModulesListData[indexPath.row].displayName
         cell.moduleId = moduleId
         cell.viewSelected = false
         cell.actionSelected = false
@@ -243,7 +315,7 @@ extension AddNewStaffViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView,didSelectRowAt indexPath: IndexPath) {
-        let moduleId = indexPath.row + 1
+        let moduleId = viewModel.adminModulesListData[indexPath.row].id ?? 0
         if let index = moduleSelctedData.firstIndex(where: { $0.moduleId == moduleId }) {
             moduleSelctedData.remove(at: index)
         } else {
@@ -251,6 +323,7 @@ extension AddNewStaffViewController: UITableViewDataSource, UITableViewDelegate 
             moduleSelctedData.append(obj)
         }
         tableView.reloadRows(at: [indexPath], with: .none)
+        print("moduleSelctedData => \(moduleSelctedData)")
     }
     
     func updateSelection(moduleId: Int, viewSelected: Bool, actionSelected: Bool) {

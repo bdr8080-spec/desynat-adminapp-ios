@@ -80,8 +80,14 @@ extension AccessModuleTableViewCell: UICollectionViewDelegate, UICollectionViewD
     }
 }
 
-struct ModulSelctedData {
+struct ModulSelctedData: Codable  {
     var moduleId: Int
     var viewSelcted: Int      // 0 = No, 1 = Yes
     var actionIsSelected: Int // 0 = No, 1 = Yes
+    
+    enum CodingKeys: String, CodingKey {
+        case moduleId = "module_id"
+        case viewSelcted = "can_view"
+        case actionIsSelected = "can_action"
+    }
 }

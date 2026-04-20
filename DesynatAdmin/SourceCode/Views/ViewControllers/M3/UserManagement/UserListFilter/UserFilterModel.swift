@@ -20,11 +20,12 @@ struct FullScreenBannerFilterModel {
     var bannerType: Int?
     var bannerName: String?
     var countryName: String?
+    var countryID: Int?
     var fromDate: String?
     var toDate: String?
     
     var isEmpty: Bool {
-        return bannerType == nil && bannerName == nil && countryName == nil && fromDate == nil && toDate == nil
+        return bannerType == nil && bannerName == nil && countryName == nil && countryID == nil && fromDate == nil && toDate == nil
     }
 }
 

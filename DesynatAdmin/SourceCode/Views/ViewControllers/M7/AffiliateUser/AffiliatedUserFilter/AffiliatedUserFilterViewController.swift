@@ -19,6 +19,7 @@ class AffiliatedUserFilterViewController: UIViewController {
     let datePicker = UIDatePicker()
     private var activeTextField: UITextField?
     var countryName: String = ""
+    var countryID: Int = -1
     private lazy var viewModel = AffiliatedUserFilterViewModel(hostVC: self)
     var selectedFilter = FullScreenBannerFilterModel()
     var onApplyFilter: ((FullScreenBannerFilterModel) -> Void)?
@@ -48,6 +49,7 @@ class AffiliatedUserFilterViewController: UIViewController {
         var filter = FullScreenBannerFilterModel()
         if !countryName.isEmpty {
             filter.countryName = countryName
+            filter.countryID = countryID
         }
         
         if let fromDate = fromTextField.text, !fromDate.isEmpty {
@@ -73,6 +75,7 @@ class AffiliatedUserFilterViewController: UIViewController {
             let selectedCountry = self.viewModel.countryListData[index]
             self.countryLabel.text = selectedCountry.name
             self.countryName = selectedCountry.name ?? ""
+            self.countryID = selectedCountry.id ?? -1
         }
     }
     
@@ -91,6 +94,7 @@ class AffiliatedUserFilterViewController: UIViewController {
             
             countryLabel.text = selectedCountry.name
             countryName = id
+            countryID = selectedCountry.id ?? -1
         }
         
         // Preselect date fields

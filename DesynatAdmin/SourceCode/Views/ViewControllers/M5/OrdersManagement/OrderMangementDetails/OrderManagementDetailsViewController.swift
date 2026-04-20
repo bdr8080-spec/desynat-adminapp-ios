@@ -8,6 +8,8 @@
 import UIKit
 import SDWebImage
 import Cosmos
+import SafariServices
+import PDFKit
 
 class OrderManagementDetailsViewController: UIViewController {
     
@@ -127,16 +129,87 @@ class OrderManagementDetailsViewController: UIViewController {
     
     @IBAction func downloadInvoiceDidTapped(_ sender: Any) {
         let orderId = self.viewModel.orderDetail?.order?.orderID ?? ""
-        let urlString = "\(BaseURL.value())Invoice/\(orderId)"
-//        let urlString = "https://desynat.com/Invoice/\(orderId)"
+            let urlString = "\(BaseURL.value())Invoice/\(orderId)"
+            
+            guard let url = URL(string: urlString) else {
+                showAlert(msg: "Invalid invoice URL")
+                return
+            }
+
+            let safariVC = SFSafariViewController(url: url)
+            safariVC.modalPresentationStyle = .automatic
+            self.present(safariVC, animated: true)
         
-        guard let url = URL(string: urlString) else {
-            showAlert(msg: "Invalid invoice URL")
-            return
-        }
-        
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        // Uncomment below if you prefer to handle download yourself
+            
+//            downloadAndHandleInvoice(from: url)
+            
     }
+    
+//    private func downloadAndHandleInvoice(from url: URL) {
+//        let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+//            guard let self = self,
+//                  error == nil,
+//                  let data = data,
+//                  let httpResponse = response as? HTTPURLResponse,
+//                  let mimeType = httpResponse.mimeType
+//            else {
+//                DispatchQueue.main.async {
+//                    self?.showAlert(msg: "Failed to download invoice")
+//                }
+//                return
+//            }
+//
+//            // Now compute filename safely
+//            let filename: String
+//            if let suggested = httpResponse.suggestedFilename,
+//               !suggested.isEmpty {
+//                filename = suggested
+//            } else {
+//                filename = "invoice.pdf"
+//            }
+//
+//            // Decide what to do based on MIME type
+//            let isPdf = mimeType == "application/pdf"
+//            if isPdf {
+//                // Save to app’s Documents dir (optional)
+//                let documentsDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+//                let fileURL = documentsDir.appendingPathComponent(filename)
+//
+//                do {
+//                    try data.write(to: fileURL)
+//                } catch {
+//                    print("Failed to save file: \(error)")
+//                }
+//
+//                // Show PDF in‑app with PDFKit
+//                DispatchQueue.main.async {
+//                    let pdfView = PDFView()
+//                    pdfView.autoScales = true
+//                    pdfView.document = PDFDocument(data: data)
+//
+//                    let pdfVC = UIViewController()
+//                    pdfVC.view = pdfView
+//                    pdfVC.title = "Invoice"
+//
+//                    let nav = UINavigationController(rootViewController: pdfVC)
+//                    nav.modalPresentationStyle = .formSheet
+//                    self.present(nav, animated: true)
+//                }
+//            } else {
+//                // For non‑PDF: offer share sheet
+//                let activity = UIActivityViewController(
+//                    activityItems: [data],
+//                    applicationActivities: nil
+//                )
+//                activity.popoverPresentationController?.sourceView = self.view
+//                DispatchQueue.main.async {
+//                    self.present(activity, animated: true)
+//                }
+//            }
+//        }
+//        task.resume()
+//    }
     
     //MARK: Function's declaration
     func getOrderDetailsAndHandleData() {

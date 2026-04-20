@@ -86,10 +86,8 @@ class SubAdminListViewController: UIViewController {
         vc.disbaleFutureDateSelection = true
         vc.onApplyFilter = { [weak self] filter in
             guard let self = self else { return }
-            
             self.viewModel.setFilter(filter, for: self.userType)
             self.viewModel.currentPage = 1
-            
             switch self.userType {
             case .all:
                 self.viewModel.fetchAllSubAdminUsersList()
@@ -101,10 +99,8 @@ class SubAdminListViewController: UIViewController {
         }
         vc.onClearFilter = { [weak self] in
             guard let self = self else { return }
-            
             self.viewModel.setFilter(FullScreenBannerFilterModel(), for: self.userType)
             self.viewModel.currentPage = 1
-            
             switch self.userType {
             case .all:
                 self.viewModel.fetchAllSubAdminUsersList()
@@ -169,18 +165,19 @@ class SubAdminListViewController: UIViewController {
 extension SubAdminListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5//viewModel.affilitaitedUsersList.count
+        return viewModel.subAdminUsersList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SubAdminTableViewCell", for: indexPath) as! SubAdminTableViewCell
-//        let data = viewModel.affilitaitedUsersList[indexPath.row]
-//        cell.configData(userType: userType, data: data)
+        let data = viewModel.subAdminUsersList[indexPath.row]
+        cell.configUserData(data: data)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        let nextVC = StaffDetailsViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+        nextVC.staffDetails = viewModel.subAdminUsersList[indexPath.row]
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     

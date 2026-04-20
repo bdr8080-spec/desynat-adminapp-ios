@@ -8,13 +8,13 @@
 import Foundation
 import CoreLocation
 struct CountryCitiesDataModel: Codable {
-
+    
     var id: Int?
     var countryId: Int?
     var name: String?
     var createdAt: String?
     var updatedAt: String?
-
+    
     private enum CodingKeys: String, CodingKey {
         case id = "id"
         case countryId = "country_id"
@@ -22,7 +22,7 @@ struct CountryCitiesDataModel: Codable {
         case createdAt = "created_at"
         case updatedAt = "updated_at"
     }
-
+    
 }
 
 struct AdminCityModel:Codable {
@@ -54,7 +54,7 @@ struct AdminCityModel:Codable {
 }
 
 struct CitiesDataModel: Codable {
-
+    
     var id: Int?
     var countryId: Int?
     var cityId: Int?
@@ -62,7 +62,7 @@ struct CitiesDataModel: Codable {
     var status: Int?
     var createdAt: String?
     var updatedAt: String?
-
+    
     private enum CodingKeys: String, CodingKey {
         case id = "id"
         case countryId = "country_id"
@@ -72,7 +72,7 @@ struct CitiesDataModel: Codable {
         case createdAt = "created_at"
         case updatedAt = "updated_at"
     }
-
+    
 }
 struct AdminZoneModel:Codable {
     var currentPage: Int?
@@ -103,7 +103,7 @@ struct AdminZoneModel:Codable {
 }
 
 struct ZoneDataModel: Codable {
-
+    
     var countryId: Int?
     var cityId: Int?
     var status: Int?
@@ -119,24 +119,55 @@ struct ZoneDataModel: Codable {
         case cityId = "city_id"
         case nameEnglish = "name_english"
         case nameArabic = "name_arabic"
-        case coordinates = "coordinates"
+        case coordinates
         case updatedAt = "updated_at"
-        case status = "status"
+        case status
         case createdAt = "created_at"
-        case id = "id"
+        case id
     }
 }
-struct Coordinates: Codable {
 
+struct Coordinates: Codable {
+    
     var lat: String?
     var lng: String?
-
+    
     private enum CodingKeys: String, CodingKey {
-        case lat = "lat"
-        case lng = "lng"
+        case lat
+        case lng
     }
-
-    var coordinates:CLLocationCoordinate2D {
-        return CLLocationCoordinate2DMake(Double.getDouble(self.lat), Double.getDouble(self.lng))
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        lat = Coordinates.decodeValue(forKey: .lat, from: container)
+        lng = Coordinates.decodeValue(forKey: .lng, from: container)
+    }
+    
+    private static func decodeValue(
+        forKey key: CodingKeys,
+        from container: KeyedDecodingContainer<CodingKeys>
+    ) -> String? {
+        
+        if let stringValue = try? container.decode(String.self, forKey: key) {
+            return stringValue
+        }
+        
+        if let doubleValue = try? container.decode(Double.self, forKey: key) {
+            return "\(doubleValue)"
+        }
+        
+        if let intValue = try? container.decode(Int.self, forKey: key) {
+            return "\(intValue)"
+        }
+        
+        return nil
+    }
+    
+    var coordinates: CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(
+            latitude: Double(lat ?? "") ?? 0.0,
+            longitude: Double(lng ?? "") ?? 0.0
+        )
     }
 }

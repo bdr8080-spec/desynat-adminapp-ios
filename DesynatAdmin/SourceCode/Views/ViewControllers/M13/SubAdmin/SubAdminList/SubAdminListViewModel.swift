@@ -10,7 +10,7 @@ import Foundation
 class SubAdminListViewModel {
     
     private var hostVC: SubAdminListViewController?
-    var affilitaitedUsersList: [AffilitaitedUsersDataModel] = []
+    var subAdminUsersList: [StaffDetails] = []
     var currentPage: Int = 1
     var totalPages: Int = 1
     var searchText: String = ""
@@ -40,121 +40,121 @@ class SubAdminListViewModel {
     }
     
     func fetchAllSubAdminUsersList() {
-        //        let filter = newUsersFilter
-        //        var params: [String : Any] = [:]
-        //        params["page"] = currentPage
-        //        params["limit"] = 3
-        //        if !searchText.isEmpty {
-        //            params["search"] = searchText
-        //        }
-        //
-        //        if let country = filter.countryName {
-        //            params["country"] = country
-        //        }
-        //
-        //        if let fromDate = filter.fromDate {
-        //            params["from_date"] = convertDate(fromDate)
-        //        }
-        //
-        //        if let toDate = filter.toDate {
-        //            params["to_date"] = convertDate(toDate)
-        //        }
-        //
-        //        WebService.shared.getNewAffilaitedUsersRequest(param: params) { [weak self] response in
-        //            guard let self = self else { return }
-        //
-        //            // Update page info
-        //            self.currentPage = response.currentPage ?? 1
-        //            self.totalPages = response.lastPage ?? 1
-        //
-        //            // Update data
-        //            self.affilitaitedUsersList = response.data ?? []
-        //            DispatchQueue.main.async {
-        //                self.hostVC?.pageCountLabel.text = String(format: "%02d of %02d", self.currentPage, self.totalPages)
-        //                self.hostVC?.listTableView.reloadData()
-        //                self.hostVC?.noDataFoundLabel.isHidden = !self.affilitaitedUsersList.isEmpty
-        //                self.hostVC?.updatePaginationButtonImages()
-        //            }
-        //        }
+        let filter = newUsersFilter
+        var params: [String : Any] = [:]
+        params["page"] = currentPage
+        params["limit"] = 3
+        
+        if !searchText.isEmpty {
+            params["search"] = searchText
+        }
+        
+        if let country = filter.countryID {
+            params["country_id"] = country
+        }
+        
+        if let fromDate = filter.fromDate {
+            params["from_date"] = convertDate(fromDate)
+        }
+        
+        if let toDate = filter.toDate {
+            params["to_date"] = convertDate(toDate)
+        }
+        
+        WebService.shared.getSubAdminService(param: params) { [weak self] response in
+            guard let self = self else { return }
+            
+            // Update page info
+            self.currentPage = response.list?.currentPage ?? 1
+            self.totalPages = response.list?.lastPage ?? 1
+            
+            // Update data
+            self.subAdminUsersList = response.list?.data ?? []
+            DispatchQueue.main.async {
+                self.hostVC?.pageCountLabel.text = String(format: "%02d of %02d", self.currentPage, self.totalPages)
+                self.hostVC?.listTableView.reloadData()
+                self.hostVC?.noDataFoundLabel.isHidden = !self.subAdminUsersList.isEmpty
+                self.hostVC?.updatePaginationButtonImages()
+            }
+        }
     }
-    //
+    
     func fetchActiveSubAdminsList() {
-        //
-        //        let filter = approvedUsersFilter
-        //        var params: [String : Any] = [:]
-        //        params["page"] = currentPage
-        //        params["limit"] = 3
-        //        if !searchText.isEmpty {
-        //            params["search"] = searchText
-        //        }
-        //
-        //        if let country = filter.countryName {
-        //            params["country1"] = country
-        //        }
-        //
-        //        if let fromDate = filter.fromDate {
-        //            params["from_date1"] = convertDate(fromDate)
-        //        }
-        //
-        //        if let toDate = filter.toDate {
-        //            params["to_date1"] = convertDate(toDate)
-        //        }
-        //
-        //        WebService.shared.getApprovedAffilaitedUsersRequest(param: params) { [weak self] response in
-        //            guard let self = self else { return }
-        //
-        //            // Update page info
-        //            self.currentPage = response.currentPage ?? 1
-        //            self.totalPages = response.lastPage ?? 1
-        //
-        //            // Update data
-        //            self.affilitaitedUsersList = response.data ?? []
-        //            DispatchQueue.main.async {
-        //                self.hostVC?.pageCountLabel.text = String(format: "%02d of %02d", self.currentPage, self.totalPages)
-        //                self.hostVC?.listTableView.reloadData()
-        //                self.hostVC?.noDataFoundLabel.isHidden = !self.affilitaitedUsersList.isEmpty
-        //                self.hostVC?.updatePaginationButtonImages()
-        //            }
-        //        }
+        let filter = approvedUsersFilter
+        var params: [String : Any] = [:]
+        params["page"] = currentPage
+        params["limit"] = 3
+        if !searchText.isEmpty {
+            params["search"] = searchText
+        }
+        
+        if let country = filter.countryID {
+            params["country_id"] = country
+        }
+        
+        if let fromDate = filter.fromDate {
+            params["from_date"] = convertDate(fromDate)
+        }
+        
+        if let toDate = filter.toDate {
+            params["to_date"] = convertDate(toDate)
+        }
+        
+        WebService.shared.getSubAdminService(param: params) { [weak self] response in
+            guard let self = self else { return }
+            
+            // Update page info
+            self.currentPage = response.list?.currentPage ?? 1
+            self.totalPages = response.list?.lastPage ?? 1
+            
+            // Update data
+            self.subAdminUsersList = response.list?.data ?? []
+            DispatchQueue.main.async {
+                self.hostVC?.pageCountLabel.text = String(format: "%02d of %02d", self.currentPage, self.totalPages)
+                self.hostVC?.listTableView.reloadData()
+                self.hostVC?.noDataFoundLabel.isHidden = !self.subAdminUsersList.isEmpty
+                self.hostVC?.updatePaginationButtonImages()
+            }
+        }
     }
     
     func fetchInactiveSubAdminList() {
-        //        let filter = rejectedUsersFilter
-        //        var params: [String : Any] = [:]
-        //        params["page"] = currentPage
-        //        params["limit"] = 3
-        //        if !searchText.isEmpty {
-        //            params["search"] = searchText
-        //        }
-        //
-        //        if let country = filter.countryName {
-        //            params["country2"] = country
-        //        }
-        //
-        //        if let fromDate = filter.fromDate {
-        //            params["from_date2"] = convertDate(fromDate)
-        //        }
-        //
-        //        if let toDate = filter.toDate {
-        //            params["to_date2"] = convertDate(toDate)
-        //        }
-        //
-        //        WebService.shared.getRejectedAffilaitedUsersRequest(param: params) { [weak self] response in
-        //            guard let self = self else { return }
-        //
-        //            // Update page info
-        //            self.currentPage = response.currentPage ?? 1
-        //            self.totalPages = response.lastPage ?? 1
-        //
-        //            // Update data
-        //            self.affilitaitedUsersList = response.data ?? []
-        //            DispatchQueue.main.async {
-        //                self.hostVC?.pageCountLabel.text = String(format: "%02d of %02d", self.currentPage, self.totalPages)
-        //                self.hostVC?.listTableView.reloadData()
-        //                self.hostVC?.noDataFoundLabel.isHidden = !self.affilitaitedUsersList.isEmpty
-        //                self.hostVC?.updatePaginationButtonImages()
-        //            }
-        //        }
+        let filter = rejectedUsersFilter
+        var params: [String : Any] = [:]
+        params["page"] = currentPage
+        params["limit"] = 3
+        if !searchText.isEmpty {
+            params["search"] = searchText
+        }
+        
+        if let country = filter.countryID {
+            params["country_id"] = country
+        }
+        
+        if let fromDate = filter.fromDate {
+            params["from_date"] = convertDate(fromDate)
+        }
+        
+        if let toDate = filter.toDate {
+            params["to_date"] = convertDate(toDate)
+        }
+        
+        WebService.shared.getSubAdminService(param: params) { [weak self] response in
+            guard let self = self else { return }
+            
+            // Update page info
+            self.currentPage = response.list?.currentPage ?? 1
+            self.totalPages = response.list?.lastPage ?? 1
+            
+            // Update data
+            self.subAdminUsersList = response.list?.data ?? []
+            DispatchQueue.main.async {
+                self.hostVC?.pageCountLabel.text = String(format: "%02d of %02d", self.currentPage, self.totalPages)
+                self.hostVC?.listTableView.reloadData()
+                self.hostVC?.noDataFoundLabel.isHidden = !self.subAdminUsersList.isEmpty
+                self.hostVC?.updatePaginationButtonImages()
+            }
+        }
     }
     
     func goToNextPage(type: SubAdminListType) {
