@@ -240,7 +240,13 @@ enum NetworkEndPoint: String {
     case getAdminPanelList                  = "api/admin/get_admin_panel_modules"
     case addSubAdmin                        = "api/admin/add_sub_admin"
     case editSubAdmin                       = "api/admin/update_sub_admin"
+    case getActiveSubAdmin                  = "api/admin/get_active_sub_admins"
+    case getInactiveSubAdmin                = "api/admin/get_inactive_sub_admins"
     case getSubAdmin                        = "api/admin/get_sub_admins"
+    case updateSubAdminStatus               = "api/admin/update_subadmin_status"
+    case deleteSubAdmin                     = "api/admin/delete_sub_admin"
+    case getSubAdminProfileDetails          = "api/admin/sub_admin_details"
+    case getRefundOrders                    = "api/admin/get_refund_orders"
     
     
     func withBaseURL() -> String {

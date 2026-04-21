@@ -10,6 +10,16 @@ import Foundation
 // MARK: - StaffDetailsDataModel
 struct StaffDetailsDataModel: Codable {
     let list: StaffDetailsDataList?
+    let totalCount: Int?
+    let totalActiveCount: Int?
+    let totalInactiveCount: Int?
+    
+    enum CodingKeys: String, CodingKey {
+        case list
+        case totalCount = "total_count"
+        case totalActiveCount = "total_active_count"
+        case totalInactiveCount = "total_inactive_count"
+    }
 }
 
 // MARK: - StaffDetailsDataList
@@ -25,7 +35,7 @@ struct StaffDetailsDataList: Codable {
     let perPage: Int?
     let prevPageURL: String?
     let to, total: Int?
-
+    
     enum CodingKeys: String, CodingKey {
         case currentPage = "current_page"
         case data
@@ -54,11 +64,12 @@ struct StaffDetails: Codable {
     let otp: String?
     let otpVerify, deviceType: String?
     let fcmToken, rememberToken: String?
-    let status, createdAt, updatedAt: String?
+    var status: String?
+    let createdAt, updatedAt: String?
     let notification, appNotification, selectedRole: Int?
     let countryInfo: CountryInfo?
     let permissionDetails: [PermissionDetail]?
-
+    
     enum CodingKeys: String, CodingKey {
         case id, type
         case profilePic = "profile_pic"
@@ -92,7 +103,7 @@ struct PermissionDetail: Codable {
     let canAction: Int?
     let createdAt, updatedAt: String?
     let moduleDetails: ModuleDetails?
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case adminID = "admin_id"
@@ -109,7 +120,7 @@ struct PermissionDetail: Codable {
 struct ModuleDetails: Codable {
     let id: Int?
     let name, displayName, createdAt, updatedAt: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case id, name
         case displayName = "display_name"

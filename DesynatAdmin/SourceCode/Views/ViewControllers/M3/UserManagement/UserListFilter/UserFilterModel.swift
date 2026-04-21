@@ -31,11 +31,12 @@ struct FullScreenBannerFilterModel {
 
 struct PaymentFilterModel {
     var countryId: Int?
+    var countryName: String?
     var fromDate: String?
     var toDate: String?
     var status: Int?
     
     var isEmpty: Bool {
-        return countryId == nil && fromDate == nil && toDate == nil && status == nil
+        return countryId == nil && countryName == nil && fromDate == nil && toDate == nil && status == nil
     }
 }

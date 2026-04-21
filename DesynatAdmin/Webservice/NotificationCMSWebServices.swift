@@ -364,7 +364,7 @@ extension WebService {
     
     func addSubAdminService(param: [String: Any], completion: @escaping(EmptyModel) -> Void) {
         CommonUtils.showHud(show: true)
-        NetworkManager.shared.request(withAPI: .endpoint(.addSubAdmin),requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+        NetworkManager.shared.request(withAPI: .endpoint(.addSubAdmin),requestMethod: .post, requestParams: param, encoding: JSONEncoding.default, requestModel: EmptyModel.self) { result, code in
             CommonUtils.showHud(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
@@ -380,7 +380,7 @@ extension WebService {
     
     func updateSubAdminService(param: [String: Any], completion: @escaping(EmptyModel) -> Void) {
         CommonUtils.showHud(show: true)
-        NetworkManager.shared.request(withAPI: .endpoint(.editSubAdmin),requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+        NetworkManager.shared.request(withAPI: .endpoint(.editSubAdmin),requestMethod: .post, requestParams: param, encoding: JSONEncoding.default, requestModel: EmptyModel.self) { result, code in
             CommonUtils.showHud(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
@@ -397,6 +397,102 @@ extension WebService {
     func getSubAdminService(param: [String: Any], completion: @escaping(StaffDetailsDataModel) -> Void) {
         CommonUtils.showHud(show: true)
         NetworkManager.shared.request(withAPI: .endpoint(.getSubAdmin),requestMethod: .get, requestParams: param, requestModel: StaffDetailsDataModel.self) { result, code in
+            CommonUtils.showHud(show: false)
+            self.evaluateWebServiceResponse(response: result) { response, message, error in
+                guard let response = response else {
+                    if let error {
+                        UIApplication.shared.topViewController()?.showAlert(msg: error)
+                    }
+                    return
+                }
+                completion(response)
+            }
+        }
+    }
+    
+    func getActiveSubAdminService(param: [String: Any], completion: @escaping(StaffDetailsDataModel) -> Void) {
+        CommonUtils.showHud(show: true)
+        NetworkManager.shared.request(withAPI: .endpoint(.getActiveSubAdmin),requestMethod: .get, requestParams: param, requestModel: StaffDetailsDataModel.self) { result, code in
+            CommonUtils.showHud(show: false)
+            self.evaluateWebServiceResponse(response: result) { response, message, error in
+                guard let response = response else {
+                    if let error {
+                        UIApplication.shared.topViewController()?.showAlert(msg: error)
+                    }
+                    return
+                }
+                completion(response)
+            }
+        }
+    }
+    
+    func getInactiveSubAdminService(param: [String: Any], completion: @escaping(StaffDetailsDataModel) -> Void) {
+        CommonUtils.showHud(show: true)
+        NetworkManager.shared.request(withAPI: .endpoint(.getInactiveSubAdmin),requestMethod: .get, requestParams: param, requestModel: StaffDetailsDataModel.self) { result, code in
+            CommonUtils.showHud(show: false)
+            self.evaluateWebServiceResponse(response: result) { response, message, error in
+                guard let response = response else {
+                    if let error {
+                        UIApplication.shared.topViewController()?.showAlert(msg: error)
+                    }
+                    return
+                }
+                completion(response)
+            }
+        }
+    }
+    
+    func updateSubAdminStatusService(param: [String: Any], completion: @escaping(UpdateStatusProfileDataModel) -> Void) {
+        CommonUtils.showHud(show: true)
+        NetworkManager.shared.request(withAPI: .endpoint(.updateSubAdminStatus),requestMethod: .post, requestParams: param, requestModel: UpdateStatusProfileDataModel.self) { result, code in
+            CommonUtils.showHud(show: false)
+            self.evaluateWebServiceResponse(response: result) { response, message, error in
+                guard let response = response else {
+                    if let error {
+                        UIApplication.shared.topViewController()?.showAlert(msg: error)
+                    }
+                    return
+                }
+                completion(response)
+            }
+        }
+    }
+    
+    func deleteSubAdminService(param: [String: Any], completion: @escaping(EmptyModel) -> Void) {
+        CommonUtils.showHud(show: true)
+        NetworkManager.shared.request(withAPI: .endpoint(.deleteSubAdmin),requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+            CommonUtils.showHud(show: false)
+            self.evaluateWebServiceResponse(response: result) { response, message, error in
+                guard let response = response else {
+                    if let error {
+                        UIApplication.shared.topViewController()?.showAlert(msg: error)
+                    }
+                    return
+                }
+                completion(response)
+            }
+        }
+    }
+    
+    func getSubAdminProfileDetailsService(param: [String: Any], completion: @escaping(StaffDetails) -> Void) {
+        CommonUtils.showHud(show: true)
+        NetworkManager.shared.request(withAPI: .endpoint(.getSubAdminProfileDetails),requestMethod: .get, requestParams: param, requestModel: StaffDetails.self) { result, code in
+            CommonUtils.showHud(show: false)
+            self.evaluateWebServiceResponse(response: result) { response, message, error in
+                guard let response = response else {
+                    if let error {
+                        UIApplication.shared.topViewController()?.showAlert(msg: error)
+                    }
+                    return
+                }
+                completion(response)
+            }
+        }
+    }
+    
+    func getAllRefundDataService(param: [String: Any], completion: @escaping(RefundMangementDataModel) -> Void) {
+        CommonUtils.showHud(show: true)
+        NetworkManager.shared.request(withAPI: .endpoint(.getRefundOrders),requestMethod: .get, requestParams: param, requestModel: RefundMangementDataModel.self) { result, code in
             CommonUtils.showHud(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {

@@ -17,11 +17,10 @@ class AddNewStaffViewModel {
         self.hostVC = hostVC
     }
     
-    func getAllCountry(completion: (() -> Void)? = nil) {
+    func getAllCountry() {
         WebService.shared.getAllCountry(){ [weak self] response in
             guard let self = self else { return }
             countryListData = response
-            completion?()
         }
     }
     
@@ -75,9 +74,9 @@ class AddNewStaffViewModel {
             errorMessage = .validMobileNumber
         }
         
-        if hostVC.selectedRoleIndex == -1 {
-            errorMessage = .selectRoleForNotification
-        }
+//        if hostVC.selectedRoleIndex == -1 {
+//            errorMessage = .selectRoleForNotification
+//        }
         
         let password = String.getString(hostVC.passwordTxtField.text).trimmingCharacters(in: .whitespacesAndNewlines)
         if errorMessage == .none {
@@ -132,6 +131,7 @@ class AddNewStaffViewModel {
                                     "password": hostVC.passwordTxtField.text ?? "",
                                     "confirm_password": hostVC.confirmPasswortTxtField.text ?? "",
                                     "modules": modulesArray]
+        print("param====>\(param)")
         WebService.shared.addSubAdminService(param: param){ [weak self] response in
             guard let self = self else { return }
             CommonUtils.showToast(message: "Staff is added successfully")
@@ -159,6 +159,7 @@ class AddNewStaffViewModel {
                                     "password": hostVC.passwordTxtField.text ?? "",
                                     "confirm_password": hostVC.confirmPasswortTxtField.text ?? "",
                                     "modules": modulesArray]
+        print("param====>\(param)")
         WebService.shared.updateSubAdminService(param: param){ [weak self] response in
             guard let self = self else { return }
             CommonUtils.showToast(message: "Staff is updated successfully")

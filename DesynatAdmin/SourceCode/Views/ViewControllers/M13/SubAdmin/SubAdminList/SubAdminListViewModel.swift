@@ -2,7 +2,7 @@
 //  SubAdminListViewModel.swift
 //  DesynatAdmin
 //
-//  Created by fluper_mac3 on 26/03/26.
+//  Created by fluper_mac4 on 26/04/26.
 //
 
 import Foundation
@@ -43,7 +43,7 @@ class SubAdminListViewModel {
         let filter = newUsersFilter
         var params: [String : Any] = [:]
         params["page"] = currentPage
-        params["limit"] = 3
+        params["limit"] = 4
         
         if !searchText.isEmpty {
             params["search"] = searchText
@@ -67,10 +67,13 @@ class SubAdminListViewModel {
             // Update page info
             self.currentPage = response.list?.currentPage ?? 1
             self.totalPages = response.list?.lastPage ?? 1
-            
+
             // Update data
             self.subAdminUsersList = response.list?.data ?? []
             DispatchQueue.main.async {
+                self.hostVC?.allLabel.text = "All (\(response.totalCount?.description ?? "0"))"
+                self.hostVC?.activeLabel.text = "Active (\(response.totalActiveCount?.description ?? "0"))"
+                self.hostVC?.inactiveLabel.text = "Inactive (\(response.totalInactiveCount?.description ?? "0"))"
                 self.hostVC?.pageCountLabel.text = String(format: "%02d of %02d", self.currentPage, self.totalPages)
                 self.hostVC?.listTableView.reloadData()
                 self.hostVC?.noDataFoundLabel.isHidden = !self.subAdminUsersList.isEmpty
@@ -83,7 +86,7 @@ class SubAdminListViewModel {
         let filter = approvedUsersFilter
         var params: [String : Any] = [:]
         params["page"] = currentPage
-        params["limit"] = 3
+        params["limit"] = 4
         if !searchText.isEmpty {
             params["search"] = searchText
         }
@@ -100,7 +103,7 @@ class SubAdminListViewModel {
             params["to_date"] = convertDate(toDate)
         }
         
-        WebService.shared.getSubAdminService(param: params) { [weak self] response in
+        WebService.shared.getActiveSubAdminService(param: params) { [weak self] response in
             guard let self = self else { return }
             
             // Update page info
@@ -110,6 +113,9 @@ class SubAdminListViewModel {
             // Update data
             self.subAdminUsersList = response.list?.data ?? []
             DispatchQueue.main.async {
+                self.hostVC?.allLabel.text = "All (\(response.totalCount?.description ?? "0"))"
+                self.hostVC?.activeLabel.text = "Active (\(response.totalActiveCount?.description ?? "0"))"
+                self.hostVC?.inactiveLabel.text = "Inactive (\(response.totalInactiveCount?.description ?? "0"))"
                 self.hostVC?.pageCountLabel.text = String(format: "%02d of %02d", self.currentPage, self.totalPages)
                 self.hostVC?.listTableView.reloadData()
                 self.hostVC?.noDataFoundLabel.isHidden = !self.subAdminUsersList.isEmpty
@@ -122,7 +128,7 @@ class SubAdminListViewModel {
         let filter = rejectedUsersFilter
         var params: [String : Any] = [:]
         params["page"] = currentPage
-        params["limit"] = 3
+        params["limit"] = 4
         if !searchText.isEmpty {
             params["search"] = searchText
         }
@@ -139,7 +145,7 @@ class SubAdminListViewModel {
             params["to_date"] = convertDate(toDate)
         }
         
-        WebService.shared.getSubAdminService(param: params) { [weak self] response in
+        WebService.shared.getInactiveSubAdminService(param: params) { [weak self] response in
             guard let self = self else { return }
             
             // Update page info
@@ -149,6 +155,9 @@ class SubAdminListViewModel {
             // Update data
             self.subAdminUsersList = response.list?.data ?? []
             DispatchQueue.main.async {
+                self.hostVC?.allLabel.text = "All (\(response.totalCount?.description ?? "0"))"
+                self.hostVC?.activeLabel.text = "Active (\(response.totalActiveCount?.description ?? "0"))"
+                self.hostVC?.inactiveLabel.text = "Inactive (\(response.totalInactiveCount?.description ?? "0"))"
                 self.hostVC?.pageCountLabel.text = String(format: "%02d of %02d", self.currentPage, self.totalPages)
                 self.hostVC?.listTableView.reloadData()
                 self.hostVC?.noDataFoundLabel.isHidden = !self.subAdminUsersList.isEmpty

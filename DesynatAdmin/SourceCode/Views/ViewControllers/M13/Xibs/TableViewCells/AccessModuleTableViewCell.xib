@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,7 +15,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="187" id="KGk-i7-Jjw" customClass="AccessModuleTableViewCell" customModule="DesynatDealer" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="187" id="KGk-i7-Jjw" customClass="AccessModuleTableViewCell" customModule="DesynatAdmin" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="187"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -28,8 +28,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xxa-HT-I9V">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="28.333333333333332"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manager" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kQ7-HB-FiM">
-                                        <rect key="frame" x="34" y="4.3333333333333339" width="64" height="19.666666666666664"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manager" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kQ7-HB-FiM">
+                                        <rect key="frame" x="34" y="4.3333333333333339" width="276" height="19.666666666666664"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -48,6 +48,7 @@
                                     <constraint firstAttribute="height" constant="28.329999999999998" id="fZR-7x-z9L"/>
                                     <constraint firstItem="wZM-h0-9Oc" firstAttribute="centerY" secondItem="xxa-HT-I9V" secondAttribute="centerY" id="hyc-QS-2a6"/>
                                     <constraint firstItem="kQ7-HB-FiM" firstAttribute="top" secondItem="xxa-HT-I9V" secondAttribute="top" constant="4.3333333333333339" id="iP4-Rs-1fZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="kQ7-HB-FiM" secondAttribute="trailing" constant="10" id="jky-xR-pgZ"/>
                                     <constraint firstItem="kQ7-HB-FiM" firstAttribute="leading" secondItem="wZM-h0-9Oc" secondAttribute="trailing" constant="10" id="zQg-km-pCh"/>
                                 </constraints>
                             </view>

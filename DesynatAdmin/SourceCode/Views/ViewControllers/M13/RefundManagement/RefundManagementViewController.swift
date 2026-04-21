@@ -95,9 +95,9 @@ extension RefundManagementViewController: UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RefundManagementTableViewCell", for: indexPath) as! RefundManagementTableViewCell
-        let isExpanded = expandedIndex == indexPath
-        cell.configure(isExpanded: isExpanded)
         let data = viewModel.refundListData[indexPath.row]
+        let isExpanded = expandedIndex == indexPath
+        cell.configure(isExpanded: isExpanded, data: data)
         cell.isViewMore = {
             if self.expandedIndex == indexPath {
                 self.expandedIndex = nil

@@ -22,6 +22,7 @@ class RefundManagementFilterViewController: UIViewController {
     var onApplyFilter: ((PaymentFilterModel) -> Void)?
     var onClearFilter: (() -> Void)?
     var countryId: Int = -1
+    var countryName: String = ""
     let datePicker = UIDatePicker()
     var selectedStatus: Int?
     var disbaleFutureDateSelection: Bool = false
@@ -46,6 +47,7 @@ class RefundManagementFilterViewController: UIViewController {
         
         if countryId != -1 {
             filter.countryId = countryId
+            filter.countryName = countryName
         }
         
         if let fromDate = fromTextField.text, !fromDate.isEmpty {
@@ -80,6 +82,7 @@ class RefundManagementFilterViewController: UIViewController {
             let selectedCountry = self.viewModel.allCountryListData[index]
             self.countryLabel.text = selectedCountry.name
             self.countryId = selectedCountry.id ?? 0
+            self.countryName = selectedCountry.name ?? ""
         }
     }
     
@@ -102,6 +105,7 @@ class RefundManagementFilterViewController: UIViewController {
             if let selectedCountry = viewModel.allCountryListData.first(where: { $0.id == id }) {
                 countryLabel.text = selectedCountry.name
                 countryId = id
+                countryName = selectedCountry.name ?? ""
             }
         }
         

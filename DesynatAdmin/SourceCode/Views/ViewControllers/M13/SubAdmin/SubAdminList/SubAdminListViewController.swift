@@ -138,6 +138,9 @@ class SubAdminListViewController: UIViewController {
         
         inactiveLabel.textColor = userType == .inactive ? .darkBrown : UIColor(hexString: "#C0BBBB")
         inactiveBottomLabel.backgroundColor = userType == .inactive ? .darkBrown : UIColor(hexString: "#C0BBBB")
+        searchWorkItem?.cancel()
+        serachTF.text = ""
+        viewModel.searchText = ""
     }
     
     func updatePaginationButtonImages() {
@@ -177,7 +180,7 @@ extension SubAdminListViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        let nextVC = StaffDetailsViewController.instantiate(fromAppStoryboard: .NotificationCMS)
-        nextVC.staffDetails = viewModel.subAdminUsersList[indexPath.row]
+        nextVC.staffID = viewModel.subAdminUsersList[indexPath.row].id
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     

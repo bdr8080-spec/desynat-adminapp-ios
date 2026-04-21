@@ -56,11 +56,13 @@ struct OrderData: Codable {
     let cancelReason: String?
     let isPicked: String?
     let notDeliveredReason: String?
+    let transactionId, totalAmount: String?
     let order: OrderDetail?
     let productDetails: ProductDetails?
     let variationDetails: VariationDetails?
     let userRatingReviewProvide: UserRatingReviewProvide?
     let driverDetails: DriverDetails?
+    let deliveryDetails: DeliveryDetails?
     let adminCommission: Double?
     let exchangeOrderDetails: ExchangeOrderDetails?
     
@@ -95,6 +97,9 @@ struct OrderData: Codable {
         case driverDetails = "driver_details"
         case adminCommission = "admin_commission"
         case exchangeOrderDetails = "exchange_order_details"
+        case deliveryDetails = "delivery_details"
+        case transactionId = "transaction_id"
+        case totalAmount = "total_amount"
     }
 }
 

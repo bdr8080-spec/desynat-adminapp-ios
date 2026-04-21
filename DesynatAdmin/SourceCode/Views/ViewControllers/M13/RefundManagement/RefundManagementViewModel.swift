@@ -10,7 +10,7 @@ import Foundation
 class RefundManagementViewModel {
     
     private var hostVC: RefundManagementViewController
-    var refundListData: [DeliveryBoysList] = []
+    var refundListData: [RefundMangementList] = []
     var currentPage: Int = 1
     var totalPages: Int = 1
     var searchText: String = ""
@@ -30,6 +30,10 @@ class RefundManagementViewModel {
       if !searchText.isEmpty {
         params["search"] = searchText
       }
+        
+        if let countryName = appliedFilter.countryName {
+            params["country_name"] = countryName
+        }
       
       // From Date
       if let fromDate = appliedFilter.fromDate {
@@ -44,7 +48,7 @@ class RefundManagementViewModel {
       print("FINAL PARAMS →", params)
       
       // API CALL
-      WebService.shared.getAllDeliveryBoys(param: params) { [weak self] response in
+      WebService.shared.getAllRefundDataService(param: params) { [weak self] response in
         guard let self = self else { return }
         
         self.currentPage = response.currentPage ?? 1

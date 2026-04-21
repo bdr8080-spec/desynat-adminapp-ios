@@ -227,6 +227,8 @@ struct Order: Codable {
     //let cancelReason, uniqueID, promocodeDetails, giftCardDetails: String?
     let cancelReason, uniqueID, giftCardDetails : String?
     let promocodeDetails: PromocodeDetails?
+    let driverDetails: DriverDetails?
+    let deliveryDetails: DeliveryDetails?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -258,6 +260,8 @@ struct Order: Codable {
         case uniqueID = "unique_id"
         case promocodeDetails = "promocode_details"
         case giftCardDetails = "gift_card_details"
+        case driverDetails = "driver_details"
+        case deliveryDetails = "delivery_details"
     }
 }
 
