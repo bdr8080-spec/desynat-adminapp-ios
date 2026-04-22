@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SellerListViewController: UIViewController {
+class SellerListViewController: UIViewController, PermissionAccessible {
     
     // MARK: - IBOutlet's
     @IBOutlet weak var btnExport: CustomButton!
@@ -30,6 +30,7 @@ class SellerListViewController: UIViewController {
     
     // MARK: - Property Decalaration
     private var viewModel : SellerViewModel = SellerViewModel()
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
@@ -116,7 +117,7 @@ extension SellerListViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = self.tblSellers.dequeueReusableCell(withIdentifier: SellersListTableViewCell.defaultIdentifier, for: indexPath) as? SellersListTableViewCell {
             if (self.viewModel.arraySellers.count > indexPath.row) {
-                cell.setData(self.viewModel.arraySellers[indexPath.row])
+                cell.setData(self.viewModel.arraySellers[indexPath.row], hasActionPermission: hasActionPermission)
             }
             cell.selectionStyle = .none
             return cell
@@ -127,6 +128,7 @@ extension SellerListViewController:UITableViewDelegate,UITableViewDataSource {
         if self.viewModel.arraySellers.count > indexPath.row {
             let vc :SellerDetailViewController = SellerDetailViewController.viewFromNIB
             vc.setInitial(self.viewModel.arraySellers[indexPath.row])
+            vc.hasActionPermission = hasActionPermission
             self.navigate(to: vc)
         }
     }

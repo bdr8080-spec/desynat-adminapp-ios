@@ -71,6 +71,7 @@ class LiveRequestListManagementViewController: UIViewController {
     var selectedCountryIndex: Int = 0
     var slectedLiveRequestType: Int = 1
     var selectedDateString: String? = ""
+    var hasActionPermission: Bool = false
     lazy private var monthYearFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM yyyy"   // November 2025

@@ -103,8 +103,13 @@ class HomeViewController: UIViewController {
 
     // MARK: - Button's Action
     @IBAction func profileButtonAction(_ sender: Any) {
-        let vc = SideMenuViewController.instantiate(fromAppStoryboard: .SideMenu)
-        self.navigationController?.pushViewController(vc, animated: false)
+        if viewModel.userProfileData?.type == "2" {
+            let vc = SubAdminSideMenuViewController.instantiate(fromAppStoryboard: .SideMenu)
+            self.navigationController?.pushViewController(vc, animated: false)
+        } else {
+            let vc = SideMenuViewController.instantiate(fromAppStoryboard: .SideMenu)
+            self.navigationController?.pushViewController(vc, animated: false)
+        }
     }
     
     @IBAction func chooseCountryDidTapepd(_ sender: Any) {

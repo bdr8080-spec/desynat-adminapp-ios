@@ -22,6 +22,7 @@ class StoryManagemnetViewController: UIViewController {
     // MARK: - Property Decalaration
     private lazy var viewModel = StoryManagemnetListViewModel(hostVC: self)
     private var player: AVPlayer?
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {

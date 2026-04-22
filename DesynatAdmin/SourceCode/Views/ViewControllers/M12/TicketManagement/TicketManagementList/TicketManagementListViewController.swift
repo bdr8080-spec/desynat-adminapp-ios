@@ -29,6 +29,7 @@ class TicketManagementListViewController: UIViewController {
     var ticketType: TiketListType = .newList
     private lazy var viewModel = TicketManagementListViewModel(hostVC: self)
     private var searchWorkItem: DispatchWorkItem?
+    var hasActionPermission: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()

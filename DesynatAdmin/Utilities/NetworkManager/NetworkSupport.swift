@@ -111,8 +111,9 @@ enum HTTPStatusCode: Int, Decodable {
     case DATA_EXIST               = 406
     case CONFLICT                 = 409
     case INTERNAL_SERVER_ERROR    = 500
+    case UnProcessedEntity        = 422
     
     static let Sucess = [SUCCESS, CREATED, ACCEPTED, NO_CONTENT]
-    static let Failure = [BAD_REQUEST, FORBIDDEN, NOT_FOUND, METHOD_NOT_ALLOWED, DATA_EXIST, CONFLICT, INTERNAL_SERVER_ERROR]
+    static let Failure = [BAD_REQUEST, FORBIDDEN, NOT_FOUND, METHOD_NOT_ALLOWED, DATA_EXIST, CONFLICT, INTERNAL_SERVER_ERROR, UnProcessedEntity]
 }
 

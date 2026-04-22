@@ -35,6 +35,7 @@ class OrdersManagementListViewController: UIViewController {
     private var orderCategoriesList = ["Active", "Return & Exchange", "Completed", "Cancelled"]
     private lazy var viewModel = OrderManagementListViewModel()
     private var selecetedCategoryId: Int = 0
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
@@ -172,6 +173,8 @@ extension OrdersManagementListViewController: UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OrderMangementTableViewCell", for: indexPath) as! OrderMangementTableViewCell
         let order = viewModel.orders[indexPath.row]
+        cell.assignDriverView.isHidden = true
+        cell.assignDriverStackView.isHidden = true
         if viewModel.currentCategory == .active {
             //      if order.deliveryDetails?.countryName == "Kuwait" {
             if order.deliveryStatus == "2" || order.deliveryStatus == "2.1"  {

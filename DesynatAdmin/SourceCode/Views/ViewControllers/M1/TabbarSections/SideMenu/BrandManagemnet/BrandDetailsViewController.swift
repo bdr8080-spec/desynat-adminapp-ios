@@ -14,15 +14,20 @@ class BrandDetailsViewController: UIViewController {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var brandNameLabel: UILabel!
     @IBOutlet weak var brandImageView: CustomImageView!
+    @IBOutlet weak var statusToggleButton: UIButton!
+    @IBOutlet weak var buttonsStackView: UIStackView!
     
     // MARK: - Property Decalaration
     var brandData: GetBrandDataList?
     private lazy var viewModel = BrandDetailsViewModel(hostVC: self)
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         bindData()
+        buttonsStackView.isHidden = !hasActionPermission
+        statusToggleButton.isHidden = !hasActionPermission
     }
     
     // MARK: - Button's Action

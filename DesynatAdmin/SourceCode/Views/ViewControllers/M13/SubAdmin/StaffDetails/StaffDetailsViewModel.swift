@@ -43,6 +43,18 @@ class StaffDetailsViewModel {
         }
     }
     
+    func shareStaffDetails() {
+        let param: [String: Any] = ["id": hostVC.staffID ?? 0]
+        WebService.shared.shareSubAdminCeredentialService(param: param){ [weak self] response in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                let vc = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
+                vc.comingReason = .ceredentailSentSuccessfully
+                self.hostVC.navigationController?.present(vc, animated: true)
+            }
+        }
+    }
+    
     func deleteStaffDetails(param: [String: Any]) {
         WebService.shared.deleteSubAdminService(param: param) { [weak self] response in
             guard let self = self else { return }

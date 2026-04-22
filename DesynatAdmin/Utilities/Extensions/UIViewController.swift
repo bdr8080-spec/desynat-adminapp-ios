@@ -290,10 +290,26 @@ extension UIViewController {
         vc.modalPresentationStyle = style
         self.present(vc, animated: isAnimate)
     }
-    func navigate(to controller : UIViewController,withAnimation animation:Bool = true) {
+//    func navigate(to controller : UIViewController, withAnimation animation:Bool = true, hasPermission: Bool = true) {
+//        self.navigationController?.pushViewController(controller, animated: animation)
+//    }
+    
+    func navigate(to controller: UIViewController,
+                  withAnimation animation: Bool = true,
+                  hasPermission: Bool = true) {
+        
+        if var vc = controller as? PermissionAccessible {
+            vc.hasActionPermission = hasPermission
+        }
+        
         self.navigationController?.pushViewController(controller, animated: animation)
     }
 }
+
+protocol PermissionAccessible {
+    var hasActionPermission: Bool { get set }
+}
+
 extension UIView {
     func borderRadiusWithCornerMask(radius : CGFloat , cornerMask: CACornerMask = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner])  {
         self.layer.cornerRadius = radius

@@ -14,7 +14,7 @@ class AddPromotionalBannerViewModel {
     var selectedCategoriesId: Int? = -1
     var selectedSubCategoriesId: Int? = -1
     var subcategoriesList: [GetSubCategoryDataList] = []
-    var countryListData: [GetAllUserCountryModel] = []
+//    var countryListData: [GetAllUserCountryModel] = []
     
     init(hostVC: AddPromotionalBannerViewController) {
         self.hostVC = hostVC
@@ -52,9 +52,9 @@ class AddPromotionalBannerViewModel {
         }
         
         //Country
-        if errorMessage == .none && hostVC.countryId == 0 {
-            errorMessage = .selectCountry
-        }
+//        if errorMessage == .none && hostVC.countryId == 0 {
+//            errorMessage = .selectCountry
+//        }
         
         //ForType
         if errorMessage == .none && hostVC.selectedPositionIndex == 0 {
@@ -98,6 +98,26 @@ class AddPromotionalBannerViewModel {
         return true
     }
     
+    func uploadFullScreenBanner(
+        file: Any,
+        isImage: Bool,
+        isGif: Bool = false,
+        completion: @escaping(String) -> Void
+    ) {
+        let mime: MultipartUpload.Mime = isGif ? .gif : (isImage ? .image : .pdf)
+        
+        let param = MultipartUpload(
+            fileName: "image",
+            file: file,
+            mimeType: mime
+        )
+        
+        WebService.sharedInstance.uploadWithResolutionPromotional(withParams: param) {
+            url, msg, code in
+            completion(url)
+        }
+    }
+    
     func addAdvertisementApi() {
         let apiFromDate = convertDateString(hostVC.fromTextField.text ?? "",from: "dd/MM/yyyy",to: "yyyy-MM-dd")
         let apiToDate = convertDateString(hostVC.toTextField.text ?? "",from: "dd/MM/yyyy",to: "yyyy-MM-dd")
@@ -106,7 +126,7 @@ class AddPromotionalBannerViewModel {
             "banner_position": hostVC.selectedPositionIndex,
             "upload_banner": hostVC.selectedImageUrl,
             "start_date": apiFromDate,
-            "country_id": hostVC.countryId,
+//            "country_id": hostVC.countryId,
             "end_date": apiToDate,
             "total_days": hostVC.lblTotalDays.text ?? "",
         ]
@@ -129,7 +149,7 @@ class AddPromotionalBannerViewModel {
         var params: [String:Any] = [
             "banner_id": hostVC.giftsListData?.id ?? 0,
             "banner_position": hostVC.selectedPositionIndex,
-            "country_id": hostVC.countryId,
+//            "country_id": hostVC.countryId,
             "upload_banner": hostVC.selectedImageUrl,
             "start_date": apiFromDate,
             "end_date": apiToDate,
@@ -156,6 +176,48 @@ class AddPromotionalBannerViewModel {
         }
     }
     
+    
+//    func uploadDocumentFullscreenBanner(file: Any, isImage: Bool, completion: @escaping(String) -> Void) {
+//        let param:MultipartUpload = MultipartUpload(fileName: "image", file: file, mimeType: isImage ? .image : .pdf)
+//        WebService.sharedInstance.uploadWithResolutionPromotional(withParams: param) { imageURL in
+//            completion(url)
+//        }
+//    }
+    
+//    func uploadFullScreenBanner(
+//        file: Any,
+//        isImage: Bool,
+//        isGif: Bool = false,
+//        completion: @escaping (_ url: String) -> Void
+//    ) {
+//        
+//        let mime: MultipartUpload.Mime = isGif ? .gif : (isImage ? .image : .pdf)
+//        
+//        let param = MultipartUpload(
+//            fileName: "image",
+//            file: file,
+//            mimeType: mime
+//        )
+//        
+//        WebService.sharedInstance.uploadWithResolutionPromotional(withParams: param) {
+//            url, msg, code in
+//            
+//            DispatchQueue.main.async {
+//                
+//                // Success
+//                if !url.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+//                    completion(url)
+//                }
+//                // API Error Message
+//                else {
+//                    CommonUtils.showToast(
+//                        message: msg ?? "Something went wrong. Please try again."
+//                    )
+//                }
+//            }
+//        }
+//    }
+    
     func convertDateString(
         _ dateString: String,
         from inputFormat: String,
@@ -175,12 +237,12 @@ class AddPromotionalBannerViewModel {
         return outputFormatter.string(from: date)
     }
     
-    func getAllCountry() {
-        WebService.shared.getAllUsersCountryList(){ [weak self] response in
-            guard let self = self else { return }
-            countryListData = response
-        }
-    }
+//    func getAllCountry() {
+//        WebService.shared.getAllUsersCountryList(){ [weak self] response in
+//            guard let self = self else { return }
+//            countryListData = response
+//        }
+//    }
     
 }
 

@@ -21,17 +21,20 @@ class SubCategoryViewController: UIViewController {
             subCategoryCollectionView.registerCellFromNib(cellID: "SubCategoryCollectionViewCell")
         }
     }
+    @IBOutlet weak var plusButtonOutlet: UIButton!
     
     // MARK: - Property Decalaration
     var categoryId: String = ""
     private lazy var viewModel = SubcategoryViewModel(hostVC: self)
     private var searchWorkItem: DispatchWorkItem?
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTextField.delegate = self
         updatePaginationButtonImages()
+        plusButtonOutlet.isHidden = !hasActionPermission
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -102,6 +105,7 @@ extension SubCategoryViewController: UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = SubCatgoryDetailsViewController.instantiate(fromAppStoryboard: .SideMenu)
         vc.subCategoryData = viewModel.subCategoryListData[indexPath.row]
+        vc.hasActionPermission = hasActionPermission
         self.navigationController?.pushViewController(vc, animated: false)
     }
     

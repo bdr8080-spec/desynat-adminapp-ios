@@ -42,12 +42,17 @@ class AddPromotionalBannerViewController: UIViewController {
     var isGifSelected: Bool = false
     var selectedImageUrl: String = ""
     let datePicker = UIDatePicker()
-    var countryId: Int = 0
+//    var countryId: Int = 0
+    var pickedGifData: Data?
+    var selectedForType: Int = 1
+    func selectedAspectRatio() -> BannerAspectRatio {
+        return selectedForType == 1 ? .mobile : .web
+    }
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.getAllCountry()
+//        viewModel.getAllCountry()
         numberOfDaysView.isHidden = true
         categoryView.isHidden = true
         subCategoryView.isHidden = true
@@ -72,33 +77,68 @@ class AddPromotionalBannerViewController: UIViewController {
     
     @IBAction func submitDidTapped(_ sender: UIButton) {
         guard viewModel.validFields() else { return }
-        if isComingForEdit {
-            viewModel.editAdvertisementApi()
-        } else {
-            viewModel.addAdvertisementApi()
-        }
+        uploadBannerThenSubmit()
+        
     }
     
     @IBAction func uploadImageDidTapped(_ sender: UIButton) {
         ImagePickerManager.shared.pickFromGalleryOnly(self) { [weak self]
             image, gifData, isGif, fileName, url in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                self.mainImageView.image = image
-                self.pickedImage = image
-            }
-            guard let compressedImage = image?.jpegData(compressionQuality: 0.25),
-                  let finalImage = UIImage(data: compressedImage) else {
-                return
-            }
             
-            self.viewModel.uploadDocument(file: finalImage, isImage: true) { [weak self] uploadedUrl in
-                guard let self = self else { return }
-                DispatchQueue.main.async {
-                    self.selectedImageUrl = uploadedUrl
+            guard let self = self else { return }
+            
+            self.isImageChanged = true   // VERY IMPORTANT
+            self.isGifSelected = isGif
+            self.pickedFileName = fileName
+            
+            if isGif, let gifData = gifData {
+                self.pickedGifData = gifData
+                self.pickedImage = nil
+                if let url = url {
+                    self.mainImageView.sd_setImage(with: url)
                 }
+            } else if let image = image {
+                self.pickedGifData = nil
+                self.pickedImage = self.processCameraImage(image)
+                self.mainImageView.image = self.pickedImage
             }
         }
+    }
+    
+    private func uploadBannerThenSubmit() {
+        // Edit flow WITHOUT image change
+        if isComingForEdit, !isImageChanged {
+            submitFinalApi()
+            return
+        }
+        
+        // GIF upload
+        if isGifSelected, let gifData = pickedGifData {
+            viewModel.uploadFullScreenBanner(
+                file: gifData,
+                isImage: false,
+                isGif: true,
+            ) { [weak self] url in
+                self?.selectedImageUrl = url
+                self?.submitFinalApi()
+            }
+            return
+        }
+        
+        // Image upload
+        if let image = pickedImage {
+            viewModel.uploadFullScreenBanner(
+                file: image,
+                isImage: true,
+            ) { [weak self] url in
+                self?.selectedImageUrl = url
+                self?.submitFinalApi()
+            }
+            return
+        }
+        
+        // Add flow safety
+        showAlert(msg: "Please select image")
     }
     
     @IBAction func backDidTapped(_ sender: UIButton) {
@@ -128,18 +168,18 @@ class AddPromotionalBannerViewController: UIViewController {
     }
     
     @IBAction func selectCountryDidTapped(_ sender: UIButton) {
-        let countryNames = viewModel.countryListData.map { country -> String in
-            let name = country.name ?? ""
-            let dialCode = country.dialCode ?? ""
-            let flag = country.flag1 ?? "🇰🇼"
-            return "\(flag)  \(name) (\(dialCode))"
-        }
-        
-        kSharedAppDelegate.dropDown(dataSource: countryNames, anchorView: sender) { index, item in
-            let selectedCountry = self.viewModel.countryListData[index]
-            self.countryLabel.text = selectedCountry.name
-            self.countryId = selectedCountry.id ?? 0
-        }
+//        let countryNames = viewModel.countryListData.map { country -> String in
+//            let name = country.name ?? ""
+//            let dialCode = country.dialCode ?? ""
+//            let flag = country.flag1 ?? "🇰🇼"
+//            return "\(flag)  \(name) (\(dialCode))"
+//        }
+//        
+//        kSharedAppDelegate.dropDown(dataSource: countryNames, anchorView: sender) { index, item in
+//            let selectedCountry = self.viewModel.countryListData[index]
+//            self.countryLabel.text = selectedCountry.name
+//            self.countryId = selectedCountry.id ?? 0
+//        }
     }
     
     //MARK: Function's declaration
@@ -148,6 +188,18 @@ class AddPromotionalBannerViewController: UIViewController {
         
         categoryView.isHidden = !isCategorySelected
         subCategoryView.isHidden = !isCategorySelected
+    }
+    
+    private func processCameraImage(_ image: UIImage) -> UIImage {
+        
+        let aspect = selectedAspectRatio()
+        
+        let targetSize: CGSize = (aspect == .mobile)
+        ? CGSize(width: 1080, height: 1920)   // Mobile 9:16
+        : CGSize(width: 1920, height: 1080)   // Web 16:9
+        
+        let croppedImage = image.cropToAspectRatio(aspect.value)
+        return croppedImage.resize(to: targetSize)
     }
     
     func calculateTotalDays() {
@@ -208,7 +260,7 @@ class AddPromotionalBannerViewController: UIViewController {
         positionLabel.text = forTypeList[selectedPositionIndex - 1]
         updateCategoryVisibility()
         countryLabel.text = giftsListData?.countryInfo?.name
-        countryId = giftsListData?.countryInfo?.id ?? 0
+//        countryId = giftsListData?.countryInfo?.id ?? 0
         // Category specific logic
         if selectedPositionIndex == 3 {
             populateCategoryAndSubCategory()

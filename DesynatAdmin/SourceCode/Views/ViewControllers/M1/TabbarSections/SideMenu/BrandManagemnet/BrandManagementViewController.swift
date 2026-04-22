@@ -20,16 +20,19 @@ class BrandManagementViewController: UIViewController {
             brandTableView.registerCellFromNib(cellID: "BrandManagementTableViewCell")
         }
     }
+    @IBOutlet weak var plusButtonOutlet: UIButton!
     
     // MARK: - Property Decalaration
     private lazy var viewModel = BrandViewModel(hostVC: self)
     private var searchWorkItem: DispatchWorkItem?
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTextField.delegate = self
         updatePaginationButtonImages()
+        plusButtonOutlet.isHidden = !hasActionPermission
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -102,6 +105,7 @@ extension BrandManagementViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = BrandDetailsViewController.instantiate(fromAppStoryboard: .SideMenu)
         vc.brandData = viewModel.brandListData[indexPath.row]
+        vc.hasActionPermission = hasActionPermission
         self.navigationController?.pushViewController(vc, animated: false)
     }
     

@@ -19,6 +19,7 @@ class ShippingChargesListViewController: UIViewController {
     
     // MARK: - Property Decalaration
     private lazy var viewModel = ShippingChargesViewModel(hostVC: self)
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {

@@ -192,6 +192,18 @@ class SubAdminListViewModel {
         }
     }
     
+    func shareStaffDetails(userId: Int) {
+        let param: [String: Any] = ["id": userId]
+        WebService.shared.shareSubAdminCeredentialService(param: param){ [weak self] response in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                let vc = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
+                vc.comingReason = .ceredentailSentSuccessfully
+                self.hostVC?.navigationController?.present(vc, animated: true)
+            }
+        }
+    }
+    
     func convertDate(
         _ dateString: String,
         from inputFormat: String = "dd/MM/yyyy",

@@ -11,12 +11,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     
-    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         if kSharedUserDefaults.isUserLoggedIn() {
-            kSharedSceneDelegate.navigateToUserHomeVc()
+            if let savedUser: UserModel = kSharedUserDefaults.retrieveModelFor(key: .user, model: UserModel.self) {
+                if savedUser.type == "2" {
+                    self.getStaffDetails()
+                } else {
+                    kSharedSceneDelegate.navigateToUserHomeVc()
+                }
+            }
         }
         guard let _ = (scene as? UIWindowScene) else { return }
+    }
+    
+    func getStaffDetails() {
+        if kSharedUserDefaults.isSubAdminUserHasDashboardAccess() {
+            kSharedSceneDelegate.navigateToUserHomeVc()
+        } else {
+            kSharedSceneDelegate.navigateToSideMenuVc()
+        }
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {}

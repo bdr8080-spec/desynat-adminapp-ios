@@ -25,7 +25,8 @@ class ChatInboxViewController: UIViewController {
     
     // MARK: - Variable
     var selectedType: ChatType = .customer
-
+    var hasActionPermission: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         handleCustomerAction()

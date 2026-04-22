@@ -57,8 +57,27 @@ class LoginViewModel: NSObject {
             "fcm_token": kSharedUserDefaults.retrieveModelFor(key: .deviceToken, model: String.self) ?? "",
             "email": loginHostVC.emailTextField.text?.trimmed() ?? "",
             "password": loginHostVC.passwordTextField.text?.trimmed() ?? ""]
-        WebService.sharedInstance.loginUserService(withParams: params) { (response) in
-            kSharedSceneDelegate.navigateToUserHomeVc()
+        WebService.sharedInstance.loginUserService(withParams: params) { response in
+            if response.type == "2" {
+                self.getStaffDetails(userId: response.id ?? 0)
+            } else {
+                kSharedSceneDelegate.navigateToUserHomeVc()
+            }
+        }
+    }
+    
+    func getStaffDetails(userId: Int) {
+        let param: [String:Any] = ["id": userId]
+        WebService.shared.getSubAdminProfileDetailsService(param: param) { [weak self] response in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                if response.permissionDetails?.first?.moduleID == 1 {
+                    kSharedUserDefaults.setSubAdminUserHasDashboardAccess(hasDashboardAccess: true)
+                    kSharedSceneDelegate.navigateToUserHomeVc()
+                } else {
+                    kSharedSceneDelegate.navigateToSideMenuVc()
+                }
+            }
         }
     }
 }

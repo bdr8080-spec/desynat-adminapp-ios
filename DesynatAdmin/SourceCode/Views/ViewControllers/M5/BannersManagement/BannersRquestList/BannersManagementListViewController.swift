@@ -41,6 +41,7 @@ class BannersManagementListViewController: UIViewController, HandleTableRefresh 
     // MARK: - Property Decalaration
     var type: BannersSelectedListType = .new
     private var viewModel : BannersManagementListViewModel = BannersManagementListViewModel()
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {

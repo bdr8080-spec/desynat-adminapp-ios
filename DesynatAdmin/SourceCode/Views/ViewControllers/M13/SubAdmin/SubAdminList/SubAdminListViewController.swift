@@ -31,6 +31,7 @@ class SubAdminListViewController: UIViewController {
     private var searchWorkItem: DispatchWorkItem?
     private lazy var viewModel = SubAdminListViewModel(hostVC: self)
     var userType: SubAdminListType = .all
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
@@ -175,6 +176,10 @@ extension SubAdminListViewController: UITableViewDataSource, UITableViewDelegate
         let cell = tableView.dequeueReusableCell(withIdentifier: "SubAdminTableViewCell", for: indexPath) as! SubAdminTableViewCell
         let data = viewModel.subAdminUsersList[indexPath.row]
         cell.configUserData(data: data)
+        cell.onShareTapped = { [weak self] in
+            guard let self else { return }
+            viewModel.shareStaffDetails(userId: data.id ?? 0)
+        }
         return cell
     }
     

@@ -19,6 +19,7 @@ class AffiliatedCommissionViewController: UIViewController {
     
     // MARK: - Property Decalaration
     private lazy var viewModel = AffiliatedCommissionViewModel(hostVC: self)
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {

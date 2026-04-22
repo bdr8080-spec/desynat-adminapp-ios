@@ -43,6 +43,7 @@ class CMSTermsConditionViewController: UIViewController {
     private var filteredCmsArray: [CmsArray] {
         return cmsArray.filter { $0 != selectedCms }
     }
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {

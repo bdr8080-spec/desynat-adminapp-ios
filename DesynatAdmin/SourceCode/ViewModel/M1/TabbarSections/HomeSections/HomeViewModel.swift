@@ -13,6 +13,7 @@ class HomeViewModel {
     
     private var hostVC: HomeViewController
     var countryListData: [GetCountryDataModel] = []
+    var userProfileData: UserModel?
     
     init(hostVC: HomeViewController) {
         self.hostVC = hostVC
@@ -40,6 +41,7 @@ class HomeViewModel {
     func getUserProfile(){
         WebService.sharedInstance.getProfileService { [weak self] savedUser in
             guard let self else { return }
+            userProfileData = savedUser
             if let imageUrlString = savedUser.profileImage,
                let url = URL(string: imageUrlString) {
                 hostVC.userProfileImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class SideMenuTableViewCell: UITableViewCell {
 
@@ -26,6 +27,18 @@ class SideMenuTableViewCell: UITableViewCell {
     func configData(data: SideMenuModel) {
         titleLabel.text = data.title
         mainImageView.image = UIImage(named: data.image)
+    }
+    
+    func configDataForSubAdmin(data: PermissionDetail?) {
+        if let imageUrlString = data?.moduleDetails?.icon,
+           let url = URL(string: imageUrlString) {
+            mainImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            mainImageView.sd_imageIndicator?.startAnimatingIndicator()
+            mainImageView.sd_setImage(with: url, placeholderImage: .userManagemnet)
+        } else {
+            mainImageView.image = .userManagemnet
+        }
+        titleLabel.text = data?.moduleDetails?.displayName
     }
     
 }

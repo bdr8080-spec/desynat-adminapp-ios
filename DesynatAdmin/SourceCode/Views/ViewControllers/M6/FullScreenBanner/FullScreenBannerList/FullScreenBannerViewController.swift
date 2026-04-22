@@ -29,6 +29,7 @@ class FullScreenBannerViewController: UIViewController {
     private lazy var viewModel = FullScreenBannerViewModel(hostVC: self)
     private var searchWorkItem: DispatchWorkItem?
     var bannerType: BannerMangementType = .fullScreen
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {

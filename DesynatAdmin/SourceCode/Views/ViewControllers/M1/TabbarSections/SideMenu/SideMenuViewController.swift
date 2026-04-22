@@ -22,7 +22,7 @@ class SideMenuViewController: UIViewController {
     
     // MARK: - Property Decalaration
     private var sideMenuData: [SideMenuModel] = [
-        SideMenuModel(title: "Brand management", image: "brandManagemnt"),
+        SideMenuModel(title: "Brand Management", image: "brandManagemnt"),
         SideMenuModel(title: "Category & Sub- Category Management", image: "category"),
         SideMenuModel(title: "Seller Management", image: "sellerManagement"),
         SideMenuModel(title: "Country , City & Zone Management", image: "country"),
@@ -109,91 +109,111 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedItem = sideMenuData[indexPath.row].title
-        
         switch selectedItem {
-        case "Brand management":
+        case "Brand Management":
             let vc = BrandManagementViewController.instantiate(fromAppStoryboard: .SideMenu)
+            vc.hasActionPermission = true
             self.navigationController?.pushViewController(vc, animated: false)
         case "Category & Sub- Category Management":
             let vc = CategoryViewController.instantiate(fromAppStoryboard: .SideMenu)
+            vc.hasActionPermission = true
             self.navigationController?.pushViewController(vc, animated: false)
         case "User Management":
             let vc = UserManagementViewController.instantiate(fromAppStoryboard: .ReasonManagement)
+            vc.hasActionPermission = true
             self.navigationController?.pushViewController(vc, animated: false)
         case "Sub Admin":
             let nextVC = SubAdminListViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+            nextVC.hasActionPermission = true
             self.navigationController?.pushViewController(nextVC, animated: false)
         case "Affiliate User Management":
             let nextVC = AffiliatedUsersListViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
+            nextVC.hasActionPermission = true
             self.navigationController?.pushViewController(nextVC, animated: false)
         case "Seller Management":
-            self.navigate(to: SellerListViewController.viewFromNIB)
+            self.navigate(to: SellerListViewController.viewFromNIB, hasPermission: true)
         case "Delivery Boy Management":
             let vc = DeliveryBoyViewController.instantiate(fromAppStoryboard: .ReasonManagement)
+            vc.hasActionPermission = true
             self.navigationController?.pushViewController(vc, animated: false)
         case "Live Request  & Timeslot Management":
             let nextVC = LiveRequestListManagementViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
+            nextVC.hasActionPermission = true
             self.navigationController?.pushViewController(nextVC, animated: false)
         case "Gift Card Category Management":
             let vc = GiftCardsListViewController.instantiate(fromAppStoryboard: .ShippingPromocode)
+            vc.hasActionPermission = true
             self.navigationController?.pushViewController(vc, animated: false)
         case "Orders Management":
             let nextVC = OrdersManagementListViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
+            nextVC.hasActionPermission = true
             self.navigationController?.pushViewController(nextVC, animated: true)
         case "Country , City & Zone Management":
-            self.navigate(to: CountryCityListViewController.viewFromNIB)
+            self.navigate(to: CountryCityListViewController.viewFromNIB, hasPermission: true)
         case "Delivery charges & Tax Management":
             let vc = ShippingChargesListViewController.instantiate(fromAppStoryboard: .ShippingPromocode)
+            vc.hasActionPermission = true
             self.navigationController?.pushViewController(vc, animated: false)
         case "Promocode Management":
             let vc = PromodeListViewController.instantiate(fromAppStoryboard: .ShippingPromocode)
+            vc.hasActionPermission = true
             self.navigationController?.pushViewController(vc, animated: false)
         case "Affiliate Commission percentage":
             let nextVC = AffiliatedCommissionViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
+            nextVC.hasActionPermission = true
             self.navigationController?.pushViewController(nextVC, animated: false)
         case "Refund Management":
             let vc = RefundManagementViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+            vc.hasActionPermission = true
             self.navigationController?.pushViewController(vc, animated: false)
-            print("➡️ Navigating to Refund Management")
         case "Affiliate withdrawal requests":
-            print("➡️ Navigating to Affiliate withdrawal requests")
             let nextVC = AffiliatedWithdrawalRequestListViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
+            nextVC.hasActionPermission = true
             self.navigationController?.pushViewController(nextVC, animated: true)
         case "Notifications Management":
             let nextVC = NotificationsListViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+            nextVC.hasActionPermission = true
             self.navigationController?.pushViewController(nextVC, animated: true)
         case "Story Management":
             let nextVC = StoryManagemnetViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
+            nextVC.hasActionPermission = true
             self.navigationController?.pushViewController(nextVC, animated: true)
         case "Ticket Management":
             let nextVC = TicketManagementListViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+            nextVC.hasActionPermission = true
             self.navigationController?.pushViewController(nextVC, animated: true)
         case "Seller Payouts":
             let nextVC = SellerPayoutListViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+            nextVC.hasActionPermission = true
             self.navigationController?.pushViewController(nextVC, animated: true)
         case "Deals Management":
             let nextVC = DealsManagementListViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
+            nextVC.hasActionPermission = true
             self.navigationController?.pushViewController(nextVC, animated: true)
-            print("➡️ Navigating to Deals Management")
         case "Banner per day price":
             let vc = BannerPerDayListViewController.instantiate(fromAppStoryboard: .ShippingPromocode)
+            vc.hasActionPermission = true
             self.navigationController?.pushViewController(vc, animated: false)
         case "Banner requests Management":
             let vc = BannersManagementListViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
+            vc.hasActionPermission = true
             self.navigationController?.pushViewController(vc, animated: false)
         case "Banner Management":
             let vc = FullScreenBannerViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
+            vc.hasActionPermission = true
             self.navigationController?.pushViewController(vc, animated: false)
         case "Reason Management":
             let vc = ReasonManagementViewController.instantiate(fromAppStoryboard: .ReasonManagement)
+            vc.hasActionPermission = true
             self.navigationController?.pushViewController(vc, animated: false)
         case "CMS":
             let nextVC = CMSTermsConditionViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+            nextVC.hasActionPermission = true
             self.navigationController?.pushViewController(nextVC, animated: true)
         case "Support Chat":
             let vc = ChatInboxViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+            vc.hasActionPermission = true
             self.navigationController?.pushViewController(vc, animated: false)
-            print("➡️ Navigating to Support Chat")
         default:
             print("⚠️ Unknown option selected")
         }

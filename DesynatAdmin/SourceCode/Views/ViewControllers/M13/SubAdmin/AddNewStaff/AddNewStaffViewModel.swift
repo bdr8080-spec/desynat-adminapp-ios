@@ -131,7 +131,6 @@ class AddNewStaffViewModel {
                                     "password": hostVC.passwordTxtField.text ?? "",
                                     "confirm_password": hostVC.confirmPasswortTxtField.text ?? "",
                                     "modules": modulesArray]
-        print("param====>\(param)")
         WebService.shared.addSubAdminService(param: param){ [weak self] response in
             guard let self = self else { return }
             CommonUtils.showToast(message: "Staff is added successfully")

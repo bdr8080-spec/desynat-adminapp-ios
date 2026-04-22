@@ -9,6 +9,7 @@
 // MARK: - UserModel
 struct UserModel: Codable {
     let id: Int?
+    let type: String?
 //    let id, deviceType: Int?
     let fullName, countryCode, mobile, email, profileImage: String?
     let emailVerifiedAt: String?
@@ -17,7 +18,7 @@ struct UserModel: Codable {
     let createdAt, updatedAt, accessToken: String?
     
     enum CodingKeys: String, CodingKey {
-        case id
+        case id, type
         case fullName = "full_name"
         case countryCode = "country_code"
         case mobile, email

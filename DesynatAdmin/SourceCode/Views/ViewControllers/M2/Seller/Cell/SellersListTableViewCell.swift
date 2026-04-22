@@ -8,6 +8,7 @@
 import UIKit
 
 class SellersListTableViewCell: ResuableTableCell {
+    
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblCountry: UILabel!
     @IBOutlet weak var lblJoinOn: UILabel!
@@ -23,10 +24,12 @@ class SellersListTableViewCell: ResuableTableCell {
     @IBOutlet weak var lblReason: UILabel!
     @IBOutlet weak var imgProfile: CustomImageView!
     private var data : SellerListInfo?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setUpUi()
     }
+    
     private func setUpUi() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.btnReject.addGradientBorder(cornerRadius: 5,direction: .topToBottom,colors: [UIColor.init(hexString: "#DFBF8F"), UIColor.init(hexString: "#6E4527")])
@@ -35,7 +38,7 @@ class SellersListTableViewCell: ResuableTableCell {
 
     }
 
-    func setData(_ data:SellerListInfo) {
+    func setData(_ data:SellerListInfo, hasActionPermission: Bool) {
         self.data = data
         self.lblName.text = data.name
         self.imgProfile.image = .sellerActive
@@ -50,9 +53,18 @@ class SellersListTableViewCell: ResuableTableCell {
         self.lblTotalOrders.text = data.totalOrders
         self.lblTotalEarning.text = data.totalEarning
         
-        self.stackActionButton.isHidden = data.status != .new
+//        self.stackActionButton.isHidden = data.status != .new
+        if data.status == .new {
+            if hasActionPermission {
+                self.stackActionButton.isHidden = false
+            }
+        } else {
+            self.stackActionButton.isHidden = true
+        }
         self.viewStats.isHidden = data.status != .approved
         self.viewReason.isHidden = data.status != .reject
+        
+        
     }
     @IBAction func hadlerReject(_ sender: Any) {
         self.data?.rejectSeller()

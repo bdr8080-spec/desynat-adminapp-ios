@@ -14,6 +14,8 @@ class SellerPayoutListViewController: UIViewController {
             listTableView.registerCellFromNib(cellID: "SellerPayoutTableViewCell")
         }
     }
+    var hasActionPermission: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

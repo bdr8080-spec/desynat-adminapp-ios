@@ -16,6 +16,12 @@ extension SceneDelegate {
         navigateTo(vc: vc)
     }
     
+    public func navigateToSideMenuVc() {
+        let vc = SubAdminSideMenuViewController.instantiate(fromAppStoryboard: .SideMenu)
+        vc.isNeedToHideBackButton = true
+        navigateTo(vc: vc)
+    }
+    
     // Logout current user and navigate to loginVc
     func logoutUser() {
         Global.shared.user = nil

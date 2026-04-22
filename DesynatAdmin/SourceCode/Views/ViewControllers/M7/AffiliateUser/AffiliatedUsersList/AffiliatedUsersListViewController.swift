@@ -31,6 +31,7 @@ class AffiliatedUsersListViewController: UIViewController {
     private var searchWorkItem: DispatchWorkItem?
     private lazy var viewModel = AffiliatedUsersListViewModel(hostVC: self)
     var userType: AffiliatedUsersListType = .newUsers
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {

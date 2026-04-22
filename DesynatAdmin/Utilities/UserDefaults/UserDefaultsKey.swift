@@ -11,6 +11,7 @@ let kIsUserLoggedIn             = "isUserLoggedIn"
 let kLoggedInAccessToken        = "accessToken"
 let kAccessToken                = "accessToken"
 let kIsAppInstalled             = "isAppInstalled"
+let KSubAdminHasDashboardAccess = "isSubAdminHasDashboardAccess"
 
 enum UserDefaultsKey : String {
     case deviceToken
@@ -80,6 +81,10 @@ extension UserDefaults {
         return self.bool(forKey: kIsUserLoggedIn)
     }
     
+    func isSubAdminUserHasDashboardAccess() -> Bool {
+        return self.bool(forKey: KSubAdminHasDashboardAccess)
+    }
+    
     func setAccessToken(token: String) {
         self.set(token, forKey: kAccessToken)
         self.synchronize()
@@ -87,6 +92,11 @@ extension UserDefaults {
     
     func setUserLoggedIn(userLoggedIn: Bool) {
         self.set(userLoggedIn, forKey: kIsUserLoggedIn)
+        self.synchronize()
+    }
+    
+    func setSubAdminUserHasDashboardAccess(hasDashboardAccess: Bool) {
+        self.set(hasDashboardAccess, forKey: KSubAdminHasDashboardAccess)
         self.synchronize()
     }
     

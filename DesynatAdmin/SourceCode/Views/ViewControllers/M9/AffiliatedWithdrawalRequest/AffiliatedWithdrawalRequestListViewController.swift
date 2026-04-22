@@ -30,6 +30,7 @@ class AffiliatedWithdrawalRequestListViewController: UIViewController {
     private var searchWorkItem: DispatchWorkItem?
     private lazy var viewModel = AffiliatedWithdrawalRequestListViewModel(hostVC: self)
     var requestType: AffiliatedWithdrawalListType = .newRequest
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {

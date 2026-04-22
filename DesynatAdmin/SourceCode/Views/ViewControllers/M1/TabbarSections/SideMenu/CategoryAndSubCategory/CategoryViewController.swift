@@ -19,6 +19,7 @@ class CategoryViewController: UIViewController {
     
     // MARK: - Property Decalaration
     private lazy var viewModel = CategoryViewModel(hostVC: self)
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
@@ -70,6 +71,7 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCell", for: indexPath) as! CategoryTableViewCell
         let data = viewModel.categoryListData[indexPath.row]
         cell.configData(data: data)
+        cell.statusButton.isUserInteractionEnabled = hasActionPermission
         cell.onStatusToggle = { [weak self] in
             guard let self = self else { return }
             self.toggleCategoryStatus(at: indexPath)
@@ -93,6 +95,7 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = SubCategoryViewController.instantiate(fromAppStoryboard: .SideMenu)
         vc.categoryId = "\(viewModel.categoryListData[indexPath.row].id ?? 0)"
+        vc.hasActionPermission = hasActionPermission
         self.navigationController?.pushViewController(vc, animated: false)
     }
 }

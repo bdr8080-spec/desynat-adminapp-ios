@@ -23,6 +23,7 @@ class RefundManagementViewController: UIViewController {
     private var expandedIndex: IndexPath?
     private lazy var viewModel = RefundManagementViewModel(hostVC: self)
     private var searchWorkItem: DispatchWorkItem?
+    var hasActionPermission: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -15,15 +15,19 @@ class SubCatgoryDetailsViewController: UIViewController {
     @IBOutlet weak var statusButton: UIButton!
     @IBOutlet weak var mainImageView: CustomImageView!
     @IBOutlet weak var subCatgeoryLabel: UILabel!
+    @IBOutlet weak var buttonsStackView: UIStackView!
     
     // MARK: - Property Decalaration
     var subCategoryData: GetSubCategoryDataList?
     private lazy var viewModel = SubCatgoryDetailsViewModel(hostVC: self)
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         bindData()
+        buttonsStackView.isHidden = !hasActionPermission
+        statusButton.isHidden = !hasActionPermission
     }
     
     // MARK: - Button's Action

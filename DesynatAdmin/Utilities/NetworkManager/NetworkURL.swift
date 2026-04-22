@@ -247,6 +247,8 @@ enum NetworkEndPoint: String {
     case deleteSubAdmin                     = "api/admin/delete_sub_admin"
     case getSubAdminProfileDetails          = "api/admin/sub_admin_details"
     case getRefundOrders                    = "api/admin/get_refund_orders"
+    case uploadWithResolutionPromotional    = "api/uploadWithResolutionPromotional"
+    case shareCeredential                   = "api/admin/send_subadmin_credentials"
     
     
     func withBaseURL() -> String {

@@ -36,7 +36,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="82P-Yv-kba">
-                                <rect key="frame" x="71" y="13.666666666666668" width="285" height="40.666666666666657"/>
+                                <rect key="frame" x="71" y="13.666666666666668" width="247" height="40.666666666666657"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alisha Khan" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gGR-PI-0yQ">
                                         <rect key="frame" x="0.0" y="0.0" width="83.666666666666671" height="19.666666666666668"/>
@@ -132,19 +132,34 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IiL-1F-TYb">
+                                <rect key="frame" x="323" y="6" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="7Pc-tM-maw"/>
+                                    <constraint firstAttribute="width" constant="35" id="WE5-lX-KAc"/>
+                                </constraints>
+                                <color key="tintColor" red="0.43137254899999999" green="0.27058823529999998" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="paperplane.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="shareDidTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hcb-xf-n6P"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="82P-Yv-kba" firstAttribute="trailing" secondItem="rCc-MN-y23" secondAttribute="trailing" id="6Uz-16-q0Z"/>
                             <constraint firstItem="rCc-MN-y23" firstAttribute="top" secondItem="c5o-SU-MQn" secondAttribute="bottom" constant="8" id="8aL-oR-KJV"/>
                             <constraint firstItem="Fz6-oI-0Ub" firstAttribute="top" secondItem="rCc-MN-y23" secondAttribute="bottom" constant="5" id="HLx-dU-RCc"/>
+                            <constraint firstAttribute="trailing" secondItem="IiL-1F-TYb" secondAttribute="trailing" constant="10" id="LCS-7X-M15"/>
+                            <constraint firstAttribute="trailing" secondItem="rCc-MN-y23" secondAttribute="trailing" constant="12" id="MMh-Rb-PCw"/>
                             <constraint firstItem="c5o-SU-MQn" firstAttribute="leading" secondItem="LwU-Co-Rmh" secondAttribute="leading" constant="12" id="Udh-kt-SPp"/>
                             <constraint firstItem="82P-Yv-kba" firstAttribute="centerY" secondItem="c5o-SU-MQn" secondAttribute="centerY" id="WQ4-sM-FQU"/>
                             <constraint firstItem="82P-Yv-kba" firstAttribute="leading" secondItem="c5o-SU-MQn" secondAttribute="trailing" constant="15" id="cT0-u6-ecB"/>
                             <constraint firstItem="c5o-SU-MQn" firstAttribute="top" secondItem="LwU-Co-Rmh" secondAttribute="top" constant="12" id="eTv-t4-t2o"/>
+                            <constraint firstItem="IiL-1F-TYb" firstAttribute="centerY" secondItem="gGR-PI-0yQ" secondAttribute="centerY" id="gMq-Hl-SaP"/>
                             <constraint firstItem="Fz6-oI-0Ub" firstAttribute="leading" secondItem="rCc-MN-y23" secondAttribute="leading" id="hTX-PD-goN"/>
                             <constraint firstItem="Fz6-oI-0Ub" firstAttribute="trailing" secondItem="rCc-MN-y23" secondAttribute="trailing" id="iYu-z4-AaF"/>
-                            <constraint firstAttribute="trailing" secondItem="82P-Yv-kba" secondAttribute="trailing" constant="12" id="ldA-ch-kTx"/>
+                            <constraint firstItem="IiL-1F-TYb" firstAttribute="leading" secondItem="82P-Yv-kba" secondAttribute="trailing" constant="5" id="oV7-Dg-Ks4"/>
                             <constraint firstItem="rCc-MN-y23" firstAttribute="leading" secondItem="c5o-SU-MQn" secondAttribute="leading" id="vSH-q1-x7V"/>
                             <constraint firstAttribute="bottom" secondItem="Fz6-oI-0Ub" secondAttribute="bottom" constant="15" id="wjl-43-M8j"/>
                         </constraints>
@@ -184,12 +199,13 @@
         <image name="blackEmail" width="16" height="16"/>
         <image name="countryLocationMarker" width="16" height="16"/>
         <image name="ic_phone" width="16" height="16"/>
+        <image name="paperplane.fill" catalog="system" width="128" height="119"/>
         <image name="userProfile" width="32" height="32"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

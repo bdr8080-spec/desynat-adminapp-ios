@@ -24,6 +24,7 @@ class PromodeListViewController: UIViewController {
     // MARK: - Property Decalaration
     private lazy var viewModel = PromodeListViewModel(hostVC: self)
     private var searchWorkItem: DispatchWorkItem?
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {

@@ -17,12 +17,18 @@ class SubAdminTableViewCell: UITableViewCell {
     @IBOutlet weak var phoneNumberLabel: UILabel!
     @IBOutlet weak var userProfileImageView: CustomImageView!
     
+    var onShareTapped:(() -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    @IBAction func shareDidTapped(_ sender: Any) {
+        onShareTapped?()
     }
     
     func configUserData(data: StaffDetails) {

@@ -6,6 +6,7 @@ import SVProgressHUD
 import AVFoundation
 import DropDown
 import FTIndicator
+import MessageUI
 
 class CommonUtils {
     
@@ -571,6 +572,28 @@ class CommonUtils {
         }
         let pickerNavigationController = UINavigationController(rootViewController: picker)
         controller.present(pickerNavigationController, animated: true, completion: nil)
+    }
+    
+    // MARK: - Common Email Function
+    static func sendEmail(
+        to recipients: [String],
+        subject: String,
+        body: String,
+        from controller: UIViewController
+    ) {
+        
+        guard MFMailComposeViewController.canSendMail() else {
+            CommonUtils.showToast(message: "Please configure Mail app first.")
+            return
+        }
+        
+        let mailVC = MFMailComposeViewController()
+        mailVC.mailComposeDelegate = controller as? MFMailComposeViewControllerDelegate
+        mailVC.setToRecipients(recipients)
+        mailVC.setSubject(subject)
+        mailVC.setMessageBody(body, isHTML: false)
+        
+        controller.present(mailVC, animated: true)
     }
     
     static func getCode(dialCode:String) -> String {

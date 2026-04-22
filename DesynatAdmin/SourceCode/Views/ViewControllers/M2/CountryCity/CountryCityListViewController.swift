@@ -9,7 +9,7 @@ import UIKit
 enum CountryCityListTableType:String {
     case country,cities
 }
-class CountryCityListViewController: UIViewController {
+class CountryCityListViewController: UIViewController, PermissionAccessible {
     
     // MARK: - IBOutlet's
     @IBOutlet weak var viewCountryContainer: CustomView!
@@ -31,6 +31,7 @@ class CountryCityListViewController: UIViewController {
     // MARK: - Property Decalaration
     private var viewModel : CountryCityViewModel = CountryCityViewModel()
     private var isCountryExpanded : Bool = false
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {

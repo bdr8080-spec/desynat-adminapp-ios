@@ -34,6 +34,7 @@ class ReasonManagementViewController: UIViewController {
     private lazy var viewModel = ReasonManagementViewModel(hostVC: self)
     private var searchWorkItem: DispatchWorkItem?
     var type: Int = 1
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {

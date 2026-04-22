@@ -26,6 +26,7 @@ class BannerPerDayListViewController: UIViewController {
     // MARK: - Property Decalaration
     var type: Int = 1 //1-top,2-bottom,3-sub category
     private lazy var viewModel = BannerPerDayListViewModel(hostVC: self)
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
