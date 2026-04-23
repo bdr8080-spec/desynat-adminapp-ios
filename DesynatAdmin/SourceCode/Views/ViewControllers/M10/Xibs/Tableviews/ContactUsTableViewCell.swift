@@ -9,6 +9,7 @@ import UIKit
 
 class ContactUsTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var supporttypeImageView: UIImageView!

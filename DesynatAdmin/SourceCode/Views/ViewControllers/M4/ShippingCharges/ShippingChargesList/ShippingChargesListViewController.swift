@@ -59,6 +59,7 @@ extension ShippingChargesListViewController: UITableViewDelegate, UITableViewDat
         nextVC.flag = viewModel.shippingDetails?[indexPath.row].flag
         nextVC.countryName = viewModel.shippingDetails?[indexPath.row].name
         nextVC.taxAmount = viewModel.shippingDetails?[indexPath.row].taxInfo?.tax
+        nextVC.hasActionPermission = hasActionPermission
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     

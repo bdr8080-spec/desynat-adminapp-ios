@@ -20,6 +20,7 @@ class NotificationsListViewController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var noDataFoundLabel: UILabel!
     @IBOutlet weak var serachTF: BindableTextField!
+    @IBOutlet weak var sendNotificationView: CustomView!
     
     // MARK: - Property Decalaration
     private lazy var viewModel = NotificationsListViewModel(hostVC: self)
@@ -30,6 +31,7 @@ class NotificationsListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         serachTF.delegate = self
+        sendNotificationView.isHidden = !hasActionPermission
     }
     
     override func viewWillAppear(_ animated: Bool) {

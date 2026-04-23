@@ -44,7 +44,7 @@ class AffiliatedWithdrawalTableViewCell: UITableViewCell {
         onAcceptTap?()
     }
     
-    func configData(requestType: AffiliatedWithdrawalListType, data: AffiliatedWithdrawalList?) {
+    func configData(requestType: AffiliatedWithdrawalListType, data: AffiliatedWithdrawalList?, hasActionPermission: Bool) {
         actionStackView.isHidden = true
         statusView.isHidden = true
         rejectedREasonStackView.isHidden = true
@@ -61,7 +61,7 @@ class AffiliatedWithdrawalTableViewCell: UITableViewCell {
         transactionLabel.text = "#\(data?.requestID ?? "0")"//"#\(data?.transactionID ?? "0")"
         switch requestType {
         case .newRequest:
-            actionStackView.isHidden = false
+            actionStackView.isHidden = !hasActionPermission
         case .approvedRequest:
             statusView.isHidden = false
             transactionSackView.isHidden = false

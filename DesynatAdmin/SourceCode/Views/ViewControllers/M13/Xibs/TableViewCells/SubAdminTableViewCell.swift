@@ -10,6 +10,7 @@ import SDWebImage
 
 class SubAdminTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var countryLabel: UILabel!
     @IBOutlet weak var joinedDateLabel: UILabel!

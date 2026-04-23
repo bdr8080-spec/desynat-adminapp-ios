@@ -39,6 +39,7 @@ class BannersManagementDetailsViewController: UIViewController {
     private var viewModel : BannersManagementListViewModel = BannersManagementListViewModel()
     private var toggleStatus: Int = 0
     var onStatusUpdated: ((BannerListInfo) -> Void)?
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
@@ -46,7 +47,7 @@ class BannersManagementDetailsViewController: UIViewController {
         if type == .new { //new
             transactionIdStackView.isHidden = true
             amountPaidOrNotStackView.isHidden = true
-            rejectAcceptStackView.isHidden = false
+            rejectAcceptStackView.isHidden = !hasActionPermission
             acceptView.isHidden = false
             rejectView.isHidden = false
         } else { //approved and rejected
@@ -62,6 +63,7 @@ class BannersManagementDetailsViewController: UIViewController {
         if type == .approved {
             toggleImageView.isHidden = false
             toggleButtonOutlet.isHidden = false
+            toggleButtonOutlet.isUserInteractionEnabled = hasActionPermission
         } else {
             toggleImageView.isHidden = true
             toggleButtonOutlet.isHidden = true

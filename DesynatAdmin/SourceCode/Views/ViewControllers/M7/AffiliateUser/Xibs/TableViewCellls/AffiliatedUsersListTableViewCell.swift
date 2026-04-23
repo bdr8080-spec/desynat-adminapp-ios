@@ -45,13 +45,13 @@ class AffiliatedUsersListTableViewCell: UITableViewCell {
         onAcceptAction?()
     }
     
-    func configData(userType: AffiliatedUsersListType, data: AffilitaitedUsersDataModel) {
+    func configData(userType: AffiliatedUsersListType, data: AffilitaitedUsersDataModel, hasActionPermission: Bool) {
         newStackView.isHidden = true
         approvedStackView.isHidden = true
         rejectedStackView.isHidden = true
         switch userType {
         case .newUsers:
-            newStackView.isHidden = false
+            newStackView.isHidden = !hasActionPermission
         case .approvedUsers:
             approvedStackView.isHidden = false
         case .rejectedUsers:

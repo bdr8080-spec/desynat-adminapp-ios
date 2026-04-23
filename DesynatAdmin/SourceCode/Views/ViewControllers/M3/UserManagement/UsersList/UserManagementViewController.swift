@@ -134,8 +134,10 @@ extension UserManagementViewController: UITableViewDelegate, UITableViewDataSour
             guard let self = self else { return }
             let vc = UserManagementDetailsViewController.instantiate(fromAppStoryboard: .ReasonManagement)
             vc.userId = viewModel.usersListData[indexPath.row].id
+            vc.hasActionPermission = hasActionPermission
             self.navigationController?.pushViewController(vc, animated: false)
         }
+        cell.statusButton.isUserInteractionEnabled = hasActionPermission
         return cell
     }
     

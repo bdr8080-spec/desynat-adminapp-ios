@@ -73,6 +73,9 @@ class LoginViewModel: NSObject {
             DispatchQueue.main.async {
                 if response.permissionDetails?.first?.moduleID == 1 {
                     kSharedUserDefaults.setSubAdminUserHasDashboardAccess(hasDashboardAccess: true)
+                    if response.permissionDetails?.first?.moduleID == 1 && response.permissionDetails?.first?.canAction == 1 {
+                        kSharedUserDefaults.setSubAdminActionDashboardAccess(hasActionDashboardAccess: true)
+                    }
                     kSharedSceneDelegate.navigateToUserHomeVc()
                 } else {
                     kSharedSceneDelegate.navigateToSideMenuVc()

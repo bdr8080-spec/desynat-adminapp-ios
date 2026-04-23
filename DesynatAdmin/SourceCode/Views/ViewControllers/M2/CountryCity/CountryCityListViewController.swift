@@ -38,6 +38,7 @@ class CountryCityListViewController: UIViewController, PermissionAccessible {
         super.viewDidLoad()
         self.setUpUi()
         self.setData()
+        plusButtonOutlet.isHidden = !hasActionPermission
     }
     
     // MARK: - Button's Action
@@ -128,6 +129,8 @@ extension CountryCityListViewController: UITableViewDelegate, UITableViewDataSou
                     cell.setCity(viewModel.arrayCities[indexPath.row])
                 }
                 cell.selectionStyle = .none
+                cell.btnSwitch.isUserInteractionEnabled = hasActionPermission
+                cell.btnDelete.isHidden = !hasActionPermission
                 return cell
             }
         case tblCountry:
@@ -195,6 +198,7 @@ extension CountryCityListViewController:HandleCityAction {
         var dd = data
         dd.countryName = String.getString(self.viewModel.selectedCountry?.name)
         vc.setCity(dd)
+        vc.hasActionPermission = hasActionPermission
         self.navigate(to: vc)
     }
     

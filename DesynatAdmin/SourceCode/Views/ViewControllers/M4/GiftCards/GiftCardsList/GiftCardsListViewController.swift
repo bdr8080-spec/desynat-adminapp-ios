@@ -20,6 +20,7 @@ class GiftCardsListViewController: UIViewController {
             cardsTableView.registerCellFromNib(cellID: "GiftCardsTableViewCell")
         }
     }
+    @IBOutlet weak var plusButton: UIButton!
     
     // MARK: - Property Decalaration
     private lazy var viewModel = GiftCardsListViewModel(hostVC: self)
@@ -31,6 +32,7 @@ class GiftCardsListViewController: UIViewController {
         super.viewDidLoad()
         searchTF.delegate = self
         updatePaginationButtonImages()
+        plusButton.isHidden = !hasActionPermission
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,6 +98,7 @@ extension GiftCardsListViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let nextVC = GiftCardDetailsViewController.instantiate(fromAppStoryboard: .ShippingPromocode)
         nextVC.giftsListData = viewModel.giftsListData[indexPath.row]
+        nextVC.hasActionPermission = hasActionPermission
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     

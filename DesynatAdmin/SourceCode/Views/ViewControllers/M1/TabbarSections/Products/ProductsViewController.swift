@@ -28,6 +28,9 @@ class ProductsViewController: UIViewController {
         viewModel.getCategoriesListApi()
         viewModel.getCountryListApi()
         viewModel.getBrandListApi()
+        
+//        if kSharedUserDefaults.isSubAdminHasActionDashboardAccess() {
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

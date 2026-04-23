@@ -20,6 +20,7 @@ class PromodeListViewController: UIViewController {
             promocdeTableView.registerCellFromNib(cellID: "PromoCodeTableViewCell")
         }
     }
+    @IBOutlet weak var plusButton: UIButton!
     
     // MARK: - Property Decalaration
     private lazy var viewModel = PromodeListViewModel(hostVC: self)
@@ -31,6 +32,7 @@ class PromodeListViewController: UIViewController {
         super.viewDidLoad()
         searchTextField.delegate = self
         updatePaginationButtonImages()
+        plusButton.isHidden = !hasActionPermission
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -116,6 +118,7 @@ extension PromodeListViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let nextVC = PromocodeDetailsViewController.instantiate(fromAppStoryboard: .ShippingPromocode)
         nextVC.promocodeDetails = viewModel.promocodeListData[indexPath.row]
+        nextVC.hasActionPermission = hasActionPermission
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     

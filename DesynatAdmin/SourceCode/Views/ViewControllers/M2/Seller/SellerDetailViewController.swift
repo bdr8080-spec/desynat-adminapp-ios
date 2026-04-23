@@ -97,7 +97,8 @@ class SellerDetailViewController: UIViewController {
     @IBOutlet weak var lctBottomMainStack: NSLayoutConstraint!
     
     // MARK: - Property Decalaration
-    private var viewModel : SellerDetailViewModel = SellerDetailViewModel()
+    private var viewModel: SellerDetailViewModel = SellerDetailViewModel()
+    var hasActionPermission : Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
@@ -186,6 +187,13 @@ class SellerDetailViewController: UIViewController {
             self.viewSwitchTab.isHidden = listInfo.status != .approved
             self.viewSellerInfo.isHidden =  listInfo.status != .approved
             self.btnSwitch.isHidden =  listInfo.status != .approved
+            if listInfo.status == .approved {
+                if hasActionPermission {
+                    self.btnSwitch.isUserInteractionEnabled = true
+                } else {
+                    self.btnSwitch.isUserInteractionEnabled = false
+                }
+            }
             self.btnPending.isHidden =  listInfo.status == .approved
             self.btnPending.setTitle(listInfo.status.title, for: .normal)
             self.stackCanceReason.isHidden = listInfo.status != .reject
@@ -205,7 +213,16 @@ class SellerDetailViewController: UIViewController {
             self.lblSellerEmail.text = listInfo.email
             self.lblSellerCountry.text = listInfo.country
             self.lctBottomMainStack.constant = listInfo.status == .new ? self.viewBottomAction.frame.height : 50.0
-            self.viewBottomAction.isHidden = listInfo.status != .new
+//            self.viewBottomAction.isHidden = listInfo.status != .new
+            if listInfo.status == .new {
+                if hasActionPermission {
+                    self.viewBottomAction.isHidden = false
+                } else {
+                    self.viewBottomAction.isHidden = true
+                }
+            } else {
+                self.viewBottomAction.isHidden = true
+            }
             if (listInfo.status == .approved) {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                     self.switchTab(.sellerInfo)

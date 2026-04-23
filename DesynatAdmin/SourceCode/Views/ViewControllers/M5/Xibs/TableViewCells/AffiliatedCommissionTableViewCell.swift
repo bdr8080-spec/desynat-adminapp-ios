@@ -9,6 +9,7 @@ import UIKit
 
 class AffiliatedCommissionTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var flagEmojLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var commissionLabel: UILabel!

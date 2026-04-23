@@ -22,6 +22,8 @@ class PromotionalBannerDetaislViewController: UIViewController {
     @IBOutlet weak var endDateLabel: UILabel!
     @IBOutlet weak var startDateLabel: UILabel!
     @IBOutlet weak var countryNameLabel: UILabel!
+    @IBOutlet weak var togglestatus: UIButton!
+    @IBOutlet weak var bottomStackView: UIStackView!
     
     // MARK: - Property Decalaration
     var bannerId: Int = 0
@@ -30,11 +32,14 @@ class PromotionalBannerDetaislViewController: UIViewController {
     var bannerType: BannerMangementType = .fullScreen
     private var toggleStatus: String = "0"
     var onStatusUpdated: ((GetPromotionalBannersList) -> Void)?
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.getPromotionalScreenBannerDetailsList()
+        togglestatus.isUserInteractionEnabled = hasActionPermission
+        bottomStackView.isHidden = !hasActionPermission
     }
     
     // MARK: - Button's Action

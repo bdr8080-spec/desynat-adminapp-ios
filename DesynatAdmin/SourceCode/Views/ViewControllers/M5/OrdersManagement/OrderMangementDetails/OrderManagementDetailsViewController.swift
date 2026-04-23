@@ -76,6 +76,7 @@ class OrderManagementDetailsViewController: UIViewController {
         StepImage(selected: "shippedDone", unselected: "shipped"),
         StepImage(selected: "ontheWayDone", unselected: "ontheWay"),
         StepImage(selected: "deliveredDone", unselected: "delivered"),]
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
@@ -292,7 +293,7 @@ class OrderManagementDetailsViewController: UIViewController {
                         self.activateStep(0, title: "Confirmed")
                         self.activateStep(1, title: "Shipped")
                         self.lblStatus.text = "Return Request"
-                        self.assignDriverView.isHidden = false
+                        self.assignDriverView.isHidden = !self.hasActionPermission
                         self.deliveryByStackView.isHidden = true
                         self.driverDetailsView.isHidden = true
                         
@@ -301,6 +302,7 @@ class OrderManagementDetailsViewController: UIViewController {
                             self.assignDriverView.isHidden = true
                             self.deliveryByStackView.isHidden = true
                             self.driverDetailsView.isHidden = false
+                            self.editAssignDriverButtonOutlet.isHidden = !self.hasActionPermission
                         }
                     }
                     
@@ -313,8 +315,9 @@ class OrderManagementDetailsViewController: UIViewController {
                         self.assignDriverView.isHidden = true
                         self.deliveryByStackView.isHidden = false
                         self.driverDetailsView.isHidden = false
+                        self.editAssignDriverButtonOutlet.isHidden = !self.hasActionPermission
                     case "0":
-                        self.assignDriverView.isHidden = false
+                        self.assignDriverView.isHidden = !self.hasActionPermission
                         self.deliveryByStackView.isHidden = true
                         self.driverDetailsView.isHidden = true
                     default:
@@ -328,7 +331,7 @@ class OrderManagementDetailsViewController: UIViewController {
                         self.lbl2.text = "Picked"
                         self.lbl3.text = "On The Way"
                         self.lbl4.text = "Returned"
-                        self.assignDriverView.isHidden = false
+                        self.assignDriverView.isHidden = !self.hasActionPermission
                         
                         if assignStatus == "1" {
                             self.assignDriverView.isHidden = true

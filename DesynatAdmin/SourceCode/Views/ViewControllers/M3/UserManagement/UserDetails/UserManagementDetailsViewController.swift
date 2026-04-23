@@ -21,15 +21,18 @@ class UserManagementDetailsViewController: UIViewController {
     @IBOutlet weak var joinedLabel: UILabel!
     @IBOutlet weak var completedOrderCount: UILabel!
     @IBOutlet weak var cancelledOrderCount: UILabel!
+    @IBOutlet weak var addMoneyButton: CustomButton!
     
     // MARK: - Property Decalaration
     var userId: Int? = 0
     private lazy var viewModel = UserManagementDetailViewModel(hostVC: self)
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        statusButton.isUserInteractionEnabled = hasActionPermission
+        addMoneyButton.isHidden = !hasActionPermission
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -72,6 +72,7 @@ class LiveRequestListManagementViewController: UIViewController {
     var slectedLiveRequestType: Int = 1
     var selectedDateString: String? = ""
     var hasActionPermission: Bool = false
+    
     lazy private var monthYearFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM yyyy"   // November 2025
@@ -276,7 +277,8 @@ class LiveRequestListManagementViewController: UIViewController {
         liveREquestTableView.isHidden = isShow
         liveRequestTimeSlotLabel.isHidden = !isShow
         timeSlotsTableView.isHidden = !isShow
-        assignButtonView.isHidden = !isShow
+//        assignButtonView.isHidden = !isShow
+        assignButtonView.isHidden = !(isShow && hasActionPermission)
         paginationBottomView.isHidden = isShow
         liveRequestTimeslotISSelcted = isShow
         
@@ -402,7 +404,14 @@ extension LiveRequestListManagementViewController: UITableViewDelegate, UITableV
             let cell = tableView.dequeueReusableCell(withIdentifier: "LiveRequestTimingTableViewCell", for: indexPath) as! LiveRequestTimingTableViewCell
             let data = viewModel.LiveRequestList[indexPath.row]
             cell.configData(data: data)
-            cell.buttonStackView.isHidden = (selectedTab != .new)
+//            cell.buttonStackView.isHidden = (selectedTab != .new)
+            if selectedTab == .new {
+//                if hasActionPermission {
+                    cell.buttonStackView.isHidden = !hasActionPermission
+//                }
+            } else {
+                cell.buttonStackView.isHidden = true
+            }
             cell.onAcceptTap = {
                 let param: [String: Any] = ["request_id": data.id ?? 0]
                 self.viewModel.acceptRequest(param: param)
@@ -429,7 +438,7 @@ extension LiveRequestListManagementViewController: UITableViewDelegate, UITableV
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "LiveRequestListViewCell", for: indexPath) as! LiveRequestListViewCell
             let data = viewModel.slectedTimeSlot[indexPath.row]
-            cell.configData(data: data)
+            cell.configData(data: data, hasActionPermission: hasActionPermission)
             cell.onEditToggle = {
                 let nextVC = AddTimeSlotViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
                 nextVC.slectedTimeSlot = data

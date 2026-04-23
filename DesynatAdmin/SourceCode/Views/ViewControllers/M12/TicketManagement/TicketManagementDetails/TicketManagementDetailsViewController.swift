@@ -34,10 +34,13 @@ class TicketManagementDetailsViewController: UIViewController {
     var selectedStatusIndex: Int? = -1
     var isStatusUpdated: (() -> Void)?
     private lazy var viewModel = TicketManagementDetailsViewModel(hostVC: self)
+    var hasActionPermission: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configData()
+        statusUpdateStackView.isHidden = !hasActionPermission
+        updateStatusButtonView.isHidden = !hasActionPermission
     }
     
     @IBAction func statusDidTapped(_ sender: UIButton) {
@@ -121,14 +124,14 @@ class TicketManagementDetailsViewController: UIViewController {
         resolvedOnStackView.isHidden = (data.status != 1)
         resolvedOnDateLabel.text = convertServerDate(data.updatedAt ?? "")
         attachmentStackView.isHidden = (data.file?.isEmpty ?? true)
-        switch ticketType {
-        case .pastList:
-            statusUpdateStackView.isHidden = false
-            updateStatusButtonView.isHidden = false
-        default:
-            statusUpdateStackView.isHidden = false
-            updateStatusButtonView.isHidden = false
-        }
+//        switch ticketType {
+//        case .pastList:
+//            statusUpdateStackView.isHidden = false
+//            updateStatusButtonView.isHidden = false
+//        default:
+//            statusUpdateStackView.isHidden = false
+//            updateStatusButtonView.isHidden = false
+//        }
         if let file = data.file?.lowercased(),
            file.hasSuffix(".pdf") {
             attachmnetButton.isUserInteractionEnabled = true

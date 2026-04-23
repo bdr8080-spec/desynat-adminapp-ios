@@ -190,6 +190,7 @@ extension TicketManagementListViewController: UITableViewDelegate, UITableViewDa
         let vc = TicketManagementDetailsViewController.instantiate(fromAppStoryboard: .NotificationCMS)
         vc.ticketType = ticketType
         vc.ticketDetails = viewModel.ticketsList[indexPath.row]
+        vc.hasActionPermission = hasActionPermission
         vc.isStatusUpdated = { [weak self] in
             guard let self else { return }
             ticketType = .pastList

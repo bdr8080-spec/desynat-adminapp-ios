@@ -26,6 +26,7 @@ class SubAdminListViewController: UIViewController {
             listTableView.registerCellFromNib(cellID: "SubAdminTableViewCell")
         }
     }
+    @IBOutlet weak var plusButton: UIButton!
     
     // MARK: - Property Decalaration
     private var searchWorkItem: DispatchWorkItem?
@@ -37,6 +38,7 @@ class SubAdminListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         serachTF.delegate = self
+        plusButton.isHidden = !hasActionPermission
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -176,6 +178,7 @@ extension SubAdminListViewController: UITableViewDataSource, UITableViewDelegate
         let cell = tableView.dequeueReusableCell(withIdentifier: "SubAdminTableViewCell", for: indexPath) as! SubAdminTableViewCell
         let data = viewModel.subAdminUsersList[indexPath.row]
         cell.configUserData(data: data)
+        cell.shareButton.isHidden = !hasActionPermission
         cell.onShareTapped = { [weak self] in
             guard let self else { return }
             viewModel.shareStaffDetails(userId: data.id ?? 0)
@@ -186,6 +189,7 @@ extension SubAdminListViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        let nextVC = StaffDetailsViewController.instantiate(fromAppStoryboard: .NotificationCMS)
         nextVC.staffID = viewModel.subAdminUsersList[indexPath.row].id
+        nextVC.hasActionPermission = hasActionPermission
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     

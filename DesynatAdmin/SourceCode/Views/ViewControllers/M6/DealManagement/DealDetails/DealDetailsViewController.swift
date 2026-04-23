@@ -34,18 +34,21 @@ class DealDetailsViewController: UIViewController {
     @IBOutlet weak var discountLabel: UILabel!
     @IBOutlet weak var activeButtonStackView: UIStackView!
     @IBOutlet weak var revenueDetailsView: CustomView!
+    @IBOutlet weak var statusToggleButton: UIButton!
+    
     
     // MARK: - Property Decalaration
     var type: Int = 1 // 1 active 2 expired
     var dealId: Int = 0
     var dealData: DealListManagementList?
     private lazy var viewModel = DealDetailsViewModel(hostVC: self)
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         if type == 1 {
-            activeButtonStackView.isHidden = false
+            activeButtonStackView.isHidden = !hasActionPermission
             revenueDetailsView.isHidden = true
             hotDealsView.isHidden = false
             hotDealsLaebl.isHidden = false
@@ -57,6 +60,7 @@ class DealDetailsViewController: UIViewController {
             hotDealsLaebl.isHidden = true
             hotDealsstackView.isHidden = true
         }
+        statusToggleButton.isUserInteractionEnabled = hasActionPermission
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -227,6 +231,7 @@ extension DealDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         nextVC.type = type
         nextVC.dealId = viewModel.paginatedItems[indexPath.row].dealID
         nextVC.sellerId = viewModel.paginatedItems[indexPath.row].sellerDetails?.id
+        nextVC.hasActionPermission = hasActionPermission
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     

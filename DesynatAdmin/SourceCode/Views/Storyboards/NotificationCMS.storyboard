@@ -70,11 +70,11 @@
                                     <constraint firstAttribute="bottom" secondItem="amF-pp-kKR" secondAttribute="bottom" id="qO0-2G-puF"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ki-dI-9bY" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                <rect key="frame" x="24" y="173" width="345" height="38"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ki-dI-9bY">
+                                <rect key="frame" x="24" y="173" width="345" height="101"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="kFO-qP-VwD">
-                                        <rect key="frame" x="0.0" y="0.0" width="345" height="38"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="kFO-qP-VwD">
+                                        <rect key="frame" x="0.0" y="0.0" width="345" height="101"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xKz-mF-Y0G" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="345" height="38"/>
@@ -82,9 +82,6 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jHb-rT-w6d" customClass="CustomButton" customModule="DesynatAdmin" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="345" height="38"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="38" id="D3Q-K7-4Dz"/>
-                                                        </constraints>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <userDefinedRuntimeAttributes>
@@ -120,103 +117,90 @@
                                                     <constraint firstItem="Zcu-lr-upG" firstAttribute="leading" secondItem="AgA-yJ-nOa" secondAttribute="trailing" constant="10" id="VVR-FU-qbf"/>
                                                     <constraint firstItem="Zcu-lr-upG" firstAttribute="centerY" secondItem="xKz-mF-Y0G" secondAttribute="centerY" id="a1S-OC-LuI"/>
                                                     <constraint firstItem="Zcu-lr-upG" firstAttribute="centerX" secondItem="xKz-mF-Y0G" secondAttribute="centerX" id="ahF-S2-JGU"/>
+                                                    <constraint firstAttribute="height" constant="38" id="bqs-jR-Icj"/>
                                                     <constraint firstAttribute="bottom" secondItem="jHb-rT-w6d" secondAttribute="bottom" id="fzL-II-76g"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="value" name="darkBrown"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kzi-xZ-0wU" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="63" width="345" height="38"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="DVH-hz-SVT">
+                                                        <rect key="frame" x="15" y="9" width="21" height="20"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="DVH-hz-SVT" secondAttribute="height" constant="1" id="ECr-WF-2uQ"/>
+                                                            <constraint firstAttribute="height" constant="20" id="txZ-Ol-um5"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xe0-3P-nDJ" customClass="BindableTextField" customModule="DesynatAdmin" customModuleProvider="target">
+                                                        <rect key="frame" x="51" y="0.0" width="224" height="38"/>
+                                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Geq-Qs-USQ">
+                                                        <rect key="frame" x="295" y="-7" width="50" height="52"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="50" id="J30-Ii-4LO"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="deliveryFilter"/>
+                                                        <connections>
+                                                            <action selector="filterDidTapped:" destination="89d-9J-XGd" eventType="touchUpInside" id="kmR-gp-m7O"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="xe0-3P-nDJ" firstAttribute="leading" secondItem="DVH-hz-SVT" secondAttribute="trailing" constant="15" id="3be-kA-orm"/>
+                                                    <constraint firstAttribute="bottom" secondItem="xe0-3P-nDJ" secondAttribute="bottom" id="LZb-sn-9Dd"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Geq-Qs-USQ" secondAttribute="trailing" id="TNv-61-beT"/>
+                                                    <constraint firstItem="Geq-Qs-USQ" firstAttribute="centerY" secondItem="kzi-xZ-0wU" secondAttribute="centerY" id="WFi-LE-M5F"/>
+                                                    <constraint firstItem="DVH-hz-SVT" firstAttribute="centerY" secondItem="kzi-xZ-0wU" secondAttribute="centerY" id="XYd-E4-Qhr"/>
+                                                    <constraint firstItem="Geq-Qs-USQ" firstAttribute="leading" secondItem="xe0-3P-nDJ" secondAttribute="trailing" constant="20" id="hTp-GU-riV"/>
+                                                    <constraint firstItem="xe0-3P-nDJ" firstAttribute="top" secondItem="kzi-xZ-0wU" secondAttribute="top" id="lr7-aA-19e"/>
+                                                    <constraint firstItem="DVH-hz-SVT" firstAttribute="leading" secondItem="kzi-xZ-0wU" secondAttribute="leading" constant="15" id="t6d-zK-biM"/>
+                                                    <constraint firstAttribute="height" constant="38" id="xLe-sT-eke"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" systemColor="systemGray5Color"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="38" id="fAt-s1-gmV"/>
-                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="kFO-qP-VwD" firstAttribute="leading" secondItem="1ki-dI-9bY" secondAttribute="leading" id="3CU-Fy-SgE"/>
                                     <constraint firstItem="kFO-qP-VwD" firstAttribute="top" secondItem="1ki-dI-9bY" secondAttribute="top" id="Wi8-KR-4GE"/>
-                                    <constraint firstAttribute="height" constant="38" id="dOq-LO-CVq"/>
                                     <constraint firstAttribute="bottom" secondItem="kFO-qP-VwD" secondAttribute="bottom" id="eUf-98-v03"/>
                                     <constraint firstAttribute="trailing" secondItem="kFO-qP-VwD" secondAttribute="trailing" id="iX4-qj-pjP"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.59999999999999998" green="0.4549019608" blue="0.30980392159999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6Er-hh-eXv">
-                                <rect key="frame" x="24" y="231" width="345" height="38"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fnb-xC-HQL" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="345" height="38"/>
-                                        <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="XvR-Lx-Bmh">
-                                                <rect key="frame" x="15" y="9" width="21" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="XvR-Lx-Bmh" secondAttribute="height" constant="1" id="CAY-ir-sng"/>
-                                                    <constraint firstAttribute="height" constant="20" id="KZc-mn-uDM"/>
-                                                </constraints>
-                                            </imageView>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d8J-iP-rw6" customClass="BindableTextField" customModule="DesynatAdmin" customModuleProvider="target">
-                                                <rect key="frame" x="51" y="0.0" width="224" height="38"/>
-                                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="skB-Uw-xgE">
-                                                <rect key="frame" x="295" y="-7" width="50" height="52"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="dcM-dK-drK"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="deliveryFilter"/>
-                                                <connections>
-                                                    <action selector="filterDidTapped:" destination="89d-9J-XGd" eventType="touchUpInside" id="2VB-rs-031"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="d8J-iP-rw6" secondAttribute="bottom" id="9Ph-xH-xae"/>
-                                            <constraint firstItem="d8J-iP-rw6" firstAttribute="top" secondItem="Fnb-xC-HQL" secondAttribute="top" id="JUJ-rK-5vZ"/>
-                                            <constraint firstItem="XvR-Lx-Bmh" firstAttribute="leading" secondItem="Fnb-xC-HQL" secondAttribute="leading" constant="15" id="YHX-qI-yIg"/>
-                                            <constraint firstAttribute="trailing" secondItem="skB-Uw-xgE" secondAttribute="trailing" id="cCE-OB-9Im"/>
-                                            <constraint firstItem="skB-Uw-xgE" firstAttribute="leading" secondItem="d8J-iP-rw6" secondAttribute="trailing" constant="20" id="d0e-eO-20C"/>
-                                            <constraint firstAttribute="height" constant="38" id="e1Y-ED-uNz"/>
-                                            <constraint firstItem="skB-Uw-xgE" firstAttribute="centerY" secondItem="Fnb-xC-HQL" secondAttribute="centerY" id="mXr-30-cKy"/>
-                                            <constraint firstItem="d8J-iP-rw6" firstAttribute="leading" secondItem="XvR-Lx-Bmh" secondAttribute="trailing" constant="15" id="qDp-yY-2lG"/>
-                                            <constraint firstItem="XvR-Lx-Bmh" firstAttribute="centerY" secondItem="Fnb-xC-HQL" secondAttribute="centerY" id="tHH-pA-n1Z"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" systemColor="systemGray5Color"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                </subviews>
-                            </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="lhW-g0-t3G">
-                                <rect key="frame" x="24" y="291" width="345" height="433"/>
+                                <rect key="frame" x="24" y="294" width="345" height="430"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="89d-9J-XGd" id="BUI-3F-zo9"/>
@@ -293,10 +277,7 @@
                             <constraint firstItem="U7N-Cy-Exd" firstAttribute="trailing" secondItem="1ki-dI-9bY" secondAttribute="trailing" constant="24" id="8Gk-iT-U6u"/>
                             <constraint firstItem="Ria-bT-ukZ" firstAttribute="bottom" secondItem="U7N-Cy-Exd" secondAttribute="bottom" id="EKW-9e-TRo"/>
                             <constraint firstItem="4lU-gg-GVk" firstAttribute="top" secondItem="U7N-Cy-Exd" secondAttribute="top" id="Fj5-xk-V6B"/>
-                            <constraint firstItem="lhW-g0-t3G" firstAttribute="top" secondItem="6Er-hh-eXv" secondAttribute="bottom" constant="22" id="Ir8-vi-E5z"/>
-                            <constraint firstItem="6Er-hh-eXv" firstAttribute="leading" secondItem="1ki-dI-9bY" secondAttribute="leading" id="KgY-qx-d50"/>
-                            <constraint firstItem="6Er-hh-eXv" firstAttribute="trailing" secondItem="1ki-dI-9bY" secondAttribute="trailing" id="ORb-wr-SYF"/>
-                            <constraint firstItem="6Er-hh-eXv" firstAttribute="top" secondItem="1ki-dI-9bY" secondAttribute="bottom" constant="20" id="Qj3-V2-G8A"/>
+                            <constraint firstItem="lhW-g0-t3G" firstAttribute="top" secondItem="1ki-dI-9bY" secondAttribute="bottom" constant="20" id="G5i-MD-Kre"/>
                             <constraint firstItem="Ria-bT-ukZ" firstAttribute="trailing" secondItem="U7N-Cy-Exd" secondAttribute="trailing" id="QnQ-t3-Thf"/>
                             <constraint firstItem="1ki-dI-9bY" firstAttribute="leading" secondItem="U7N-Cy-Exd" secondAttribute="leading" constant="24" id="Qvt-ca-dnc"/>
                             <constraint firstItem="lhW-g0-t3G" firstAttribute="leading" secondItem="1ki-dI-9bY" secondAttribute="leading" id="X8e-0R-ET6"/>
@@ -314,7 +295,8 @@
                         <outlet property="noDataFoundLabel" destination="8JH-GQ-Jww" id="4q0-ns-mxw"/>
                         <outlet property="pageCountLabel" destination="RXx-0I-uUw" id="a5L-p1-qAq"/>
                         <outlet property="previousButton" destination="5Pg-sp-Upm" id="57x-bG-IgK"/>
-                        <outlet property="serachTF" destination="d8J-iP-rw6" id="SqL-Nl-J45"/>
+                        <outlet property="sendNotificationView" destination="xKz-mF-Y0G" id="USb-Rj-y8m"/>
+                        <outlet property="serachTF" destination="xe0-3P-nDJ" id="JoD-Lj-shA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dzh-Do-WNW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1495,12 +1477,14 @@
                     <connections>
                         <outlet property="arabicContentWebView" destination="ONs-xi-2Xb" id="yME-5C-d2S"/>
                         <outlet property="arabicWebViewHeight" destination="d71-ej-xWU" id="eOt-NI-Y3n"/>
+                        <outlet property="araicEditButton" destination="QfZ-7D-RhJ" id="Y2b-Q1-Ah0"/>
                         <outlet property="cmsOptionView" destination="Dc7-jY-h5Q" id="K4Q-oT-yNP"/>
                         <outlet property="cmsTF" destination="WJ8-V6-yry" id="6fu-eP-yRs"/>
                         <outlet property="cmsTableView" destination="tWp-Me-idT" id="yRs-YR-Khy"/>
                         <outlet property="deliveryBoyButton" destination="SgY-tU-mZi" id="N7h-Rq-XN7"/>
                         <outlet property="deliveryBoyLabel" destination="6Vf-Yz-Oom" id="VWc-5t-lu9"/>
                         <outlet property="englishContentWebView" destination="J1A-3w-Acy" id="eGH-KS-VGA"/>
+                        <outlet property="englishEditButton" destination="1bQ-hm-6ED" id="eto-q3-6ei"/>
                         <outlet property="englishWebViewHeight" destination="kSE-PA-CnL" id="R1K-Ky-AWx"/>
                         <outlet property="sellerButton" destination="3eV-aR-A5d" id="h4j-CG-0cg"/>
                         <outlet property="sellerLabel" destination="w2c-Ro-kbj" id="heC-CK-Ftc"/>
@@ -1667,6 +1651,7 @@
                     </view>
                     <connections>
                         <outlet property="listTableView" destination="xHw-JH-Y2M" id="bD1-d7-k6Y"/>
+                        <outlet property="plusButton" destination="thy-ou-rfx" id="d0s-5F-g2a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DSp-xR-hMp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -4597,6 +4582,7 @@ dolor sit amet, consectetur..</string>
                         <outlet property="nextButton" destination="u6u-el-Bvs" id="Ts9-63-4Ga"/>
                         <outlet property="noDataFoundLabel" destination="FAV-LB-dJh" id="27H-c6-vgD"/>
                         <outlet property="pageCountLabel" destination="g77-Q4-8Yd" id="esF-IL-lru"/>
+                        <outlet property="plusButton" destination="6F4-KE-kgr" id="B6d-80-Owi"/>
                         <outlet property="previousButton" destination="ovb-Le-Uru" id="pZL-6h-ipE"/>
                         <outlet property="serachTF" destination="v2V-g4-12U" id="zbb-ua-qoX"/>
                     </connections>
@@ -5723,6 +5709,7 @@ dolor sit amet, consectetur..</string>
                     <connections>
                         <outlet property="accessModuleTableView" destination="elS-Gv-dk6" id="Yiu-5L-V2w"/>
                         <outlet property="activeStatusbtn" destination="D0K-IG-mxd" id="4qX-dQ-aFs"/>
+                        <outlet property="buttonActionStackView" destination="bcC-fI-pnW" id="jRa-Ji-YXv"/>
                         <outlet property="countryLabel" destination="9UO-48-pzF" id="faK-Dx-d27"/>
                         <outlet property="designationLbl" destination="9hM-ux-7pm" id="QFO-gr-ax6"/>
                         <outlet property="emailLbl" destination="t6r-2q-SN5" id="bqP-0j-G56"/>
@@ -5730,6 +5717,8 @@ dolor sit amet, consectetur..</string>
                         <outlet property="mobileNumberLbl" destination="fPs-ei-auX" id="i7E-ge-1Cq"/>
                         <outlet property="nameLbl" destination="2qH-EF-Zzn" id="Zn1-ie-E45"/>
                         <outlet property="profileImageView" destination="zcN-ta-n89" id="g4G-IP-2iJ"/>
+                        <outlet property="shareButtton" destination="hco-Ap-M3o" id="69J-rO-OoL"/>
+                        <outlet property="shareCredentailLabel" destination="Mrb-WM-M1q" id="q5d-wj-mNd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O1t-Zm-KZO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -8071,8 +8060,8 @@ dolor sit amet, consectetur..</string>
         <image name="leftVector" width="9.6666669845581055" height="17.666666030883789"/>
         <image name="nextRight" width="32" height="32"/>
         <image name="paperplane.fill" catalog="system" width="128" height="119"/>
-        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus" width="64" height="64"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plusAdd" width="14" height="14"/>
         <image name="previousLeft" width="32" height="32"/>
         <image name="search" width="20" height="20"/>
@@ -8097,7 +8086,7 @@ dolor sit amet, consectetur..</string>
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

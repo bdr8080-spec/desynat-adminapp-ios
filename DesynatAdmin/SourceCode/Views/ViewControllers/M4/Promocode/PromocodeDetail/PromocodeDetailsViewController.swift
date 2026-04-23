@@ -20,15 +20,20 @@ class PromocodeDetailsViewController: UIViewController {
     @IBOutlet weak var applicableForLabel: UILabel!
     @IBOutlet weak var startDateLabel: UILabel!
     @IBOutlet weak var endDateLabel: UILabel!
+    @IBOutlet weak var statusToggleButton: UIButton!
+    @IBOutlet weak var bottomstackView: UIStackView!
     
     // MARK: - Property Decalaration
     var promocodeDetails: PromocodeList?
     private lazy var viewModel = PromocodeDetailsViewModel(hostVC: self)
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         configData()
+        statusToggleButton.isUserInteractionEnabled = hasActionPermission
+        bottomstackView.isHidden = !hasActionPermission
     }
     
     // MARK: - Button's Action

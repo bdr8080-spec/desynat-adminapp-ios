@@ -14,6 +14,8 @@ class FAQTableViewCell: UITableViewCell {
     @IBOutlet weak var vectorImageView: UIImageView!
     @IBOutlet weak var descriptionView: CustomView!
     @IBOutlet weak var decsriptionLabel: UILabel!
+    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
     
     var onEditTapped: (() -> Void)?
     var onDeleteTapped: (() -> Void)?

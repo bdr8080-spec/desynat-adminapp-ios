@@ -24,6 +24,9 @@ class ShippingChargesAndTaxViewController: UIViewController {
             shippingTableView.registerCellFromNib(cellID: "ShippingFeesTableViewCell")
         }
     }
+    @IBOutlet weak var editCountryTaxButton: UIButton!
+    @IBOutlet weak var editDeafultDeliveryFeesButton: UIButton!
+    @IBOutlet weak var plusButtonOutlet: UIButton!
     
     // MARK: - Property Decalaration
     var countryId: Int? = 0
@@ -34,6 +37,7 @@ class ShippingChargesAndTaxViewController: UIViewController {
     private var itemsPerPage = 4
     var taxAmount: String? = ""
     var defaultTaxAmount: String? = ""
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
@@ -41,6 +45,9 @@ class ShippingChargesAndTaxViewController: UIViewController {
         populateCountryData()
         viewModel.getAllshippingTaxList()
         viewModel.getDefaultDeliveryFees()
+        editDeafultDeliveryFeesButton.isHidden = !hasActionPermission
+        editCountryTaxButton.isHidden = !hasActionPermission
+        plusButtonOutlet.isHidden = !hasActionPermission
     }
     
     // MARK: - Button's Action
@@ -200,7 +207,9 @@ extension ShippingChargesAndTaxViewController: UITableViewDelegate, UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShippingFeesTableViewCell", for: indexPath) as! ShippingFeesTableViewCell
         let data = currentPageData[indexPath.row]
         cell.configData(data: data)
-        
+        cell.editButton.isHidden = !hasActionPermission
+        cell.deleteButton.isHidden = !hasActionPermission
+        cell.statusButtonOutlet.isUserInteractionEnabled = hasActionPermission
         cell.onStatusToggle = { [weak self] in
             guard let self = self else { return }
             if let fullIndex = self.viewModel.shippingTaxDetails?.firstIndex(where: { $0.id == data.id }) {

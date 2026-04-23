@@ -12,6 +12,7 @@ let kLoggedInAccessToken        = "accessToken"
 let kAccessToken                = "accessToken"
 let kIsAppInstalled             = "isAppInstalled"
 let KSubAdminHasDashboardAccess = "isSubAdminHasDashboardAccess"
+let KHasActionDashboardAccess   = "isHasActionDashboardAccess"
 
 enum UserDefaultsKey : String {
     case deviceToken
@@ -85,6 +86,10 @@ extension UserDefaults {
         return self.bool(forKey: KSubAdminHasDashboardAccess)
     }
     
+    func isSubAdminHasActionDashboardAccess() -> Bool {
+        return self.bool(forKey: KHasActionDashboardAccess)
+    }
+    
     func setAccessToken(token: String) {
         self.set(token, forKey: kAccessToken)
         self.synchronize()
@@ -97,6 +102,11 @@ extension UserDefaults {
     
     func setSubAdminUserHasDashboardAccess(hasDashboardAccess: Bool) {
         self.set(hasDashboardAccess, forKey: KSubAdminHasDashboardAccess)
+        self.synchronize()
+    }
+    
+    func setSubAdminActionDashboardAccess(hasActionDashboardAccess: Bool) {
+        self.set(hasActionDashboardAccess, forKey: KHasActionDashboardAccess)
         self.synchronize()
     }
     

@@ -181,19 +181,17 @@ extension BannersManagementListViewController: UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BannersManagementListTableViewCell", for: indexPath) as! BannersManagementListTableViewCell
         if (self.viewModel.arraySellers.count > indexPath.row) {
-            cell.setData(self.viewModel.arraySellers[indexPath.row],for: type)
+            cell.setData(self.viewModel.arraySellers[indexPath.row],for: type, hasActionPermission: hasActionPermission)
         }
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         let vc = BannersManagementDetailsViewController
             .instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
-        
         vc.detailData = viewModel.arraySellers[indexPath.row]
         vc.type = type
-        
+        vc.hasActionPermission = hasActionPermission
         vc.onStatusUpdated = { [weak self] updatedBanner in
             guard let self = self else { return }
             

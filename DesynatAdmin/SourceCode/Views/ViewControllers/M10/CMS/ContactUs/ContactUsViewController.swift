@@ -19,6 +19,7 @@ class ContactUsViewController: UIViewController {
     // MARK: - Property Decalaration
     private lazy var viewModel = ContactUsViewModel(hostVC: self)
     var selectedUserType = 1
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
@@ -43,6 +44,7 @@ extension ContactUsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactUsTableViewCell", for: indexPath) as! ContactUsTableViewCell
+        cell.editButton.isHidden = !hasActionPermission
         switch indexPath.row {
         case 0:
             cell.titleLabel.text = "Support Email Address"

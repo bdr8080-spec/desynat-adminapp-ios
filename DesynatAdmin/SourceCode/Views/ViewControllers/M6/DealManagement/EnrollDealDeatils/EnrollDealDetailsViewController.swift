@@ -33,6 +33,7 @@ class EnrollDealDetailsViewController: UIViewController {
     var dealId: Int? = 0
     var sellerId: Int? = 0
     var appliedDealFilter = DealFilterModel()
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {

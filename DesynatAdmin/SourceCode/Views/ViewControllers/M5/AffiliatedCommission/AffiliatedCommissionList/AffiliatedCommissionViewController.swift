@@ -50,6 +50,7 @@ extension AffiliatedCommissionViewController: UITableViewDelegate, UITableViewDa
         let cell = tableView.dequeueReusableCell(withIdentifier: "AffiliatedCommissionTableViewCell", for: indexPath) as! AffiliatedCommissionTableViewCell
         let data = viewModel.commissionData[indexPath.row]
         cell.configData(data: data)
+        cell.editButton.isHidden = !hasActionPermission
         cell.onEditTap = { [weak self] in
             guard let self else { return }
             let nextVC = AffiliatedCommissionSetupViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)

@@ -28,6 +28,8 @@ class CMSTermsConditionViewController: UIViewController {
         }
     }
     @IBOutlet weak var cmsTF: BindableTextField!
+    @IBOutlet weak var englishEditButton: UIButton!
+    @IBOutlet weak var araicEditButton: UIButton!
     
     // MARK: - Property Decalaration
     private var cmsArray: [CmsArray] = [.termsAndCondition, .returnPolicy, .aboutUs, .cancellationPolicy, .exchangePolicy, .faqs, .contactUs]
@@ -58,6 +60,8 @@ class CMSTermsConditionViewController: UIViewController {
         tapGesture.cancelsTouchesInView = false
         tapGesture.delegate = self
         self.view.addGestureRecognizer(tapGesture)
+        englishEditButton.isHidden = !hasActionPermission
+        araicEditButton.isHidden = !hasActionPermission
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -245,9 +249,11 @@ extension CMSTermsConditionViewController: UITableViewDelegate, UITableViewDataS
         case .faqs:
             let nextVC = FAQViewController.instantiate(fromAppStoryboard: .NotificationCMS)
             nextVC.selectedUserType = selectedUserType
+            nextVC.hasActionPermission = hasActionPermission
             navigationController?.pushViewController(nextVC, animated: true)
         case .contactUs:
             let nextVC = ContactUsViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+            nextVC.hasActionPermission = hasActionPermission
             nextVC.selectedUserType = selectedUserType
             navigationController?.pushViewController(nextVC, animated: true)
         }

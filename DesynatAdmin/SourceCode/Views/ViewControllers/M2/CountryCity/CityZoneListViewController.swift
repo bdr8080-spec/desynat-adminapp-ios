@@ -17,14 +17,17 @@ class CityZoneListViewController: UIViewController {
             txtFielSearch.bind(callback: {self.viewModel.setSearch($0)})
         }
     }
+    @IBOutlet weak var plusButon: UIButton!
     
     // MARK: - Property Decalaration
     private var viewModel : ZoneViewModel = ZoneViewModel()
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpUi()
+        plusButon.isHidden = !hasActionPermission
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -70,6 +73,9 @@ extension CityZoneListViewController: UITableViewDelegate, UITableViewDataSource
             if viewModel.arrayZone.count > indexPath.row {
                 cell.setZone(viewModel.arrayZone[indexPath.row])
             }
+            cell.btnSwitch.isUserInteractionEnabled = hasActionPermission
+            cell.btnEdit.isHidden = !hasActionPermission
+            cell.btnDelete.isHidden = !hasActionPermission
             cell.selectionStyle = .none
             return cell
         }

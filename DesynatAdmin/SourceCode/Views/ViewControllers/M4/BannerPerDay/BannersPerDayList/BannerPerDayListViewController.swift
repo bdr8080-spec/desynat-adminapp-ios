@@ -106,6 +106,7 @@ extension BannerPerDayListViewController: UITableViewDelegate, UITableViewDataSo
         let cell = tableView.dequeueReusableCell(withIdentifier: "BannerPerDayListTableViewCell", for: indexPath) as! BannerPerDayListTableViewCell
         let data = viewModel.bannersListData[indexPath.row]
         cell.configData(data: data)
+        cell.editButton.isHidden = !hasActionPermission
         cell.onEditTap = { [weak self] in
             guard let self else { return }
             let nextVC = AddPricePerDayViewController.instantiate(fromAppStoryboard: .ShippingPromocode)

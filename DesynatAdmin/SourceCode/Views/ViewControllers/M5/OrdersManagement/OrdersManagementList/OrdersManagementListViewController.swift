@@ -182,13 +182,13 @@ extension OrdersManagementListViewController: UITableViewDelegate, UITableViewDa
                     cell.assignDriverView.isHidden = true
                     cell.assignDriverStackView.isHidden = true
                 } else {
-                    cell.assignDriverView.isHidden = false
-                    cell.assignDriverStackView.isHidden = false
+                    cell.assignDriverView.isHidden = !hasActionPermission
+                    cell.assignDriverStackView.isHidden = !hasActionPermission
                 }
             } else if order.deliveryStatus == "1" {
                 if order.rEApprove == "1" {
-                    cell.assignDriverView.isHidden = false
-                    cell.assignDriverStackView.isHidden = false
+                    cell.assignDriverView.isHidden = !hasActionPermission
+                    cell.assignDriverStackView.isHidden = !hasActionPermission
                     
                     if order.assignStatus == "1" {
                         cell.assignDriverView.isHidden = true
@@ -201,8 +201,8 @@ extension OrdersManagementListViewController: UITableViewDelegate, UITableViewDa
             }
         } else if order.deliveryStatus == "1" {
             if order.rEApprove == "1" {
-                cell.assignDriverView.isHidden = false
-                cell.assignDriverStackView.isHidden = false
+                cell.assignDriverView.isHidden = !hasActionPermission
+                cell.assignDriverStackView.isHidden = !hasActionPermission
                 
                 if order.assignStatus == "1" {
                     cell.assignDriverView.isHidden = true
@@ -231,6 +231,7 @@ extension OrdersManagementListViewController: UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let nextVC = OrderManagementDetailsViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
         nextVC.orderId = self.viewModel.orders[indexPath.row].id
+        nextVC.hasActionPermission = hasActionPermission
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     

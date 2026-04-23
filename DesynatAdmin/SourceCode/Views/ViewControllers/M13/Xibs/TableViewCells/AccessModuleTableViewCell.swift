@@ -11,7 +11,7 @@ class AccessModuleTableViewCell: UITableViewCell {
     
     @IBOutlet weak var radioimageView: UIImageView!
     @IBOutlet weak var titleView: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView!{
+    @IBOutlet weak var collectionView: UICollectionView! {
         didSet{
             collectionView.dataSource = self
             collectionView.delegate = self

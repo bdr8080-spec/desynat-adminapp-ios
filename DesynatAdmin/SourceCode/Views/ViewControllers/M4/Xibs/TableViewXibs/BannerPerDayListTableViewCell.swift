@@ -9,6 +9,7 @@ import UIKit
 
 class BannerPerDayListTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var countryNameLabel: UILabel!
     @IBOutlet weak var countryEmojiLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!

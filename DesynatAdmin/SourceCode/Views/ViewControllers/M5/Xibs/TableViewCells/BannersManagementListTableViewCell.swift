@@ -49,8 +49,7 @@ class BannersManagementListTableViewCell: UITableViewCell {
         
     }
     
-    func setData(_ data :BannerListInfo,for type: BannersSelectedListType) {
-        print("data====>\(data)")
+    func setData(_ data :BannerListInfo,for type: BannersSelectedListType, hasActionPermission: Bool) {
         self.data = data
         self.lblName.text = data.name
         self.lblCity.text = data.country
@@ -95,7 +94,7 @@ class BannersManagementListTableViewCell: UITableViewCell {
             self.lblStatus.text = "Rejected"
             
         }
-        hideAndShowDetails(for: type)
+        hideAndShowDetails(for: type, hasActionPermission: hasActionPermission)
     }
     
     @IBAction func rejectDidTapped(_ sender: Any) {
@@ -107,7 +106,7 @@ class BannersManagementListTableViewCell: UITableViewCell {
         self.data?.accceptBanner()
     }
     
-    func hideAndShowDetails(for type: BannersSelectedListType) {
+    func hideAndShowDetails(for type: BannersSelectedListType, hasActionPermission: Bool) {
         
         // Hide everything first (default state)
         [
@@ -126,7 +125,7 @@ class BannersManagementListTableViewCell: UITableViewCell {
         
         switch type {
         case .new:
-            acceptRejectstackView.isHidden = false
+            acceptRejectstackView.isHidden = !hasActionPermission
             totalAmountStackView.isHidden = false
             durationstackView.isHidden = false
             

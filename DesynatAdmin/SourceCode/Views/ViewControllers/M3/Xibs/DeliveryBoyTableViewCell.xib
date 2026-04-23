@@ -166,6 +166,7 @@
                                         <constraints>
                                             <constraint firstItem="hyN-AU-8X4" firstAttribute="top" secondItem="Bfq-cQ-Vmy" secondAttribute="top" id="9TT-JP-TTj"/>
                                             <constraint firstItem="hLe-1H-S6E" firstAttribute="centerX" secondItem="Bfq-cQ-Vmy" secondAttribute="centerX" id="eMN-D6-LoR"/>
+                                            <constraint firstAttribute="height" constant="38" id="gUU-2I-3nG"/>
                                             <constraint firstItem="hLe-1H-S6E" firstAttribute="centerY" secondItem="Bfq-cQ-Vmy" secondAttribute="centerY" id="jqs-k4-RKz"/>
                                             <constraint firstItem="hyN-AU-8X4" firstAttribute="leading" secondItem="Bfq-cQ-Vmy" secondAttribute="leading" id="m3T-TH-juL"/>
                                             <constraint firstAttribute="bottom" secondItem="hyN-AU-8X4" secondAttribute="bottom" id="tci-E2-sms"/>
@@ -207,13 +208,11 @@
                                             <constraint firstAttribute="bottom" secondItem="bDX-at-MYC" secondAttribute="bottom" id="anF-Op-nof"/>
                                             <constraint firstItem="3YA-M0-zgJ" firstAttribute="centerX" secondItem="j0j-LJ-Rtx" secondAttribute="centerX" id="gRB-na-LqW"/>
                                             <constraint firstItem="3YA-M0-zgJ" firstAttribute="centerY" secondItem="j0j-LJ-Rtx" secondAttribute="centerY" id="h5l-Kb-J4h"/>
+                                            <constraint firstAttribute="height" constant="38" id="tTk-RU-dkC"/>
                                             <constraint firstItem="bDX-at-MYC" firstAttribute="top" secondItem="j0j-LJ-Rtx" secondAttribute="top" id="uSK-rd-yHI"/>
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="PCN-p2-Tmi"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -261,8 +260,11 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="buttonStackView" destination="Rxj-Qx-1lk" id="xyS-O7-8sk"/>
                 <outlet property="deleteButtonOutlet" destination="hyN-AU-8X4" id="p1u-Gu-zYX"/>
+                <outlet property="deleteView" destination="Bfq-cQ-Vmy" id="Opm-aR-BpI"/>
                 <outlet property="editButtonOutlet" destination="bDX-at-MYC" id="c87-7s-d4i"/>
+                <outlet property="editView" destination="j0j-LJ-Rtx" id="4gt-Ky-dqY"/>
                 <outlet property="emailLabel" destination="6u1-qn-PT5" id="B7Q-h0-JHr"/>
                 <outlet property="joinedDateLabel" destination="7md-qG-yGz" id="z4s-Wb-Ncz"/>
                 <outlet property="mainImageView" destination="OiC-hD-uai" id="IuJ-tE-cej"/>

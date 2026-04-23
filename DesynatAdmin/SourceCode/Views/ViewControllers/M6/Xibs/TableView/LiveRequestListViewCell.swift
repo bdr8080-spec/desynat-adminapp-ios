@@ -9,6 +9,9 @@ import UIKit
 
 class LiveRequestListViewCell: UITableViewCell {
     
+    @IBOutlet weak var statusToggle: UIView!
+    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var toggleImageView: UIImageView!
     @IBOutlet weak var timeLabel: UILabel!
     
@@ -39,13 +42,16 @@ class LiveRequestListViewCell: UITableViewCell {
         onStatusToggle?()
     }
     
-    func configData(data: LiveRequestListDataModel) {
+    func configData(data: LiveRequestListDataModel, hasActionPermission: Bool) {
         timeLabel.text = "\(data.from ?? "") TO \(data.to ?? "")"
         if data.status == 1 {
             toggleImageView.image = UIImage(named: "toggleOn")
         } else {
             toggleImageView.image = UIImage(named: "toggleOff")
         }
+        editButton.isHidden = !hasActionPermission
+        deleteButton.isHidden = !hasActionPermission
+        statusToggle.isHidden = !hasActionPermission
     }
     
     

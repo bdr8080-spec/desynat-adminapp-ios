@@ -23,6 +23,7 @@ class SellersListTableViewCell: ResuableTableCell {
     @IBOutlet weak var stackActionButton: UIStackView!
     @IBOutlet weak var lblReason: UILabel!
     @IBOutlet weak var imgProfile: CustomImageView!
+    
     private var data : SellerListInfo?
     
     override func awakeFromNib() {
@@ -35,7 +36,6 @@ class SellersListTableViewCell: ResuableTableCell {
             self.btnReject.addGradientBorder(cornerRadius: 5,direction: .topToBottom,colors: [UIColor.init(hexString: "#DFBF8F"), UIColor.init(hexString: "#6E4527")])
             self.btnAccept.applyGradient(colours: [UIColor.init(hexString: "#DFBF8F"), UIColor.init(hexString: "#6E4527")],gradientDirection: .topToBottom,cornerRadius: 5)
         }
-
     }
 
     func setData(_ data:SellerListInfo, hasActionPermission: Bool) {
@@ -57,6 +57,8 @@ class SellersListTableViewCell: ResuableTableCell {
         if data.status == .new {
             if hasActionPermission {
                 self.stackActionButton.isHidden = false
+            }else {
+                self.stackActionButton.isHidden = true
             }
         } else {
             self.stackActionButton.isHidden = true

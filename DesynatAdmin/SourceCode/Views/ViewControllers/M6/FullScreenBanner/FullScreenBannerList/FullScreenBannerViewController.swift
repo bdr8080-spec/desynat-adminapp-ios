@@ -24,6 +24,7 @@ class FullScreenBannerViewController: UIViewController {
             bannerTableView.registerCellFromNib(cellID: "FullScreenBannerTableViewCell")
         }
     }
+    @IBOutlet weak var plusButton: UIButton!
     
     // MARK: - Property Decalaration
     private lazy var viewModel = FullScreenBannerViewModel(hostVC: self)
@@ -36,6 +37,7 @@ class FullScreenBannerViewController: UIViewController {
         super.viewDidLoad()
         searchTextField.delegate = self
         updatePaginationButtonImages()
+        plusButton.isHidden = !hasActionPermission
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -178,10 +180,12 @@ extension FullScreenBannerViewController: UITableViewDelegate, UITableViewDataSo
             let vc = FullScreenBanerDetailsViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
             vc.bannerId = viewModel.brandListData[indexPath.row].id ?? 0
             vc.bannerType = bannerType
+            vc.hasActionPermission = hasActionPermission
             self.navigationController?.pushViewController(vc, animated: false)
         case .promotional:
             let vc = PromotionalBannerDetaislViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
             vc.bannerId = viewModel.promotionalListData[indexPath.row].id ?? 0
+            vc.hasActionPermission = hasActionPermission
             self.navigationController?.pushViewController(vc, animated: false)
         }
     }

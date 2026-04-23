@@ -97,8 +97,8 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewModel.getUserData()
         viewModel.getCountOfNotificationRequest()
-        viewModel.getUserProfile()
     }
 
     // MARK: - Button's Action

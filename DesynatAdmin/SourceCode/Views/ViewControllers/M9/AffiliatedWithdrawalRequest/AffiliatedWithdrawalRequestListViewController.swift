@@ -139,7 +139,7 @@ extension AffiliatedWithdrawalRequestListViewController: UITableViewDataSource, 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AffiliatedWithdrawalTableViewCell", for: indexPath) as! AffiliatedWithdrawalTableViewCell
         let data = viewModel.affilitaitedUsersList[indexPath.row]
-        cell.configData(requestType: requestType, data: data)
+        cell.configData(requestType: requestType, data: data, hasActionPermission: hasActionPermission)
         cell.onAcceptTap = { [weak self] in
             let param: [String: Any] = ["req_id": data.id ?? 0,
                                         "transaction_id": data.id ?? 0,

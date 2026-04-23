@@ -15,16 +15,19 @@ class FAQViewController: UIViewController {
             listTableView.registerCellFromNib(cellID: "FAQTableViewCell")
         }
     }
+    @IBOutlet weak var plusButton: UIButton!
     
     // MARK: - Property Decalaration
     private var selecetdIndex = 0
     private lazy var viewModel = FAQViewModel(hostVC: self)
     var selectedUserType = 1
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.getFAQRequest()
+        plusButton.isHidden = !hasActionPermission
     }
     
     // MARK: - Button's Action
@@ -61,6 +64,8 @@ extension FAQViewController: UITableViewDelegate, UITableViewDataSource {
             cell.descriptionView.isHidden = true
             cell.vectorImageView.image = .downVector
         }
+        cell.editButton.isHidden = !hasActionPermission
+        cell.deleteButton.isHidden = !hasActionPermission
         let data = viewModel.faqListData?[indexPath.row]
         cell.configData(data: data, index: indexPath.row)
         cell.onEditTapped = { [weak self] in

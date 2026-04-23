@@ -170,7 +170,7 @@ extension AffiliatedUsersListViewController: UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AffiliatedUsersListTableViewCell", for: indexPath) as! AffiliatedUsersListTableViewCell
         let data = viewModel.affilitaitedUsersList[indexPath.row]
-        cell.configData(userType: userType, data: data)
+        cell.configData(userType: userType, data: data, hasActionPermission: hasActionPermission)
         cell.onAcceptAction = {
             let param: [String: Any] = ["user_id": data.id ?? 0]
             self.viewModel.AcceptUserRequest(param: param)
@@ -194,6 +194,7 @@ extension AffiliatedUsersListViewController: UITableViewDataSource, UITableViewD
         let vc = AffiliatedUserDetailsViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
         vc.userType = userType
         vc.userId = viewModel.affilitaitedUsersList[indexPath.row].id
+        vc.hasActionPermission = hasActionPermission
         self.navigationController?.pushViewController(vc, animated: false)
     }
     

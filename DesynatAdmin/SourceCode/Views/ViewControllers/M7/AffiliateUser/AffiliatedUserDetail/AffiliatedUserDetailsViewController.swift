@@ -44,11 +44,13 @@ class AffiliatedUserDetailsViewController: UIViewController {
     var userType: AffiliatedUsersListType = .newUsers
     private lazy var viewModel = AffiliatedUserDetailsViewModel(hostVC: self)
     var userId: Int? = 0
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         initailSetupUI()
+        statusToggleButton.isUserInteractionEnabled = hasActionPermission
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -95,7 +97,7 @@ class AffiliatedUserDetailsViewController: UIViewController {
         switch userType {
         case .newUsers:
             statusLabel.isHidden = false
-            buttonActionStackView.isHidden = false
+            buttonActionStackView.isHidden = !hasActionPermission
         case .approvedUsers:
             approvedStackView.isHidden = false
             toggleOnOffView.isHidden = false

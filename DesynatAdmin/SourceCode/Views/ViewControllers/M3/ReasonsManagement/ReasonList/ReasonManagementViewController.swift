@@ -29,6 +29,7 @@ class ReasonManagementViewController: UIViewController {
     @IBOutlet weak var exchnageLabel: UILabel!
     @IBOutlet weak var returnLabel: UILabel!
     @IBOutlet weak var cancelLabel: UILabel!
+    @IBOutlet weak var plusDidTapped: UIButton!
     
     // MARK: - Property Decalaration
     private lazy var viewModel = ReasonManagementViewModel(hostVC: self)
@@ -41,6 +42,7 @@ class ReasonManagementViewController: UIViewController {
         super.viewDidLoad()
         searchTextField.delegate = self
         updatePaginationButtonImages()
+        plusDidTapped.isHidden = !hasActionPermission
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -189,6 +191,9 @@ extension ReasonManagementViewController: UITableViewDelegate, UITableViewDataSo
             guard let self = self else { return }
             self.toggleReasonStatus(at: indexPath)
         }
+        cell.statusButtonOutlet.isUserInteractionEnabled = hasActionPermission
+        cell.deleteButtonOutlet.isHidden = !hasActionPermission
+        cell.editButtonOutlet.isHidden = !hasActionPermission
         return cell
     }
     

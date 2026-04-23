@@ -19,6 +19,7 @@ class DeliveryBoyViewController: UIViewController {
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var pageCountLabel: UILabel!
+    @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var searchTextField: UITextField!
     
     // MARK: - Property Decalaration
@@ -31,6 +32,7 @@ class DeliveryBoyViewController: UIViewController {
         super.viewDidLoad()
         searchTextField.delegate = self
         updatePaginationButtonImages()
+        plusButton.isHidden = !hasActionPermission
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -136,6 +138,10 @@ extension DeliveryBoyViewController: UITableViewDelegate, UITableViewDataSource 
             guard let self = self else { return }
             self.toggleReasonStatus(at: indexPath)
         }
+        cell.statusButtonOutlet.isUserInteractionEnabled = hasActionPermission
+        cell.buttonStackView.isHidden = !hasActionPermission
+        cell.deleteView.isHidden = !hasActionPermission
+        cell.editView.isHidden = !hasActionPermission
         return cell
     }
     
@@ -146,6 +152,7 @@ extension DeliveryBoyViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = DriverDetailsViewController.instantiate(fromAppStoryboard: .ReasonManagement)
         vc.userId = viewModel.boysListData[indexPath.row].id ?? 0
+        vc.hasActionPermission = hasActionPermission
         self.navigationController?.pushViewController(vc, animated: false)
     }
     

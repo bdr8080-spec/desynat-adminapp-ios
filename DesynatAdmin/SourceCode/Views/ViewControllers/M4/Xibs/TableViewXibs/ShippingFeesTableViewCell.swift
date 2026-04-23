@@ -9,6 +9,8 @@ import UIKit
 
 class ShippingFeesTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var statusButtonOutlet: UIButton!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!

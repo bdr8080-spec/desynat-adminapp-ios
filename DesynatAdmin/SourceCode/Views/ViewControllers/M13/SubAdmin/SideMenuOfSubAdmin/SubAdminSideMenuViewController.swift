@@ -105,7 +105,7 @@ extension SubAdminSideMenuViewController: UITableViewDelegate, UITableViewDataSo
             let vc = UserManagementViewController.instantiate(fromAppStoryboard: .ReasonManagement)
             vc.hasActionPermission = hasPermission
             self.navigationController?.pushViewController(vc, animated: false)
-        case "Sub Admin":
+        case "Sub Admin Management":
             let nextVC = SubAdminListViewController.instantiate(fromAppStoryboard: .NotificationCMS)
             nextVC.hasActionPermission = hasPermission
             self.navigationController?.pushViewController(nextVC, animated: false)
@@ -119,7 +119,7 @@ extension SubAdminSideMenuViewController: UITableViewDelegate, UITableViewDataSo
             let vc = DeliveryBoyViewController.instantiate(fromAppStoryboard: .ReasonManagement)
             vc.hasActionPermission = hasPermission
             self.navigationController?.pushViewController(vc, animated: false)
-        case "Live Request  & Timeslot Management":
+        case "Live Request & Timeslot Management":
             let nextVC = LiveRequestListManagementViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
             nextVC.hasActionPermission = hasPermission
             self.navigationController?.pushViewController(nextVC, animated: false)
@@ -127,21 +127,21 @@ extension SubAdminSideMenuViewController: UITableViewDelegate, UITableViewDataSo
             let vc = GiftCardsListViewController.instantiate(fromAppStoryboard: .ShippingPromocode)
             vc.hasActionPermission = hasPermission
             self.navigationController?.pushViewController(vc, animated: false)
-        case "Orders Management":
+        case "Order Management":
             let nextVC = OrdersManagementListViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
             nextVC.hasActionPermission = hasPermission
             self.navigationController?.pushViewController(nextVC, animated: true)
-        case "Country , City & Zone Management":
+        case "Country, City & Zone Management":
             self.navigate(to: CountryCityListViewController.viewFromNIB, hasPermission: hasPermission)
-        case "Delivery charges & Tax Management":
+        case "Delivery Charges & Tax Management":
             let vc = ShippingChargesListViewController.instantiate(fromAppStoryboard: .ShippingPromocode)
             vc.hasActionPermission = hasPermission
             self.navigationController?.pushViewController(vc, animated: false)
-        case "Promocode Management":
+        case "Promo Code Management":
             let vc = PromodeListViewController.instantiate(fromAppStoryboard: .ShippingPromocode)
             vc.hasActionPermission = hasPermission
             self.navigationController?.pushViewController(vc, animated: false)
-        case "Affiliate Commission percentage":
+        case "Affiliate Commission Management":
             let nextVC = AffiliatedCommissionViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
             nextVC.hasActionPermission = hasPermission
             self.navigationController?.pushViewController(nextVC, animated: false)
@@ -149,11 +149,11 @@ extension SubAdminSideMenuViewController: UITableViewDelegate, UITableViewDataSo
             let vc = RefundManagementViewController.instantiate(fromAppStoryboard: .NotificationCMS)
             vc.hasActionPermission = hasPermission
             self.navigationController?.pushViewController(vc, animated: false)
-        case "Affiliate withdrawal requests":
+        case "Affiliate User Withdraw Request Management":
             let nextVC = AffiliatedWithdrawalRequestListViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
             nextVC.hasActionPermission = hasPermission
             self.navigationController?.pushViewController(nextVC, animated: true)
-        case "Notifications Management":
+        case "Notification Management":
             let nextVC = NotificationsListViewController.instantiate(fromAppStoryboard: .NotificationCMS)
             nextVC.hasActionPermission = hasPermission
             self.navigationController?.pushViewController(nextVC, animated: true)
@@ -169,15 +169,15 @@ extension SubAdminSideMenuViewController: UITableViewDelegate, UITableViewDataSo
             let nextVC = SellerPayoutListViewController.instantiate(fromAppStoryboard: .NotificationCMS)
             nextVC.hasActionPermission = hasPermission
             self.navigationController?.pushViewController(nextVC, animated: true)
-        case "Deals Management":
+        case "Deal Management":
             let nextVC = DealsManagementListViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
             nextVC.hasActionPermission = hasPermission
             self.navigationController?.pushViewController(nextVC, animated: true)
-        case "Banner per day price":
+        case "Banner Per Day Price Management":
             let vc = BannerPerDayListViewController.instantiate(fromAppStoryboard: .ShippingPromocode)
             vc.hasActionPermission = hasPermission
             self.navigationController?.pushViewController(vc, animated: false)
-        case "Banner requests Management":
+        case "Banner Request Management":
             let vc = BannersManagementListViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
             vc.hasActionPermission = hasPermission
             self.navigationController?.pushViewController(vc, animated: false)
@@ -189,7 +189,7 @@ extension SubAdminSideMenuViewController: UITableViewDelegate, UITableViewDataSo
             let vc = ReasonManagementViewController.instantiate(fromAppStoryboard: .ReasonManagement)
             vc.hasActionPermission = hasPermission
             self.navigationController?.pushViewController(vc, animated: false)
-        case "CMS":
+        case "CMS Management":
             let nextVC = CMSTermsConditionViewController.instantiate(fromAppStoryboard: .NotificationCMS)
             nextVC.hasActionPermission = hasPermission
             self.navigationController?.pushViewController(nextVC, animated: true)

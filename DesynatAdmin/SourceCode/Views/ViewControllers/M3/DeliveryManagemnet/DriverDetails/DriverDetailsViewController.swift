@@ -31,15 +31,17 @@ class DriverDetailsViewController: UIViewController {
     @IBOutlet weak var pollutionPaperImageView: CustomImageView!
     @IBOutlet weak var registrationCertificationFrontImagViw: CustomImageView!
     @IBOutlet weak var registrationCertificationBackImagViw: CustomImageView!
+    @IBOutlet weak var bottomButttonStackView: UIStackView!
     
     // MARK: - Property Decalaration
     private lazy var viewModel = DriverDetailsViewModel(hostVC: self)
     var userId: Int = 0
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        bottomButttonStackView.isHidden = !hasActionPermission
     }
     
     override func viewWillAppear(_ animated: Bool) {

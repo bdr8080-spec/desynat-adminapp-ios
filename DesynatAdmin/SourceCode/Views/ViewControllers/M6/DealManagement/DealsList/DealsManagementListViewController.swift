@@ -24,6 +24,7 @@ class DealsManagementListViewController: UIViewController {
             dealsTableview.registerCellFromNib(cellID: "DealsManagementListTableViewCell")
         }
     }
+    @IBOutlet weak var plusButton: UIButton!
     
     // MARK: - Property Decalaration
     var type: Int = 1
@@ -36,6 +37,7 @@ class DealsManagementListViewController: UIViewController {
         super.viewDidLoad()
         searchTF.delegate = self
         updatePaginationButtonImages()
+        plusButton.isHidden = !hasActionPermission
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -136,6 +138,7 @@ extension DealsManagementListViewController: UITableViewDelegate, UITableViewDat
         let nextVC = DealDetailsViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
         nextVC.type = type
         nextVC.dealId = viewModel.reasonListData[indexPath.row].id ?? 0
+        nextVC.hasActionPermission = hasActionPermission
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     

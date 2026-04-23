@@ -21,6 +21,7 @@ class FullScreenBanerDetailsViewController: UIViewController {
     @IBOutlet weak var endDateLabel: UILabel!
     @IBOutlet weak var startDateLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var botttomActionStackView: UIStackView!
     
     // MARK: - Property Decalaration
     var bannerId: Int = 0
@@ -28,12 +29,14 @@ class FullScreenBanerDetailsViewController: UIViewController {
     var bannerListData: GetPromotionalBannersList?
     private lazy var viewModel = FullScreenBannerDetailsViewModel(hostVC: self)
     var bannerType: BannerMangementType = .fullScreen
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         typeTitleLabel.text = "Type"
         viewModel.getFullScreenBannerDetailsList()
+        botttomActionStackView.isHidden = !hasActionPermission
         
     }
     

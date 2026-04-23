@@ -27,6 +27,10 @@ class StaffDetailsViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var shareButtton: UIButton!
+    @IBOutlet weak var shareCredentailLabel: UILabel!
+    @IBOutlet weak var buttonActionStackView: UIStackView!
+    
     // MARK: - Variable
     private lazy var viewModel = StaffDetailsViewModel(hostVC: self)
     var isActive: Bool = false
@@ -35,9 +39,14 @@ class StaffDetailsViewController: UIViewController {
     var selectedRow: Int?
     var moduleSelctedData: [ModulSelctedData] = []
     var staffID: Int? = 0
+    var hasActionPermission: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        shareButtton.isHidden = !hasActionPermission
+        shareCredentailLabel.isHidden = !hasActionPermission
+        buttonActionStackView.isHidden = !hasActionPermission
+        activeStatusbtn.isUserInteractionEnabled = hasActionPermission
     }
     
     override func viewWillAppear(_ animated: Bool) {

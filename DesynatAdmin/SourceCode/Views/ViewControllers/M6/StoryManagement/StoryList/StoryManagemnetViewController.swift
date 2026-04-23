@@ -50,87 +50,137 @@ class StoryManagemnetViewController: UIViewController {
 // MARK: - COLLECTION VIEW METHODS
 extension StoryManagemnetViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    //    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    //        return viewModel.storiesList.count + 1
+    //    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.storiesList.count + 1
+        return hasActionPermission ? viewModel.storiesList.count + 1 : viewModel.storiesList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.row == 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StoryUploadCollectionViewCell", for: indexPath) as! StoryUploadCollectionViewCell
-            return cell
-        } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StoryManagemnetCollectionViewCell", for: indexPath) as! StoryManagemnetCollectionViewCell
-            let story = viewModel.storiesList[indexPath.item - 1]
-            cell.configData(data: story)
-            cell.onDeleteToggle = {
-                self.showConfirmationAlert(msg: "Are you sure you want to delete this story?") { [weak self] in
-                    guard let self = self else { return }
-                    let param: [String: Any] = ["story_id": story.id ?? ""]
-                    viewModel.deleteAdminStories(param: param)
-                }
-            }
+        
+        // Show upload cell only if permission is true
+        if hasActionPermission && indexPath.row == 0 {
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: "StoryUploadCollectionViewCell",
+                for: indexPath
+            ) as! StoryUploadCollectionViewCell
             return cell
         }
         
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: "StoryManagemnetCollectionViewCell",
+            for: indexPath
+        ) as! StoryManagemnetCollectionViewCell
+        
+        let storyIndex = hasActionPermission ? indexPath.item - 1 : indexPath.item
+        let story = viewModel.storiesList[storyIndex]
+        cell.deleteButton.isHidden = !hasActionPermission
+        cell.configData(data: story)
+        
+        cell.onDeleteToggle = { [weak self] in
+            guard let self = self else { return }
+            
+            self.showConfirmationAlert(msg: "Are you sure you want to delete this story?") {
+                let param: [String: Any] = ["story_id": story.id ?? ""]
+                self.viewModel.deleteAdminStories(param: param)
+            }
+        }
+        
+        return cell
     }
     
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        if indexPath.row == 0 {
-//            let nextVC = AddStoryViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
-//            self.navigationController?.pushViewController(nextVC, animated: true)
-//        } else {
-//            let media = viewModel.storiesList[indexPath.item - 1]
-//            guard let fileURLString = media.file,
-//                  let encodedURLString = fileURLString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-//                  let url = URL(string: encodedURLString) else { return }
-//            
-//            if let type = url.pathExtension.lowercased(), ["mp4", "mov", "m4v"].contains(type)  {
-//                player = AVPlayer(url: url) // retain player
-//                let playerVC = AVPlayerViewController()
-//                playerVC.player = player
-//                self.present(playerVC, animated: true) {
-//                    self.player?.play()
-//                }
-//            }
-//        }
-//    }
-    
-//    var player: AVPlayer?   // ✅ IMPORTANT (class level)
-
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if indexPath.row == 0 {
+        // Upload cell click
+        if hasActionPermission && indexPath.row == 0 {
             let nextVC = AddStoryViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
             self.navigationController?.pushViewController(nextVC, animated: true)
-        } else {
+            return
+        }
+        
+        let storyIndex = hasActionPermission ? indexPath.item - 1 : indexPath.item
+        let media = viewModel.storiesList[storyIndex]
+        
+        guard let fileURLString = media.file,
+              let url = URL(string: fileURLString) else { return }
+        
+        let ext = url.pathExtension.lowercased()
+        
+        if ["mp4", "mov", "m4v"].contains(ext) {
             
-            let media = viewModel.storiesList[indexPath.item - 1]
+            do {
+                try AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback)
+                try AVAudioSession.sharedInstance().setActive(true)
+            } catch {
+                print(error)
+            }
             
-            guard let fileURLString = media.file,
-                  let url = URL(string: fileURLString) else { return }
+            player = AVPlayer(url: url)
+            let playerVC = AVPlayerViewController()
+            playerVC.player = player
             
-            // ✅ Detect video properly
-            let ext = url.pathExtension.lowercased()
-            
-            if ["mp4", "mov", "m4v"].contains(ext) {
-                
-                do {
-                    try AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback)
-                    try AVAudioSession.sharedInstance().setActive(true)
-                } catch {
-                    print("Audio session error:", error)
-                }
-                
-                player = AVPlayer(url: url)
-                let playerVC = AVPlayerViewController()
-                playerVC.player = player
-                
-                self.present(playerVC, animated: true) {
-                    self.player?.play()
-                }
+            self.present(playerVC, animated: true) {
+                self.player?.play()
             }
         }
     }
+    
+    //    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    //        if indexPath.row == 0 {
+    //            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StoryUploadCollectionViewCell", for: indexPath) as! StoryUploadCollectionViewCell
+    //            return cell
+    //        } else {
+    //            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StoryManagemnetCollectionViewCell", for: indexPath) as! StoryManagemnetCollectionViewCell
+    //            let story = viewModel.storiesList[indexPath.item - 1]
+    //            cell.configData(data: story)
+    //            cell.onDeleteToggle = {
+    //                self.showConfirmationAlert(msg: "Are you sure you want to delete this story?") { [weak self] in
+    //                    guard let self = self else { return }
+    //                    let param: [String: Any] = ["story_id": story.id ?? ""]
+    //                    viewModel.deleteAdminStories(param: param)
+    //                }
+    //            }
+    //            return cell
+    //        }
+    //
+    //    }
+    
+    //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    //
+    //        if indexPath.row == 0 {
+    //            let nextVC = AddStoryViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
+    //            self.navigationController?.pushViewController(nextVC, animated: true)
+    //        } else {
+    //
+    //            let media = viewModel.storiesList[indexPath.item - 1]
+    //
+    //            guard let fileURLString = media.file,
+    //                  let url = URL(string: fileURLString) else { return }
+    //
+    //            // ✅ Detect video properly
+    //            let ext = url.pathExtension.lowercased()
+    //
+    //            if ["mp4", "mov", "m4v"].contains(ext) {
+    //
+    //                do {
+    //                    try AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback)
+    //                    try AVAudioSession.sharedInstance().setActive(true)
+    //                } catch {
+    //                    print("Audio session error:", error)
+    //                }
+    //
+    //                player = AVPlayer(url: url)
+    //                let playerVC = AVPlayerViewController()
+    //                playerVC.player = player
+    //
+    //                self.present(playerVC, animated: true) {
+    //                    self.player?.play()
+    //                }
+    //            }
+    //        }
+    //    }
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
