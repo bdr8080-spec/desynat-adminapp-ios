@@ -16,6 +16,7 @@ class SubscriptionPlanListViewController: UIViewController {
     @IBOutlet weak var tblCountry: TableViewDynamicHeight!
     @IBOutlet weak var lnlFlag: CustomLabelFont!
     @IBOutlet weak var tblPlans: UITableView!
+    @IBOutlet weak var plusButton: UIButton!
     
     // MARK: - Property Decalaration
     private var viewModel : SubscriptionPlanViewModel = SubscriptionPlanViewModel()
@@ -25,6 +26,7 @@ class SubscriptionPlanListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpUi()
+        plusButton.isHidden = !kSharedUserDefaults.isSubAdminHasActionDashboardAccess()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -114,6 +116,7 @@ extension SubscriptionPlanListViewController: UITableViewDelegate, UITableViewDa
             if (self.viewModel.arrayPlans.count > indexPath.row) {
                 let vc = SubscriptionDetailViewController.viewFromNIB
                 vc.setVM(SubscriptionDetailViewModel(data: viewModel.arrayPlans[indexPath.row]))
+                vc.hasActionPermission = kSharedUserDefaults.isSubAdminHasActionDashboardAccess()
                 self.navigate(to: vc)
             }
         case tblCountry:

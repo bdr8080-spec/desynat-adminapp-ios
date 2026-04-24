@@ -79,6 +79,7 @@ class HomeViewModel {
     func getAdminProfile(){
         WebService.sharedInstance.getProfileService { [weak self] savedUser in
             guard let self else { return }
+            kSharedUserDefaults.setSubAdminActionDashboardAccess(hasActionDashboardAccess: true)
             if let imageUrlString = savedUser.profileImage,
                let url = URL(string: imageUrlString) {
                 hostVC.userProfileImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray

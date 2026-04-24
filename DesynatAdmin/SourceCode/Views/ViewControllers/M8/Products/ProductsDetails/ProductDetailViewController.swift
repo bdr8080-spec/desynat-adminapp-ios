@@ -88,11 +88,12 @@ class ProductDetailViewController: UIViewController {
     var productVariants: [ProductVariant] = []
     var coloursList: [Color] = []
     var sizesList: [Color] = []
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        statusButton.isUserInteractionEnabled = hasActionPermission
     }
     
     override func viewWillAppear(_ animated: Bool) {

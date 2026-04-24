@@ -20,6 +20,7 @@ class ProductsViewController: UIViewController {
     
     // MARK: - Property Decalaration
     private lazy var viewModel = ProductsViewModel(hostVC: self)
+//    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
@@ -30,6 +31,7 @@ class ProductsViewController: UIViewController {
         viewModel.getBrandListApi()
         
 //        if kSharedUserDefaults.isSubAdminHasActionDashboardAccess() {
+//            hasActionPermission = true
 //        }
     }
     
@@ -111,6 +113,7 @@ extension ProductsViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductManagementTableViewCell", for: indexPath) as! ProductManagementTableViewCell
         let product = viewModel.productsListData[indexPath.row]
         cell.configData(data: product)
+        cell.statusButton.isUserInteractionEnabled = kSharedUserDefaults.isSubAdminHasActionDashboardAccess()
         cell.onStatusToggle = { [weak self] in
             self?.toggleStatus(at: indexPath.row)
         }
@@ -120,6 +123,7 @@ extension ProductsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let nextVC = ProductDetailViewController.instantiate(fromAppStoryboard: .Home)
         nextVC.productId = viewModel.productsListData[indexPath.row].id ?? 0
+        nextVC.hasActionPermission = kSharedUserDefaults.isSubAdminHasActionDashboardAccess()
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     

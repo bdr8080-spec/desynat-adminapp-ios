@@ -61,6 +61,7 @@ class LoginViewModel: NSObject {
             if response.type == "2" {
                 self.getStaffDetails(userId: response.id ?? 0)
             } else {
+                kSharedUserDefaults.setSubAdminActionDashboardAccess(hasActionDashboardAccess: true)
                 kSharedSceneDelegate.navigateToUserHomeVc()
             }
         }

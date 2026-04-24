@@ -18,15 +18,19 @@ class SubscriptionDetailViewController: UIViewController {
     @IBOutlet weak var viewPlanTitleBack: CustomView!
     @IBOutlet weak var lblPrice: CustomLabelFont!
     @IBOutlet weak var lblPlanName: CustomLabelFont!
+    @IBOutlet weak var bottomStackView: UIView!
     
     // MARK: - Property Decalaration
     private var viewModel : SubscriptionDetailViewModel?
+    var hasActionPermission: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewMain.isHidden = true
         self.setUpUi()
+        btnSwitch.isUserInteractionEnabled = hasActionPermission
+        bottomStackView.isHidden = !hasActionPermission
     }
     
     override func viewDidAppear(_ animated: Bool) {
