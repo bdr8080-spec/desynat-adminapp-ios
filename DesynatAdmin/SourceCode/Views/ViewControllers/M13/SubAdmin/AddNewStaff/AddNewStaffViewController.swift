@@ -36,6 +36,7 @@ class AddNewStaffViewController: UIViewController {
     @IBOutlet weak var fullNameInArabicTF: UITextField!
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var mobileTF: UITextField!
+    @IBOutlet weak var selcetdCountryLabel: CustomLabelFont!
     
     // MARK: - Variable
 //    var selectedRoleIndex: Int = -1
@@ -43,7 +44,7 @@ class AddNewStaffViewController: UIViewController {
     private lazy var viewModel = AddNewStaffViewModel(hostVC: self)
     var selectedImageUrl: String = ""
     var countryCode: String = "+965"
-    var countryID: Int = 1
+    var countryID: Int = -1
     var comingReason: comingFrom = .addNewStaff
 //    let roles = ["Manager", "Officer", "Sales employee"]
     var selectedRow: Int?
@@ -133,6 +134,19 @@ class AddNewStaffViewController: UIViewController {
             let selectedCountry = self.viewModel.countryListData[index]
             self.countryCodeTF.text = selectedCountry.dialCode
             self.countryCode = selectedCountry.dialCode ?? "+965"
+        }
+    }
+    
+    @IBAction func chosseCountrydidTapped(_ sender: UIButton) {
+        let countryNames = viewModel.countryListData.map { country -> String in
+            let name = country.name ?? ""
+            let dialCode = country.dialCode ?? ""
+            let flag = country.flag ?? "🇰🇼"
+            return "\(flag)  \(name) (\(dialCode))"
+        }
+        kSharedAppDelegate.dropDown(dataSource: countryNames, anchorView: sender) { index, item in
+            let selectedCountry = self.viewModel.countryListData[index]
+            self.selcetdCountryLabel.text = selectedCountry.name
             self.countryID = selectedCountry.id ?? 1
         }
     }
@@ -170,65 +184,6 @@ class AddNewStaffViewController: UIViewController {
         }
     }
     
-//    func configData() {
-//        guard let data = staffDetails else { return }
-//
-//        // MARK: Profile
-//        if let imageUrlString = data.profilePic,
-//           let url = URL(string: imageUrlString) {
-//            selectedImageUrl = imageUrlString
-//            userProfileImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
-//            userProfileImageView.sd_imageIndicator?.startAnimatingIndicator()
-//            userProfileImageView.sd_setImage(with: url, placeholderImage: .userProfile)
-//        } else {
-//            userProfileImageView.image = .userProfile
-//        }
-//
-//        // MARK: Basic Data
-//        fullNameInEnglishTF.text = data.fullName
-//        fullNameInArabicTF.text = data.fullNameInArabic
-//        emailTF.text = data.email
-//        mobileTF.text = data.mobile
-//
-//        countryID = Int(data.countryID ?? "1") ?? 1
-//        countryCode = data.countryCode ?? "+965"
-//        countryCodeTF.text = data.countryCode ?? "+965"
-//
-//        passwordTxtField.text = data.unhashedPassword
-//        confirmPasswortTxtField.text = data.unhashedPassword
-//
-//        // MARK: Role
-////        if let role = data.selectedRole {
-////            selectedRoleIndex = role - 1
-////            roleSelectionCollectionView.reloadData()
-////        }
-//
-//        // MARK: Selected Modules Only
-//        moduleSelctedData.removeAll()
-//
-//        if let permissions = data.permissionDetails {
-//            for permission in permissions {
-//                let moduleId = permission.moduleID ?? 0
-//
-//                // match with all modules api list
-//                if viewModel.adminModulesListData.contains(where: { $0.id == moduleId }) {
-//                    let obj = ModulSelctedData(
-//                        moduleId: moduleId,
-//                        viewSelcted: permission.canView ?? 0,
-//                        actionIsSelected: permission.canAction ?? 0
-//                    )
-//                    moduleSelctedData.append(obj)
-//                }
-//            }
-//        }
-//
-//        accessModuleTableView.reloadData()
-//
-//        DispatchQueue.main.async {
-//            self.tableViewHeightConstraint.constant = self.accessModuleTableView.contentSize.height
-//        }
-//    }
-    
     func configData() {
         guard let data = staffDetails else { return }
 
@@ -252,7 +207,7 @@ class AddNewStaffViewController: UIViewController {
         countryID = Int(data.countryID ?? "1") ?? 1
         countryCode = data.countryCode ?? "+965"
         countryCodeTF.text = data.countryCode ?? "+965"
-
+        selcetdCountryLabel.text = data.countryInfo?.name
         passwordTxtField.text = data.unhashedPassword
         confirmPasswortTxtField.text = data.unhashedPassword
 
@@ -271,7 +226,6 @@ class AddNewStaffViewController: UIViewController {
                         actionIsSelected: permission.canAction ?? 0
                     )
                     moduleSelctedData.append(obj)
-                    print("moduleSelctedData====>\(moduleSelctedData)")
                 }
             }
         }
@@ -285,64 +239,12 @@ class AddNewStaffViewController: UIViewController {
     
 }
 
-//extension AddNewStaffViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,UICollectionViewDelegate {
-//    
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return roles.count
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RadioBtnCollectionViewCell", for: indexPath) as! RadioBtnCollectionViewCell
-//        cell.titleLbl.text = roles[indexPath.row]
-//        let isSelected = selectedRoleIndex == indexPath.row
-//        cell.updateSelectionState(isSelected: isSelected)
-//        return cell
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView,
-//                        layout collectionViewLayout: UICollectionViewLayout,
-//                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let text = roles[indexPath.row]
-//        let font = UIFont(name: "Poppins-Medium", size: 14) ?? UIFont.systemFont(ofSize: 14)
-//        let width = (text as NSString).size(withAttributes: [.font: font]).width
-//        return CGSize(width: width + 16, height: 24)
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        selectedRoleIndex = indexPath.row
-//        roleSelectionCollectionView.reloadData()
-//        print("Selected role: \(roles[indexPath.row])")
-//    }
-//    
-//}
+
 extension AddNewStaffViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.adminModulesListData.count
     }
-
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "AccessModuleTableViewCell",for: indexPath) as! AccessModuleTableViewCell
-//        let moduleId = indexPath.row + 1
-//        cell.titleView.text = viewModel.adminModulesListData[indexPath.row].displayName
-//        cell.moduleId = moduleId
-//        cell.viewSelected = false
-//        cell.actionSelected = false
-//        cell.isRowSelected = false
-//        cell.radioimageView.image = .radioUnselected
-//        if let data = moduleSelctedData.first(where: { $0.moduleId == moduleId }) {
-//            cell.isRowSelected = true
-//            cell.viewSelected = data.viewSelcted == 1
-//            cell.actionSelected = data.actionIsSelected == 1
-//            cell.radioimageView.image = .radioSelected
-//        }
-//        cell.selectionUpdated = { [weak self] moduleId, view, action in
-//            self?.updateSelection(moduleId: moduleId,viewSelected: view,actionSelected: action)
-//        }
-//        cell.collectionView.reloadData()
-//        cell.collectionView.layoutIfNeeded()
-//        return cell
-//    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AccessModuleTableViewCell", for: indexPath) as! AccessModuleTableViewCell
@@ -389,20 +291,7 @@ extension AddNewStaffViewController: UITableViewDataSource, UITableViewDelegate 
         }
         
         tableView.reloadRows(at: [indexPath], with: .none)
-        print("moduleSelctedData => \(moduleSelctedData)")
     }
-    
-//    func tableView(_ tableView: UITableView,didSelectRowAt indexPath: IndexPath) {
-//        let moduleId = viewModel.adminModulesListData[indexPath.row].id ?? 0
-//        if let index = moduleSelctedData.firstIndex(where: { $0.moduleId == moduleId }) {
-//            moduleSelctedData.remove(at: index)
-//        } else {
-//            let obj = ModulSelctedData(moduleId: moduleId,viewSelcted: 1,actionIsSelected: 0)
-//            moduleSelctedData.append(obj)
-//        }
-//        tableView.reloadRows(at: [indexPath], with: .none)
-//        print("moduleSelctedData => \(moduleSelctedData)")
-//    }
     
     func updateSelection(moduleId: Int, viewSelected: Bool, actionSelected: Bool) {
         if let index = moduleSelctedData.firstIndex(where: { $0.moduleId == moduleId }) {

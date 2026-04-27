@@ -52,19 +52,46 @@ class RefundManagementTableViewCell: UITableViewCell {
             transactionstackView.isHidden = false
         }
         transactionId.text = "#\(last7TransactionID)"
-        orderedOnLbael.text = CommonUtils.getDateStrings(
-            from: Date(iso8601String: String.getString(data?.order?.createdAt ?? "")),
-            format: "dd/MM/yyyy 'at' hh:mm a"
+//        orderedOnLbael.text = CommonUtils.getDateStrings(
+//            from: Date(iso8601String: String.getString(data?.order?.createdAt ?? "")),
+//            format: "dd/MM/yyyy 'at' hh:mm a"
+//        )
+        
+        let orderedOn = CommonUtils.customizeChangeDateFormatZone(
+            inputDate: data?.order?.createdAt ?? "",
+            inputFormat: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            outputFormat: "dd/MM/yyyy 'at' hh:mm a"
         )
-        cancelledReturnedOnDateLabel.text = CommonUtils.getDateStrings(
-            from: Date(iso8601String: String.getString(data?.updatedAt ?? "")),
-            format: "dd/MM/yyyy 'at' hh:mm a"
+        orderedOnLbael.text = orderedOn
+        
+//        cancelledReturnedOnDateLabel.text = CommonUtils.getDateStrings(
+//            from: Date(iso8601String: String.getString(data?.updatedAt ?? "")),
+//            format: "dd/MM/yyyy 'at' hh:mm a"
+//        )
+        let cancelledReturnedDate = CommonUtils.customizeChangeDateFormatZone(
+            inputDate: data?.updatedAt ?? "",
+            inputFormat: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            outputFormat: "dd/MM/yyyy 'at' hh:mm a"
         )
+        cancelledReturnedOnDateLabel.text = cancelledReturnedDate
         totalAmountLabel.text = CommonUtils.formatPriceStringInput(data?.order?.totalAmount)
         sellerNameLabel.text = "\(data?.productDetails?.sellerDetails?.firstName ?? "") \(data?.productDetails?.sellerDetails?.lastName ?? "")"
         countryNameLabel.text = data?.productDetails?.store?.countryInfo?.name
         rejectedReasonLabel.text = data?.cancelReason ?? data?.returnReason ?? data?.exchangeReason ?? ""
         statusLabel.text = "Pending"
+    }
+    
+    private func convertISOToDMY(_ isoString: String) -> String? {
+        let isoFormatter = ISO8601DateFormatter()
+        isoFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        guard let date = isoFormatter.date(from: isoString) else {
+            return nil
+        }
+        let outputFormatter = DateFormatter()
+        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        outputFormatter.timeZone = TimeZone.current   // ✅ LOCAL TIME
+        outputFormatter.dateFormat = "dd/MM/yyyy"
+        return outputFormatter.string(from: date)
     }
     
 }

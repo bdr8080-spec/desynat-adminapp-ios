@@ -119,6 +119,34 @@ class CommonUtils {
         label.attributedText = attributeString
     }
     
+    static func customizeChangeDateFormatZone(
+        inputDate: String,
+        inputFormat: String = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+        outputFormat: String = "hh:mm a"
+    ) -> String {
+        
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = inputFormat
+        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        // ✅ Server timezone (Kuwait)
+        inputFormatter.timeZone = TimeZone(identifier: "Asia/Kuwait")
+        
+        guard let date = inputFormatter.date(from: inputDate) else {
+            print("❌ Parse failed: \(inputDate)")
+            return ""
+        }
+        
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = outputFormat
+        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        // ✅ Local timezone
+        outputFormatter.timeZone = TimeZone.current
+        
+        return outputFormatter.string(from: date)
+    }
+    
     
     static func formatPriceStringInput(_ amount: String?, currency: String = "KD") -> String {
         guard

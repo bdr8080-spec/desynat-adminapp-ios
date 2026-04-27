@@ -55,7 +55,6 @@ class StaffDetailsViewController: UIViewController {
     }
     
     // MARK: - Navigation
-    
     @IBAction func backBtnTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -119,6 +118,9 @@ class StaffDetailsViewController: UIViewController {
         emailLbl.text = data.email
         countryLabel.text = data.countryInfo?.name
         accessModuleTableView.reloadData()
+        isActiveLbl.text = data.status == "1" ? "Active" : "Inactive"
+        isActiveLbl.textColor = data.status == "1" ? UIColor(hex: "1A900D") : UIColor(hex: "E80B26")
+        activeStatusbtn.setImage(UIImage(named: data.status == "1" ? "toggleOn" : "toggleOff"), for: .normal)
     }
     
 }

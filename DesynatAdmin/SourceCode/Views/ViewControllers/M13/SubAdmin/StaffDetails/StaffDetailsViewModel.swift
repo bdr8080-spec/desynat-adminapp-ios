@@ -36,8 +36,8 @@ class StaffDetailsViewModel {
                 if let status = response.status {
                     self.hostVC.isActiveLbl.text = status == 1 ? "Active" : "Inactive"
                     self.hostVC.activeStatusbtn.setImage(UIImage(named: status == 1 ? "toggleOn" : "toggleOff"), for: .normal)
-                    CommonUtils.showToast(message: status == 1 ? "Sub Admin Profile Activated Successfully" : "Sub Admin Profile Deactivated Successfully"
-                    )
+                    self.hostVC.isActiveLbl.textColor = status == 1 ? UIColor(hex: "1A900D") : UIColor(hex: "E80B26")
+                    CommonUtils.showToast(message: status == 1 ? "Sub Admin Profile Activated Successfully" : "Sub Admin Profile Deactivated Successfully")
                 }
             }
         }

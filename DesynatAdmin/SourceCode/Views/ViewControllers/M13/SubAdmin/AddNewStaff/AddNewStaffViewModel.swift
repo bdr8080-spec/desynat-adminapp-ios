@@ -42,9 +42,9 @@ class AddNewStaffViewModel {
     func validFields() -> Bool {
         var errorMessage: AlertConstant = .none
         
-        if hostVC.selectedImageUrl.isEmpty {
-            errorMessage = .SelectBrandImage
-        }
+        //        if hostVC.selectedImageUrl.isEmpty {
+        //            errorMessage = .SelectBrandImage
+        //        }
         
         let fullNameInEnglish = String.getString(hostVC.fullNameInEnglishTF.text).trimmingCharacters(in: .whitespacesAndNewlines)
         if errorMessage == .none {
@@ -74,14 +74,20 @@ class AddNewStaffViewModel {
             errorMessage = .validMobileNumber
         }
         
-//        if hostVC.selectedRoleIndex == -1 {
-//            errorMessage = .selectRoleForNotification
-//        }
+        if hostVC.countryID == -1 {
+            errorMessage = .selectCountry
+        }
+        
+        //        if hostVC.selectedRoleIndex == -1 {
+        //            errorMessage = .selectRoleForNotification
+        //        }
         
         let password = String.getString(hostVC.passwordTxtField.text).trimmingCharacters(in: .whitespacesAndNewlines)
         if errorMessage == .none {
             if password.isEmpty {
                 errorMessage = .EnterPassword
+            }else if !password.isValidPassword() {
+                errorMessage = .InvalidPasswordFormat
             }
         }
         

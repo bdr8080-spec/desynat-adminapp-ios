@@ -25,9 +25,10 @@ class SubAdminSideMenuViewController: UIViewController {
     private lazy var viewModel = SubAdminSideMenuViewModel(hostVC: self)
     var isNeedToHideBackButton: Bool = false
     private var filteredPermissions: [PermissionDetail] {
-            return viewModel.staffDetails?.permissionDetails?
-                .filter { $0.moduleID != 1 } ?? []
-        }
+        return viewModel.staffDetails?.permissionDetails?
+            .filter { $0.moduleID != 1 } ?? []
+    }
+    
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,14 +85,14 @@ extension SubAdminSideMenuViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuTableViewCell", for: indexPath) as! SideMenuTableViewCell
         let item = filteredPermissions[indexPath.row]
-            cell.configDataForSubAdmin(data: item)
+        cell.configDataForSubAdmin(data: item)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = filteredPermissions[indexPath.row]
-            let selectedItem = item.moduleDetails?.displayName
-            let hasPermission = item.canAction == 1
+        let selectedItem = item.moduleDetails?.displayName
+        let hasPermission = item.canAction == 1
         switch selectedItem {
         case "Brands Management":
             let vc = BrandManagementViewController.instantiate(fromAppStoryboard: .SideMenu)

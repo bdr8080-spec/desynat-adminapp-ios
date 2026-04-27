@@ -4638,7 +4638,7 @@ dolor sit amet, consectetur..</string>
                                 <rect key="frame" x="0.0" y="158" width="393" height="626"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IMs-z2-Hdr">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1174.3333333333333"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1269.3333333333333"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZKc-Lm-qwj">
                                                 <rect key="frame" x="24" y="20" width="345" height="185"/>
@@ -4733,7 +4733,7 @@ dolor sit amet, consectetur..</string>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wqa-S4-Lgy">
-                                                <rect key="frame" x="24" y="233" width="345" height="360"/>
+                                                <rect key="frame" x="24" y="233" width="345" height="455"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xoW-5f-X8O">
                                                         <rect key="frame" x="0.0" y="0.0" width="345" height="75"/>
@@ -4990,16 +4990,88 @@ dolor sit amet, consectetur..</string>
                                                             <constraint firstItem="lMU-yy-PgR" firstAttribute="leading" secondItem="TJo-F5-4qm" secondAttribute="leading" id="m2f-D4-WSY"/>
                                                         </constraints>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Qz-9Y-evZ">
+                                                        <rect key="frame" x="0.0" y="380" width="345" height="75"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Country" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yXa-vw-dWJ">
+                                                                <rect key="frame" x="0.0" y="0.0" width="345" height="20"/>
+                                                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
+                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pas-lr-dtE" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="25" width="345" height="50"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Country" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="udo-i9-3sW" customClass="CustomLabelFont" customModule="DesynatAdmin" customModuleProvider="target">
+                                                                        <rect key="frame" x="12" y="0.0" width="293" height="50"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downArrow" translatesAutoresizingMaskIntoConstraints="NO" id="ziN-24-p87">
+                                                                        <rect key="frame" x="315" y="15" width="20" height="20"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="20" id="2kf-xY-Gyk"/>
+                                                                            <constraint firstAttribute="width" constant="20" id="tLc-dy-wiZ"/>
+                                                                        </constraints>
+                                                                    </imageView>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bsh-mL-1TY">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="345" height="50"/>
+                                                                        <state key="normal" title="Button"/>
+                                                                        <buttonConfiguration key="configuration" style="plain"/>
+                                                                        <connections>
+                                                                            <action selector="chosseCountrydidTapped:" destination="KIx-pR-KSY" eventType="touchUpInside" id="HFs-50-BDH"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="udo-i9-3sW" firstAttribute="leading" secondItem="Pas-lr-dtE" secondAttribute="leading" constant="12" id="2oV-LC-2GY"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="Bsh-mL-1TY" secondAttribute="bottom" id="4Ak-xO-W2b"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="ziN-24-p87" secondAttribute="trailing" constant="10" id="4ZY-UM-cYs"/>
+                                                                    <constraint firstItem="ziN-24-p87" firstAttribute="leading" secondItem="udo-i9-3sW" secondAttribute="trailing" constant="10" id="6dq-JX-Ai9"/>
+                                                                    <constraint firstItem="ziN-24-p87" firstAttribute="centerY" secondItem="udo-i9-3sW" secondAttribute="centerY" id="MyR-oG-SKh"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="Bsh-mL-1TY" secondAttribute="trailing" id="Ud7-Cb-rTb"/>
+                                                                    <constraint firstItem="Bsh-mL-1TY" firstAttribute="leading" secondItem="Pas-lr-dtE" secondAttribute="leading" id="gi9-9B-CC9"/>
+                                                                    <constraint firstAttribute="height" constant="50" id="hbA-Qt-D5K"/>
+                                                                    <constraint firstItem="udo-i9-3sW" firstAttribute="top" secondItem="Pas-lr-dtE" secondAttribute="top" id="uJc-Og-hua"/>
+                                                                    <constraint firstItem="Bsh-mL-1TY" firstAttribute="top" secondItem="Pas-lr-dtE" secondAttribute="top" id="ubj-hS-azf"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="udo-i9-3sW" secondAttribute="bottom" id="zen-MG-GGo"/>
+                                                                </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="12"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                        <real key="value" value="1"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                        <color key="value" systemColor="systemGray5Color"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="75" id="0t2-ZG-IGc"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Pas-lr-dtE" secondAttribute="bottom" id="3rR-m6-EdS"/>
+                                                            <constraint firstItem="yXa-vw-dWJ" firstAttribute="leading" secondItem="9Qz-9Y-evZ" secondAttribute="leading" id="AYH-tV-V6w"/>
+                                                            <constraint firstItem="Pas-lr-dtE" firstAttribute="trailing" secondItem="yXa-vw-dWJ" secondAttribute="trailing" id="NO9-22-UBE"/>
+                                                            <constraint firstAttribute="trailing" secondItem="yXa-vw-dWJ" secondAttribute="trailing" id="RCZ-Sx-iNj"/>
+                                                            <constraint firstItem="yXa-vw-dWJ" firstAttribute="top" secondItem="9Qz-9Y-evZ" secondAttribute="top" id="ZV7-Bx-axf"/>
+                                                            <constraint firstItem="Pas-lr-dtE" firstAttribute="leading" secondItem="yXa-vw-dWJ" secondAttribute="leading" id="f20-CU-cYa"/>
+                                                            <constraint firstItem="Pas-lr-dtE" firstAttribute="top" secondItem="yXa-vw-dWJ" secondAttribute="bottom" constant="5" id="uzX-Qi-En5"/>
+                                                        </constraints>
+                                                    </view>
                                                 </subviews>
                                             </stackView>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Role" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yGL-Mq-bGO">
-                                                <rect key="frame" x="24" y="613" width="345" height="22.666666666666629"/>
+                                                <rect key="frame" x="24" y="708" width="345" height="22.666666666666629"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Xcm-xZ-zPg">
-                                                <rect key="frame" x="24" y="650.66666666666663" width="345" height="30"/>
+                                                <rect key="frame" x="24" y="745.66666666666663" width="345" height="30"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="x4n-eb-rAw"/>
@@ -5013,7 +5085,7 @@ dolor sit amet, consectetur..</string>
                                                 <cells/>
                                             </collectionView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="6IL-eD-rOj">
-                                                <rect key="frame" x="24" y="613" width="345" height="165"/>
+                                                <rect key="frame" x="24" y="708" width="345" height="165"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sht-FK-abp">
                                                         <rect key="frame" x="0.0" y="0.0" width="345" height="75"/>
@@ -5151,7 +5223,7 @@ dolor sit amet, consectetur..</string>
                                                 </constraints>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lFK-4g-kfv">
-                                                <rect key="frame" x="24" y="803" width="345" height="371.33333333333326"/>
+                                                <rect key="frame" x="24" y="898.00000000000011" width="345" height="371.33333333333337"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Access Module" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1X2-nB-LW4">
                                                         <rect key="frame" x="0.0" y="0.0" width="345" height="22"/>
@@ -5337,6 +5409,7 @@ dolor sit amet, consectetur..</string>
                         <outlet property="mobileTF" destination="TPd-6J-BOw" id="pZ7-B8-v2I"/>
                         <outlet property="passwordTxtField" destination="uHO-rQ-glX" id="sxe-if-DBR"/>
                         <outlet property="roleSelectionCollectionView" destination="Xcm-xZ-zPg" id="ek4-Pn-RQu"/>
+                        <outlet property="selcetdCountryLabel" destination="udo-i9-3sW" id="NyL-yo-kp3"/>
                         <outlet property="tableViewHeightConstraint" destination="zWR-C8-nS5" id="dhs-9s-tbr"/>
                         <outlet property="titleLbl" destination="ChR-Vi-q32" id="WGB-RY-w7a"/>
                         <outlet property="uploadNewProfileImageView" destination="MXz-z6-Zx6" id="bLD-4F-JJO"/>
@@ -8060,8 +8133,8 @@ dolor sit amet, consectetur..</string>
         <image name="leftVector" width="9.6666669845581055" height="17.666666030883789"/>
         <image name="nextRight" width="32" height="32"/>
         <image name="paperplane.fill" catalog="system" width="128" height="119"/>
-        <image name="plus" width="64" height="64"/>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="plus" width="64" height="64"/>
         <image name="plusAdd" width="14" height="14"/>
         <image name="previousLeft" width="32" height="32"/>
         <image name="search" width="20" height="20"/>
@@ -8086,7 +8159,7 @@ dolor sit amet, consectetur..</string>
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
