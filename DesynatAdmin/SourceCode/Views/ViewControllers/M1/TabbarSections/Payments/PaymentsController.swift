@@ -37,6 +37,7 @@ class PaymentsController: UIViewController {
     @IBOutlet weak var searchTF: UITextField!
     @IBOutlet weak var heightOfTableViewConstarint: NSLayoutConstraint!
     @IBOutlet weak var paginationBottomView: UIView!
+    @IBOutlet weak var backButton: UIButton!
     
     // MARK: - Property Decalaration
     var expandedIndex: IndexPath?
@@ -45,6 +46,8 @@ class PaymentsController: UIViewController {
     private var searchWorkItem: DispatchWorkItem?
     var selectedMonth: Int?   // 1...12
     var selectedYear: Int?
+    var hasActionPermission: Bool = true
+    var comingFromTabbar: Bool = true
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
@@ -53,6 +56,11 @@ class PaymentsController: UIViewController {
         updateTabUI(selected: .orders)
         viewModel.fetchOrdersList()
         resetMonthYearSelection()
+        backButton.isHidden = comingFromTabbar
+    }
+    
+    @IBAction func backdidTapped(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Button's Action

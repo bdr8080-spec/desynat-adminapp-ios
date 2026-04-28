@@ -88,6 +88,7 @@ class SideMenuViewController: UIViewController {
     }
     @IBAction func editProfileBtnTapped(_ sender: Any) {
         let vc  = EditProfileViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+        vc.hasActionPermission = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

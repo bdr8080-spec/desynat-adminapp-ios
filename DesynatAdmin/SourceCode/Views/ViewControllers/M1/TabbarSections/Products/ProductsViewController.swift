@@ -17,10 +17,12 @@ class ProductsViewController: UIViewController {
             productsTableView.registerCellFromNib(cellID: "ProductManagementTableViewCell")
         }
     }
+    @IBOutlet weak var backButton: UIButton!
     
     // MARK: - Property Decalaration
     private lazy var viewModel = ProductsViewModel(hostVC: self)
-//    var hasActionPermission: Bool = false
+    var hasActionPermission: Bool = true
+    var comingFromTabbar: Bool = true
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
@@ -29,7 +31,7 @@ class ProductsViewController: UIViewController {
         viewModel.getCategoriesListApi()
         viewModel.getCountryListApi()
         viewModel.getBrandListApi()
-        
+        backButton.isHidden = comingFromTabbar
 //        if kSharedUserDefaults.isSubAdminHasActionDashboardAccess() {
 //            hasActionPermission = true
 //        }
@@ -40,6 +42,9 @@ class ProductsViewController: UIViewController {
         viewModel.resetAndFetchProducts()
     }
     
+    @IBAction func backDidTapped(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
     // MARK: - Button's Action
     @IBAction func filterDidTapped(_ sender: Any) {
         let nextVC = ProductFiltersViewController.instantiate(fromAppStoryboard: .Home)
@@ -113,7 +118,7 @@ extension ProductsViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductManagementTableViewCell", for: indexPath) as! ProductManagementTableViewCell
         let product = viewModel.productsListData[indexPath.row]
         cell.configData(data: product)
-        cell.statusButton.isUserInteractionEnabled = kSharedUserDefaults.isSubAdminHasActionDashboardAccess()
+        cell.statusButton.isUserInteractionEnabled = hasActionPermission
         cell.onStatusToggle = { [weak self] in
             self?.toggleStatus(at: indexPath.row)
         }
@@ -123,7 +128,7 @@ extension ProductsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let nextVC = ProductDetailViewController.instantiate(fromAppStoryboard: .Home)
         nextVC.productId = viewModel.productsListData[indexPath.row].id ?? 0
-        nextVC.hasActionPermission = kSharedUserDefaults.isSubAdminHasActionDashboardAccess()
+        nextVC.hasActionPermission = hasActionPermission
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     

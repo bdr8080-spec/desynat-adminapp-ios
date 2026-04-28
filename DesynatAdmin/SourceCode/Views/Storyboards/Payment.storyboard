@@ -34,6 +34,23 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btnGradient" translatesAutoresizingMaskIntoConstraints="NO" id="hIt-08-lDe">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="88"/>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lHJ-rN-cMr">
+                                        <rect key="frame" x="24" y="48.666666666666657" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="TFd-Vg-Xyy"/>
+                                            <constraint firstAttribute="height" constant="40" id="oXr-VB-MqR"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="whiteBackButton"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="imageDirection">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="backdidTapped:" destination="7na-kM-7OQ" eventType="touchUpInside" id="0dg-YL-ijV"/>
+                                        </connections>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j6x-3Z-9iO">
                                         <rect key="frame" x="156" y="57.333333333333336" width="81.333333333333314" height="22.666666666666664"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
@@ -48,12 +65,14 @@
                                     <constraint firstAttribute="height" constant="88" id="KAs-Vt-fUa"/>
                                     <constraint firstAttribute="bottom" secondItem="j6x-3Z-9iO" secondAttribute="bottom" constant="8" id="KYF-GI-eqr"/>
                                     <constraint firstItem="j6x-3Z-9iO" firstAttribute="centerX" secondItem="Vhh-uB-udn" secondAttribute="centerX" id="f2c-px-8Ku"/>
+                                    <constraint firstItem="lHJ-rN-cMr" firstAttribute="centerY" secondItem="j6x-3Z-9iO" secondAttribute="centerY" id="h1X-mM-xLu"/>
                                     <constraint firstItem="hIt-08-lDe" firstAttribute="leading" secondItem="Vhh-uB-udn" secondAttribute="leading" id="jlz-9c-wnY"/>
                                     <constraint firstAttribute="trailing" secondItem="hIt-08-lDe" secondAttribute="trailing" id="uNu-De-cUI"/>
+                                    <constraint firstItem="lHJ-rN-cMr" firstAttribute="leading" secondItem="Vhh-uB-udn" secondAttribute="leading" constant="24" id="yUO-Kf-ERo"/>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqx-yp-RZg">
-                                <rect key="frame" x="0.0" y="108" width="393" height="586"/>
+                                <rect key="frame" x="0.0" y="108" width="393" height="676"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h6W-KX-jpB">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="1260.6666666666667"/>
@@ -790,7 +809,7 @@
                         <viewLayoutGuide key="safeArea" id="4Wq-LT-pUQ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="4Wq-LT-pUQ" firstAttribute="bottom" secondItem="nqx-yp-RZg" secondAttribute="bottom" constant="90" id="Cq0-7N-YBl"/>
+                            <constraint firstItem="4Wq-LT-pUQ" firstAttribute="bottom" secondItem="nqx-yp-RZg" secondAttribute="bottom" id="Cq0-7N-YBl"/>
                             <constraint firstItem="Vhh-uB-udn" firstAttribute="leading" secondItem="6w5-f7-89r" secondAttribute="leading" id="Rx2-tT-nWc"/>
                             <constraint firstItem="nqx-yp-RZg" firstAttribute="leading" secondItem="4Wq-LT-pUQ" secondAttribute="leading" id="dKE-Im-j31"/>
                             <constraint firstItem="nqx-yp-RZg" firstAttribute="top" secondItem="Vhh-uB-udn" secondAttribute="bottom" constant="20" id="dnW-K7-eBa"/>
@@ -801,6 +820,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="lHJ-rN-cMr" id="ZA2-Xk-8yC"/>
                         <outlet property="bannerBtn" destination="1zW-PI-QGY" id="40g-mv-HMk"/>
                         <outlet property="bannerLbl" destination="yOf-hq-aAY" id="jel-6Q-TBP"/>
                         <outlet property="chooseMonthForHide" destination="mYc-9k-m0O" id="Hnz-6o-Djv"/>
@@ -1312,6 +1332,7 @@
         <image name="previousLeft" width="32" height="32"/>
         <image name="search" width="20" height="20"/>
         <image name="topTabbar" width="114.33333587646484" height="38"/>
+        <image name="whiteBackButton" width="9.6666669845581055" height="17.666666030883789"/>
         <namedColor name="171717">
             <color red="0.090196078431372548" green="0.090196078431372548" blue="0.090196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

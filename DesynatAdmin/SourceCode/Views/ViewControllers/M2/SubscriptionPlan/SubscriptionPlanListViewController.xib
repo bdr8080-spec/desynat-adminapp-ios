@@ -15,6 +15,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SubscriptionPlanListViewController" customModule="DesynatAdmin" customModuleProvider="target">
             <connections>
+                <outlet property="backButton" destination="gpj-od-aqI" id="QoL-ci-aUH"/>
                 <outlet property="lblNodata" destination="cIQ-aI-vOJ" id="U8s-xC-qLz"/>
                 <outlet property="lblSelectedCountry" destination="Nq1-cP-fcl" id="I9e-5m-HWt"/>
                 <outlet property="lnlFlag" destination="H5b-8Y-e6v" id="VDy-3I-cL9"/>
@@ -34,13 +35,32 @@
                     <rect key="frame" x="0.0" y="100" width="375" height="40"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plans" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a9o-tC-908">
-                            <rect key="frame" x="167.66666666666666" y="10.666666666666673" width="39.666666666666657" height="18.666666666666671"/>
+                            <rect key="frame" x="165.66666666666666" y="8.6666666666666732" width="43.666666666666657" height="22.666666666666671"/>
                             <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gpj-od-aqI">
+                            <rect key="frame" x="24" y="0.0" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="kHK-iI-EkB"/>
+                                <constraint firstAttribute="width" constant="40" id="kgu-mx-0jI"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="leftVector"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="imageDirection">
+                                    <integer key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="backDidTapped:" destination="-1" eventType="touchUpInside" id="hm8-an-exO"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <constraints>
+                        <constraint firstItem="gpj-od-aqI" firstAttribute="centerY" secondItem="a9o-tC-908" secondAttribute="centerY" id="5ao-bS-811"/>
+                        <constraint firstItem="gpj-od-aqI" firstAttribute="leading" secondItem="e7H-tw-kl7" secondAttribute="leading" constant="24" id="AEO-Di-iC5"/>
                         <constraint firstAttribute="height" constant="40" id="iID-kW-Cp0"/>
                         <constraint firstItem="a9o-tC-908" firstAttribute="centerX" secondItem="e7H-tw-kl7" secondAttribute="centerX" id="j6i-Pd-hP1"/>
                         <constraint firstItem="a9o-tC-908" firstAttribute="centerY" secondItem="e7H-tw-kl7" secondAttribute="centerY" id="uv7-yd-3Yu"/>
@@ -191,12 +211,12 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="baW-QN-Naw">
-                    <rect key="frame" x="0.0" y="234" width="375" height="478"/>
+                    <rect key="frame" x="0.0" y="234" width="375" height="578"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="50"/>
                 </tableView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Plans Added" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cIQ-aI-vOJ">
-                    <rect key="frame" x="129.33333333333334" y="396.66666666666669" width="116.66666666666666" height="18.666666666666686"/>
+                    <rect key="frame" x="124" y="394.66666666666669" width="127.33333333333331" height="22.666666666666686"/>
                     <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -223,7 +243,7 @@
                 <constraint firstItem="baW-QN-Naw" firstAttribute="top" secondItem="zje-aZ-dSv" secondAttribute="bottom" constant="10" id="Ooo-LN-iOn"/>
                 <constraint firstAttribute="trailing" secondItem="zje-aZ-dSv" secondAttribute="trailing" constant="16" id="Suf-SJ-EJ3"/>
                 <constraint firstItem="zje-aZ-dSv" firstAttribute="top" secondItem="e7H-tw-kl7" secondAttribute="bottom" constant="15" id="f7u-VM-yDg"/>
-                <constraint firstAttribute="bottom" secondItem="baW-QN-Naw" secondAttribute="bottom" constant="100" id="iCI-r8-NG4"/>
+                <constraint firstAttribute="bottom" secondItem="baW-QN-Naw" secondAttribute="bottom" id="iCI-r8-NG4"/>
                 <constraint firstItem="cIQ-aI-vOJ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="kKA-eQ-X7T"/>
                 <constraint firstItem="zje-aZ-dSv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="qDl-8K-gJR"/>
                 <constraint firstItem="e7H-tw-kl7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="zyQ-mf-8oB"/>
@@ -233,6 +253,7 @@
     </objects>
     <resources>
         <image name="ic_add" width="64" height="64"/>
+        <image name="leftVector" width="9.6666669845581055" height="17.666666030883789"/>
         <image name="rightVector" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

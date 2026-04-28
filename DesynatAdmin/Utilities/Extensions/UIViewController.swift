@@ -296,10 +296,13 @@ extension UIViewController {
     
     func navigate(to controller: UIViewController,
                   withAnimation animation: Bool = true,
-                  hasPermission: Bool = true) {
+                  hasPermission: Bool = true,
+                  commingFromTabbar: Bool = true,
+    ) {
         
         if var vc = controller as? PermissionAccessible {
             vc.hasActionPermission = hasPermission
+            vc.commingFromTabbar = commingFromTabbar
         }
         
         self.navigationController?.pushViewController(controller, animated: animation)
@@ -308,6 +311,7 @@ extension UIViewController {
 
 protocol PermissionAccessible {
     var hasActionPermission: Bool { get set }
+    var commingFromTabbar: Bool { get set }
 }
 
 extension UIView {

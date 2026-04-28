@@ -17,14 +17,23 @@ class ShowViewController: UIViewController {
             listTableView.registerCellFromNib(cellID: "EventsTableViewCell")
         }
     }
+    @IBOutlet weak var backButton: UIButton!
+    
     // MARK: - Property Decalaration
     private var isCountryExpanded : Bool = false
     private lazy var viewModel = ShowViewModel(hostVC: self)
+    var hasActionPermission: Bool = true
+    var comingFromTabbar: Bool = true
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.getAllCountry()
+        backButton.isHidden = comingFromTabbar
+    }
+    
+    @IBAction func backDidTapped(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Button's Action
@@ -60,5 +69,5 @@ extension ShowViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return cell
     }
-
+    
 }

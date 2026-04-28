@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SubscriptionPlanListViewController: UIViewController {
+class SubscriptionPlanListViewController: UIViewController, PermissionAccessible {
     
     // MARK: - IBOutlet's
     @IBOutlet weak var viewCountryContainer: CustomView!
@@ -17,20 +17,28 @@ class SubscriptionPlanListViewController: UIViewController {
     @IBOutlet weak var lnlFlag: CustomLabelFont!
     @IBOutlet weak var tblPlans: UITableView!
     @IBOutlet weak var plusButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
     
     // MARK: - Property Decalaration
     private var viewModel : SubscriptionPlanViewModel = SubscriptionPlanViewModel()
     private var isCountryExpanded : Bool = false
+    var hasActionPermission: Bool = true
+    var commingFromTabbar: Bool = true
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpUi()
-        plusButton.isHidden = !kSharedUserDefaults.isSubAdminHasActionDashboardAccess()
+        plusButton.isHidden = !hasActionPermission
+        backButton.isHidden = commingFromTabbar
     }
     
     override func viewDidAppear(_ animated: Bool) {
         self.setData()
+    }
+    
+    @IBAction func backDidTapped(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Button's Action
@@ -116,7 +124,7 @@ extension SubscriptionPlanListViewController: UITableViewDelegate, UITableViewDa
             if (self.viewModel.arrayPlans.count > indexPath.row) {
                 let vc = SubscriptionDetailViewController.viewFromNIB
                 vc.setVM(SubscriptionDetailViewModel(data: viewModel.arrayPlans[indexPath.row]))
-                vc.hasActionPermission = kSharedUserDefaults.isSubAdminHasActionDashboardAccess()
+                vc.hasActionPermission = hasActionPermission
                 self.navigate(to: vc)
             }
         case tblCountry:

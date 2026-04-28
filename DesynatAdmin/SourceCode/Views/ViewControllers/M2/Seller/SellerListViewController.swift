@@ -31,6 +31,7 @@ class SellerListViewController: UIViewController, PermissionAccessible {
     // MARK: - Property Decalaration
     private var viewModel : SellerViewModel = SellerViewModel()
     var hasActionPermission: Bool = false
+    var commingFromTabbar: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {

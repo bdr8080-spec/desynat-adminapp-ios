@@ -32,6 +32,7 @@ class CountryCityListViewController: UIViewController, PermissionAccessible {
     private var viewModel : CountryCityViewModel = CountryCityViewModel()
     private var isCountryExpanded : Bool = false
     var hasActionPermission: Bool = false
+    var commingFromTabbar: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {

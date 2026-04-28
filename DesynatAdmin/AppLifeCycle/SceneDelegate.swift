@@ -26,7 +26,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func getStaffDetails() {
         if kSharedUserDefaults.isSubAdminUserHasDashboardAccess() {
-            kSharedSceneDelegate.navigateToUserHomeVc()
+//            kSharedSceneDelegate.navigateToUserHomeVc()
+            kSharedSceneDelegate.navigateToDashboardHomeVc()
         } else {
             kSharedSceneDelegate.navigateToSideMenuVc()
         }

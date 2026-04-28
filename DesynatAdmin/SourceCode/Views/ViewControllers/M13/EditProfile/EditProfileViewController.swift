@@ -10,15 +10,19 @@ import SDWebImage
 
 class EditProfileViewController: UIViewController {
 
+    @IBOutlet weak var changeMobileNumberButton: UIButton!
     @IBOutlet weak var mobileTF: UITextField!
     @IBOutlet weak var countryCodeTF: UITextField!
     @IBOutlet weak var fullnameTF: UITextField!
     @IBOutlet weak var emailIdTF: UITextField!
     @IBOutlet weak var userProfileImageView: CustomImageView!
+    @IBOutlet weak var buttonActionstackView: UIStackView!
+    @IBOutlet weak var changeImageButton: CustomButton!
     
     private lazy var viewModel = EditProfileViewModel(hostVC: self)
     var selectedImageUrl: String = ""
     var countryCode: String = "+965"
+    var hasActionPermission: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +30,9 @@ class EditProfileViewController: UIViewController {
         viewModel.getAllCountry() {
             self.configData()
         }
+        buttonActionstackView.isHidden = !hasActionPermission
+        changeImageButton.isHidden = !hasActionPermission
+        changeMobileNumberButton.isUserInteractionEnabled = hasActionPermission
     }
 
     // MARK: - Navigation

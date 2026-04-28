@@ -20,13 +20,14 @@ class SubAdminSideMenuViewController: UIViewController {
         }
     }
     @IBOutlet weak var backButtonOutlet: UIButton!
+    @IBOutlet weak var editPencilButton: UIButton!
     
     // MARK: - Property Decalaration
     private lazy var viewModel = SubAdminSideMenuViewModel(hostVC: self)
     var isNeedToHideBackButton: Bool = false
     private var filteredPermissions: [PermissionDetail] {
         return viewModel.staffDetails?.permissionDetails?
-            .filter { $0.moduleID != 1 } ?? []
+            .filter { ![1, 30].contains($0.moduleID) } ?? []
     }
     
     // MARK: - View's LifeCycle Methods
@@ -66,6 +67,11 @@ class SubAdminSideMenuViewController: UIViewController {
     }
     @IBAction func editProfileBtnTapped(_ sender: Any) {
         let vc  = EditProfileViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+        let hasActionPermission = viewModel.staffDetails?.permissionDetails?.contains(where: {
+            ($0.moduleID ?? 0) == 30 &&
+            ($0.canAction ?? 0) == 1
+        }) ?? false
+        vc.hasActionPermission = hasActionPermission
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -89,11 +95,44 @@ extension SubAdminSideMenuViewController: UITableViewDelegate, UITableViewDataSo
         return cell
     }
     
+//case 0:
+//    childVC = HomeViewController.instantiate(fromAppStoryboard: .Home)
+//case 1:
+//    childVC = ProductsViewController.instantiate(fromAppStoryboard: .Home)
+//case 2:
+//    childVC = ShowViewController.instantiate(fromAppStoryboard: .Home)
+//case 3:
+//    childVC = SubscriptionPlanListViewController.viewFromNIB
+//case 4:
+//    childVC = PaymentsController.instantiate(fromAppStoryboard: .Payment)
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = filteredPermissions[indexPath.row]
         let selectedItem = item.moduleDetails?.displayName
         let hasPermission = item.canAction == 1
+        
         switch selectedItem {
+        case "Product Management":
+            let vc = ProductsViewController.instantiate(fromAppStoryboard: .Home)
+            vc.hasActionPermission = hasPermission
+            vc.comingFromTabbar = false
+            self.navigationController?.pushViewController(vc, animated: false)
+            
+        case "Current Live Seller":
+            let vc = ShowViewController.instantiate(fromAppStoryboard: .Home)
+            vc.hasActionPermission = hasPermission
+            vc.comingFromTabbar = false
+            self.navigationController?.pushViewController(vc, animated: false)
+            
+        case "Subscription Plan Management":
+            self.navigate(to: SubscriptionPlanListViewController.viewFromNIB, hasPermission: hasPermission, commingFromTabbar: false)
+            
+        case "Payment Management":
+            let vc = PaymentsController.instantiate(fromAppStoryboard: .Payment)
+            vc.hasActionPermission = hasPermission
+            vc.comingFromTabbar = false
+            self.navigationController?.pushViewController(vc, animated: false)
+            
         case "Brands Management":
             let vc = BrandManagementViewController.instantiate(fromAppStoryboard: .SideMenu)
             vc.hasActionPermission = hasPermission

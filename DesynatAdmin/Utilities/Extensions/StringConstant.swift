@@ -72,15 +72,15 @@ enum AlertConstant: String {
     case  enterArabicName = "Please Enter Zone Name in arabic"
     
     case durationShouldLessThan12 = "Duration should be less than 12 months"
-
+    
     case durationShouldBeOneYear = "For yearly plan, duration must be 1 year"
     case EnterReasonEnglish          = "Please enter reason in english"
     case EnterReasonArabic           = "Please enter reason in arabic"
     case enterAmount                 = "Please enter amount"
     case enterNewDuration = "Please enter new duration"
-
+    
     case selectNewDurationType = "Please select new duration type"
-
+    
     case enterNewPrice = "Please enter new price"
     
     case uploadProfilePicture = "Please upload profile image"
