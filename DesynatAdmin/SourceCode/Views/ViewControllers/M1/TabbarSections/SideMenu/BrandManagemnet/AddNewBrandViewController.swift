@@ -30,11 +30,11 @@ class AddNewBrandViewController: UIViewController {
         brandNameArabicTextField.delegate = self
         if isComingForEdit {
             bindData()
-            submitTitleLabel.text = "Update"
-            titleLabel.text = "Edit Brand Details"
+            submitTitleLabel.text = "Update".localiz()
+            titleLabel.text = "Edit Brand Details".localiz()
         } else {
-            submitTitleLabel.text = "Submit"
-            titleLabel.text = "Add New Brand"
+            submitTitleLabel.text = "Submit".localiz()
+            titleLabel.text = "Add New Brand".localiz()
         }
     }
     
@@ -116,7 +116,7 @@ extension AddNewBrandViewController: UITextFieldDelegate {
             // Check every character (handles paste)
             for scalar in string.unicodeScalars {
                 if !allowedSet.contains(scalar) {
-                    CommonUtils.showToast(message: "Please switch to Arabic keyboard")
+                    CommonUtils.showToast(message: "Please switch to Arabic keyboard".localiz())
                     return false
                 }
             }

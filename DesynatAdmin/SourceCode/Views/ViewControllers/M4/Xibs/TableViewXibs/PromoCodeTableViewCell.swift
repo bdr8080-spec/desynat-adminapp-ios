@@ -19,8 +19,8 @@ class PromoCodeTableViewCell: UITableViewCell {
     }
     
     func configureData(data: PromocodeList) {
-        titleLabel.text = "Flat \(data.discountPercent ?? "")% OFF" //data.nameEnglish
-        deiscountLabel.text = "Flat \(data.discountPercent ?? "")% Off On minimum order \(data.minOrderValue ?? "")"
+        titleLabel.text = "\("Flat".localiz()) \(data.discountPercent ?? "")% \("OFF".localiz())" //data.nameEnglish
+        deiscountLabel.text = "\("Flat".localiz()) \(data.discountPercent ?? "")% \("Off On minimum order".localiz()) \(data.minOrderValue ?? "")"
         descriptionLabel.text = data.descriptionEnglish ?? ""
     }
     

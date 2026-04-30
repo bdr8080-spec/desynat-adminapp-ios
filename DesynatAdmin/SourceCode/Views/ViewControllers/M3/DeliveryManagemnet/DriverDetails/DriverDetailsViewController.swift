@@ -63,7 +63,7 @@ class DriverDetailsViewController: UIViewController {
     }
     
     @IBAction func deleteDidTapped(_ sender: Any) {
-        self.showConfirmationAlert(msg: "Are you sure you want to delete this user?") { [weak self] in
+        self.showConfirmationAlert(msg: "Are you sure you want to delete this user?".localiz()) { [weak self] in
             guard let self = self else { return }
             let param: [String: Any] = ["user_id": userId]
             viewModel.deleteBoy(param: param)

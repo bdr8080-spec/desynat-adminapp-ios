@@ -96,7 +96,7 @@ class AddDealViewModel {
         }
         
         if errorMessage != .none {
-            hostVC.showAlert(msg: errorMessage.rawValue)
+            hostVC.showAlert(msg: errorMessage.rawValue.localiz())
         }
         
         hostVC.view.endEditing(true)
@@ -117,7 +117,7 @@ class AddDealViewModel {
             "to": apiToDate]
         WebService.sharedInstance.addNewDeal(param: params) { (response) in
             DispatchQueue.main.async {
-                CommonUtils.showToast(message: "Deal Added Succesfully")
+                CommonUtils.showToast(message: "Deal Added Succesfully".localiz())
                 self.hostVC.navigationController?.popViewController(animated: true)
             }
         }
@@ -138,7 +138,7 @@ class AddDealViewModel {
             "to": apiToDate]
         WebService.sharedInstance.editDealsDetails(param: params) { (response) in
             DispatchQueue.main.async {
-                CommonUtils.showToast(message: "Deal Updated Succesfully ")
+                CommonUtils.showToast(message: "Deal Updated Succesfully".localiz())
                 self.hostVC.navigationController?.popViewController(animated: true)
             }
         }

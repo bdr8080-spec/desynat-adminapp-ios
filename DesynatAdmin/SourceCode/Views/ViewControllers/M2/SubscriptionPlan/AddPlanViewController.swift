@@ -14,7 +14,6 @@ class AddPlanViewController: UIViewController {
     @IBOutlet weak var noOfProductView: UIView!
     @IBOutlet weak var freeMonthYesButton: CustomButton!
     @IBOutlet weak var freeMonthNoButton: CustomButton!
-    
     @IBOutlet weak var viewCountryContainer: CustomView!
     @IBOutlet weak var lblSelectedCountry: CustomLabelFont!
     @IBOutlet weak var lnlFlag: CustomLabelFont!
@@ -165,13 +164,13 @@ class AddPlanViewController: UIViewController {
     @IBAction func handleAdd(_ sender: Any) {
         let validationMessage = self.viewModel.subscriptionInfo.validateData(isForEdit: viewModel.isForEdit)
         if (validationMessage != .none) {
-            self.showAlert(msg: validationMessage.value())
+            self.showAlert(msg: validationMessage.value().localiz())
             return
         }
         self.viewModel.makePlan {
             DispatchQueue.main.async {
                 let vc = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
-                vc.setTitle(self.viewModel.isForEdit ? "Subscription plan updated\nsuccessfully!" : "Subscription plan added\nsuccessfully!")
+                vc.setTitle(self.viewModel.isForEdit ? "Subscription plan updated\nsuccessfully!".localiz() : "Subscription plan added\nsuccessfully!".localiz())
                 vc.callBackDismiss = {
                     self.navigationController?.popViewController(animated: true)
                 }
@@ -220,8 +219,8 @@ class AddPlanViewController: UIViewController {
         self.tblCountry.delegate = self
         self.txtFieldDuration.delegate = self
         self.tblCountry.separatorStyle = .none
-        self.lblTitle.text = self.viewModel.isForEdit ? "Update plan" : "Create New Plan"
-        self.btnAdd.setTitle(self.viewModel.isForEdit ? "Update" : "Add", for: .normal)
+        self.lblTitle.text = self.viewModel.isForEdit ? "Update plan".localiz() : "Create New Plan".localiz()
+        self.btnAdd.setTitle(self.viewModel.isForEdit ? "Update".localiz() : "Add".localiz(), for: .normal)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.btnAdd.applyGradient(colours: [UIColor.init(hexString: "#DFBF8F"), UIColor.init(hexString: "#6E4527")],gradientDirection: .topToBottom,cornerRadius: 5)
         }
@@ -235,8 +234,8 @@ class AddPlanViewController: UIViewController {
             self.refreshCountrySelection()
         }
         if (self.viewModel.isForEdit) {
-            self.priceLabel.text = "Old Price"
-            self.durationLabel.text = "Old Duration"
+            self.priceLabel.text = "Old Price".localiz()
+            self.durationLabel.text = "Old Duration".localiz()
             self.newPriceView.isHidden = false
             self.newDurationView.isHidden = false
             self.txtFieldEnglishPlanName.text = self.viewModel.subscriptionInfo.planNameEnglish
@@ -253,8 +252,8 @@ class AddPlanViewController: UIViewController {
             self.txtFieldComission.text = String.getString(self.viewModel.subscriptionInfo.comission)
             self.enterNumberOfMonths.text = String.getString(self.viewModel.subscriptionInfo.noOfFreeMonths)
         } else {
-            self.priceLabel.text = "Price"
-            self.durationLabel.text = "Duration"
+            self.priceLabel.text = "Price".localiz()
+            self.durationLabel.text = "Duration".localiz()
             self.newPriceView.isHidden = true
             self.newDurationView.isHidden = true
         }
@@ -341,7 +340,7 @@ extension AddPlanViewController:UITextFieldDelegate {
             
             // Check if the replacement string contains any English letters
             if string.rangeOfCharacter(from: englishLetters) != nil {
-                self.showAlert(msg: "Plese enter arabic letter.")
+                self.showAlert(msg: "Plese enter arabic letter.".localiz())
                 return false
             }
         } else if (textField == self.txtFieldEnglishPlanName) {

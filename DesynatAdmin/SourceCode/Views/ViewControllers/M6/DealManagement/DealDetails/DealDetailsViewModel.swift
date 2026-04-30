@@ -53,12 +53,12 @@ class DealDetailsViewModel {
             DispatchQueue.main.async {
                 self.hostVC.dealData?.status = response.status
                 if let status = response.status {
-                    self.hostVC.statusLabel.text = status == 1 ? "Active" : "Inactive"
+                    self.hostVC.statusLabel.text = status == 1 ? "Active".localiz() : "Inactive".localiz()
                     self.hostVC.statusImageView.image =
                     UIImage(named: status == 1 ? "toggleOn" : "toggleOff")
                     CommonUtils.showToast(
-                        message: status == 1 ? "Deal Activated Successfully"
-                        : "Deal Deactivated Successfully"
+                        message: status == 1 ? "Deal Activated Successfully".localiz()
+                        : "Deal Deactivated Successfully".localiz()
                     )
                 }
             }
@@ -69,7 +69,7 @@ class DealDetailsViewModel {
         WebService.shared.deleteDealDetails(param: param){ [weak self] response in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                CommonUtils.showToast(message: "Deal Deleted Successfully")
+                CommonUtils.showToast(message: "Deal Deleted Successfully".localiz())
                 self.hostVC.navigationController?.popViewController(animated: true)
             }
         }

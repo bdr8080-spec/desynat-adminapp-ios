@@ -22,7 +22,7 @@ class AddAmountViewModel {
           guard let self = self else { return }
         self.hostVC?.onAmountAdded?()
         self.hostVC?.dismiss(animated: false)
-        CommonUtils.showToastForOTP(message: "Amount added in the wallet succesfully")
+          CommonUtils.showToastForOTP(message: "Amount added in the wallet succesfully".localiz())
         self.hostVC?.navigationController?.popViewController(animated: true)
       }
   }
@@ -35,7 +35,7 @@ class AddAmountViewModel {
           }
       
       if errorMessage != .none {
-        hostVC?.showAlert(msg: errorMessage.rawValue)
+          hostVC?.showAlert(msg: errorMessage.rawValue.localiz())
       }
       
     hostVC?.view.endEditing(true)

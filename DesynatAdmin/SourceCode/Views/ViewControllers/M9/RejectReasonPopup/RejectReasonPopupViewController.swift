@@ -26,7 +26,7 @@ class RejectReasonPopupViewController: UIViewController {
     // MARK: - Button's Action
     @IBAction func saveChangesDidTapped(_ sender: Any) {
         if (self.reasonTextView.text.isEmpty) {
-            self.showAlert(msg: "Please enter reason")
+            self.showAlert(msg: "Please enter reason".localiz())
             return
         }
         self.reasonTextView.becomeFirstResponder()

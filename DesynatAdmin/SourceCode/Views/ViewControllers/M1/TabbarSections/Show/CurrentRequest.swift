@@ -49,36 +49,3 @@ struct ShowLiveEvenetsDataModel: Codable {
         case timeslotDetails = "timeslot_details"
     }
 }
-
-//struct SellerDetails: Codable {
-//    let id: Int
-//    let profilePic: String?
-//    let firstName: String
-//    let lastName: String
-//    let countryCode: String
-//    let mobile: String
-//    let email: String
-//    let adminVerify: String
-//    let storeInformation: String
-//    let bankInformation: String
-//    let lang: String
-//    let isBlock: Int
-//    let profileQr: String?
-//    let qrSellerUrl: String?
-//    
-//    enum CodingKeys: String, CodingKey {
-//        case id
-//        case profilePic = "profile_pic"
-//        case firstName = "first_name"
-//        case lastName = "last_name"
-//        case countryCode = "country_code"
-//        case mobile
-//        case email
-//        case adminVerify = "admin_verify"
-//        case storeInformation = "store_information"
-//        case bankInformation = "bank_information"
-//        case lang
-//        case isBlock = "is_block"
-//        case profileQr = "profile_qr"
-//        case qrSellerUrl = "qrSellerUrl"
-//    }

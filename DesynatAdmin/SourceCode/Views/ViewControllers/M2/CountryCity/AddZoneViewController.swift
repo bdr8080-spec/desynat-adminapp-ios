@@ -87,7 +87,7 @@ class AddZoneViewController: UIViewController {
         }
         self.viewModel.addZone {
             let vc = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
-            vc.setTitle("Zone \(self.viewModel.isForEdit ? "Updated" : "Added")\nsuccessfully!")
+            vc.setTitle("\("Zone".localiz()) \(self.viewModel.isForEdit ? "Updated".localiz() : "Added".localiz())\n\("successfully!".localiz())")
             vc.callBackDismiss = {
                 self.navigationController?.popViewController(animated: true)
             }
@@ -107,11 +107,9 @@ class AddZoneViewController: UIViewController {
         placesClient.findAutocompletePredictions(fromQuery: text, filter: filter, sessionToken: GMSAutocompleteSessionToken.init()) {(results, error) in
             CommonUtils.showHud(show: false)
             if let error = error {
-                print("Autocomplete error: \(error)")
                 return
             }
             if let results = results {
-                printInConsole("Result:- \(results)")
                 completion(String.getString(results.first?.placeID))
             } else {
                 completion("")
@@ -283,7 +281,7 @@ extension AddZoneViewController : UITextFieldDelegate {
             
             // Check if the replacement string contains any English letters
             if string.rangeOfCharacter(from: englishLetters) != nil {
-                self.showAlert(msg: "Plese enter arabic letter.")
+                self.showAlert(msg: "Plese enter arabic letter.".localiz())
                 return false
             }
         } else if (textField == self.txtFieldNameEnglish) {

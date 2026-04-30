@@ -87,16 +87,16 @@ class LiveRequestTimingTableViewCell: UITableViewCell {
             }
             
             // Update status
-            statusLabel.text = isTimeslotOver ? "Completed" : "Confirmed"
+            statusLabel.text = isTimeslotOver ? "Completed".localiz() : "Confirmed".localiz()
             
         case 2:
-            statusLabel.text = "Rejected"
+            statusLabel.text = "Rejected".localiz()
             statusLabel.textColor = UIColor(hexString: "#D91A1B") // red
             separatorLabel.isHidden = false
             reasonStackView.isHidden = false
             rejectedDate.isHidden = false
         default:
-            statusLabel.text = "Pending"
+            statusLabel.text = "Pending".localiz()
             statusLabel.textColor = UIColor(hexString: "#FFA41B") // orange
             separatorLabel.isHidden = false
             reasonStackView.isHidden = true

@@ -103,9 +103,9 @@ class UserManagementViewController: UIViewController {
                 self.userTableView.reloadRows(at: [indexPath], with: .automatic)
                 if let status = user.status {
                     if status == "1" {
-                        CommonUtils.showToast(message: "User Unblocked Succesfully ")
+                        CommonUtils.showToast(message: "User Unblocked Succesfully".localiz())
                     } else {
-                        CommonUtils.showToast(message: "User Blocked Succesfully")
+                        CommonUtils.showToast(message: "User Blocked Succesfully".localiz())
                     }
                 }
             }

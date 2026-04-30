@@ -60,7 +60,7 @@ class PromotionalBannerDetaislViewController: UIViewController {
     
     @IBAction func deleteDidTapped(_ sender: Any) {
         guard let gift = bannerListData else { return }
-        self.showConfirmationAlert(msg: "Are you sure you want to delete this banner?"){ [weak self] in
+        self.showConfirmationAlert(msg: "Are you sure you want to delete this banner?".localiz()){ [weak self] in
             guard let self = self else { return }
             let param:[String:Any] = ["banner_id": bannerId]
             viewModel.deletePromtoionalBanner(param: param)
@@ -82,8 +82,8 @@ class PromotionalBannerDetaislViewController: UIViewController {
                 self.updateToggleUI()
                 
                 let message = newStatus == "1"
-                ? "Banner activated successfully"
-                : "Banner deactivated successfully"
+                ? "Banner activated successfully".localiz()
+                : "Banner deactivated successfully".localiz()
                 
                 CommonUtils.showToast(message: message)
                 
@@ -108,7 +108,7 @@ class PromotionalBannerDetaislViewController: UIViewController {
         let today = Calendar.current.startOfDay(for: Date())
         
         guard toggleStatus == "1" else {
-            statusLabel.text = "Inactive"
+            statusLabel.text = "Inactive".localiz()
             return
         }
         
@@ -118,7 +118,7 @@ class PromotionalBannerDetaislViewController: UIViewController {
             let startDate = formatter.date(from: startDateStr),
             let endDate = formatter.date(from: endDateStr)
         else {
-            statusLabel.text = "Upcoming"
+            statusLabel.text = "Upcoming".localiz()
             return
         }
         
@@ -126,11 +126,11 @@ class PromotionalBannerDetaislViewController: UIViewController {
         let end = Calendar.current.startOfDay(for: endDate)
         
         if today < start {
-            statusLabel.text = "Upcoming"
+            statusLabel.text = "Upcoming".localiz()
         } else if today > end {
-            statusLabel.text = "Inactive"
+            statusLabel.text = "Inactive".localiz()
         } else {
-            statusLabel.text = "Active"
+            statusLabel.text = "Active".localiz()
         }
     }
     
@@ -151,11 +151,11 @@ class PromotionalBannerDetaislViewController: UIViewController {
         categoryStackView.isHidden = true
         countryNameLabel.text = bannerListData?.countryInfo?.name
         if bannerListData?.bannerPosition == "1" {
-            positionLabel.text = "Home Top"
+            positionLabel.text = "Home Top".localiz()
         } else if bannerListData?.bannerPosition == "2" {
-            positionLabel.text = "Home Bottom"
+            positionLabel.text = "Home Bottom".localiz()
         } else {
-            positionLabel.text = "Category"
+            positionLabel.text = "Category".localiz()
             subCategoryLabel.text = bannerListData?.subcategoryDetails?.nameEnglish
             categorynameLabel.text = bannerListData?.categoryDetails?.name
             subcatgeoryStackView.isHidden = false

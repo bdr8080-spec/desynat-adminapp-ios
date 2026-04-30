@@ -29,9 +29,9 @@ class RegisterationSuccessViewController: UIViewController {
         }
         if titleString.isEmpty {
             initialSetup()
-            descriptionLabel.text = titleString
+            descriptionLabel.text = titleString.localiz()
         } else {
-            descriptionLabel.text = titleString
+            descriptionLabel.text = titleString.localiz()
         }
     }
     
@@ -42,7 +42,7 @@ class RegisterationSuccessViewController: UIViewController {
         case .passwordUpdated:
             self.titleString = "Password Reset\nsuccessfully!"
         case .accountCreated:
-            self.titleString = "Thank you for sinning up\nwith DESYNAT"
+            self.titleString = "Thank you for signning up\nwith DESYNAT"
         case .LiveRequestIsDone:
             self.titleString = "Request accepted\nsuccessfully!"
             mainImageView.image = UIImage(named: "darkGreenCompletion")

@@ -19,7 +19,7 @@ class PromotionalBannerDetailsViewModel {
         WebService.shared.deletePromtoionalBanner(param: param){ [weak self] response in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                CommonUtils.showToast(message: "Banner Deleted Successfully")
+                CommonUtils.showToast(message: "Banner Deleted Successfully".localiz())
                 self.hostVC.navigationController?.popViewController(animated: true)
             }
         }

@@ -115,7 +115,7 @@ extension OrdersManagementListViewController: UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OrdersManagementCategoryCollectionViewCell", for: indexPath) as! OrdersManagementCategoryCollectionViewCell
-        cell.configure(title: orderCategoriesList[indexPath.row])
+        cell.configure(title: orderCategoriesList[indexPath.row].localiz())
         
         if selecetedCategoryId == indexPath.row {
             cell.mainImageView.isHidden = false

@@ -58,7 +58,7 @@ class ChatViewController: UIViewController {
     
     @IBAction func sendMessageDidTapped(_ sender: Any) {
         guard let txt = self.messageTF.text?.trimmingCharacters(in: .whitespacesAndNewlines), !txt.isEmpty else {
-            self.showAlert(msg: "Please Enter Text to Send Message")
+            self.showAlert(msg: "Please Enter Text to Send Message".localiz())
             return
         }
         self.messageTF.text = nil

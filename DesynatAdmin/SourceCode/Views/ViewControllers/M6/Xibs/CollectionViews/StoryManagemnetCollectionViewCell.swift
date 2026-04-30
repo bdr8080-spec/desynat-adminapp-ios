@@ -58,7 +58,7 @@ class StoryManagemnetCollectionViewCell: UICollectionViewCell {
         guard let data = data else { return }
         
         postedDateLabel.text = formatDateString(data.createdAt ?? "")
-        statusLabel.text = data.status == 1 ? "Active" : "Inactive"
+        statusLabel.text = data.status == 1 ? "Active".localiz() : "Inactive".localiz()
         
         let fileString = data.file ?? ""
         let thumbnailString = data.thumbnail ?? ""

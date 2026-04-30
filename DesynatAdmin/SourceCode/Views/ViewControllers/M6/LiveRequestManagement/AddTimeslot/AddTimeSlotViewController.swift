@@ -94,7 +94,7 @@ class AddTimeSlotViewController: UIViewController {
         // Check if From and To times are selected
         if fromHour.isEmpty || fromMinute.isEmpty || fromAmPm.isEmpty ||
             toHour.isEmpty || toMinute.isEmpty || toAmPm.isEmpty {
-            showAlert(msg: "Please select both From and To times")
+            showAlert(msg: "Please select both From and To times".localiz())
             return
         }
         
@@ -105,20 +105,20 @@ class AddTimeSlotViewController: UIViewController {
         //Validate FROM time
         let fromTimeString = "\(fromHour):\(fromMinute) \(fromAmPm)"
         guard let fromDate = formatter.date(from: fromTimeString) else {
-            showAlert(msg: "Please select From time")
+            showAlert(msg: "Please select From time".localiz())
             return
         }
         
         //Validate TO time
         let toTimeString = "\(toHour):\(toMinute) \(toAmPm)"
         guard let toDate = formatter.date(from: toTimeString) else {
-            showAlert(msg: "Please select To time")
+            showAlert(msg: "Please select To time".localiz())
             return
         }
         
         // Check if From < To
         if fromDate >= toDate {
-            showAlert(msg: "From time must be earlier than To time")
+            showAlert(msg: "From time must be earlier than To time".localiz())
             return
         }
         
@@ -175,9 +175,9 @@ class AddTimeSlotViewController: UIViewController {
         // Toolbar
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(donePicker))
+        let doneButton = UIBarButtonItem(title: "Done".localiz(), style: .done, target: self, action: #selector(donePicker))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelPicker))
+        let cancelButton = UIBarButtonItem(title: "Cancel".localiz(), style: .plain, target: self, action: #selector(cancelPicker))
         toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         
         hiddenTextField.inputView = pickerView

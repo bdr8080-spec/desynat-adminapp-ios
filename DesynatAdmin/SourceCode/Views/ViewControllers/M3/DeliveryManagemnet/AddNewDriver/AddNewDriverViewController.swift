@@ -77,11 +77,11 @@ class AddNewDriverViewController: UIViewController {
         viewModel.getAllZone()
         if isComingForEdit {
             viewModel.getDriverDetails()
-            titleLabel.text = "Edit Driver"
-            buttonLabel.text = "Save Changes"
+            titleLabel.text = "Edit Driver".localiz()
+            buttonLabel.text = "Save Changes".localiz()
         } else {
-            titleLabel.text = "Add New Driver"
-            buttonLabel.text = "Add"
+            titleLabel.text = "Add New Driver".localiz()
+            buttonLabel.text = "Add".localiz()
         }
     }
     
@@ -584,7 +584,7 @@ extension AddNewDriverViewController: UITextFieldDelegate {
             
             for scalar in string.unicodeScalars {
                 if !allowedSet.contains(scalar) {
-                    CommonUtils.showToast(message: "Please switch to Arabic keyboard")
+                    CommonUtils.showToast(message: "Please switch to Arabic keyboard".localiz())
                     return false
                 }
             }

@@ -18,7 +18,6 @@ struct PlanInfo {
     var noOfProducts:Int = 0
     var noOfHighlights:Int = 0
     var stories:Int = 0
-    
     var noOfEmployee:Int = 0
     var isStoryOpen:Bool = false
     var isComission:Bool = false
@@ -217,9 +216,9 @@ enum DurationType:Int,CaseIterable {
         case .none:
             ""
         case .month:
-            "Month"
+            "Month".localiz()
         case .year:
-            "Year"
+            "Year".localiz()
         }
     }
 }

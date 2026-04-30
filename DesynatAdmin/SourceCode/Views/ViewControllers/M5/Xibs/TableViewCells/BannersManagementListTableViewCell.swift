@@ -63,35 +63,35 @@ class BannersManagementListTableViewCell: UITableViewCell {
         self.lblAvailableAmount.text = "\(data.totalEarning) KD"
         self.lblRequestedAmount.text = "\(data.totalEarning) KD"
         if data.bannerPosition == "1" {
-            self.lblBannerPosition.text = "Home-Top"
+            self.lblBannerPosition.text = "Home-Top".localiz()
         } else if data.bannerPosition == "2" {
-            self.lblBannerPosition.text = "Home-Banner"
+            self.lblBannerPosition.text = "Home-Banner".localiz()
         } else if data.bannerPosition == "3" {
-            self.lblBannerPosition.text = "Category"
+            self.lblBannerPosition.text = "Category".localiz()
         }
         // payment status - 0 pending, 1 paid , 2 cancelled, 3 failed
         if data.paymentStatus == "0" {
-            self.lblAmount.text = "Pending"
+            self.lblAmount.text = "Pending".localiz()
         } else if data.paymentStatus == "1" {
-            self.lblAmount.text = "Paid"
+            self.lblAmount.text = "Paid".localiz()
         } else if data.paymentStatus == "2" {
-            self.lblAmount.text = "Cancelled"
+            self.lblAmount.text = "Cancelled".localiz()
         } else if data.paymentStatus == "3" {
-            self.lblAmount.text = "Failed"
+            self.lblAmount.text = "Failed".localiz()
         }
         self.lblStatus.textColor = UIColor(hexString: "34A853") //green
         if type.rawValue == 1 {
             if data.paymentStatus == "0" {
                 self.lblStatus.textColor = UIColor(hexString: "34A853") //green
-                self.lblStatus.text = "Upcoming"
+                self.lblStatus.text = "Upcoming".localiz()
                 
             } else if data.paymentStatus == "1" {
                 self.lblStatus.textColor = UIColor(hexString: "34A853") //green
-                self.lblStatus.text = "Active"
+                self.lblStatus.text = "Active".localiz()
             }
         }else if type.rawValue == 2 {
             self.lblStatus.textColor = .red
-            self.lblStatus.text = "Rejected"
+            self.lblStatus.text = "Rejected".localiz()
             
         }
         hideAndShowDetails(for: type, hasActionPermission: hasActionPermission)

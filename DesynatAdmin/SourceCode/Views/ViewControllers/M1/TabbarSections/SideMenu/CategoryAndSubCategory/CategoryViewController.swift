@@ -50,9 +50,9 @@ class CategoryViewController: UIViewController {
                 self.categoryTableView.reloadRows(at: [indexPath], with: .automatic)
                 if let status = category.status {
                     if status == 1 {
-                        CommonUtils.showToast(message: "Category has been activated Successfully")
+                        CommonUtils.showToast(message: "Category has been activated Successfully".localiz())
                     } else {
-                        CommonUtils.showToast(message: "Category has been Deactivated Successfully")
+                        CommonUtils.showToast(message: "Category has been Deactivated Successfully".localiz())
                     }
                 }
             }

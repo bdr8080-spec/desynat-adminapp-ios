@@ -164,7 +164,7 @@ class PaymentsController: UIViewController {
     }
     
     @IBAction func chooseMonthDidTapped(_ sender: Any) {
-        let alert = UIAlertController(title: "Select Month", message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "Select Month".localiz(), message: nil, preferredStyle: .actionSheet)
         
         let months = Calendar.current.monthSymbols
         
@@ -176,12 +176,12 @@ class PaymentsController: UIViewController {
             }))
         }
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Cancel".localiz(), style: .cancel))
         present(alert, animated: true)
     }
     
     @IBAction func chooseYearDidTapped(_ sender: Any) {
-        let alert = UIAlertController(title: "Select Year", message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "Select Year".localiz(), message: nil, preferredStyle: .actionSheet)
         
         let currentYear = Calendar.current.component(.year, from: Date())
         
@@ -193,7 +193,7 @@ class PaymentsController: UIViewController {
             }))
         }
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Cancel".localiz(), style: .cancel))
         present(alert, animated: true)
     }
     
@@ -202,8 +202,8 @@ class PaymentsController: UIViewController {
         selectedMonth = nil
         selectedYear = nil
         
-        chooseMonthLbl.text = "Choose Month"
-        chooseYear.text = "Choose Year"
+        chooseMonthLbl.text = "Choose Month".localiz()
+        chooseYear.text = "Choose Year".localiz()
     }
     
     private func updateTabUI(selected: PaymentTab) {
@@ -332,15 +332,6 @@ extension PaymentsController : UITableViewDelegate, UITableViewDataSource {
         let data = viewModel.paymentList[indexPath.row]
         let isExpanded = expandedIndex == indexPath
         cell.configure(isExpanded: isExpanded, tab: selectedTab, data: data)
-        //        cell.isViewMore = {
-        //            if self.expandedIndex == indexPath {
-        //                self.expandedIndex = nil
-        //            } else {
-        //                self.expandedIndex = indexPath
-        //            }
-        //
-        //            self.paymentTableView.reloadData()
-        //        }
         cell.isViewMore = { [weak self] in
             guard let self = self else { return }
             

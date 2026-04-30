@@ -100,8 +100,8 @@ class BannersManagementDetailsViewController: UIViewController {
                     // Send updated model back
                     self.onStatusUpdated?(self.detailData)
                     let message = newStatus == 1
-                    ? "Banner activated successfully"
-                    : "Banner deactivated successfully"
+                    ? "Banner activated successfully".localiz()
+                    : "Banner deactivated successfully".localiz()
                     CommonUtils.showToast(message: message)
                 }
             }
@@ -115,7 +115,7 @@ class BannersManagementDetailsViewController: UIViewController {
             self.viewModel.rejectBanner(id: self.detailData.id, reason: reason) {
                 DispatchQueue.main.async {
                     let succesVC = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
-                    succesVC.setTitle("Banner rejected\nsuccessfully!")
+                    succesVC.setTitle("Banner rejected\nsuccessfully!".localiz())
                     succesVC.callBackDismiss = {
                         self.navigationController?.popViewController(animated: true)
                     }
@@ -131,7 +131,7 @@ class BannersManagementDetailsViewController: UIViewController {
         viewModel.acceptBanner(id: self.detailData.id) {
             DispatchQueue.main.async {
                 let vc = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
-                vc.setTitle("Banner approved\nsuccessfully!")
+                vc.setTitle("Banner approved\nsuccessfully!".localiz())
                 vc.callBackDismiss = {
                     self.navigationController?.popViewController(animated: true)
                 }
@@ -162,27 +162,27 @@ class BannersManagementDetailsViewController: UIViewController {
         let lastTransactionId7 = fullTransactionId.count >= 7 ? String(fullTransactionId.suffix(7)) : fullTransactionId
         self.lblTransactionId.text = "#\(lastTransactionId7)"
         self.lblRequestOn.text = detailData.joinedOn
-        self.lblDuration.text = "\(detailData.totalDays) days"
+        self.lblDuration.text = "\(detailData.totalDays) \("days".localiz())"
         self.lblTotalAmount.text = detailData.totalEarning
         self.subCategoryStackView.isHidden = true
         self.lblSubcategoryName.text = detailData.subcategory
         if detailData.bannerPosition == "1" {
-            self.lblBannerPosition.text = "Home-Top"
+            self.lblBannerPosition.text = "Home-Top".localiz()
         } else if detailData.bannerPosition == "2" {
-            self.lblBannerPosition.text = "Home-Bottom"
+            self.lblBannerPosition.text = "Home-Bottom".localiz()
         } else if detailData.bannerPosition == "3" {
-            self.lblBannerPosition.text = "Category"
+            self.lblBannerPosition.text = "Category".localiz()
             self.subCategoryStackView.isHidden = false
         }
         // payment status - 0 pending, 1 paid , 2 cancelled, 3 failed
         if detailData.paymentStatus == "0" {
-            self.lblAmount.text = "Pending"
+            self.lblAmount.text = "Pending".localiz()
         } else if detailData.paymentStatus == "1" {
-            self.lblAmount.text = "Paid"
+            self.lblAmount.text = "Paid".localiz()
         } else if detailData.paymentStatus == "2" {
-            self.lblAmount.text = "Cancelled"
+            self.lblAmount.text = "Cancelled".localiz()
         } else if detailData.paymentStatus == "3" {
-            self.lblAmount.text = "Failed"
+            self.lblAmount.text = "Failed".localiz()
         }
         self.lblStatus.textColor = UIColor(hexString: "34A853") //green
         self.transactionIdStackView.isHidden = true
@@ -190,14 +190,14 @@ class BannersManagementDetailsViewController: UIViewController {
         updateToggleUI()
         if type.rawValue == 1 {
             if detailData.paymentStatus == "0" {
-                self.lblStatus.text = "Upcoming"
+                self.lblStatus.text = "Upcoming".localiz()
             } else if detailData.paymentStatus == "1" {
-                self.lblStatus.text = "Active"
+                self.lblStatus.text = "Active".localiz()
                 self.transactionIdStackView.isHidden = false
             }
         }else if type.rawValue == 2 {
             self.lblStatus.textColor = .red
-            self.lblStatus.text = "Rejected"
+            self.lblStatus.text = "Rejected".localiz()
         }
         self.lblFrom.text = detailData.from
         self.lblTo.text = detailData.to

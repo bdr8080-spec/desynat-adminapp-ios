@@ -58,7 +58,7 @@ class SendNewNotificationViewModel {
         //        }
         
         if errorMessage != .none {
-            hostVC.showAlert(msg: errorMessage.rawValue)
+            hostVC.showAlert(msg: errorMessage.rawValue.localiz())
             hostVC.view.endEditing(true)
             return false
         }
@@ -109,7 +109,7 @@ class SendNewNotificationViewModel {
         print("param===>\(param)")
         WebService.shared.sendNotificationsService(parameter: param) { [weak self] response in
             guard let self = self else { return }
-            CommonUtils.showToast(message: "New Notification sent successfully")
+            CommonUtils.showToast(message: "New Notification sent successfully".localiz())
             self.hostVC.navigationController?.popViewController(animated: true)
         }
     }

@@ -130,7 +130,7 @@ class ProductDetailViewController: UIViewController {
                 self.viewModel.productDetails?.productActiveStatus = newStatus
                 if let updatedUser = self.viewModel.productDetails {
                     self.configData(data: updatedUser)
-                    let message = newStatus == 1 ? "Product has been unblocked Successfully" : "Product has been blocked Successfully"
+                    let message = newStatus == 1 ? "Product has been unblocked Successfully".localiz() : "Product has been blocked Successfully".localiz()
                     CommonUtils.showToast(message: message)
                 }
             }
@@ -195,21 +195,21 @@ class ProductDetailViewController: UIViewController {
         
         // Status
         if data.productActiveStatus == 1 {
-            statusLabel.text = "Active"
+            statusLabel.text = "Active".localiz()
             statusButton.setImage(UIImage(named: "toggleOn"), for: .normal)
         } else {
-            statusLabel.text = "Inactive"
+            statusLabel.text = "Inactive".localiz()
             statusButton.setImage(UIImage(named: "toggleOff"), for: .normal)
         }
         
         // MARK: - Switch Labels (YES / NO)
-        cashOnDeliveryLabel.text = data.cashOnDelivery == "1" ? "Yes" : "No"
-        readyToShipLabel.text = data.readyToShip == "1" ? "Yes" : "No"
-        customizableLabel.text = data.customizedProduct == "1" ? "Yes" : "No"
-        affiliatedLabel.text = data.affiliatedProduct == "1" ? "Yes" : "No"
-        ratingReviewALlowedLabel.text = data.reviewRating == "1" ? "Yes" : "No"
-        returnAllowedLAbel.text = data.productReturn == "1" ? "\(data.returnDays ?? "") days" : "No"
-        exchnageAllowedLAbel.text = data.productExchangable == "1" ? "\(data.exchangableDays ?? "") days" : "No"
+        cashOnDeliveryLabel.text = data.cashOnDelivery == "1" ? "Yes".localiz() : "No".localiz()
+        readyToShipLabel.text = data.readyToShip == "1" ? "Yes".localiz() : "No".localiz()
+        customizableLabel.text = data.customizedProduct == "1" ? "Yes".localiz() : "No".localiz()
+        affiliatedLabel.text = data.affiliatedProduct == "1" ? "Yes".localiz() : "No".localiz()
+        ratingReviewALlowedLabel.text = data.reviewRating == "1" ? "Yes".localiz() : "No".localiz()
+        returnAllowedLAbel.text = data.productReturn == "1" ? "\(data.returnDays ?? "") \("days".localiz())" : "No".localiz()
+        exchnageAllowedLAbel.text = data.productExchangable == "1" ? "\(data.exchangableDays ?? "") \("days".localiz())" : "No".localiz()
         
         // In configData
         productVariants = data.productVariants ?? []
@@ -331,7 +331,7 @@ class ProductDetailViewController: UIViewController {
         if let date = inputFormatter.date(from: input) {
             return outputFormatter.string(from: date)
         } else {
-            return "Invalid date"
+            return "Invalid date".localiz()
         }
     }
     

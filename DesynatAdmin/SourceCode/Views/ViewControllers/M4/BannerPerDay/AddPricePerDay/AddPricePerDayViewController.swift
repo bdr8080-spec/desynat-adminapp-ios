@@ -29,7 +29,7 @@ class AddPricePerDayViewController: UIViewController {
     // MARK: - Button's Action
     @IBAction func saveChangesDidTapped(_ sender: Any) {
         guard let text = amountTF.text, !text.isEmpty else {
-            showAlert(msg: "Please enter price")
+            showAlert(msg: "Please enter price".localiz())
             return
         }
         viewModel.addPricePerDay()

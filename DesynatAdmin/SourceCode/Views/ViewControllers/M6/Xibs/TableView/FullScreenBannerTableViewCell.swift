@@ -53,11 +53,11 @@ class FullScreenBannerTableViewCell: UITableViewCell {
         
         endDateLabel.text = convertDateFormat(data?.endDate ?? "")
         if data?.type == "1" {
-            typeLabel.text = "App Banner"
+            typeLabel.text = "App Banner".localiz()
         } else {
-            typeLabel.text = "Web Banner"
+            typeLabel.text = "Web Banner".localiz()
         }
-        positionTitleLabel.text = "Type"
+        positionTitleLabel.text = "Type".localiz()
     }
     
     func configDataForPromotionalBanner(data: GetPromotionalBannersList?) {
@@ -76,11 +76,11 @@ class FullScreenBannerTableViewCell: UITableViewCell {
         countryLabel.text = data?.countryInfo?.name
         endDateLabel.text = convertDateFormat(data?.endDate ?? "")
         if data?.bannerPosition == "1" {
-            typeLabel.text = "Home Top"
+            typeLabel.text = "Home Top".localiz()
         } else if data?.bannerPosition == "2" {
-            typeLabel.text = "Home Bottom"
+            typeLabel.text = "Home Bottom".localiz()
         } else {
-            typeLabel.text = "Category"
+            typeLabel.text = "Category".localiz()
         }
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -98,24 +98,24 @@ class FullScreenBannerTableViewCell: UITableViewCell {
                 let end = Calendar.current.startOfDay(for: endDate)
                 
                 if today < start {
-                    statusLabel.text = "Upcoming"
+                    statusLabel.text = "Upcoming".localiz()
                     statusLabel.textColor = .black
                 } else if today > end {
-                    statusLabel.text = "Inactive"
+                    statusLabel.text = "Inactive".localiz()
                     statusLabel.textColor = UIColor(hexString: "#68CA44")
                 } else {
-                    statusLabel.text = "Active"
+                    statusLabel.text = "Active".localiz()
                     statusLabel.textColor = UIColor(hexString: "#68CA44")
                 }
             } else {
-                statusLabel.text = "Upcoming"
+                statusLabel.text = "Upcoming".localiz()
                 statusLabel.textColor = .black
             }
         } else {
-            statusLabel.text = "Inactive"
+            statusLabel.text = "Inactive".localiz()
             statusLabel.textColor = UIColor(hexString: "#68CA44")
         }
-        positionTitleLabel.text = "Position"
+        positionTitleLabel.text = "Position".localiz()
     }
     
     func convertDateFormat(

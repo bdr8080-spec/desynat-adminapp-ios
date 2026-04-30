@@ -27,13 +27,13 @@ class AddPricePerDayViewModel {
                 let type = self.hostVC.bannerDetails?.type ?? 1
                 switch type {
                 case 1:
-                    CommonUtils.showToast(message: "Top Banner Per Day Price updated succesfully")
+                    CommonUtils.showToast(message: "Top Banner Per Day Price updated succesfully".localiz())
                 case 2:
-                    CommonUtils.showToast(message: "Bottom Banner Per Day Price updated succesfully ")
+                    CommonUtils.showToast(message: "Bottom Banner Per Day Price updated succesfully".localiz())
                 case 3:
-                    CommonUtils.showToast(message: "Sub-Category Banner Per Day Price updated succesfully")
+                    CommonUtils.showToast(message: "Sub-Category Banner Per Day Price updated succesfully".localiz())
                 default:
-                    CommonUtils.showToast(message: "Top Banner Per Day Price updated succesfully")
+                    CommonUtils.showToast(message: "Top Banner Per Day Price updated succesfully".localiz())
                     
                 }
             }

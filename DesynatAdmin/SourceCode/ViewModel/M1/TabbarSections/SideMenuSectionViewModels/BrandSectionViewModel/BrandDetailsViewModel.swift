@@ -24,9 +24,9 @@ class BrandDetailsViewModel {
                 self.hostVC.bindData()
                 if let status = response.status {
                     if status == 1 {
-                        CommonUtils.showToast(message: "Brand Activated Successfully")
+                        CommonUtils.showToast(message: "Brand Activated Successfully".localiz())
                     } else {
-                        CommonUtils.showToast(message: "Brand Deactivated Successfully")
+                        CommonUtils.showToast(message: "Brand Deactivated Successfully".localiz())
                     }
                 }
             }
@@ -37,7 +37,7 @@ class BrandDetailsViewModel {
         WebService.shared.deleteBrand(param: param){ [weak self] response in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                CommonUtils.showToast(message: "Brand Deleted Successfully")
+                CommonUtils.showToast(message: "Brand Deleted Successfully".localiz())
                 self.hostVC.navigationController?.popViewController(animated: true)
             }
         }

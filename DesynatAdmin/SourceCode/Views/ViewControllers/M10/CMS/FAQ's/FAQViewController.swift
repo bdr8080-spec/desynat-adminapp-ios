@@ -79,7 +79,7 @@ extension FAQViewController: UITableViewDelegate, UITableViewDataSource {
             self?.navigationController?.present(nextVC, animated: true)
         }
         cell.onDeleteTapped = { [weak self] in
-            self?.showConfirmationAlert(msg: "Are you sure you want to delete this faq?") { [weak self] in
+            self?.showConfirmationAlert(msg: "Are you sure you want to delete this faq?".localiz()) { [weak self] in
                 guard let self = self else { return }
                 viewModel.deleteFAQRequest(id: data?.id ?? 0)
             }

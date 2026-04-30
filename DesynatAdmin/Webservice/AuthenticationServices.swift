@@ -37,7 +37,7 @@ extension WebService {
                     kSharedUserDefaults.saveModelFor(key: .user, value: response)
                     kSharedUserDefaults.saveStringFor(Key: .accessToken, value: String.getString(response.accessToken))
                     kSharedUserDefaults.setUserLoggedIn(userLoggedIn: true)
-                    CommonUtils.showToast(message: "Login Succesfully")
+                    CommonUtils.showToast(message: "Login Succesfully".localiz())
                     completion(response)
                 }
             }
@@ -52,7 +52,7 @@ extension WebService {
                 if let error {
                     UIApplication.shared.topViewController()?.showAlert(msg: error)
                 } else if let response {
-                    CommonUtils.showToastForOTP(message: "OTP sent to your email address succesfully")
+                    CommonUtils.showToastForOTP(message: "OTP sent to your email address succesfully".localiz())
                     completion(response)
                 }
             }
@@ -81,7 +81,7 @@ extension WebService {
                 if let error {
                     UIApplication.shared.topViewController()?.showAlert(msg: error)
                 } else if let response {
-                    CommonUtils.showToastForOTP(message: message ?? "OTP Sent Successfully")
+                    CommonUtils.showToastForOTP(message: message ?? "OTP Sent Successfully".localiz())
                     completion(response)
                 }
             }

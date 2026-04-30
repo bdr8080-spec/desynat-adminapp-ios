@@ -52,10 +52,10 @@ class CategoryTableViewCell: UITableViewCell {
             }
         
         if data.status == 1 {
-            statusLabel.text = "Active"
+            statusLabel.text = "Active".localiz()
             statusImageView.image = UIImage(named: "toggleOn")
         } else {
-            statusLabel.text = "Inactive"
+            statusLabel.text = "Inactive".localiz()
             statusImageView.image = UIImage(named: "toggleOff")
         }
         

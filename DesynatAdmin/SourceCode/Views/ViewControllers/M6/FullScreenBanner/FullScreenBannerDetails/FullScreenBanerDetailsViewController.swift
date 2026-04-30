@@ -34,7 +34,7 @@ class FullScreenBanerDetailsViewController: UIViewController {
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        typeTitleLabel.text = "Type"
+        typeTitleLabel.text = "Type".localiz()
         viewModel.getFullScreenBannerDetailsList()
         botttomActionStackView.isHidden = !hasActionPermission
         
@@ -58,7 +58,7 @@ class FullScreenBanerDetailsViewController: UIViewController {
     
     @IBAction func deleteDidTapped(_ sender: Any) {
         guard let gift = giftsListData else { return }
-        self.showConfirmationAlert(msg: "Are you sure you want to delete this banner"){ [weak self] in
+        self.showConfirmationAlert(msg: "Are you sure you want to delete this banner".localiz()){ [weak self] in
             guard let self = self else { return }
             switch bannerType {
             case .fullScreen:
@@ -100,34 +100,34 @@ class FullScreenBanerDetailsViewController: UIViewController {
                 let end = Calendar.current.startOfDay(for: endDate)
                 
                 if today < start {
-                    statusLabel.text = "Upcoming"
+                    statusLabel.text = "Upcoming".localiz()
                 } else if today > end {
-                    statusLabel.text = "Inactive"
+                    statusLabel.text = "Inactive".localiz()
                 } else {
-                    statusLabel.text = "Active"
+                    statusLabel.text = "Active".localiz()
                 }
             } else {
-                statusLabel.text = "Upcoming"
+                statusLabel.text = "Upcoming".localiz()
             }
         } else {
-            statusLabel.text = "Inactive"
+            statusLabel.text = "Inactive".localiz()
         }
         startDateLabel.text = convertDateFormat(giftsListData?.startDate ?? "")
         endDateLabel.text = convertDateFormat(giftsListData?.endDate ?? "")
         switch bannerType {
         case .fullScreen:
             if giftsListData?.type == "1" {
-                typeLabel.text = "App Banner"
+                typeLabel.text = "App Banner".localiz()
             } else {
-                typeLabel.text = "Web Banner"
+                typeLabel.text = "Web Banner".localiz()
             }
         case .promotional:
             if giftsListData?.type == "1" {
-                typeLabel.text = "Top"
+                typeLabel.text = "Top".localiz()
             } else if giftsListData?.type == "2" {
-                typeLabel.text = "Bottom"
+                typeLabel.text = "Bottom".localiz()
             } else {
-                typeLabel.text = "Category"
+                typeLabel.text = "Category".localiz()
             }
         }
         

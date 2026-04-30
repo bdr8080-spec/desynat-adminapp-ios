@@ -128,6 +128,11 @@ class HomeViewController: UIViewController {
         countryDropDownView.isHidden = true
     }
     
+    @IBAction func updateLanguageDidTapped(_ sender: Any) {
+        let nextVC = ChangeLanguageViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+        self.present(nextVC, animated: true)
+    }
+    
     @IBAction func bellDidTapped(_ sender: Any) {
         let nextVC = MyNotificationsListViewController.instantiate(fromAppStoryboard: .NotificationCMS)
         self.navigationController?.pushViewController(nextVC, animated: true)
@@ -135,13 +140,13 @@ class HomeViewController: UIViewController {
     
     //MARK: Function's declaration
     private func bindData() {
-        totalUserRegisteredLabel.text = "Total users registered (2380)"
-        totalAffiliatedLabel.text = "Total Affiliated registered (2380)"
-        totalDriverRegisteredCountLabel.text = "Total Drivers registered (2380)"
-        totalSellerCountLabel.text = "Total Seller registered (2380)"
-        totalOrderCountLabel.text = "Total Orders(14)"
-        totalTicketCountLabel.text = "Total tickets (14)"
-        totalOnlineUserCountLabel.text = "Total Online Users (2000)"
+        totalUserRegisteredLabel.text = String(format: "Total users registered (%@)".localiz(),"\(100)")
+        totalAffiliatedLabel.text = String(format: "Total Affiliated registered (%@)".localiz(),"\(100)")
+        totalDriverRegisteredCountLabel.text = String(format: "Total Drivers registered (%@)".localiz(),"\(100)")
+        totalSellerCountLabel.text = String(format: "Total Seller registered (%@)".localiz(),"\(100)")
+        totalOrderCountLabel.text = String(format: "Total Orders (%@)".localiz(),"\(100)")
+        totalTicketCountLabel.text = String(format: "Total tickets (%@)".localiz(),"\(100)")
+        totalOnlineUserCountLabel.text = String(format: "Total Online Users (%@)".localiz(),"\(100)")
     }
     
     private func uiSetup() {
@@ -163,7 +168,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DurationCollectionViewCell", for: indexPath) as! DurationCollectionViewCell
-        cell.titleLabel.text = durationArray[indexPath.row]
+        cell.titleLabel.text = durationArray[indexPath.row].localiz()
         if durationSelectedIndex == indexPath.row {
             cell.selectedImageView.image = UIImage(named: "durationSelected")
         } else {
@@ -219,9 +224,9 @@ extension HomeViewController: UITextFieldDelegate {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneDatePicker))
+        let doneButton = UIBarButtonItem(title: "Done".localiz(), style: .done, target: self, action: #selector(doneDatePicker))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker))
+        let cancelButton = UIBarButtonItem(title: "Cancel".localiz(), style: .plain, target: self, action: #selector(cancelDatePicker))
         toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         
         fromDateTextField.inputView = datePicker

@@ -13,9 +13,9 @@ enum SellerRejectionType {
     var paramterValue:String {
         switch self {
         case .completeProject:
-            "complete"
+            "complete".localiz()
         case .documents:
-            "document"
+            "document".localiz()
         }
     }
 }
@@ -45,7 +45,7 @@ class RejectReasonViewController: UIViewController {
     // MARK: - Button's Action
     @IBAction func handleSubmit(_ sender: Any) {
         if (self.viewModel.reason.isEmpty) {
-            self.showAlert(msg: "Please enter reason")
+            self.showAlert(msg: "Please enter reason".localiz())
             return
         }
         self.txtViewReason.becomeFirstResponder()

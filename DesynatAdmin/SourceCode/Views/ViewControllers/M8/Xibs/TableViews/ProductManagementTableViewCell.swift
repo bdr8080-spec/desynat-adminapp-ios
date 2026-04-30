@@ -95,7 +95,7 @@ class ProductManagementTableViewCell: UITableViewCell {
         if let date = inputFormatter.date(from: input) {
             return outputFormatter.string(from: date)
         } else {
-            return "Invalid date"
+            return "Invalid date".localiz()
         }
     }
     

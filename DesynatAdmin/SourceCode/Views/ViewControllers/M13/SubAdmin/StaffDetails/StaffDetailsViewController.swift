@@ -71,7 +71,7 @@ class StaffDetailsViewController: UIViewController {
     }
     
     @IBAction func deleteDidTapped(_ sender: Any) {
-        self.showConfirmationAlert(msg: "Are you sure you want to delete this sub admin?"){ [weak self] in
+        self.showConfirmationAlert(msg: "Are you sure you want to delete this sub admin?".localiz()){ [weak self] in
             guard let self = self else { return }
             let param:[String:Any] = ["id": staffID ?? 0]
             viewModel.deleteStaffDetails(param: param)

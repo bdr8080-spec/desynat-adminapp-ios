@@ -130,87 +130,18 @@ class OrderManagementDetailsViewController: UIViewController {
     
     @IBAction func downloadInvoiceDidTapped(_ sender: Any) {
         let orderId = self.viewModel.orderDetail?.order?.orderID ?? ""
-            let urlString = "\(BaseURL.value())Invoice/\(orderId)"
-            
-            guard let url = URL(string: urlString) else {
-                showAlert(msg: "Invalid invoice URL")
-                return
-            }
-
-            let safariVC = SFSafariViewController(url: url)
-            safariVC.modalPresentationStyle = .automatic
-            self.present(safariVC, animated: true)
+        let urlString = "\(BaseURL.value())Invoice/\(orderId)"
         
-        // Uncomment below if you prefer to handle download yourself
-            
-//            downloadAndHandleInvoice(from: url)
-            
+        guard let url = URL(string: urlString) else {
+            showAlert(msg: "Invalid invoice URL".localiz())
+            return
+        }
+        
+        let safariVC = SFSafariViewController(url: url)
+        safariVC.modalPresentationStyle = .automatic
+        self.present(safariVC, animated: true)
+        
     }
-    
-//    private func downloadAndHandleInvoice(from url: URL) {
-//        let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
-//            guard let self = self,
-//                  error == nil,
-//                  let data = data,
-//                  let httpResponse = response as? HTTPURLResponse,
-//                  let mimeType = httpResponse.mimeType
-//            else {
-//                DispatchQueue.main.async {
-//                    self?.showAlert(msg: "Failed to download invoice")
-//                }
-//                return
-//            }
-//
-//            // Now compute filename safely
-//            let filename: String
-//            if let suggested = httpResponse.suggestedFilename,
-//               !suggested.isEmpty {
-//                filename = suggested
-//            } else {
-//                filename = "invoice.pdf"
-//            }
-//
-//            // Decide what to do based on MIME type
-//            let isPdf = mimeType == "application/pdf"
-//            if isPdf {
-//                // Save to app’s Documents dir (optional)
-//                let documentsDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-//                let fileURL = documentsDir.appendingPathComponent(filename)
-//
-//                do {
-//                    try data.write(to: fileURL)
-//                } catch {
-//                    print("Failed to save file: \(error)")
-//                }
-//
-//                // Show PDF in‑app with PDFKit
-//                DispatchQueue.main.async {
-//                    let pdfView = PDFView()
-//                    pdfView.autoScales = true
-//                    pdfView.document = PDFDocument(data: data)
-//
-//                    let pdfVC = UIViewController()
-//                    pdfVC.view = pdfView
-//                    pdfVC.title = "Invoice"
-//
-//                    let nav = UINavigationController(rootViewController: pdfVC)
-//                    nav.modalPresentationStyle = .formSheet
-//                    self.present(nav, animated: true)
-//                }
-//            } else {
-//                // For non‑PDF: offer share sheet
-//                let activity = UIActivityViewController(
-//                    activityItems: [data],
-//                    applicationActivities: nil
-//                )
-//                activity.popoverPresentationController?.sourceView = self.view
-//                DispatchQueue.main.async {
-//                    self.present(activity, animated: true)
-//                }
-//            }
-//        }
-//        task.resume()
-//    }
     
     //MARK: Function's declaration
     func getOrderDetailsAndHandleData() {
@@ -233,13 +164,13 @@ class OrderManagementDetailsViewController: UIViewController {
             let paymentMethod = self.viewModel.orderDetail?.order?.paymentMethod
             switch paymentMethod {
             case "1":
-                self.paymentMethodLabel.text = "Online"
+                self.paymentMethodLabel.text = "Online".localiz()
             case "2":
-                self.paymentMethodLabel.text = "In-App Wallet"
+                self.paymentMethodLabel.text = "In-App Wallet".localiz()
             case "3":
-                self.paymentMethodLabel.text = "COD"
+                self.paymentMethodLabel.text = "COD".localiz()
             default:
-                self.paymentMethodLabel.text = "COD"
+                self.paymentMethodLabel.text = "COD".localiz()
             }
             self.lblDriverName.text = self.viewModel.orderDetail?.driverDetails?.fullNameEnglish
             if let imageUrlString = self.viewModel.orderDetail?.driverDetails?.profilePic,
@@ -274,13 +205,13 @@ class OrderManagementDetailsViewController: UIViewController {
             let isPicked = self.viewModel.orderDetail?.isPicked
             switch paymentStatus {
             case "2", "3": //Cancelled
-                self.activateStep(0, title: "Confirmed")
-                self.activateStep(1, title: "Shipped")
-                self.activateStep(2, title: "On the Way")
-                self.activateStep(3, title: "Cancelled")
+                self.activateStep(0, title: "Confirmed".localiz())
+                self.activateStep(1, title: "Shipped".localiz())
+                self.activateStep(2, title: "On the Way".localiz())
+                self.activateStep(3, title: "Cancelled".localiz())
                 self.cancellationStackView.isHidden = false
                 self.lblCancelReason.text = self.viewModel.orderDetail?.order?.cancelReason
-                self.lblStatus.text = "Cancelled"
+                self.lblStatus.text = "Cancelled".localiz()
                 self.lblStatus.textColor = UIColor(hexString: "#D91A1B")
                 self.editAssignDriverButtonOutlet.isHidden = true
                 self.assignDriverView.isHidden = true
@@ -290,15 +221,15 @@ class OrderManagementDetailsViewController: UIViewController {
                 case "1":
                     self.img2.image = .shipped
                     if reApprove == "1" {
-                        self.activateStep(0, title: "Confirmed")
-                        self.activateStep(1, title: "Shipped")
-                        self.lblStatus.text = "Return Request"
+                        self.activateStep(0, title: "Confirmed".localiz())
+                        self.activateStep(1, title: "Shipped".localiz())
+                        self.lblStatus.text = "Return Request".localiz()
                         self.assignDriverView.isHidden = !self.hasActionPermission
                         self.deliveryByStackView.isHidden = true
                         self.driverDetailsView.isHidden = true
                         
                         if assignStatus == "1" {
-                            self.lblStatus.text = "Ongoing"
+                            self.lblStatus.text = "Ongoing".localiz()
                             self.assignDriverView.isHidden = true
                             self.deliveryByStackView.isHidden = true
                             self.driverDetailsView.isHidden = false
@@ -307,9 +238,9 @@ class OrderManagementDetailsViewController: UIViewController {
                     }
                     
                 case "2", "2.1": // confirmed
-                    self.activateStep(0, title: "Confirmed")
-                    self.activateStep(1, title: "Shipped")
-                    self.lblStatus.text = "Active"
+                    self.activateStep(0, title: "Confirmed".localiz())
+                    self.activateStep(1, title: "Shipped".localiz())
+                    self.lblStatus.text = "Active".localiz()
                     switch assignStatus {
                     case "1":
                         self.assignDriverView.isHidden = true
@@ -326,11 +257,11 @@ class OrderManagementDetailsViewController: UIViewController {
                     
                     if reApprove == "1" && returnType == "1" || returnType == "2" {
                         
-                        self.activateStep(0, title: "Confirmed")
+                        self.activateStep(0, title: "Confirmed".localiz())
                         self.img2.image = .shipped
-                        self.lbl2.text = "Picked"
-                        self.lbl3.text = "On The Way"
-                        self.lbl4.text = "Returned"
+                        self.lbl2.text = "Picked".localiz()
+                        self.lbl3.text = "On The Way".localiz()
+                        self.lbl4.text = "Returned".localiz()
                         self.assignDriverView.isHidden = !self.hasActionPermission
                         
                         if assignStatus == "1" {
@@ -339,16 +270,16 @@ class OrderManagementDetailsViewController: UIViewController {
                     }
                     
                 case "3": // Delivered
-                    self.activateStep(0, title: "Confirmed")
-                    self.activateStep(1, title: "Shipped")
-                    self.activateStep(2, title: "On the Way")
-                    self.activateStep(3, title: "Delivered")
+                    self.activateStep(0, title: "Confirmed".localiz())
+                    self.activateStep(1, title: "Shipped".localiz())
+                    self.activateStep(2, title: "On the Way".localiz())
+                    self.activateStep(3, title: "Delivered".localiz())
                     self.sellerRatingStackView.isHidden = false
                     self.productRatingStackView.isHidden = false
                     self.driverDetailsView.isHidden = false
                     self.editAssignDriverButtonOutlet.isHidden = true
                     let userRatingDone = self.viewModel.orderDetail?.userRatingReviewProvide
-                    self.lblStatus.text = "Delivered"
+                    self.lblStatus.text = "Delivered".localiz()
                     // Hide by default
                     self.productRatingStackView.isHidden = true
                     self.sellerRatingStackView.isHidden = true
@@ -390,72 +321,72 @@ class OrderManagementDetailsViewController: UIViewController {
                     }
                     
                     if returnType == "2" && reApprove == "1" {
-                        self.lblStatus.text = "Exchange Request"
-                        self.activateStep(0, title: "Confirmed")
-                        self.activateStep(1, title: "In Progress")
+                        self.lblStatus.text = "Exchange Request".localiz()
+                        self.activateStep(0, title: "Confirmed".localiz())
+                        self.activateStep(1, title: "In Progress".localiz())
                         //                        self.img2.image = .shipped
                         self.img3.image = .ontheWay
                         self.img4.image = .delivered
-                        self.lbl3.text = "Picked &\nExchange"
-                        self.lbl4.text = "Completed"
+                        self.lbl3.text = "Picked &\nExchange".localiz()
+                        self.lbl4.text = "Completed".localiz()
                         self.assignDriverView.isHidden = true
                         if isPicked == "1" {
-                            self.activateStep(2, title: "Picked &\nExchange")
+                            self.activateStep(2, title: "Picked &\nExchange".localiz())
                             let exchangeOrderDetails = self.viewModel.orderDetail?.exchangeOrderDetails?.deliveryStatus ?? "0"
                             if exchangeOrderDetails == "3" {
-                                self.activateStep(3, title: "Completed")
-                                self.lblStatus.text = "Delivered"
+                                self.activateStep(3, title: "Completed".localiz())
+                                self.lblStatus.text = "Delivered".localiz()
                             }
                         }
                     }
                     
                 case "4": //Cancelled
-                    self.activateStep(0, title: "Confirmed")
-                    self.activateStep(1, title: "Shipped")
-                    self.activateStep(2, title: "On the Way")
-                    self.activateStep(3, title: "Cancelled")
+                    self.activateStep(0, title: "Confirmed".localiz())
+                    self.activateStep(1, title: "Shipped".localiz())
+                    self.activateStep(2, title: "On the Way".localiz())
+                    self.activateStep(3, title: "Cancelled".localiz())
                     self.cancellationStackView.isHidden = false
                     self.lblCancelReason.text = self.viewModel.orderDetail?.order?.cancelReason
-                    self.lblStatus.text = "Cancelled"
+                    self.lblStatus.text = "Cancelled".localiz()
                     self.assignDriverView.isHidden = true
                     self.editAssignDriverButtonOutlet.isHidden = true
                     
                 case "7": //Picked
-                    self.activateStep(0, title: "Confirmed")
-                    self.activateStep(1, title: "Shipped")
-                    self.activateStep(2, title: "On the Way")
-                    self.lblStatus.text = "On The Way"
+                    self.activateStep(0, title: "Confirmed".localiz())
+                    self.activateStep(1, title: "Shipped".localiz())
+                    self.activateStep(2, title: "On the Way".localiz())
+                    self.lblStatus.text = "On The Way".localiz()
                     self.assignDriverView.isHidden = true
                     self.deliveryByStackView.isHidden = true
                     self.driverDetailsView.isHidden = false
                     self.editAssignDriverButtonOutlet.isHidden = true
                     
                 case "9": // Exchange
-                    self.activateStep(0, title: "Confirmed")
-                    self.activateStep(1, title: "Shipped")
-                    self.activateStep(2, title: "On the Way")
-                    self.activateStep(3, title: "Exchanged")
+                    self.activateStep(0, title: "Confirmed".localiz())
+                    self.activateStep(1, title: "Shipped".localiz())
+                    self.activateStep(2, title: "On the Way".localiz())
+                    self.activateStep(3, title: "Exchanged".localiz())
                     self.returnDetailsStackView.isHidden = false
                     self.returnExchangeReasonStackView.isHidden = false
                     self.retunrExchangeReasonLabel.text = self.viewModel.orderDetail?.exchangeReason
                     self.lblReturnId.text = "#\(self.viewModel.orderDetail?.orderID ?? 0)"
                     self.lblRequestedOn.text = self.viewModel.orderDetail?.updatedAt?.formattedPlacedDate() ?? ""
-                    self.retunrDetailsTitleLabel.text = "Exchange Details"
-                    self.lblStatus.text = "Exchange"
+                    self.retunrDetailsTitleLabel.text = "Exchange Details".localiz()
+                    self.lblStatus.text = "Exchange".localiz()
                     self.assignDriverView.isHidden = true
                     self.editAssignDriverButtonOutlet.isHidden = true
                     
                 case "5": // Return
-                    self.activateStep(0, title: "Confirmed")
-                    self.activateStep(1, title: "Shipped")
-                    self.activateStep(2, title: "On the Way")
-                    self.activateStep(3, title: "Returned")
+                    self.activateStep(0, title: "Confirmed".localiz())
+                    self.activateStep(1, title: "Shipped".localiz())
+                    self.activateStep(2, title: "On the Way".localiz())
+                    self.activateStep(3, title: "Returned".localiz())
                     self.returnDetailsStackView.isHidden = false
-                    self.retunrDetailsTitleLabel.text = "Return Details"
+                    self.retunrDetailsTitleLabel.text = "Return Details".localiz()
                     self.retunrExchangeReasonLabel.text = self.viewModel.orderDetail?.returnReason
                     self.lblReturnId.text = "#\(self.viewModel.orderDetail?.orderID ?? 0)"
                     self.lblRequestedOn.text = self.viewModel.orderDetail?.updatedAt?.formattedPlacedDate() ?? ""
-                    self.lblStatus.text = "Return"
+                    self.lblStatus.text = "Return".localiz()
                     self.assignDriverView.isHidden = true
                     self.editAssignDriverButtonOutlet.isHidden = true
                     
@@ -463,7 +394,7 @@ class OrderManagementDetailsViewController: UIViewController {
                     self.assignDriverView.isHidden = true
                     self.deliveryByStackView.isHidden = true
                     self.driverDetailsView.isHidden = true
-                    self.lblStatus.text = "Ongoing"
+                    self.lblStatus.text = "Ongoing".localiz()
                 }
             }
         }

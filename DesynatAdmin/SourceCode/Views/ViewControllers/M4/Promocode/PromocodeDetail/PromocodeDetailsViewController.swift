@@ -43,7 +43,7 @@ class PromocodeDetailsViewController: UIViewController {
     
     @IBAction func deleteDidTapepd(_ sender: Any) {
         guard let gift = promocodeDetails else { return }
-        self.showConfirmationAlert(msg: "Are you sure you want to delete this promocode?"){ [weak self] in
+        self.showConfirmationAlert(msg: "Are you sure you want to delete this promocode?".localiz()){ [weak self] in
             guard let self = self else { return }
             self.viewModel.deletePromocode(param: ["promocode_id": gift.id ?? 0])
         }
@@ -63,15 +63,15 @@ class PromocodeDetailsViewController: UIViewController {
     
     //MARK: Function's declaration
     func configData() {
-        percentageOffLabel.text = "Flat \(promocodeDetails?.discountPercent ?? "")% OFF" //promocodeDetails?.nameEnglish
-        percentageOffDescriptionLabel.text = "Flat \(promocodeDetails?.discountPercent ?? "")% Off On minimum order \(promocodeDetails?.minOrderValue ?? "")"
+        percentageOffLabel.text = "\("Flat".localiz()) \(promocodeDetails?.discountPercent ?? "")% \("OFF".localiz())" //promocodeDetails?.nameEnglish
+        percentageOffDescriptionLabel.text = "\("Flat".localiz()) \(promocodeDetails?.discountPercent ?? "")% \("Off On minimum order".localiz()) \(promocodeDetails?.minOrderValue ?? "")"
         descriptionLabel.text = promocodeDetails?.descriptionEnglish ?? ""
         termsAndConditionLabel.text = promocodeDetails?.descriptionEnglish ?? ""
         if promocodeDetails?.status == 1 {
-            statusLabel.text = "Active"
+            statusLabel.text = "Active".localiz()
             statusToggleImageView.image = UIImage(named: "toggleOn")
         } else {
-            statusLabel.text = "Inactive"
+            statusLabel.text = "Inactive".localiz()
             statusToggleImageView.image = UIImage(named: "toggleOff")
         }
         
@@ -79,9 +79,9 @@ class PromocodeDetailsViewController: UIViewController {
         let applicableFor = promocodeDetails?.applicableFor
         
         if applicableFor == 2 {
-            applicableForLabel.text = "Every Order"
+            applicableForLabel.text = "Every Order".localiz()
         } else {
-            applicableForLabel.text = "First Order"
+            applicableForLabel.text = "First Order".localiz()
         }
         
         startDateLabel.text = convertDate(promocodeDetails?.startDate ?? "")

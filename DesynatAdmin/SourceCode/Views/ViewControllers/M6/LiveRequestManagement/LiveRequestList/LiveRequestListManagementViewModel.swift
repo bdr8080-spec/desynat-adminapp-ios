@@ -82,7 +82,7 @@ class LiveRequestListManagementViewModel {
     func deleteTimeSlots(param: [String: Any]) {
         WebService.shared.deleteTimeSlots(param: param){ [weak self] response in
             guard let self = self else { return }
-            CommonUtils.showToast(message: "Live Request Timeslot Deleted Succesfully")
+            CommonUtils.showToast(message: "Live Request Timeslot Deleted Succesfully".localiz())
             self.fetchTimeSlotsIfPossible()
         }
     }

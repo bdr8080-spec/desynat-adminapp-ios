@@ -28,7 +28,7 @@ class AddAdvertisementViewController: UIViewController {
     var isComingForEdit: Bool = false
     var giftsListData: FullScreenBannerDataList?
     var onCardUpdated: ((FullScreenBannerDataList) -> Void)?
-    var forTypeList = ["App Banner", "Web Banner"]
+    var forTypeList = ["App Banner".localiz(), "Web Banner".localiz()]
     var selectedForType: Int = 0 //type 1 mobile,2-web
     var pickedImage: UIImage?
     var pickedGifData: Data?
@@ -142,7 +142,7 @@ class AddAdvertisementViewController: UIViewController {
         }
         
         // Add flow safety
-        showAlert(msg: "Please select image")
+        showAlert(msg: "Please select image".localiz())
     }
     
     //MARK: Function's declaration
@@ -218,9 +218,9 @@ extension AddAdvertisementViewController {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneDatePicker))
+        let doneButton = UIBarButtonItem(title: "Done".localiz(), style: .done, target: self, action: #selector(doneDatePicker))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker))
+        let cancelButton = UIBarButtonItem(title: "Cancel".localiz(), style: .plain, target: self, action: #selector(cancelDatePicker))
         toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         
         fromTextField.inputView = datePicker
@@ -258,10 +258,10 @@ extension AddAdvertisementViewController {
     }
     
     private func showValidationAlert() {
-        let alert = UIAlertController(title: "Invalid Date",
-                                      message: "To Date cannot be earlier than From Date.",
+        let alert = UIAlertController(title: "Invalid Date".localiz(),
+                                      message: "To Date cannot be earlier than From Date.".localiz(),
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        alert.addAction(UIAlertAction(title: "OK".localiz(), style: .default))
         self.present(alert, animated: true)
     }
     

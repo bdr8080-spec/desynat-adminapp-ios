@@ -66,7 +66,7 @@ class LiveStreamingViewController: UIViewController {
     
     private func stopUserCountTimer() {
         userCountTimer?.invalidate()
-        userCountTimer=nil
+        userCountTimer = nil
     }
     // Timer & API (same for host/audience)
     private func startUserCountTimer() {
@@ -122,8 +122,8 @@ class LiveStreamingViewController: UIViewController {
             let total = broadcasters + audienceTotal
             
             DispatchQueue.main.async {
-                self.lblUserCount.text = "Viewers: \(total)"
-                print("👥 TOTAL users: \(total) | Broadcasters: \(broadcasters) | Audience: \(audienceTotal)")
+                self.lblUserCount.text = "\("Viewers:".localiz()) \(total)"
+//                print("👥 TOTAL users: \(total) | Broadcasters: \(broadcasters) | Audience: \(audienceTotal)")
             }
             
         }.resume()
@@ -136,7 +136,6 @@ class LiveStreamingViewController: UIViewController {
     
     // MARK: - Agora Setup
     private func setupAgora() {
-        print("🚀 Agora Init")
         agoraKit = AgoraRtcEngineKit.sharedEngine(withAppId: appID, delegate: self)
         agoraKit.setChannelProfile(.liveBroadcasting)
         agoraKit.enableVideo()
@@ -144,28 +143,24 @@ class LiveStreamingViewController: UIViewController {
     }
     
     private func joinChannel() {
-        print("🔗 Joining: \(channelName) | uid: \(uid)")
         agoraKit.joinChannel(byToken: token, channelId: channelName, info: nil, uid: uid) { channel, uid, elapsed in
             print("✅ Joined: \(channel) | uid: \(uid)")
         }
     }
     
     private func leaveChannel() {
-        print("❌ Leaving channel")
         agoraKit.leaveChannel(nil)
     }
     
     // MARK: - VIDEO SETUP
     private func clearVideoView() {
         guard let view = videoView else {
-            print("❌ videoView is nil")
             return
         }
         view.subviews.forEach { $0.removeFromSuperview() }
     }
     
     private func setupLocalVideo() {
-        print("🎥 Local FULL SCREEN")
         clearVideoView()
         let canvas = AgoraRtcVideoCanvas()
         canvas.uid = uid
@@ -207,12 +202,12 @@ class LiveStreamingViewController: UIViewController {
                 agoraKit.setClientRole(.broadcaster)
                 agoraKit.enableLocalVideo(true)
                 setupLocalVideo()
-                btnGoLive.setTitle("Stop", for: .normal)
+                btnGoLive.setTitle("Stop".localiz(), for: .normal)
             } else {
                 print("👀 AUDIENCE MODE")
                 agoraKit.setClientRole(.audience)
                 agoraKit.stopPreview()
-                btnGoLive.setTitle("Go Live", for: .normal)
+                btnGoLive.setTitle("Go Live".localiz(), for: .normal)
                 
             }
         case 3:
@@ -221,7 +216,7 @@ class LiveStreamingViewController: UIViewController {
             agoraKit.muteAllRemoteAudioStreams(isMuted)
             //            btnMute.setTitle(isMuted ? "Unmute Stream" : "Mute Stream", for: .normal)
             print("🔇 Stream \(isMuted ? "muted" : "unmuted")")
-            lblLive.text = isMuted ? "Unmute" : "Mute"
+            lblLive.text = isMuted ? "Unmute".localiz() : "Mute".localiz()
         case 4:
             print("📴 End Stream")
             leaveChannel()
@@ -252,7 +247,7 @@ extension LiveStreamingViewController: AgoraRtcEngineDelegate {
         DispatchQueue.main.async {
             self.lblWaiting.isHidden = false
             self.viewerountView.isHidden = true
-            self.lblWaiting.text = "Host has ended the streaming"
+            self.lblWaiting.text = "Host has ended the streaming".localiz()
             self.muteView.isHidden = true
             self.clearVideoView()
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
@@ -260,14 +255,6 @@ extension LiveStreamingViewController: AgoraRtcEngineDelegate {
             }
         }
     }
-    
-    //    func rtcEngine(_ engine: AgoraRtcEngineKit, reportRtcStats stats: AgoraChannelStats) {
-    //        let totalUsers = Int(stats.userCount)
-    //        DispatchQueue.main.async {
-    //            self.lblUserCount.text = "Users: \(totalUsers)"
-    //            print("👥 Total users in channel: \(totalUsers)")  // Optional log
-    //        }
-    //    }
     
     func rtcEngine(_ engine: AgoraRtcEngineKit, didOccurError errorCode: AgoraErrorCode) {
         print("❌ Agora Error: \(errorCode.rawValue)")

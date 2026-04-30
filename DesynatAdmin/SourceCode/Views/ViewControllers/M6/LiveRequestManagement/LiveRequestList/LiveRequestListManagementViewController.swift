@@ -292,7 +292,7 @@ class LiveRequestListManagementViewController: UIViewController {
         let calendar = Calendar.current
         let formattedDate = selectedDateFormatterForLiveRequestTimeSlot.string(from: date)
         if calendar.isDateInToday(date) {
-            liveRequestTimeSlotLabel.text = "Today, \(formattedDate)"
+            liveRequestTimeSlotLabel.text = "\("Today".localiz()), \(formattedDate)"
         } else {
             liveRequestTimeSlotLabel.text = formattedDate
         }
@@ -356,9 +356,9 @@ class LiveRequestListManagementViewController: UIViewController {
                 self.timeSlotsTableView.reloadRows(at: [indexPath], with: .automatic)
                 if let status = category.status {
                     if status == 1 {
-                        CommonUtils.showToast(message: "Live Request Timeslot Unblocked Succesfully")
+                        CommonUtils.showToast(message: "Live Request Timeslot Unblocked Succesfully".localiz())
                     } else {
-                        CommonUtils.showToast(message: "Live Request Timeslot Blocked Succesfully")
+                        CommonUtils.showToast(message: "Live Request Timeslot Blocked Succesfully".localiz())
                     }
                 }
             }
@@ -452,7 +452,7 @@ extension LiveRequestListManagementViewController: UITableViewDelegate, UITableV
             }
             
             cell.onDeleteToggle = {
-                self.showConfirmationAlert(msg: "Are you sure you want to delete this timeslot?") { [weak self] in
+                self.showConfirmationAlert(msg: "Are you sure you want to delete this timeslot?".localiz()) { [weak self] in
                     guard let self = self else { return }
                     let param: [String: Any] = ["timeslot_id": data.id ?? ""]
                     viewModel.deleteTimeSlots(param: param)

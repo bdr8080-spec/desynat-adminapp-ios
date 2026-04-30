@@ -73,7 +73,7 @@ class FilterForDealsViewController: UIViewController {
     
     @IBAction func clearDidTapped(_ sender: Any) {
         sleectedBrand = nil
-        titleLabel.text = "Select Brand"
+        titleLabel.text = "Select Brand".localiz()
         onClearFilter?()
         dismiss(animated: true)
     }

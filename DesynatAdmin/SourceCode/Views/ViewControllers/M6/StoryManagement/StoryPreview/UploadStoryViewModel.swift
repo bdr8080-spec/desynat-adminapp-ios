@@ -20,13 +20,6 @@ class UploadStoryViewModel: ObservableObject {
     init(hostVc: UploadPostViewController? = nil) {
         self.hostVc = hostVc
     }
-    func addNewStory(){
-//        let param : [String:Any] = [:]
-//        WebService.sharedInstance.addNewStoryServices(param: param){ respons in
-//            
-//            
-//        }
-    }
     
     func uploadMedia(fileData: Data, isImage: Bool) {
         let mimeType: MultipartUpload.Mime = isImage ? .image : .Video
@@ -65,7 +58,7 @@ class UploadStoryViewModel: ObservableObject {
                                     "thumbnail" : self.hostVc?.thumbnailImage ?? "" ]
       WebService.sharedInstance.uploadAdminStories(param: param){ [weak self] response in
         guard let self = self else { return }
-        CommonUtils.showToast(message: "Story Uploaded Succesfully")
+          CommonUtils.showToast(message: "Story Uploaded Succesfully".localiz())
           self.hostVc?.navigationController?.popToViewController(ofClass: StoryManagemnetViewController.self, animated: true)
       }
     }

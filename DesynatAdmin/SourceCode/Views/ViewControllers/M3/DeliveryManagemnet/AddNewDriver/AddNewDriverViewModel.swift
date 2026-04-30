@@ -111,7 +111,7 @@ class AddNewDriverViewModel: NSObject {
     }
     
     if error != .none {
-      hostVC.showAlert(msg: error.rawValue)
+        hostVC.showAlert(msg: error.rawValue.localiz())
       return false
     }
     
@@ -160,7 +160,7 @@ class AddNewDriverViewModel: NSObject {
     ]
     WebService.sharedInstance.addDriver(param: params) { (response) in
       DispatchQueue.main.async {
-        CommonUtils.showToast(message: "Driver added succesfully")
+          CommonUtils.showToast(message: "Driver added succesfully".localiz())
         self.hostVC.navigationController?.popViewController(animated: true)
       }
     }
@@ -209,7 +209,7 @@ class AddNewDriverViewModel: NSObject {
     
     WebService.sharedInstance.editDriverDetails(param: params) { (response) in
       DispatchQueue.main.async {
-        CommonUtils.showToast(message: "Driver Details updated succesfully")
+          CommonUtils.showToast(message: "Driver Details updated succesfully".localiz())
         self.hostVC.navigationController?.popViewController(animated: true)
       }
     }

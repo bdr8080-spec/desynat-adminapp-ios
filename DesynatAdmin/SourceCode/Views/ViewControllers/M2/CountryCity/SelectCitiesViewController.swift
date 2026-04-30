@@ -42,7 +42,7 @@ class SelectCitiesViewController: UIViewController {
     
     @IBAction func handleSubmit(_ sender: Any) {
         guard let selectedCity = viewModel.selectedCity else {
-            self.showAlert(msg: "Please select city")
+            self.showAlert(msg: "Please select city".localiz())
             return
         }
         self.callCackFromSelection?(String.getString(viewModel.selectedCity?.id))
@@ -86,10 +86,10 @@ class SelectCitiesViewController: UIViewController {
     private func refreshCitySelection() {
         if let countryListData = viewModel.selectedCity {
             self.lblSelectedCity.text = String.getString(countryListData.name)
-            self.lblSelectedCity.text = "Select"
+            self.lblSelectedCity.text = "Select".localiz()
             self.lblSelectedCity.textColor = .black
         } else {
-            self.lblSelectedCity.text = "Select"
+            self.lblSelectedCity.text = "Select".localiz()
             self.lblSelectedCity.textColor = .black.withAlphaComponent(0.5)
         }
         self.viewCityContainer.isHidden = !self.isCityExpanded

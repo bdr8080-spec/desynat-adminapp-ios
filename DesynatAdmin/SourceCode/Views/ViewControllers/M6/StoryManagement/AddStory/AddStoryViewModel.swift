@@ -39,7 +39,7 @@ class AddStoryViewModel {
         let param: [String: Any] = ["file": imageUrl]
         WebService.shared.uploadAdminStories(param: param){ [weak self] response in
             guard let self = self else { return }
-            CommonUtils.showToast(message: "Story Uploaded Succesfully")
+            CommonUtils.showToast(message: "Story Uploaded Succesfully".localiz())
             self.hostVC.navigationController?.popViewController(animated: true)
         }
     }

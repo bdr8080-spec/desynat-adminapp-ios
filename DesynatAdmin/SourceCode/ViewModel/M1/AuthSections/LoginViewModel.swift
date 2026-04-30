@@ -44,7 +44,7 @@ class LoginViewModel: NSObject {
         }
         
         if errorMessage != .none {
-            loginHostVC.showAlert(msg: errorMessage.rawValue)
+            loginHostVC.showAlert(msg: errorMessage.rawValue.localiz())
         }
         
         loginHostVC.view.endEditing(true)
@@ -77,7 +77,7 @@ class LoginViewModel: NSObject {
                     if response.permissionDetails?.first?.moduleID == 1 && response.permissionDetails?.first?.canAction == 1 {
                         kSharedUserDefaults.setSubAdminActionDashboardAccess(hasActionDashboardAccess: true)
                     }
-//                    kSharedSceneDelegate.navigateToUserHomeVc()
+                    //                    kSharedSceneDelegate.navigateToUserHomeVc()
                     kSharedSceneDelegate.navigateToDashboardHomeVc()
                 } else {
                     kSharedSceneDelegate.navigateToSideMenuVc()

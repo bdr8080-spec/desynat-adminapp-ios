@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         GMSPlacesClient.provideAPIKey("AIzaSyB5LK7zzKS4q9ov0R4LFLgaRyPZdZsTKz4")
         LocationManager.sharedInstance.startUpdatingLocation()
         ImagePickerManager.shared.requestMediaPermissions()
+        AppLanguageManager.shared.defaultLanguage = .en
         UNUserNotificationCenter.current().delegate = self
         FirebaseApp.configure()
         Messaging.messaging().delegate = self

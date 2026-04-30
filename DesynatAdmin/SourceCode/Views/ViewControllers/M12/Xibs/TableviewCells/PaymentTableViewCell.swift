@@ -65,7 +65,7 @@ class PaymentTableViewCell: UITableViewCell {
     func configure(isExpanded: Bool, tab: PaymentTab, data: PaymentList?) {
         
         forHideView.isHidden = !isExpanded
-        let title = isExpanded ? "View Less" : "More info"
+        let title = isExpanded ? "View Less".localiz() : "More info".localiz()
         viewMoreButton.setTitle(title, for: .normal)
         
         // Hide all first
@@ -77,22 +77,22 @@ class PaymentTableViewCell: UITableViewCell {
         switch tab {
         case .orders:
             orderStackView.isHidden = false
-            titleUserName.text = "User Name"
-            orderIdTitle.text = "Order Id"
+            titleUserName.text = "User Name".localiz()
+            orderIdTitle.text = "Order Id".localiz()
             titleValue.text = data?.userDetails?.fullName
             orderValue.text = "#\(data?.order?.id ?? 0)"
             
         case .plans:
             planStackView.isHidden = false
-            titleUserName.text = "Seller name"
-            orderIdTitle.text = "Plan name"
+            titleUserName.text = "Seller name".localiz()
+            orderIdTitle.text = "Plan name".localiz()
             titleValue.text = "\(data?.sellerDetails?.firstName ?? "") \(data?.sellerDetails?.lastName ?? "")"
             orderValue.text = data?.planInfo?.planNameEnglish
             
         case .giftCards :
             giftAndBannerStackView.isHidden = false
-            titleUserName.text = "Purchased By"
-            orderIdTitle.text = "Card Type"
+            titleUserName.text = "Purchased By".localiz()
+            orderIdTitle.text = "Card Type".localiz()
             titleValue.text = data?.userDetails?.fullName
             orderValue.text = data?.giftDetails?.nameEnglish
             giftCardtotalAmount.text = CommonUtils.formatPriceStringInput(data?.amount)
@@ -100,13 +100,13 @@ class PaymentTableViewCell: UITableViewCell {
             
         case .banners:
             giftAndBannerStackView.isHidden = false
-            titleUserName.text = "Purchased By"
-            orderIdTitle.text = "Request Id"
+            titleUserName.text = "Purchased By".localiz()
+            orderIdTitle.text = "Request Id".localiz()
             titleValue.text = "\(data?.sellerDetails?.firstName ?? "") \(data?.sellerDetails?.lastName ?? "")"
             orderValue.text = "#\(data?.orderID ?? "0")"
             giftCardtotalAmount.text = CommonUtils.formatPriceStringInput(data?.price)
             giftCardCountry.text = data?.sellerDetails?.storeInfo?.countryInfo?.name
-            giftCardPaymentmode.text = "Online"
+            giftCardPaymentmode.text = "Online".localiz()
         }
         configureData(data: data, tab: tab)
     }
@@ -119,14 +119,14 @@ class PaymentTableViewCell: UITableViewCell {
         transactionstackView.isHidden = true
         switch paymentMethod {
         case "1":
-            self.orderPaymentMode.text = "Online"
+            self.orderPaymentMode.text = "Online".localiz()
             transactionstackView.isHidden = false
         case "2":
-            self.orderPaymentMode.text = "In-App Wallet"
+            self.orderPaymentMode.text = "In-App Wallet".localiz()
         case "3":
-            self.orderPaymentMode.text = "COD"
+            self.orderPaymentMode.text = "COD".localiz()
         default:
-            self.orderPaymentMode.text = "COD"
+            self.orderPaymentMode.text = "COD".localiz()
         }
         orderAppliedPromoCode.text = data?.promocodeValue
         orderDiscount.text = CommonUtils.formatPrice(data?.totalDiscount)
@@ -148,14 +148,14 @@ class PaymentTableViewCell: UITableViewCell {
         if tab == .giftCards {
             switch paymentMethodCard {
             case "1":
-                self.giftCardPaymentmode.text = "Online"
+                self.giftCardPaymentmode.text = "Online".localiz()
                 giftCardTrasnctionStackView.isHidden = false
             case "2":
-                self.giftCardPaymentmode.text = "In-App Wallet"
+                self.giftCardPaymentmode.text = "In-App Wallet".localiz()
             case "3":
-                self.giftCardPaymentmode.text = "COD"
+                self.giftCardPaymentmode.text = "COD".localiz()
             default:
-                self.giftCardPaymentmode.text = "COD"
+                self.giftCardPaymentmode.text = "COD".localiz()
             }
         }
         
@@ -166,7 +166,7 @@ class PaymentTableViewCell: UITableViewCell {
         inputFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
         
         guard let date = inputFormatter.date(from: isoDateString) else {
-            return "Invalid date"
+            return "Invalid date".localiz()
         }
         
         let outputFormatter = DateFormatter()

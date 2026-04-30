@@ -118,7 +118,7 @@ class AffiliatedUserDetailsViewController: UIViewController {
         }
         usernameLabel.text = data.fullName
         countryLabel.text = data.countryDetails?.name
-        joinedDateLabel.text = "Joined on \(convertISOToDMY(data.createdAt ?? "") ?? "")"
+        joinedDateLabel.text = "\("Joined on".localiz()) \(convertISOToDMY(data.createdAt ?? "") ?? "")"
         mobileLabel.text = "\(data.countryCode ?? "")-\(data.mobile ?? "")"
         emailLabel.text = data.email
         //        totalOrdersLabek.text = data.or
@@ -127,15 +127,15 @@ class AffiliatedUserDetailsViewController: UIViewController {
         firstDocumentImageView.enableFullscreenZoom()
         secondDocumentImageView.enableFullscreenZoom()
         if data.adminVerify == "3" {
-            rejectTypeLabel.text = "Complete Rejected"
+            rejectTypeLabel.text = "Complete Rejected".localiz()
         } else if data.adminVerify == "4" {
-            rejectTypeLabel.text = "Document Rejected"
+            rejectTypeLabel.text = "Document Rejected".localiz()
         }
         if data.status == "1" {
-            toggleViewstatusLabel.text = "Active"
+            toggleViewstatusLabel.text = "Active".localiz()
             statusToggleButton.setImage(UIImage(named: "toggleOn"), for: .normal)
         } else {
-            toggleViewstatusLabel.text = "Inactive"
+            toggleViewstatusLabel.text = "Inactive".localiz()
             statusToggleButton.setImage(UIImage(named: "toggleOff"), for: .normal)
         }
         addressLaebl.text = data.addressDetails?.locations//data.addressDetails?.fullAddress
@@ -146,9 +146,9 @@ class AffiliatedUserDetailsViewController: UIViewController {
         
         let type = data.bankDetails?.first?.accountType ?? "0"
         if type == "0" {
-            accountTypeLabel.text = "Personal"
+            accountTypeLabel.text = "Personal".localiz()
         } else {
-            accountTypeLabel.text = "Business"
+            accountTypeLabel.text = "Business".localiz()
         }
         
         if let iban = data.bankDetails?.first?.iban, !iban.isEmpty {

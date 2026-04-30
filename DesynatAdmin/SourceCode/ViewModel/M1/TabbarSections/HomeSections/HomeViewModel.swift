@@ -70,7 +70,9 @@ class HomeViewModel {
                 } else {
                     self.hostVC.userProfileImageView.image = .userProfile
                 }
-                self.hostVC.usernameLabel.text = "Hi \(response.fullName ?? "")"
+                let isArabic = AppLanguageManager.shared.currentLanguage == .ar
+                let showNameText = isArabic ? "\("Hi".localiz()) \(response.fullNameInArabic ?? "")" : "\("Hi".localiz()) \(response.fullName ?? "")"
+                self.hostVC.usernameLabel.text = showNameText
             }
         }
     }
@@ -88,7 +90,7 @@ class HomeViewModel {
             } else {
                 hostVC.userProfileImageView.image = .userProfile
             }
-            hostVC.usernameLabel.text = "Hi \(savedUser.fullName ?? "")"
+            self.hostVC.usernameLabel.text = "\("Hi".localiz()) \(savedUser.fullName ?? "")"
         }
     }
 

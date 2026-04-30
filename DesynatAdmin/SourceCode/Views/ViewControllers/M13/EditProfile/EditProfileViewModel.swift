@@ -48,7 +48,7 @@ class EditProfileViewModel {
         }
         
         if errorMessage != .none {
-            hostVC.showAlert(msg: errorMessage.rawValue)
+            hostVC.showAlert(msg: errorMessage.rawValue.localiz())
         }
         
         hostVC.view.endEditing(true)
@@ -71,7 +71,7 @@ class EditProfileViewModel {
                                     "full_name": hostVC.fullnameTF.text ?? ""]
         WebService.sharedInstance.editProfileService(withParams: params) { (response) in
             DispatchQueue.main.async {
-                CommonUtils.showToast(message: "Profile is updated Succesfully ")
+                CommonUtils.showToast(message: "Profile is updated Succesfully".localiz())
                 self.hostVC.navigationController?.popViewController(animated: true)
             }
         }

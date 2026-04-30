@@ -74,9 +74,9 @@ class UserManagementDetailsViewController: UIViewController {
                     self.configData(data: updatedUser)
                     
                     if newStatus == "1" {
-                        CommonUtils.showToast(message: "User Unblocked Successfully")
+                        CommonUtils.showToast(message: "User Unblocked Successfully".localiz())
                     } else {
-                        CommonUtils.showToast(message: "User Blocked Successfully")
+                        CommonUtils.showToast(message: "User Blocked Successfully".localiz())
                     }
                 }
             }
@@ -97,7 +97,7 @@ class UserManagementDetailsViewController: UIViewController {
         
         locationLabel.text = data.countryInfo?.name
         let result = convertISOToDMY(data.createdAt ?? "") ?? ""
-        joinedLabel.text = "Joined on \(result)"
+        joinedLabel.text = "\("Joined on".localiz()) \(result)"
         phoneLabel.text = "\(data.countryCode ?? "")-\(data.mobile ?? "")"
         emailLabel.text = data.email
         //    walletBalanceCount.text = "\(data.walletInfo?.amount ?? "") KD"

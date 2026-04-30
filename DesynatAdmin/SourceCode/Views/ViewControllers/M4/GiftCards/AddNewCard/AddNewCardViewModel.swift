@@ -37,7 +37,7 @@ class AddNewCardViewModel: NSObject {
         }
         
         if errorMessage != .none {
-            hostVC.showAlert(msg: errorMessage.rawValue)
+            hostVC.showAlert(msg: errorMessage.rawValue.localiz())
         }
         
         hostVC.view.endEditing(true)
@@ -52,7 +52,7 @@ class AddNewCardViewModel: NSObject {
             "image": hostVC.selectedImageUrl]
         WebService.sharedInstance.addNewCard(param: params) { (response) in
             DispatchQueue.main.async {
-                CommonUtils.showToast(message: "Gift Card Category Added Succesfully")
+                CommonUtils.showToast(message: "Gift Card Category Added Succesfully".localiz())
                 self.hostVC.navigationController?.popViewController(animated: true)
             }
         }
@@ -66,7 +66,7 @@ class AddNewCardViewModel: NSObject {
             "image": hostVC.selectedImageUrl]
         WebService.sharedInstance.editCardDetails(param: params) { (response) in
             DispatchQueue.main.async {
-                CommonUtils.showToast(message: "Gift Card Category Updated Succesfully ")
+                CommonUtils.showToast(message: "Gift Card Category Updated Succesfully".localiz())
                 self.hostVC.onCardUpdated?(response)
                 self.hostVC.navigationController?.popViewController(animated: true)
             }

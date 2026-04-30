@@ -75,21 +75,21 @@ enum BannersTab:Int {
     var title:String {
         switch self {
         case .new:
-            "New"
+            "New".localiz()
         case .approved:
-            "Approved"
+            "Approved".localiz()
         case .reject:
-            "Rejected"
+            "Rejected".localiz()
         }
     }
     var placeHolder:String {
         switch self {
         case .new:
-            "No banner Request Found!"
+            "No banner Request Found!".localiz()
         case .approved:
-            "No Result Found"
+            "No Result Found".localiz()
         case .reject:
-            "No Result Found"
+            "No Result Found".localiz()
         }
     }
 }

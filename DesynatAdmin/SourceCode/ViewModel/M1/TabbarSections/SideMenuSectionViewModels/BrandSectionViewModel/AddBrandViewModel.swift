@@ -38,7 +38,7 @@ class AddBrandViewModel: NSObject {
         }
         
         if errorMessage != .none {
-            hostVC.showAlert(msg: errorMessage.rawValue)
+            hostVC.showAlert(msg: errorMessage.rawValue.localiz())
         }
         
         hostVC.view.endEditing(true)
@@ -53,7 +53,7 @@ class AddBrandViewModel: NSObject {
             "image": hostVC.selectedImageUrl]
         WebService.sharedInstance.addNewBrand(param: params) { (response) in
             DispatchQueue.main.async {
-                CommonUtils.showToast(message: "Brand Added Succesfully")
+                CommonUtils.showToast(message: "Brand Added Succesfully".localiz())
                 self.hostVC.navigationController?.popViewController(animated: true)
             }
         }
@@ -67,7 +67,7 @@ class AddBrandViewModel: NSObject {
             "image": hostVC.selectedImageUrl]
         WebService.sharedInstance.editBrand(param: params) { (response) in
             DispatchQueue.main.async {
-                CommonUtils.showToast(message: "Brand updated Succesfully ")
+                CommonUtils.showToast(message: "Brand updated Succesfully".localiz())
                 self.hostVC.onBrandUpdated?(response)
                 self.hostVC.navigationController?.popViewController(animated: true)
             }

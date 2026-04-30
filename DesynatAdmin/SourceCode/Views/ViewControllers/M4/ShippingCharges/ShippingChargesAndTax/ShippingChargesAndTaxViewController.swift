@@ -140,9 +140,9 @@ class ShippingChargesAndTaxViewController: UIViewController {
                 self.shippingTableView.reloadRows(at: [indexPath], with: .automatic)
                 if let status = shippingInfo.status {
                     if status == 1 {
-                        CommonUtils.showToast(message: "Delivery charge has been unblocked successfully")
+                        CommonUtils.showToast(message: "Delivery charge has been unblocked successfully".localiz())
                     } else {
-                        CommonUtils.showToast(message: "Delivery charge has been blocked successfully")
+                        CommonUtils.showToast(message: "Delivery charge has been blocked successfully".localiz())
                     }
                 }
             }
@@ -230,7 +230,7 @@ extension ShippingChargesAndTaxViewController: UITableViewDelegate, UITableViewD
         
         cell.onDeleteTap = { [weak self] in
             guard let self = self else { return }
-            self.showConfirmationAlert(msg: "Are you sure you want to delete this Delivery Fee?") {
+            self.showConfirmationAlert(msg: "Are you sure you want to delete this Delivery Fee?".localiz()) {
                 let param: [String: Any] = ["shipping_charge_id": data.id ?? 0]
                 self.viewModel.deleteShippingInfo(param: param)
             }

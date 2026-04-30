@@ -68,7 +68,7 @@ class StoryManagemnetListViewModel {
   func deleteAdminStories(param: [String: Any]) {
     WebService.shared.deleteAdminStories(param: param){ [weak self] response in
       guard let self = self else { return }
-      CommonUtils.showToast(message: "Story Deleted Succesfully")
+        CommonUtils.showToast(message: "Story Deleted Succesfully".localiz())
       self.resetAndFetchStories()
     }
   }

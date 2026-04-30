@@ -49,7 +49,7 @@ class AddFAQViewModel {
         }
         
         if errorMessage != .none {
-            hostVC.showAlert(msg: errorMessage.rawValue)
+            hostVC.showAlert(msg: errorMessage.rawValue.localiz())
             hostVC.view.endEditing(true)
             return false
         }
@@ -66,7 +66,7 @@ class AddFAQViewModel {
                                     "answer_arabic": hostVC.answerArabicTF.text?.trimmed() ?? ""]
         WebService.shared.addFAQService(parameter: param) { [weak self] response in
             guard let self = self else { return }
-            CommonUtils.showToast(message: "New FAQ is added successully")
+            CommonUtils.showToast(message: "New FAQ is added successully".localiz())
             self.hostVC.onChangesAreDone?()
             self.hostVC.dismiss(animated: true)
         }
@@ -80,7 +80,7 @@ class AddFAQViewModel {
                                     "answer_arabic": hostVC.answerArabicTF.text?.trimmed() ?? ""]
         WebService.shared.updateFAQService(parameter: param) { [weak self] response in
             guard let self = self else { return }
-            CommonUtils.showToast(message: "FAQ is updatedd successully")
+            CommonUtils.showToast(message: "FAQ is updatedd successully".localiz())
             self.hostVC.onChangesAreDone?()
             self.hostVC.dismiss(animated: true)
         }

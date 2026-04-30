@@ -40,7 +40,7 @@ class AddPromocodeViewModel {
         WebService.shared.addPromoCode(param: param){ [weak self] response in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                CommonUtils.showToast(message: "Promocode added successfully")
+                CommonUtils.showToast(message: "Promocode added successfully".localiz())
                 self.hostVC?.navigationController?.popViewController(animated: true)
             }
         }
@@ -63,7 +63,7 @@ class AddPromocodeViewModel {
         WebService.shared.editPromoCode(param: param){ [weak self] response in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                CommonUtils.showToast(message: "Promocode updated successfully")
+                CommonUtils.showToast(message: "Promocode updated successfully".localiz())
                 self.hostVC?.navigationController?.popToViewController(ofClass: PromodeListViewController.self, animated: true)
             }
         }

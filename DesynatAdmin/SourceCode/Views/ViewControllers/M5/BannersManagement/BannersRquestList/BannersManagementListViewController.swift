@@ -60,17 +60,17 @@ class BannersManagementListViewController: UIViewController, HandleTableRefresh 
     // MARK: - Button's Action
     @IBAction func nowDidTapped(_ sender: Any) {
         handleNewAction()
-        pageTitleLabel.text = "Banner requests"
+        pageTitleLabel.text = "Banner requests".localiz()
     }
     
     @IBAction func approveDidTapped(_ sender: Any) {
         handleApproveAction()
-        pageTitleLabel.text = "Approved"
+        pageTitleLabel.text = "Approved".localiz()
     }
     
     @IBAction func rejectedDidTapped(_ sender: Any) {
         handleRejectAction()
-        pageTitleLabel.text = "Rejected"
+        pageTitleLabel.text = "Rejected".localiz()
     }
     
     @IBAction func handleNextPage(_ sender: UIButton) {
@@ -220,7 +220,7 @@ extension BannersManagementListViewController: HandleBannerAction {
         viewModel.acceptBanner(id: data.id) {
             DispatchQueue.main.async {
                 let vc = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
-                vc.setTitle("Banner approved\nsuccessfully!")
+                vc.setTitle("Banner approved\nsuccessfully!".localiz())
                 vc.callBackDismiss = {
                     //          self.handleApproveAction()
                     self.viewModel.getData()
@@ -238,7 +238,7 @@ extension BannersManagementListViewController: HandleBannerAction {
             self.viewModel.rejectBanner(id: data.id, reason: reason) {
                 DispatchQueue.main.async {
                     let succesVC = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
-                    succesVC.setTitle("Banner rejected\nsuccessfully!")
+                    succesVC.setTitle("Banner rejected\nsuccessfully!".localiz())
                     succesVC.callBackDismiss = {
                         //            self.handleRejectAction()
                         self.viewModel.getData()

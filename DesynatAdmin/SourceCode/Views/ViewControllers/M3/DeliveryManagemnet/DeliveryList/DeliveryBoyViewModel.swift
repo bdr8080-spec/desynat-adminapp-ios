@@ -77,7 +77,7 @@ class DeliveryBoyViewModel {
   func deleteBoy(param: [String: Any]) {
     WebService.shared.deleteBoy(param: param){ [weak self] response in
       guard let self = self else { return }
-      CommonUtils.showToast(message: "Profile has been deleted succesfully")
+        CommonUtils.showToast(message: "Profile has been deleted succesfully".localiz())
       self.currentPage = 1 // optional: reset to first page
       self.getAllDeliveryBoy()
     }

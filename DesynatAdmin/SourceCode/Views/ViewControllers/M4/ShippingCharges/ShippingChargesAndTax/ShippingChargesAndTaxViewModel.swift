@@ -21,7 +21,7 @@ class ShippingChargesAndTaxViewModel {
         WebService.shared.deleteShippingInfo(param: param) { [weak self] response in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                CommonUtils.showToast(message: "Delivery charge deleted succesfully")
+                CommonUtils.showToast(message: "Delivery charge deleted succesfully".localiz())
                 self.getAllshippingTaxList()
             }
         }

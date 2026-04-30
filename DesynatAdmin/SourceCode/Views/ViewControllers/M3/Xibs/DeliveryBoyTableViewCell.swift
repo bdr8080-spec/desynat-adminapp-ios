@@ -61,7 +61,7 @@ class DeliveryBoyTableViewCell: UITableViewCell {
             mainImageView.image = UIImage(named: "userProfile")
         }
         let result = convertISOToDMY(data?.createdAt ?? "") ?? ""
-        joinedDateLabel.text = "Joined on \(result)"
+        joinedDateLabel.text = "\("Joined on".localiz()) \(result)"
         mobileLabel.text = "\(data?.countryCode ?? "")-\(data?.mobile ?? "")"
         emailLabel.text = data?.email
         if data?.status == "1" {

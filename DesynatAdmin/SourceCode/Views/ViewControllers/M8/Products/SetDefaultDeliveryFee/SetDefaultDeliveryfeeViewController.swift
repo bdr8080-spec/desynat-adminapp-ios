@@ -59,17 +59,17 @@ class SetDefaultDeliveryfeeViewController: UIViewController {
     
     private func handleDefaultTaxUpdate() {
         guard let text = taxTF.text, !text.isEmpty else {
-            CommonUtils.showToast(message: "Please set charges")
+            CommonUtils.showToast(message: "Please set charges".localiz())
             return
         }
         
         guard let newValue = Double(text) else {
-            CommonUtils.showToast(message: "Invalid tax value")
+            CommonUtils.showToast(message: "Invalid tax value".localiz())
             return
         }
         
         if newValue == originalTaxValue {
-            CommonUtils.showToast(message: "No changes found")
+            CommonUtils.showToast(message: "No changes found".localiz())
             return
         }
         

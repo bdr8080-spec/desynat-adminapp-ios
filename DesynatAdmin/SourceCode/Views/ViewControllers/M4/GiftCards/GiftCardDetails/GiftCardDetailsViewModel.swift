@@ -23,9 +23,9 @@ class GiftCardDetailsViewModel {
                 self.hostVC.bindData()
                 if let status = response.status {
                     if status == 1 {
-                        CommonUtils.showToast(message: "Gift Card Activated Successfully")
+                        CommonUtils.showToast(message: "Gift Card Activated Successfully".localiz())
                     } else {
-                        CommonUtils.showToast(message: "Gift Card Deactivated Successfully")
+                        CommonUtils.showToast(message: "Gift Card Deactivated Successfully".localiz())
                     }
                 }
             }
@@ -36,7 +36,7 @@ class GiftCardDetailsViewModel {
         WebService.shared.deleteCard(param: param){ [weak self] response in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                CommonUtils.showToast(message: "Gift Card Category Deleted Successfully")
+                CommonUtils.showToast(message: "Gift Card Category Deleted Successfully".localiz())
                 self.hostVC.navigationController?.popViewController(animated: true)
             }
         }

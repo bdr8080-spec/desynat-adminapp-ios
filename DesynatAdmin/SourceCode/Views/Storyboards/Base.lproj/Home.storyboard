@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -80,6 +80,9 @@
                                                                 </constraints>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                 <state key="normal" image="AX"/>
+                                                                <connections>
+                                                                    <action selector="updateLanguageDidTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="kGJ-9f-a9G"/>
+                                                                </connections>
                                                             </button>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q6Z-ZO-VHX">
                                                                 <rect key="frame" x="35" y="0.0" width="35" height="35"/>
@@ -1778,7 +1781,7 @@ Visit Website</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k6p-tg-oRq">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="712"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="702"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lineTabbar" translatesAutoresizingMaskIntoConstraints="NO" id="sYR-VM-KkM">
@@ -1876,7 +1879,7 @@ Visit Website</string>
                             <constraint firstItem="TTq-qz-KLe" firstAttribute="bottom" secondItem="sYR-VM-KkM" secondAttribute="bottom" constant="-5" id="e8T-wB-lC8"/>
                             <constraint firstItem="QKt-B3-fXd" firstAttribute="centerY" secondItem="OAv-bg-7wR" secondAttribute="centerY" multiplier="0.7" id="flW-pl-y24"/>
                             <constraint firstItem="TTq-qz-KLe" firstAttribute="trailing" secondItem="k6p-tg-oRq" secondAttribute="trailing" id="frR-Aa-NuZ"/>
-                            <constraint firstAttribute="bottom" secondItem="k6p-tg-oRq" secondAttribute="bottom" constant="100" id="gAD-lM-JWN"/>
+                            <constraint firstAttribute="bottom" secondItem="k6p-tg-oRq" secondAttribute="bottom" constant="110" id="gAD-lM-JWN"/>
                             <constraint firstItem="TTq-qz-KLe" firstAttribute="trailing" secondItem="Q20-ky-5Yh" secondAttribute="trailing" constant="16" id="jbz-LP-NPU"/>
                             <constraint firstItem="Q20-ky-5Yh" firstAttribute="bottom" secondItem="TTq-qz-KLe" secondAttribute="bottom" id="lBV-cj-oxu"/>
                         </constraints>
@@ -3776,7 +3779,7 @@ the event</string>
             <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.21960784310000001" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

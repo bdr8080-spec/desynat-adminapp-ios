@@ -27,7 +27,7 @@ class DriverDetailsViewModel {
     
     func deleteBoy(param: [String: Any]) {
       WebService.shared.deleteBoy(param: param){ [weak self] response in
-        CommonUtils.showToast(message: "Driver deleted succesfully")
+          CommonUtils.showToast(message: "Driver deleted succesfully".localiz())
         guard let self = self else { return }
         DispatchQueue.main.async {
           self.hostVC?.navigationController?.popViewController(animated: true)

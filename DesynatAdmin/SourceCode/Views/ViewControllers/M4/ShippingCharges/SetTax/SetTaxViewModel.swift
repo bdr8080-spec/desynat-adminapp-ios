@@ -23,7 +23,7 @@ class SetTaxViewModel {
                 self.hostVC?.dismiss(animated: true)
                 let taxAmount = hostVC?.taxTF.text ?? ""
                 self.hostVC?.taxAmountSet?(taxAmount)
-                CommonUtils.showToast(message: "Tax Updated successfully")
+                CommonUtils.showToast(message: "Tax Updated successfully".localiz())
             }
         }
     }

@@ -30,11 +30,11 @@ class AddNewCardViewController: UIViewController {
         cardNameEnglishTextField.delegate = self
         if isComingForEdit {
             bindData()
-            submitTitleLabel.text = "Update"
-            titleLabel.text = "Edit Gift Card Category Details"
+            submitTitleLabel.text = "Update".localiz()
+            titleLabel.text = "Edit Gift Card Category Details".localiz()
         } else {
-            submitTitleLabel.text = "Submit"
-            titleLabel.text = "Add New Gift Card Category"
+            submitTitleLabel.text = "Submit".localiz()
+            titleLabel.text = "Add New Gift Card Category".localiz()
         }
     }
     
@@ -114,7 +114,7 @@ extension AddNewCardViewController: UITextFieldDelegate {
             // Check every character (handles paste)
             for scalar in string.unicodeScalars {
                 if !allowedSet.contains(scalar) {
-                    CommonUtils.showToast(message: "Please switch to Arabic keyboard")
+                    CommonUtils.showToast(message: "Please switch to Arabic keyboard".localiz())
                     return false
                 }
             }

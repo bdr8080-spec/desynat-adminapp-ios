@@ -23,7 +23,7 @@ class SetDefaultDeliveryfeeViewModel {
                 self.hostVC?.dismiss(animated: true)
                 let taxAmount = hostVC?.taxTF.text ?? ""
                 self.hostVC?.taxDefaultAmountSet?(taxAmount)
-                CommonUtils.showToast(message: "Default Delivery Tax Updated successfully")
+                CommonUtils.showToast(message: "Default Delivery Tax Updated successfully".localiz())
             }
         }
     }

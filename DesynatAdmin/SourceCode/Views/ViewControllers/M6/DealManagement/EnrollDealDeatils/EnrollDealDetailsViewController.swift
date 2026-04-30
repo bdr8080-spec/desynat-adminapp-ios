@@ -92,7 +92,7 @@ class EnrollDealDetailsViewController: UIViewController {
     func configData(data: SellerDealrecord?) {
         usernameLabel.text = "\(data?.sellerDetails?.firstName ?? "") \(data?.sellerDetails?.lastName ?? "")"
         locationLabel.text = "\(data?.sellerDetails?.countryDetails?.name ?? "")"
-        addedProductsLabel.text = "\(data?.productCount ?? 0) Products"
+        addedProductsLabel.text = "\(data?.productCount ?? 0) \("Products".localiz())"
         //        productAddedLabel.text = data?.?.description
         
     }

@@ -62,7 +62,7 @@ class AddAdvertisementViewModel {
         }
         
         if errorMessage != .none {
-            hostVC.showAlert(msg: errorMessage.rawValue)
+            hostVC.showAlert(msg: errorMessage.rawValue.localiz())
             hostVC.view.endEditing(true)
             return false
         }
@@ -94,7 +94,7 @@ class AddAdvertisementViewModel {
         
         WebService.sharedInstance.addAdvertisement(param: params) { (response) in
             DispatchQueue.main.async {
-                CommonUtils.showToast(message: "Advertisement added succesfully")
+                CommonUtils.showToast(message: "Advertisement added succesfully".localiz())
                 self.hostVC.navigationController?.popViewController(animated: true)
             }
         }
@@ -114,7 +114,7 @@ class AddAdvertisementViewModel {
         
         WebService.sharedInstance.editAdvertisement(param: params) { (response) in
             DispatchQueue.main.async {
-                CommonUtils.showToast(message: "Advertisement updated succesfully")
+                CommonUtils.showToast(message: "Advertisement updated succesfully".localiz())
                 self.hostVC.onCardUpdated?(response)
                 self.hostVC.navigationController?.popViewController(animated: true)
             }
@@ -127,13 +127,6 @@ class AddAdvertisementViewModel {
             completion(url)
         }
     }
-    
-    //  func uploadFullScreenBanner(file: Any, isImage: Bool, keyParam: [String: Any], completion: @escaping(String) -> Void) {
-    //    let param:MultipartUpload = MultipartUpload(fileName: "image", file: file, mimeType: isImage ? .image : .pdf)
-    //    WebService.sharedInstance.uploadFullScreenBanner(withParams: param, param: keyParam) { url, msg, code in
-    //      completion(url)
-    //    }
-    //  }
     
     func uploadFullScreenBanner(
         file: Any,

@@ -27,13 +27,13 @@ class PromocodeDetailsViewModel {
                 
                 // Update ONLY toggle image + label
                 if let status = response.status {
-                    self.hostVC.statusLabel.text = status == 1 ? "Active" : "Inactive"
+                    self.hostVC.statusLabel.text = status == 1 ? "Active".localiz() : "Inactive".localiz()
                     self.hostVC.statusToggleImageView.image =
                     UIImage(named: status == 1 ? "toggleOn" : "toggleOff")
                     
                     CommonUtils.showToast(
-                        message: status == 1 ? "Promocode Activated Successfully"
-                        : "Promocode Deactivated Successfully"
+                        message: status == 1 ? "Promocode Activated Successfully".localiz()
+                        : "Promocode Deactivated Successfully".localiz()
                     )
                 }
             }
@@ -44,7 +44,7 @@ class PromocodeDetailsViewModel {
         WebService.shared.deletePromoCode(param: param){ [weak self] response in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                CommonUtils.showToast(message: "Promocode Deleted Successfully")
+                CommonUtils.showToast(message: "Promocode Deleted Successfully".localiz())
                 self.hostVC.navigationController?.popViewController(animated: true)
             }
         }

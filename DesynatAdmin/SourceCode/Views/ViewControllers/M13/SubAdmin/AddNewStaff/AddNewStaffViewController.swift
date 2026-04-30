@@ -162,7 +162,7 @@ class AddNewStaffViewController: UIViewController {
     }
     
     @IBAction func clearDidTapped(_ sender: Any) {
-        self.showConfirmationAlert(msg: "Are you sure you want to cancel this changes?"){ [weak self] in
+        self.showConfirmationAlert(msg: "Are you sure you want to cancel this changes?".localiz()){ [weak self] in
             guard let self = self else { return }
             self.navigationController?.popViewController(animated: true)
         }

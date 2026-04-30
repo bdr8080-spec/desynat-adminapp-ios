@@ -45,7 +45,7 @@ class SellersListTableViewCell: ResuableTableCell {
         if let url = URL(string: data.image) {
             self.imgProfile.sd_setImage(with: url,placeholderImage: .sellerActive)
         }
-        self.lblJoinOn.text = "Joined on \(data.joinedOn)"
+        self.lblJoinOn.text = "\("Joined on".localiz()) \(data.joinedOn)"
         self.lblMobileNumber.text = data.mobileNumber
         self.lblEmail.text = data.email
         self.lblCountry.text = data.country

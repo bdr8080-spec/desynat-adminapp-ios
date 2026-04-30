@@ -111,9 +111,9 @@ class DeliveryBoyViewController: UIViewController {
                 self.deliveryTableView.reloadRows(at: [indexPath], with: .automatic)
                 if let status = category.status {
                     if status == "1" {
-                        CommonUtils.showToast(message: "Delivery boy has been unblocked Successfully")
+                        CommonUtils.showToast(message: "Delivery boy has been unblocked Successfully".localiz())
                     } else {
-                        CommonUtils.showToast(message: "Delivery boy has been blocked Successfully")
+                        CommonUtils.showToast(message: "Delivery boy has been blocked Successfully".localiz())
                     }
                 }
             }
@@ -188,7 +188,7 @@ extension DeliveryBoyViewController: DeliveryBoyManagementCellDelegate {
     func didTapDelete(_ cell: DeliveryBoyTableViewCell) {
         guard let indexPath = deliveryTableView.indexPath(for: cell) else { return }
         let driverId = viewModel.boysListData[indexPath.row].id ?? 0
-        self.showConfirmationAlert(msg: "Are you sure you want to delete this user?") { [weak self] in
+        self.showConfirmationAlert(msg: "Are you sure you want to delete this user?".localiz()) { [weak self] in
             guard let self = self else { return }
             let param: [String: Any] = ["user_id": driverId]
             viewModel.deleteBoy(param: param)

@@ -125,7 +125,7 @@ class SellerDetailViewController: UIViewController {
             self.viewModel.rejectSeller(reason: reason,type: type) {
                 DispatchQueue.main.async {
                     let succesVC = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
-                    succesVC.setTitle("Seller rejected\nsuccessfully!")
+                    succesVC.setTitle("Seller rejected\nsuccessfully!".localiz())
                     succesVC.callBackDismiss = {
                         self.navigationController?.popViewController(animated: true)
                     }
@@ -141,7 +141,7 @@ class SellerDetailViewController: UIViewController {
         self.viewModel.approveSeller {
             DispatchQueue.main.async {
                 let vc = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
-                vc.setTitle("Seller approved\nsuccessfully!")
+                vc.setTitle("Seller approved\nsuccessfully!".localiz())
                 vc.callBackDismiss = {
                     self.navigationController?.popViewController(animated: true)
                 }
@@ -206,7 +206,7 @@ class SellerDetailViewController: UIViewController {
                 self.imgStoreSellerImage.sd_setImage(with: url,placeholderImage: .sellerActive)
             }
             self.lblSellerName.text = listInfo.name
-            self.lblStoreSellerJoinedOn.text = "Joined on \(listInfo.joinedOn)"
+            self.lblStoreSellerJoinedOn.text = "\("Joined on".localiz()) \(listInfo.joinedOn)"
             self.lblStoreSellerMobileNumber.text = listInfo.mobileNumber
             self.lblSellerMobileNumber.text = listInfo.mobileNumber
             self.lblStoreSellerEmail.text = listInfo.email
@@ -265,7 +265,7 @@ class SellerDetailViewController: UIViewController {
                     self.lblStoreSellerCountry.text = storeInfo.countryInfo?.name
                 }
                 if let bankInformation = detailModel.sellerBankDetails {
-                    self.lblAccountType.text = bankInformation.accountType == "0" ? "Personal" : "Business"
+                    self.lblAccountType.text = bankInformation.accountType == "0" ? "Personal".localiz() : "Business".localiz()
                     self.lblIBAN.text = bankInformation.iban
                     self.lblSwiftBIC.text = bankInformation.swift
                     self.lblBankName.text = bankInformation.bankName

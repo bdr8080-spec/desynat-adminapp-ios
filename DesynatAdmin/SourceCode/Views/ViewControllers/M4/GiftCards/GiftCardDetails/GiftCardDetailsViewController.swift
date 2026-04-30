@@ -55,7 +55,7 @@ class GiftCardDetailsViewController: UIViewController {
     
     @IBAction func deleteDidTapped(_ sender: Any) {
         guard let gift = giftsListData else { return }
-        self.showConfirmationAlert(msg: "Are you sure you want to delete this gift card category?"){ [weak self] in
+        self.showConfirmationAlert(msg: "Are you sure you want to delete this gift card category?".localiz()){ [weak self] in
             guard let self = self else { return }
             self.viewModel.deleteCard(param: ["giftCard_id": gift.id ?? 0])
         }
@@ -72,10 +72,10 @@ class GiftCardDetailsViewController: UIViewController {
         }
         
         if giftsListData?.status == 1 {
-            statusLabel.text = "Active"
+            statusLabel.text = "Active".localiz()
             statusImageView.image = UIImage(named: "toggleOn")
         } else {
-            statusLabel.text = "Inactive"
+            statusLabel.text = "Inactive".localiz()
             statusImageView.image = UIImage(named: "toggleOff")
         }
         

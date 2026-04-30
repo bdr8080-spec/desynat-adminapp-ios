@@ -39,19 +39,19 @@ class AffiliatedCommissionSetupViewController: UIViewController {
     @IBAction func saveChangesDidTapped(_ sender: Any) {
         self.dismiss(animated: true) {
             guard let text = self.taxTF.text, !text.isEmpty else {
-                CommonUtils.showToast(message: "Please set commission")
+                CommonUtils.showToast(message: "Please set commission".localiz())
                 return
             }
             
             // Convert to Double instead of Int
             guard let newValue = Double(text) else {
-                CommonUtils.showToast(message: "Invalid commission value")
+                CommonUtils.showToast(message: "Invalid commission value".localiz())
                 return
             }
             
             // Compare with original Double value
             if newValue == self.originalTaxValue {
-                CommonUtils.showToast(message: "No changes found")
+                CommonUtils.showToast(message: "No changes found".localiz())
                 return
             }
             

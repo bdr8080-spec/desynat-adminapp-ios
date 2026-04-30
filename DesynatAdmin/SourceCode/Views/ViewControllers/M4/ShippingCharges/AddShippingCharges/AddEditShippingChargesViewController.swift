@@ -66,11 +66,11 @@ class AddEditShippingChargesViewController: UIViewController {
     private func initialSetup() {
         switch commingReason {
         case .add:
-            titleLabel.text = "Add Delivery Charge"
-            addChargesLabel.text = "Add Charges"
+            titleLabel.text = "Add Delivery Charge".localiz()
+            addChargesLabel.text = "Add Charges".localiz()
         case .edit:
-            titleLabel.text = "Edit"
-            addChargesLabel.text = "Save Changes"
+            titleLabel.text = "Edit".localiz()
+            addChargesLabel.text = "Save Changes".localiz()
             
             fromTF.text = shippingInfo?.rangeFrom?.roundedIntString
             toTF.text = shippingInfo?.rangeTo?.roundedIntString
@@ -86,34 +86,34 @@ class AddEditShippingChargesViewController: UIViewController {
     
     private func validateFields() -> Bool {
         guard let fromText = fromTF.text, !fromText.isEmpty else {
-            showAlert(msg: "Please Enter Range")
+            showAlert(msg: "Please Enter Range".localiz())
             return false
         }
         guard let toText = toTF.text, !toText.isEmpty else {
-            showAlert(msg: "Please Enter Range")
+            showAlert(msg: "Please Enter Range".localiz())
             return false
         }
         guard let deliveryText = delieryChargeTF.text, !deliveryText.isEmpty else {
-            showAlert(msg: "Please enter Delivery Charge")
+            showAlert(msg: "Please enter Delivery Charge".localiz())
             return false
         }
         guard let fromValue = Double(fromText) else {
-            showAlert(msg: "From value must be a number")
+            showAlert(msg: "From value must be a number".localiz())
             return false
         }
         
         guard let toValue = Double(toText) else {
-            showAlert(msg: "To value must be a number")
+            showAlert(msg: "To value must be a number".localiz())
             return false
         }
         
         guard toValue > fromValue else {
-            showAlert(msg: "To value should be greater than From value")
+            showAlert(msg: "To value should be greater than From value".localiz())
             return false
         }
         
         guard let deliveryValue = Double(deliveryText) else {
-            showAlert(msg: "Delivery Charge must be a number")
+            showAlert(msg: "Delivery Charge must be a number".localiz())
             return false
         }
         
@@ -163,7 +163,7 @@ extension AddEditShippingChargesViewController: UITextFieldDelegate {
                   let fromValue = Int(fromText), let toValue = Int(toText) else { return }
             
             if toValue <= fromValue {
-                CommonUtils.showToast(message: "To value should be greater than From value")
+                CommonUtils.showToast(message: "To value should be greater than From value".localiz())
                 //toTF.text = ""
             }
         }

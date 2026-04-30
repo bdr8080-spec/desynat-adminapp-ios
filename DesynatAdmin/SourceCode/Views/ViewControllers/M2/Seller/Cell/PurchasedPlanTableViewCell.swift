@@ -13,9 +13,9 @@ case none = 0 ,active,expired
         case .none:
             ""
         case .active:
-            "Active"
+            "Active".localiz()
         case .expired:
-            "Expired"
+            "Expired".localiz()
         }
     }
     var titleColor:UIColor {
@@ -68,7 +68,7 @@ class PurchasedPlanTableViewCell: ResuableTableCell {
     func setData(_ data:PurchasedPlanInfo) {
         self.lblPlanName.text = data.name
         //self.lblPlanDurationType.text = "\(data.duration) \(data.durationType.title)"
-        self.lblPlanDurationType.text = "\(data.duration) \(data.durationType == .month ? (data.duration > 1 ? "Months" : "Month") : (data.duration > 1 ? "Years" : "Year"))"
+        self.lblPlanDurationType.text = "\(data.duration) \(data.durationType == .month ? (data.duration > 1 ? "Months".localiz() : "Month".localiz()) : (data.duration > 1 ? "Years".localiz() : "Year".localiz()))"
         self.lblStatus.text = data.status.title
         self.lblStatus.textColor = data.status.titleColor
         self.lblPurchasedOn.text = data.purchasedOn

@@ -37,7 +37,7 @@ class AddSubCategoryViewModel: NSObject {
         }
         
         if errorMessage != .none {
-            hostVC.showAlert(msg: errorMessage.rawValue)
+            hostVC.showAlert(msg: errorMessage.rawValue.localiz())
         }
         
         hostVC.view.endEditing(true)
@@ -53,7 +53,7 @@ class AddSubCategoryViewModel: NSObject {
         
         WebService.sharedInstance.addSubCategory(param: params) { (response) in
             DispatchQueue.main.async {
-                CommonUtils.showToast(message: "Sub Category added succesfully")
+                CommonUtils.showToast(message: "Sub Category added succesfully".localiz())
                 self.hostVC.navigationController?.popViewController(animated: true)
             }
         }
@@ -68,7 +68,7 @@ class AddSubCategoryViewModel: NSObject {
         
         WebService.sharedInstance.editSubCategory(param: params) { (response) in
             DispatchQueue.main.async {
-                CommonUtils.showToast(message: "Sub Category updated succesfully")
+                CommonUtils.showToast(message: "Sub Category updated succesfully".localiz())
                 self.hostVC.onSubCategoryUpdated?(response)
                 self.hostVC.navigationController?.popViewController(animated: true)
             }

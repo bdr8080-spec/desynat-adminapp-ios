@@ -136,12 +136,12 @@ class AddDealViewController: UIViewController {
         fullNameInArabicTF.delegate = self
         discountTF.delegate = self
         if comingforEdit {
-            pageTitleLabel.text = "Edit"
-            buttonTitleLabel.text = "Save Changes"
+            pageTitleLabel.text = "Edit".localiz()
+            buttonTitleLabel.text = "Save Changes".localiz()
             bindData()
         } else {
-            pageTitleLabel.text = "Add Deal"
-            buttonTitleLabel.text = "Submit"
+            pageTitleLabel.text = "Add Deal".localiz()
+            buttonTitleLabel.text = "Submit".localiz()
         }
     }
     
@@ -315,7 +315,7 @@ extension AddDealViewController: UITextFieldDelegate {
             // Check every character (handles paste)
             for scalar in string.unicodeScalars {
                 if !allowedSet.contains(scalar) {
-                    CommonUtils.showToast(message: "Please switch to Arabic keyboard")
+                    CommonUtils.showToast(message: "Please switch to Arabic keyboard".localiz())
                     return false
                 }
             }
@@ -358,9 +358,9 @@ extension AddDealViewController {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneDatePicker))
+        let doneButton = UIBarButtonItem(title: "Done".localiz(), style: .done, target: self, action: #selector(doneDatePicker))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker))
+        let cancelButton = UIBarButtonItem(title: "Cancel".localiz(), style: .plain, target: self, action: #selector(cancelDatePicker))
         toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         
         fromTf.inputView = datePicker
@@ -398,10 +398,10 @@ extension AddDealViewController {
     }
     
     private func showValidationAlert() {
-        let alert = UIAlertController(title: "Invalid Date",
-                                      message: "To Date cannot be earlier than From Date.",
+        let alert = UIAlertController(title: "Invalid Date".localiz(),
+                                      message: "To Date cannot be earlier than From Date.".localiz(),
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        alert.addAction(UIAlertAction(title: "OK".localiz(), style: .default))
         self.present(alert, animated: true)
     }
     

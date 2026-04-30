@@ -65,12 +65,12 @@ class AffiliatedWithdrawalTableViewCell: UITableViewCell {
         case .approvedRequest:
             statusView.isHidden = false
             transactionSackView.isHidden = false
-            statusLabel.text = "Completed"
+            statusLabel.text = "Completed".localiz()
             statusLabel.textColor = UIColor(hexString: "#17854C")
         case .rejectedRequest:
             statusView.isHidden = false
             rejectedREasonStackView.isHidden = false
-            statusLabel.text = "Rejected"
+            statusLabel.text = "Rejected".localiz()
             statusLabel.textColor = UIColor(hexString: "#D53B36")
         }
     }

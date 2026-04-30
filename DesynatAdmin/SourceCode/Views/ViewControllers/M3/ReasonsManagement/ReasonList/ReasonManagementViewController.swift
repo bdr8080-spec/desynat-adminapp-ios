@@ -144,27 +144,27 @@ class ReasonManagementViewController: UIViewController {
                     switch type {
                     case 1:
                         if status == 1 {
-                            CommonUtils.showToast(message: "Exchange Reason Unblocked Succesfully")
+                            CommonUtils.showToast(message: "Exchange Reason Unblocked Succesfully".localiz())
                         } else {
-                            CommonUtils.showToast(message: "Exchange Reason Blocked Succesfully")
+                            CommonUtils.showToast(message: "Exchange Reason Blocked Succesfully".localiz())
                         }
                     case 2:
                         if status == 1 {
-                            CommonUtils.showToast(message: "Return Reason Unblocked Succesfully")
+                            CommonUtils.showToast(message: "Return Reason Unblocked Succesfully".localiz())
                         } else {
-                            CommonUtils.showToast(message: "Return Reason Blocked Succesfully")
+                            CommonUtils.showToast(message: "Return Reason Blocked Succesfully".localiz())
                         }
                     case 3:
                         if status == 1 {
-                            CommonUtils.showToast(message: "Cancel Reason Unblocked Succesfully")
+                            CommonUtils.showToast(message: "Cancel Reason Unblocked Succesfully".localiz())
                         } else {
-                            CommonUtils.showToast(message: "Cancel Reason Blocked Succesfully")
+                            CommonUtils.showToast(message: "Cancel Reason Blocked Succesfully".localiz())
                         }
                     default:
                         if status == 1 {
-                            CommonUtils.showToast(message: "Reason Unblocked Succesfully")
+                            CommonUtils.showToast(message: "Reason Unblocked Succesfully".localiz())
                         } else {
-                            CommonUtils.showToast(message: "Reason Blocked Succesfully")
+                            CommonUtils.showToast(message: "Reason Blocked Succesfully".localiz())
                         }
                     }
                 }
@@ -237,7 +237,7 @@ extension ReasonManagementViewController: ReasonManagementCellDelegate {
     func didTapDelete(_ cell: ReasonManagementTableViewCell) {
         guard let indexPath = reasonTableView.indexPath(for: cell) else { return }
         let reasonID = viewModel.reasonListData[indexPath.row].id ?? 0
-        self.showConfirmationAlert(msg: "Are you sure you want to delete this reason?") { [weak self] in
+        self.showConfirmationAlert(msg: "Are you sure you want to delete this reason?".localiz()) { [weak self] in
             guard let self = self else { return }
             let param: [String: Any] = ["reason_id": reasonID]
             viewModel.deleteReason(param: param)

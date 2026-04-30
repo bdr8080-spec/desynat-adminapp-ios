@@ -22,9 +22,9 @@ class SubCatgoryDetailsViewModel {
             hostVC.bindData()
             if let status = response.status {
                 if status == 1 {
-                    CommonUtils.showToast(message: "Category has been activated Successfully")
+                    CommonUtils.showToast(message: "Category has been activated Successfully".localiz())
                 } else {
-                    CommonUtils.showToast(message: "Category has been Deactivated Successfully")
+                    CommonUtils.showToast(message: "Category has been Deactivated Successfully".localiz())
                 }
             }
         }
@@ -34,7 +34,7 @@ class SubCatgoryDetailsViewModel {
         WebService.shared.deleteSubCategory(param: param){ [weak self] response in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                CommonUtils.showToast(message: "Sub category deleted succesfully")
+                CommonUtils.showToast(message: "Sub category deleted succesfully".localiz())
                 self.hostVC.navigationController?.popViewController(animated: true)
             }
         }

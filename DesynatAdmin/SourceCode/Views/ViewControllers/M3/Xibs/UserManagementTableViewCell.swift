@@ -57,7 +57,7 @@ class UserManagementTableViewCell: UITableViewCell {
     
     locationLabel.text = data.countryInfo?.name
     let result = convertISOToDMY(data.createdAt ?? "") ?? ""
-    joinedLabel.text = "Joined on \(result)"
+      joinedLabel.text = "\("Joined on".localiz()) \(result)"
     phoneLabel.text = "\(data.countryCode ?? "")-\(data.mobile ?? "")"
     emailLabel.text = data.email
 //    walletBalanceCount.text = "\(data.walletInfo?.amount ?? "") KD"

@@ -33,9 +33,9 @@ class AffiliatedUserDetailsViewModel {
             DispatchQueue.main.async {
                 if let status = self.affilitaitedUsers?.status {
                     if status == "1" {
-                        CommonUtils.showToast(message: "Affiliated User Blocked Successfully")
+                        CommonUtils.showToast(message: "Affiliated User Blocked Successfully".localiz())
                     } else {
-                        CommonUtils.showToast(message: "Affiliated User Unblocked Successfully")
+                        CommonUtils.showToast(message: "Affiliated User Unblocked Successfully".localiz())
                     }
                 }
                 self.getAffilitaedUserDetails()

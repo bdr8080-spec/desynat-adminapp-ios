@@ -33,7 +33,7 @@ class AddReasonViewModel: NSObject {
     }
     
     if errorMessage != .none {
-      hostVC.showAlert(msg: errorMessage.rawValue)
+        hostVC.showAlert(msg: errorMessage.rawValue.localiz())
     }
     
     hostVC.view.endEditing(true)
@@ -52,13 +52,13 @@ class AddReasonViewModel: NSObject {
         let type = self.hostVC.type ?? 1
         switch type {
         case 1:
-          CommonUtils.showToast(message: "Exchange Reason Added Succesfully")
+            CommonUtils.showToast(message: "Exchange Reason Added Succesfully".localiz())
         case 2:
-          CommonUtils.showToast(message: "Return Reason Added Succesfully")
+            CommonUtils.showToast(message: "Return Reason Added Succesfully".localiz())
         case 3:
-          CommonUtils.showToast(message: "Cancel Reason Added Succesfully")
+            CommonUtils.showToast(message: "Cancel Reason Added Succesfully".localiz())
         default:
-          CommonUtils.showToast(message: "Reason Added Succesfully")
+            CommonUtils.showToast(message: "Reason Added Succesfully".localiz())
         }
         self.hostVC.onUpdate?()
         self.hostVC.dismiss(animated: true)
@@ -77,13 +77,13 @@ class AddReasonViewModel: NSObject {
         let type = hostVC.type ?? 1
         switch type {
         case 1:
-          CommonUtils.showToast(message: "Exchange Reason Updated Succesfully")
+          CommonUtils.showToast(message: "Exchange Reason Updated Succesfully".localiz())
         case 2:
-          CommonUtils.showToast(message: "Return Reason Updated Succesfully")
+          CommonUtils.showToast(message: "Return Reason Updated Succesfully".localiz())
         case 3:
-          CommonUtils.showToast(message: "Cancel Reason Updated Succesfully")
+          CommonUtils.showToast(message: "Cancel Reason Updated Succesfully".localiz())
         default:
-          CommonUtils.showToast(message: "Reason updated Succesfully")
+          CommonUtils.showToast(message: "Reason updated Succesfully".localiz())
         }
         self.hostVC.onUpdate?()
         self.hostVC.dismiss(animated: true)

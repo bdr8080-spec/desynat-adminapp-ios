@@ -68,10 +68,9 @@ class PlansTableViewCell: ResuableTableCell {
         self.lblPrice.text = "KD \(data.price.clean)"
         self.lblDuration.text = "for \(data.duration.clean) \(data.durationType.title)"
         self.stackFeature.arrangedSubviews.forEach({$0.removeFromSuperview()})
-        let productText = data.productType ? "\(data.noOfProducts)" : "Unlimited"
+        let productText = data.productType ? "\(data.noOfProducts)" : "Unlimited".localiz()
         self.stackFeature.addArrangedSubview(
-            self.getView(
-                "Number of Products: \(productText)".makeAttributedString(
+            self.getView("\("Number of Products:".localiz()) \(productText)".makeAttributedString(
                     attribute: [
                         .font: UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12, weight: .semibold)
                     ],
@@ -80,17 +79,16 @@ class PlansTableViewCell: ResuableTableCell {
             )
         )
         if (data.noOfVideos > 0) {
-            self.stackFeature.addArrangedSubview(self.getView("Number of Videos (Reels): \(data.noOfVideos)".makeAttributedString(attribute: [.font:UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12,weight: .semibold)], for: "\(data.noOfVideos)")))
+            self.stackFeature.addArrangedSubview(self.getView("\("Number of Videos (Reels):".localiz()) \(data.noOfVideos)".makeAttributedString(attribute: [.font:UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12,weight: .semibold)], for: "\(data.noOfVideos)")))
         }
         
         if (data.noOfHighlights > 0) {
-            self.stackFeature.addArrangedSubview(self.getView("Number of Highlights: \(data.noOfHighlights)".makeAttributedString(attribute: [.font:UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12,weight: .semibold)], for: "\(data.noOfHighlights)")))
+            self.stackFeature.addArrangedSubview(self.getView("\("Number of Highlights:".localiz()) \(data.noOfHighlights)".makeAttributedString(attribute: [.font:UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12,weight: .semibold)], for: "\(data.noOfHighlights)")))
         }
 
-        let statusText = data.stories == 1 ? "Open" : "Close"
+        let statusText = data.stories == 1 ? "Open".localiz() : "Close".localiz()
         self.stackFeature.addArrangedSubview(
-            self.getView(
-                "Stories: \(statusText)".makeAttributedString(
+            self.getView("\("Stories:".localiz()) \(statusText)".makeAttributedString(
                     attribute: [
                         .font: UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12, weight: .semibold)
                     ],
@@ -101,7 +99,7 @@ class PlansTableViewCell: ResuableTableCell {
 
         
         if (data.noOfEmployee > 0) {
-            self.stackFeature.addArrangedSubview(self.getView("\(data.noOfEmployee) Store Employees ".makeAttributedString(attribute: [.font:UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12,weight: .semibold)], for: "")))
+            self.stackFeature.addArrangedSubview(self.getView("\(data.noOfEmployee) \("Store Employees".localiz()) ".makeAttributedString(attribute: [.font:UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12,weight: .semibold)], for: "")))
         }
 
         let commissionText: String
@@ -109,12 +107,11 @@ class PlansTableViewCell: ResuableTableCell {
         if data.comission > 0 {
             commissionText = "\(data.comission.clean)%"
         } else {
-            commissionText = "No"
+            commissionText = "No".localiz()
         }
 
         self.stackFeature.addArrangedSubview(
-            self.getView(
-                "Commission: \(commissionText)".makeAttributedString(
+            self.getView("\("Commission:".localiz()) \(commissionText)".makeAttributedString(
                     attribute: [
                         .font: UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12, weight: .semibold)
                     ],
@@ -123,7 +120,7 @@ class PlansTableViewCell: ResuableTableCell {
             )
         )
         if (data.isFreeMonths) {
-            self.stackFeature.addArrangedSubview(self.getView("Number of Free Month: \(data.noOfFreeMonths)".makeAttributedString(attribute: [.font:UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12,weight: .semibold)], for: "\(data.noOfFreeMonths)")))
+            self.stackFeature.addArrangedSubview(self.getView("\("Number of Free Month:".localiz()) \(data.noOfFreeMonths)".makeAttributedString(attribute: [.font:UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12,weight: .semibold)], for: "\(data.noOfFreeMonths)")))
         }
     }
     

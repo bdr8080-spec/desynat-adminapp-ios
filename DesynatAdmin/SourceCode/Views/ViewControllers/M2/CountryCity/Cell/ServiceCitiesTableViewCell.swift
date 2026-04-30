@@ -29,7 +29,7 @@ class ServiceCitiesTableViewCell: ResuableTableCell {
         self.data = data
         self.btnEdit.isHidden = true
         self.lblCity.text = data.name
-        self.btnViewZone.setTitle("View zone", for: .normal)
+        self.btnViewZone.setTitle("View zone".localiz(), for: .normal)
         self.btnSwitch.setImage(data.isActive ? .toggleOn : .toggleOff, for: .normal)
     }
     
@@ -37,7 +37,7 @@ class ServiceCitiesTableViewCell: ResuableTableCell {
         self.zoneData = data
         self.btnEdit.isHidden = false
         self.lblCity.text = data.nameEn
-        self.btnViewZone.setTitle("View", for: .normal)
+        self.btnViewZone.setTitle("View".localiz(), for: .normal)
         self.btnSwitch.setImage(data.isActive ? .toggleOn : .toggleOff, for: .normal)
     }
     

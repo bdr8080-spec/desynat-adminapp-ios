@@ -75,11 +75,11 @@ case none = 0, new,approved,reject
         case .none:
             ""
         case .new:
-            "Pending"
+            "Pending".localiz()
         case .approved:
-            "Approved"
+            "Approved".localiz()
         case .reject:
-            "Rejected"
+            "Rejected".localiz()
         }
     }
     var placeHolder:String {
@@ -87,11 +87,11 @@ case none = 0, new,approved,reject
         case .none:
             ""
         case .new:
-            "No New Request Found"
+            "No New Request Found".localiz()
         case .approved:
-            "No Result Found"
+            "No Result Found".localiz()
         case .reject:
-            "No Result Found"
+            "No Result Found".localiz()
         }
     }
 }

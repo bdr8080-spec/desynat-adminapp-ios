@@ -89,7 +89,7 @@ class AddPromotionalBannerViewModel {
         }
         
         if errorMessage != .none {
-            hostVC.showAlert(msg: errorMessage.rawValue)
+            hostVC.showAlert(msg: errorMessage.rawValue.localiz())
             hostVC.view.endEditing(true)
             return false
         }
@@ -137,7 +137,7 @@ class AddPromotionalBannerViewModel {
         
         WebService.sharedInstance.addPromotionalBanner(param: params) { (response) in
             DispatchQueue.main.async {
-                CommonUtils.showToast(message: "Advertisement added succesfully")
+                CommonUtils.showToast(message: "Advertisement added succesfully".localiz())
                 self.hostVC.navigationController?.popViewController(animated: true)
             }
         }
@@ -162,7 +162,7 @@ class AddPromotionalBannerViewModel {
         
         WebService.sharedInstance.editPromotionalBanner(param: params) { (response) in
             DispatchQueue.main.async {
-                CommonUtils.showToast(message: "Advertisement updated succesfully")
+                CommonUtils.showToast(message: "Advertisement updated succesfully".localiz())
                 self.hostVC.onCardUpdated?(response)
                 self.hostVC.navigationController?.popViewController(animated: true)
             }
@@ -175,48 +175,6 @@ class AddPromotionalBannerViewModel {
             completion(url)
         }
     }
-    
-    
-//    func uploadDocumentFullscreenBanner(file: Any, isImage: Bool, completion: @escaping(String) -> Void) {
-//        let param:MultipartUpload = MultipartUpload(fileName: "image", file: file, mimeType: isImage ? .image : .pdf)
-//        WebService.sharedInstance.uploadWithResolutionPromotional(withParams: param) { imageURL in
-//            completion(url)
-//        }
-//    }
-    
-//    func uploadFullScreenBanner(
-//        file: Any,
-//        isImage: Bool,
-//        isGif: Bool = false,
-//        completion: @escaping (_ url: String) -> Void
-//    ) {
-//        
-//        let mime: MultipartUpload.Mime = isGif ? .gif : (isImage ? .image : .pdf)
-//        
-//        let param = MultipartUpload(
-//            fileName: "image",
-//            file: file,
-//            mimeType: mime
-//        )
-//        
-//        WebService.sharedInstance.uploadWithResolutionPromotional(withParams: param) {
-//            url, msg, code in
-//            
-//            DispatchQueue.main.async {
-//                
-//                // Success
-//                if !url.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-//                    completion(url)
-//                }
-//                // API Error Message
-//                else {
-//                    CommonUtils.showToast(
-//                        message: msg ?? "Something went wrong. Please try again."
-//                    )
-//                }
-//            }
-//        }
-//    }
     
     func convertDateString(
         _ dateString: String,
@@ -236,13 +194,6 @@ class AddPromotionalBannerViewModel {
         }
         return outputFormatter.string(from: date)
     }
-    
-//    func getAllCountry() {
-//        WebService.shared.getAllUsersCountryList(){ [weak self] response in
-//            guard let self = self else { return }
-//            countryListData = response
-//        }
-//    }
     
 }
 

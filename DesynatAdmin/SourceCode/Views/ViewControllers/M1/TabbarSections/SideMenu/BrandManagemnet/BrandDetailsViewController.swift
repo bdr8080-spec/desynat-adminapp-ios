@@ -57,7 +57,7 @@ class BrandDetailsViewController: UIViewController {
     
     @IBAction func deleteDidTapped(_ sender: Any) {
         guard let brand = brandData else { return }
-        self.showConfirmationAlert(msg: "Are you sure you want to delete this brand?"){ [weak self] in
+        self.showConfirmationAlert(msg: "Are you sure you want to delete this brand?".localiz()){ [weak self] in
             guard let self = self else { return }
             self.viewModel.deleteBrand(param: ["brand_id": brand.id ?? 0])
         }
@@ -74,10 +74,10 @@ class BrandDetailsViewController: UIViewController {
         }
         
         if brandData?.status == 1 {
-            statusLabel.text = "Active"
+            statusLabel.text = "Active".localiz()
             statusImageView.image = UIImage(named: "toggleOn")
         } else {
-            statusLabel.text = "Inactive"
+            statusLabel.text = "Inactive".localiz()
             statusImageView.image = UIImage(named: "toggleOff")
         }
         

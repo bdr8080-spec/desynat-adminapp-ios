@@ -35,7 +35,7 @@ class AddPromotionalBannerViewController: UIViewController {
     var isComingForEdit: Bool = false
     var giftsListData: GetPromotionalBannersList?
     var onCardUpdated: ((GetPromotionalBannersList) -> Void)?
-    var forTypeList = ["Home Top", "Home Bottom", "Category"]
+    var forTypeList = ["Home Top".localiz(), "Home Bottom".localiz(), "Category".localiz()]
     var selectedPositionIndex: Int = 0 //type 1 mobile,2-web
     var pickedImage: UIImage?
     var pickedFileName: String = ""
@@ -60,9 +60,9 @@ class AddPromotionalBannerViewController: UIViewController {
         viewModel.getAllCategory()
         if isComingForEdit {
             bindData()
-            titleLabel.text = "Edit Promotional Banner"
+            titleLabel.text = "Edit Promotional Banner".localiz()
         } else {
-            titleLabel.text = "Add Promotional Banner"
+            titleLabel.text = "Add Promotional Banner".localiz()
         }
     }
     
@@ -138,7 +138,7 @@ class AddPromotionalBannerViewController: UIViewController {
         }
         
         // Add flow safety
-        showAlert(msg: "Please select image")
+        showAlert(msg: "Please select image".localiz())
     }
     
     @IBAction func backDidTapped(_ sender: UIButton) {
@@ -148,13 +148,13 @@ class AddPromotionalBannerViewController: UIViewController {
     
     @IBAction func subCategoryDidTapped(_ sender: UIButton) {
         guard let _ = viewModel.selectedCategoriesId else {
-            showAlert(msg: "Please select the category first")
+            showAlert(msg: "Please select the category first".localiz())
             return
         }
         
         //If no subcategories available
         guard !viewModel.subcategoriesList.isEmpty else {
-            showAlert(msg: "No subcategories available")
+            showAlert(msg: "No subcategories available".localiz())
             return
         }
         
@@ -207,7 +207,7 @@ class AddPromotionalBannerViewController: UIViewController {
             let fromText = fromTextField.text, !fromText.isEmpty,
             let toText = toTextField.text, !toText.isEmpty
         else {
-            lblTotalDays.text = "days"
+            lblTotalDays.text = "days".localiz()
             numberOfDaysView.isHidden = true
             return
         }
@@ -220,7 +220,7 @@ class AddPromotionalBannerViewController: UIViewController {
             let endDate = formatter.date(from: toText),
             startDate <= endDate
         else {
-            lblTotalDays.text = "days"
+            lblTotalDays.text = "days".localiz()
             numberOfDaysView.isHidden = true
             return
         }
@@ -319,9 +319,9 @@ extension AddPromotionalBannerViewController {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneDatePicker))
+        let doneButton = UIBarButtonItem(title: "Done".localiz(), style: .done, target: self, action: #selector(doneDatePicker))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker))
+        let cancelButton = UIBarButtonItem(title: "Cancel".localiz(), style: .plain, target: self, action: #selector(cancelDatePicker))
         toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         
         fromTextField.inputView = datePicker
@@ -352,7 +352,7 @@ extension AddPromotionalBannerViewController {
             // From > To → invalidate To
             if selectedDate > toDate {
                 toTextField.text = ""
-                lblTotalDays.text = "days"
+                lblTotalDays.text = "days".localiz()
                 numberOfDaysView.isHidden = true
                 // Force user to select To Date again
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
@@ -367,10 +367,10 @@ extension AddPromotionalBannerViewController {
     }
     
     private func showValidationAlert() {
-        let alert = UIAlertController(title: "Invalid Date",
-                                      message: "To Date cannot be earlier than From Date.",
+        let alert = UIAlertController(title: "Invalid Date".localiz(),
+                                      message: "To Date cannot be earlier than From Date.".localiz(),
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        alert.addAction(UIAlertAction(title: "OK".localiz(), style: .default))
         self.present(alert, animated: true)
     }
     

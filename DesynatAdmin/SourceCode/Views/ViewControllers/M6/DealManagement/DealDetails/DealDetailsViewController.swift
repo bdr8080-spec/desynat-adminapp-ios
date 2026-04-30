@@ -98,7 +98,7 @@ class DealDetailsViewController: UIViewController {
     
     @IBAction func deleteDidTapped(_ sender: Any) {
         guard let gift = dealData else { return }
-        self.showConfirmationAlert(msg: "Are you sure you want to delete this deal?"){ [weak self] in
+        self.showConfirmationAlert(msg: "Are you sure you want to delete this deal?".localiz()){ [weak self] in
             guard let self = self else { return }
             self.viewModel.deleteDealDetails(param: ["deal_id": gift.id ?? 0])
         }
@@ -171,17 +171,17 @@ class DealDetailsViewController: UIViewController {
         let endDate = convertDateFormat(dealData?.to ?? "") ?? ""
         dateLabel.text = "\(startDate) - \(endDate)"
         if dealData?.status == 1 {
-            statusLabel.text = "Active"
+            statusLabel.text = "Active".localiz()
             statusImageView.image = UIImage(named: "toggleOn")
         } else {
-            statusLabel.text = "Inactive"
+            statusLabel.text = "Inactive".localiz()
             statusImageView.image = UIImage(named: "toggleOff")
         }
         viewModel.currentPage = 1
         reloadPaginationUI()
         //    totalSellerLabel.text = data.t
         let count = dealData?.sellerDealrecords?.count ?? 0
-        totalSellerLabel.text = "\(count) " + (count == 1 ? "Seller" : "Sellers")
+        totalSellerLabel.text = "\(count) " + (count == 1 ? "Seller".localiz() : "Sellers".localiz())
         categoryLabel.text = dealData?.categoryDetails?.name
         subCategoryLabel.text = dealData?.subCategoryDetails?.compactMap({ $0.nameEnglish }).joined(separator: ", ")
     }

@@ -38,7 +38,7 @@ class EditContactUsViewModel {
         }
         
         if errorMessage != .none {
-            hostVC.showAlert(msg: errorMessage.rawValue)
+            hostVC.showAlert(msg: errorMessage.rawValue.localiz())
         }
         
         hostVC.view.endEditing(true)
@@ -64,7 +64,7 @@ class EditContactUsViewModel {
         }
         WebService.shared.updateContactUsService(parameter: param) { [weak self] response in
             guard let self = self else { return }
-            CommonUtils.showToast(message: "New FAQ is updated successully")
+            CommonUtils.showToast(message: "New FAQ is updated successully".localiz())
             self.hostVC.dismiss(animated: true)
         }
     }

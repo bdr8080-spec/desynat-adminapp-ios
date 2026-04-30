@@ -204,10 +204,10 @@ extension CountryCityListViewController:HandleCityAction {
     }
     
     func deleteCity(_ data: CitiesInfo) {
-        self.showConfirmationAlert(msg: "Are you sure want\nto delete this city?") {
+        self.showConfirmationAlert(msg: "Are you sure want\nto delete this city?".localiz()) {
             self.viewModel.deleteCity(id: data.id) {
                 let vc = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
-                vc.setTitle("City deleted\nsuccessfully!")
+                vc.setTitle("City deleted\nsuccessfully!".localiz())
                 vc.callBackDismiss = {
                     self.viewModel.getCities()
                 }

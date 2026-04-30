@@ -20,15 +20,15 @@ class ForgotPasswordViewModel: NSObject {
     
     func validFields() -> Bool {
         var errorMessage: AlertConstant = .none
-            let input = String.getString(hostVC.emailAddressTextField.text).trimmingCharacters(in: .whitespacesAndNewlines)
-            if input.isEmpty {
-                errorMessage = .EnterEmailAddress
-            } else if !input.isValidEmail() {
-                errorMessage = .EnterValidEmailAddress
-            }
+        let input = String.getString(hostVC.emailAddressTextField.text).trimmingCharacters(in: .whitespacesAndNewlines)
+        if input.isEmpty {
+            errorMessage = .EnterEmailAddress
+        } else if !input.isValidEmail() {
+            errorMessage = .EnterValidEmailAddress
+        }
         
         if errorMessage != .none {
-            hostVC.showAlert(msg: errorMessage.rawValue)
+            hostVC.showAlert(msg: errorMessage.rawValue.localiz())
         }
         
         hostVC.view.endEditing(true)
@@ -37,12 +37,7 @@ class ForgotPasswordViewModel: NSObject {
     
     func forgotPasswordApi() {
         var params: [String: Any] = [:]
-            
-
-                params = [
-                    "email": hostVC.emailAddressTextField.text?.trimmed() ?? ""
-                ]
-            
+        params = ["email": hostVC.emailAddressTextField.text?.trimmed() ?? ""]
         WebService.sharedInstance.forgotPasswordService(withParams: params) { (response) in
             let vc = OTPViewController.instantiate(fromAppStoryboard: .Main)
             vc.comingReason = .forgotPassword
@@ -51,5 +46,5 @@ class ForgotPasswordViewModel: NSObject {
             self.hostVC.navigationController?.pushViewController(vc, animated: true)
         }
     }
-
+    
 }

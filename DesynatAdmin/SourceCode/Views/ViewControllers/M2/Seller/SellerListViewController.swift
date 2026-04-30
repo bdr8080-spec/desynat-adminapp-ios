@@ -150,7 +150,7 @@ extension SellerListViewController:HandleSellerAction {
         self.viewModel.approveSeller(id: data.id) {
             DispatchQueue.main.async {
                 let vc = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
-                vc.setTitle("Seller approved\nsuccessfully!")
+                vc.setTitle("Seller approved\nsuccessfully!".localiz())
                 vc.callBackDismiss = {
                     self.switchTab(.approved)
                 }
@@ -167,7 +167,7 @@ extension SellerListViewController:HandleSellerAction {
             self.viewModel.rejectSeller(id: data.id, reason: reason,type: type) {
                 DispatchQueue.main.async {
                     let succesVC = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
-                    succesVC.setTitle("Seller rejected\nsuccessfully!")
+                    succesVC.setTitle("Seller rejected\nsuccessfully!".localiz())
                     succesVC.callBackDismiss = {
                         self.switchTab(.reject)
                     }

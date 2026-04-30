@@ -111,7 +111,7 @@ class AddNewStaffViewModel {
         }
         
         if errorMessage != .none {
-            hostVC.showAlert(msg: errorMessage.rawValue)
+            hostVC.showAlert(msg: errorMessage.rawValue.localiz())
         }
         
         hostVC.view.endEditing(true)
@@ -139,7 +139,7 @@ class AddNewStaffViewModel {
                                     "modules": modulesArray]
         WebService.shared.addSubAdminService(param: param){ [weak self] response in
             guard let self = self else { return }
-            CommonUtils.showToast(message: "Staff is added successfully")
+            CommonUtils.showToast(message: "Staff is added successfully".localiz())
             self.hostVC.navigationController?.popViewController(animated: true)
         }
     }
@@ -164,10 +164,9 @@ class AddNewStaffViewModel {
                                     "password": hostVC.passwordTxtField.text ?? "",
                                     "confirm_password": hostVC.confirmPasswortTxtField.text ?? "",
                                     "modules": modulesArray]
-        print("param====>\(param)")
         WebService.shared.updateSubAdminService(param: param){ [weak self] response in
             guard let self = self else { return }
-            CommonUtils.showToast(message: "Staff is updated successfully")
+            CommonUtils.showToast(message: "Staff is updated successfully".localiz())
             self.hostVC.navigationController?.popViewController(animated: true)
         }
     }

@@ -72,13 +72,13 @@ class ReasonManagementViewModel {
       let type = hostVC?.type ?? 1
       switch type {
       case 1:
-        CommonUtils.showToast(message: "Exchange Reason Deleted Succesfully")
+          CommonUtils.showToast(message: "Exchange Reason Deleted Succesfully".localiz())
       case 2:
-        CommonUtils.showToast(message: "Return Reason Deleted Succesfully")
+          CommonUtils.showToast(message: "Return Reason Deleted Succesfully".localiz())
       case 3:
-        CommonUtils.showToast(message: "Cancel Reason Deleted Succesfully")
+          CommonUtils.showToast(message: "Cancel Reason Deleted Succesfully".localiz())
       default:
-        CommonUtils.showToast(message: "Reason deleted succesfully")
+          CommonUtils.showToast(message: "Reason deleted succesfully".localiz())
       }
       self.currentPage = 1 // optional: reset to first page
       self.getAllReasons()

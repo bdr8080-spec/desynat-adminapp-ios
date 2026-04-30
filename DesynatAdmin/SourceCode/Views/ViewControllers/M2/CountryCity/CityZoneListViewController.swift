@@ -106,7 +106,7 @@ extension CityZoneListViewController:HandleZoneAction {
         let vc = AddZoneViewController.viewFromNIB
         
         vc.setData(data)
-        vc.setTitle("View",isForView: true)
+        vc.setTitle("View".localiz(),isForView: true)
         self.navigate(to: vc)
     }
     
@@ -117,15 +117,15 @@ extension CityZoneListViewController:HandleZoneAction {
             vc.setCityData(cityInfo)
         }
         
-        vc.setTitle("Edit Zone")
+        vc.setTitle("Edit Zone".localiz())
         self.navigate(to: vc)
     }
     
     func deleteZone(_ data: ZoneInfo) {
-        self.showConfirmationAlert(msg: "Are you sure want\nto delete this zone?") {
+        self.showConfirmationAlert(msg: "Are you sure want\nto delete this zone?".localiz()) {
             self.viewModel.deleteZone(id: data.id) {
                 let vc = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
-                vc.setTitle("Zone deleted\nsuccessfully!")
+                vc.setTitle("Zone deleted\nsuccessfully!".localiz())
                 vc.callBackDismiss = {
                     self.viewModel.getZones()
                 }

@@ -29,10 +29,10 @@ class AddReasonViewController: UIViewController {
         englishReasonTF.delegate = self
         arabicReasonTF.delegate = self
         if isComingForEdit {
-            titleLabel.text = "Edit Reason"
+            titleLabel.text = "Edit Reason".localiz()
             getReasonDetails()     // ⬅️ Add this
         } else {
-            titleLabel.text = "Add New Reason"
+            titleLabel.text = "Add New Reason".localiz()
         }
         
         headerView.layer.cornerRadius = 24
@@ -94,7 +94,7 @@ extension AddReasonViewController: UITextFieldDelegate {
             // Check every character (handles paste)
             for scalar in string.unicodeScalars {
                 if !allowedSet.contains(scalar) {
-                    CommonUtils.showToast(message: "Please switch to Arabic keyboard")
+                    CommonUtils.showToast(message: "Please switch to Arabic keyboard".localiz())
                     return false
                 }
             }

@@ -31,11 +31,11 @@ class AddSubCategoryViewController: UIViewController {
         subCategoryArabicTextField.delegate = self
         if isComingForEdit {
             bindData()
-            submitLabel.text = "Update"
-            titleLabel.text = "Edit Sub-Category"
+            submitLabel.text = "Update".localiz()
+            titleLabel.text = "Edit Sub-Category".localiz()
         } else {
-            submitLabel.text = "Submit"
-            titleLabel.text = "Add Sub-Category"
+            submitLabel.text = "Submit".localiz()
+            titleLabel.text = "Add Sub-Category".localiz()
         }
     }
     
@@ -116,7 +116,7 @@ extension AddSubCategoryViewController: UITextFieldDelegate {
             // Check every character (handles paste)
             for scalar in string.unicodeScalars {
                 if !allowedSet.contains(scalar) {
-                    CommonUtils.showToast(message: "Please switch to Arabic keyboard")
+                    CommonUtils.showToast(message: "Please switch to Arabic keyboard".localiz())
                     return false
                 }
             }

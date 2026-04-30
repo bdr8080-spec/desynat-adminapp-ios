@@ -44,7 +44,7 @@ class EventsTableViewCell: UITableViewCell {
             userProfileImageView.image = UIImage(named: "userProfile")
         }
         let result = convertISOToDMY(data?.createdAt ?? "") ?? ""
-        joinedOnLabel.text = "Joined on \(result)"
+        joinedOnLabel.text = "\("Joined on".localiz()) \(result)"
 //        let liveDateresult = convertDate(data?.timeslotDetails?.date ?? "")
         let dateFormatLive = CommonUtils.customizeChangeDateFormatZone(
             inputDate: data?.timeslotDetails?.date ?? "",
@@ -58,7 +58,7 @@ class EventsTableViewCell: UITableViewCell {
             outputFormat: "h:mm a"
         )
 
-        liveDateLabel.text = "Live Timing \(dateFormatLive)"
+        liveDateLabel.text = "\("Live Timing".localiz()) \(dateFormatLive)"
 //        liveDateLabel.text = "Live Timing \(liveDateresult)"
         livetimeLabel.text = fromtime
         countryNameLabel.text = data?.timeslotDetails?.countryInfo?.name ?? ""

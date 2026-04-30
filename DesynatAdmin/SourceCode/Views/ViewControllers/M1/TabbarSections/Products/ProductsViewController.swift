@@ -96,7 +96,7 @@ class ProductsViewController: UIViewController {
                     self.viewModel.productsListData[index].productActiveStatus = 1
                 }
                 let newStatus = viewModel.productsListData[index].productActiveStatus == 1 ? 0 : 1
-                let message = newStatus == 1 ? "Product has been blocked successfully" : "Product has been unblocked successfully"
+                let message = newStatus == 1 ? "Product has been blocked successfully".localiz() : "Product has been unblocked successfully".localiz()
                 CommonUtils.showToast(message: message)
                 DispatchQueue.main.async {
                     self.productsTableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
