@@ -182,7 +182,7 @@ extension SendNewNotificationViewController: UICollectionViewDelegate, UICollect
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DurationCollectionViewCell", for: indexPath) as! DurationCollectionViewCell
-        cell.titleLabel.text = sendToArray[indexPath.row]
+        cell.titleLabel.text = sendToArray[indexPath.row].localiz()
         if selectedRoleIndex == indexPath.row {
             cell.selectedImageView.image = .radioSelected
         } else {

@@ -47,7 +47,7 @@ extension ContactUsViewController: UITableViewDataSource, UITableViewDelegate {
         cell.editButton.isHidden = !hasActionPermission
         switch indexPath.row {
         case 0:
-            cell.titleLabel.text = "Support Email Address"
+            cell.titleLabel.text = "Support Email Address".localiz()
             cell.descriptionLabel.text = viewModel.contactListData?.contentEnglish?.email
             cell.supporttypeImageView.image = .supportEmailIcon
             cell.onEditAction = {
@@ -57,7 +57,7 @@ extension ContactUsViewController: UITableViewDataSource, UITableViewDelegate {
                 self.navigationController?.present(nextVC, animated: true)
             }
         case 1:
-            cell.titleLabel.text = "Support Contact Number"
+            cell.titleLabel.text = "Support Contact Number".localiz()
             cell.descriptionLabel.text = viewModel.contactListData?.contentEnglish?.mobile
             cell.supporttypeImageView.image = .supportContact
             cell.onEditAction = {
@@ -67,7 +67,7 @@ extension ContactUsViewController: UITableViewDataSource, UITableViewDelegate {
                 self.navigationController?.present(nextVC, animated: true)
             }
         default:
-            cell.titleLabel.text = "Support Contact Number"
+            cell.titleLabel.text = "Support Contact Number".localiz()
             cell.descriptionLabel.text = viewModel.contactListData?.contentEnglish?.whatsapp
             cell.supporttypeImageView.image = .whatsappIcon
             cell.onEditAction = {

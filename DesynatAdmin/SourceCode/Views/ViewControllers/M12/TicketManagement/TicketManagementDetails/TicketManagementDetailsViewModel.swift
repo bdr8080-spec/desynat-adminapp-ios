@@ -20,7 +20,7 @@ class TicketManagementDetailsViewModel {
                                       "status": hostVC.selectedStatusIndex ?? 0] // //0-pending,1-resolved
         WebService.shared.updateTicketStatusService(param: params) { [weak self] response in
             guard let self = self else { return }
-            CommonUtils.showToast(message: "Status is updated")
+            CommonUtils.showToast(message: "Status is updated".localiz())
             self.hostVC.isStatusUpdated?()
             self.hostVC.navigationController?.popViewController(animated: true)
         }

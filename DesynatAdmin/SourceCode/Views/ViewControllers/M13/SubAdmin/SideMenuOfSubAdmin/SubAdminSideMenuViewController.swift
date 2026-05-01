@@ -95,17 +95,6 @@ extension SubAdminSideMenuViewController: UITableViewDelegate, UITableViewDataSo
         return cell
     }
     
-//case 0:
-//    childVC = HomeViewController.instantiate(fromAppStoryboard: .Home)
-//case 1:
-//    childVC = ProductsViewController.instantiate(fromAppStoryboard: .Home)
-//case 2:
-//    childVC = ShowViewController.instantiate(fromAppStoryboard: .Home)
-//case 3:
-//    childVC = SubscriptionPlanListViewController.viewFromNIB
-//case 4:
-//    childVC = PaymentsController.instantiate(fromAppStoryboard: .Payment)
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = filteredPermissions[indexPath.row]
         let selectedItem = item.moduleDetails?.displayName

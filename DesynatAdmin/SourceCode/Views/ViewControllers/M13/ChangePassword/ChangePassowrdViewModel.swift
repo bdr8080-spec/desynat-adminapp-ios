@@ -22,7 +22,7 @@ class ChangePassowrdViewModel:NSObject {
             "new_password": self.hostVC.txtNewPass.text ?? "",
             "confirm_password": self.hostVC.txtConfirmPass.text ?? ""]
         WebService.sharedInstance.changePasswordService(withParams : param) { user in
-            CommonUtils.showToast(message: "Password is updated successfully")
+            CommonUtils.showToast(message: "Password is updated successfully".localiz())
             self.hostVC.navigationController?.popViewController(animated: true)
         }
     }

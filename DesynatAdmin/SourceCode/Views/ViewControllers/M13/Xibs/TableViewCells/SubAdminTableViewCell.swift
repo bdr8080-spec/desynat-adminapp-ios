@@ -43,7 +43,7 @@ class SubAdminTableViewCell: UITableViewCell {
             userProfileImageView.image = .userProfile
         }
         let result = convertISOToDMY(data.createdAt ?? "") ?? ""
-        joinedDateLabel.text = "Joined on \(result)"
+        joinedDateLabel.text = "\("Joined on".localiz()) \(result)"
         phoneNumberLabel.text = "\(data.countryCode ?? "")-\(data.mobile ?? "")"
         emailLabel.text = data.email
         countryLabel.text = data.countryInfo?.name

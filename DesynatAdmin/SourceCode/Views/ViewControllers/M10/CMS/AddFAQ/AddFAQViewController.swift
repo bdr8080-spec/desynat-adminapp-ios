@@ -31,15 +31,15 @@ class AddFAQViewController: UIViewController {
         answerEnglishTF.delegate = self
         answerArabicTF.delegate = self
         if isComingForEdit {
-            headerLabel.text = "Edit FAQ"
-            buttonTitleLabel.text = "Submit"
+            headerLabel.text = "Edit FAQ".localiz()
+            buttonTitleLabel.text = "Submit".localiz()
             questionEngTF.text = faqData?.questionEnglish
             questionArabicTF.text = faqData?.questionArabic
             answerEnglishTF.text = faqData?.answerEnglish
             answerArabicTF.text = faqData?.answerArabic
         } else {
-            headerLabel.text = "Add FAQ"
-            buttonTitleLabel.text = "Add"
+            headerLabel.text = "Add FAQ".localiz()
+            buttonTitleLabel.text = "Add".localiz()
         }
     }
     
@@ -66,53 +66,6 @@ class AddFAQViewController: UIViewController {
     
 }
 
-////MARK: UITextFieldDelegate Methods
-//extension AddFAQViewController: UITextFieldDelegate {
-//
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        let currentText = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-//        var validation: StringValidation?
-//
-//        if string.isEmpty { return true }
-//
-//        if textField == questionEngTF || textField == answerEnglishTF{
-//            // Prevent starting with space
-//            if currentText.hasPrefix(" ") {
-//                return false
-//            }
-//
-//            // Only limit length
-//            return currentText.count <= 500
-//        }
-//
-//        if textField == questionArabicTF || textField == answerArabicTF {
-//
-//            // Allowed Arabic Unicode ranges + spaces
-//            let allowedSet = CharacterSet(charactersIn: "\u{0600}"..."\u{06FF}")
-//                .union(CharacterSet(charactersIn: "\u{0750}"..."\u{077F}"))
-//                .union(CharacterSet(charactersIn: "\u{08A0}"..."\u{08FF}"))
-//                .union(CharacterSet.whitespaces)
-//
-//            // Check every character (handles paste)
-//            for scalar in string.unicodeScalars {
-//                if !allowedSet.contains(scalar) {
-//                    CommonUtils.showToast(message: "Please switch to Arabic keyboard")
-//                    return false
-//                }
-//            }
-//
-//            return true
-//        }
-//
-//        if let data = validation {
-//            return data.validate()
-//        } else {
-//            return true
-//        }
-//    }
-//}
-
-
 //MARK: UITextFieldDelegate Methods
 extension AddFAQViewController: UITextFieldDelegate {
     
@@ -132,7 +85,7 @@ extension AddFAQViewController: UITextFieldDelegate {
 
             
             if !isAllowedEnglish(currentText) {
-                CommonUtils.showToast(message: "Please switch to English keyboard")
+                CommonUtils.showToast(message: "Please switch to English keyboard".localiz())
                 return false
             }
         }
@@ -143,7 +96,7 @@ extension AddFAQViewController: UITextFieldDelegate {
         if textField == questionArabicTF || textField == answerArabicTF {
             
             if !isAllowedArabic(currentText) {
-                CommonUtils.showToast(message: "Please switch to Arabic keyboard")
+                CommonUtils.showToast(message: "Please switch to Arabic keyboard".localiz())
                 return false
             }
             

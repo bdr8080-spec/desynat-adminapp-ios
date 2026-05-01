@@ -34,10 +34,10 @@ class StaffDetailsViewModel {
             DispatchQueue.main.async {
                 self.staffDetails?.status = response.status?.description
                 if let status = response.status {
-                    self.hostVC.isActiveLbl.text = status == 1 ? "Active" : "Inactive"
+                    self.hostVC.isActiveLbl.text = status == 1 ? "Active".localiz() : "Inactive".localiz()
                     self.hostVC.activeStatusbtn.setImage(UIImage(named: status == 1 ? "toggleOn" : "toggleOff"), for: .normal)
                     self.hostVC.isActiveLbl.textColor = status == 1 ? UIColor(hex: "1A900D") : UIColor(hex: "E80B26")
-                    CommonUtils.showToast(message: status == 1 ? "Sub Admin Profile Activated Successfully" : "Sub Admin Profile Deactivated Successfully")
+                    CommonUtils.showToast(message: status == 1 ? "Sub Admin Profile Activated Successfully".localiz() : "Sub Admin Profile Deactivated Successfully".localiz())
                 }
             }
         }
@@ -59,7 +59,7 @@ class StaffDetailsViewModel {
         WebService.shared.deleteSubAdminService(param: param) { [weak self] response in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                CommonUtils.showToast(message: "Profile is deleted successfully")
+                CommonUtils.showToast(message: "Profile is deleted successfully".localiz())
                 self.hostVC.navigationController?.popViewController(animated: true)
             }
         }

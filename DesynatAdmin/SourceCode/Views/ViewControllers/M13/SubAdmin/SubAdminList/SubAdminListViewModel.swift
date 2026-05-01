@@ -71,9 +71,9 @@ class SubAdminListViewModel {
             // Update data
             self.subAdminUsersList = response.list?.data ?? []
             DispatchQueue.main.async {
-                self.hostVC?.allLabel.text = "All (\(response.totalCount?.description ?? "0"))"
-                self.hostVC?.activeLabel.text = "Active (\(response.totalActiveCount?.description ?? "0"))"
-                self.hostVC?.inactiveLabel.text = "Inactive (\(response.totalInactiveCount?.description ?? "0"))"
+                self.hostVC?.allLabel.text = "\("All".localiz()) (\(response.totalCount?.description ?? "0"))"
+                self.hostVC?.activeLabel.text = "\("Active".localiz()) (\(response.totalActiveCount?.description ?? "0"))"
+                self.hostVC?.inactiveLabel.text = "\("Inactive".localiz()) (\(response.totalInactiveCount?.description ?? "0"))"
                 self.hostVC?.pageCountLabel.text = String(format: "%02d of %02d", self.currentPage, self.totalPages)
                 self.hostVC?.listTableView.reloadData()
                 self.hostVC?.noDataFoundLabel.isHidden = !self.subAdminUsersList.isEmpty
@@ -113,9 +113,9 @@ class SubAdminListViewModel {
             // Update data
             self.subAdminUsersList = response.list?.data ?? []
             DispatchQueue.main.async {
-                self.hostVC?.allLabel.text = "All (\(response.totalCount?.description ?? "0"))"
-                self.hostVC?.activeLabel.text = "Active (\(response.totalActiveCount?.description ?? "0"))"
-                self.hostVC?.inactiveLabel.text = "Inactive (\(response.totalInactiveCount?.description ?? "0"))"
+                self.hostVC?.allLabel.text = "\("All".localiz()) (\(response.totalCount?.description ?? "0"))"
+                self.hostVC?.activeLabel.text = "\("Active".localiz()) (\(response.totalActiveCount?.description ?? "0"))"
+                self.hostVC?.inactiveLabel.text = "\("Inactive".localiz()) (\(response.totalInactiveCount?.description ?? "0"))"
                 self.hostVC?.pageCountLabel.text = String(format: "%02d of %02d", self.currentPage, self.totalPages)
                 self.hostVC?.listTableView.reloadData()
                 self.hostVC?.noDataFoundLabel.isHidden = !self.subAdminUsersList.isEmpty
@@ -155,9 +155,9 @@ class SubAdminListViewModel {
             // Update data
             self.subAdminUsersList = response.list?.data ?? []
             DispatchQueue.main.async {
-                self.hostVC?.allLabel.text = "All (\(response.totalCount?.description ?? "0"))"
-                self.hostVC?.activeLabel.text = "Active (\(response.totalActiveCount?.description ?? "0"))"
-                self.hostVC?.inactiveLabel.text = "Inactive (\(response.totalInactiveCount?.description ?? "0"))"
+                self.hostVC?.allLabel.text = "\("All".localiz()) (\(response.totalCount?.description ?? "0"))"
+                self.hostVC?.activeLabel.text = "\("Active".localiz()) (\(response.totalActiveCount?.description ?? "0"))"
+                self.hostVC?.inactiveLabel.text = "\("Inactive".localiz()) (\(response.totalInactiveCount?.description ?? "0"))"
                 self.hostVC?.pageCountLabel.text = String(format: "%02d of %02d", self.currentPage, self.totalPages)
                 self.hostVC?.listTableView.reloadData()
                 self.hostVC?.noDataFoundLabel.isHidden = !self.subAdminUsersList.isEmpty

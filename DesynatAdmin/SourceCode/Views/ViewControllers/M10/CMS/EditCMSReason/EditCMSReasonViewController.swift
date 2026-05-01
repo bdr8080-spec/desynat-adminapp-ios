@@ -33,7 +33,7 @@ class EditCMSReasonViewController: UIViewController {
     
     @IBAction func submitDidTapped(_ sender: Any) {
         guard inputTextView.text != nil else {
-            CommonUtils.showToast(message: "Please enter text")
+            CommonUtils.showToast(message: "Please enter text".localiz())
             return
         }
         switch cmsType {
@@ -61,81 +61,27 @@ class EditCMSReasonViewController: UIViewController {
     private func handleUI() {
         switch cmsType {
         case .termsAndCondition:
-            titleLabel.text = "Edit Terms & Condition"
+            titleLabel.text = "Edit Terms & Condition".localiz()
         case .returnPolicy:
-            titleLabel.text = "Edit Return Policy"
+            titleLabel.text = "Edit Return Policy".localiz()
         case .aboutUs:
-            titleLabel.text = "Edit About Us"
+            titleLabel.text = "Edit About Us".localiz()
         case .cancellationPolicy:
-            titleLabel.text = "Edit Cancellation Policy"
+            titleLabel.text = "Edit Cancellation Policy".localiz()
         default:
-            titleLabel.text = "Edit Exchange Policy"
+            titleLabel.text = "Edit Exchange Policy".localiz()
         }
         if comingForArabic {
-            headerLabel.text = "Arabic"
+            headerLabel.text = "Arabic".localiz()
             self.inputTextView.text = termsAndConditonData?.contentArabic?.htmlToPlainText() ?? ""
             
         } else {
-            headerLabel.text = "English"
+            headerLabel.text = "English".localiz()
             self.inputTextView.text = termsAndConditonData?.contentEnglish?.htmlToPlainText() ?? ""
         }
     }
     
 }
-
-//MARK: UITextViewDelegate Methods
-//extension EditCMSReasonViewController: UITextViewDelegate {
-    
-//    func textView(_ textView: UITextView,
-//                  shouldChangeTextIn range: NSRange,
-//                  replacementText text: String) -> Bool {
-//        
-//        let currentText = (textView.text as NSString).replacingCharacters(in: range, with: text)
-//        var validation: StringValidation?
-//        
-//        // Allow backspace
-//        if text.isEmpty { return true }
-//        
-//        // MARK: - English Description
-//        if comingForArabic == false {
-//            if textView == inputTextView {
-//                
-//                // Prevent starting with space
-//                if currentText.hasPrefix(" ") {
-//                    return false
-//                }
-//                
-//                // Only limit length
-////                return currentText.count <= 500
-//                return true
-//            }
-//        } else {
-//            
-//            // MARK: - Arabic Description
-//            if textView == inputTextView {
-//                
-//                let allowedSet = CharacterSet(charactersIn: "\u{0600}"..."\u{06FF}")
-//                    .union(CharacterSet(charactersIn: "\u{0750}"..."\u{077F}"))
-//                    .union(CharacterSet(charactersIn: "\u{08A0}"..."\u{08FF}"))
-//                    .union(.whitespacesAndNewlines)
-//                
-//                for scalar in text.unicodeScalars {
-//                    if !allowedSet.contains(scalar) {
-//                        CommonUtils.showToast(message: "Please switch to Arabic keyboard")
-//                        return false
-//                    }
-//                }
-//                
-//                return true
-//            }
-//        }
-//        
-//        if let data = validation {
-//            return data.validate()
-//        } else {
-//            return true
-//        }
-//    }
     
 // MARK: UITextViewDelegate Methods
 extension EditCMSReasonViewController: UITextViewDelegate {
@@ -166,14 +112,14 @@ extension EditCMSReasonViewController: UITextViewDelegate {
             // English Mode
             if !comingForArabic {
                 if !isAllowedEnglish(character) {
-                    CommonUtils.showToast(message: "Please switch to English keyboard")
+                    CommonUtils.showToast(message: "Please switch to English keyboard".localiz())
                     return false
                 }
             }
             // Arabic Mode
             else {
                 if !isAllowedArabic(character) {
-                    CommonUtils.showToast(message: "Please switch to Arabic keyboard")
+                    CommonUtils.showToast(message: "Please switch to Arabic keyboard".localiz())
                     return false
                 }
             }

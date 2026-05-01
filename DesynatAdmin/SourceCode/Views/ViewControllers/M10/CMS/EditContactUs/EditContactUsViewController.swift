@@ -24,16 +24,16 @@ class EditContactUsViewController: UIViewController {
         handleUISetup()
         switch comingReason {
         case .email:
-            titleLabel.text = "Support Email Address"
-            headerLabel.text = "Edit Support Email Address"
+            titleLabel.text = "Support Email Address".localiz()
+            headerLabel.text = "Edit Support Email Address".localiz()
             inputTF.text = contactListData?.contentEnglish?.email
         case .phoneNumber:
-            titleLabel.text = "Support Contact Number"
-            headerLabel.text = "Edit Support Contact Number"
+            titleLabel.text = "Support Contact Number".localiz()
+            headerLabel.text = "Edit Support Contact Number".localiz()
             inputTF.text = contactListData?.contentEnglish?.mobile
         case .whatsApp:
-            titleLabel.text = "Support Whatsapp Number"
-            headerLabel.text = "Edit Support Whatsapp Number"
+            titleLabel.text = "Support Whatsapp Number".localiz()
+            headerLabel.text = "Edit Support Whatsapp Number".localiz()
             inputTF.text = contactListData?.contentEnglish?.whatsapp
         }
     }

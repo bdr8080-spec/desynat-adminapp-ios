@@ -17,7 +17,7 @@ class RefundManagementFilterViewController: UIViewController {
     
     private var activeTextField: UITextField?
     private lazy var viewModel = RefundManagementFilterViewModel(hostVC: self)
-    private var statusArray = ["Pending", "Rejected", "Completed"]
+    private var statusArray = ["Pending".localiz(), "Rejected".localiz(), "Completed".localiz()]
     var selectedFilter = PaymentFilterModel()
     var onApplyFilter: ((PaymentFilterModel) -> Void)?
     var onClearFilter: (() -> Void)?
@@ -30,7 +30,7 @@ class RefundManagementFilterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         handleUISetup()
-        statusLabel.text = "Select Status"
+        statusLabel.text = "Select Status".localiz()
         viewModel.getAllCountryRequest { [weak self] in
             self?.applyPreselectedData()
         }
@@ -69,7 +69,7 @@ class RefundManagementFilterViewController: UIViewController {
     
     @IBAction func clearDidTapped(_ sender: Any) {
         selectedStatus = nil
-        statusLabel.text = "Select Status"
+        statusLabel.text = "Select Status".localiz()
         onClearFilter?()
         dismiss(animated: true)
     }
@@ -118,10 +118,10 @@ class RefundManagementFilterViewController: UIViewController {
             selectedStatus = status
             
             switch status {
-            case 1: statusLabel.text = "Pending"
-            case 2: statusLabel.text = "Rejected"
-            case 3: statusLabel.text = "Completed"
-            default: statusLabel.text = "Select Status"
+            case 1: statusLabel.text = "Pending".localiz()
+            case 2: statusLabel.text = "Rejected".localiz()
+            case 3: statusLabel.text = "Completed".localiz()
+            default: statusLabel.text = "Select Status".localiz()
             }
         }
     }
@@ -152,9 +152,9 @@ extension RefundManagementFilterViewController {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneDatePicker))
+        let doneButton = UIBarButtonItem(title: "Done".localiz(), style: .done, target: self, action: #selector(doneDatePicker))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker))
+        let cancelButton = UIBarButtonItem(title: "Cancel".localiz(), style: .plain, target: self, action: #selector(cancelDatePicker))
         
         toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         
@@ -193,10 +193,10 @@ extension RefundManagementFilterViewController {
     }
     
     private func showValidationAlert() {
-        let alert = UIAlertController(title: "Invalid Date",
-                                      message: "To Date cannot be earlier than From Date.",
+        let alert = UIAlertController(title: "Invalid Date".localiz(),
+                                      message: "To Date cannot be earlier than From Date.".localiz(),
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        alert.addAction(UIAlertAction(title: "OK".localiz(), style: .default))
         self.present(alert, animated: true)
     }
     

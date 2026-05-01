@@ -39,7 +39,7 @@ class RefundManagementTableViewCell: UITableViewCell {
     
     func configure(isExpanded: Bool, data: RefundMangementList?) {
         forHideView.isHidden = !isExpanded
-        let title = isExpanded ? "View Less" : "More info"
+        let title = isExpanded ? "View Less".localiz() : "More info".localiz()
         viewMoreButton.setTitle(title, for: .normal)
         
         usernameLabel.text = data?.order?.deliveryDetails?.name
@@ -78,7 +78,7 @@ class RefundManagementTableViewCell: UITableViewCell {
         sellerNameLabel.text = "\(data?.productDetails?.sellerDetails?.firstName ?? "") \(data?.productDetails?.sellerDetails?.lastName ?? "")"
         countryNameLabel.text = data?.productDetails?.store?.countryInfo?.name
         rejectedReasonLabel.text = data?.cancelReason ?? data?.returnReason ?? data?.exchangeReason ?? ""
-        statusLabel.text = "Pending"
+        statusLabel.text = "Pending".localiz()
     }
     
     private func convertISOToDMY(_ isoString: String) -> String? {

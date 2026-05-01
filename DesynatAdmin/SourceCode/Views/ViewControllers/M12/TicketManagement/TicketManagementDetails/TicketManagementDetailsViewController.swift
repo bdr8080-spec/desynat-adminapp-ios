@@ -30,7 +30,7 @@ class TicketManagementDetailsViewController: UIViewController {
     
     var ticketDetails: TicketManagementList?
     var ticketType: TiketListType = .newList
-    var statusUpdate = ["Pending", "Resolved"]
+    var statusUpdate = ["Pending".localiz(), "Resolved".localiz()]
     var selectedStatusIndex: Int? = -1
     var isStatusUpdated: (() -> Void)?
     private lazy var viewModel = TicketManagementDetailsViewModel(hostVC: self)
@@ -83,7 +83,7 @@ class TicketManagementDetailsViewController: UIViewController {
     
     @IBAction func updateStatusDidTapped(_ sender: Any) {
         guard let selectedStatusIndex = self.selectedStatusIndex,  selectedStatusIndex != -1 else {
-            CommonUtils.showToast(message: "Please select status")
+            CommonUtils.showToast(message: "Please select status".localiz())
             return
         }
         viewModel.updateStatusRequest()

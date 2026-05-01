@@ -37,15 +37,15 @@ class CMSDetailsViewController: UIViewController {
     private func handleUI() {
         switch cmsType {
         case .termsAndCondition:
-            titleLabel.text = "Terms & Condition"
+            titleLabel.text = "Terms & Condition".localiz()
         case .returnPolicy:
-            titleLabel.text = "Return Policy"
+            titleLabel.text = "Return Policy".localiz()
         case .aboutUs:
-            titleLabel.text = "About Us"
+            titleLabel.text = "About Us".localiz()
         case .cancellationPolicy:
-            titleLabel.text = "Cancellation Policy"
+            titleLabel.text = "Cancellation Policy".localiz()
         default:
-            titleLabel.text = "Exchange Policy"
+            titleLabel.text = "Exchange Policy".localiz()
         }
         if comingForArabic {
             CommonUtils.loadHTMLContent(termsAndConditonData?.contentArabic ?? "N/A", webView: contentView)

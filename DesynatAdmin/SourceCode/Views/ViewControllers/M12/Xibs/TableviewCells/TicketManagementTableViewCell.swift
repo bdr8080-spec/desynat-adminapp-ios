@@ -49,23 +49,23 @@ class TicketManagementTableViewCell: UITableViewCell {
         switch status {
             
         case .newList:
-            statusLabel.text = "Pending"
+            statusLabel.text = "Pending".localiz()
             let status = statusType(status: data?.status ?? 0)
             statusLabel.textColor = status.color
         case .ongoingList:
             let status = statusType(status: data?.status ?? 0)
-            statusLabel.text = "Ongoing"
+            statusLabel.text = "Ongoing".localiz()
             statusLabel.textColor = status.color
         case .pastList:
             let status = statusType(status: data?.status ?? 0)
-            statusLabel.text = "Resolved"
+            statusLabel.text = "Resolved".localiz()
             statusLabel.textColor = status.color
         }
     }
     
     func senderType(role: Int) -> String {
         let state = SenderRoleType(rawValue: role)
-        return state?.text ?? "Customer"
+        return state?.text ?? "Customer".localiz()
     }
     
     func convertServerDate(_ isoString: String) -> String {

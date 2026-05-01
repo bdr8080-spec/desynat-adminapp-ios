@@ -19,7 +19,7 @@ class AccessModuleTableViewCell: UITableViewCell {
         }
     }
     
-    let accessmoduleType: [String] = ["View","Action"]
+    let accessmoduleType: [String] = ["View".localiz(),"Action".localiz()]
     var selectedIndex = -1
     var isOuterRowSelected: Bool = false
     var moduleId: Int = 0
