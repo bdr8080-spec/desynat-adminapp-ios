@@ -82,7 +82,7 @@ class EditCMSReasonViewController: UIViewController {
     }
     
 }
-    
+
 // MARK: UITextViewDelegate Methods
 extension EditCMSReasonViewController: UITextViewDelegate {
     
@@ -105,9 +105,9 @@ extension EditCMSReasonViewController: UITextViewDelegate {
         for character in text {
             
             // ✅ Allow ALL Emojis — skip language check
-//            if character.isEmoji {
-//                continue
-//            }
+            //            if character.isEmoji {
+            //                continue
+            //            }
             
             // English Mode
             if !comingForArabic {
@@ -157,29 +157,83 @@ extension EditCMSReasonViewController: UITextViewDelegate {
 //            guard let scalar = unicodeScalars.first else { return false }
 //            return scalar.properties.isEmoji && scalar.properties.isEmojiPresentation
 //        }
-//        
+//
 //        // For combined emojis (skin tones, families, flags, ZWJ sequences, etc.)
 //        return unicodeScalars.contains { $0.properties.isEmoji }
 //    }
 //}
 
+//extension String {
+//    func htmlToPlainText() -> String {
+//        // Replace common HTML tags that collapse space
+//        var cleaned = self
+//            .replacingOccurrences(of: "<br>", with: "\n", options: .caseInsensitive)
+//            .replacingOccurrences(of: "<br/>", with: "\n", options: .caseInsensitive)
+//            .replacingOccurrences(of: "<br />", with: "\n", options: .caseInsensitive)
+//            .replacingOccurrences(of: "</p><p>", with: "\n\n", options: .caseInsensitive)
+//            .replacingOccurrences(of: "<p>", with: "\n", options: .caseInsensitive)
+//            .replacingOccurrences(of: "</p>", with: "\n", options: .caseInsensitive)
+//
+//        // Decode HTML entities
+//        cleaned = cleaned
+//            .replacingOccurrences(of: "&nbsp;", with: " ")
+//            .replacingOccurrences(of: "&amp;", with: "&")
+//            .replacingOccurrences(of: "&lt;", with: "<")
+//            .replacingOccurrences(of: "&gt;", with: ">")
+//
+//        return cleaned
+//    }
+
 extension String {
     func htmlToPlainText() -> String {
-        // Replace common HTML tags that collapse space
         var cleaned = self
+        
+        // Step 1: Handle paragraph and line break structure FIRST (preserve spacing)
+        cleaned = cleaned
             .replacingOccurrences(of: "<br>", with: "\n", options: .caseInsensitive)
             .replacingOccurrences(of: "<br/>", with: "\n", options: .caseInsensitive)
             .replacingOccurrences(of: "<br />", with: "\n", options: .caseInsensitive)
-            .replacingOccurrences(of: "</p><p>", with: "\n\n", options: .caseInsensitive)
-            .replacingOccurrences(of: "<p>", with: "\n", options: .caseInsensitive)
-            .replacingOccurrences(of: "</p>", with: "\n", options: .caseInsensitive)
+            // Preserve paragraph spacing
+            .replacingOccurrences(of: "</p><p>", with: "\n\n\n", options: .caseInsensitive)
+            .replacingOccurrences(of: "<p>", with: "\n\n", options: .caseInsensitive)
+            .replacingOccurrences(of: "</p>", with: "\n\n", options: .caseInsensitive)
         
-        // Decode HTML entities
+        // Step 2: Remove formatting tags but keep content
+        cleaned = cleaned
+            .replacingOccurrences(of: "<strong>", with: "", options: .caseInsensitive)
+            .replacingOccurrences(of: "</strong>", with: "", options: .caseInsensitive)
+            .replacingOccurrences(of: "<b>", with: "", options: .caseInsensitive)
+            .replacingOccurrences(of: "</b>", with: "", options: .caseInsensitive)
+        
+        // Step 3: Remove ALL remaining HTML tags
+        cleaned = cleaned.replacingOccurrences(
+            of: "<[^>]+>",
+            with: "",
+            options: .regularExpression
+        )
+        
+        // Step 4: Decode HTML entities
         cleaned = cleaned
             .replacingOccurrences(of: "&nbsp;", with: " ")
             .replacingOccurrences(of: "&amp;", with: "&")
             .replacingOccurrences(of: "&lt;", with: "<")
             .replacingOccurrences(of: "&gt;", with: ">")
+            .replacingOccurrences(of: "&quot;", with: "\"")
+            .replacingOccurrences(of: "&#39;", with: "'")
+        
+        // Step 5: Handle Unicode line separators
+        cleaned = cleaned
+            .replacingOccurrences(of: "\u{2028}", with: "\n")
+            .replacingOccurrences(of: "\u{2029}", with: "\n\n")
+        
+        // Step 6: Normalize ONLY multiple spaces within lines (preserve line breaks)
+        cleaned = cleaned.replacingOccurrences(of: "\\s{2,}", with: " ", options: .regularExpression)
+        
+        // Step 7: Clean excessive newlines but preserve paragraph spacing
+        cleaned = cleaned
+            .replacingOccurrences(of: "\n{4,}", with: "\n\n\n", options: .regularExpression) // Max 3 line breaks
+            .replacingOccurrences(of: "^\n+", with: "", options: .regularExpression) // Remove leading newlines
+            .replacingOccurrences(of: "\n+$", with: "", options: .regularExpression) // Remove trailing newlines
         
         return cleaned
     }
