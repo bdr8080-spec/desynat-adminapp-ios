@@ -14,6 +14,7 @@ class HomeViewModel {
     private var hostVC: HomeViewController
     var countryListData: [GetCountryDataModel] = []
     var userProfileData: UserModel?
+    var dashboardFilter = AdminDashboardFilterModel()
     
     init(hostVC: HomeViewController) {
         self.hostVC = hostVC
@@ -35,6 +36,8 @@ class HomeViewModel {
             guard let self = self else { return }
             countryListData = response
             hostVC.countryTableView.reloadData()
+            self.hostVC.setDefaultSelection()
+            self.hostVC.callDashboardAPI()
         }
     }
     
@@ -93,5 +96,66 @@ class HomeViewModel {
             self.hostVC.usernameLabel.text = "\("Hi".localiz()) \(savedUser.fullName ?? "")"
         }
     }
+    
+    //    func getDashboardData() {
+    //        var params: [String : Any] = [:]
+    //
+    //        if let filter = dashboardFilter.filter {
+    //            params["filter"] = filter
+    //        }
+    //
+    //        if let countryId = dashboardFilter.countryId {
+    //            params["country_id"] = countryId
+    //        }
+    //
+    //        // ✅ Send dates ONLY if both exist
+    //        if let fromDate = dashboardFilter.fromDate,
+    //           let toDate = dashboardFilter.toDate,
+    //           !fromDate.isEmpty,
+    //           !toDate.isEmpty {
+    //
+    //            params["from_date"] = fromDate
+    //            params["to_date"] = toDate
+    //        }
+    //
+    //        WebService.sharedInstance.getDashboardDataService(param: params) { data in
+    //            print("data==\(data)")
+    //        }
+    //    }
+    
+    func getDashboardData(filterIndex: Int,
+                          countryId: Int?,
+                          fromDate: String?,
+                          toDate: String?) {
+        
+        var params: [String: Any] = [:]
+        
+        // filter mapping
+        params["filter"] = filterIndex + 1 // 1-today,2-this week,3-this month,4-this year
+        
+        if let countryId {
+            params["country_id"] = countryId
+        }
+        
+        if let fromDate, let toDate,
+           !fromDate.isEmpty, !toDate.isEmpty {
+            params["from_date"] = fromDate
+            params["to_date"] = toDate
+        }
+        
+        WebService.sharedInstance.getDashboardDataService(param: params) { data in
+            print("data==\(data)")
+        }
+    }
+}
 
+struct AdminDashboardFilterModel {
+    var fromDate: String?
+    var toDate: String?
+    var filter: Int?
+    var countryId: Int?
+    
+    var isEmpty: Bool {
+        return fromDate == nil && toDate == nil && filter == nil && countryId == nil
+    }
 }

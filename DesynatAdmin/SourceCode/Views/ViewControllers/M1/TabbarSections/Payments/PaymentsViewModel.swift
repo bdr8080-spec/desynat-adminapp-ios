@@ -96,7 +96,6 @@ class PaymentsViewModel {
     }
     
     func fetchPlansList() {
-        
         let filter = plansFilter
         var params: [String : Any] = [:]
         params["page"] = currentPage

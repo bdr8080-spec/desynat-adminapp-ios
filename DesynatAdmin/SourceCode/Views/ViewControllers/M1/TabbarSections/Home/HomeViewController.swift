@@ -139,6 +139,17 @@ class HomeViewController: UIViewController {
     }
     
     //MARK: Function's declaration
+    
+    func setDefaultSelection() {
+        durationSelectedIndex = 0
+        selectedCountryIndex = 0
+        let country = viewModel.countryListData.first
+        dropdownCountryLabel.text = country?.name
+        selectedCountryLabel.text = country?.name
+        dropDownCountryFlagEmoji.text = country?.flag
+        durationCollectionView.reloadData()
+    }
+    
     private func bindData() {
         totalUserRegisteredLabel.text = String(format: "Total users registered (%@)".localiz(),"\(100)")
         totalAffiliatedLabel.text = String(format: "Total Affiliated registered (%@)".localiz(),"\(100)")
@@ -179,7 +190,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         durationSelectedIndex = indexPath.row
-        durationCollectionView.reloadData()
+            durationCollectionView.reloadData()
+//            fromDateTextField.text = ""
+//            toDateTextField.text = ""
+            callDashboardAPI()
     }
     
 }
@@ -200,11 +214,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedCountryIndex = indexPath.row
-        let data = viewModel.countryListData[indexPath.row]
-        dropdownCountryLabel.text = data.name
-        dropDownCountryFlagEmoji.text = data.flag
-        selectedCountryLabel.text = data.name
-        countryTableView.reloadData()
+           let data = viewModel.countryListData[indexPath.row]
+           dropdownCountryLabel.text = data.name
+           dropDownCountryFlagEmoji.text = data.flag
+           selectedCountryLabel.text = data.name
+           countryTableView.reloadData()
+           callDashboardAPI()
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -240,14 +255,23 @@ extension HomeViewController: UITextFieldDelegate {
     
     @objc private func doneDatePicker() {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy"
+        formatter.dateFormat = "yyyy-MM-dd"
         
         if activeTextField == fromDateTextField {
             fromDateTextField.text = formatter.string(from: datePicker.date)
         } else if activeTextField == toDateTextField {
             toDateTextField.text = formatter.string(from: datePicker.date)
         }
+        
         view.endEditing(true)
+        
+        // ✅ Call API only when both dates exist
+        if let from = fromDateTextField.text,
+           let to = toDateTextField.text,
+           !from.isEmpty, !to.isEmpty {
+            
+            callDashboardAPI()
+        }
     }
     
     @objc private func cancelDatePicker() {
@@ -256,5 +280,14 @@ extension HomeViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
+    }
+    
+    func callDashboardAPI() {
+        viewModel.getDashboardData(
+            filterIndex: durationSelectedIndex,
+            countryId: viewModel.countryListData[selectedCountryIndex].id,
+            fromDate: fromDateTextField.text,
+            toDate: toDateTextField.text
+        )
     }
 }

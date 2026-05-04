@@ -250,6 +250,9 @@ enum NetworkEndPoint: String {
     case uploadWithResolutionPromotional    = "api/uploadWithResolutionPromotional"
     case shareCeredential                   = "api/admin/send_subadmin_credentials"
     
+    //M14
+    case getHomeData                        = "api/admin/dashboard_data"
+    
     
     func withBaseURL() -> String {
         return "\(BaseURL.value())\(self.rawValue)"

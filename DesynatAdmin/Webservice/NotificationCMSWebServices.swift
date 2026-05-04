@@ -522,4 +522,20 @@ extension WebService {
         }
     }
     
+    func getDashboardDataService(param: [String:Any], completion: @escaping(HomeDataModel) -> Void) {
+        CommonUtils.showHud(show: true)
+        NetworkManager.shared.request(withAPI: .endpoint(.getHomeData),requestMethod: .get, requestParams: param, requestModel: HomeDataModel.self) { result, code in
+            CommonUtils.showHud(show: false)
+            self.evaluateWebServiceResponse(response: result) { response, message, error in
+                guard let response = response else {
+                    if let error {
+                        UIApplication.shared.topViewController()?.showAlert(msg: error)
+                    }
+                    return
+                }
+                completion(response)
+            }
+        }
+    }
+    
 }
