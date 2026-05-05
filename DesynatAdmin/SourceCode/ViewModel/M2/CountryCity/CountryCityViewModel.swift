@@ -55,7 +55,6 @@ struct ZoneInfo {
             APIKeys.coordinates:self.coordinates.map({[APIKeys.lat:$0.latitude,APIKeys.lng:$0.longitude]}),
         ]
     }
-    
     func validate() -> AlertConstant {
         if (coordinates.count < 3) {
             return .provideZoneBoundary
@@ -69,15 +68,12 @@ struct ZoneInfo {
     func edit() {
         self.handler?.editZone(self)
     }
-    
     func delete() {
         self.handler?.deleteZone(self)
     }
-    
     func view() {
         self.handler?.viewLocation(self)
     }
-    
     func setActive() {
         self.handler?.setActiveZone(self)
     }

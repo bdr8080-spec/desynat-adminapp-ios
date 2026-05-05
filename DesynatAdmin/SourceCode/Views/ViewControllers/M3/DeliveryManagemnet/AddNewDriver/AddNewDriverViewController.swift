@@ -138,7 +138,6 @@ class AddNewDriverViewController: UIViewController {
         let vc = LocationViewController.instantiate(fromAppStoryboard: .ReasonManagement)
         vc.preSelectedLat = self.latitude   // your saved lat
         vc.preSelectedLng = self.longitude  // your saved long
-        
         vc.locationCallBack = { [weak self] address, locality, city, state, country, pincode, lat, long in
             guard let self = self else { return }
             
@@ -276,8 +275,6 @@ class AddNewDriverViewController: UIViewController {
                 }
             }
         }
-        
-        
     }
     
     @IBAction func drivingLicencseAction(_ sender: UIButton) {
@@ -326,8 +323,6 @@ class AddNewDriverViewController: UIViewController {
                 }
             }
         }
-        
-        
     }
     
     @IBAction func vehicleInsuranceDidTapepd(_ sender: Any) {
@@ -366,7 +361,6 @@ class AddNewDriverViewController: UIViewController {
                 }
             }
         }
-        
     }
     
     @IBAction func pollutionPaperImageDidTapped(_ sender: UIButton) {
@@ -375,7 +369,6 @@ class AddNewDriverViewController: UIViewController {
         
         picker.pickImage(self) { [weak self] image, fileName, url in
             guard let self = self else { return }
-            
             // Check if the picked file is a PDF
             if let url = url, url.pathExtension.lowercased() == "pdf" {
                 DispatchQueue.main.async {
@@ -537,9 +530,6 @@ class AddNewDriverViewController: UIViewController {
             placeholder: "dashedBorder"
         )
     }
-    
-    
-    
 }
 
 //MARK: UITextFieldDelegate Methods

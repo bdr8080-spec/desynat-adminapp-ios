@@ -19,6 +19,7 @@ class RefundManagementViewController: UIViewController {
             refundTableView.registerCellFromNib(cellID: "RefundManagementTableViewCell")
         }
     }
+    @IBOutlet weak var lblTitle: UILabel!
     
     private var expandedIndex: IndexPath?
     private lazy var viewModel = RefundManagementViewModel(hostVC: self)
@@ -34,6 +35,7 @@ class RefundManagementViewController: UIViewController {
         super.viewWillAppear(animated)
         viewModel.currentPage = 1
         viewModel.getAllRefundRequest()
+        lblTitle.text = "Refund Management".localiz()
     }
     
     // MARK: - Navigation

@@ -26,16 +26,17 @@ class NotificationsListTableViewCell: UITableViewCell {
     func configData(data: NotificationsList?) {
         titleLabel.text = data?.titleEnglish
         descriptionLabel.text = data?.descriptionEnglish
+        let text = "Sent To -".localiz()
         if let receivers = data?.receiverDetails, !receivers.isEmpty {
             let firstName = receivers.first?.fullName ?? receivers.first?.fullNameEnglish ?? ""
             let remainingCount = receivers.count - 1
             if remainingCount > 0 {
-                sentToNameLabel.text = "Sent To - \(firstName) + \(remainingCount)"
+                sentToNameLabel.text = "\(text) \(firstName) + \(remainingCount)"
             } else {
-                sentToNameLabel.text = "Sent To - \(firstName)"
+                sentToNameLabel.text = "\(text) \(firstName)"
             }
         } else {
-            sentToNameLabel.text = "Sent To -"
+            sentToNameLabel.text = "\(text)"
         }
 //        if data?.isRead == 1 {
 //            mainImageView.image = .selectedBellIcon

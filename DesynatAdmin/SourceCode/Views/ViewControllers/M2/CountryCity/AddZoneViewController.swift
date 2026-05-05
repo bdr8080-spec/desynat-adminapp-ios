@@ -82,7 +82,7 @@ class AddZoneViewController: UIViewController {
     @IBAction func handleSubmit(_ sender: Any) {
         let errorMesage = self.viewModel.data.validate()
         if (errorMesage != .none) {
-            self.showAlert(msg: errorMesage.value())
+            self.showAlert(msg: errorMesage.value().localiz())
             return
         }
         self.viewModel.addZone {

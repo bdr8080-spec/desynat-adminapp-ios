@@ -347,7 +347,7 @@
                                     <constraint firstAttribute="bottom" secondItem="MA7-0o-DUG" secondAttribute="bottom" id="gbP-so-h0v"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VSz-ET-8t2">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VSz-ET-8t2">
                                 <rect key="frame" x="0.0" y="178" width="393" height="606"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PoT-Ca-1at">
@@ -775,8 +775,6 @@
                                     <constraint firstItem="PoT-Ca-1at" firstAttribute="top" secondItem="VSz-ET-8t2" secondAttribute="top" id="O8u-dx-ob5"/>
                                     <constraint firstAttribute="bottom" secondItem="PoT-Ca-1at" secondAttribute="bottom" id="Vqu-ea-g8T"/>
                                 </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="JOy-d6-G0l"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="ZwL-m1-eJM"/>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vGf-bv-8Tl"/>
@@ -4135,7 +4133,7 @@ dolor sit amet, consectetur..</string>
                                                                             <action selector="updateStatusDidTapped:" destination="Dbi-M9-kdh" eventType="touchUpInside" id="5Dn-zM-nHr"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update status " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgh-Sf-CxP">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update status" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgh-Sf-CxP">
                                                                         <rect key="frame" x="15" y="9.0000000000000018" width="315" height="19.666666666666671"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -5516,8 +5514,8 @@ dolor sit amet, consectetur..</string>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share Ceredential" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mrb-WM-M1q">
-                                        <rect key="frame" x="259.66666666666669" y="13" width="90.333333333333314" height="14"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share Credential" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mrb-WM-M1q">
+                                        <rect key="frame" x="266" y="13" width="84" height="14"/>
                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -6467,7 +6465,7 @@ dolor sit amet, consectetur..</string>
                                             <action selector="backBtnTapped:" destination="IbK-Ye-p1C" eventType="touchUpInside" id="LB4-lp-rjA"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Refund Management" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QcE-5L-w3V">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Refund Management" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QcE-5L-w3V">
                                         <rect key="frame" x="66" y="8.6666666666666732" width="261" height="22.666666666666671"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -6677,6 +6675,7 @@ dolor sit amet, consectetur..</string>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="lblTitle" destination="QcE-5L-w3V" id="hVv-sg-27G"/>
                         <outlet property="nextButton" destination="HmR-RB-ecX" id="JPt-FM-U00"/>
                         <outlet property="noDataFoundLabel" destination="MrP-kz-mMe" id="9mK-gF-z1r"/>
                         <outlet property="pageCountLabel" destination="yIB-Xv-igK" id="I3X-2F-8r6"/>
@@ -8476,7 +8475,7 @@ dolor sit amet, consectetur..</string>
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

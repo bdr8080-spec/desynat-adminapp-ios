@@ -50,6 +50,7 @@ class CMSTermsConditionViewController: UIViewController {
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        userLabel.text = "User".localiz()
         englishContentWebView.scrollView.isScrollEnabled = false
         arabicContentWebView.scrollView.isScrollEnabled = false
         englishContentWebView.navigationDelegate = self
@@ -177,7 +178,6 @@ class CMSTermsConditionViewController: UIViewController {
             viewModel.getTermsAndConditionRequest() // fallback
         }
     }
-    
 }
 
 //MARK: WKNavigation Delegate functions
@@ -218,23 +218,17 @@ extension CMSTermsConditionViewController: UITableViewDelegate, UITableViewDataS
         let cell = tableView.dequeueReusableCell(withIdentifier: "CMSTableViewCell", for: indexPath) as! CMSTableViewCell
         
         let item = filteredCmsArray[indexPath.row]
-        cell.titleLabel.text = item.rawValue
+        cell.titleLabel.text = item.rawValue.localiz()
         cell.separatorLabel.isHidden = indexPath.row == filteredCmsArray.count - 1
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         let selectedItem = filteredCmsArray[indexPath.row]
-        
-        // Update selected
         selectedCms = selectedItem
-        
-        // Hide dropdown
         cmsOptionView.isHidden = true
         isCMSListHidden = false
-        
         switch selectedItem {
         case .returnPolicy:
             viewModel.getReturnPolicyRequest()
