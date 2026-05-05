@@ -207,17 +207,22 @@ extension UIImageView: Attachable {
 }
 
 extension UIImageView {
-    func setImage(with urlString: String?) {
+    func setImage(with urlString: String?, placeholder: UIImage? = nil) {
+        
         self.sd_imageIndicator = SDWebImageActivityIndicator.gray
+
+        let fallbackImage = placeholder ?? UIImage(named: "dashedBorder")
 
         guard let urlString = urlString,
               let url = URL(string: urlString) else {
-            self.image = UIImage(named: "placeholder")
+            self.image = fallbackImage
             return
         }
 
-        self.sd_setImage(with: url,
-                         placeholderImage: UIImage(named: "placeholder"),
-                         options: [.continueInBackground, .highPriority])
+        self.sd_setImage(
+            with: url,
+            placeholderImage: fallbackImage,
+            options: [.continueInBackground, .highPriority]
+        )
     }
 }

@@ -7,8 +7,8 @@
 
 import Foundation
 
-// MARK: - HomeDataModel
-struct HomeDataModel: Codable {
+// MARK: - AdminHomeDashboardDataModel
+struct AdminHomeDashboardDataModel: Codable {
     let totalUsers, totalActiveUsers, totalInactiveUsers, totalAffiliateUsers: Int?
     let totalActiveAffiliateUsers, totalInactiveAffiliateUsers, totalSellers, totalActiveSellers: Int?
     let totalInactiveSellers, totalDeliveryBoy, totalActiveDeliveryBoy, totalInactiveDeliveryBoy: Int?

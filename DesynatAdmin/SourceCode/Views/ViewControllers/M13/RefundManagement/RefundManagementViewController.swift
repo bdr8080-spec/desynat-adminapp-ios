@@ -68,6 +68,33 @@ class RefundManagementViewController: UIViewController {
         viewModel.goToPreviousPage()
     }
     
+    @IBAction func exportDidTapped(_ sender: Any) {
+        var csv = "Username,Order ID,Transaction ID,Ordered On,Total Amount,Cancelled/Returned Date,Seller Name,Country,Rejected Reason,Status\n"
+           for data in viewModel.refundListData {
+               let username = data.order?.deliveryDetails?.name ?? ""
+               let orderId = "#\(data.order?.id ?? 0)"
+               let fullTransaction = data.order?.transactionID.map { String(describing: $0) } ?? ""
+               let transactionId = fullTransaction.count >= 7 ? String(fullTransaction.suffix(7)) : fullTransaction
+               let orderedOn = CommonUtils.customizeChangeDateFormatZone(
+                   inputDate: data.order?.createdAt ?? "",
+                   inputFormat: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+                   outputFormat: "dd/MM/yyyy 'at' hh:mm a")
+               let cancelledDate = CommonUtils.customizeChangeDateFormatZone(
+                   inputDate: data.updatedAt ?? "",
+                   inputFormat: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+                   outputFormat: "dd/MM/yyyy 'at' hh:mm a")
+               let amount = CommonUtils.formatPriceStringInput(data.order?.totalAmount)
+               let seller = "\(data.productDetails?.sellerDetails?.firstName ?? "") \(data.productDetails?.sellerDetails?.lastName ?? "")"
+               let country = data.productDetails?.store?.countryInfo?.name ?? ""
+               let reason = data.cancelReason ?? data.returnReason ?? data.exchangeReason ?? ""
+               let status = "Pending"
+               let row = "\"\(username)\",\"\(orderId)\",\"\(transactionId)\",\"\(orderedOn)\",\"\(amount)\",\"\(cancelledDate)\",\"\(seller)\",\"\(country)\",\"\(reason)\",\"\(status)\"\n"
+               
+               csv.append(row)
+           }
+           CSVExporter.exportCSV(fileName: "Refund_List", csvString: csv, vc: self)
+    }
+    
     func updatePaginationButtonImages() {
         // Previous Button
         if viewModel.currentPage == 1 {

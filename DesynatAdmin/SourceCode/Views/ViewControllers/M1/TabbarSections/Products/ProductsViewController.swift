@@ -17,7 +17,7 @@ class ProductsViewController: UIViewController {
             productsTableView.registerCellFromNib(cellID: "ProductManagementTableViewCell")
         }
     }
-    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var backButton: RTLButton!
     
     // MARK: - Property Decalaration
     private lazy var viewModel = ProductsViewModel(hostVC: self)

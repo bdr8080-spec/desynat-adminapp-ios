@@ -35,7 +35,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var inactiveSellerLabel: UILabel!
     @IBOutlet weak var activeSellerLabel: UILabel!
     @IBOutlet weak var totalOrderCountLabel: UILabel!
-    @IBOutlet weak var newOrderLabel: UILabel!
+    @IBOutlet weak var returnedOrderLabel: UILabel!
     @IBOutlet weak var ongoingOrderLabel: UILabel!
     @IBOutlet weak var completeOrderLabel: UILabel!
     @IBOutlet weak var cancelledOrderLabel: UILabel!
@@ -70,7 +70,7 @@ class HomeViewController: UIViewController {
     
     // MARK: - Property Decalaration
     private var durationArray = ["Today", "Week", "Month", "Year"]
-    private var durationSelectedIndex: Int = 0
+    private var selectedDurationIndex: Int?
     let datePicker = UIDatePicker()
     private var activeTextField: UITextField?
     private var selectedCountryIndex: Int = 0
@@ -80,7 +80,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         uiSetup()
-        bindData()
         setUpTextFields()
         countryDropDownView.isHidden = true
         selectedCountryView.isHidden = false
@@ -100,7 +99,7 @@ class HomeViewController: UIViewController {
         viewModel.getUserData()
         viewModel.getCountOfNotificationRequest()
     }
-
+    
     // MARK: - Button's Action
     @IBAction func profileButtonAction(_ sender: Any) {
         if viewModel.userProfileData?.type == "2" {
@@ -119,7 +118,19 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func exportDidTapped(_ sender: Any) {
-        
+        let csvString = generateDashboardCSV()
+        guard let fileURL = saveCSVFile(csvString: csvString) else { return }
+        let activityVC = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+        // For iPad support
+        if let popover = activityVC.popoverPresentationController {
+            popover.sourceView = self.view
+            popover.sourceRect = CGRect(x: self.view.bounds.midX,
+                                        y: self.view.bounds.midY,
+                                        width: 0,
+                                        height: 0)
+            popover.permittedArrowDirections = []
+        }
+        self.present(activityVC, animated: true)
     }
     
     @IBAction func selectedCountryDropDownButtonAction(_ sender: Any) {
@@ -141,23 +152,14 @@ class HomeViewController: UIViewController {
     //MARK: Function's declaration
     
     func setDefaultSelection() {
-        durationSelectedIndex = 0
-        selectedCountryIndex = 0
         let country = viewModel.countryListData.first
         dropdownCountryLabel.text = country?.name
         selectedCountryLabel.text = country?.name
         dropDownCountryFlagEmoji.text = country?.flag
+        
         durationCollectionView.reloadData()
-    }
-    
-    private func bindData() {
-        totalUserRegisteredLabel.text = String(format: "Total users registered (%@)".localiz(),"\(100)")
-        totalAffiliatedLabel.text = String(format: "Total Affiliated registered (%@)".localiz(),"\(100)")
-        totalDriverRegisteredCountLabel.text = String(format: "Total Drivers registered (%@)".localiz(),"\(100)")
-        totalSellerCountLabel.text = String(format: "Total Seller registered (%@)".localiz(),"\(100)")
-        totalOrderCountLabel.text = String(format: "Total Orders (%@)".localiz(),"\(100)")
-        totalTicketCountLabel.text = String(format: "Total tickets (%@)".localiz(),"\(100)")
-        totalOnlineUserCountLabel.text = String(format: "Total Online Users (%@)".localiz(),"\(100)")
+        
+        callDashboardAPI()
     }
     
     private func uiSetup() {
@@ -169,6 +171,39 @@ class HomeViewController: UIViewController {
         revenueDetailsView.clipsToBounds = true
     }
     
+    func configData() {
+        guard let data = viewModel.adminDashboardData else { return }
+        totalRevenueLabel.text = CommonUtils.formatPriceStringInput(data.totalRevenue)
+        byOrderLabel.text = CommonUtils.formatPriceStringInput(data.totalOrderRevenue)
+        bySubscriptionLabel.text = CommonUtils.formatPriceStringInput(data.totalSubscriptionPlanRevenue)
+        byAffiliateOrders.text = CommonUtils.formatPriceStringInput(data.totalAffiliateOrdersRevenue)
+        byBannerLabel.text = CommonUtils.formatPriceStringInput(data.totalBannerRevenue)
+        totalUserRegisteredLabel.text = String(format: "Total users registered (%@)".localiz(),"\(data.totalUsers ?? 0)")
+        activeRegisteredLabel.text = data.totalActiveUsers?.description
+        inactiveRegisteredLabel.text = data.totalInactiveUsers?.description
+        totalAffiliatedLabel.text = String(format: "Total Affiliated registered (%@)".localiz(),"\(data.totalAffiliateUsers ?? 0)")
+        activeAffiliatedLabel.text = data.totalActiveAffiliateUsers?.description
+        inactiveAffiliatedLabel.text = data.totalInactiveAffiliateUsers?.description
+        totalDriverRegisteredCountLabel.text = String(format: "Total Drivers registered (%@)".localiz(),"\(data.totalDeliveryBoy ?? 0)")
+        activeDriverLabel.text = data.totalActiveDeliveryBoy?.description
+        inactiveDriverLabel.text = data.totalInactiveDeliveryBoy?.description
+        totalSellerCountLabel.text = String(format: "Total Seller registered (%@)".localiz(),"\(data.totalSellers ?? 0)")
+        activeSellerLabel.text = data.totalActiveSellers?.description
+        inactiveSellerLabel.text = data.totalInactiveSellers?.description
+        totalOrderCountLabel.text = String(format: "Total Orders (%@)".localiz(),"\(data.totalOrders ?? 0)")
+        returnedOrderLabel.text = data.totalReturnedOrders?.description
+        ongoingOrderLabel.text = data.totalOngoingOrders?.description
+        completeOrderLabel.text = data.totalCompletedOrders?.description
+        cancelledOrderLabel.text = data.totalCancelledOrders?.description
+        totalTicketCountLabel.text = String(format: "Total tickets (%@)".localiz(),"\(data.totalTickets ?? 0)")
+        newTicketLabel.text = data.totalTickets?.description
+        resolvedLabel.text = data.totalResolvedTickets?.description
+        unresolvedLabel.text = data.totalUnresolvedTickets?.description
+        totalOnlineUserCountLabel.text = String(format: "Total Online Users (%@)".localiz(),"\(data.totalOnlineUsers ?? 0)")
+        userVisitLabel.text = data.totalAppVisitorUsers?.description
+        userVisitWebsiteLabel.text = data.totalWebsiteVisitorUsers?.description
+    }
+    
 }
 
 // MARK: - COLLECTION VIEW METHODS
@@ -177,25 +212,97 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return durationArray.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DurationCollectionViewCell", for: indexPath) as! DurationCollectionViewCell
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: "DurationCollectionViewCell",
+            for: indexPath
+        ) as! DurationCollectionViewCell
+        
         cell.titleLabel.text = durationArray[indexPath.row].localiz()
-        if durationSelectedIndex == indexPath.row {
-            cell.selectedImageView.image = UIImage(named: "durationSelected")
-        } else {
-            cell.selectedImageView.image = UIImage(named: "durationUnselected")
-        }
+        
+        let isSelected = selectedDurationIndex == indexPath.row
+        
+        cell.selectedImageView.image = UIImage(
+            named: isSelected ? "durationSelected" : "durationUnselected"
+        )
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        durationSelectedIndex = indexPath.row
-            durationCollectionView.reloadData()
-//            fromDateTextField.text = ""
-//            toDateTextField.text = ""
-            callDashboardAPI()
+        
+        if selectedDurationIndex == indexPath.row {
+            // Deselect
+            selectedDurationIndex = nil
+        } else {
+            // Select new
+            selectedDurationIndex = indexPath.row
+        }
+        
+        collectionView.reloadData()
+        callDashboardAPI()
     }
     
+    func saveCSVFile(csvString: String) -> URL? {
+        
+        let fileName = "DashboardData.csv"
+        let path = FileManager.default.temporaryDirectory.appendingPathComponent(fileName)
+        
+        do {
+            try csvString.write(to: path, atomically: true, encoding: .utf8)
+            return path
+        } catch {
+            print("Error writing CSV:", error)
+            return nil
+        }
+    }
+    
+    func generateDashboardCSV() -> String {
+        
+        guard let data = viewModel.adminDashboardData else { return "" }
+        
+        var csv = "Title,Value\n"
+        
+        csv += "Total Revenue,\(data.totalRevenue ?? "0")\n"
+        csv += "By Order,\(data.totalOrderRevenue ?? "0")\n"
+        csv += "By Subscription,\(data.totalSubscriptionPlanRevenue ?? "0")\n"
+        csv += "By Affiliate Orders,\(data.totalAffiliateOrdersRevenue ?? "0")\n"
+        csv += "By Banner,\(data.totalBannerRevenue ?? "0")\n"
+        
+        csv += "Total Users Registered,\(data.totalUsers ?? 0)\n"
+        csv += "Active Users,\(data.totalActiveUsers ?? 0)\n"
+        csv += "Inactive Users,\(data.totalInactiveUsers ?? 0)\n"
+        
+        csv += "Total Affiliated,\(data.totalAffiliateUsers ?? 0)\n"
+        csv += "Active Affiliated,\(data.totalActiveAffiliateUsers ?? 0)\n"
+        csv += "Inactive Affiliated,\(data.totalInactiveAffiliateUsers ?? 0)\n"
+        
+        csv += "Total Drivers,\(data.totalDeliveryBoy ?? 0)\n"
+        csv += "Active Drivers,\(data.totalActiveDeliveryBoy ?? 0)\n"
+        csv += "Inactive Drivers,\(data.totalInactiveDeliveryBoy ?? 0)\n"
+        
+        csv += "Total Sellers,\(data.totalSellers ?? 0)\n"
+        csv += "Active Sellers,\(data.totalActiveSellers ?? 0)\n"
+        csv += "Inactive Sellers,\(data.totalInactiveSellers ?? 0)\n"
+        
+        csv += "Total Orders,\(data.totalOrders ?? 0)\n"
+        csv += "Returned Orders,\(data.totalReturnedOrders ?? 0)\n"
+        csv += "Ongoing Orders,\(data.totalOngoingOrders ?? 0)\n"
+        csv += "Completed Orders,\(data.totalCompletedOrders ?? 0)\n"
+        csv += "Cancelled Orders,\(data.totalCancelledOrders ?? 0)\n"
+        
+        csv += "Total Tickets,\(data.totalTickets ?? 0)\n"
+        csv += "Resolved Tickets,\(data.totalResolvedTickets ?? 0)\n"
+        csv += "Unresolved Tickets,\(data.totalUnresolvedTickets ?? 0)\n"
+        
+        csv += "Total Online Users,\(data.totalOnlineUsers ?? 0)\n"
+        csv += "App Visitors,\(data.totalAppVisitorUsers ?? 0)\n"
+        csv += "Website Visitors,\(data.totalWebsiteVisitorUsers ?? 0)\n"
+        
+        return csv
+    }
 }
 
 // MARK: - TABLE VIEW METHODS
@@ -213,13 +320,18 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         selectedCountryIndex = indexPath.row
-           let data = viewModel.countryListData[indexPath.row]
-           dropdownCountryLabel.text = data.name
-           dropDownCountryFlagEmoji.text = data.flag
-           selectedCountryLabel.text = data.name
-           countryTableView.reloadData()
-           callDashboardAPI()
+        
+        let data = viewModel.countryListData[indexPath.row]
+        
+        dropdownCountryLabel.text = data.name
+        dropDownCountryFlagEmoji.text = data.flag
+        selectedCountryLabel.text = data.name
+        
+        countryTableView.reloadData()
+        
+        callDashboardAPI()
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -235,7 +347,7 @@ extension HomeViewController: UITextFieldDelegate {
         datePicker.datePickerMode = .date
         datePicker.minimumDate = nil
         datePicker.backgroundColor = .white
-        
+        datePicker.maximumDate = Date()
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
@@ -253,19 +365,40 @@ extension HomeViewController: UITextFieldDelegate {
         toDateTextField.delegate = self
     }
     
+    private func convertToDate(_ string: String) -> Date? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.date(from: string)
+    }
+    
     @objc private func doneDatePicker() {
+        
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         
         if activeTextField == fromDateTextField {
-            fromDateTextField.text = formatter.string(from: datePicker.date)
-        } else if activeTextField == toDateTextField {
-            toDateTextField.text = formatter.string(from: datePicker.date)
+            
+            let selectedDate = datePicker.date
+            fromDateTextField.text = formatter.string(from: selectedDate)
+            
+            // 🔥 Reset To Date if invalid
+            if let toText = toDateTextField.text,
+               let toDate = convertToDate(toText),
+               toDate < selectedDate {
+                
+                toDateTextField.text = ""
+            }
+        }
+        
+        else if activeTextField == toDateTextField {
+            
+            let selectedDate = datePicker.date
+            toDateTextField.text = formatter.string(from: selectedDate)
         }
         
         view.endEditing(true)
         
-        // ✅ Call API only when both dates exist
+        // ✅ Call API only when valid range exists
         if let from = fromDateTextField.text,
            let to = toDateTextField.text,
            !from.isEmpty, !to.isEmpty {
@@ -280,14 +413,63 @@ extension HomeViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
+        updateDatePickerRange()
+    }
+    
+    private func updateDatePickerRange() {
+        
+        if activeTextField == fromDateTextField {
+            // From date: no restriction (or max = today)
+            datePicker.minimumDate = nil
+            datePicker.maximumDate = Date()
+        }
+        
+        else if activeTextField == toDateTextField {
+            
+            // If from date exists → restrict to date
+            if let fromText = fromDateTextField.text,
+               let fromDate = convertToDate(fromText) {
+                
+                datePicker.minimumDate = fromDate
+            } else {
+                // If no from date selected → block future selection until today logic
+                datePicker.minimumDate = nil
+            }
+            
+            datePicker.maximumDate = Date()
+        }
     }
     
     func callDashboardAPI() {
+        
+        let countryId = viewModel.countryListData[selectedCountryIndex].id
+        
+        let fromDate = fromDateTextField.text
+        let toDate = toDateTextField.text
+        
+        let isDateFilterActive =
+        !(fromDate?.isEmpty ?? true) &&
+        !(toDate?.isEmpty ?? true)
+        
+        var filterIndexToSend: Int?
+        
+        if isDateFilterActive {
+            // ignore duration when date is applied
+            filterIndexToSend = nil
+        } else {
+            // duration logic
+            if let selected = selectedDurationIndex {
+                filterIndexToSend = selected
+            } else {
+                filterIndexToSend = nil // or default API behavior
+            }
+        }
+        
         viewModel.getDashboardData(
-            filterIndex: durationSelectedIndex,
-            countryId: viewModel.countryListData[selectedCountryIndex].id,
-            fromDate: fromDateTextField.text,
-            toDate: toDateTextField.text
+            filterIndex: filterIndexToSend,
+            countryId: countryId,
+            fromDate: isDateFilterActive ? fromDate : nil,
+            toDate: isDateFilterActive ? toDate : nil
         )
     }
 }

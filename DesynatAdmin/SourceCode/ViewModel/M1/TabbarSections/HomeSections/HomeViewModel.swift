@@ -15,6 +15,7 @@ class HomeViewModel {
     var countryListData: [GetCountryDataModel] = []
     var userProfileData: UserModel?
     var dashboardFilter = AdminDashboardFilterModel()
+    var adminDashboardData: AdminHomeDashboardDataModel?
     
     init(hostVC: HomeViewController) {
         self.hostVC = hostVC
@@ -123,28 +124,57 @@ class HomeViewModel {
     //        }
     //    }
     
-    func getDashboardData(filterIndex: Int,
+//    func getDashboardData(filterIndex: Int,
+//                          countryId: Int?,
+//                          fromDate: String?,
+//                          toDate: String?) {
+//        
+//        var params: [String: Any] = [:]
+//        
+//        // filter mapping
+//        params["filter"] = filterIndex + 1  //1-today,2-this week,3-this month,4-this year
+//        
+////        if let countryId {
+////            params["country_id"] = countryId
+////        }
+//        
+//        if let fromDate, let toDate,
+//           !fromDate.isEmpty, !toDate.isEmpty {
+//            params["from_date"] = fromDate
+//            params["to_date"] = toDate
+//        }
+//        
+//        WebService.sharedInstance.getDashboardDataService(param: params) { data in
+//            self.adminDashboardData = data
+//            self.hostVC.configData()
+//        }
+//    }
+    
+    func getDashboardData(filterIndex: Int?,
                           countryId: Int?,
                           fromDate: String?,
                           toDate: String?) {
-        
+
         var params: [String: Any] = [:]
-        
-        // filter mapping
-        params["filter"] = filterIndex + 1 // 1-today,2-this week,3-this month,4-this year
-        
-        if let countryId {
-            params["country_id"] = countryId
+
+        // ✅ ONLY send filter if user selected it
+        if let filterIndex {
+            params["filter"] = filterIndex + 1 //1-today,2-this week,3-this month,4-this year
         }
-        
+
+//        if let countryId {
+//            params["country_id"] = countryId
+//        }
+
         if let fromDate, let toDate,
            !fromDate.isEmpty, !toDate.isEmpty {
             params["from_date"] = fromDate
             params["to_date"] = toDate
         }
-        
+
         WebService.sharedInstance.getDashboardDataService(param: params) { data in
-            print("data==\(data)")
+            self.adminDashboardData = data
+            self.hostVC.configData()
         }
     }
 }

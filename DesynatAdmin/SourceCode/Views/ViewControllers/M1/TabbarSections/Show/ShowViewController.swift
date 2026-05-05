@@ -17,7 +17,7 @@ class ShowViewController: UIViewController {
             listTableView.registerCellFromNib(cellID: "EventsTableViewCell")
         }
     }
-    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var backButton: RTLButton!
     
     // MARK: - Property Decalaration
     private var isCountryExpanded : Bool = false

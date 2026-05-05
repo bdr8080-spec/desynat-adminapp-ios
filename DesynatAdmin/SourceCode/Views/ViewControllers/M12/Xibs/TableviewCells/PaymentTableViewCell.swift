@@ -31,6 +31,7 @@ class PaymentTableViewCell: UITableViewCell {
     @IBOutlet weak var orderSellerName: UILabel!
     @IBOutlet weak var orderCommission: UILabel!
     @IBOutlet weak var transactionstackView: UIStackView!
+    @IBOutlet weak var appliedPromocodestackView: UIStackView!
     
     //Plan
     @IBOutlet weak var planTransactionId: UILabel!
@@ -128,7 +129,13 @@ class PaymentTableViewCell: UITableViewCell {
         default:
             self.orderPaymentMode.text = "COD".localiz()
         }
-        orderAppliedPromoCode.text = data?.promocodeValue
+        if let promode = data?.promocodeValue, !promode.isEmpty {
+            appliedPromocodestackView.isHidden = false
+            orderAppliedPromoCode.text = promode
+        } else {
+            appliedPromocodestackView.isHidden = true
+        }
+        
         orderDiscount.text = CommonUtils.formatPrice(data?.totalDiscount)
         orderSellerName.text = "\(data?.productDetails?.sellerDetails?.firstName ?? "") \(data?.productDetails?.sellerDetails?.lastName ?? "")"
         orderCommission.text = "\(CommonUtils.formatPriceStringInput(data?.adminCommission))"

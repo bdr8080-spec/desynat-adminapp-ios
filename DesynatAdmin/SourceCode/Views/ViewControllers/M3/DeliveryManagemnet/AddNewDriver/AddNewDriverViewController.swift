@@ -511,36 +511,30 @@ class AddNewDriverViewController: UIViewController {
         registrationCertificationBackUrl = data.registrationCertificate?.first(where: { $0.isFront == 0})?.documentPath ?? ""
         
         // MARK: - Show Images
-        profileImageView.setImage(with: data.profilePic)
+        profileImageView.setImage(with: data.profilePic, placeholder: UIImage(named: "dashedBorderBrown"))
+        vehicleImageFrontImageView.setImage(with: data.vehicleImage?.first(where: { $0.isFront == 1})?.documentPath ?? "dashedBorder")
+        vehicleImageBackImageView.setImage(with: data.vehicleImage?.first(where: { $0.isFront == 0})?.documentPath ?? "dashedBorder")
         
-        vehicleImageFrontImageView.setImage(with: data.vehicleImage?.first(where: { $0.isFront == 1})?.documentPath ?? "frontUpload")
-        vehicleImageBackImageView.setImage(with: data.vehicleImage?.first(where: { $0.isFront == 0})?.documentPath ?? "backUpload")
+        identityProofFrontImageView.setImage(with: data.identityProof?.first(where: { $0.isFront == 1})?.documentPath ?? "dashedBorder")
+        identityProofBackImageView.setImage(with: data.identityProof?.first(where: { $0.isFront == 0})?.documentPath ?? "dashedBorder")
         
-        identityProofFrontImageView.setImage(with: data.identityProof?.first(where: { $0.isFront == 1})?.documentPath ?? "frontUpload")
-        identityProofBackImageView.setImage(with: data.identityProof?.first(where: { $0.isFront == 0})?.documentPath ?? "backUpload")
+        drivingLcenseFrontImageView.setImage(with: data.drivingLicense?.first(where: { $0.isFront == 1})?.documentPath ?? "dashedBorder")
+        drivingLcenseBackImageView.setImage(with: data.drivingLicense?.first(where: { $0.isFront == 0})?.documentPath ?? "dashedBorder")
         
-        drivingLcenseFrontImageView.setImage(with: data.drivingLicense?.first(where: { $0.isFront == 1})?.documentPath ?? "frontUpload")
-        drivingLcenseBackImageView.setImage(with: data.drivingLicense?.first(where: { $0.isFront == 0})?.documentPath ?? "backUpload")
-        
-        vehicleInsuranceImageView.setImage(with: data.vehicleInsurance?.first?.documentPath ?? "frontUpload")
-        //        pollutionPaperImageView.setImage(with: data.pollutionPaper?.first?.documentPath ?? "frontUpload")
-        //
-        //        registrationCertificationFrontImagViw.setImage(with: data.registrationCertificate?.first(where: { $0.isFront == 1})?.documentPath ?? "frontUpload")
-        //        registrationCertificationBackImagViw.setImage(with: data.registrationCertificate?.first(where: { $0.isFront == 0})?.documentPath ?? "backUpload")
-        
+        vehicleInsuranceImageView.setImage(with: data.vehicleInsurance?.first?.documentPath ?? "dashedBorder")
         pollutionPaperImageView.setOrPlaceholderImage(
             path: data.pollutionPaper?.first?.documentPath,
-            placeholder: "frontUpload"
+            placeholder: "dashedBorder"
         )
         
         registrationCertificationFrontImagViw.setOrPlaceholderImage(
             path: data.registrationCertificate?.first(where: { $0.isFront == 1 })?.documentPath,
-            placeholder: "frontUpload"
+            placeholder: "dashedBorder"
         )
         
         registrationCertificationBackImagViw.setOrPlaceholderImage(
             path: data.registrationCertificate?.first(where: { $0.isFront == 0 })?.documentPath,
-            placeholder: "backUpload"
+            placeholder: "dashedBorder"
         )
     }
     

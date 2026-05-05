@@ -17,7 +17,7 @@ class SubscriptionPlanListViewController: UIViewController, PermissionAccessible
     @IBOutlet weak var lnlFlag: CustomLabelFont!
     @IBOutlet weak var tblPlans: UITableView!
     @IBOutlet weak var plusButton: UIButton!
-    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var backButton: RTLButton!
     
     // MARK: - Property Decalaration
     private var viewModel : SubscriptionPlanViewModel = SubscriptionPlanViewModel()

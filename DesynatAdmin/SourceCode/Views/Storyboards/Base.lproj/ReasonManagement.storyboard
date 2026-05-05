@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -28,7 +28,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SLj-gj-VC2">
                                 <rect key="frame" x="0.0" y="118" width="393" height="40"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Up-yR-8UN">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Up-yR-8UN" customClass="RTLButton" customModule="DesynatAdmin" customModuleProvider="target">
                                         <rect key="frame" x="24" y="0.0" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="7Ou-Hn-Hwm"/>
@@ -641,7 +641,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gwH-So-fmO">
                                 <rect key="frame" x="0.0" y="118" width="393" height="40"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tBV-0U-PmB">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tBV-0U-PmB" customClass="RTLButton" customModule="DesynatAdmin" customModuleProvider="target">
                                         <rect key="frame" x="24" y="0.0" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Kja-Ym-q2l"/>
@@ -1151,7 +1151,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Itv-IK-Fa9">
                                 <rect key="frame" x="0.0" y="118" width="390" height="40"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yvc-8U-ykV">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yvc-8U-ykV" customClass="RTLButton" customModule="DesynatAdmin" customModuleProvider="target">
                                         <rect key="frame" x="24" y="0.0" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="9e0-iI-ahI"/>
@@ -1196,7 +1196,36 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oOn-Bv-rru">
                                                         <rect key="frame" x="0.0" y="0.0" width="350" height="130"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uploadImage" translatesAutoresizingMaskIntoConstraints="NO" id="I04-8F-jfE" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="CnP-HB-iaO">
+                                                                <rect key="frame" x="117.66666666666666" y="30.666666666666657" width="114.66666666666666" height="69"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6bR-oE-Mny">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="114.66666666666667" height="48"/>
+                                                                        <subviews>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uploadBownIcon" translatesAutoresizingMaskIntoConstraints="NO" id="JTG-gp-cv1">
+                                                                                <rect key="frame" x="33.333333333333343" y="0.0" width="48" height="48"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" constant="48" id="K4z-VE-Bu6"/>
+                                                                                    <constraint firstAttribute="height" constant="48" id="NtS-eW-WDo"/>
+                                                                                </constraints>
+                                                                            </imageView>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstItem="JTG-gp-cv1" firstAttribute="centerY" secondItem="6bR-oE-Mny" secondAttribute="centerY" id="7IZ-tG-331"/>
+                                                                            <constraint firstItem="JTG-gp-cv1" firstAttribute="top" secondItem="6bR-oE-Mny" secondAttribute="top" id="Nux-CO-qGp"/>
+                                                                            <constraint firstItem="JTG-gp-cv1" firstAttribute="centerX" secondItem="6bR-oE-Mny" secondAttribute="centerX" id="gcj-Jf-Ela"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload Image" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BU7-gG-6IG">
+                                                                        <rect key="frame" x="0.0" y="52.000000000000028" width="114.66666666666667" height="17"/>
+                                                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                                                        <color key="textColor" name="darkBrown"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dashedBorderBrown" translatesAutoresizingMaskIntoConstraints="NO" id="I04-8F-jfE" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
                                                                 <rect key="frame" x="115" y="5" width="120" height="120"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="120" id="UkI-0O-VoZ"/>
@@ -1222,6 +1251,8 @@
                                                             <constraint firstItem="0TR-br-ZcJ" firstAttribute="top" secondItem="I04-8F-jfE" secondAttribute="top" id="7ij-xa-dLW"/>
                                                             <constraint firstItem="0TR-br-ZcJ" firstAttribute="trailing" secondItem="I04-8F-jfE" secondAttribute="trailing" id="DbC-Se-amb"/>
                                                             <constraint firstItem="I04-8F-jfE" firstAttribute="centerX" secondItem="oOn-Bv-rru" secondAttribute="centerX" id="DfQ-gZ-2Pd"/>
+                                                            <constraint firstItem="CnP-HB-iaO" firstAttribute="centerX" secondItem="I04-8F-jfE" secondAttribute="centerX" id="JBw-1Y-Lqa"/>
+                                                            <constraint firstItem="CnP-HB-iaO" firstAttribute="centerY" secondItem="I04-8F-jfE" secondAttribute="centerY" id="emS-o3-g0m"/>
                                                             <constraint firstItem="0TR-br-ZcJ" firstAttribute="leading" secondItem="I04-8F-jfE" secondAttribute="leading" id="hTC-5s-YiU"/>
                                                             <constraint firstItem="I04-8F-jfE" firstAttribute="top" secondItem="oOn-Bv-rru" secondAttribute="top" constant="5" id="jCo-ku-pwG"/>
                                                             <constraint firstItem="0TR-br-ZcJ" firstAttribute="bottom" secondItem="I04-8F-jfE" secondAttribute="bottom" id="vs2-1v-bGf"/>
@@ -2057,7 +2088,36 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GDs-Yv-Uxl" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="165" height="120"/>
                                                                                 <subviews>
-                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="frontUpload" translatesAutoresizingMaskIntoConstraints="NO" id="sJ6-OO-nPE" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="2Gg-SY-e2p">
+                                                                                        <rect key="frame" x="25.333333333333336" y="25.666666666666515" width="114.66666666666666" height="69"/>
+                                                                                        <subviews>
+                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uzX-Y7-Hls">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="114.66666666666667" height="48"/>
+                                                                                                <subviews>
+                                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uploadBownIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ulh-1J-ZaG">
+                                                                                                        <rect key="frame" x="33.333333333333336" y="0.0" width="48.000000000000007" height="48"/>
+                                                                                                        <constraints>
+                                                                                                            <constraint firstAttribute="width" constant="48" id="HjT-A9-Pdj"/>
+                                                                                                            <constraint firstAttribute="height" constant="48" id="lB3-H6-3Dy"/>
+                                                                                                        </constraints>
+                                                                                                    </imageView>
+                                                                                                </subviews>
+                                                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstItem="ulh-1J-ZaG" firstAttribute="centerY" secondItem="uzX-Y7-Hls" secondAttribute="centerY" id="HUa-M3-ZoJ"/>
+                                                                                                    <constraint firstItem="ulh-1J-ZaG" firstAttribute="top" secondItem="uzX-Y7-Hls" secondAttribute="top" id="Rq4-HU-TSo"/>
+                                                                                                    <constraint firstItem="ulh-1J-ZaG" firstAttribute="centerX" secondItem="uzX-Y7-Hls" secondAttribute="centerX" id="t7o-xU-iaK"/>
+                                                                                                </constraints>
+                                                                                            </view>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Front" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4ag-FD-mjO">
+                                                                                                <rect key="frame" x="0.0" y="52" width="114.66666666666667" height="17"/>
+                                                                                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                                                                                <color key="textColor" name="darkBrown"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                        </subviews>
+                                                                                    </stackView>
+                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dashedBorder" translatesAutoresizingMaskIntoConstraints="NO" id="sJ6-OO-nPE" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="165" height="120"/>
                                                                                         <userDefinedRuntimeAttributes>
                                                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -2084,6 +2144,8 @@
                                                                                     <constraint firstAttribute="trailing" secondItem="i5r-w7-uWS" secondAttribute="trailing" id="dmK-7w-ZFl"/>
                                                                                     <constraint firstItem="i5r-w7-uWS" firstAttribute="top" secondItem="GDs-Yv-Uxl" secondAttribute="top" id="hLc-PT-WlF"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="sJ6-OO-nPE" secondAttribute="bottom" id="iHb-83-xfO"/>
+                                                                                    <constraint firstItem="2Gg-SY-e2p" firstAttribute="centerY" secondItem="sJ6-OO-nPE" secondAttribute="centerY" id="lyd-q5-sFB"/>
+                                                                                    <constraint firstItem="2Gg-SY-e2p" firstAttribute="centerX" secondItem="sJ6-OO-nPE" secondAttribute="centerX" id="s0S-25-Jky"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="sJ6-OO-nPE" secondAttribute="trailing" id="v64-8h-AjR"/>
                                                                                     <constraint firstItem="sJ6-OO-nPE" firstAttribute="leading" secondItem="GDs-Yv-Uxl" secondAttribute="leading" id="ydl-BN-P2P"/>
                                                                                 </constraints>
@@ -2112,7 +2174,36 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v3u-Ij-SFO" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="165" height="120"/>
                                                                                 <subviews>
-                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backUpload" translatesAutoresizingMaskIntoConstraints="NO" id="siO-Nd-97h" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="dmb-K9-G7A">
+                                                                                        <rect key="frame" x="25.33333333333335" y="25.666666666666515" width="114.66666666666669" height="69"/>
+                                                                                        <subviews>
+                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wci-lz-lc8">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="114.66666666666667" height="48"/>
+                                                                                                <subviews>
+                                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uploadBownIcon" translatesAutoresizingMaskIntoConstraints="NO" id="TVU-yW-VLk">
+                                                                                                        <rect key="frame" x="33.333333333333343" y="0.0" width="48" height="48"/>
+                                                                                                        <constraints>
+                                                                                                            <constraint firstAttribute="width" constant="48" id="4nB-jW-s6Z"/>
+                                                                                                            <constraint firstAttribute="height" constant="48" id="cHa-3I-0bO"/>
+                                                                                                        </constraints>
+                                                                                                    </imageView>
+                                                                                                </subviews>
+                                                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstItem="TVU-yW-VLk" firstAttribute="centerY" secondItem="Wci-lz-lc8" secondAttribute="centerY" id="4uk-ol-xu2"/>
+                                                                                                    <constraint firstItem="TVU-yW-VLk" firstAttribute="centerX" secondItem="Wci-lz-lc8" secondAttribute="centerX" id="ijU-ZJ-TEG"/>
+                                                                                                    <constraint firstItem="TVU-yW-VLk" firstAttribute="top" secondItem="Wci-lz-lc8" secondAttribute="top" id="vJB-jV-UJI"/>
+                                                                                                </constraints>
+                                                                                            </view>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Back" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DPb-D3-uMK">
+                                                                                                <rect key="frame" x="0.0" y="52" width="114.66666666666667" height="17"/>
+                                                                                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                                                                                <color key="textColor" name="darkBrown"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                        </subviews>
+                                                                                    </stackView>
+                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dashedBorder" translatesAutoresizingMaskIntoConstraints="NO" id="siO-Nd-97h" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="165" height="120"/>
                                                                                         <userDefinedRuntimeAttributes>
                                                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -2139,6 +2230,8 @@
                                                                                     <constraint firstItem="QJ4-LQ-7cd" firstAttribute="leading" secondItem="v3u-Ij-SFO" secondAttribute="leading" id="Hls-MW-MAn"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="QJ4-LQ-7cd" secondAttribute="bottom" id="USH-IE-JMc"/>
                                                                                     <constraint firstItem="siO-Nd-97h" firstAttribute="top" secondItem="v3u-Ij-SFO" secondAttribute="top" id="dGl-GZ-AQO"/>
+                                                                                    <constraint firstItem="dmb-K9-G7A" firstAttribute="centerY" secondItem="siO-Nd-97h" secondAttribute="centerY" id="dWE-Vq-gJz"/>
+                                                                                    <constraint firstItem="dmb-K9-G7A" firstAttribute="centerX" secondItem="siO-Nd-97h" secondAttribute="centerX" id="rPJ-jf-g5s"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="siO-Nd-97h" secondAttribute="trailing" id="tvl-ny-Ig0"/>
                                                                                 </constraints>
                                                                                 <userDefinedRuntimeAttributes>
@@ -2191,7 +2284,36 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="knV-Gn-h1C" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="165" height="120"/>
                                                                                 <subviews>
-                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="frontUpload" translatesAutoresizingMaskIntoConstraints="NO" id="fY6-Fo-sew" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="08Q-3Q-0JY">
+                                                                                        <rect key="frame" x="25.333333333333336" y="25.666666666666515" width="114.66666666666666" height="69"/>
+                                                                                        <subviews>
+                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JoD-PB-AH9">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="114.66666666666667" height="48"/>
+                                                                                                <subviews>
+                                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uploadBownIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bYk-Qx-9Bt">
+                                                                                                        <rect key="frame" x="33.333333333333336" y="0.0" width="48.000000000000007" height="48"/>
+                                                                                                        <constraints>
+                                                                                                            <constraint firstAttribute="width" constant="48" id="5Jb-2z-IZu"/>
+                                                                                                            <constraint firstAttribute="height" constant="48" id="Wnw-RZ-jwl"/>
+                                                                                                        </constraints>
+                                                                                                    </imageView>
+                                                                                                </subviews>
+                                                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstItem="bYk-Qx-9Bt" firstAttribute="top" secondItem="JoD-PB-AH9" secondAttribute="top" id="7Tz-o5-vL0"/>
+                                                                                                    <constraint firstItem="bYk-Qx-9Bt" firstAttribute="centerY" secondItem="JoD-PB-AH9" secondAttribute="centerY" id="fLp-b4-BdR"/>
+                                                                                                    <constraint firstItem="bYk-Qx-9Bt" firstAttribute="centerX" secondItem="JoD-PB-AH9" secondAttribute="centerX" id="maI-5J-cog"/>
+                                                                                                </constraints>
+                                                                                            </view>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Front" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qdl-fr-FiL">
+                                                                                                <rect key="frame" x="0.0" y="52" width="114.66666666666667" height="17"/>
+                                                                                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                                                                                <color key="textColor" name="darkBrown"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                        </subviews>
+                                                                                    </stackView>
+                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dashedBorder" translatesAutoresizingMaskIntoConstraints="NO" id="fY6-Fo-sew" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="165" height="120"/>
                                                                                         <userDefinedRuntimeAttributes>
                                                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -2218,8 +2340,10 @@
                                                                                     <constraint firstAttribute="trailing" secondItem="7Y4-cR-07o" secondAttribute="trailing" id="SAS-vz-dyK"/>
                                                                                     <constraint firstItem="7Y4-cR-07o" firstAttribute="top" secondItem="knV-Gn-h1C" secondAttribute="top" id="Vgg-lr-DX6"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="7Y4-cR-07o" secondAttribute="bottom" id="XyH-0W-QRj"/>
+                                                                                    <constraint firstItem="08Q-3Q-0JY" firstAttribute="centerY" secondItem="fY6-Fo-sew" secondAttribute="centerY" id="YeN-RN-oc9"/>
                                                                                     <constraint firstItem="fY6-Fo-sew" firstAttribute="top" secondItem="knV-Gn-h1C" secondAttribute="top" id="h9I-Vn-tB5"/>
                                                                                     <constraint firstItem="7Y4-cR-07o" firstAttribute="leading" secondItem="knV-Gn-h1C" secondAttribute="leading" id="qcx-w2-xOh"/>
+                                                                                    <constraint firstItem="08Q-3Q-0JY" firstAttribute="centerX" secondItem="fY6-Fo-sew" secondAttribute="centerX" id="rC8-Uu-qzF"/>
                                                                                 </constraints>
                                                                                 <userDefinedRuntimeAttributes>
                                                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -2246,7 +2370,36 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Obx-jo-a4o" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="165" height="120"/>
                                                                                 <subviews>
-                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backUpload" translatesAutoresizingMaskIntoConstraints="NO" id="TaD-g7-hGg" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="h66-Wj-qfd">
+                                                                                        <rect key="frame" x="25.33333333333335" y="25.666666666666515" width="114.66666666666669" height="69"/>
+                                                                                        <subviews>
+                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zdy-My-Uyx">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="114.66666666666667" height="48"/>
+                                                                                                <subviews>
+                                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uploadBownIcon" translatesAutoresizingMaskIntoConstraints="NO" id="EnG-2H-VTS">
+                                                                                                        <rect key="frame" x="33.333333333333343" y="0.0" width="48" height="48"/>
+                                                                                                        <constraints>
+                                                                                                            <constraint firstAttribute="width" constant="48" id="BTD-Ha-hIO"/>
+                                                                                                            <constraint firstAttribute="height" constant="48" id="kOZ-9F-OpZ"/>
+                                                                                                        </constraints>
+                                                                                                    </imageView>
+                                                                                                </subviews>
+                                                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstItem="EnG-2H-VTS" firstAttribute="top" secondItem="zdy-My-Uyx" secondAttribute="top" id="AzO-kP-eXf"/>
+                                                                                                    <constraint firstItem="EnG-2H-VTS" firstAttribute="centerY" secondItem="zdy-My-Uyx" secondAttribute="centerY" id="dnE-jM-qe1"/>
+                                                                                                    <constraint firstItem="EnG-2H-VTS" firstAttribute="centerX" secondItem="zdy-My-Uyx" secondAttribute="centerX" id="oUG-1K-gTe"/>
+                                                                                                </constraints>
+                                                                                            </view>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Back" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e38-Qo-r3K">
+                                                                                                <rect key="frame" x="0.0" y="52" width="114.66666666666667" height="17"/>
+                                                                                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                                                                                <color key="textColor" name="darkBrown"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                        </subviews>
+                                                                                    </stackView>
+                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dashedBorder" translatesAutoresizingMaskIntoConstraints="NO" id="TaD-g7-hGg" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="165" height="120"/>
                                                                                         <userDefinedRuntimeAttributes>
                                                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -2266,6 +2419,7 @@
                                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="bottom" secondItem="TaD-g7-hGg" secondAttribute="bottom" id="5AP-zP-5N7"/>
+                                                                                    <constraint firstItem="h66-Wj-qfd" firstAttribute="centerX" secondItem="TaD-g7-hGg" secondAttribute="centerX" id="6oF-a7-IZl"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="8zV-6G-DFY" secondAttribute="bottom" id="GSS-Qc-byN"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="8zV-6G-DFY" secondAttribute="trailing" id="Ggk-H9-n7l"/>
                                                                                     <constraint firstItem="TaD-g7-hGg" firstAttribute="leading" secondItem="Obx-jo-a4o" secondAttribute="leading" id="KVZ-H3-vUC"/>
@@ -2274,6 +2428,7 @@
                                                                                     <constraint firstItem="TaD-g7-hGg" firstAttribute="top" secondItem="Obx-jo-a4o" secondAttribute="top" id="meu-Us-tPO"/>
                                                                                     <constraint firstAttribute="height" constant="120" id="mwS-xk-lhn"/>
                                                                                     <constraint firstItem="8zV-6G-DFY" firstAttribute="leading" secondItem="Obx-jo-a4o" secondAttribute="leading" id="qGX-5x-WwV"/>
+                                                                                    <constraint firstItem="h66-Wj-qfd" firstAttribute="centerY" secondItem="TaD-g7-hGg" secondAttribute="centerY" id="uwE-NY-iHB"/>
                                                                                 </constraints>
                                                                                 <userDefinedRuntimeAttributes>
                                                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -2325,7 +2480,36 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IAV-Nq-OdW" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="165" height="120"/>
                                                                                 <subviews>
-                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="frontUpload" translatesAutoresizingMaskIntoConstraints="NO" id="rb6-Ai-gqB" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="6LY-Ha-0pp">
+                                                                                        <rect key="frame" x="25.333333333333336" y="25.666666666666515" width="114.66666666666666" height="69"/>
+                                                                                        <subviews>
+                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ArI-FR-fKq">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="114.66666666666667" height="48"/>
+                                                                                                <subviews>
+                                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uploadBownIcon" translatesAutoresizingMaskIntoConstraints="NO" id="kDa-c7-lN6">
+                                                                                                        <rect key="frame" x="33.333333333333336" y="0.0" width="48.000000000000007" height="48"/>
+                                                                                                        <constraints>
+                                                                                                            <constraint firstAttribute="width" constant="48" id="TFT-iM-L00"/>
+                                                                                                            <constraint firstAttribute="height" constant="48" id="fah-L0-Txe"/>
+                                                                                                        </constraints>
+                                                                                                    </imageView>
+                                                                                                </subviews>
+                                                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstItem="kDa-c7-lN6" firstAttribute="centerY" secondItem="ArI-FR-fKq" secondAttribute="centerY" id="IaN-2C-3Il"/>
+                                                                                                    <constraint firstItem="kDa-c7-lN6" firstAttribute="top" secondItem="ArI-FR-fKq" secondAttribute="top" id="YQD-Lo-Ut2"/>
+                                                                                                    <constraint firstItem="kDa-c7-lN6" firstAttribute="centerX" secondItem="ArI-FR-fKq" secondAttribute="centerX" id="YbV-XV-Qli"/>
+                                                                                                </constraints>
+                                                                                            </view>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Front" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eNW-eQ-Uoy">
+                                                                                                <rect key="frame" x="0.0" y="52" width="114.66666666666667" height="17"/>
+                                                                                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                                                                                <color key="textColor" name="darkBrown"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                        </subviews>
+                                                                                    </stackView>
+                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dashedBorder" translatesAutoresizingMaskIntoConstraints="NO" id="rb6-Ai-gqB" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="165" height="120"/>
                                                                                         <userDefinedRuntimeAttributes>
                                                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -2344,6 +2528,7 @@
                                                                                 </subviews>
                                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                                 <constraints>
+                                                                                    <constraint firstItem="6LY-Ha-0pp" firstAttribute="centerX" secondItem="rb6-Ai-gqB" secondAttribute="centerX" id="3RR-lg-4d8"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="rb6-Ai-gqB" secondAttribute="trailing" id="Cxx-IF-CvR"/>
                                                                                     <constraint firstItem="9Ky-cj-2zj" firstAttribute="top" secondItem="IAV-Nq-OdW" secondAttribute="top" id="ERa-iN-hM1"/>
                                                                                     <constraint firstAttribute="width" constant="165" id="Gmb-tO-Ez4"/>
@@ -2351,6 +2536,7 @@
                                                                                     <constraint firstItem="rb6-Ai-gqB" firstAttribute="top" secondItem="IAV-Nq-OdW" secondAttribute="top" id="byn-IP-wGM"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="9Ky-cj-2zj" secondAttribute="trailing" id="iSX-1p-N3h"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="rb6-Ai-gqB" secondAttribute="bottom" id="m8b-gP-Ifw"/>
+                                                                                    <constraint firstItem="6LY-Ha-0pp" firstAttribute="centerY" secondItem="rb6-Ai-gqB" secondAttribute="centerY" id="mSE-go-xlC"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="9Ky-cj-2zj" secondAttribute="bottom" id="sE8-mg-gNt"/>
                                                                                     <constraint firstAttribute="height" constant="120" id="w6F-Xd-6Fg"/>
                                                                                     <constraint firstItem="9Ky-cj-2zj" firstAttribute="leading" secondItem="IAV-Nq-OdW" secondAttribute="leading" id="xzb-l9-dvN"/>
@@ -2380,7 +2566,36 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kDY-vW-eOG" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="165" height="120"/>
                                                                                 <subviews>
-                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backUpload" translatesAutoresizingMaskIntoConstraints="NO" id="rHj-q4-Ih2" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="W8j-24-JyM">
+                                                                                        <rect key="frame" x="25.33333333333335" y="25.666666666666515" width="114.66666666666669" height="69"/>
+                                                                                        <subviews>
+                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZXK-4M-N3N">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="114.66666666666667" height="48"/>
+                                                                                                <subviews>
+                                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uploadBownIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Agk-dG-l53">
+                                                                                                        <rect key="frame" x="33.333333333333343" y="0.0" width="48" height="48"/>
+                                                                                                        <constraints>
+                                                                                                            <constraint firstAttribute="width" constant="48" id="LrP-eY-DQh"/>
+                                                                                                            <constraint firstAttribute="height" constant="48" id="uxG-oO-9zm"/>
+                                                                                                        </constraints>
+                                                                                                    </imageView>
+                                                                                                </subviews>
+                                                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstItem="Agk-dG-l53" firstAttribute="centerY" secondItem="ZXK-4M-N3N" secondAttribute="centerY" id="6di-4S-whm"/>
+                                                                                                    <constraint firstItem="Agk-dG-l53" firstAttribute="top" secondItem="ZXK-4M-N3N" secondAttribute="top" id="K9D-Bh-H2E"/>
+                                                                                                    <constraint firstItem="Agk-dG-l53" firstAttribute="centerX" secondItem="ZXK-4M-N3N" secondAttribute="centerX" id="Nlf-sv-NYv"/>
+                                                                                                </constraints>
+                                                                                            </view>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Back" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N0G-dm-BFF">
+                                                                                                <rect key="frame" x="0.0" y="52" width="114.66666666666667" height="17"/>
+                                                                                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                                                                                <color key="textColor" name="darkBrown"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                        </subviews>
+                                                                                    </stackView>
+                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dashedBorder" translatesAutoresizingMaskIntoConstraints="NO" id="rHj-q4-Ih2" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="165" height="120"/>
                                                                                         <userDefinedRuntimeAttributes>
                                                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -2399,11 +2614,13 @@
                                                                                 </subviews>
                                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                                 <constraints>
+                                                                                    <constraint firstItem="W8j-24-JyM" firstAttribute="centerX" secondItem="rHj-q4-Ih2" secondAttribute="centerX" id="4fQ-oq-qlI"/>
                                                                                     <constraint firstItem="9h7-jx-iNh" firstAttribute="leading" secondItem="kDY-vW-eOG" secondAttribute="leading" id="8s0-aX-ZPo"/>
                                                                                     <constraint firstItem="9h7-jx-iNh" firstAttribute="top" secondItem="kDY-vW-eOG" secondAttribute="top" id="AcP-2X-YPv"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="9h7-jx-iNh" secondAttribute="trailing" id="SVZ-lD-0mb"/>
                                                                                     <constraint firstAttribute="height" constant="120" id="W9W-ni-KdV"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="rHj-q4-Ih2" secondAttribute="bottom" id="cYL-f0-9lt"/>
+                                                                                    <constraint firstItem="W8j-24-JyM" firstAttribute="centerY" secondItem="rHj-q4-Ih2" secondAttribute="centerY" id="eg1-SG-dbz"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="9h7-jx-iNh" secondAttribute="bottom" id="ffE-cL-v3L"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="rHj-q4-Ih2" secondAttribute="trailing" id="rAb-rM-4b3"/>
                                                                                     <constraint firstItem="rHj-q4-Ih2" firstAttribute="leading" secondItem="kDY-vW-eOG" secondAttribute="leading" id="tCZ-be-qjp"/>
@@ -2459,7 +2676,36 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aRX-Yz-hUr" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="165" height="120"/>
                                                                                 <subviews>
-                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="frontUpload" translatesAutoresizingMaskIntoConstraints="NO" id="ToY-f8-1Ie" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="t7z-lI-VZS">
+                                                                                        <rect key="frame" x="25.333333333333336" y="25.66666666666697" width="114.66666666666666" height="69"/>
+                                                                                        <subviews>
+                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jRK-F8-0Pe">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="114.66666666666667" height="48"/>
+                                                                                                <subviews>
+                                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uploadBownIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Ped-HR-Kah">
+                                                                                                        <rect key="frame" x="33.333333333333336" y="0.0" width="48.000000000000007" height="48"/>
+                                                                                                        <constraints>
+                                                                                                            <constraint firstAttribute="height" constant="48" id="2tC-X0-Usq"/>
+                                                                                                            <constraint firstAttribute="width" constant="48" id="oMo-sh-pOd"/>
+                                                                                                        </constraints>
+                                                                                                    </imageView>
+                                                                                                </subviews>
+                                                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstItem="Ped-HR-Kah" firstAttribute="top" secondItem="jRK-F8-0Pe" secondAttribute="top" id="AaI-Qi-9c0"/>
+                                                                                                    <constraint firstItem="Ped-HR-Kah" firstAttribute="centerX" secondItem="jRK-F8-0Pe" secondAttribute="centerX" id="dWf-yk-LS6"/>
+                                                                                                    <constraint firstItem="Ped-HR-Kah" firstAttribute="centerY" secondItem="jRK-F8-0Pe" secondAttribute="centerY" id="kMk-G4-Jnc"/>
+                                                                                                </constraints>
+                                                                                            </view>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Front" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WQY-EW-xvQ">
+                                                                                                <rect key="frame" x="0.0" y="52" width="114.66666666666667" height="17"/>
+                                                                                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                                                                                <color key="textColor" name="darkBrown"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                        </subviews>
+                                                                                    </stackView>
+                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dashedBorder" translatesAutoresizingMaskIntoConstraints="NO" id="ToY-f8-1Ie" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="165" height="120"/>
                                                                                         <userDefinedRuntimeAttributes>
                                                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -2478,6 +2724,8 @@
                                                                                 </subviews>
                                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                                 <constraints>
+                                                                                    <constraint firstItem="t7z-lI-VZS" firstAttribute="centerX" secondItem="ToY-f8-1Ie" secondAttribute="centerX" id="0XT-vb-xUn"/>
+                                                                                    <constraint firstItem="t7z-lI-VZS" firstAttribute="centerY" secondItem="ToY-f8-1Ie" secondAttribute="centerY" id="7dN-3t-urD"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="DVS-AZ-0bn" secondAttribute="trailing" id="Bpt-Dr-vmv"/>
                                                                                     <constraint firstItem="ToY-f8-1Ie" firstAttribute="top" secondItem="aRX-Yz-hUr" secondAttribute="top" id="OcU-wb-dDc"/>
                                                                                     <constraint firstAttribute="width" constant="165" id="S7y-kM-vqt"/>
@@ -2567,7 +2815,36 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vCJ-H0-HXN" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="165" height="120"/>
                                                                                 <subviews>
-                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="frontUpload" translatesAutoresizingMaskIntoConstraints="NO" id="3RG-FI-Y62" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="k4q-9N-DoH">
+                                                                                        <rect key="frame" x="25.333333333333336" y="25.66666666666697" width="114.66666666666666" height="69"/>
+                                                                                        <subviews>
+                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zr4-H7-FRE">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="114.66666666666667" height="48"/>
+                                                                                                <subviews>
+                                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uploadBownIcon" translatesAutoresizingMaskIntoConstraints="NO" id="wHb-sQ-yNa">
+                                                                                                        <rect key="frame" x="33.333333333333336" y="0.0" width="48.000000000000007" height="48"/>
+                                                                                                        <constraints>
+                                                                                                            <constraint firstAttribute="height" constant="48" id="PqI-PM-cpe"/>
+                                                                                                            <constraint firstAttribute="width" constant="48" id="SwX-sH-cQJ"/>
+                                                                                                        </constraints>
+                                                                                                    </imageView>
+                                                                                                </subviews>
+                                                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstItem="wHb-sQ-yNa" firstAttribute="top" secondItem="zr4-H7-FRE" secondAttribute="top" id="8F7-fE-RMi"/>
+                                                                                                    <constraint firstItem="wHb-sQ-yNa" firstAttribute="centerY" secondItem="zr4-H7-FRE" secondAttribute="centerY" id="DQZ-aJ-wYb"/>
+                                                                                                    <constraint firstItem="wHb-sQ-yNa" firstAttribute="centerX" secondItem="zr4-H7-FRE" secondAttribute="centerX" id="jzX-vF-F3j"/>
+                                                                                                </constraints>
+                                                                                            </view>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Front" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aje-OB-NY2">
+                                                                                                <rect key="frame" x="0.0" y="52" width="114.66666666666667" height="17"/>
+                                                                                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                                                                                <color key="textColor" name="darkBrown"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                        </subviews>
+                                                                                    </stackView>
+                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dashedBorder" translatesAutoresizingMaskIntoConstraints="NO" id="3RG-FI-Y62" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="165" height="120"/>
                                                                                         <userDefinedRuntimeAttributes>
                                                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -2587,6 +2864,8 @@
                                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                                 <constraints>
                                                                                     <constraint firstItem="3RG-FI-Y62" firstAttribute="leading" secondItem="vCJ-H0-HXN" secondAttribute="leading" id="1lc-Gs-4iY"/>
+                                                                                    <constraint firstItem="k4q-9N-DoH" firstAttribute="centerX" secondItem="3RG-FI-Y62" secondAttribute="centerX" id="3zP-kI-Bfn"/>
+                                                                                    <constraint firstItem="k4q-9N-DoH" firstAttribute="centerY" secondItem="3RG-FI-Y62" secondAttribute="centerY" id="6hh-fh-xUA"/>
                                                                                     <constraint firstAttribute="height" constant="120" id="Dey-Gs-lSv"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="3RG-FI-Y62" secondAttribute="bottom" id="Eka-GX-9Gz"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="EKL-F4-Swg" secondAttribute="bottom" id="PWJ-ng-U0C"/>
@@ -2675,7 +2954,36 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R9L-Lu-d2d" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="165" height="120"/>
                                                                                 <subviews>
-                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="frontUpload" translatesAutoresizingMaskIntoConstraints="NO" id="hY7-z3-JzL" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ym1-wG-2Sz">
+                                                                                        <rect key="frame" x="25.333333333333336" y="25.66666666666697" width="114.66666666666666" height="69"/>
+                                                                                        <subviews>
+                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nhr-id-ldP">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="114.66666666666667" height="48"/>
+                                                                                                <subviews>
+                                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uploadBownIcon" translatesAutoresizingMaskIntoConstraints="NO" id="YKG-6Y-a6V">
+                                                                                                        <rect key="frame" x="33.333333333333336" y="0.0" width="48.000000000000007" height="48"/>
+                                                                                                        <constraints>
+                                                                                                            <constraint firstAttribute="width" constant="48" id="8g0-fU-BXr"/>
+                                                                                                            <constraint firstAttribute="height" constant="48" id="JtF-SF-Gma"/>
+                                                                                                        </constraints>
+                                                                                                    </imageView>
+                                                                                                </subviews>
+                                                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstItem="YKG-6Y-a6V" firstAttribute="centerY" secondItem="Nhr-id-ldP" secondAttribute="centerY" id="0h9-Xu-CgC"/>
+                                                                                                    <constraint firstItem="YKG-6Y-a6V" firstAttribute="top" secondItem="Nhr-id-ldP" secondAttribute="top" id="1Ks-HG-sSe"/>
+                                                                                                    <constraint firstItem="YKG-6Y-a6V" firstAttribute="centerX" secondItem="Nhr-id-ldP" secondAttribute="centerX" id="cK4-Vx-XQM"/>
+                                                                                                </constraints>
+                                                                                            </view>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Front" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7hN-MJ-aA3">
+                                                                                                <rect key="frame" x="0.0" y="52" width="114.66666666666667" height="17"/>
+                                                                                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                                                                                <color key="textColor" name="darkBrown"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                        </subviews>
+                                                                                    </stackView>
+                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dashedBorder" translatesAutoresizingMaskIntoConstraints="NO" id="hY7-z3-JzL" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="165" height="120"/>
                                                                                         <userDefinedRuntimeAttributes>
                                                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -2695,10 +3003,12 @@
                                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="bottom" secondItem="hY7-z3-JzL" secondAttribute="bottom" id="0A6-Om-0j0"/>
+                                                                                    <constraint firstItem="ym1-wG-2Sz" firstAttribute="centerX" secondItem="hY7-z3-JzL" secondAttribute="centerX" id="1eh-FR-mlJ"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="hY7-z3-JzL" secondAttribute="trailing" id="4dR-Tl-TlJ"/>
                                                                                     <constraint firstItem="hY7-z3-JzL" firstAttribute="leading" secondItem="R9L-Lu-d2d" secondAttribute="leading" id="F4R-m2-6Lr"/>
                                                                                     <constraint firstItem="hY7-z3-JzL" firstAttribute="top" secondItem="R9L-Lu-d2d" secondAttribute="top" id="IYR-0A-n32"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="0zo-r6-6dk" secondAttribute="bottom" id="S7J-Yd-m2S"/>
+                                                                                    <constraint firstItem="ym1-wG-2Sz" firstAttribute="centerY" secondItem="hY7-z3-JzL" secondAttribute="centerY" id="URY-TF-D2W"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="0zo-r6-6dk" secondAttribute="trailing" id="cQT-Q0-uoF"/>
                                                                                     <constraint firstAttribute="height" constant="120" id="hdu-g6-O3E"/>
                                                                                     <constraint firstAttribute="width" constant="165" id="nBh-KX-Apu"/>
@@ -2730,7 +3040,36 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gdj-ep-XqR" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="165" height="120"/>
                                                                                 <subviews>
-                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backUpload" translatesAutoresizingMaskIntoConstraints="NO" id="DfC-oN-bog" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Yha-GT-YuW">
+                                                                                        <rect key="frame" x="25.33333333333335" y="25.66666666666697" width="114.66666666666669" height="69"/>
+                                                                                        <subviews>
+                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qWa-uY-o8D">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="114.66666666666667" height="48"/>
+                                                                                                <subviews>
+                                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uploadBownIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ZxD-3k-Cr3">
+                                                                                                        <rect key="frame" x="33.333333333333343" y="0.0" width="48" height="48"/>
+                                                                                                        <constraints>
+                                                                                                            <constraint firstAttribute="width" constant="48" id="Wps-Yk-xOs"/>
+                                                                                                            <constraint firstAttribute="height" constant="48" id="XkE-Ow-URY"/>
+                                                                                                        </constraints>
+                                                                                                    </imageView>
+                                                                                                </subviews>
+                                                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstItem="ZxD-3k-Cr3" firstAttribute="centerX" secondItem="qWa-uY-o8D" secondAttribute="centerX" id="FtV-bH-L3N"/>
+                                                                                                    <constraint firstItem="ZxD-3k-Cr3" firstAttribute="top" secondItem="qWa-uY-o8D" secondAttribute="top" id="LbX-s6-L8o"/>
+                                                                                                    <constraint firstItem="ZxD-3k-Cr3" firstAttribute="centerY" secondItem="qWa-uY-o8D" secondAttribute="centerY" id="u7M-gs-wmL"/>
+                                                                                                </constraints>
+                                                                                            </view>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Back" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DVa-XD-OvS">
+                                                                                                <rect key="frame" x="0.0" y="52" width="114.66666666666667" height="17"/>
+                                                                                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                                                                                <color key="textColor" name="darkBrown"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                        </subviews>
+                                                                                    </stackView>
+                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dashedBorder" translatesAutoresizingMaskIntoConstraints="NO" id="DfC-oN-bog" customClass="CustomImageView" customModule="DesynatAdmin" customModuleProvider="target">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="165" height="120"/>
                                                                                         <userDefinedRuntimeAttributes>
                                                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -2749,6 +3088,7 @@
                                                                                 </subviews>
                                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                                 <constraints>
+                                                                                    <constraint firstItem="Yha-GT-YuW" firstAttribute="centerY" secondItem="DfC-oN-bog" secondAttribute="centerY" id="3e8-KP-NzA"/>
                                                                                     <constraint firstItem="DfC-oN-bog" firstAttribute="top" secondItem="gdj-ep-XqR" secondAttribute="top" id="8zb-do-mzG"/>
                                                                                     <constraint firstItem="DfC-oN-bog" firstAttribute="leading" secondItem="gdj-ep-XqR" secondAttribute="leading" id="D0f-ZO-x6O"/>
                                                                                     <constraint firstItem="NSD-bk-Yu5" firstAttribute="top" secondItem="gdj-ep-XqR" secondAttribute="top" id="FIs-6c-fse"/>
@@ -2758,6 +3098,7 @@
                                                                                     <constraint firstAttribute="trailing" secondItem="NSD-bk-Yu5" secondAttribute="trailing" id="eD4-aN-sjR"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="DfC-oN-bog" secondAttribute="trailing" id="hcY-er-KdH"/>
                                                                                     <constraint firstItem="NSD-bk-Yu5" firstAttribute="leading" secondItem="gdj-ep-XqR" secondAttribute="leading" id="tYh-3O-apM"/>
+                                                                                    <constraint firstItem="Yha-GT-YuW" firstAttribute="centerX" secondItem="DfC-oN-bog" secondAttribute="centerX" id="uQV-Li-dU3"/>
                                                                                 </constraints>
                                                                                 <userDefinedRuntimeAttributes>
                                                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -2912,7 +3253,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tBU-yA-7rJ">
                                 <rect key="frame" x="0.0" y="118" width="390" height="40"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6GD-fM-BHK">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6GD-fM-BHK" customClass="RTLButton" customModule="DesynatAdmin" customModuleProvider="target">
                                         <rect key="frame" x="24" y="0.0" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Zv5-tb-5og"/>
@@ -4230,7 +4571,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p4a-ec-3pO">
                                 <rect key="frame" x="0.0" y="118" width="393" height="40"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1J-U4-p2a">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1J-U4-p2a" customClass="RTLButton" customModule="DesynatAdmin" customModuleProvider="target">
                                         <rect key="frame" x="24" y="0.0" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="ccG-ba-zkY"/>
@@ -4346,7 +4687,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="clearDidTapped:" destination="kVf-iR-0Xk" eventType="touchUpInside" id="tOB-kI-Vbe"/>
+                                                    <action selector="exportDidTapped:" destination="wPn-fA-mbh" eventType="touchUpInside" id="uqX-uu-JK8"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Export" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cM-rr-UtR">
@@ -4868,7 +5209,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g0f-JB-B6l">
                                 <rect key="frame" x="0.0" y="118" width="393" height="40"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFb-nV-Cob">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFb-nV-Cob" customClass="RTLButton" customModule="DesynatAdmin" customModuleProvider="target">
                                         <rect key="frame" x="24" y="0.0" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="6oT-er-Vpe"/>
@@ -5407,7 +5748,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yd7-5U-vp2">
                                 <rect key="frame" x="0.0" y="118" width="393" height="666"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n1m-V1-OgU">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n1m-V1-OgU" customClass="RTLButton" customModule="DesynatAdmin" customModuleProvider="target">
                                         <rect key="frame" x="24" y="0.0" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="XFS-7y-oba"/>
@@ -5743,6 +6084,8 @@
         <image name="countryLocationMarker" width="16" height="16"/>
         <image name="countryPciker" width="20.333333969116211" height="31"/>
         <image name="cross" width="18" height="19.333333969116211"/>
+        <image name="dashedBorder" width="165" height="120"/>
+        <image name="dashedBorderBrown" width="120" height="120"/>
         <image name="deliveryFilter" width="50" height="38"/>
         <image name="downArrow" width="20" height="20"/>
         <image name="emailDriver" width="24" height="24"/>
@@ -5761,6 +6104,7 @@
         <image name="previousLeft" width="32" height="32"/>
         <image name="search" width="20" height="20"/>
         <image name="toggleOff" width="40" height="22"/>
+        <image name="uploadBownIcon" width="48" height="48"/>
         <image name="uploadImage" width="120" height="120"/>
         <image name="walletBalance" width="24" height="24"/>
         <image name="zoneDriver" width="24" height="24"/>
@@ -5774,13 +6118,13 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray3Color">
-            <color red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

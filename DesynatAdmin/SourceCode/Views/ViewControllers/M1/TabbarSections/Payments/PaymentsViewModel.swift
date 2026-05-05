@@ -243,7 +243,6 @@ class PaymentsViewModel {
         }
     }
     
-    
     func goToNextPage(type: PaymentTab) {
         guard currentPage < totalPages else { return }
         currentPage += 1

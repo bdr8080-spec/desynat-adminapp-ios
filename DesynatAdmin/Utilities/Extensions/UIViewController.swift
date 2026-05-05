@@ -26,7 +26,7 @@ extension UIViewController {
                 preferredStyle: .alert
             )
             
-            let actionTitle = buttonTitle ?? StringConstant.ok.value()
+            let actionTitle = buttonTitle ?? StringConstant.ok.value().localiz()
             alert.addAction(UIAlertAction(title: actionTitle, style: .default, handler: { _ in
                 UIViewController.isAlertVisible = false
                 completion?()
@@ -52,13 +52,13 @@ extension UIViewController {
             )
             
             // Yes Action
-            let yesButton = UIAlertAction(title: "Yes", style: .default) { _ in
+            let yesButton = UIAlertAction(title: "Yes".localiz(), style: .default) { _ in
                 UIViewController.isAlertVisible = false
                 completion?()
             }
             
             // Cancel Action (red color)
-            let cancelButton = UIAlertAction(title: "No", style: .cancel) { _ in
+            let cancelButton = UIAlertAction(title: "No".localiz(), style: .cancel) { _ in
                 UIViewController.isAlertVisible = false
             }
             

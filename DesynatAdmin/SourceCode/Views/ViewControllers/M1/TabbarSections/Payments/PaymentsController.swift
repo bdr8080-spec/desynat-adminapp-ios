@@ -197,6 +197,20 @@ class PaymentsController: UIViewController {
         present(alert, animated: true)
     }
     
+    @IBAction func exportDidTapped(_ sender: Any) {
+        let csv = generatePaymentsCSV()
+            guard let fileURL = saveCSV(csv) else { return }
+            let vc = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+            if let popover = vc.popoverPresentationController {
+                popover.sourceView = self.view
+                popover.sourceRect = CGRect(x: view.bounds.midX,
+                                            y: view.bounds.midY,
+                                            width: 0,
+                                            height: 0)
+            }
+            present(vc, animated: true)
+    }
+    
     //MARK: Function's declaration
     func resetMonthYearSelection() {
         selectedMonth = nil
@@ -204,6 +218,97 @@ class PaymentsController: UIViewController {
         
         chooseMonthLbl.text = "Choose Month".localiz()
         chooseYear.text = "Choose Year".localiz()
+    }
+    
+    func generatePaymentsCSV() -> String {
+        var csv = ""
+        switch selectedTab {
+        case .orders:
+            csv += "User Name,Order Id,Transaction Id,Ordered On,Amount,Payment Mode,Applied Promocode,Discount,Seller,Commission\n"
+            for item in viewModel.paymentList {
+                let user = item.userDetails?.fullName ?? ""
+                let orderId = "#\(item.order?.id ?? 0)"
+                let transactionId = "#\(item.order?.transactionID ?? "0")"
+                let date = formatDate(item.order?.createdAt ?? "")
+                let amount = CommonUtils.formatPrice(item.total_paid_amount)
+                let paymentMode = getPaymentMode(item.order?.paymentMethod)
+                let promocodeValue = item.promocodeValue ?? "Nan"
+                let discount = CommonUtils.formatPrice(item.totalDiscount)
+                let seller = "\(item.productDetails?.sellerDetails?.firstName ?? "") \(item.productDetails?.sellerDetails?.lastName ?? "")"
+                let commission = "\(CommonUtils.formatPriceStringInput(item.adminCommission))"
+                csv += "\(user),\(orderId),\(transactionId),\(date),\(amount),\(paymentMode),\(promocodeValue),\(discount),\(seller),\(commission)\n"
+            }
+        case .plans:
+            csv += "Seller Name,Plan Name,Transaction Id,Date,Amount,Payment Mode\n"
+            for item in viewModel.paymentList {
+                let seller = "\(item.sellerDetails?.firstName ?? "") \(item.sellerDetails?.lastName ?? "")"
+                let plan = item.planInfo?.planNameEnglish ?? ""
+                let transactionId = "#\(item.transactionId ?? "0")"
+                let date = formatDate(item.createdAt ?? "")
+                let amount = CommonUtils.formatPriceStringInput(item.amount)
+                let paymentMode = item.paymentMethod ?? ""
+                csv += "\(seller),\(plan),\(transactionId),\(date),\(amount),\(paymentMode)\n"
+            }
+        case .giftCards:
+            csv += "Purchased By,Card Type,Date,Amount,Payment Mode,Country\n"
+            for item in viewModel.paymentList {
+                let user = item.userDetails?.fullName ?? ""
+                let card = item.giftDetails?.nameEnglish ?? ""
+//                let transactionId = "#\(item.transactionId ?? "0")"
+                let date = formatDate(item.createdAt ?? "")
+                let amount = CommonUtils.formatPriceStringInput(item.amount)
+                let paymentMode = getPaymentMode(item.paymentMethod)
+                let country = item.userDetails?.countryInfo?.name ?? ""
+                csv += "\(user),\(card),\(date),\(amount),\(paymentMode),\(country)\n"
+            }
+        case .banners:
+            csv += "Purchased By,Request Id,Date,Amount,Payment Mode,Country\n"
+            for item in viewModel.paymentList {
+                let seller = "\(item.sellerDetails?.firstName ?? "") \(item.sellerDetails?.lastName ?? "")"
+                let requestId = "#\(item.orderID ?? "0")"
+                let transactionId = "#\(item.transactionId ?? "0")"
+                let date = formatDate(item.createdAt ?? "")
+                let amount = CommonUtils.formatPriceStringInput(item.price)
+                let paymentMode = getPaymentMode(item.paymentMethod)
+                let country = item.sellerDetails?.storeInfo?.countryInfo?.name ?? ""
+                csv += "\(seller),\(requestId),\(transactionId),\(date),\(amount),\(paymentMode),\(country)\n"
+            }
+        }
+        return csv
+    }
+    
+    func getPaymentMode(_ method: String?) -> String {
+        switch method {
+        case "1": return "Online"
+        case "2": return "In-App Wallet"
+        case "3": return "COD"
+        default: return "COD"
+        }
+    }
+
+    func formatDate(_ iso: String) -> String {
+        let input = ISO8601DateFormatter()
+        input.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        
+        guard let date = input.date(from: iso) else { return "" }
+        
+        let output = DateFormatter()
+        output.dateFormat = "dd/MM/yyyy hh:mm a"
+        
+        return output.string(from: date)
+    }
+    
+    func saveCSV(_ csv: String) -> URL? {
+        let fileName = "Payments_\(selectedTab).csv"
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent(fileName)
+        
+        do {
+            try csv.write(to: url, atomically: true, encoding: .utf8)
+            return url
+        } catch {
+            print("CSV save error:", error)
+            return nil
+        }
     }
     
     private func updateTabUI(selected: PaymentTab) {

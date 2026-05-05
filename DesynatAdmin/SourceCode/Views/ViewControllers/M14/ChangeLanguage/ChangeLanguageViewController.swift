@@ -39,7 +39,7 @@ class ChangeLanguageViewController: UIViewController {
             selectedLanguage = .ar
             selectLanguage(isEnglishSelected: false)
         }
-        applyLanguageChange()
+//        applyLanguageChange()
     }
     
     @IBAction func btnTapSave(_ sender: Any) {

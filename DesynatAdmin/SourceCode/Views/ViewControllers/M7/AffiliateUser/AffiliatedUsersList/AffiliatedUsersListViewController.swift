@@ -59,6 +59,27 @@ class AffiliatedUsersListViewController: UIViewController {
     }
     
     @IBAction func exportDidTapped(_ sender: Any) {
+        var csv = "Name,Email,Phone,Country,Joined On,Reason,User Type\n"
+            for user in viewModel.affilitaitedUsersList {
+                let name = user.fullName ?? ""
+                let email = user.email ?? ""
+                let phone = "\(user.countryCode ?? "")-\(user.mobile ?? "")"
+                let country = user.countryDetails?.name ?? ""
+                let joined = convertISOToDMY(user.createdAt ?? "") ?? ""
+                let reason = user.rejectReason ?? ""
+                let type: String
+                switch userType {
+                case .newUsers:
+                    type = "New"
+                case .approvedUsers:
+                    type = "Approved"
+                case .rejectedUsers:
+                    type = "Rejected"
+                }
+                let row = "\(name),\(email),\(phone),\(country),\(joined),\(reason),\(type)\n"
+                csv.append(row)
+            }
+            CSVExporter.exportCSV(fileName: "AffiliatedUsers", csvString: csv, vc: self)
     }
     
     @IBAction func newDidTapped(_ sender: Any) {
@@ -137,6 +158,20 @@ class AffiliatedUsersListViewController: UIViewController {
         
         rejectedLabel.textColor = userType == .rejectedUsers ? .darkBrown : UIColor(hexString: "#C0BBBB")
         rejectedBottomLabel.backgroundColor = userType == .rejectedUsers ? .darkBrown : UIColor(hexString: "#C0BBBB")
+    }
+    
+    func convertISOToDMY(_ isoString: String) -> String? {
+        let isoFormatter = ISO8601DateFormatter()
+        isoFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+
+        guard let date = isoFormatter.date(from: isoString) else {
+            return nil
+        }
+
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = "dd/MM/yyyy"
+
+        return outputFormatter.string(from: date)
     }
     
     func updatePaginationButtonImages() {

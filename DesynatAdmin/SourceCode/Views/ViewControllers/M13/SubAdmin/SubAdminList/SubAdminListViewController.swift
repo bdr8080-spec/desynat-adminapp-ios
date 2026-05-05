@@ -8,7 +8,7 @@
 import UIKit
 
 class SubAdminListViewController: UIViewController {
-
+    
     // MARK: - IBOutlet's
     @IBOutlet weak var inactiveLabel: UILabel!
     @IBOutlet weak var inactiveBottomLabel: UILabel!
@@ -60,6 +60,26 @@ class SubAdminListViewController: UIViewController {
     }
     
     @IBAction func exportDidTapped(_ sender: Any) {
+        var csv = "Name,Email,Phone,Country,Joined On,Status\n"
+        for user in viewModel.subAdminUsersList {
+            let name = user.fullName ?? ""
+            let email = user.email ?? ""
+            let phone = "\(user.countryCode ?? "")-\(user.mobile ?? "")"
+            let country = user.countryInfo?.name ?? ""
+            let joined = convertISOToDMY(user.createdAt ?? "") ?? ""
+            let status: String
+            switch userType {
+            case .all:
+                status = "All"
+            case .active:
+                status = "Active"
+            case .inactive:
+                status = "Inactive"
+            }
+            let row = "\(name),\(email),\(phone),\(country),\(joined),\(status)\n"
+            csv.append(row)
+        }
+        CSVExporter.exportCSV(fileName: "SubAdmins", csvString: csv, vc: self)
     }
     
     @IBAction func allDidTapped(_ sender: Any) {
@@ -146,6 +166,20 @@ class SubAdminListViewController: UIViewController {
         viewModel.searchText = ""
     }
     
+    func convertISOToDMY(_ isoString: String) -> String? {
+        let isoFormatter = ISO8601DateFormatter()
+        isoFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        
+        guard let date = isoFormatter.date(from: isoString) else {
+            return nil
+        }
+        
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = "dd/MM/yyyy"
+        
+        return outputFormatter.string(from: date)
+    }
+    
     func updatePaginationButtonImages() {
         // Previous Button
         if viewModel.currentPage == 1 {
@@ -187,7 +221,7 @@ extension SubAdminListViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       let nextVC = StaffDetailsViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+        let nextVC = StaffDetailsViewController.instantiate(fromAppStoryboard: .NotificationCMS)
         nextVC.staffID = viewModel.subAdminUsersList[indexPath.row].id
         nextVC.hasActionPermission = hasActionPermission
         self.navigationController?.pushViewController(nextVC, animated: true)
