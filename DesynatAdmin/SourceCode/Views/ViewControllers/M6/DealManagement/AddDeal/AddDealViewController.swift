@@ -37,7 +37,7 @@ class AddDealViewController: UIViewController {
     var selectedIndexes = Set<Int>()
     var selectedIds: [String] = []
     var subCategoryNames: [String] {
-        return ["Select All"] + viewModel.subcategoriesList.map {
+        return ["Select All".localiz()] + viewModel.subcategoriesList.map {
             $0.nameEnglish ?? ""
         }
     }

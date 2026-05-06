@@ -152,13 +152,11 @@ class HomeViewController: UIViewController {
     //MARK: Function's declaration
     
     func setDefaultSelection() {
-        let country = viewModel.countryListData.first
+        let country = viewModel.countryListData.first(where: { $0.id == 89 })
         dropdownCountryLabel.text = country?.name
         selectedCountryLabel.text = country?.name
-        dropDownCountryFlagEmoji.text = country?.flag
-        
+        dropDownCountryFlagEmoji.text = country?.flag1
         durationCollectionView.reloadData()
-        
         callDashboardAPI()
     }
     
@@ -315,7 +313,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CountryTableViewCell", for: indexPath) as! CountryTableViewCell
         let data = viewModel.countryListData[indexPath.row]
-        cell.configData(data: data,isSelected: indexPath.row == selectedCountryIndex)
+        cell.configAdminDashboardData(data: data,isSelected: indexPath.row == selectedCountryIndex)
         return cell
     }
     
@@ -326,11 +324,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let data = viewModel.countryListData[indexPath.row]
         
         dropdownCountryLabel.text = data.name
-        dropDownCountryFlagEmoji.text = data.flag
+        dropDownCountryFlagEmoji.text = data.flag1
         selectedCountryLabel.text = data.name
         
         countryTableView.reloadData()
-        
+        selectedCountryView.isHidden = false
+        extraSpaceLabel.isHidden = true
+        countryDropDownView.isHidden = true
         callDashboardAPI()
     }
     

@@ -46,7 +46,7 @@ final class MultiSelectDropdownView: UIView {
         containerView.clipsToBounds = true
         addSubview(containerView)
 
-        closeButton.setTitle("Close", for: .normal)
+        closeButton.setTitle("Close".localiz(), for: .normal)
         closeButton.addTarget(self, action: #selector(closeTapped), for: .touchUpInside)
 
 //        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
