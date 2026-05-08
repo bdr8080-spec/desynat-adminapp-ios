@@ -38,7 +38,7 @@ class FilterForDealsViewController: UIViewController {
     
     @IBAction func brandDidTapped(_ sender: UIButton) {
         let brandListName = brandList.map { brands -> String in
-            let name = brands.nameEnglish ?? ""
+            let name = AppLanguageManager.shared.currentLanguage == .ar ? brands.nameArabic ?? "" : brands.nameEnglish ?? ""
             return name
         }
         
@@ -53,8 +53,18 @@ class FilterForDealsViewController: UIViewController {
         dropDown.width = 250 // optional, adjust width
         dropDown.selectionAction = { index, item in
             let selectedCountry = self.brandList[index]
-            self.sleectedBrand = selectedCountry.nameEnglish
-            self.titleLabel.text = selectedCountry.nameEnglish
+            
+            
+            if AppLanguageManager.shared.currentLanguage == .en {
+                self.sleectedBrand = selectedCountry.nameEnglish
+                self.titleLabel.text = selectedCountry.nameEnglish
+            }else {
+                self.sleectedBrand = selectedCountry.nameArabic
+                self.titleLabel.text = selectedCountry.nameArabic
+            }
+            
+//            self.sleectedBrand = selectedCountry.nameEnglish
+//            self.titleLabel.text = selectedCountry.nameEnglish
         }
         // Show the dropdown
         dropDown.show()

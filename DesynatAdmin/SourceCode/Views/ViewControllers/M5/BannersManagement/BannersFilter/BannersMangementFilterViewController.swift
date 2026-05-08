@@ -53,7 +53,7 @@ class BannersMangementFilterViewController: UIViewController {
     
     @IBAction func countryDidTapped(_ sender: UIButton) {
         let countryNames = viewModel.countryListData.map { country -> String in
-            let name = country.name ?? ""
+            let name = AppLanguageManager.shared.currentLanguage == .ar ? country.nameAr ?? "" : country.name ?? ""
             let dialCode = country.dialCode ?? ""
             let flag = country.flag ?? "🇰🇼"
             return "\(flag)  \(name) (\(dialCode))"
@@ -71,7 +71,12 @@ class BannersMangementFilterViewController: UIViewController {
         dropDown.selectionAction = { index, item in
             let selectedCountry = self.viewModel.countryListData[index]
             self.viewModel.setCountry(selectedCountry)
-            self.countryLabel.text = selectedCountry.name
+            if AppLanguageManager.shared.currentLanguage == .en {
+                self.countryLabel.text = selectedCountry.name
+            }else {
+                self.countryLabel.text = selectedCountry.nameAr
+            }
+//            self.countryLabel.text = selectedCountry.name
         }
         
         // Show the dropdown
@@ -120,7 +125,13 @@ extension BannersMangementFilterViewController {
         datePicker.datePickerMode = .date
         datePicker.minimumDate = nil
         datePicker.backgroundColor = .white
-        
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            datePicker.locale = Locale(identifier: "ar")
+            datePicker.semanticContentAttribute = .forceRightToLeft
+        } else {
+            datePicker.locale = Locale(identifier: "en")
+            datePicker.semanticContentAttribute = .forceLeftToRight
+        }
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         

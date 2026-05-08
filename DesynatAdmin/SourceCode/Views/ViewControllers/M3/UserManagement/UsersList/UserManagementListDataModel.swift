@@ -74,7 +74,7 @@ struct UsersListModel: Codable {
 // MARK: - CountryInfo
 struct CountryInfo: Codable {
     let id: Int?
-    let name, code, isoCode, isoCodeNumber: String?
+    let name,nameAr, code, isoCode, isoCodeNumber: String?
     let currencyName, currencyCode, currencySymbol, exchangeRateToUsd: String?
     let dialCode: String?
     let flag: String?
@@ -89,6 +89,7 @@ struct CountryInfo: Codable {
         case exchangeRateToUsd = "exchange_rate_to_usd"
         case dialCode = "dial_code"
         case flag
+        case nameAr = "name_ar"
     }
 }
 

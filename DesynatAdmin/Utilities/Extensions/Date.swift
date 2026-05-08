@@ -97,7 +97,12 @@ public extension Date {
     var iso8601String: String {
         // https://github.com/justinmakaila/NSDate-ISO-8601/blob/master/NSDateISO8601.swift
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+//        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            dateFormatter.locale = Locale(identifier: "ar")
+           } else {
+               dateFormatter.locale = Locale(identifier: "en_US")
+           }
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
         return dateFormatter.string(from: self).appending("Z")
@@ -505,7 +510,12 @@ public extension Date {
     init(iso8601String: String) {
         // https://github.com/justinmakaila/NSDate-ISO-8601/blob/master/NSDateISO8601.swift
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+//        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            dateFormatter.locale = Locale(identifier: "ar")
+           } else {
+               dateFormatter.locale = Locale(identifier: "en_US")
+           }
         dateFormatter.timeZone = TimeZone.current
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         self = dateFormatter.date(from: iso8601String) ?? Date()

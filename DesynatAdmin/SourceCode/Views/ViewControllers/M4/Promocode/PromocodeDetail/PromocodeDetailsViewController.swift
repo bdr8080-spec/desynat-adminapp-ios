@@ -65,8 +65,13 @@ class PromocodeDetailsViewController: UIViewController {
     func configData() {
         percentageOffLabel.text = "\("Flat".localiz()) \(promocodeDetails?.discountPercent ?? "")% \("OFF".localiz())" //promocodeDetails?.nameEnglish
         percentageOffDescriptionLabel.text = "\("Flat".localiz()) \(promocodeDetails?.discountPercent ?? "")% \("Off On minimum order".localiz()) \(promocodeDetails?.minOrderValue ?? "")"
-        descriptionLabel.text = promocodeDetails?.descriptionEnglish ?? ""
-        termsAndConditionLabel.text = promocodeDetails?.descriptionEnglish ?? ""
+        if AppLanguageManager.shared.currentLanguage == .en {
+            descriptionLabel.text = promocodeDetails?.descriptionEnglish ?? ""
+            termsAndConditionLabel.text = promocodeDetails?.descriptionEnglish ?? ""
+        }else {
+            descriptionLabel.text = promocodeDetails?.descriptionArabic ?? ""
+            termsAndConditionLabel.text = promocodeDetails?.descriptionArabic ?? ""
+        }
         if promocodeDetails?.status == 1 {
             statusLabel.text = "Active".localiz()
             statusToggleImageView.image = UIImage(named: "toggleOn")
@@ -74,16 +79,17 @@ class PromocodeDetailsViewController: UIViewController {
             statusLabel.text = "Inactive".localiz()
             statusToggleImageView.image = UIImage(named: "toggleOff")
         }
-        
-        countryLabel.text = promocodeDetails?.countryInfo?.name
+        if AppLanguageManager.shared.currentLanguage == .en {
+            countryLabel.text = promocodeDetails?.countryInfo?.name
+        }else {
+            countryLabel.text = promocodeDetails?.countryInfo?.nameAr
+        }
         let applicableFor = promocodeDetails?.applicableFor
-        
         if applicableFor == 2 {
             applicableForLabel.text = "Every Order".localiz()
         } else {
             applicableForLabel.text = "First Order".localiz()
         }
-        
         startDateLabel.text = convertDate(promocodeDetails?.startDate ?? "")
         endDateLabel.text = convertDate(promocodeDetails?.endDate ?? "")
     }
@@ -91,10 +97,20 @@ class PromocodeDetailsViewController: UIViewController {
     func convertDate(_ input: String) -> String? {
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = "yyyy-MM-dd"
-        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
+//        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            inputFormatter.locale = Locale(identifier: "ar")
+           } else {
+               inputFormatter.locale = Locale(identifier: "en_US")
+           }
         let outputFormatter = DateFormatter()
         outputFormatter.dateFormat = "dd/MM/yyyy"
-        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
+//        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            outputFormatter.locale = Locale(identifier: "ar")
+           } else {
+               outputFormatter.locale = Locale(identifier: "en_US")
+           }
         if let date = inputFormatter.date(from: input) {
             return outputFormatter.string(from: date)
         }

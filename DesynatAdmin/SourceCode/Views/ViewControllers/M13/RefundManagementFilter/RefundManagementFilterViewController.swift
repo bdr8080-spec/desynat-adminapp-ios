@@ -76,13 +76,20 @@ class RefundManagementFilterViewController: UIViewController {
     
     @IBAction func countryDidTapped(_ sender: UIButton) {
         let countryNames = viewModel.allCountryListData.map {
-            "\($0.flag1 ?? "🇰🇼") \($0.name ?? "") (\($0.dialCode ?? ""))"
-        }
+            "\($0.flag1 ?? "🇰🇼") \(AppLanguageManager.shared.currentLanguage == .en ? $0.name ?? "": $0.nameAr ?? "") (\($0.dialCode ?? ""))"
+        }//$0.name
         kSharedAppDelegate.dropDown(dataSource: countryNames, anchorView: sender) { index, _ in
             let selectedCountry = self.viewModel.allCountryListData[index]
-            self.countryLabel.text = selectedCountry.name
+            
+            if AppLanguageManager.shared.currentLanguage == .en {
+                self.countryLabel.text = selectedCountry.name
+                self.countryName = selectedCountry.name ?? ""
+            }else {
+                self.countryName = selectedCountry.nameAr ?? ""
+                self.countryLabel.text = selectedCountry.nameAr
+            }
             self.countryId = selectedCountry.id ?? 0
-            self.countryName = selectedCountry.name ?? ""
+            
         }
     }
     
@@ -103,9 +110,16 @@ class RefundManagementFilterViewController: UIViewController {
         // Preselect country
         if let id = selectedFilter.countryId {
             if let selectedCountry = viewModel.allCountryListData.first(where: { $0.id == id }) {
-                countryLabel.text = selectedCountry.name
+                if AppLanguageManager.shared.currentLanguage == .en {
+                    self.countryLabel.text = selectedCountry.name
+                    self.countryName = selectedCountry.name ?? ""
+                }else {
+                    self.countryName = selectedCountry.nameAr ?? ""
+                    self.countryLabel.text = selectedCountry.nameAr
+                }
+//                countryLabel.text = selectedCountry.name
                 countryId = id
-                countryName = selectedCountry.name ?? ""
+//                countryName = selectedCountry.name ?? ""
             }
         }
         
@@ -141,7 +155,13 @@ extension RefundManagementFilterViewController {
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.datePickerMode = .date
         datePicker.backgroundColor = .white
-        
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            datePicker.locale = Locale(identifier: "ar")
+            datePicker.semanticContentAttribute = .forceRightToLeft
+        } else {
+            datePicker.locale = Locale(identifier: "en")
+            datePicker.semanticContentAttribute = .forceLeftToRight
+        }
         // 🔥 Key Change: Respect the disableFutureDateSelection flag
         if disbaleFutureDateSelection {
             datePicker.maximumDate = Date()   // Disable future dates

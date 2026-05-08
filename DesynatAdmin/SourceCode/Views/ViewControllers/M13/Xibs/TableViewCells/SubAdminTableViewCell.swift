@@ -46,7 +46,11 @@ class SubAdminTableViewCell: UITableViewCell {
         joinedDateLabel.text = "\("Joined on".localiz()) \(result)"
         phoneNumberLabel.text = "\(data.countryCode ?? "")-\(data.mobile ?? "")"
         emailLabel.text = data.email
-        countryLabel.text = data.countryInfo?.name
+        if AppLanguageManager.shared.currentLanguage == .en {
+            countryLabel.text = data.countryInfo?.name
+        }else {
+            countryLabel.text = data.countryInfo?.nameAr
+        }
     }
     
     private func convertISOToDMY(_ isoString: String) -> String? {

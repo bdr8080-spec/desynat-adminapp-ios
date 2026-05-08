@@ -48,7 +48,6 @@ class SubCategoryViewController: UIViewController {
         self.navigationController?.popViewController(animated: false)
     }
     
-    
     @IBAction func plusDidTapped(_ sender: Any) {
         let vc = AddSubCategoryViewController.instantiate(fromAppStoryboard: .SideMenu)
         vc.categoryId = categoryId
@@ -90,7 +89,6 @@ class SubCategoryViewController: UIViewController {
 
 // MARK: - COLLECTION VIEW METHODS
 extension SubCategoryViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.subCategoryListData.count
     }
@@ -115,7 +113,6 @@ extension SubCategoryViewController: UICollectionViewDataSource, UICollectionVie
         let width = (collectionView.frame.width - totalSpacing) / 2
         return CGSize(width: width, height: 215)
     }
-    
 }
 
 //MARK: UITextFieldDelegate Methods

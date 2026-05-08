@@ -70,9 +70,13 @@ class TicketManagementTableViewCell: UITableViewCell {
     
     func convertServerDate(_ isoString: String) -> String {
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "en_US_POSIX")
+//        formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
-
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            formatter.locale = Locale(identifier: "ar")
+           } else {
+               formatter.locale = Locale(identifier: "en_US")
+           }
         guard let date = formatter.date(from: isoString) else {
             return isoString
         }
@@ -80,7 +84,11 @@ class TicketManagementTableViewCell: UITableViewCell {
         let outputFormatter = DateFormatter()
         outputFormatter.locale = Locale(identifier: "en_US_POSIX")
         outputFormatter.dateFormat = "dd MMM yy, h:mm a"   // <- Output format
-
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            outputFormatter.locale = Locale(identifier: "ar")
+           } else {
+               outputFormatter.locale = Locale(identifier: "en_US")
+           }
         return outputFormatter.string(from: date)
     }
     

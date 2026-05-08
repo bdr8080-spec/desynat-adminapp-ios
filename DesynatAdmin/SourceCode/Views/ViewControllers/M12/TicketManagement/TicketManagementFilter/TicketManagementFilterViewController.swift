@@ -74,7 +74,13 @@ extension TicketManagementFilterViewController {
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.datePickerMode = .date
         datePicker.backgroundColor = .white
-        
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            datePicker.locale = Locale(identifier: "ar")
+            datePicker.semanticContentAttribute = .forceRightToLeft
+        } else {
+            datePicker.locale = Locale(identifier: "en")
+            datePicker.semanticContentAttribute = .forceLeftToRight
+        }
         // 🔥 Key Change: Respect the disableFutureDateSelection flag
         if disbaleFutureDateSelection {
             datePicker.maximumDate = Date()   // Disable future dates

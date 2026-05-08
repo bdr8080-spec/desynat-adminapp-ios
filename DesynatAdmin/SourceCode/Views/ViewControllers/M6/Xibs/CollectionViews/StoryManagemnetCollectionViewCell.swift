@@ -101,9 +101,13 @@ class StoryManagemnetCollectionViewCell: UICollectionViewCell {
         // 1. Create ISO8601 DateFormatter
         let isoFormatter = DateFormatter()
         isoFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
-        isoFormatter.locale = Locale(identifier: "en_US_POSIX")
+//        isoFormatter.locale = Locale(identifier: "en_US_POSIX")
         isoFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            isoFormatter.locale = Locale(identifier: "ar")
+           } else {
+               isoFormatter.locale = Locale(identifier: "en_US")
+           }
         // 2. Convert string to Date
         guard let date = isoFormatter.date(from: isoDate) else {
             return nil
@@ -112,9 +116,13 @@ class StoryManagemnetCollectionViewCell: UICollectionViewCell {
         // 3. Format date to desired format
         let displayFormatter = DateFormatter()
         displayFormatter.dateFormat = "dd/MM/yyyy, hh:mma" // 12-hour format with AM/PM
-        displayFormatter.locale = Locale(identifier: "en_US_POSIX")
+//        displayFormatter.locale = Locale(identifier: "en_US_POSIX")
         displayFormatter.timeZone = TimeZone.current // or specify a time zone if needed
-        
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            displayFormatter.locale = Locale(identifier: "ar")
+           } else {
+               displayFormatter.locale = Locale(identifier: "en_US")
+           }
         return displayFormatter.string(from: date)
     }
     

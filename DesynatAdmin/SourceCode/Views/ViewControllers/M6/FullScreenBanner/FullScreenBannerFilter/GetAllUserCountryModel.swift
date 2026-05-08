@@ -9,7 +9,7 @@
 // MARK: - GetAllUserCountryModel
 struct GetAllUserCountryModel: Codable {
   let id: Int?
-  let name, code, isoCode: String?
+  let name,nameAr, code, isoCode: String?
   let isoCodeNumber: String?
   let currencyName, currencyCode, currencySymbol: String?
   let exchangeRateToUsd: String?
@@ -28,5 +28,6 @@ struct GetAllUserCountryModel: Codable {
     case dialCode = "dial_code"
     case flag
     case flag1 = "flag1"
+    case nameAr = "name_ar"
   }
 }

@@ -46,11 +46,14 @@ class FullScreenBannerTableViewCell: UITableViewCell {
         } else {
             mainImageView.image = UIImage(named: "")
         }
-        countryLabel.text = data?.countryInfo?.name
+        if AppLanguageManager.shared.currentLanguage == .en {
+            countryLabel.text = data?.countryInfo?.name
+        }else {
+            countryLabel.text = data?.countryInfo?.nameAr
+        }
         if let startDate = convertDateFormat(data?.startDate ?? "") {
             startDateLabel.text = startDate
         }
-        
         endDateLabel.text = convertDateFormat(data?.endDate ?? "")
         if data?.type == "1" {
             typeLabel.text = "App Banner".localiz()
@@ -84,8 +87,12 @@ class FullScreenBannerTableViewCell: UITableViewCell {
         }
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        
+//        formatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            formatter.locale = Locale(identifier: "ar")
+           } else {
+               formatter.locale = Locale(identifier: "en_US")
+           }
         let today = Calendar.current.startOfDay(for: Date())
         
         if data?.status == "1" {
@@ -125,16 +132,24 @@ class FullScreenBannerTableViewCell: UITableViewCell {
     ) -> String? {
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = inputFormat
-        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
-        
+//        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            inputFormatter.locale = Locale(identifier: "ar")
+           } else {
+               inputFormatter.locale = Locale(identifier: "en_US")
+           }
         guard let date = inputFormatter.date(from: dateString) else {
             return nil
         }
         
         let outputFormatter = DateFormatter()
         outputFormatter.dateFormat = outputFormat
-        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
-        
+//        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            outputFormatter.locale = Locale(identifier: "ar")
+           } else {
+               outputFormatter.locale = Locale(identifier: "en_US")
+           }
         return outputFormatter.string(from: date)
     }
     

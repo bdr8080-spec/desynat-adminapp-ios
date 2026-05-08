@@ -61,15 +61,15 @@ class CommonUtils {
     }
     
     static func formatPrice(_ amount: Double?, currency: String = "KD") -> String {
-        guard let amount = amount else { return "0 \(currency)" }
+        guard let amount = amount else { return "0 \(currency.localiz())" }
         
         let roundedAmount = round(amount * 100) / 100   // Round to 2 decimal places
         if roundedAmount.truncatingRemainder(dividingBy: 1) == 0 {
             // If whole number, show without decimal
-            return "\(Int(roundedAmount)) \(currency)"
+            return "\(Int(roundedAmount)) \(currency.localiz())"
         } else {
             // Show up to 2 decimal places
-            return String(format: "%.2f", roundedAmount) + " \(currency)"
+            return String(format: "%.2f", roundedAmount) + " \(currency.localiz())"
         }
     }
     
@@ -165,7 +165,12 @@ class CommonUtils {
 
         let outputFormatter = DateFormatter()
         outputFormatter.dateFormat = outputFormat
-        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
+//        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            outputFormatter.locale = Locale(identifier: "ar")
+           } else {
+               outputFormatter.locale = Locale(identifier: "en_US")
+           }
         outputFormatter.timeZone = TimeZone(identifier: "Asia/Kuwait")   // always Kuwait time
 
         return outputFormatter.string(from: date)
@@ -177,15 +182,15 @@ class CommonUtils {
             let amount = amount,
             let doubleAmount = Double(amount)
         else {
-            return "0 \(currency)"
+            return "0 \(currency.localiz())"
         }
         
         let roundedAmount = round(doubleAmount * 100) / 100
         
         if roundedAmount.truncatingRemainder(dividingBy: 1) == 0 {
-            return "\(Int(roundedAmount)) \(currency)"
+            return "\(Int(roundedAmount)) \(currency.localiz())"
         } else {
-            return String(format: "%.2f", roundedAmount) + " \(currency)"
+            return String(format: "%.2f", roundedAmount) + " \(currency.localiz())"
         }
     }
     
@@ -219,7 +224,7 @@ class CommonUtils {
             let amount = amount,
             let doubleAmount = Double(amount)
         else {
-            return "0 \(currency)"
+            return "0 \(currency.localiz())"
         }
         
         let formatter = NumberFormatter()
@@ -228,7 +233,7 @@ class CommonUtils {
         formatter.maximumFractionDigits = 2   // up to 2 decimals
         
         let formattedAmount = formatter.string(from: NSNumber(value: doubleAmount)) ?? "0"
-        return "\(formattedAmount) \(currency)"
+        return "\(formattedAmount) \(currency.localiz())"
     }
     
     
@@ -274,7 +279,12 @@ class CommonUtils {
     static func formatDateToYYYYMMDD(date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        formatter.locale = Locale(identifier: "en_US_POSIX")
+//        formatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            formatter.locale = Locale(identifier: "ar")
+           } else {
+               formatter.locale = Locale(identifier: "en_US")
+           }
         return formatter.string(from: date)
     }
     
@@ -288,7 +298,12 @@ class CommonUtils {
         }
         
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "en_US_POSIX")
+//        formatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            formatter.locale = Locale(identifier: "ar")
+           } else {
+               formatter.locale = Locale(identifier: "en_US")
+           }
         formatter.dateFormat = "E dd MM yyyy | hh:mm a"
         
         return formatter.string(from: date)
@@ -543,7 +558,12 @@ class CommonUtils {
         
         let formatter = DateFormatter()
         formatter.dateFormat = format
-        formatter.locale = Locale(identifier: "en_US_POSIX") // ✅ AM / PM uppercase
+//        formatter.locale = Locale(identifier: "en_US_POSIX") // ✅ AM / PM uppercase
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            formatter.locale = Locale(identifier: "ar")
+           } else {
+               formatter.locale = Locale(identifier: "en_US")
+           }
         return formatter.string(from: date)
     }
     

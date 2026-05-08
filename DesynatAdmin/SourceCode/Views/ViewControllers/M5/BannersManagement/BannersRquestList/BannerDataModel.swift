@@ -190,7 +190,7 @@ struct SellerDetails: Codable {
 // MARK: - CountryDetails
 struct CountryDetails: Codable {
     var id: Int?
-    var name, isoCode, currencyName, currencyCode: String?
+    var name,nameAr, isoCode, currencyName, currencyCode: String?
     var currencySymbol, dialCode, flag: String?
     var flag1: String?
     var exchangeRateToKwd, createdAt, updatedAt: String?
@@ -206,6 +206,7 @@ struct CountryDetails: Codable {
         case exchangeRateToKwd = "exchange_rate_to_kwd"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
+        case nameAr = "name_ar"
     }
     
     init(id: Int? = nil, name: String? = nil, isoCode: String? = nil, currencyName: String? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, dialCode: String? = nil, flag: String? = nil, flag1: String? = nil, exchangeRateToKwd: String? = nil, createdAt: String? = nil, updatedAt: String? = nil) {

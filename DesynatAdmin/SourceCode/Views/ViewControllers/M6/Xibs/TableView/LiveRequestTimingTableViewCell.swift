@@ -50,8 +50,14 @@ class LiveRequestTimingTableViewCell: UITableViewCell {
     func configData(data: LiveRequestPermissionList?) {
         let first = data?.sellerDetails?.firstName ?? ""
         let last = data?.sellerDetails?.lastName ?? ""
-        let country = data?.sellerDetails?.storeInfo?.countryInfo?.name ?? ""//data?.sellerDetails?.countryDetails?.name ?? ""
-        usernameCountryLabe.text = "\(first) \(last) | \(country)"
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            let country = data?.sellerDetails?.storeInfo?.countryInfo?.nameAr ?? ""//data?.sellerDetails?.countryDetails?.name ?? ""
+            usernameCountryLabe.text = "\(first) \(last) | \(country)"
+        }else {
+            let country = data?.sellerDetails?.storeInfo?.countryInfo?.name ?? ""//data?.sellerDetails?.countryDetails?.name ?? ""
+            usernameCountryLabe.text = "\(first) \(last) | \(country)"
+        }
+        
         requestIdLabel.text = "#\(data?.timeslotID ?? 0)"
         requestOnLabel.text = formatISODateToDayMonthYear(data?.createdAt ?? "")
         let date = convertDateFormat(data?.timeslotDetails?.date ?? "") ?? ""
@@ -76,8 +82,12 @@ class LiveRequestTimingTableViewCell: UITableViewCell {
                 
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd hh:mm a"   // ✅ FIXED
-                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-                
+//                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                if AppLanguageManager.shared.currentLanguage == .ar {
+                    dateFormatter.locale = Locale(identifier: "ar")
+                   } else {
+                       dateFormatter.locale = Locale(identifier: "en_US")
+                   }
                 if let endDate = dateFormatter.date(from: "\(timeslotDate) \(toTime)") {
                     let now = Date()
                     if now >= endDate {
@@ -106,20 +116,28 @@ class LiveRequestTimingTableViewCell: UITableViewCell {
     func convertDateFormat(
         _ dateString: String,
         from inputFormat: String = "yyyy-MM-dd",
-        to outputFormat: String = "dd/MM/yyyy"
+        to outputFormat: String = "dd/MM/yyyy|hh:mm a"
     ) -> String? {
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = inputFormat
-        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
-        
+//        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            inputFormatter.locale = Locale(identifier: "ar")
+           } else {
+               inputFormatter.locale = Locale(identifier: "en_US")
+           }
         guard let date = inputFormatter.date(from: dateString) else {
             return nil
         }
         
         let outputFormatter = DateFormatter()
         outputFormatter.dateFormat = outputFormat
-        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
-        
+//        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            outputFormatter.locale = Locale(identifier: "ar")
+           } else {
+               outputFormatter.locale = Locale(identifier: "en_US")
+           }
         return outputFormatter.string(from: date)
     }
     
@@ -133,8 +151,12 @@ class LiveRequestTimingTableViewCell: UITableViewCell {
         
         let outputFormatter = DateFormatter()
         outputFormatter.dateFormat = "dd/MM/yyyy|hh:mm a"
-        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
-        
+//        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            outputFormatter.locale = Locale(identifier: "ar")
+           } else {
+               outputFormatter.locale = Locale(identifier: "en_US")
+           }
         return outputFormatter.string(from: date)
     }
     

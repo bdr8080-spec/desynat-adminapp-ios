@@ -10,7 +10,7 @@ import Foundation
 // MARK: - CommissionPercentageModel
 struct CommissionPercentageModel: Codable {
     var id: Int?
-    var name, isoCode, currencyName, currencyCode: String?
+    var name,nameAr, isoCode, currencyName, currencyCode: String?
     var currencySymbol, dialCode, flag: String?
     var flag1: String?
     var exchangeRateToKwd, createdAt, updatedAt: String?
@@ -28,6 +28,7 @@ struct CommissionPercentageModel: Codable {
         case createdAt = "created_at"
         case updatedAt = "updated_at"
         case affiliateCommissionInfo = "affiliate_commission_info"
+        case nameAr = "name_ar"
     }
 }
 

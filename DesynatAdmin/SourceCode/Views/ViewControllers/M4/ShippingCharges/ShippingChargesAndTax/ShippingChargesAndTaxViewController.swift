@@ -112,7 +112,8 @@ class ShippingChargesAndTaxViewController: UIViewController {
                 self.defaultTaxAmount = tax
                 self.defaultDeliveryFeeLabel.text = CommonUtils.formatPrice(taxValue, currency: "KD")
             } else {
-                self.defaultDeliveryFeeLabel.text = "0 KD"
+                let text = "0 KD".localiz()
+                self.defaultDeliveryFeeLabel.text = text//"0 KD"
                 self.defaultTaxAmount = "0"
             }
         }
@@ -171,7 +172,6 @@ class ShippingChargesAndTaxViewController: UIViewController {
             taxAmountLabel.text = "0%"
         }
     }
-    
     
     func updatePaginationButtonImages() {
         guard let total = viewModel.shippingTaxDetails?.count else { return }

@@ -10,17 +10,12 @@ import UIKit
 class PlansViewController: UIViewController {
     
     // MARK: - IBOutlet's
-    
     // MARK: - Property Decalaration
-    
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
-
+    
     // MARK: - Button's Action
-    
-    
     //MARK: Function's declaration
 }

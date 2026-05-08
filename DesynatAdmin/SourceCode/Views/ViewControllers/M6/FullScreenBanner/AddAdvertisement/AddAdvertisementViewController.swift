@@ -51,7 +51,7 @@ class AddAdvertisementViewController: UIViewController {
     // MARK: - Button's Action
     @IBAction func countryDidTapped(_ sender: UIButton) {
         let countryNames = viewModel.countryListData.map { country -> String in
-            let name = country.name ?? ""
+            let name = AppLanguageManager.shared.currentLanguage == .en ?  country.name ?? "" : country.nameAr ?? ""
             let dialCode = country.dialCode ?? ""
             let flag = country.flag1 ?? "🇰🇼"
             return "\(flag)  \(name) (\(dialCode))"
@@ -59,7 +59,12 @@ class AddAdvertisementViewController: UIViewController {
         
         kSharedAppDelegate.dropDown(dataSource: countryNames, anchorView: sender) { index, item in
             let selectedCountry = self.viewModel.countryListData[index]
-            self.countryLabel.text = selectedCountry.name
+            if AppLanguageManager.shared.currentLanguage == .en {
+                self.countryLabel.text = selectedCountry.name ?? ""
+            }else {
+                self.countryLabel.text = selectedCountry.nameAr
+            }
+//            self.countryLabel.text = selectedCountry.name
             self.countryId = selectedCountry.id ?? 0
         }
     }
@@ -193,16 +198,24 @@ class AddAdvertisementViewController: UIViewController {
     ) -> String? {
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = inputFormat
-        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
-        
+//        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            inputFormatter.locale = Locale(identifier: "ar")
+           } else {
+               inputFormatter.locale = Locale(identifier: "en_US")
+           }
         guard let date = inputFormatter.date(from: dateString) else {
             return nil
         }
         
         let outputFormatter = DateFormatter()
         outputFormatter.dateFormat = outputFormat
-        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
-        
+//        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            outputFormatter.locale = Locale(identifier: "ar")
+           } else {
+               outputFormatter.locale = Locale(identifier: "en_US")
+           }
         return outputFormatter.string(from: date)
     }
     
@@ -214,7 +227,13 @@ extension AddAdvertisementViewController {
         datePicker.datePickerMode = .date
         datePicker.minimumDate = Date()
         datePicker.backgroundColor = .white
-        
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            datePicker.locale = Locale(identifier: "ar")
+            datePicker.semanticContentAttribute = .forceRightToLeft
+        } else {
+            datePicker.locale = Locale(identifier: "en")
+            datePicker.semanticContentAttribute = .forceLeftToRight
+        }
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         

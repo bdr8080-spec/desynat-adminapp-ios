@@ -78,8 +78,12 @@ class EventsTableViewCell: UITableViewCell {
               let toTime = toTime else { return false }
 
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        
+//        formatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            formatter.locale = Locale(identifier: "ar")
+           } else {
+               formatter.locale = Locale(identifier: "en_US")
+           }
         // ✅ Server timezone (Kuwait)
         formatter.timeZone = TimeZone(identifier: "Asia/Kuwait")
         formatter.dateFormat = "yyyy-MM-dd hh:mm a"
@@ -105,7 +109,12 @@ class EventsTableViewCell: UITableViewCell {
             return nil
         }
         let outputFormatter = DateFormatter()
-        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
+//        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            outputFormatter.locale = Locale(identifier: "ar")
+           } else {
+               outputFormatter.locale = Locale(identifier: "en_US")
+           }
         outputFormatter.timeZone = TimeZone.current   // ✅ LOCAL TIME
         outputFormatter.dateFormat = "dd/MM/yyyy"
         return outputFormatter.string(from: date)
@@ -114,8 +123,12 @@ class EventsTableViewCell: UITableViewCell {
     func convertDate(_ input: String) -> String {
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = "yyyy-MM-dd"
-        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
-
+//        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            inputFormatter.locale = Locale(identifier: "ar")
+           } else {
+               inputFormatter.locale = Locale(identifier: "en_US")
+           }
         let outputFormatter = DateFormatter()
         outputFormatter.dateFormat = "M/dd/yy"  // → 2/08/25 format
 

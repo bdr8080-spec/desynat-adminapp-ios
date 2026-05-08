@@ -85,21 +85,31 @@ class PaymentFilterViewController: UIViewController {
             
         case .orders, .giftCards:
             let countryNames = viewModel.allCountryListData.map {
-                "\($0.flag1 ?? "🇰🇼") \($0.name ?? "") (\($0.dialCode ?? ""))"
-            }
+                "\($0.flag1 ?? "🇰🇼") \(AppLanguageManager.shared.currentLanguage == .en ? $0.name ?? "": $0.nameAr ?? "") (\($0.dialCode ?? ""))"
+            } //$0.name
             kSharedAppDelegate.dropDown(dataSource: countryNames, anchorView: sender) { index, _ in
                 let selectedCountry = self.viewModel.allCountryListData[index]
-                self.countryLabel.text = selectedCountry.name
+//                self.countryLabel.text = selectedCountry.name
+                if AppLanguageManager.shared.currentLanguage == .en {
+                    self.countryLabel.text = selectedCountry.name
+                }else {
+                    self.countryLabel.text = selectedCountry.nameAr
+                }
                 self.countryId = selectedCountry.id ?? 0
             }
             
         case .plans, .banners:
             let countryNames = viewModel.countryListData.map {
-                "\($0.flag ?? "🇰🇼") \($0.name ?? "") (\($0.dialCode ?? ""))"
-            }
+                "\($0.flag ?? "🇰🇼") \(AppLanguageManager.shared.currentLanguage == .en ? $0.name ?? "": $0.nameAr ?? "") (\($0.dialCode ?? ""))"
+            }//$0.name
             kSharedAppDelegate.dropDown(dataSource: countryNames, anchorView: sender) { index, _ in
                 let selectedCountry = self.viewModel.countryListData[index]
-                self.countryLabel.text = selectedCountry.name
+//                self.countryLabel.text = selectedCountry.name
+                if AppLanguageManager.shared.currentLanguage == .en {
+                    self.countryLabel.text = selectedCountry.name
+                }else {
+                    self.countryLabel.text = selectedCountry.nameAr
+                }
                 self.countryId = selectedCountry.id ?? 0
             }
         }
@@ -135,12 +145,22 @@ class PaymentFilterViewController: UIViewController {
             switch selectedTab {
             case .orders, .giftCards:
                 if let selectedCountry = viewModel.allCountryListData.first(where: { $0.id == id }) {
-                    countryLabel.text = selectedCountry.name
+//                    countryLabel.text = selectedCountry.name
+                    if AppLanguageManager.shared.currentLanguage == .en {
+                        self.countryLabel.text = selectedCountry.name
+                    }else {
+                        self.countryLabel.text = selectedCountry.nameAr
+                    }
                     countryId = id
                 }
             case .plans, .banners:
                 if let selectedCountry = viewModel.countryListData.first(where: { $0.id == id }) {
-                    countryLabel.text = selectedCountry.name
+//                    countryLabel.text = selectedCountry.name
+                    if AppLanguageManager.shared.currentLanguage == .en {
+                        self.countryLabel.text = selectedCountry.name
+                    }else {
+                        self.countryLabel.text = selectedCountry.nameAr
+                    }
                     countryId = id
                 }
             }
@@ -170,7 +190,13 @@ extension PaymentFilterViewController {
         datePicker.datePickerMode = .date
         datePicker.minimumDate = nil
         datePicker.backgroundColor = .white
-        
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            datePicker.locale = Locale(identifier: "ar")
+            datePicker.semanticContentAttribute = .forceRightToLeft
+        } else {
+            datePicker.locale = Locale(identifier: "en")
+            datePicker.semanticContentAttribute = .forceLeftToRight
+        }
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         

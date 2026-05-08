@@ -37,7 +37,7 @@ class CategoryViewController: UIViewController {
         self.navigationController?.popViewController(animated: false)
     }
     
-    //MARK: Function's declaration
+    //MARK: - Function's declaration
     private func toggleCategoryStatus(at indexPath: IndexPath) {
         var category = viewModel.categoryListData[indexPath.row]
         let newStatus = category.status == 1 ? 0 : 1
@@ -99,5 +99,3 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
         self.navigationController?.pushViewController(vc, animated: false)
     }
 }
-
-

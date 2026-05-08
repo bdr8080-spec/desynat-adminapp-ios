@@ -49,7 +49,7 @@ class AddPromocodeViewController: UIViewController {
     
     @IBAction func countryDidTapped(_ sender: UIButton) {
         let countryNames = viewModel.countryListData.map { country -> String in
-            let name = country.name ?? ""
+            let name = AppLanguageManager.shared.currentLanguage == .ar ? country.nameAr ?? "" : country.name ?? ""
             //      let dialCode = country.dialCode ?? ""
             let flag = country.flag ?? "🇰🇼"
             return "\(flag)  \(name)"// (\(dialCode))"
@@ -57,7 +57,12 @@ class AddPromocodeViewController: UIViewController {
         
         kSharedAppDelegate.dropDown(dataSource: countryNames, anchorView: sender) { index, item in
             let selectedCountry = self.viewModel.countryListData[index]
-            self.countryTF.text = selectedCountry.name
+            if AppLanguageManager.shared.currentLanguage == .en {
+                self.countryTF.text = selectedCountry.name
+            }else {
+                self.countryTF.text = selectedCountry.nameAr
+            }
+//            self.countryTF.text = selectedCountry.name
             self.countryCode = selectedCountry.id ?? 0
         }
     }
@@ -132,10 +137,20 @@ class AddPromocodeViewController: UIViewController {
     func convertDate(_ input: String) -> String? {
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = "yyyy-MM-dd"
-        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
+//        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            inputFormatter.locale = Locale(identifier: "ar")
+           } else {
+               inputFormatter.locale = Locale(identifier: "en_US")
+           }
         let outputFormatter = DateFormatter()
         outputFormatter.dateFormat = "dd/MM/yyyy"
-        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
+//        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            outputFormatter.locale = Locale(identifier: "ar")
+           } else {
+               outputFormatter.locale = Locale(identifier: "en_US")
+           }
         if let date = inputFormatter.date(from: input) {
             return outputFormatter.string(from: date)
         }
@@ -213,7 +228,13 @@ extension AddPromocodeViewController {
         datePicker.datePickerMode = .date
         datePicker.minimumDate = nil
         datePicker.backgroundColor = .white
-        
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            datePicker.locale = Locale(identifier: "ar")
+            datePicker.semanticContentAttribute = .forceRightToLeft
+        } else {
+            datePicker.locale = Locale(identifier: "en")
+            datePicker.semanticContentAttribute = .forceLeftToRight
+        }
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         

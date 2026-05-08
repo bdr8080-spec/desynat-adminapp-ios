@@ -297,13 +297,23 @@ class AddPromotionalBannerViewController: UIViewController {
     ) -> String? {
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = inputFormat
-        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
+//        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            inputFormatter.locale = Locale(identifier: "ar")
+           } else {
+               inputFormatter.locale = Locale(identifier: "en_US")
+           }
         guard let date = inputFormatter.date(from: dateString) else {
             return nil
         }
         let outputFormatter = DateFormatter()
         outputFormatter.dateFormat = outputFormat
-        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
+//        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            outputFormatter.locale = Locale(identifier: "ar")
+           } else {
+               outputFormatter.locale = Locale(identifier: "en_US")
+           }
         return outputFormatter.string(from: date)
     }
     
@@ -315,7 +325,13 @@ extension AddPromotionalBannerViewController {
         datePicker.datePickerMode = .date
         datePicker.minimumDate = Date()
         datePicker.backgroundColor = .white
-        
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            datePicker.locale = Locale(identifier: "ar")
+            datePicker.semanticContentAttribute = .forceRightToLeft
+        } else {
+            datePicker.locale = Locale(identifier: "en")
+            datePicker.semanticContentAttribute = .forceLeftToRight
+        }
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         

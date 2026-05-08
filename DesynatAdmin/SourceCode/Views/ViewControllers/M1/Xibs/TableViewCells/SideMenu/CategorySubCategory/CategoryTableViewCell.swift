@@ -30,15 +30,18 @@ class CategoryTableViewCell: UITableViewCell {
     }
     
     @IBAction func statusButtonTapped(_ sender: UIButton) {
-            onStatusToggle?()
-        }
+        onStatusToggle?()
+    }
     
     func configData(data: GetCategoryModel) {
-        titleLabel.text = data.name
+        if AppLanguageManager.shared.currentLanguage == .en {
+            titleLabel.text = data.name
+        }else {
+            titleLabel.text = data.nameAr
+        }
         descriptionLabel.text = data.description
         if let imageUrlString = data.image,
                let url = URL(string: imageUrlString) {
-
             leftImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
             leftImageView.sd_imageIndicator?.startAnimatingIndicator()
             leftImageView.sd_setImage(with: url, placeholderImage: UIImage(named: ""))
@@ -50,7 +53,6 @@ class CategoryTableViewCell: UITableViewCell {
                 leftImageView.image = UIImage(named: "")
                 rightImageView.image = UIImage(named: "")
             }
-        
         if data.status == 1 {
             statusLabel.text = "Active".localiz()
             statusImageView.image = UIImage(named: "toggleOn")
@@ -58,9 +60,6 @@ class CategoryTableViewCell: UITableViewCell {
             statusLabel.text = "Inactive".localiz()
             statusImageView.image = UIImage(named: "toggleOff")
         }
-        
         mainContentView.backgroundColor = UIColor(hexString: data.colorCode ?? "")
-        
     }
-    
 }

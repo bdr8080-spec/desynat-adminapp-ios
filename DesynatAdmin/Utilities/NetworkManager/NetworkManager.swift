@@ -21,14 +21,11 @@ final class NetworkManager {
                                encoding:ParameterEncoding? = URLEncoding.default,
                                requestModel model: T.Type,
                                completion: @escaping ResultHandler<BaseResponse<T>>) {
-        
         guard NetworkReachabilityManager()?.isReachable == true else {
             completion(.failure(.noNetwork), nil)
             return
         }
-        
         let header = getHeaders()
-        
         var url = ""
         switch apiName {
         case .endpoint(let networkEndPoint):
@@ -39,12 +36,9 @@ final class NetworkManager {
         let printableParams: String = self.getPrintableParamsFromJson(postData: params ?? [:])
         printInConsole("Header: \(header)")
         printInConsole("Connecting to Host with URL \(url) with parameters: \(printableParams)")
-        
         AF.request(url, method: method, parameters: params, encoding: encoding ?? URLEncoding.default, headers: header){ $0.timeoutInterval = 20.0 }.responseDecodable(of: BaseResponse<T>.self) { response in
-            
             printInConsole(response.debugDescription)
             let status = HTTPStatusCode(rawValue: response.response?.statusCode ?? 200) ?? .FORBIDDEN
-            
             switch response.result {
             case .success(let result):
                 if HTTPStatusCode.Sucess.contains(status) {
@@ -357,6 +351,11 @@ final class NetworkManager {
         if let sessionToken = kSharedUserDefaults.getStringFor(key: .sessionToken) {
             headers.add(name: "session_token", value: sessionToken)
         }
+        
+        headers.add(
+            name: "Accept-Language",
+            value: AppLanguageManager.shared.currentLanguage == .ar ? "ar" : "en"
+        )
     
         return headers
     }

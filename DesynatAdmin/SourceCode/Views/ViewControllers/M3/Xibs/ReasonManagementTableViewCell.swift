@@ -43,7 +43,11 @@ class ReasonManagementTableViewCell: UITableViewCell {
   
   
   func configData(data: ReasonsListModel?) {
-    raesonLabel.text = data?.reasonEnglish
+      if AppLanguageManager.shared.currentLanguage == .ar {
+          raesonLabel.text = data?.reasonArabic
+      }else {
+          raesonLabel.text = data?.reasonEnglish
+      }
     if data?.status == 1 {
       statusButtonOutlet.setImage(UIImage(named: "toggleOn"), for: .normal)
     } else {

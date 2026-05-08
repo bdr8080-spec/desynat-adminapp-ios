@@ -23,12 +23,15 @@ class BrandManagementTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     
     func configData(data: GetBrandDataList?) {
-        titleLabel.text = data?.nameEnglish
+        if AppLanguageManager.shared.currentLanguage == .en {
+            titleLabel.text = data?.nameEnglish
+        }else {
+            titleLabel.text = data?.nameArabic
+        }
         if let imageUrlString = data?.image,
                let url = URL(string: imageUrlString) {
 

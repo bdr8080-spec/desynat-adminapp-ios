@@ -139,14 +139,19 @@ class AddNewStaffViewController: UIViewController {
     
     @IBAction func chosseCountrydidTapped(_ sender: UIButton) {
         let countryNames = viewModel.countryListData.map { country -> String in
-            let name = country.name ?? ""
+            let name = AppLanguageManager.shared.currentLanguage == .en ? country.name ?? "": country.nameAr ?? ""
             let dialCode = country.dialCode ?? ""
             let flag = country.flag ?? "🇰🇼"
             return "\(flag)  \(name) (\(dialCode))"
         }
         kSharedAppDelegate.dropDown(dataSource: countryNames, anchorView: sender) { index, item in
             let selectedCountry = self.viewModel.countryListData[index]
-            self.selcetdCountryLabel.text = selectedCountry.name
+            if AppLanguageManager.shared.currentLanguage == .en {
+                self.selcetdCountryLabel.text = selectedCountry.name
+            }else {
+                self.selcetdCountryLabel.text = selectedCountry.nameAr
+            }
+//            self.selcetdCountryLabel.text = selectedCountry.name
             self.countryID = selectedCountry.id ?? 1
         }
     }

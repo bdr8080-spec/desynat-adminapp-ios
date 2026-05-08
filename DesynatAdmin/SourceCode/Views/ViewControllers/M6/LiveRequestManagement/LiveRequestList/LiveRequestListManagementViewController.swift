@@ -81,19 +81,34 @@ class LiveRequestListManagementViewController: UIViewController {
     private lazy var apiDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        formatter.locale = Locale(identifier: "en_US_POSIX")
+//        formatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            formatter.locale = Locale(identifier: "ar")
+           } else {
+               formatter.locale = Locale(identifier: "en_US")
+           }
         return formatter
     }()
     private lazy var selectedDateFormatterForLiveRequestTimeSlot: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "d MMMM yyyy"
-        formatter.locale = Locale(identifier: "en_US_POSIX")
+//        formatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            formatter.locale = Locale(identifier: "ar")
+           } else {
+               formatter.locale = Locale(identifier: "en_US")
+           }
         return formatter
     }()
     private lazy var shortDateFormatterForCalender: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEE , MMM d"
-        formatter.locale = Locale(identifier: "en_US_POSIX")
+//        formatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            formatter.locale = Locale(identifier: "ar")
+           } else {
+               formatter.locale = Locale(identifier: "en_US")
+           }
         return formatter
     }()
     
@@ -245,7 +260,6 @@ class LiveRequestListManagementViewController: UIViewController {
         } else {
             liveRequestTimeSlotTableViewHieghtConstriant.constant = 150
         }
-        
     }
     
     func updateLiveRequestTableHeight() {
@@ -255,16 +269,13 @@ class LiveRequestListManagementViewController: UIViewController {
         } else {
             liveRequestTbleViewHieghtConstarint.constant = 250
         }
-        
     }
     
     func updateTabUI() {
         allLabel.textColor = selectedTab == .new ? .darkBrown : UIColor(hexString: "#C0BBBB")
         allBottomLabel.backgroundColor = selectedTab == .new ? .darkBrown : UIColor(hexString: "#C0BBBB")
-        
         approvedLabel.textColor = selectedTab == .approved ? .darkBrown : UIColor(hexString: "#C0BBBB")
         approvedBottomLabel.backgroundColor = selectedTab == .approved ? .darkBrown : UIColor(hexString: "#C0BBBB")
-        
         rejectedLabel.textColor = selectedTab == .rejected ? .darkBrown : UIColor(hexString: "#C0BBBB")
         rejectedBottomLabel.backgroundColor = selectedTab == .rejected ? .darkBrown : UIColor(hexString: "#C0BBBB")
     }
@@ -281,12 +292,10 @@ class LiveRequestListManagementViewController: UIViewController {
         assignButtonView.isHidden = !(isShow && hasActionPermission)
         paginationBottomView.isHidden = isShow
         liveRequestTimeslotISSelcted = isShow
-        
         if isShow {
             selectTodayDate()
         }
     }
-    
     
     private func updateSelectedDateLabel(date: Date) {
         let calendar = Calendar.current
@@ -299,32 +308,33 @@ class LiveRequestListManagementViewController: UIViewController {
         dateLabelInCustomCalender.text = shortDateFormatterForCalender.string(from: date)
     }
     
-    
     private func selectTodayDate() {
         let today = Calendar.current.startOfDay(for: Date())
         viewCalendar.select(today)
         viewCalendar.setCurrentPage(today, animated: false)
         dateAndYearLabel.text = monthYearFormatter.string(from: today)
-        
         selectedDateString = apiDateFormatter.string(from: today)
         updateSelectedDateLabel(date: today)
         // Fetch with default date + country
         viewModel.fetchTimeSlotsIfPossible()
-        
     }
-    
-    
     
     private func configureCalendar() {
         viewCalendar.delegate = self
         viewCalendar.dataSource = self
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            viewCalendar.locale = Locale(identifier: "ar")
+        } else {
+            viewCalendar.locale = Locale(identifier: "en")
+        }
         
-        // Register custom gradient cell
+        viewCalendar.semanticContentAttribute = .forceLeftToRight
+        viewCalendar.reloadData()
+        
         viewCalendar.register(
             GradientCalendarCell.self,
             forCellReuseIdentifier: "GradientCalendarCell"
         )
-        
         // Disable default selection color
         viewCalendar.appearance.selectionColor = .clear
         viewCalendar.appearance.titleSelectionColor = .white
@@ -472,14 +482,19 @@ extension LiveRequestListManagementViewController: UITableViewDelegate, UITableV
         }else if tableView == countryTableView {
             let data = viewModel.countryListData[indexPath.row]
             selectedCountryIndex = data.id ?? 0
-            dropdownCountryLabel.text = data.name
+//            dropdownCountryLabel.text = data.name
+            if AppLanguageManager.shared.currentLanguage == .ar {
+                dropdownCountryLabel.text = data.nameAr
+                selectedCountryLabel.text = data.nameAr
+            }else {
+                dropdownCountryLabel.text = data.name
+                selectedCountryLabel.text = data.name
+            }
             dropDownCountryFlagEmoji.text = data.flag
-            selectedCountryLabel.text = data.name
-            
+//            selectedCountryLabel.text = data.name
             countryTableView.reloadData()
             selectedCountryView.isHidden = false
             countryDropDownView.isHidden = true
-            
             // REFRESH API ON COUNTRY CHANGE
             if slectedLiveRequestType == 1 {
                 viewModel.fetchTimeSlotsIfPossible()
@@ -492,11 +507,13 @@ extension LiveRequestListManagementViewController: UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.semanticContentAttribute = .forceLeftToRight
+        cell.textLabel?.semanticContentAttribute = .forceLeftToRight
+        cell.textLabel?.textAlignment = .center
         if tableView == countryTableView {
             viewWillLayoutSubviews()
         }
     }
-    
 }
 
 extension LiveRequestListManagementViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {

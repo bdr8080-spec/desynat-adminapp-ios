@@ -63,15 +63,20 @@ class PromocodeFilterViewController: UIViewController {
     
     @IBAction func countryDidTapped(_ sender: UIButton) {
         let countryNames = viewModel.countryListData.map { country -> String in
-            let name = country.name ?? ""
+            let name = AppLanguageManager.shared.currentLanguage == .en ? country.name : country.nameAr ?? ""
             let dialCode = country.dialCode ?? ""
             let flag = country.flag ?? "🇰🇼"
-            return "\(flag)  \(name) (\(dialCode))"
+            return "\(flag)  \(name ?? "") (\(dialCode))"
         }
         
         kSharedAppDelegate.dropDown(dataSource: countryNames, anchorView: sender) { index, item in
             let selectedCountry = self.viewModel.countryListData[index]
-            self.countryLabel.text = selectedCountry.name
+            if AppLanguageManager.shared.currentLanguage == .en {
+                self.countryLabel.text = selectedCountry.name
+            }else {
+                self.countryLabel.text = selectedCountry.nameAr
+            }
+//            self.countryLabel.text = selectedCountry.name
             self.countryCode = selectedCountry.id ?? 0
         }
     }
@@ -87,9 +92,13 @@ class PromocodeFilterViewController: UIViewController {
     private func applyPreselectedData() {
         // Preselect country
         if let id = selectedFilter.countryId,
-           let selectedCountry = viewModel.countryListData.first(where: { $0.id == id }) {
-            
-            countryLabel.text = selectedCountry.name
+           let selectedCountry = viewModel.countryListData.first(where: {  $0.id == id }) {
+            if AppLanguageManager.shared.currentLanguage == .en {
+                self.countryLabel.text = selectedCountry.name
+            }else {
+                self.countryLabel.text = selectedCountry.nameAr
+            }
+//            countryLabel.text = selectedCountry.name
             countryCode = id
         }
         
@@ -105,7 +114,13 @@ extension PromocodeFilterViewController {
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.datePickerMode = .date
         datePicker.backgroundColor = .white
-        
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            datePicker.locale = Locale(identifier: "ar")
+            datePicker.semanticContentAttribute = .forceRightToLeft
+        } else {
+            datePicker.locale = Locale(identifier: "en")
+            datePicker.semanticContentAttribute = .forceLeftToRight
+        }
         // Set minimum date based on allowPastDates
         datePicker.minimumDate = allowPastDates ? nil : Date()  // if false, block past dates
         

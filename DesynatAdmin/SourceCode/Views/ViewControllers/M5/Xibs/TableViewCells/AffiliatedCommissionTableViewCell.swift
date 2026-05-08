@@ -31,7 +31,11 @@ class AffiliatedCommissionTableViewCell: UITableViewCell {
     }
     
     func configData(data: CommissionPercentageModel) {
-        self.titleLabel.text = data.name ?? ""
+        if AppLanguageManager.shared.currentLanguage == .en {
+            self.titleLabel.text = data.name ?? ""
+        }else {
+            self.titleLabel.text = data.nameAr ?? ""
+        }
         self.flagEmojLabel.text = data.flag ?? ""
         commissionLabel.text = "\(CommonUtils.formatPriceStringInputDecimal(data.affiliateCommissionInfo?.commission))"
     }

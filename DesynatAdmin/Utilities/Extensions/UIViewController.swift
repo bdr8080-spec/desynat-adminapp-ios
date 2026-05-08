@@ -101,7 +101,12 @@ extension UIViewController {
         let currentDate = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMM, hh:mm a"
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+//        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            dateFormatter.locale = Locale(identifier: "ar")
+           } else {
+               dateFormatter.locale = Locale(identifier: "en_US")
+           }
         dateFormatter.timeZone = TimeZone(identifier: "Asia/Kolkata")
         return dateFormatter.string(from: currentDate)
     }

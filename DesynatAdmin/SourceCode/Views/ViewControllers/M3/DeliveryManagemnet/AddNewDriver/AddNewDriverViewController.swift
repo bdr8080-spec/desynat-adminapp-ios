@@ -177,13 +177,18 @@ class AddNewDriverViewController: UIViewController {
     
     @IBAction func selectZoneDidTapped(_ sender: UIButton) {
         let zoneNames = viewModel.zoneListData.map { country -> String in
-            let name = country.nameEnglish ?? ""
+            let name = AppLanguageManager.shared.currentLanguage == .en ? country.nameEnglish ?? "" : country.nameArabic ?? ""
             return "\(name)"
         }
         
         kSharedAppDelegate.dropDown(dataSource: zoneNames, anchorView: sender) { index, item in
             let selectedCountry = self.viewModel.zoneListData[index]
-            self.zoneTF.text = selectedCountry.nameEnglish
+            if AppLanguageManager.shared.currentLanguage == .en {
+                self.zoneTF.text = selectedCountry.nameEnglish
+            }else {
+                self.zoneTF.text = selectedCountry.nameArabic
+            }
+//            self.zoneTF.text = selectedCountry.nameEnglish
             self.zoneId = selectedCountry.id
         }
     }

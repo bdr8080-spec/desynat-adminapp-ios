@@ -38,7 +38,7 @@ class CMSTermsConditionViewController: UIViewController {
     private lazy var viewModel = CMSTermsConditionViewModel(hostVC: self)
     private var selectedCms: CmsArray = .termsAndCondition {
         didSet {
-            cmsTF.text = selectedCms.rawValue
+            cmsTF.text = selectedCms.rawValue.localiz()
             cmsTableView.reloadData()
         }
     }

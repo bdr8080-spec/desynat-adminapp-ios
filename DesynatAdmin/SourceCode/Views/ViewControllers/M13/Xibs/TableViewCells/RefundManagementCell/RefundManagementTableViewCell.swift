@@ -76,7 +76,11 @@ class RefundManagementTableViewCell: UITableViewCell {
         cancelledReturnedOnDateLabel.text = cancelledReturnedDate
         totalAmountLabel.text = CommonUtils.formatPriceStringInput(data?.order?.totalAmount)
         sellerNameLabel.text = "\(data?.productDetails?.sellerDetails?.firstName ?? "") \(data?.productDetails?.sellerDetails?.lastName ?? "")"
-        countryNameLabel.text = data?.productDetails?.store?.countryInfo?.name
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            countryNameLabel.text = data?.productDetails?.store?.countryInfo?.nameAr
+        }else {
+            countryNameLabel.text = data?.productDetails?.store?.countryInfo?.name
+        }
         rejectedReasonLabel.text = data?.cancelReason ?? data?.returnReason ?? data?.exchangeReason ?? ""
         statusLabel.text = "Pending".localiz()
     }
@@ -88,7 +92,12 @@ class RefundManagementTableViewCell: UITableViewCell {
             return nil
         }
         let outputFormatter = DateFormatter()
-        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
+//        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            outputFormatter.locale = Locale(identifier: "ar")
+           } else {
+               outputFormatter.locale = Locale(identifier: "en_US")
+           }
         outputFormatter.timeZone = TimeZone.current   // ✅ LOCAL TIME
         outputFormatter.dateFormat = "dd/MM/yyyy"
         return outputFormatter.string(from: date)

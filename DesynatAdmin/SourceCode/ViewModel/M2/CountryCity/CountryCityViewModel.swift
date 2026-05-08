@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreLocation
+
 struct CitiesInfo {
     var id:String = UUID().uuidString
     var name:String = ""

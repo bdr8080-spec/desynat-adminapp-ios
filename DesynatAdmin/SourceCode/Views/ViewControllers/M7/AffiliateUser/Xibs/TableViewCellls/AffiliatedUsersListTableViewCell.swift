@@ -77,7 +77,11 @@ class AffiliatedUsersListTableViewCell: UITableViewCell {
         //        totalOrdersLabek.text = data.or
         //        totalEarningsLabel.text = data.ea
         reasonLabel.text = data.rejectReason
-        countryLabel.text = data.countryDetails?.name
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            countryLabel.text = data.countryDetails?.nameAr
+        }else {
+            countryLabel.text = data.countryDetails?.name
+        }
     }
     
     private func convertISOToDMY(_ isoString: String) -> String? {

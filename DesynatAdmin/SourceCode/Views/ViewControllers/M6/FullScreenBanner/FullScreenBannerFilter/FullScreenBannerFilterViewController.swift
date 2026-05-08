@@ -91,7 +91,7 @@ class FullScreenBannerFilterViewController: UIViewController {
     
     @IBAction func countryDidTapped(_ sender: UIButton) {
         let countryNames = viewModel.countryListData.map { country -> String in
-            let name = country.name ?? ""
+            let name = AppLanguageManager.shared.currentLanguage == .en ? country.name ?? "" : country.nameAr ?? ""
             let dialCode = country.dialCode ?? ""
             let flag = country.flag1 ?? "🇰🇼"
             return "\(flag)  \(name) (\(dialCode))"
@@ -99,8 +99,15 @@ class FullScreenBannerFilterViewController: UIViewController {
         
         kSharedAppDelegate.dropDown(dataSource: countryNames, anchorView: sender) { index, item in
             let selectedCountry = self.viewModel.countryListData[index]
-            self.countryLabel.text = selectedCountry.name
-            self.countryName = selectedCountry.name ?? ""
+            if AppLanguageManager.shared.currentLanguage == .en {
+                self.countryName = selectedCountry.name ?? ""
+                self.countryLabel.text = selectedCountry.name ?? ""
+            }else {
+                self.countryName = selectedCountry.nameAr ?? ""
+                self.countryLabel.text = selectedCountry.nameAr
+            }
+//            self.countryLabel.text = selectedCountry.name
+//            self.countryName = selectedCountry.name ?? ""
         }
     }
     
@@ -115,9 +122,13 @@ class FullScreenBannerFilterViewController: UIViewController {
     private func applyPreselectedData() {
         // Preselect country
         if let id = selectedFilter.countryName,
-           let selectedCountry = viewModel.countryListData.first(where: { $0.name == id }) {
-            
-            countryLabel.text = selectedCountry.name
+           let selectedCountry = viewModel.countryListData.first(where: { AppLanguageManager.shared.currentLanguage == .en ? $0.name == id : $0.name == id }) {
+            if AppLanguageManager.shared.currentLanguage == .en {
+                self.countryLabel.text = selectedCountry.name ?? ""
+            }else {
+                self.countryLabel.text = selectedCountry.nameAr
+            }
+//            countryLabel.text = selectedCountry.name
             countryName = id
         }
         
@@ -174,7 +185,13 @@ extension FullScreenBannerFilterViewController {
         datePicker.datePickerMode = .date
         datePicker.minimumDate = nil
         datePicker.backgroundColor = .white
-        
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            datePicker.locale = Locale(identifier: "ar")
+            datePicker.semanticContentAttribute = .forceRightToLeft
+        } else {
+            datePicker.locale = Locale(identifier: "en")
+            datePicker.semanticContentAttribute = .forceLeftToRight
+        }
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         

@@ -26,7 +26,11 @@ class CountryTableViewCell: ResuableTableCell {
     }
     
     func configData(data: GetCountryDataModel,isSelected:Bool) {
-        countryLabel.text = data.name
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            countryLabel.text = data.nameAr
+        }else {
+            countryLabel.text = data.name
+        }
         countryFlagEmojiLabel.text = data.flag
         self.selectedImageView.image = UIImage(named: isSelected ? "radioSelected" : "radioUnselected")
     }

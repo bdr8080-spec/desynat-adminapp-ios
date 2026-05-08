@@ -64,9 +64,15 @@ class PlansTableViewCell: ResuableTableCell {
 
     
     func setData(_ data:PlanInfo) {
-        self.lblPlanName.text = data.planNameEnglish
-        self.lblPrice.text = "KD \(data.price.clean)"
-        self.lblDuration.text = "for \(data.duration.clean) \(data.durationType.title)"
+        if AppLanguageManager.shared.currentLanguage == .en {
+            self.lblPlanName.text = data.planNameEnglish
+        }else {
+            self.lblPlanName.text = data.planNameArabic
+        }
+        let text = "KD".localiz()
+        self.lblPrice.text = "\(text) \(data.price.clean)"
+        let text1 = "for".localiz()
+        self.lblDuration.text = "\(text1) \(data.duration.clean) \(data.durationType.title)"
         self.stackFeature.arrangedSubviews.forEach({$0.removeFromSuperview()})
         let productText = data.productType ? "\(data.noOfProducts)" : "Unlimited".localiz()
         self.stackFeature.addArrangedSubview(

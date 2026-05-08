@@ -52,7 +52,6 @@ class GiftCardDetailsViewController: UIViewController {
         viewModel.upadteCardStatus(param: ["giftCard_id": card.id ?? 0])
     }
     
-    
     @IBAction func deleteDidTapped(_ sender: Any) {
         guard let gift = giftsListData else { return }
         self.showConfirmationAlert(msg: "Are you sure you want to delete this gift card category?".localiz()){ [weak self] in
@@ -63,7 +62,11 @@ class GiftCardDetailsViewController: UIViewController {
     
     //MARK: Function's declaration
     func bindData() {
-        cardNameLabel.text = giftsListData?.nameEnglish
+        if AppLanguageManager.shared.currentLanguage == .en {
+            cardNameLabel.text = giftsListData?.nameEnglish
+        }else {
+            cardNameLabel.text = giftsListData?.nameArabic
+        }
         if let imageUrlString = giftsListData?.image,
            let url = URL(string: imageUrlString) {
             cardImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"))

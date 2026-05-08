@@ -39,7 +39,7 @@ class ShowViewController: UIViewController {
     // MARK: - Button's Action
     @IBAction func handleChooseCountry(_ sender: UIButton) {
         let countryNames = viewModel.countryListData.map { country -> String in
-            let name = country.name ?? ""
+            let name = AppLanguageManager.shared.currentLanguage == .en ? country.name ?? "" : country.nameAr ?? ""
             let dialCode = country.dialCode ?? ""
             let flag = country.flag ?? "🇰🇼"
             return "\(flag)  \(name) (\(dialCode))"
@@ -47,7 +47,12 @@ class ShowViewController: UIViewController {
         
         kSharedAppDelegate.dropDown(dataSource: countryNames, anchorView: sender) { index, item in
             let selectedCountry = self.viewModel.countryListData[index]
-            self.countryLabel.text = selectedCountry.name
+            if AppLanguageManager.shared.currentLanguage == .en {
+                self.countryLabel.text = selectedCountry.name
+            }else {
+                self.countryLabel.text = selectedCountry.nameAr
+            }
+//            self.countryLabel.text = selectedCountry.name
             self.viewModel.adminAllLiveRequest(countryId: selectedCountry.id ?? 0)
         }
     }

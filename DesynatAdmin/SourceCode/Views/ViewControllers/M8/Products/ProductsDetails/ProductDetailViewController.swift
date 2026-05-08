@@ -146,7 +146,12 @@ class ProductDetailViewController: UIViewController {
     //MARK: Function's declaration
     func formatDateString(_ isoDateString: String) -> String {
         let inputFormatter = DateFormatter()
-        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
+//        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            inputFormatter.locale = Locale(identifier: "ar")
+           } else {
+               inputFormatter.locale = Locale(identifier: "en_US")
+           }
         inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'"
         inputFormatter.timeZone = TimeZone(secondsFromGMT: 0)
         guard let date = inputFormatter.date(from: isoDateString) else {

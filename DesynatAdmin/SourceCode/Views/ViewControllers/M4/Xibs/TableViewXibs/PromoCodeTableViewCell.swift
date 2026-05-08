@@ -15,13 +15,15 @@ class PromoCodeTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
     }
     
     func configureData(data: PromocodeList) {
         titleLabel.text = "\("Flat".localiz()) \(data.discountPercent ?? "")% \("OFF".localiz())" //data.nameEnglish
         deiscountLabel.text = "\("Flat".localiz()) \(data.discountPercent ?? "")% \("Off On minimum order".localiz()) \(data.minOrderValue ?? "")"
-        descriptionLabel.text = data.descriptionEnglish ?? ""
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            descriptionLabel.text = data.descriptionArabic ?? ""
+        }else {
+            descriptionLabel.text = data.descriptionEnglish ?? ""
+        }
     }
-    
 }

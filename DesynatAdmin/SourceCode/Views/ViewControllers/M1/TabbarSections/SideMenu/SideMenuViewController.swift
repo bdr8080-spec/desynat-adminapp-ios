@@ -45,7 +45,6 @@ class SideMenuViewController: UIViewController {
         SideMenuModel(title: "Notifications Management", image: "notificationBell"),
         SideMenuModel(title: "CMS", image: "cms"),
         SideMenuModel(title: "Ticket Management", image: "ticketManagemnt"),
-        
         SideMenuModel(title: "Sub Admin", image: "subadmin"),
         SideMenuModel(title: "Refund Management", image: "refundManagemnt"),
         SideMenuModel(title: "Seller Payouts", image: "sellerPayout"),

@@ -63,15 +63,19 @@ class UserListFilterViewController: UIViewController {
     
     @IBAction func countryDidTapped(_ sender: UIButton) {
         let countryNames = viewModel.countryListData.map { country -> String in
-            let name = country.name ?? ""
+            let name = AppLanguageManager.shared.currentLanguage == .en ? country.name : country.nameAr ?? ""
             let dialCode = country.dialCode ?? ""
             let flag = country.flag ?? "🇰🇼"
-            return "\(flag)  \(name) (\(dialCode))"
+            return "\(flag)  \(name ?? "") (\(dialCode))"
         }
         
         kSharedAppDelegate.dropDown(dataSource: countryNames, anchorView: sender) { index, item in
             let selectedCountry = self.viewModel.countryListData[index]
-            self.countryLabel.text = selectedCountry.name
+            if AppLanguageManager.shared.currentLanguage == .en {
+                self.countryLabel.text = selectedCountry.name
+            }else {
+                self.countryLabel.text = selectedCountry.nameAr
+            }
             self.countryCode = selectedCountry.id ?? 0
         }
     }
@@ -88,8 +92,12 @@ class UserListFilterViewController: UIViewController {
         // Preselect country
         if let id = selectedFilter.countryId,
            let selectedCountry = viewModel.countryListData.first(where: { $0.id == id }) {
-            
-            countryLabel.text = selectedCountry.name
+            if AppLanguageManager.shared.currentLanguage == .en {
+                self.countryLabel.text = selectedCountry.name
+            }else {
+                self.countryLabel.text = selectedCountry.nameAr
+            }
+//            countryLabel.text = selectedCountry.name
             countryCode = id
         }
         
@@ -107,7 +115,13 @@ extension UserListFilterViewController {
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.datePickerMode = .date
         datePicker.backgroundColor = .white
-        
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            datePicker.locale = Locale(identifier: "ar")
+            datePicker.semanticContentAttribute = .forceRightToLeft
+        } else {
+            datePicker.locale = Locale(identifier: "en")
+            datePicker.semanticContentAttribute = .forceLeftToRight
+        }
         // 🔥 Key Change: Respect the disableFutureDateSelection flag
         if disbaleFutureDateSelection {
             datePicker.maximumDate = Date()   // Disable future dates

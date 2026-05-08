@@ -24,7 +24,11 @@ class GiftCardsTableViewCell: UITableViewCell {
     }
     
     func configData(data: GiftCardsList?) {
-        titleLabel.text = data?.nameEnglish
+        if AppLanguageManager.shared.currentLanguage == .en {
+            titleLabel.text = data?.nameEnglish
+        }else {
+            titleLabel.text = data?.nameArabic
+        }
         if let imageUrlString = data?.image,
            let url = URL(string: imageUrlString) {
             mainImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray

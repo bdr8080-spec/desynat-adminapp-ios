@@ -158,7 +158,6 @@ class AddPlanViewController: UIViewController {
             self.enterNumberOfMonths.text = ""
         }
         self.viewModel.setIsFreeMonths(sender.tag == 0)
-        
     }
     
     @IBAction func handleAdd(_ sender: Any) {
@@ -193,7 +192,12 @@ class AddPlanViewController: UIViewController {
     //MARK: Function's declaration
     func refreshCountrySelection() {
         if let countryListData = viewModel.subscriptionInfo.country {
-            self.lblSelectedCountry.text = String.getString(countryListData.name)
+            if AppLanguageManager.shared.currentLanguage == .ar {
+                self.lblSelectedCountry.text = String.getString(countryListData.nameAr)
+            } else {
+                self.lblSelectedCountry.text = String.getString(countryListData.name)
+            }
+            
             self.lnlFlag.text = String.getString(countryListData.flag)
         } else {
             self.lblSelectedCountry.text = ""
@@ -226,7 +230,6 @@ class AddPlanViewController: UIViewController {
         }
         self.lblDurationTyp.text = self.viewModel.subscriptionInfo.durationType.title
         self.lblNewDurationType.text = self.viewModel.subscriptionInfo.NewdurationType.title
-        
     }
     
     func setData() {

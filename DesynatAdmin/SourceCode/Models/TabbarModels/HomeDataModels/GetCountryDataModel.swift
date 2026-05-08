@@ -10,7 +10,7 @@ import Foundation
 // MARK: - GetCountryDataModel
 struct GetCountryDataModel: Codable {
     let id: Int?
-    let name, isoCode, currencyName, currencyCode: String?
+    let name,nameAr, isoCode, currencyName, currencyCode: String?
     let currencySymbol, dialCode, flag, exchangeRateToKwd: String?
     let createdAt, updatedAt: String?
     
@@ -25,6 +25,7 @@ struct GetCountryDataModel: Codable {
         case exchangeRateToKwd = "exchange_rate_to_kwd"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
+        case nameAr = "name_ar"
     }
 }
 

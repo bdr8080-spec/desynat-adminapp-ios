@@ -12,7 +12,12 @@ public struct RFC2822Strategy: DateValueCodableStrategy {
     private static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+//        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            dateFormatter.locale = Locale(identifier: "ar")
+           } else {
+               dateFormatter.locale = Locale(identifier: "en_US")
+           }
         dateFormatter.dateFormat = "EEE, d MMM y HH:mm:ss zzz"
         return dateFormatter
     }()

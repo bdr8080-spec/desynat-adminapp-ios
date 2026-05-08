@@ -84,21 +84,17 @@ class ProductFiltersViewController: UIViewController {
     // MARK: - Subcategory API
     func getAllsubcategoryApi(id: Int?) {
         let param: [String: Any] = ["category_id": id ?? 0]
-        
         WebService.sharedInstance.getAllsubcategory(param: param) { [weak self] list in
             guard let self = self else { return }
-            
             DispatchQueue.main.async {
                 self.subCategoriesList = list.data ?? []
-                
                 let subCategoryOptions = self.subCategoriesList.map {
                     FilterOption(
                         id: "\($0.id ?? 0)",
-                        title: $0.nameEnglish ?? "",
+                        title: AppLanguageManager.shared.currentLanguage == .ar ? $0.nameArabic ?? "" : $0.nameEnglish ?? "",
                         isSelected: self.selectedSubCategoryIDs.contains("\($0.id ?? 0)")
                     )
                 }
-                
                 if let index = self.filtersOptions.firstIndex(where: { $0.type == .subCategory }) {
                     self.filtersOptions[index].options = subCategoryOptions
                 }
@@ -110,62 +106,52 @@ class ProductFiltersViewController: UIViewController {
     
     // MARK: - Prepare Filters
     func prepareFilters() {
-        
         let countryOptions = countriesList.map {
             FilterOption(
                 id: "\($0.id ?? 0)",
-                title: $0.name ?? "",
+                title: AppLanguageManager.shared.currentLanguage == .ar ? $0.nameAr ?? "" : $0.name ?? "",
                 isSelected: selectedCountryIDs.contains("\($0.id ?? 0)")
             )
         }
-        
         let categoryOptions = categoriesList.map {
             FilterOption(
                 id: "\($0.id ?? 0)",
-                title: $0.name ?? "",
+                title: AppLanguageManager.shared.currentLanguage == .ar ? $0.nameAr ?? "" : $0.name ?? "",
                 isSelected: selectedCategoryIDs == "\($0.id ?? 0)"
             )
         }
-        
         let subCategoryOptions = subCategoriesList.map {
             FilterOption(
                 id: "\($0.id ?? 0)",
-                title: $0.nameEnglish ?? "",
+                title: AppLanguageManager.shared.currentLanguage == .ar ? $0.nameArabic ?? "" : $0.nameEnglish ?? "",
                 isSelected: selectedSubCategoryIDs.contains("\($0.id ?? 0)")
             )
         }
-        
         let brandOptions = brandsList.map {
             FilterOption(
                 id: "\($0.id ?? 0)",
-                title: $0.nameEnglish ?? "",
+                title: AppLanguageManager.shared.currentLanguage == .ar ? $0.nameArabic ?? "" : $0.nameEnglish ?? "",
                 isSelected: selectedBrandIDs.contains("\($0.id ?? 0)")
             )
         }
-        
         filtersOptions = [
-            FilterSection(type: .country, header: "Country", options: countryOptions),
-            FilterSection(type: .category, header: "Category", options: categoryOptions),
-            FilterSection(type: .subCategory, header: "Sub-category", options: subCategoryOptions),
-            FilterSection(type: .brand, header: "Brand", options: brandOptions)
+            FilterSection(type: .country, header: "Country".localiz(), options: countryOptions),
+            FilterSection(type: .category, header: "Category".localiz(), options: categoryOptions),
+            FilterSection(type: .subCategory, header: "Sub-category".localiz(), options: subCategoryOptions),
+            FilterSection(type: .brand, header: "Brand".localiz(), options: brandOptions)
         ]
-        
         filterTableView.reloadData()
     }
     
     // MARK: - Register Table
     func registerXib() {
-        
         filterTableView.delegate = self
         filterTableView.dataSource = self
-        
         filterTableView.registerCellFromNib(cellID: "FilterOptionsTableViewCell")
-        
         filterTableView.register(
             UINib(nibName: "FilterHeaderTableViewCell", bundle: nil),
             forHeaderFooterViewReuseIdentifier: "FilterHeaderTableViewCell"
         )
-        
         filterTableView.showsVerticalScrollIndicator = false
     }
 }
@@ -183,15 +169,12 @@ extension ProductFiltersViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView,
                    viewForHeaderInSection section: Int) -> UIView? {
-        
         let header = tableView.dequeueReusableHeaderFooterView(
             withIdentifier: "FilterHeaderTableViewCell"
         ) as! FilterHeaderTableViewCell
-        
         let sectionData = visibleSections[section]
         header.titleLabel.text = sectionData.header
         header.descriptionLabel.isHidden = (sectionData.type != .brand)
-        
         return header
     }
     
@@ -213,17 +196,13 @@ extension ProductFiltersViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(
             withIdentifier: "FilterOptionsTableViewCell",
             for: indexPath
         ) as! FilterOptionsTableViewCell
-        
         let section = visibleSections[indexPath.section]
         let option = section.options[indexPath.row]
-        
         cell.titleLabel.text = option.title
-        
         if section.type == .category {
             cell.selectedImageView.image = option.isSelected ? .radioSelected : .radioUnselected
         } else {
@@ -233,15 +212,12 @@ extension ProductFiltersViewController: UITableViewDelegate, UITableViewDataSour
                 : option.unselectedImage
             )
         }
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
-        
         let sectionType = visibleSections[indexPath.section].type
-        
         switch sectionType {
             
             // MARK: - Country (Single + Toggle)

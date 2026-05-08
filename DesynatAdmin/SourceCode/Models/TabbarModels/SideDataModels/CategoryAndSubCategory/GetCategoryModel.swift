@@ -15,11 +15,13 @@ struct GetCategoryModel: Codable {
     var status: Int?
     let colorCode: String?
     let createdAt, updatedAt: String?
+    let nameAr:String?
 
     enum CodingKeys: String, CodingKey {
         case id, name, description, image, status
         case createdAt = "created_at"
         case updatedAt = "updated_at"
         case colorCode = "color_code"
+        case nameAr = "name_ar"
     }
 }
