@@ -73,9 +73,21 @@ class LiveRequestListManagementViewController: UIViewController {
     var selectedDateString: String? = ""
     var hasActionPermission: Bool = false
     
+//    lazy private var monthYearFormatter: DateFormatter = {
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "MMMM yyyy"   // November 2025
+//        return formatter
+//    }()
     lazy private var monthYearFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM yyyy"   // November 2025
+        formatter.dateFormat = "MMMM yyyy"   // e.g. May 2026 or مايو ٢٠٢٦
+        
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            formatter.locale = Locale(identifier: "ar")   // Important for Arabic names
+        } else {
+            formatter.locale = Locale(identifier: "en_US_POSIX")
+        }
+        
         return formatter
     }()
     private lazy var apiDateFormatter: DateFormatter = {
@@ -124,6 +136,11 @@ class LiveRequestListManagementViewController: UIViewController {
         slectedLiveRequestType = 1
         liveRequestTbleViewHieghtConstarint.constant = 0
         selectCountryView.isHidden = false
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.viewCalendar.reloadData()
+                self.viewCalendar.layoutIfNeeded()
+            }
     }
     
     override func viewWillLayoutSubviews() {
@@ -252,6 +269,28 @@ class LiveRequestListManagementViewController: UIViewController {
         viewModel.goToPreviousPage()
     }
     
+    @IBAction func monthYearDidTapped(_ sender: Any) {
+        let vc = MonthYearPickerViewController()
+           vc.modalPresentationStyle = .pageSheet
+
+        if let sheet = vc.sheetPresentationController {
+            sheet.detents = [
+                .custom { _ in 280 } // or 220–250 for compact layout
+            ]
+            sheet.prefersGrabberVisible = true
+            sheet.prefersEdgeAttachedInCompactHeight = true
+            sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
+        }
+           vc.onDateSelected = { [weak self] selectedDate in
+               guard let self = self else { return }
+
+               self.viewCalendar.setCurrentPage(selectedDate, animated: true)
+               self.dateAndYearLabel.text = self.monthYearFormatter.string(from: selectedDate)
+           }
+
+           present(vc, animated: true)
+    }
+    
     //MARK: Function's declaration
     func updateTimeSlotTableHeight() {
         timeSlotsTableView.layoutIfNeeded()
@@ -353,6 +392,47 @@ class LiveRequestListManagementViewController: UIViewController {
         
         dateAndYearLabel.text = monthYearFormatter.string(from: viewCalendar.currentPage)
     }
+    
+//    private func configureCalendar() {
+//        viewCalendar.delegate = self
+//        viewCalendar.dataSource = self
+//        
+//        // ==================== STRONG RTL FIX ====================
+//        if AppLanguageManager.shared.currentLanguage == .ar {
+//            viewCalendar.locale = Locale(identifier: "ar")     // Better than "ar"
+//            viewCalendar.semanticContentAttribute = .forceRightToLeft
+//            viewCalendar.firstWeekday = 7                          // Sunday start for Arabic (or 6 for Monday)
+//            
+//            // Force direction on calendar itself
+//            viewCalendar.semanticContentAttribute = .forceRightToLeft
+//        } else {
+//            viewCalendar.locale = Locale(identifier: "en_US_POSIX")
+//            viewCalendar.semanticContentAttribute = .forceLeftToRight
+//            viewCalendar.firstWeekday = 1                          // Sunday start for English
+//        }
+//        // ======================================================
+//        
+//        viewCalendar.register(GradientCalendarCell.self, forCellReuseIdentifier: "GradientCalendarCell")
+//        
+//        viewCalendar.appearance.selectionColor = .clear
+//        viewCalendar.appearance.titleSelectionColor = .white
+//        viewCalendar.appearance.todayColor = .clear
+//        viewCalendar.appearance.titleTodayColor = .black
+//        
+//        viewCalendar.appearance.weekdayFont = UIFont.systemFont(ofSize: 15, weight: .semibold)
+//        viewCalendar.appearance.weekdayTextColor = .black
+//        viewCalendar.appearance.headerTitleColor = .black
+//        viewCalendar.appearance.headerTitleFont = UIFont.systemFont(ofSize: 18, weight: .bold)
+//        
+//        viewCalendar.appearance.caseOptions = [.weekdayUsesSingleUpperCase]
+//        viewCalendar.appearance.headerMinimumDissolvedAlpha = 0.0
+//        viewCalendar.headerHeight = 0
+//        
+//        // Force refresh
+//        viewCalendar.reloadData()
+//        viewCalendar.setNeedsLayout()
+//        viewCalendar.layoutIfNeeded()
+//    }
     
     private func toggleReasonStatus(at indexPath: IndexPath) {
         var category = viewModel.slectedTimeSlot[indexPath.row]

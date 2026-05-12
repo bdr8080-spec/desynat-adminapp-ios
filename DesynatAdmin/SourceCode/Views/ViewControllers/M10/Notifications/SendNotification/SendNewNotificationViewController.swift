@@ -39,6 +39,8 @@ class SendNewNotificationViewController: UIViewController {
             .forEach { $0.delegate = self }
         [decriptionInEnglishTF, decriptionInArabicTF]
             .forEach { $0.delegate = self }
+        decriptionInEnglishTF.placeholderTextView =  "Enter Notification Description".localiz()
+        decriptionInArabicTF.placeholderTextView =  "Enter Notification Description".localiz()
     }
     
     // MARK: - Button's Action
@@ -220,14 +222,14 @@ extension SendNewNotificationViewController: UITextFieldDelegate {
         
         if textField == titleInEnglishTF {
             if !isAllowedEnglish(currentText) {
-                CommonUtils.showToast(message: "Please switch to English keyboard")
+                CommonUtils.showToast(message: "Please switch to English keyboard".localiz())
                 return false
             }
         }
         
         if textField == titleInArabicTF {
             if !isAllowedArabic(currentText) {
-                CommonUtils.showToast(message: "Please switch to Arabic keyboard")
+                CommonUtils.showToast(message: "Please switch to Arabic keyboard".localiz())
                 return false
             }
             
@@ -264,6 +266,31 @@ extension SendNewNotificationViewController: UITextFieldDelegate {
 //MARK: UITextViewDelegate Methods
 extension SendNewNotificationViewController: UITextViewDelegate {
     
+    func textViewDidChange(_ textView: UITextView) {
+        
+        // English Description
+        if textView == decriptionInEnglishTF {
+            
+            if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                decriptionInEnglishTF.placeholderTextView =
+                "Enter Notification Description".localiz()
+            } else {
+                decriptionInEnglishTF.placeholderTextView = ""
+            }
+        }
+        
+        // Arabic Description
+        if textView == decriptionInArabicTF {
+            
+            if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                decriptionInArabicTF.placeholderTextView =
+                "Enter Notification Description".localiz()
+            } else {
+                decriptionInArabicTF.placeholderTextView = ""
+            }
+        }
+    }
+    
     func textView(_ textView: UITextView,
                   shouldChangeTextIn range: NSRange,
                   replacementText text: String) -> Bool {
@@ -278,7 +305,7 @@ extension SendNewNotificationViewController: UITextViewDelegate {
         if textView == decriptionInEnglishTF {
             decriptionInEnglishTF.placeholderTextView = ""
             if !isAllowedEnglish(currentText) {
-                CommonUtils.showToast(message: "Please switch to English keyboard")
+                CommonUtils.showToast(message: "Please switch to English keyboard".localiz())
                 return false
             }
         }
@@ -287,7 +314,7 @@ extension SendNewNotificationViewController: UITextViewDelegate {
         if textView == decriptionInArabicTF {
             decriptionInArabicTF.placeholderTextView = ""
             if !isAllowedArabic(currentText) {
-                CommonUtils.showToast(message: "Please switch to Arabic keyboard")
+                CommonUtils.showToast(message: "Please switch to Arabic keyboard".localiz())
                 return false
             }
             

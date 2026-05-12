@@ -119,12 +119,13 @@ struct PermissionDetail: Codable {
 // MARK: - ModuleDetails
 struct ModuleDetails: Codable {
     let id: Int?
-    let name,icon, displayName, createdAt, updatedAt: String?
+    let name,icon, displayName, displayNameAr, createdAt, updatedAt: String?
     
     enum CodingKeys: String, CodingKey {
         case id, name, icon
         case displayName = "display_name"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
+        case displayNameAr = "display_name_ar"
     }
 }

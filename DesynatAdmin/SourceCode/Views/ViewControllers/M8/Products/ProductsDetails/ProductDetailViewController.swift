@@ -166,15 +166,30 @@ class ProductDetailViewController: UIViewController {
     
     func configData(data: ProductsList) {
         // MARK: - Basic Product info
-        if data.brand?.nameEnglish == "Other" {
-            brandTitleLabel.text = data.otherEn
+        
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            productNameLabel.text = "\(data.productNameAr ?? "-") (بواسطة \(data.sellerDetails?.firstName ?? "") \(data.sellerDetails?.lastName ?? ""))"
+            if data.brand?.nameEnglish == "Other" {
+                brandTitleLabel.text = data.otherAr
+            } else {
+                brandTitleLabel.text = data.brand?.nameArabic
+            }
+            brandCategoryLabel.text = data.productNameAr ?? "-"//data.category?.name ?? ""
+            descriptionLAbel.text = "\(data.store?.storeName ?? "-") (\(data.category?.nameAr ?? "-"))"//data.productNameEn ?? "-"
         } else {
-            brandTitleLabel.text = data.brand?.nameEnglish
+            productNameLabel.text = "\(data.productNameEn ?? "-") (by \(data.sellerDetails?.firstName ?? "") \(data.sellerDetails?.lastName ?? ""))"
+            if data.brand?.nameEnglish == "Other" {
+                brandTitleLabel.text = data.otherEn
+            } else {
+                brandTitleLabel.text = data.brand?.nameEnglish
+            }
+            brandCategoryLabel.text = data.productNameEn ?? "-"//data.category?.name ?? ""
+            descriptionLAbel.text = "\(data.store?.storeName ?? "-") (\(data.category?.name ?? "-"))"//data.productNameEn ?? "-"
         }
-        productNameLabel.text = "\(data.productNameEn ?? "-") (by \(data.sellerDetails?.firstName ?? "") \(data.sellerDetails?.lastName ?? "")"
-        descriptionLAbel.text = "\(data.store?.storeName ?? "-") (\(data.category?.name ?? "-"))"//data.productNameEn ?? "-"
+        
+        
         descriptionLabel.text = data.descriptionEn ?? "-"
-        brandCategoryLabel.text = data.productNameEn ?? "-"//data.category?.name ?? ""
+        
         ratingCountLabel.text = " (\(data.reviewRating ?? "0"))"
         sizeChartUrl = data.uploadSizeChart
         let categoryName = data.category?.name ?? "Women"
@@ -230,7 +245,7 @@ class ProductDetailViewController: UIViewController {
             sellerImageView.image = .userProfile
         }
         sellerNameLabel.text = "\(data.sellerDetails?.firstName ?? "") \(data.sellerDetails?.lastName ?? "")"
-        storeLocationLabel.text = data.store?.countryInfo?.name
+        storeLocationLabel.text = AppLanguageManager.shared.currentLanguage == .ar ? data.store?.countryInfo?.nameAr : data.store?.countryInfo?.name
         storeNameLabel.text = data.store?.storeName
         var uniqueColorsDict: [Int: Color] = [:]
         for variant in productVariants {

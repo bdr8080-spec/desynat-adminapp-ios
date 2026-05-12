@@ -37,6 +37,7 @@ class AddNewStaffViewController: UIViewController {
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var mobileTF: UITextField!
     @IBOutlet weak var selcetdCountryLabel: CustomLabelFont!
+    @IBOutlet weak var changeImageButton: CustomButton!
     
     // MARK: - Variable
 //    var selectedRoleIndex: Int = -1
@@ -61,6 +62,7 @@ class AddNewStaffViewController: UIViewController {
             self.accessModuleTableView.reloadData()
             self.configData()
         }
+        changeImageButton.setTitle("Change Image".localiz(), for: .normal)
     }
     
     override func viewWillLayoutSubviews() {
@@ -257,7 +259,7 @@ extension AddNewStaffViewController: UITableViewDataSource, UITableViewDelegate 
         let module = viewModel.adminModulesListData[indexPath.row]
         let moduleId = module.id ?? 0
         
-        cell.titleView.text = module.displayName ?? ""
+        cell.titleView.text = AppLanguageManager.shared.currentLanguage == .ar ? module.displayNameAr : module.displayName ?? ""
         cell.moduleId = moduleId
         
         // Reset defaults

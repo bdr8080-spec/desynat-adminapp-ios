@@ -52,13 +52,25 @@ class ProductManagementTableViewCell: UITableViewCell {
         }
         self.coloursList = colorsArray
         colorsCollectionView.reloadData()
-        
-        if data?.brand?.nameEnglish == "Other" {
-            productNameLabel.text = data?.otherEn
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            if data?.brand?.nameEnglish == "Other" {
+                productNameLabel.text = data?.otherAr
+            } else {
+                productNameLabel.text = data?.brand?.nameArabic
+            }
+            descriptionLabel.text = data?.productNameAr
+            locationLaebl.text = data?.store?.countryInfo?.nameAr
         } else {
-            productNameLabel.text = data?.brand?.nameEnglish
+            if data?.brand?.nameEnglish == "Other" {
+                productNameLabel.text = data?.otherEn
+            } else {
+                productNameLabel.text = data?.brand?.nameEnglish
+            }
+            descriptionLabel.text = data?.productNameEn
+            locationLaebl.text = data?.store?.countryInfo?.name
         }
-        descriptionLabel.text = data?.productNameEn
+        
+        
         if let imageUrlString = data?.productVariants?.first?.variantImage?.first,
            let url = URL(string: imageUrlString) {
             productImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
@@ -81,7 +93,7 @@ class ProductManagementTableViewCell: UITableViewCell {
             statusButton.setImage(UIImage(named: "toggleOff"), for: .normal)
         }
         
-        locationLaebl.text = data?.store?.countryInfo?.name
+        
     }
     
     func convertDate(_ input: String) -> String {

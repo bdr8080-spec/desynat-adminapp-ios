@@ -28,7 +28,11 @@ class LiveRequestListManagementViewModel {
             self.countryListData = response
             if let first = response.first {
                 hostVC.selectedCountryIndex = first.id ?? 0
-                hostVC.selectedCountryLabel.text = first.name
+                if AppLanguageManager.shared.currentLanguage == .ar {
+                    hostVC.selectedCountryLabel.text = first.nameAr
+                } else {
+                    hostVC.selectedCountryLabel.text = first.name
+                }
             }
             hostVC.countryTableView.reloadData()
             // Initial API call once country is available

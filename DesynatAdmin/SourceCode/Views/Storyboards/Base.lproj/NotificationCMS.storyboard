@@ -4498,16 +4498,16 @@ dolor sit amet, consectetur..</string>
                                     <outlet property="delegate" destination="lth-0N-J2z" id="hrc-tx-rfS"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6F4-KE-kgr">
-                                <rect key="frame" x="313" y="658" width="56" height="56"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RTn-PB-5Lk">
+                                <rect key="frame" x="312" y="667" width="57" height="57"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="dIQ-Id-VQv"/>
-                                    <constraint firstAttribute="width" constant="56" id="slS-go-UYh"/>
+                                    <constraint firstAttribute="width" constant="57" id="QL1-eh-xOq"/>
+                                    <constraint firstAttribute="height" constant="57" id="hh1-Yf-E1W"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="plus"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="plus"/>
                                 <connections>
-                                    <action selector="addDidTapped:" destination="lth-0N-J2z" eventType="touchUpInside" id="T2H-Bc-gLD"/>
+                                    <action selector="addDidTapped:" destination="lth-0N-J2z" eventType="touchUpInside" id="adH-Qd-kjU"/>
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Result found " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FAV-LB-dJh">
@@ -4589,15 +4589,15 @@ dolor sit amet, consectetur..</string>
                             <constraint firstItem="toQ-R7-E5c" firstAttribute="leading" secondItem="9RB-Ni-l1D" secondAttribute="leading" id="Oxk-Uw-Nei"/>
                             <constraint firstItem="qfg-aN-5rr" firstAttribute="leading" secondItem="9RB-Ni-l1D" secondAttribute="leading" id="TUF-po-hDg"/>
                             <constraint firstItem="qfg-aN-5rr" firstAttribute="trailing" secondItem="9RB-Ni-l1D" secondAttribute="trailing" id="TXZ-8W-dwy"/>
-                            <constraint firstItem="6F4-KE-kgr" firstAttribute="trailing" secondItem="Y35-iV-GiG" secondAttribute="trailing" id="VCE-BW-6Ow"/>
                             <constraint firstItem="FAV-LB-dJh" firstAttribute="centerX" secondItem="9RB-Ni-l1D" secondAttribute="centerX" id="X8Q-4N-Y0H"/>
                             <constraint firstItem="C02-1l-HP3" firstAttribute="leading" secondItem="eHh-4a-njf" secondAttribute="leading" id="YFz-sj-Liw"/>
                             <constraint firstItem="yHA-XC-rsi" firstAttribute="top" secondItem="eHh-4a-njf" secondAttribute="bottom" constant="15" id="fJk-mI-UQd"/>
-                            <constraint firstItem="toQ-R7-E5c" firstAttribute="top" secondItem="6F4-KE-kgr" secondAttribute="bottom" constant="30" id="gSd-aF-Dta"/>
+                            <constraint firstItem="RTn-PB-5Lk" firstAttribute="trailing" secondItem="Y35-iV-GiG" secondAttribute="trailing" id="hrb-YL-h4p"/>
                             <constraint firstItem="eHh-4a-njf" firstAttribute="leading" secondItem="9RB-Ni-l1D" secondAttribute="leading" constant="24" id="n5W-Aa-yuN"/>
                             <constraint firstItem="Y35-iV-GiG" firstAttribute="top" secondItem="C02-1l-HP3" secondAttribute="bottom" constant="15" id="qSs-vm-Pos"/>
                             <constraint firstItem="qfg-aN-5rr" firstAttribute="top" secondItem="9RB-Ni-l1D" secondAttribute="top" id="qfd-W7-8DM"/>
                             <constraint firstItem="eHh-4a-njf" firstAttribute="top" secondItem="qfg-aN-5rr" secondAttribute="bottom" constant="15" id="veA-Yh-p4s"/>
+                            <constraint firstItem="toQ-R7-E5c" firstAttribute="top" secondItem="RTn-PB-5Lk" secondAttribute="bottom" constant="20" id="xEy-TK-jZA"/>
                         </constraints>
                     </view>
                     <connections>
@@ -4611,7 +4611,7 @@ dolor sit amet, consectetur..</string>
                         <outlet property="nextButton" destination="u6u-el-Bvs" id="Ts9-63-4Ga"/>
                         <outlet property="noDataFoundLabel" destination="FAV-LB-dJh" id="27H-c6-vgD"/>
                         <outlet property="pageCountLabel" destination="g77-Q4-8Yd" id="esF-IL-lru"/>
-                        <outlet property="plusButton" destination="6F4-KE-kgr" id="B6d-80-Owi"/>
+                        <outlet property="plusButton" destination="RTn-PB-5Lk" id="GQD-Bq-5DZ"/>
                         <outlet property="previousButton" destination="ovb-Le-Uru" id="pZL-6h-ipE"/>
                         <outlet property="serachTF" destination="v2V-g4-12U" id="zbb-ua-qoX"/>
                     </connections>
@@ -5460,6 +5460,7 @@ dolor sit amet, consectetur..</string>
                         <outlet property="accessModuleTableView" destination="N8x-xP-Tlr" id="Qe3-c2-7sy"/>
                         <outlet property="addBtnLbl" destination="Ki2-MU-0cp" id="2H2-WG-ohx"/>
                         <outlet property="addNewStaffView" destination="kjI-yb-nAB" id="cR2-xX-U6e"/>
+                        <outlet property="changeImageButton" destination="rbU-P3-XxF" id="i8e-Zm-R7L"/>
                         <outlet property="confirmPasswortTxtField" destination="5J5-eA-6XG" id="CVI-4b-dxW"/>
                         <outlet property="countryCodeTF" destination="2P8-Z3-sjG" id="Kga-f3-hoa"/>
                         <outlet property="editStaffView" destination="Ljw-lW-Jcn" id="iJQ-Nd-rrq"/>

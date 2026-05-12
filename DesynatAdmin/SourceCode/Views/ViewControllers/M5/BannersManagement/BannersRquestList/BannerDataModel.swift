@@ -105,7 +105,7 @@ struct BannerRequestData: Codable {
 // MARK: - CategoryDetails
 struct CategoryDetails: Codable {
     var id: Int?
-    var name, description: String?
+    var name,nameAr, description: String?
     var image: String?
     var status: Int?
     var colorCode, createdAt, updatedAt: String?
@@ -115,6 +115,7 @@ struct CategoryDetails: Codable {
         case colorCode = "color_code"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
+        case nameAr = "name_ar"
     }
 }
 

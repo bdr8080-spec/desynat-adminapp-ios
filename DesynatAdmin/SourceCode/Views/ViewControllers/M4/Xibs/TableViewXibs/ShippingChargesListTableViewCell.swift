@@ -24,8 +24,11 @@ class ShippingChargesListTableViewCell: UITableViewCell {
     
     func configData(data: ShippingChargesDataModel?) {
         flagEmojiLabel.text = data?.flag
-        titleLabel.text = data?.name
-        
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            titleLabel.text = data?.nameAr
+        }else {
+            titleLabel.text = data?.name
+        }
         if let taxString = data?.taxInfo?.tax,
            let taxDouble = Double(taxString) {
             

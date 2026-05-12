@@ -104,7 +104,11 @@ class CountryCityListViewController: UIViewController, PermissionAccessible {
     
     private func refreshCountrySelection() {
         if let countryListData = viewModel.selectedCountry {
-            self.lblSelectedCountry.text = String.getString(countryListData.name)
+            if AppLanguageManager.shared.currentLanguage == .ar {
+                self.lblSelectedCountry.text = String.getString(countryListData.nameAr)
+            }else {
+                self.lblSelectedCountry.text = String.getString(countryListData.name)
+            }
             self.lnlFlag.text = String.getString(countryListData.flag)
         } else {
             self.lblSelectedCountry.text = ""

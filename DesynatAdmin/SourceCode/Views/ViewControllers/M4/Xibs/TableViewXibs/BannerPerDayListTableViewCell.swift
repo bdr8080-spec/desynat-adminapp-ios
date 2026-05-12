@@ -30,7 +30,11 @@ class BannerPerDayListTableViewCell: UITableViewCell {
     }
     
     func configData(data: BannersPerDayListDataModel?) {
-        countryNameLabel.text = data?.countryInfo?.name
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            countryNameLabel.text = data?.countryInfo?.nameAr
+        }else {
+            countryNameLabel.text = data?.countryInfo?.name
+        }
         countryEmojiLabel.text = data?.countryInfo?.flag
         let text = "KD".localiz()
         priceLabel.text = "\(data?.perDayPrice ?? "") \(text)"

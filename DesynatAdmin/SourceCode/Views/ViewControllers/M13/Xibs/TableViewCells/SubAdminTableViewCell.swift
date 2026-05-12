@@ -33,7 +33,7 @@ class SubAdminTableViewCell: UITableViewCell {
     }
     
     func configUserData(data: StaffDetails) {
-        usernameLabel.text = data.fullName
+        
         if let imageUrlString = data.profilePic,
            let url = URL(string: imageUrlString) {
             userProfileImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
@@ -48,8 +48,10 @@ class SubAdminTableViewCell: UITableViewCell {
         emailLabel.text = data.email
         if AppLanguageManager.shared.currentLanguage == .en {
             countryLabel.text = data.countryInfo?.name
+            usernameLabel.text = data.fullName
         }else {
             countryLabel.text = data.countryInfo?.nameAr
+            usernameLabel.text = data.fullNameInArabic
         }
     }
     

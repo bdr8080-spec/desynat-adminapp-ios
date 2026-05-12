@@ -12,6 +12,7 @@ struct CountryCitiesDataModel: Codable {
     var id: Int?
     var countryId: Int?
     var name: String?
+    var nameAr: String?
     var createdAt: String?
     var updatedAt: String?
     
@@ -21,6 +22,7 @@ struct CountryCitiesDataModel: Codable {
         case name = "name"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
+        case nameAr = "name_ar"
     }
     
 }

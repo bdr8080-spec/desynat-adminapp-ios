@@ -38,7 +38,7 @@ class SideMenuTableViewCell: UITableViewCell {
         } else {
             mainImageView.image = .userManagemnet
         }
-        titleLabel.text = data?.moduleDetails?.displayName
+        titleLabel.text = AppLanguageManager.shared.currentLanguage == .ar ? data?.moduleDetails?.displayNameAr : data?.moduleDetails?.displayName
     }
     
 }

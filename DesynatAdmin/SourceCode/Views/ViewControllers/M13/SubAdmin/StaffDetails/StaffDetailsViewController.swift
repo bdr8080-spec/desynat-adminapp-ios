@@ -84,7 +84,7 @@ class StaffDetailsViewController: UIViewController {
     
     func configUserData() {
         guard let data = viewModel.staffDetails else { return }
-        nameLbl.text = data.fullName
+        
         if let imageUrlString = data.profilePic,
            let url = URL(string: imageUrlString) {
             profileImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
@@ -95,7 +95,13 @@ class StaffDetailsViewController: UIViewController {
         }
         mobileNumberLbl.text = "\(data.countryCode ?? "")-\(data.mobile ?? "")"
         emailLbl.text = data.email
-        countryLabel.text = data.countryInfo?.name
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            countryLabel.text = data.countryInfo?.nameAr
+            nameLbl.text = data.fullNameInArabic
+        } else {
+            countryLabel.text = data.countryInfo?.name
+            nameLbl.text = data.fullName
+        }
         accessModuleTableView.reloadData()
         isActiveLbl.text = data.status == "1" ? "Active".localiz() : "Inactive".localiz()
         isActiveLbl.textColor = data.status == "1" ? UIColor(hex: "1A900D") : UIColor(hex: "E80B26")
@@ -113,8 +119,7 @@ extension StaffDetailsViewController: UITableViewDataSource, UITableViewDelegate
         let cell = tableView.dequeueReusableCell(withIdentifier: "AccessModuleTableViewCell",for: indexPath) as! AccessModuleTableViewCell
         //        let moduleId = indexPath.row + 1
         let permissionsDetails = viewModel.staffDetails?.permissionDetails?[indexPath.row]
-        cell.titleView.text = permissionsDetails?.moduleDetails?.displayName
-        //        cell.moduleId = moduleId
+        cell.titleView.text = AppLanguageManager.shared.currentLanguage == .ar ? permissionsDetails?.moduleDetails?.displayNameAr : permissionsDetails?.moduleDetails?.displayName
         cell.viewSelected = (permissionsDetails?.canView == 1) ? true : false
         cell.actionSelected = (permissionsDetails?.canAction == 1) ? true : false
         cell.isRowSelected = true

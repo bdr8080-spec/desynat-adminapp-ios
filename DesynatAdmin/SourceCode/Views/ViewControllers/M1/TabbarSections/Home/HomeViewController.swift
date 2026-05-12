@@ -153,8 +153,13 @@ class HomeViewController: UIViewController {
     
     func setDefaultSelection() {
         let country = viewModel.countryListData.first(where: { $0.id == 89 })
-        dropdownCountryLabel.text = country?.name
-        selectedCountryLabel.text = country?.name
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            dropdownCountryLabel.text = country?.nameAr
+            selectedCountryLabel.text = country?.nameAr
+        }else {
+            dropdownCountryLabel.text = country?.name
+            selectedCountryLabel.text = country?.name
+        }
         dropDownCountryFlagEmoji.text = country?.flag1
         durationCollectionView.reloadData()
         callDashboardAPI()
@@ -323,10 +328,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         let data = viewModel.countryListData[indexPath.row]
         
-        dropdownCountryLabel.text = data.name
+//        dropdownCountryLabel.text = data.name
         dropDownCountryFlagEmoji.text = data.flag1
-        selectedCountryLabel.text = data.name
-        
+//        selectedCountryLabel.text = data.name
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            dropdownCountryLabel.text = data.nameAr
+            selectedCountryLabel.text = data.nameAr
+        }else {
+            dropdownCountryLabel.text = data.name
+            selectedCountryLabel.text = data.name
+        }
         countryTableView.reloadData()
         selectedCountryView.isHidden = false
         extraSpaceLabel.isHidden = true

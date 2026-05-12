@@ -36,10 +36,23 @@ class AddDealViewController: UIViewController {
     var dealData: DealListManagementList?
     var selectedIndexes = Set<Int>()
     var selectedIds: [String] = []
+//    var subCategoryNames: [String] {
+//        return ["Select All".localiz()] + viewModel.subcategoriesList.map {
+//            $0.nameEnglish ?? ""
+//        }
+//    }
     var subCategoryNames: [String] {
-        return ["Select All".localiz()] + viewModel.subcategoriesList.map {
-            $0.nameEnglish ?? ""
+        let names: [String]
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            names = viewModel.subcategoriesList.map {
+                $0.nameArabic ?? ""
+            }
+        } else {
+            names = viewModel.subcategoriesList.map {
+                $0.nameEnglish ?? ""
+            }
         }
+        return ["Select All".localiz()] + names
     }
     private var subCategoryDropdown: MultiSelectDropdownView?
     
@@ -106,12 +119,33 @@ class AddDealViewController: UIViewController {
     }
     
     //MARK: Function's declaration
+//    private func updateSelection() {
+//        
+//        let validIndexes = selectedIndexes
+//            .filter { $0 > 0 }
+//            .sorted()
+//        
+//        let items = validIndexes.compactMap { index -> GetSubCategoryDataList? in
+//            let arrayIndex = index - 1
+//            guard viewModel.subcategoriesList.indices.contains(arrayIndex) else {
+//                return nil
+//            }
+//            return viewModel.subcategoriesList[arrayIndex]
+//        }
+//        
+//        let names = items.compactMap { $0.nameEnglish }
+//        selectedIds = items.compactMap { $0.id.map(String.init) }
+//        
+//        subCategoryTF.text = names.joined(separator: ", ")
+//        
+//        print(selectedIds)
+//        print(names)
+//    }
+    
     private func updateSelection() {
-        
         let validIndexes = selectedIndexes
             .filter { $0 > 0 }
             .sorted()
-        
         let items = validIndexes.compactMap { index -> GetSubCategoryDataList? in
             let arrayIndex = index - 1
             guard viewModel.subcategoriesList.indices.contains(arrayIndex) else {
@@ -119,14 +153,24 @@ class AddDealViewController: UIViewController {
             }
             return viewModel.subcategoriesList[arrayIndex]
         }
-        
-        let names = items.compactMap { $0.nameEnglish }
-        selectedIds = items.compactMap { $0.id.map(String.init) }
-        
-        subCategoryTF.text = names.joined(separator: ", ")
-        
-        print(selectedIds)
-        print(names)
+        let names: [String]
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            names = items.compactMap {
+                $0.nameArabic
+            }
+        } else {
+            names = items.compactMap {
+                $0.nameEnglish
+            }
+        }
+        selectedIds = items.compactMap {
+            $0.id.map(String.init)
+        }
+        subCategoryTF.text = names.joined(
+            separator: AppLanguageManager.shared.currentLanguage == .ar ? "، " : ", "
+        )
+//        print(selectedIds)
+//        print(names)
     }
     
     
@@ -184,8 +228,12 @@ class AddDealViewController: UIViewController {
         selectedIds = dealData?.subCategoryID ?? [""]
         selectCategoryCollectionview.reloadData()
         viewModel.getSubCategoriesListApi()
-        subCategoryTF.text = dealData?.subCategoryDetails?.compactMap({ $0.nameEnglish }).joined(separator: ", ")
-        
+//        subCategoryTF.text = dealData?.subCategoryDetails?.compactMap({ $0.nameEnglish }).joined(separator: ", ")
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            subCategoryTF.text = dealData?.subCategoryDetails?.compactMap({ $0.nameArabic }).joined(separator: "، ")
+        } else {
+            subCategoryTF.text = dealData?.subCategoryDetails?.compactMap({ $0.nameEnglish }).joined(separator: ", ")
+        }
         discountTF.text = dealData?.discount
         fromTf.text = convertDateFormat(dealData?.from ?? "")
         toTF.text = convertDateFormat(dealData?.to ?? "")
@@ -230,7 +278,12 @@ extension AddDealViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DurationCollectionViewCell", for: indexPath) as! DurationCollectionViewCell
         let data = viewModel.categoryListData[indexPath.row]
-        cell.titleLabel.text = data.name
+//        cell.titleLabel.text = data.name
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            cell.titleLabel.text = data.nameAr
+        } else {
+            cell.titleLabel.text = data.name
+        }
         if viewModel.selectedCategoriesId == data.id {
             cell.selectedImageView.image = UIImage(named: "durationSelected")
         } else {

@@ -261,8 +261,13 @@ class SellerDetailViewController: UIViewController {
                     self.lblStoreEmail.text = String.getString(storeInfo.storeMailId)
                     self.lblBio.text = storeInfo.bio
                     self.lblSellerBio.text = storeInfo.bio
-                    self.lblSellerCountry.text = storeInfo.countryInfo?.name
-                    self.lblStoreSellerCountry.text = storeInfo.countryInfo?.name
+                    if AppLanguageManager.shared.currentLanguage == .ar {
+                        self.lblSellerCountry.text = storeInfo.countryInfo?.nameAr
+                        self.lblStoreSellerCountry.text = storeInfo.countryInfo?.nameAr
+                    }else {
+                        self.lblSellerCountry.text = storeInfo.countryInfo?.name
+                        self.lblStoreSellerCountry.text = storeInfo.countryInfo?.name
+                    }
                 }
                 if let bankInformation = detailModel.sellerBankDetails {
                     self.lblAccountType.text = bankInformation.accountType == "0" ? "Personal".localiz() : "Business".localiz()

@@ -85,7 +85,11 @@ class ApplyFilterViewController: UIViewController {
     
     func refreshCountrySelection() {
         if let countryListData = viewModel.filterInfo.country {
-            self.lblSelectedCountry.text = String.getString(countryListData.name)
+            if AppLanguageManager.shared.currentLanguage == .ar {
+                self.lblSelectedCountry.text = String.getString(countryListData.nameAr)
+            } else {
+                self.lblSelectedCountry.text = String.getString(countryListData.name)
+            }
             self.lnlFlag.text = String.getString(countryListData.flag)
         } else {
             self.lblSelectedCountry.text = ""

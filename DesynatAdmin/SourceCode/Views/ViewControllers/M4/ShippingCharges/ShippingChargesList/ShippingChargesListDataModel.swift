@@ -10,7 +10,7 @@ import Foundation
 // MARK: - ShippingChargesDataModel
 struct ShippingChargesDataModel: Codable {
     let id: Int?
-    let name, isoCode, currencyName, currencyCode: String?
+    let name,nameAr, isoCode, currencyName, currencyCode: String?
     let currencySymbol, dialCode, flag: String?
     let flag1: String?
     let exchangeRateToKwd, createdAt, updatedAt: String?
@@ -30,6 +30,7 @@ struct ShippingChargesDataModel: Codable {
         case updatedAt = "updated_at"
         case taxInfo = "tax_info"
         case shippingInfo = "shipping_info"
+        case nameAr = "name_ar"
     }
 }
 

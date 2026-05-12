@@ -182,8 +182,12 @@ class DealDetailsViewController: UIViewController {
         //    totalSellerLabel.text = data.t
         let count = dealData?.sellerDealrecords?.count ?? 0
         totalSellerLabel.text = "\(count) " + (count == 1 ? "Seller".localiz() : "Sellers".localiz())
-        categoryLabel.text = dealData?.categoryDetails?.name
-        subCategoryLabel.text = dealData?.subCategoryDetails?.compactMap({ $0.nameEnglish }).joined(separator: ", ")
+        categoryLabel.text = AppLanguageManager.shared.currentLanguage == .ar ? dealData?.categoryDetails?.nameAr : dealData?.categoryDetails?.name
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            subCategoryLabel.text = dealData?.subCategoryDetails?.compactMap({ $0.nameArabic }).joined(separator: "، ")
+        } else {
+            subCategoryLabel.text = dealData?.subCategoryDetails?.compactMap({ $0.nameEnglish }).joined(separator: ", ")
+        }
     }
     
     func convertDateFormat(

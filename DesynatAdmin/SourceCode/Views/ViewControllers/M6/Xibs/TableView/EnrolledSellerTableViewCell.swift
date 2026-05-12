@@ -27,7 +27,7 @@ class EnrolledSellerTableViewCell: UITableViewCell {
     
     func configData(data: SellerDealrecord?) {
         nameLabel.text = "\(data?.sellerDetails?.firstName ?? "") \(data?.sellerDetails?.lastName ?? "")"
-        locationLabel.text = "\(data?.sellerDetails?.countryDetails?.name ?? "")"
+        locationLabel.text = AppLanguageManager.shared.currentLanguage == .ar ? data?.sellerDetails?.countryDetails?.nameAr ?? "" : data?.sellerDetails?.countryDetails?.name ?? ""
         productAddedLabel.text = "\(data?.productCount ?? 0) \("Products".localiz())"
         //        productAddedLabel.text = data?.?.description
         

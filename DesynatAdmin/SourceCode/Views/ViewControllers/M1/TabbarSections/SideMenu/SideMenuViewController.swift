@@ -217,7 +217,6 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
         default:
             print("⚠️ Unknown option selected")
         }
-        
         sideMenuTableView.deselectRow(at: indexPath, animated: true)
     }
 }

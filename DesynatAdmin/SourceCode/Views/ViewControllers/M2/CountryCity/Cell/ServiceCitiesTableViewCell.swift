@@ -36,7 +36,11 @@ class ServiceCitiesTableViewCell: ResuableTableCell {
     func setZone(_ data:ZoneInfo)  {
         self.zoneData = data
         self.btnEdit.isHidden = false
-        self.lblCity.text = data.nameEn
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            self.lblCity.text = data.nameAr
+        } else {
+            self.lblCity.text = data.nameEn
+        }
         self.btnViewZone.setTitle("View".localiz(), for: .normal)
         self.btnSwitch.setImage(data.isActive ? .toggleOn : .toggleOff, for: .normal)
     }

@@ -37,12 +37,22 @@ class CountryTableViewCell: ResuableTableCell {
     
     func configAdminDashboardData(data: GetAllUserCountryModel,isSelected:Bool) {
         countryLabel.text = data.name
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            countryLabel.text = data.nameAr
+        }else {
+            countryLabel.text = data.name
+        }
         countryFlagEmojiLabel.text = data.flag1
         self.selectedImageView.image = UIImage(named: isSelected ? "radioSelected" : "radioUnselected")
     }
     
     func configCityData(data: CountryCitiesDataModel,isSelected:Bool) {
         countryLabel.text = data.name
+//        if AppLanguageManager.shared.currentLanguage == .ar {
+//            countryLabel.text = data.nameAr
+//        }else {
+//            countryLabel.text = data.name
+//        }
         countryFlagEmojiLabel.isHidden = true
         self.selectedImageView.image = UIImage(named: isSelected ? "radioSelected" : "radioUnselected")
     }
