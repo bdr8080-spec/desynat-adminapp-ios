@@ -60,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         dropDown.dismissMode = .automatic
         dropDown.show()
         dropDown.selectionAction = {(index: Int, item: String) in
-            print("Selected item: \(item) at index: \(index)")
+//            print("Selected item: \(item) at index: \(index)")
             completion(index,item)
             
         }
@@ -109,7 +109,6 @@ extension AppDelegate:UNUserNotificationCenterDelegate {
             if let error = error {
                 print("Error fetching remote instange ID: \(error)")
             } else if let result = token {
-                print("Remote instance ID token: \(result)")
                 kSharedUserDefaults.saveModelFor(key: .deviceToken, value: token)
             }
         }
@@ -118,7 +117,6 @@ extension AppDelegate:UNUserNotificationCenterDelegate {
     func applicationWillTerminate(_ application: UIApplication) {}
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        print("notification - \(notification.request.content.userInfo)")
         BadgeManager.increase()
         if #available(iOS 14.0, *) {
             completionHandler([.banner, .badge, .sound])
@@ -128,7 +126,6 @@ extension AppDelegate:UNUserNotificationCenterDelegate {
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        print("")
         BadgeManager.increase()
         completionHandler()
     }

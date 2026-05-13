@@ -81,27 +81,27 @@ extension AddFAQViewController: UITextFieldDelegate {
         // ---------------------------
         // MARK: English TextFields
         // ---------------------------
-        if textField == questionEngTF || textField == answerEnglishTF {
-
-            
-            if !isAllowedEnglish(currentText) {
-                CommonUtils.showToast(message: "Please switch to English keyboard".localiz())
-                return false
-            }
-        }
+//        if textField == questionEngTF || textField == answerEnglishTF {
+//
+//            
+//            if !isAllowedEnglish(currentText) {
+//                CommonUtils.showToast(message: "Please switch to English keyboard".localiz())
+//                return false
+//            }
+//        }
         
         // ---------------------------
         // MARK: Arabic TextFields
         // ---------------------------
-        if textField == questionArabicTF || textField == answerArabicTF {
-            
-            if !isAllowedArabic(currentText) {
-                CommonUtils.showToast(message: "Please switch to Arabic keyboard".localiz())
-                return false
-            }
-            
-            return true
-        }
+//        if textField == questionArabicTF || textField == answerArabicTF {
+//            
+//            if !isAllowedArabic(currentText) {
+//                CommonUtils.showToast(message: "Please switch to Arabic keyboard".localiz())
+//                return false
+//            }
+//            
+//            return true
+//        }
         
         return true
     }

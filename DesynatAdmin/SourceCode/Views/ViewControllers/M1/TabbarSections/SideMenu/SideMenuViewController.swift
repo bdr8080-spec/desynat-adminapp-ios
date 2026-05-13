@@ -22,48 +22,53 @@ class SideMenuViewController: UIViewController {
     
     // MARK: - Property Decalaration
     private var sideMenuData: [SideMenuModel] = [
-        SideMenuModel(title: "Brand Management", image: "brandManagemnt"),
         SideMenuModel(title: "Category & Sub- Category Management", image: "category"),
+        SideMenuModel(title: "Brand Management", image: "brandManagemnt"),
         SideMenuModel(title: "Seller Management", image: "sellerManagement"),
         SideMenuModel(title: "Country , City & Zone Management", image: "country"),
-        SideMenuModel(title: "Reason Management", image: "reason"),
-        SideMenuModel(title: "Delivery Boy Management", image: "deliveryBoy"),
         SideMenuModel(title: "User Management", image: "userManagemnet"),
-        SideMenuModel(title: "Delivery charges & Tax Management", image: "shippingCharges"),
+        SideMenuModel(title: "Delivery Boy Management", image: "deliveryBoy"),
+        SideMenuModel(title: "Reason Management", image: "reason"),
         SideMenuModel(title: "Gift Card Category Management", image: "gift"),
-        SideMenuModel(title: "Banner per day price", image: "bannerPay"),
+        SideMenuModel(title: "Delivery charges & Tax Management", image: "shippingCharges"),
         SideMenuModel(title: "Promocode Management", image: "promocode"),
-        SideMenuModel(title: "Affiliate Commission percentage", image: "affilitaeCommisiin"),
+        SideMenuModel(title: "Banner per day price", image: "bannerPay"),
         SideMenuModel(title: "Banner requests Management", image: "bannerRequest"),
         SideMenuModel(title: "Banner Management", image: "bannerRequest"),
         SideMenuModel(title: "Orders Management", image: "orderManagemnt"),
+        SideMenuModel(title: "Affiliate User Management", image: "userManagemnet"),
+        SideMenuModel(title: "Affiliate Commission percentage", image: "affilitaeCommisiin"),
+        SideMenuModel(title: "Affiliate withdrawal requests", image: "affilateWithdraw"),
         SideMenuModel(title: "Live Request  & Timeslot Management", image: "liveReuqest"),
         SideMenuModel(title: "Story Management", image: "storyManagment"),
         SideMenuModel(title: "Deals Management", image: "dealsManagement"),
-        SideMenuModel(title: "Affiliate User Management", image: "userManagemnet"),
-        SideMenuModel(title: "Affiliate withdrawal requests", image: "affilateWithdraw"),
-        SideMenuModel(title: "Notifications Management", image: "notificationBell"),
-        SideMenuModel(title: "CMS", image: "cms"),
-        SideMenuModel(title: "Ticket Management", image: "ticketManagemnt"),
         SideMenuModel(title: "Sub Admin", image: "subadmin"),
         SideMenuModel(title: "Refund Management", image: "refundManagemnt"),
+        SideMenuModel(title: "Notifications Management", image: "notificationBell"),
+        SideMenuModel(title: "Ticket Management", image: "ticketManagemnt"),
         SideMenuModel(title: "Seller Payouts", image: "sellerPayout"),
+        SideMenuModel(title: "CMS", image: "cms"),
         SideMenuModel(title: "Support Chat", image: "support")]
+    
     private lazy var viewModel = SideMenuViewModel(hostVC: self)
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateTableHeight()
+        sideMenuTableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.getUserData()
+        DispatchQueue.main.async {
+                self.updateTableHeight()
+            }
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
         updateTableHeight()
     }
     
@@ -81,8 +86,13 @@ class SideMenuViewController: UIViewController {
     
     //MARK: Function's declaration
     private func updateTableHeight() {
-        DispatchQueue.main.async {
-            self.sideMenuHeightConstaint.constant = self.sideMenuTableView.contentSize.height
+        
+        sideMenuTableView.layoutIfNeeded()
+        
+        let height = sideMenuTableView.contentSize.height
+        
+        if sideMenuHeightConstaint.constant != height {
+            sideMenuHeightConstaint.constant = height
         }
     }
     @IBAction func editProfileBtnTapped(_ sender: Any) {

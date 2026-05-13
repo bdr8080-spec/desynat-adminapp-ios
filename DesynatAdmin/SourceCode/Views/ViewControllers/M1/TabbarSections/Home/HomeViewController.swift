@@ -257,7 +257,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             try csvString.write(to: path, atomically: true, encoding: .utf8)
             return path
         } catch {
-            print("Error writing CSV:", error)
+//            print("Error writing CSV:", error)
             return nil
         }
     }

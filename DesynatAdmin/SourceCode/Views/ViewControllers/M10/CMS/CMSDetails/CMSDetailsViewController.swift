@@ -48,10 +48,9 @@ class CMSDetailsViewController: UIViewController {
             titleLabel.text = "Exchange Policy".localiz()
         }
         if comingForArabic {
-            CommonUtils.loadHTMLContent(termsAndConditonData?.contentArabic ?? "N/A", webView: contentView)
-            
+            CommonUtils.loadHTMLContent(termsAndConditonData?.contentArabic ?? "N/A", webView: contentView, isArabic: true)
         } else {
-            CommonUtils.loadHTMLContent(termsAndConditonData?.contentEnglish ?? "N/A", webView: contentView)
+            CommonUtils.loadHTMLContent(termsAndConditonData?.contentEnglish ?? "N/A", webView: contentView, isArabic: false)
         }
     }
 }

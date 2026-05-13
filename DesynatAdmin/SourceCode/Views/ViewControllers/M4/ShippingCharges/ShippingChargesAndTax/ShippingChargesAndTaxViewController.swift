@@ -238,10 +238,6 @@ extension ShippingChargesAndTaxViewController: UITableViewDelegate, UITableViewD
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("")
-    }
-    
 }
 
 extension ShippingChargesAndTaxViewController {

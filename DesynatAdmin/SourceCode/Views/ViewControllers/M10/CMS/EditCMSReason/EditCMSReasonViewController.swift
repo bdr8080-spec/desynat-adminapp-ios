@@ -102,7 +102,7 @@ extension EditCMSReasonViewController: UITextViewDelegate {
         }
         
         // Check each Character (this handles combined emojis properly)
-        for character in text {
+//        for character in text {
             
             // ✅ Allow ALL Emojis — skip language check
             //            if character.isEmoji {
@@ -110,44 +110,44 @@ extension EditCMSReasonViewController: UITextViewDelegate {
             //            }
             
             // English Mode
-            if !comingForArabic {
-                if !isAllowedEnglish(character) {
-                    CommonUtils.showToast(message: "Please switch to English keyboard".localiz())
-                    return false
-                }
-            }
+//            if !comingForArabic {
+//                if !isAllowedEnglish(character) {
+//                    CommonUtils.showToast(message: "Please switch to English keyboard".localiz())
+//                    return false
+//                }
+//            }
             // Arabic Mode
-            else {
-                if !isAllowedArabic(character) {
-                    CommonUtils.showToast(message: "Please switch to Arabic keyboard".localiz())
-                    return false
-                }
-            }
-        }
+//            else {
+//                if !isAllowedArabic(character) {
+//                    CommonUtils.showToast(message: "Please switch to Arabic keyboard".localiz())
+//                    return false
+//                }
+//            }
+//        }
         
         return true
     }
     
     // MARK: - Helper Functions
     
-    private func isAllowedEnglish(_ char: Character) -> Bool {
-        let allowedSet = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .,?!'-()\"&@#$%^*+=:;/\\")
-            .union(.whitespacesAndNewlines)
-        
-        // Check all scalars of the character
-        return char.unicodeScalars.allSatisfy { allowedSet.contains($0) }
-    }
+//    private func isAllowedEnglish(_ char: Character) -> Bool {
+//        let allowedSet = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .,?!'-()\"&@#$%^*+=:;/\\")
+//            .union(.whitespacesAndNewlines)
+//        
+//        // Check all scalars of the character
+//        return char.unicodeScalars.allSatisfy { allowedSet.contains($0) }
+//    }
     
-    private func isAllowedArabic(_ char: Character) -> Bool {
-        let allowedSet = CharacterSet(charactersIn: "\u{0600}"..."\u{06FF}")
-            .union(CharacterSet(charactersIn: "\u{0750}"..."\u{077F}"))
-            .union(CharacterSet(charactersIn: "\u{08A0}"..."\u{08FF}"))
-            .union(CharacterSet(charactersIn: "\u{FB50}"..."\u{FDFF}"))
-            .union(CharacterSet(charactersIn: "\u{FE70}"..."\u{FEFF}"))
-            .union(.whitespacesAndNewlines)
-        
-        return char.unicodeScalars.allSatisfy { allowedSet.contains($0) }
-    }
+//    private func isAllowedArabic(_ char: Character) -> Bool {
+//        let allowedSet = CharacterSet(charactersIn: "\u{0600}"..."\u{06FF}")
+//            .union(CharacterSet(charactersIn: "\u{0750}"..."\u{077F}"))
+//            .union(CharacterSet(charactersIn: "\u{08A0}"..."\u{08FF}"))
+//            .union(CharacterSet(charactersIn: "\u{FB50}"..."\u{FDFF}"))
+//            .union(CharacterSet(charactersIn: "\u{FE70}"..."\u{FEFF}"))
+//            .union(.whitespacesAndNewlines)
+//        
+//        return char.unicodeScalars.allSatisfy { allowedSet.contains($0) }
+//    }
 }
 
 // MARK: - Character + Emoji Extension

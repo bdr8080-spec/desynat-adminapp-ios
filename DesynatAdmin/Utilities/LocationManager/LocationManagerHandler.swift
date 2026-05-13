@@ -78,15 +78,15 @@ class LocationManager:NSObject, CLLocationManagerDelegate {
                 completion(addressString,pm.locality ?? "")
                 self.getPickCity = pm.locality ?? ""
                 
-                print("subLocality\(pm.subLocality ?? "")")
-                print("pm.thoroughfare\(pm.thoroughfare ?? "")")
-                print("pm.locality\(pm.locality ?? "")")
-                print("pm.country\(pm.country ?? "")")
-                print("pm.postalCode\(pm.postalCode ?? "")")
-                print("pm.name\(pm.name)")
-                print("pm.subThoroughfare\(pm.subThoroughfare ?? "")")
-                print("pm.administrativeArea\(pm.administrativeArea ?? "")")
-                print("pm.subAdministrativeArea\(pm.subAdministrativeArea ?? "")")
+//                print("subLocality\(pm.subLocality ?? "")")
+//                print("pm.thoroughfare\(pm.thoroughfare ?? "")")
+//                print("pm.locality\(pm.locality ?? "")")
+//                print("pm.country\(pm.country ?? "")")
+//                print("pm.postalCode\(pm.postalCode ?? "")")
+//                print("pm.name\(pm.name)")
+//                print("pm.subThoroughfare\(pm.subThoroughfare ?? "")")
+//                print("pm.administrativeArea\(pm.administrativeArea ?? "")")
+//                print("pm.subAdministrativeArea\(pm.subAdministrativeArea ?? "")")
                 
             }
         })

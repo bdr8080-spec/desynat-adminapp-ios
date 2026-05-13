@@ -146,7 +146,7 @@ class StoryManagemnetCollectionViewCell: UICollectionViewCell {
                     completion(thumbnail)
                 }
             } catch {
-                print("Thumbnail generation failed at \(secondsToTry)s → \(error)")
+//                print("Thumbnail generation failed at \(secondsToTry)s → \(error)")
                 
                 // Fallback: try at 0.5s or just show placeholder
                 DispatchQueue.main.async {

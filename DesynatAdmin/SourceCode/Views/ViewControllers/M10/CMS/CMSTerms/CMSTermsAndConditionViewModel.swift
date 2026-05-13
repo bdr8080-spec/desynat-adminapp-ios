@@ -24,8 +24,8 @@ class CMSTermsConditionViewModel {
             self.hostVC.englishWebViewHeight.constant = 1
             self.hostVC.arabicWebViewHeight.constant = 1
             self.hostVC.view.layoutIfNeeded()
-            CommonUtils.loadHTMLContent(response.contentEnglish ?? "N/A", webView: hostVC.englishContentWebView)
-            CommonUtils.loadHTMLContent(response.contentArabic ?? "N/A", webView: hostVC.arabicContentWebView)
+            CommonUtils.loadHTMLContent(response.contentEnglish ?? "N/A", webView: hostVC.englishContentWebView, isArabic: false)
+            CommonUtils.loadHTMLContent(response.contentArabic ?? "N/A", webView: hostVC.arabicContentWebView, isArabic: true)
         }
     }
     
@@ -37,8 +37,8 @@ class CMSTermsConditionViewModel {
             self.hostVC.englishWebViewHeight.constant = 1
             self.hostVC.arabicWebViewHeight.constant = 1
             self.hostVC.view.layoutIfNeeded()
-            CommonUtils.loadHTMLContent(response.contentEnglish ?? "N/A", webView: hostVC.englishContentWebView)
-            CommonUtils.loadHTMLContent(response.contentArabic ?? "N/A", webView: hostVC.arabicContentWebView)
+            CommonUtils.loadHTMLContent(response.contentEnglish ?? "N/A", webView: hostVC.englishContentWebView, isArabic: false)
+            CommonUtils.loadHTMLContent(response.contentArabic ?? "N/A", webView: hostVC.arabicContentWebView, isArabic: true)
         }
     }
     
@@ -50,8 +50,8 @@ class CMSTermsConditionViewModel {
             self.hostVC.englishWebViewHeight.constant = 1
             self.hostVC.arabicWebViewHeight.constant = 1
             self.hostVC.view.layoutIfNeeded()
-            CommonUtils.loadHTMLContent(response.contentEnglish ?? "N/A", webView: hostVC.englishContentWebView)
-            CommonUtils.loadHTMLContent(response.contentArabic ?? "N/A", webView: hostVC.arabicContentWebView)
+            CommonUtils.loadHTMLContent(response.contentEnglish ?? "N/A", webView: hostVC.englishContentWebView, isArabic: false)
+            CommonUtils.loadHTMLContent(response.contentArabic ?? "N/A", webView: hostVC.arabicContentWebView, isArabic: true)
         }
     }
     
@@ -63,8 +63,8 @@ class CMSTermsConditionViewModel {
             self.hostVC.englishWebViewHeight.constant = 1
             self.hostVC.arabicWebViewHeight.constant = 1
             self.hostVC.view.layoutIfNeeded()
-            CommonUtils.loadHTMLContent(response.contentEnglish ?? "N/A", webView: hostVC.englishContentWebView)
-            CommonUtils.loadHTMLContent(response.contentArabic ?? "N/A", webView: hostVC.arabicContentWebView)
+            CommonUtils.loadHTMLContent(response.contentEnglish ?? "N/A", webView: hostVC.englishContentWebView, isArabic: false)
+            CommonUtils.loadHTMLContent(response.contentArabic ?? "N/A", webView: hostVC.arabicContentWebView, isArabic: true)
         }
     }
     
@@ -76,8 +76,8 @@ class CMSTermsConditionViewModel {
             self.hostVC.englishWebViewHeight.constant = 1
             self.hostVC.arabicWebViewHeight.constant = 1
             self.hostVC.view.layoutIfNeeded()
-            CommonUtils.loadHTMLContent(response.contentEnglish ?? "N/A", webView: hostVC.englishContentWebView)
-            CommonUtils.loadHTMLContent(response.contentArabic ?? "N/A", webView: hostVC.arabicContentWebView)
+            CommonUtils.loadHTMLContent(response.contentEnglish ?? "N/A", webView: hostVC.englishContentWebView, isArabic: false)
+            CommonUtils.loadHTMLContent(response.contentArabic ?? "N/A", webView: hostVC.arabicContentWebView, isArabic: true)
         }
     }
 }

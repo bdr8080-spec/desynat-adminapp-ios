@@ -46,7 +46,7 @@ class LiveStreamingViewController: UIViewController {
             
             // ... host setup
         } else {
-            print("👀 Start as AUDIENCE")
+//            print("👀 Start as AUDIENCE")
             agoraKit.setClientRole(.audience)
             btnSwitch.isHidden = true
             btnGoLive.isHidden = true
@@ -81,7 +81,7 @@ class LiveStreamingViewController: UIViewController {
         let urlString = "https://api.agora.io/dev/v1/channel/user/\(appID)/\(channelName)"
         
         guard let url = URL(string: urlString) else {
-            print("❌ Invalid URL")
+//            print("❌ Invalid URL")
             return
         }
         
@@ -92,26 +92,26 @@ class LiveStreamingViewController: UIViewController {
         URLSession.shared.dataTask(with: request) { data, response, error in
             
             if let data = data {
-                print("🔍 RAW RESPONSE STRING:")
+//                print("🔍 RAW RESPONSE STRING:")
                 print(String(data: data, encoding: .utf8) ?? "Unable to decode")
             }
             
             if let error = error {
-                print("❌ Error:", error.localizedDescription)
+//                print("❌ Error:", error.localizedDescription)
                 return
             }
             
             guard let data = data,
                   let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
-                print("❌ JSON parse failed")
+//                print("❌ JSON parse failed")
                 return
             }
             
-            print("📌 Parsed JSON:", json)
+//            print("📌 Parsed JSON:", json)
             
             // FIX: Read values inside "data" dictionary
             guard let dataObj = json["data"] as? [String: Any] else {
-                print("❌ 'data' object missing")
+//                print("❌ 'data' object missing")
                 return
             }
             
@@ -171,7 +171,7 @@ class LiveStreamingViewController: UIViewController {
     }
     
     private func setupRemoteVideo(uid: UInt) {
-        print("📺 Remote FULL SCREEN: \(uid)")
+//        print("📺 Remote FULL SCREEN: \(uid)")
         clearVideoView()
         let canvas = AgoraRtcVideoCanvas()
         canvas.uid = uid
@@ -181,7 +181,7 @@ class LiveStreamingViewController: UIViewController {
     }
     
     private func cleanupAgora() {
-        print("🧹 Cleanup Agora")
+//        print("🧹 Cleanup Agora")
         agoraKit.stopPreview()
         agoraKit.leaveChannel(nil)
         AgoraRtcEngineKit.destroy()
@@ -191,20 +191,20 @@ class LiveStreamingViewController: UIViewController {
     @IBAction func btnOptions(_ sender: UIButton) {
         switch sender.tag {
         case 1:
-            print("🔄 Switch Camera")
+//            print("🔄 Switch Camera")
             agoraKit.switchCamera()
         case 2:
-            print("🎬 Toggle Live")
+//            print("🎬 Toggle Live")
             isHost.toggle()
             clearVideoView()
             if isHost {
-                print("🎥 HOST MODE")
+//                print("🎥 HOST MODE")
                 agoraKit.setClientRole(.broadcaster)
                 agoraKit.enableLocalVideo(true)
                 setupLocalVideo()
                 btnGoLive.setTitle("Stop".localiz(), for: .normal)
             } else {
-                print("👀 AUDIENCE MODE")
+//                print("👀 AUDIENCE MODE")
                 agoraKit.setClientRole(.audience)
                 agoraKit.stopPreview()
                 btnGoLive.setTitle("Go Live".localiz(), for: .normal)
@@ -212,13 +212,10 @@ class LiveStreamingViewController: UIViewController {
             }
         case 3:
             isMuted.toggle()
-            // Mute ALL remote audio streams (host's audio)
             agoraKit.muteAllRemoteAudioStreams(isMuted)
-            //            btnMute.setTitle(isMuted ? "Unmute Stream" : "Mute Stream", for: .normal)
-            print("🔇 Stream \(isMuted ? "muted" : "unmuted")")
             lblLive.text = isMuted ? "Unmute".localiz() : "Mute".localiz()
         case 4:
-            print("📴 End Stream")
+//            print("📴 End Stream")
             leaveChannel()
             dismiss(animated: false)
         default:
@@ -231,7 +228,7 @@ class LiveStreamingViewController: UIViewController {
 extension LiveStreamingViewController: AgoraRtcEngineDelegate {
     
     func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinedOfUid uid: UInt, elapsed: Int) {
-        print("👤 Remote Joined: \(uid)")
+//        print("👤 Remote Joined: \(uid)")
         if !isHost {
             DispatchQueue.main.async {
                 self.lblWaiting.isHidden = true
@@ -243,7 +240,7 @@ extension LiveStreamingViewController: AgoraRtcEngineDelegate {
     }
     
     func rtcEngine(_ engine: AgoraRtcEngineKit, didOfflineOfUid uid: UInt, reason: AgoraUserOfflineReason) {
-        print("🚪 Remote Left: \(uid)")
+//        print("🚪 Remote Left: \(uid)")
         DispatchQueue.main.async {
             self.lblWaiting.isHidden = false
             self.viewerountView.isHidden = true
@@ -257,7 +254,7 @@ extension LiveStreamingViewController: AgoraRtcEngineDelegate {
     }
     
     func rtcEngine(_ engine: AgoraRtcEngineKit, didOccurError errorCode: AgoraErrorCode) {
-        print("❌ Agora Error: \(errorCode.rawValue)")
+//        print("❌ Agora Error: \(errorCode.rawValue)")
         self.lblWaiting.isHidden = false
         self.viewerountView.isHidden = true
         self.muteView.isHidden = true

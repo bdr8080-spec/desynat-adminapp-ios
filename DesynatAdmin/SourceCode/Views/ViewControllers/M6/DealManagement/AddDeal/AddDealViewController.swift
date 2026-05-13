@@ -119,28 +119,6 @@ class AddDealViewController: UIViewController {
     }
     
     //MARK: Function's declaration
-//    private func updateSelection() {
-//        
-//        let validIndexes = selectedIndexes
-//            .filter { $0 > 0 }
-//            .sorted()
-//        
-//        let items = validIndexes.compactMap { index -> GetSubCategoryDataList? in
-//            let arrayIndex = index - 1
-//            guard viewModel.subcategoriesList.indices.contains(arrayIndex) else {
-//                return nil
-//            }
-//            return viewModel.subcategoriesList[arrayIndex]
-//        }
-//        
-//        let names = items.compactMap { $0.nameEnglish }
-//        selectedIds = items.compactMap { $0.id.map(String.init) }
-//        
-//        subCategoryTF.text = names.joined(separator: ", ")
-//        
-//        print(selectedIds)
-//        print(names)
-//    }
     
     private func updateSelection() {
         let validIndexes = selectedIndexes
@@ -169,8 +147,6 @@ class AddDealViewController: UIViewController {
         subCategoryTF.text = names.joined(
             separator: AppLanguageManager.shared.currentLanguage == .ar ? "، " : ", "
         )
-//        print(selectedIds)
-//        print(names)
     }
     
     

@@ -33,7 +33,7 @@ class SubAdminSideMenuViewController: UIViewController {
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateTableHeight()
+//        updateTableHeight()
         backButtonOutlet.isHidden = isNeedToHideBackButton
     }
     
@@ -60,7 +60,7 @@ class SubAdminSideMenuViewController: UIViewController {
     }
     
     //MARK: Function's declaration
-    private func updateTableHeight() {
+    func updateTableHeight() {
         DispatchQueue.main.async {
             self.sideMenuHeightConstaint.constant = self.sideMenuTableView.contentSize.height
         }

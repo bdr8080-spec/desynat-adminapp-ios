@@ -45,8 +45,6 @@ class RefundManagementViewModel {
         params["to_date"] = convertDate(toDate)
       }
       
-      print("FINAL PARAMS →", params)
-      
       // API CALL
       WebService.shared.getAllRefundDataService(param: params) { [weak self] response in
         guard let self = self else { return }

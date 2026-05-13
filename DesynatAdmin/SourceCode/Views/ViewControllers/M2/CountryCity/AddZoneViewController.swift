@@ -325,7 +325,7 @@ extension AddZoneViewController : GMSAutocompleteViewControllerDelegate {
     
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
         // TODO: handle the error.
-        print("Error: ", error.localizedDescription)
+//        print("Error: ", error.localizedDescription)
         viewController.dismiss(animated: true, completion: nil)
     }
     

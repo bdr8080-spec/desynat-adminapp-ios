@@ -51,7 +51,7 @@ class ScreenshotProtectionManager {
         window.layer.superlayer?.addSublayer(field.layer)
         field.layer.sublayers?.last?.addSublayer(window.layer)
         
-        print("🔒 Screenshot protection enabled")
+//        print("🔒 Screenshot protection enabled")
     }
     
     func disableProtection() {
@@ -69,7 +69,7 @@ class ScreenshotProtectionManager {
         self.secureTextField = nil
         self.protectedWindow = nil
         
-        print("🔓 Screenshot protection disabled")
+//        print("🔓 Screenshot protection disabled")
     }
 }
 

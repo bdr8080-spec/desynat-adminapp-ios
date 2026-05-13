@@ -106,7 +106,6 @@ class SendNewNotificationViewModel {
     }
     
     private func hitSendNotificationAPI(param: [String: Any]) {
-        print("param===>\(param)")
         WebService.shared.sendNotificationsService(parameter: param) { [weak self] response in
             guard let self = self else { return }
             CommonUtils.showToast(message: "New Notification sent successfully".localiz())

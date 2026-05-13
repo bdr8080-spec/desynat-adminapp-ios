@@ -49,6 +49,7 @@ class SubAdminSideMenuViewModel {
             hostVC.userProfileImageView.image = .userProfile
         }
         hostVC.sideMenuTableView.reloadData()
+        hostVC.updateTableHeight()
         let hasAccountPermission = staffDetails?.permissionDetails?.contains(where: {($0.moduleID ?? 0) == 30}) ?? false
         hostVC.editPencilButton.isHidden = !hasAccountPermission
     }

@@ -18,7 +18,7 @@ class FAQViewController: UIViewController {
     @IBOutlet weak var plusButton: UIButton!
     
     // MARK: - Property Decalaration
-    private var selecetdIndex = 0
+    private var selecetdIndex = -1
     private lazy var viewModel = FAQViewModel(hostVC: self)
     var selectedUserType = 1
     var hasActionPermission: Bool = false
@@ -87,8 +87,17 @@ extension FAQViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        selecetdIndex = indexPath.row
+//        listTableView.reloadData()
+//    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selecetdIndex = indexPath.row
+        if selecetdIndex == indexPath.row {
+            selecetdIndex = -1
+        } else {
+            selecetdIndex = indexPath.row
+        }
         listTableView.reloadData()
     }
     

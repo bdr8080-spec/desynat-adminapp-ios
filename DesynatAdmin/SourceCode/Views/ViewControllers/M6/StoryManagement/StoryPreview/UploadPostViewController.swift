@@ -80,7 +80,6 @@ class UploadPostViewController: UIViewController {
             try data.write(to: fileURL)
             return fileURL.absoluteString   // ✅ URL string
         } catch {
-            print("Error saving image:", error)
             return nil
         }
     }
@@ -95,7 +94,7 @@ class UploadPostViewController: UIViewController {
         
         guard let exportSession = AVAssetExportSession(asset: avAsset,
                                                        presetName: AVAssetExportPresetMediumQuality) else {
-            print("Compression failed")
+//            print("Compression failed")
             return
         }
         

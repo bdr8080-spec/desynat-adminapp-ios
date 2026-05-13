@@ -121,7 +121,7 @@ class SellerListViewController: UIViewController, PermissionAccessible {
             try csv.write(to: url, atomically: true, encoding: .utf8)
             return url
         } catch {
-            print("CSV error:", error)
+//            print("CSV error:", error)
             return nil
         }
     }

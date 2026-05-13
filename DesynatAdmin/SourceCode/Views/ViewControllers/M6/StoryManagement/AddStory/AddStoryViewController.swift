@@ -36,7 +36,6 @@ class AddStoryViewController: UIViewController {
     
     @IBAction func cameraDidTapped(_ sender: Any) {
         guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
-            print("Camera not available")
             return
         }
         

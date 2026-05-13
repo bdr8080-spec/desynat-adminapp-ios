@@ -93,7 +93,6 @@ class EventsTableViewCell: UITableViewCell {
 
         guard let startDate = formatter.date(from: startString),
               let endDate = formatter.date(from: endString) else {
-            print("Parsing failed:", startString, endString)
             return false
         }
 

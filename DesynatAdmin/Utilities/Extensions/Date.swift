@@ -547,7 +547,7 @@ public extension Date {
         offsetComponents.second = Int(r4)
         
         guard let rndDate1 = gregorian.date(byAdding: offsetComponents, to: today) else {
-            print("randoming failed")
+//            print("randoming failed")
             return today
         }
         return rndDate1

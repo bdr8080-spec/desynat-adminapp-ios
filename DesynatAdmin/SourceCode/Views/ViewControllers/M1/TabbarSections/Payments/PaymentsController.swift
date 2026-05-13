@@ -306,7 +306,7 @@ class PaymentsController: UIViewController {
             try csv.write(to: url, atomically: true, encoding: .utf8)
             return url
         } catch {
-            print("CSV save error:", error)
+//            print("CSV save error:", error)
             return nil
         }
     }

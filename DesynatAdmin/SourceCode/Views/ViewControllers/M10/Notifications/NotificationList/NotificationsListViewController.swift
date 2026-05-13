@@ -114,9 +114,6 @@ extension NotificationsListViewController: UITableViewDelegate, UITableViewDataS
         return cell
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Tapped")
-    }
 }
 
 //MARK: UITextFieldDelegate Methods

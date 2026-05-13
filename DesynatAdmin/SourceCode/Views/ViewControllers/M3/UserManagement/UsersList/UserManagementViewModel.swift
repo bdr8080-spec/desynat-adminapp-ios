@@ -48,8 +48,6 @@ class UserManagementViewModel {
           params["to_date"] = toDate
       }
 
-      print("FINAL PARAMS →", params)
-
       // API CALL
       WebService.shared.getAllUsers(param: params) { [weak self] response in
           guard let self = self else { return }
