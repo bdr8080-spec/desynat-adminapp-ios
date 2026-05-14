@@ -158,11 +158,19 @@ class AddPromotionalBannerViewController: UIViewController {
             return
         }
         
-        let subCategoryNames = self.viewModel.subcategoriesList.map { $0.nameEnglish ?? "" }
+        let subCategoryNames = self.viewModel.subcategoriesList.map {
+            AppLanguageManager.shared.currentLanguage == .ar
+            ? ($0.nameArabic ?? "")
+            : ($0.nameEnglish ?? "")
+        }
         
         kSharedAppDelegate.dropDown(dataSource: subCategoryNames, anchorView: sender) { index, item in
             let selectedsubCategory = self.viewModel.subcategoriesList[index]
-            self.subCategoryTF.text = selectedsubCategory.nameEnglish ?? ""
+//            self.subCategoryTF.text = selectedsubCategory.nameEnglish ?? ""
+            self.subCategoryTF.text =
+                AppLanguageManager.shared.currentLanguage == .ar
+                ? (selectedsubCategory.nameArabic ?? "")
+                : (selectedsubCategory.nameEnglish ?? "")
             self.viewModel.selectedSubCategoriesId = selectedsubCategory.id
         }
     }
@@ -283,7 +291,7 @@ class AddPromotionalBannerViewController: UIViewController {
                let index = self.viewModel.subcategoriesList.firstIndex(where: { $0.id == subCategoryId }) {
                 
                 let subCategory = self.viewModel.subcategoriesList[index]
-                self.subCategoryTF.text = subCategory.nameEnglish
+                self.subCategoryTF.text = AppLanguageManager.shared.currentLanguage == .ar ? subCategory.nameArabic : subCategory.nameEnglish
                 self.viewModel.selectedSubCategoriesId = subCategoryId
             }
         }
@@ -426,7 +434,7 @@ extension AddPromotionalBannerViewController: UICollectionViewDelegate, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DurationCollectionViewCell", for: indexPath) as! DurationCollectionViewCell
         let data = viewModel.categoryListData[indexPath.row]
-        cell.titleLabel.text = data.name
+        cell.titleLabel.text = AppLanguageManager.shared.currentLanguage == .ar ? data.nameAr : data.name
         if viewModel.selectedCategoriesId == data.id {
             cell.selectedImageView.image = UIImage(named: "durationSelected")
         } else {

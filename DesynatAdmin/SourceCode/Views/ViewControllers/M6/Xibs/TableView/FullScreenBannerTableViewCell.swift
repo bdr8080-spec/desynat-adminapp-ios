@@ -31,11 +31,10 @@ class FullScreenBannerTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
     }
     
     func configData(data: FullScreenBannerDataList?) {
+        countrystackView.isHidden = false
         titleStackView.isHidden = false
         titleLabel.text = data?.title
         if let imageUrlString = data?.image,
@@ -64,6 +63,7 @@ class FullScreenBannerTableViewCell: UITableViewCell {
     }
     
     func configDataForPromotionalBanner(data: GetPromotionalBannersList?) {
+        countrystackView.isHidden = true
         titleStackView.isHidden = true
         if let imageUrlString = data?.uploadBanner,
            let url = URL(string: imageUrlString) {

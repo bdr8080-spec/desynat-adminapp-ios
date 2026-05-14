@@ -42,7 +42,7 @@ struct BannerListInfo    {
             id:String.getString(data.id), orderID: String.getString(data.orderID),
             name: "\(String.getString(data.sellerDetails?.firstName)) \(String.getString(data.sellerDetails?.lastName))",
             image: String.getString(data.uploadBanner),
-            country: data.sellerDetails?.countryDetails?.name ?? "",
+            country: (AppLanguageManager.shared.currentLanguage == .ar ? data.sellerDetails?.countryDetails?.nameAr ?? "الكويت" : data.sellerDetails?.countryDetails?.name) ?? "Kuwait",
             joinedOn: CommonUtils.getDateStrings(
                 from: Date(iso8601String: String.getString(data.createdAt)),
                 format: "dd/MM/yyyy 'at' hh:mm a"

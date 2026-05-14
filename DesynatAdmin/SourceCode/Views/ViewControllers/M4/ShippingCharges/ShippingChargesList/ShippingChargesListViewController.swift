@@ -57,7 +57,7 @@ extension ShippingChargesListViewController: UITableViewDelegate, UITableViewDat
         let nextVC = ShippingChargesAndTaxViewController.instantiate(fromAppStoryboard: .ShippingPromocode)
         nextVC.countryId = viewModel.shippingDetails?[indexPath.row].id
         nextVC.flag = viewModel.shippingDetails?[indexPath.row].flag
-        nextVC.countryName = viewModel.shippingDetails?[indexPath.row].name
+        nextVC.countryName = AppLanguageManager.shared.currentLanguage == .ar ? viewModel.shippingDetails?[indexPath.row].nameAr : viewModel.shippingDetails?[indexPath.row].name
         nextVC.taxAmount = viewModel.shippingDetails?[indexPath.row].taxInfo?.tax
         nextVC.hasActionPermission = hasActionPermission
         self.navigationController?.pushViewController(nextVC, animated: true)

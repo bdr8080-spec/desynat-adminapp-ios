@@ -11,6 +11,7 @@ import SDWebImage
 class PromotionalBannerDetaislViewController: UIViewController {
     
     // MARK: - IBOutlet's
+    
     @IBOutlet weak var categoryStackView: UIStackView!
     @IBOutlet weak var categorynameLabel: UILabel!
     @IBOutlet weak var subcatgeoryStackView: UIStackView!
@@ -153,15 +154,15 @@ class PromotionalBannerDetaislViewController: UIViewController {
         endDateLabel.text = convertDateFormat(bannerListData?.endDate ?? "")
         subcatgeoryStackView.isHidden = true
         categoryStackView.isHidden = true
-        countryNameLabel.text = bannerListData?.countryInfo?.name
+//        countryNameLabel.text = bannerListData?.countryInfo?.name
         if bannerListData?.bannerPosition == "1" {
             positionLabel.text = "Home Top".localiz()
         } else if bannerListData?.bannerPosition == "2" {
             positionLabel.text = "Home Bottom".localiz()
         } else {
             positionLabel.text = "Category".localiz()
-            subCategoryLabel.text = bannerListData?.subcategoryDetails?.nameEnglish
-            categorynameLabel.text = bannerListData?.categoryDetails?.name
+            subCategoryLabel.text = AppLanguageManager.shared.currentLanguage == .ar ? bannerListData?.subcategoryDetails?.nameArabic : bannerListData?.subcategoryDetails?.nameEnglish
+            categorynameLabel.text = AppLanguageManager.shared.currentLanguage == .ar ? bannerListData?.categoryDetails?.nameAr : bannerListData?.categoryDetails?.name
             subcatgeoryStackView.isHidden = false
             categoryStackView.isHidden = false
         }

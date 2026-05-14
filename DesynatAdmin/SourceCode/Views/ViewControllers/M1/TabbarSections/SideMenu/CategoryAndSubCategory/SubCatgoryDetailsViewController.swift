@@ -66,7 +66,7 @@ class SubCatgoryDetailsViewController: UIViewController {
     
     //MARK: Function's declaration
     func bindData() {
-        subCatgeoryLabel.text = subCategoryData?.nameEnglish
+        subCatgeoryLabel.text = AppLanguageManager.shared.currentLanguage == .ar ? subCategoryData?.nameArabic : subCategoryData?.nameEnglish
         if let imageUrlString = subCategoryData?.image,
            let url = URL(string: imageUrlString) {
             mainImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"))
@@ -81,7 +81,6 @@ class SubCatgoryDetailsViewController: UIViewController {
             statusLabel.text = "Inactive".localiz()
             statusImageView.image = UIImage(named: "toggleOff")
         }
-        
     }
     
 }

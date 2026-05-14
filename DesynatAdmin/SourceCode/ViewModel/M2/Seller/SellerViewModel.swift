@@ -34,7 +34,7 @@ struct SellerListInfo    {
             id:String.getString(data.id),
             name: "\(String.getString(data.firstName)) \(String.getString(data.lastName))",
             image: String.getString(data.profilePic),
-            country: String.getString(data.storeInfo?.countryInfo?.name),
+            country: AppLanguageManager.shared.currentLanguage == .ar ? String.getString(data.storeInfo?.countryInfo?.nameAr) : String.getString(data.storeInfo?.countryInfo?.name),
             joinedOn: CommonUtils.getDateString(from: Date(iso8601String: String.getString(data.createdAt)),format: "dd/MM/yyyy"),
             mobileNumber: "\(String.getString(data.countryCode))-\(String.getString(data.mobile))",
             totalOrders: "0",

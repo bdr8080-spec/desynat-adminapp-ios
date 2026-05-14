@@ -64,7 +64,6 @@ class AddAdvertisementViewController: UIViewController {
             }else {
                 self.countryLabel.text = selectedCountry.nameAr
             }
-//            self.countryLabel.text = selectedCountry.name
             self.countryId = selectedCountry.id ?? 0
         }
     }
@@ -182,7 +181,7 @@ class AddAdvertisementViewController: UIViewController {
         } else {
             mainImageView.image = UIImage(named: "placeholder")
         }
-        countryLabel.text = giftsListData?.countryInfo?.name
+        countryLabel.text = AppLanguageManager.shared.currentLanguage == .ar ? giftsListData?.countryInfo?.nameAr : giftsListData?.countryInfo?.name
         countryId = giftsListData?.countryInfo?.id ?? 0
         fromTextField.text = convertDateFormat(giftsListData?.startDate ?? "")
         toTextField.text = convertDateFormat(giftsListData?.endDate ?? "")

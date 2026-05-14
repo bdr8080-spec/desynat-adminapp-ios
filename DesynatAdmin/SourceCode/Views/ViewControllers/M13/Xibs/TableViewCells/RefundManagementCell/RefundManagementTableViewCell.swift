@@ -52,11 +52,7 @@ class RefundManagementTableViewCell: UITableViewCell {
             transactionstackView.isHidden = false
         }
         transactionId.text = "#\(last7TransactionID)"
-//        orderedOnLbael.text = CommonUtils.getDateStrings(
-//            from: Date(iso8601String: String.getString(data?.order?.createdAt ?? "")),
-//            format: "dd/MM/yyyy 'at' hh:mm a"
-//        )
-        
+
         let orderedOn = CommonUtils.customizeChangeDateFormatZone(
             inputDate: data?.order?.createdAt ?? "",
             inputFormat: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
@@ -64,10 +60,6 @@ class RefundManagementTableViewCell: UITableViewCell {
         )
         orderedOnLbael.text = orderedOn
         
-//        cancelledReturnedOnDateLabel.text = CommonUtils.getDateStrings(
-//            from: Date(iso8601String: String.getString(data?.updatedAt ?? "")),
-//            format: "dd/MM/yyyy 'at' hh:mm a"
-//        )
         let cancelledReturnedDate = CommonUtils.customizeChangeDateFormatZone(
             inputDate: data?.updatedAt ?? "",
             inputFormat: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",

@@ -65,7 +65,7 @@ class BrandDetailsViewController: UIViewController {
     
     //MARK: Function's declaration
     func bindData() {
-        brandNameLabel.text = brandData?.nameEnglish
+        brandNameLabel.text = AppLanguageManager.shared.currentLanguage == .ar ? brandData?.nameArabic : brandData?.nameEnglish
         if let imageUrlString = brandData?.image,
            let url = URL(string: imageUrlString) {
             brandImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"))

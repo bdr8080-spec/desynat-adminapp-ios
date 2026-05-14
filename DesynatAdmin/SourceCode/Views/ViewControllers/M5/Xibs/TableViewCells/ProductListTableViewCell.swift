@@ -29,16 +29,28 @@ class ProductListTableViewCell: UITableViewCell {
     }
     
     func setData(data: OrderData?) {
-        self.nameLabel.text = data?.productDetails?.productNameEn ?? ""
-        self.priceLabel.text = "\(data?.variationDetails?.finalPrice ?? "") KD"
-        self.sizeLabel.text = data?.variationDetails?.size?.name ?? ""
-        self.colourLabel.text = data?.variationDetails?.color?.name ?? ""
-        self.categoryLabel.text = data?.productDetails?.category?.name ?? ""
-        self.quantityLabel.text = data?.quantity?.description
-        self.materialLabel.text = data?.productDetails?.brand?.nameEnglish ?? ""
-        self.productImageView.image = .placeholder
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            nameLabel.text = data?.productDetails?.productNameAr
+            materialLabel.text = data?.productDetails?.brand?.nameArabic ?? ""
+            sizeLabel.text = data?.variationDetails?.size?.nameAr ?? ""
+            colourLabel.text = data?.variationDetails?.color?.nameAr ?? ""
+            categoryLabel.text = data?.productDetails?.category?.nameAr ?? ""
+        } else {
+            nameLabel.text = data?.productDetails?.productNameEn
+            materialLabel.text = data?.productDetails?.brand?.nameEnglish ?? ""
+            sizeLabel.text = data?.variationDetails?.size?.name ?? ""
+            colourLabel.text = data?.variationDetails?.color?.name ?? ""
+            categoryLabel.text = data?.productDetails?.category?.name ?? ""
+        }
+        priceLabel.text = "\(data?.variationDetails?.finalPrice ?? "") KD"
+        
+        
+        
+        quantityLabel.text = data?.quantity?.description
+        
+        productImageView.image = .placeholder
         if let url = URL(string: data?.variationDetails?.variantImage?.first ?? "") {
-            self.productImageView.sd_setImage(with: url,placeholderImage: .placeholder)
+            productImageView.sd_setImage(with: url,placeholderImage: .placeholder)
         }
     }
 }

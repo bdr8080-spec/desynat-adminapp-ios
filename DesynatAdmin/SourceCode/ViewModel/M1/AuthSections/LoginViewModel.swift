@@ -54,6 +54,7 @@ class LoginViewModel: NSObject {
     func loginApi() {
         let params: [String:Any] = [
             "device_type": 1,//0 web 1 ios 2 andriod
+            "lang": AppLanguageManager.shared.currentLanguage.rawValue,
             "fcm_token": kSharedUserDefaults.retrieveModelFor(key: .deviceToken, model: String.self) ?? "",
             "email": loginHostVC.emailTextField.text?.trimmed() ?? "",
             "password": loginHostVC.passwordTextField.text?.trimmed() ?? ""]

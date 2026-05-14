@@ -95,7 +95,7 @@ class UserManagementDetailsViewController: UIViewController {
             mainImageView.image = UIImage(named: "userProfile")
         }
         
-        locationLabel.text = data.countryInfo?.name
+        locationLabel.text = AppLanguageManager.shared.currentLanguage == .ar ? data.countryInfo?.nameAr : data.countryInfo?.name
         let result = convertISOToDMY(data.createdAt ?? "") ?? ""
         joinedLabel.text = "\("Joined on".localiz()) \(result)"
         phoneLabel.text = "\(data.countryCode ?? "")-\(data.mobile ?? "")"

@@ -61,33 +61,38 @@ class CommonUtils {
     }
     
     static func formatPrice(_ amount: Double?, currency: String = "KD") -> String {
-        guard let amount = amount else { return "0 \(currency.localiz())" }
+        guard let amount = amount else {
+            //            return "0 \(currency.localiz())"
+            return "0 \(currency)"
+        }
         
         let roundedAmount = round(amount * 100) / 100   // Round to 2 decimal places
         if roundedAmount.truncatingRemainder(dividingBy: 1) == 0 {
             // If whole number, show without decimal
-            return "\(Int(roundedAmount)) \(currency.localiz())"
+            //            return "\(Int(roundedAmount)) \(currency.localiz())"
+            return "\(Int(roundedAmount)) \(currency)"
         } else {
             // Show up to 2 decimal places
-            return String(format: "%.2f", roundedAmount) + " \(currency.localiz())"
+            //            return String(format: "%.2f", roundedAmount) + " \(currency.localiz())"
+            return String(format: "%.2f", roundedAmount) + " \(currency)"
         }
     }
     
-//    static func updateDiscountPercentageLabel(_ label: UILabel, actualAmountLabel: UILabel, discountType: String?,discountValue: String?) {
-//        let value = Double(discountValue ?? "0") ?? 0
-//        guard value > 0 else {
-//            label.isHidden = true
-//            actualAmountLabel.isHidden = true
-//            return
-//        }
-//        label.isHidden = false
-//        actualAmountLabel.isHidden = false
-//        if discountType == "1" {
-//            label.text = "\(discountValue ?? "")% Off"
-//        } else {
-//            label.text = "\(discountValue ?? "") KD Off"
-//        }
-//    }
+    //    static func updateDiscountPercentageLabel(_ label: UILabel, actualAmountLabel: UILabel, discountType: String?,discountValue: String?) {
+    //        let value = Double(discountValue ?? "0") ?? 0
+    //        guard value > 0 else {
+    //            label.isHidden = true
+    //            actualAmountLabel.isHidden = true
+    //            return
+    //        }
+    //        label.isHidden = false
+    //        actualAmountLabel.isHidden = false
+    //        if discountType == "1" {
+    //            label.text = "\(discountValue ?? "")% Off"
+    //        } else {
+    //            label.text = "\(discountValue ?? "") KD Off"
+    //        }
+    //    }
     
     static func updateDiscountPercentageLabel(
         _ label: UILabel,
@@ -108,8 +113,8 @@ class CommonUtils {
         actualAmountLabel.isHidden = false
         
         let offText = AppLanguageManager.shared.currentLanguage == .ar
-            ? "خصم"
-            : "Off"
+        ? "خصم"
+        : "Off"
         
         if discountType == "1" {
             label.text = "\(discountValue ?? "")% \(offText)"
@@ -153,27 +158,27 @@ class CommonUtils {
         inputFormat: String = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'",
         outputFormat: String = "dd/MM/yyyy 'at' hh:mm a"
     ) -> String {
-
+        
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = inputFormat
         inputFormatter.locale = Locale(identifier: "en_US_POSIX")
         inputFormatter.timeZone = TimeZone(secondsFromGMT: 0)   // interpret input as UTC
-
+        
         guard let date = inputFormatter.date(from: inputDate) else {
             print("❌ Parse failed: \(inputDate)")
             return ""
         }
-
+        
         let outputFormatter = DateFormatter()
         outputFormatter.dateFormat = outputFormat
-//        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        //        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
         if AppLanguageManager.shared.currentLanguage == .ar {
             outputFormatter.locale = Locale(identifier: "ar")
-           } else {
-               outputFormatter.locale = Locale(identifier: "en_US")
-           }
+        } else {
+            outputFormatter.locale = Locale(identifier: "en_US")
+        }
         outputFormatter.timeZone = TimeZone(identifier: "Asia/Kuwait")   // always Kuwait time
-
+        
         return outputFormatter.string(from: date)
     }
     
@@ -183,15 +188,18 @@ class CommonUtils {
             let amount = amount,
             let doubleAmount = Double(amount)
         else {
-            return "0 \(currency.localiz())"
+            //            return "0 \(currency.localiz())"
+            return "0 \(currency)"
         }
         
         let roundedAmount = round(doubleAmount * 100) / 100
         
         if roundedAmount.truncatingRemainder(dividingBy: 1) == 0 {
-            return "\(Int(roundedAmount)) \(currency.localiz())"
+            //            return "\(Int(roundedAmount)) \(currency.localiz())"
+            return "\(Int(roundedAmount)) \(currency)"
         } else {
-            return String(format: "%.2f", roundedAmount) + " \(currency.localiz())"
+            //            return String(format: "%.2f", roundedAmount) + " \(currency.localiz())"
+            return String(format: "%.2f", roundedAmount) + " \(currency)"
         }
     }
     
@@ -225,7 +233,8 @@ class CommonUtils {
             let amount = amount,
             let doubleAmount = Double(amount)
         else {
-            return "0 \(currency.localiz())"
+            //            return "0 \(currency.localiz())"
+            return "0 \(currency)"
         }
         
         let formatter = NumberFormatter()
@@ -234,7 +243,8 @@ class CommonUtils {
         formatter.maximumFractionDigits = 2   // up to 2 decimals
         
         let formattedAmount = formatter.string(from: NSNumber(value: doubleAmount)) ?? "0"
-        return "\(formattedAmount) \(currency.localiz())"
+        //        return "\(formattedAmount) \(currency.localiz())"
+        return "\(formattedAmount) \(currency)"
     }
     
     static func formatDate(from dateString: String) -> String? {
@@ -252,7 +262,6 @@ class CommonUtils {
         return outputFormatter.string(from: date)
     }
     
-    
     static let displayFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMM yyyy"
@@ -269,12 +278,12 @@ class CommonUtils {
     static func formatDateToYYYYMMDD(date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-//        formatter.locale = Locale(identifier: "en_US_POSIX")
+        //        formatter.locale = Locale(identifier: "en_US_POSIX")
         if AppLanguageManager.shared.currentLanguage == .ar {
             formatter.locale = Locale(identifier: "ar")
-           } else {
-               formatter.locale = Locale(identifier: "en_US")
-           }
+        } else {
+            formatter.locale = Locale(identifier: "en_US")
+        }
         return formatter.string(from: date)
     }
     
@@ -288,12 +297,12 @@ class CommonUtils {
         }
         
         let formatter = DateFormatter()
-//        formatter.locale = Locale(identifier: "en_US_POSIX")
+        //        formatter.locale = Locale(identifier: "en_US_POSIX")
         if AppLanguageManager.shared.currentLanguage == .ar {
             formatter.locale = Locale(identifier: "ar")
-           } else {
-               formatter.locale = Locale(identifier: "en_US")
-           }
+        } else {
+            formatter.locale = Locale(identifier: "en_US")
+        }
         formatter.dateFormat = "E dd MM yyyy | hh:mm a"
         
         return formatter.string(from: date)
@@ -387,66 +396,66 @@ class CommonUtils {
         }
     }
     
-//    static func loadHTMLContent(_ content: String, webView: WKWebView) {
-//        
-//        let cleanedContent = content
-//            .replacingOccurrences(of: "\u{2028}", with: "<br>")
-//            .replacingOccurrences(of: "\u{2029}", with: "<br><br>")
-//            .trimmingCharacters(in: .whitespacesAndNewlines) // IMPORTANT: remove leading blank lines
-//        
-//        let html = """
-//        <html>
-//        <head>
-//            <meta name="viewport"
-//                  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-//
-//            <style>
-//                body {
-//                    margin: 0;                           /* remove body margin */
-//                    padding: 0;
-//                    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-//                    font-size: 16px;
-//                    line-height: 1.6;
-//                    -webkit-text-size-adjust: 100%;
-//                    white-space: normal !important;      /* reset body */
-//                }
-//
-//                /* Clean paragraphs completely */
-//                p {
-//                    margin: 0 !important;
-//                    padding: 0 !important;
-//                    white-space: pre-wrap !important;
-//                }
-//
-//                div, span {
-//                    white-space: pre-wrap !important;
-//                    margin: 0 !important;
-//                    padding: 0 !important;
-//                }
-//
-//                img {
-//                    max-width: 100%;
-//                    height: auto;
-//                }
-//
-//                table {
-//                    width: 100% !important;
-//                }
-//
-//                /* Add controlled spacing between elements */
-//                p + p {
-//                   margin-top: 10px !important;
-//                }
-//            </style>
-//        </head>
-//        <body>
-//            <div style="padding: 12px;">\(cleanedContent)</div>
-//        </body>
-//        </html>
-//        """
-//        
-//        webView.loadHTMLString(html, baseURL: nil)
-//    }
+    //    static func loadHTMLContent(_ content: String, webView: WKWebView) {
+    //
+    //        let cleanedContent = content
+    //            .replacingOccurrences(of: "\u{2028}", with: "<br>")
+    //            .replacingOccurrences(of: "\u{2029}", with: "<br><br>")
+    //            .trimmingCharacters(in: .whitespacesAndNewlines) // IMPORTANT: remove leading blank lines
+    //
+    //        let html = """
+    //        <html>
+    //        <head>
+    //            <meta name="viewport"
+    //                  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    //
+    //            <style>
+    //                body {
+    //                    margin: 0;                           /* remove body margin */
+    //                    padding: 0;
+    //                    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    //                    font-size: 16px;
+    //                    line-height: 1.6;
+    //                    -webkit-text-size-adjust: 100%;
+    //                    white-space: normal !important;      /* reset body */
+    //                }
+    //
+    //                /* Clean paragraphs completely */
+    //                p {
+    //                    margin: 0 !important;
+    //                    padding: 0 !important;
+    //                    white-space: pre-wrap !important;
+    //                }
+    //
+    //                div, span {
+    //                    white-space: pre-wrap !important;
+    //                    margin: 0 !important;
+    //                    padding: 0 !important;
+    //                }
+    //
+    //                img {
+    //                    max-width: 100%;
+    //                    height: auto;
+    //                }
+    //
+    //                table {
+    //                    width: 100% !important;
+    //                }
+    //
+    //                /* Add controlled spacing between elements */
+    //                p + p {
+    //                   margin-top: 10px !important;
+    //                }
+    //            </style>
+    //        </head>
+    //        <body>
+    //            <div style="padding: 12px;">\(cleanedContent)</div>
+    //        </body>
+    //        </html>
+    //        """
+    //
+    //        webView.loadHTMLString(html, baseURL: nil)
+    //    }
     
     static func loadHTMLContent(_ content: String, webView: WKWebView, isArabic: Bool) {
         
@@ -456,7 +465,7 @@ class CommonUtils {
             .trimmingCharacters(in: .whitespacesAndNewlines)
         
         // ✅ RTL Support
-//        let isArabic = AppLanguageManager.shared.currentLanguage == .ar
+        //        let isArabic = AppLanguageManager.shared.currentLanguage == .ar
         let direction = isArabic ? "rtl" : "ltr"
         let textAlign = isArabic ? "right" : "left"
         
@@ -465,7 +474,7 @@ class CommonUtils {
         <head>
             <meta name="viewport"
                   content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+        
             <style>
                 body {
                     margin: 0;
@@ -479,7 +488,7 @@ class CommonUtils {
                     direction: \(direction);
                     text-align: \(textAlign);
                 }
-
+        
                 p {
                     margin: 0 !important;
                     padding: 0 !important;
@@ -488,7 +497,7 @@ class CommonUtils {
                     direction: \(direction);
                     text-align: \(textAlign);
                 }
-
+        
                 div, span {
                     white-space: pre-wrap !important;
                     margin: 0 !important;
@@ -497,23 +506,23 @@ class CommonUtils {
                     direction: \(direction);
                     text-align: \(textAlign);
                 }
-
+        
                 img {
                     max-width: 100%;
                     height: auto;
                 }
-
+        
                 table {
                     width: 100% !important;
                     direction: \(direction);
                 }
-
+        
                 p + p {
                     margin-top: 10px !important;
                 }
             </style>
         </head>
-
+        
         <body>
             <div style="padding: 12px;">\(cleanedContent)</div>
         </body>
@@ -536,12 +545,12 @@ class CommonUtils {
         
         let formatter = DateFormatter()
         formatter.dateFormat = format
-//        formatter.locale = Locale(identifier: "en_US_POSIX") // ✅ AM / PM uppercase
+        //        formatter.locale = Locale(identifier: "en_US_POSIX") // ✅ AM / PM uppercase
         if AppLanguageManager.shared.currentLanguage == .ar {
             formatter.locale = Locale(identifier: "ar")
-           } else {
-               formatter.locale = Locale(identifier: "en_US")
-           }
+        } else {
+            formatter.locale = Locale(identifier: "en_US")
+        }
         return formatter.string(from: date)
     }
     
@@ -677,7 +686,7 @@ class CommonUtils {
         let baseURL = "https://maps.googleapis.com/maps/api/place/details/json"
         let parameters = [
             "place_id": placeID,
-//            "key": "AIzaSyAekJV3oxQlPy_OWHCxPYfFw5CnrD-Wzkg"
+            //            "key": "AIzaSyAekJV3oxQlPy_OWHCxPYfFw5CnrD-Wzkg"
             "key": "AIzaSyB5LK7zzKS4q9ov0R4LFLgaRyPZdZsTKz4"
         ]
         

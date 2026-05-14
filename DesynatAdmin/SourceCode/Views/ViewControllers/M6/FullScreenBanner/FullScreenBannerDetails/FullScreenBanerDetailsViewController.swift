@@ -11,6 +11,7 @@ import SDWebImage
 class FullScreenBanerDetailsViewController: UIViewController {
     
     // MARK: - IBOutlet's
+    
     @IBOutlet weak var coountryView: UIStackView!
     @IBOutlet weak var typeTitleLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
@@ -82,16 +83,15 @@ class FullScreenBanerDetailsViewController: UIViewController {
             cardImageView.image = UIImage(named: "placeholder")
         }
         cardImageView.enableFullscreenZoom()
-        countryNameLabel.text = giftsListData?.countryInfo?.name
+        countryNameLabel.text = AppLanguageManager.shared.currentLanguage == .ar ? giftsListData?.countryInfo?.nameAr : giftsListData?.countryInfo?.name
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-//        formatter.locale = Locale(identifier: "en_US_POSIX")
         if AppLanguageManager.shared.currentLanguage == .ar {
             formatter.locale = Locale(identifier: "ar")
-           } else {
-               formatter.locale = Locale(identifier: "en_US")
-           }
+        } else {
+            formatter.locale = Locale(identifier: "en_US")
+        }
         let today = Calendar.current.startOfDay(for: Date())
         
         if giftsListData?.status == 1 {
@@ -134,9 +134,7 @@ class FullScreenBanerDetailsViewController: UIViewController {
                 typeLabel.text = "Category".localiz()
             }
         }
-        
     }
-    
     
     func convertDateFormat(
         _ dateString: String,
@@ -145,24 +143,23 @@ class FullScreenBanerDetailsViewController: UIViewController {
     ) -> String? {
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = inputFormat
-//        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        //        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
         if AppLanguageManager.shared.currentLanguage == .ar {
             inputFormatter.locale = Locale(identifier: "ar")
-           } else {
-               inputFormatter.locale = Locale(identifier: "en_US")
-           }
+        } else {
+            inputFormatter.locale = Locale(identifier: "en_US")
+        }
         guard let date = inputFormatter.date(from: dateString) else {
             return nil
         }
         
         let outputFormatter = DateFormatter()
         outputFormatter.dateFormat = outputFormat
-//        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
         if AppLanguageManager.shared.currentLanguage == .ar {
             outputFormatter.locale = Locale(identifier: "ar")
-           } else {
-               outputFormatter.locale = Locale(identifier: "en_US")
-           }
+        } else {
+            outputFormatter.locale = Locale(identifier: "en_US")
+        }
         return outputFormatter.string(from: date)
     }
     
