@@ -31,7 +31,6 @@ class BannersMangementFilterViewController: UIViewController {
         handleUISetup()
         viewModel.getAllCountry { [weak self] in
             self?.setData()
-            self?.countryLabel.text = self?.viewModel.filterInfo.country?.name
         }
     }
     
@@ -76,7 +75,6 @@ class BannersMangementFilterViewController: UIViewController {
             }else {
                 self.countryLabel.text = selectedCountry.nameAr
             }
-//            self.countryLabel.text = selectedCountry.name
         }
         
         // Show the dropdown
@@ -114,6 +112,14 @@ class BannersMangementFilterViewController: UIViewController {
         }
         if let endDate = filterInfo.endDate {
             self.toTextField.text = CommonUtils.getDateString(from: endDate,format: "dd/MM/yyyy")
+        }
+        
+        if let selectedCountry = filterInfo.country {
+            if AppLanguageManager.shared.currentLanguage == .en {
+                self.countryLabel.text = selectedCountry.name ?? ""
+            } else {
+                self.countryLabel.text = selectedCountry.nameAr ?? ""
+            }
         }
     }
     

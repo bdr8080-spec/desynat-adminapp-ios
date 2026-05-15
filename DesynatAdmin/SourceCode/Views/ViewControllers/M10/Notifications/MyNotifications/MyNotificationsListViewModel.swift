@@ -10,7 +10,7 @@ import Foundation
 class MyNotificationsListViewModel {
     
     private var hostVC: MyNotificationsListViewController
-    var notificationSentList: [NotificationsList] = []
+    var notificationSentList: [MyNotificationsList] = []
     private var currentPage = 1
     private var lastPage = 1
     private var isFetching = false

@@ -67,7 +67,7 @@ struct TicketManagementList: Codable {
 // MARK: - TicketTypeDetails
 struct TicketTypeDetails: Codable {
     let id: Int?
-    let name: String?
+    let name, nameAr: String?
     let status: Int?
     let createdAt, updatedAt: String?
 
@@ -75,5 +75,6 @@ struct TicketTypeDetails: Codable {
         case id, name, status
         case createdAt = "created_at"
         case updatedAt = "updated_at"
+        case nameAr = "name_arabic"
     }
 }

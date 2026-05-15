@@ -107,7 +107,8 @@ class TicketManagementDetailsViewController: UIViewController {
         //requestedByLbl.text = data.senderDetails?.fullNameEnglish
         titleLabel.text = data.title ?? ""
         ticketIdLbl.text = data.ticketID ?? ""
-        ticketTypeLabel.text = data.ticketTypeDetails?.name ?? ""
+        ticketTypeLabel.text = AppLanguageManager.shared.currentLanguage == .ar ? data.ticketTypeDetails?.nameAr : data.ticketTypeDetails?.name
+        submittedBy.text = senderType(role: data.senderType ?? 1)
         raisedOnLabel.text = convertServerDate(data.createdAt ?? "")
         let status = statusType(status: data.status ?? 0)
         ticketStatusLbl.text = status.text
@@ -117,9 +118,9 @@ class TicketManagementDetailsViewController: UIViewController {
            let url = URL(string: imageUrlString) {
             attachmnetImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
             attachmnetImageView.sd_imageIndicator?.startAnimatingIndicator()
-            attachmnetImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "uploadTicket"))
+            attachmnetImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "dashedBorder"))
         } else {
-            attachmnetImageView.image = UIImage(named: "uploadTicket")
+            attachmnetImageView.image = UIImage(named: "dashedBorder")
         }
         resolvedOnStackView.isHidden = (data.status != 1)
         resolvedOnDateLabel.text = convertServerDate(data.updatedAt ?? "")
@@ -144,6 +145,11 @@ class TicketManagementDetailsViewController: UIViewController {
     func statusType(status: Int) -> (text: String, color: UIColor) {
         let state = TicketStatus(rawValue: status)
         return (state?.text ?? "Unknown", state?.color ?? .gray)
+    }
+    
+    func senderType(role: Int) -> String {
+        let state = SenderRoleType(rawValue: role)
+        return state?.text.localiz() ?? "Customer".localiz()
     }
     
     func convertServerDate(_ isoString: String) -> String {

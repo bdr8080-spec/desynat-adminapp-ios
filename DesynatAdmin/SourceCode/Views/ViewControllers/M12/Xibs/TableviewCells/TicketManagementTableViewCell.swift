@@ -44,7 +44,7 @@ class TicketManagementTableViewCell: UITableViewCell {
         requestedByLabel.text = fullname
         ticketIdLabel.text = data?.ticketID
         submittedByLabel.text = senderType(role: data?.senderType ?? 1)
-        ticketTypeLabel.text = data?.ticketTypeDetails?.name
+        ticketTypeLabel.text = AppLanguageManager.shared.currentLanguage == .ar ? data?.ticketTypeDetails?.nameAr : data?.ticketTypeDetails?.name
         raisedOnLabel.text = convertServerDate(data?.createdAt ?? "")
         switch status {
             
@@ -65,7 +65,7 @@ class TicketManagementTableViewCell: UITableViewCell {
     
     func senderType(role: Int) -> String {
         let state = SenderRoleType(rawValue: role)
-        return state?.text ?? "Customer".localiz()
+        return state?.text.localiz() ?? "Customer".localiz()
     }
     
     func convertServerDate(_ isoString: String) -> String {
@@ -109,3 +109,4 @@ enum SenderRoleType: Int {
         }
     }
 }
+

@@ -106,8 +106,6 @@ class FullScreenBannerFilterViewController: UIViewController {
                 self.countryName = selectedCountry.nameAr ?? ""
                 self.countryLabel.text = selectedCountry.nameAr
             }
-//            self.countryLabel.text = selectedCountry.name
-//            self.countryName = selectedCountry.name ?? ""
         }
     }
     
@@ -128,7 +126,6 @@ class FullScreenBannerFilterViewController: UIViewController {
             }else {
                 self.countryLabel.text = selectedCountry.nameAr
             }
-//            countryLabel.text = selectedCountry.name
             countryName = id
         }
         

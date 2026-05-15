@@ -117,7 +117,7 @@ class AffiliatedUserDetailsViewController: UIViewController {
             profileImageView.image = UIImage(named: "userProfile")
         }
         usernameLabel.text = data.fullName
-        countryLabel.text = data.countryDetails?.name
+        countryLabel.text = AppLanguageManager.shared.currentLanguage == .ar ? data.countryDetails?.nameAr : data.countryDetails?.name
         joinedDateLabel.text = "\("Joined on".localiz()) \(convertISOToDMY(data.createdAt ?? "") ?? "")"
         mobileLabel.text = "\(data.countryCode ?? "")-\(data.mobile ?? "")"
         emailLabel.text = data.email

@@ -153,7 +153,6 @@ class AddNewStaffViewController: UIViewController {
             }else {
                 self.selcetdCountryLabel.text = selectedCountry.nameAr
             }
-//            self.selcetdCountryLabel.text = selectedCountry.name
             self.countryID = selectedCountry.id ?? 1
         }
     }
@@ -214,7 +213,7 @@ class AddNewStaffViewController: UIViewController {
         countryID = Int(data.countryID ?? "1") ?? 1
         countryCode = data.countryCode ?? "+965"
         countryCodeTF.text = data.countryCode ?? "+965"
-        selcetdCountryLabel.text = data.countryInfo?.name
+        selcetdCountryLabel.text = AppLanguageManager.shared.currentLanguage == .ar ? data.countryInfo?.nameAr : data.countryInfo?.name
         passwordTxtField.text = data.unhashedPassword
         confirmPasswortTxtField.text = data.unhashedPassword
 

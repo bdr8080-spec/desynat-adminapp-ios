@@ -138,9 +138,9 @@ extension WebService {
         }
     }
     
-    func getMyNotificationsListService(param: [String:Any], completion: @escaping(NotificationsListDataModel) -> Void) {
+    func getMyNotificationsListService(param: [String:Any], completion: @escaping(MyNotificationsListDataModel) -> Void) {
         CommonUtils.showHud(show: true)
-        NetworkManager.shared.request(withAPI: .endpoint(.getMyNotificationsList),requestMethod: .get, requestParams: param, requestModel: NotificationsListDataModel.self) { result, code in
+        NetworkManager.shared.request(withAPI: .endpoint(.getMyNotificationsList),requestMethod: .get, requestParams: param, requestModel: MyNotificationsListDataModel.self) { result, code in
             CommonUtils.showHud(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {

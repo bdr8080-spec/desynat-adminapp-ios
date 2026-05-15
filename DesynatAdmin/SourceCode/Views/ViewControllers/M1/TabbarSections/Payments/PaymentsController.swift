@@ -164,10 +164,35 @@ class PaymentsController: UIViewController {
     }
     
     @IBAction func chooseMonthDidTapped(_ sender: Any) {
-        let alert = UIAlertController(title: "Select Month".localiz(), message: nil, preferredStyle: .actionSheet)
+//        let alert = UIAlertController(title: "Select Month".localiz(), message: nil, preferredStyle: .actionSheet)
+//        
+//        let months = Calendar.current.monthSymbols
+//        
+//        for (index, month) in months.enumerated() {
+//            alert.addAction(UIAlertAction(title: month, style: .default, handler: { _ in
+//                self.selectedMonth = index + 1
+//                self.chooseMonthLbl.text = month
+//                self.applyMonthYearFilter()
+//            }))
+//        }
+//        
+//        alert.addAction(UIAlertAction(title: "Cancel".localiz(), style: .cancel))
+//        present(alert, animated: true)
         
-        let months = Calendar.current.monthSymbols
-        
+        let alert = UIAlertController(title: "Select Month".localiz(),
+                                      message: nil,
+                                      preferredStyle: .actionSheet)
+
+        let formatter = DateFormatter()
+
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            formatter.locale = Locale(identifier: "ar")
+        } else {
+            formatter.locale = Locale(identifier: "en")
+        }
+
+        let months = formatter.monthSymbols ?? []
+
         for (index, month) in months.enumerated() {
             alert.addAction(UIAlertAction(title: month, style: .default, handler: { _ in
                 self.selectedMonth = index + 1
@@ -175,16 +200,15 @@ class PaymentsController: UIViewController {
                 self.applyMonthYearFilter()
             }))
         }
-        
+
         alert.addAction(UIAlertAction(title: "Cancel".localiz(), style: .cancel))
+
         present(alert, animated: true)
     }
     
     @IBAction func chooseYearDidTapped(_ sender: Any) {
         let alert = UIAlertController(title: "Select Year".localiz(), message: nil, preferredStyle: .actionSheet)
-        
         let currentYear = Calendar.current.component(.year, from: Date())
-        
         for year in (2000...currentYear).reversed() {
             alert.addAction(UIAlertAction(title: "\(year)", style: .default, handler: { _ in
                 self.selectedYear = year
@@ -192,7 +216,6 @@ class PaymentsController: UIViewController {
                 self.applyMonthYearFilter()
             }))
         }
-        
         alert.addAction(UIAlertAction(title: "Cancel".localiz(), style: .cancel))
         present(alert, animated: true)
     }

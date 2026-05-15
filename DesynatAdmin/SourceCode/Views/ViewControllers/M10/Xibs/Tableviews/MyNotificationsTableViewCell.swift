@@ -23,7 +23,7 @@ class MyNotificationsTableViewCell: UITableViewCell {
 
     }
     
-    func configData(data: NotificationsList?) {
+    func configData(data: MyNotificationsList?) {
         if AppLanguageManager.shared.currentLanguage == .ar {
             titleLabel.text = data?.titleArabic ?? data?.titleEnglish
             descriptionLabel.text = data?.descriptionArabic ?? data?.descriptionEnglish
@@ -33,9 +33,9 @@ class MyNotificationsTableViewCell: UITableViewCell {
             descriptionLabel.text = data?.descriptionEnglish
         }
         if data?.isRead == 1 {
-            mainImageView.image = .selectedBellIcon
-        } else {
             mainImageView.image = .unselectedBellIcon
+        } else {
+            mainImageView.image = .selectedBellIcon
         }
         sentTimeLabel.text = formatISODateToDayMonthYear(data?.createdAt ?? "")
     }

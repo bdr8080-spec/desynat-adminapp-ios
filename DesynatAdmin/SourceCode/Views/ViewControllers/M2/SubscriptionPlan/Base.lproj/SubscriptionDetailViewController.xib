@@ -228,23 +228,44 @@
                                         <action selector="handleDelete:" destination="-1" eventType="touchUpInside" id="KUj-XT-oX5"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ugd-9R-918" customClass="CustomButton" customModule="DesynatAdmin" customModuleProvider="target">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b9V-Pf-ekM">
                                     <rect key="frame" x="179" y="0.0" width="164" height="38"/>
-                                    <color key="backgroundColor" red="0.43137254899999999" green="0.27058823529999998" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
-                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                    <state key="normal" title="Edit">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </state>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                            <real key="value" value="5"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <action selector="handleEdit:" destination="-1" eventType="touchUpInside" id="TSa-Cc-nll"/>
-                                    </connections>
-                                </button>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o6G-jl-mNL" customClass="CustomButton" customModule="DesynatAdmin" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="164" height="38"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="38" id="Pqd-GE-gp5"/>
+                                            </constraints>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" image="btnGradient"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="handleEdit:" destination="-1" eventType="touchUpInside" id="Gv2-Nz-0Ff"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gj8-l1-Hrj">
+                                            <rect key="frame" x="69" y="9.333333333333373" width="26" height="19.666666666666671"/>
+                                            <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="o6G-jl-mNL" secondAttribute="trailing" id="KoQ-56-dZc"/>
+                                        <constraint firstItem="o6G-jl-mNL" firstAttribute="top" secondItem="b9V-Pf-ekM" secondAttribute="top" id="Rhv-k8-Qc9"/>
+                                        <constraint firstItem="gj8-l1-Hrj" firstAttribute="centerY" secondItem="b9V-Pf-ekM" secondAttribute="centerY" id="bdA-vf-5OG"/>
+                                        <constraint firstItem="gj8-l1-Hrj" firstAttribute="centerX" secondItem="b9V-Pf-ekM" secondAttribute="centerX" id="c3s-g5-IQt"/>
+                                        <constraint firstItem="o6G-jl-mNL" firstAttribute="leading" secondItem="b9V-Pf-ekM" secondAttribute="leading" id="pZn-mZ-3C5"/>
+                                        <constraint firstAttribute="bottom" secondItem="o6G-jl-mNL" secondAttribute="bottom" id="qP2-HI-p31"/>
+                                    </constraints>
+                                </view>
                             </subviews>
                             <constraints>
                                 <constraint firstAttribute="height" constant="38" id="Mt7-ta-GVJ"/>
@@ -278,6 +299,7 @@
         </view>
     </objects>
     <resources>
+        <image name="btnGradient" width="343" height="38"/>
         <image name="ic_switch_on" width="40" height="22"/>
         <image name="leftVector" width="9.6666669845581055" height="17.666666030883789"/>
         <systemColor name="systemBackgroundColor">

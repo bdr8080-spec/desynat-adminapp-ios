@@ -97,7 +97,7 @@ class PaymentTableViewCell: UITableViewCell {
             titleValue.text = data?.userDetails?.fullName
             orderValue.text = data?.giftDetails?.nameEnglish
             giftCardtotalAmount.text = CommonUtils.formatPriceStringInput(data?.amount)
-            giftCardCountry.text = data?.userDetails?.countryInfo?.name
+            giftCardCountry.text = AppLanguageManager.shared.currentLanguage == .ar ? data?.userDetails?.countryInfo?.nameAr : data?.userDetails?.countryInfo?.name
             
         case .banners:
             giftAndBannerStackView.isHidden = false
@@ -106,7 +106,7 @@ class PaymentTableViewCell: UITableViewCell {
             titleValue.text = "\(data?.sellerDetails?.firstName ?? "") \(data?.sellerDetails?.lastName ?? "")"
             orderValue.text = "#\(data?.orderID ?? "0")"
             giftCardtotalAmount.text = CommonUtils.formatPriceStringInput(data?.price)
-            giftCardCountry.text = data?.sellerDetails?.storeInfo?.countryInfo?.name
+            giftCardCountry.text = AppLanguageManager.shared.currentLanguage == .ar ? data?.sellerDetails?.storeInfo?.countryInfo?.nameAr : data?.sellerDetails?.storeInfo?.countryInfo?.name
             giftCardPaymentmode.text = "Online".localiz()
         }
         configureData(data: data, tab: tab)
