@@ -1,22 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ReelsCollectionViewCell" customModule="DesynatAdmin" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="205" height="277"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="205" height="277"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gKj-4W-eDv" customClass="CustomView" customModule="DesynatUser" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="205" height="277"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ph4-Bw-L6N" customClass="CustomImageView" customModule="DesynatUser" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="205" height="277"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sFg-My-59x">
+                                <rect key="frame" x="168" y="227" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="sFg-My-59x" secondAttribute="height" id="bsq-IZ-xkJ"/>
+                                    <constraint firstAttribute="height" constant="25" id="oUz-64-40q"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="ic_delete_city"/>
+                                <connections>
+                                    <action selector="deleteButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="ktW-Is-Tov"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEO-h0-LwV">
+                                <rect key="frame" x="85" y="121" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="5aa-K9-ThI"/>
+                                    <constraint firstAttribute="width" constant="35" id="Klv-1k-sC0"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="play"/>
+                                <connections>
+                                    <action selector="playButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="8wv-za-NVQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ph4-Bw-L6N" firstAttribute="top" secondItem="gKj-4W-eDv" secondAttribute="top" id="6Il-N2-taS"/>
+                            <constraint firstItem="ph4-Bw-L6N" firstAttribute="leading" secondItem="gKj-4W-eDv" secondAttribute="leading" id="GSX-oC-zdI"/>
+                            <constraint firstAttribute="bottom" secondItem="ph4-Bw-L6N" secondAttribute="bottom" id="JPz-G5-AQC"/>
+                            <constraint firstItem="eEO-h0-LwV" firstAttribute="centerY" secondItem="gKj-4W-eDv" secondAttribute="centerY" id="Jm0-Bd-Vzf"/>
+                            <constraint firstAttribute="bottom" secondItem="sFg-My-59x" secondAttribute="bottom" constant="25" id="PBb-xq-3RB"/>
+                            <constraint firstAttribute="trailing" secondItem="ph4-Bw-L6N" secondAttribute="trailing" id="eJn-P1-zlX"/>
+                            <constraint firstAttribute="trailing" secondItem="sFg-My-59x" secondAttribute="trailing" constant="12" id="ttM-Ux-vJa"/>
+                            <constraint firstItem="eEO-h0-LwV" firstAttribute="centerX" secondItem="gKj-4W-eDv" secondAttribute="centerX" id="ziz-0I-VIb"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" systemColor="systemGray5Color"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-            <point key="canvasLocation" x="-234" y="119"/>
+            <constraints>
+                <constraint firstItem="gKj-4W-eDv" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="5Rg-CL-A7u"/>
+                <constraint firstAttribute="bottom" secondItem="gKj-4W-eDv" secondAttribute="bottom" id="OY2-eA-gCM"/>
+                <constraint firstItem="gKj-4W-eDv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="iOh-ep-7IJ"/>
+                <constraint firstAttribute="trailing" secondItem="gKj-4W-eDv" secondAttribute="trailing" id="rQf-AO-Unc"/>
+            </constraints>
+            <size key="customSize" width="78" height="104"/>
+            <connections>
+                <outlet property="deleteButton" destination="sFg-My-59x" id="OmK-l5-lrP"/>
+                <outlet property="mainImageView" destination="ph4-Bw-L6N" id="rwp-rl-KsO"/>
+                <outlet property="playButton" destination="eEO-h0-LwV" id="6Le-zo-8Lr"/>
+            </connections>
+            <point key="canvasLocation" x="-213.74045801526717" y="137.32394366197184"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="ic_delete_city" width="24" height="24"/>
+        <image name="play" width="24" height="24"/>
+        <systemColor name="systemGray5Color">
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

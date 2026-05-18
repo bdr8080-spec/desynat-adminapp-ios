@@ -21,8 +21,16 @@ class SellerDetailViewController: UIViewController {
     @IBOutlet weak var viewSwitchTab: UIView!
     @IBOutlet weak var viewSellerInfo: UIView!
     @IBOutlet weak var viewReels: UIView!
-    @IBOutlet weak var collectionHeighLights: UICollectionView!
-    @IBOutlet weak var collectionReels: CollViewAdjustedHeight!
+    @IBOutlet weak var collectionHeighLights: UICollectionView! {
+        didSet {
+            collectionHeighLights.registerCellFromNib(cellID: "HighlightsCollectionViewCell")
+        }
+    }
+    @IBOutlet weak var collectionReels: CollViewAdjustedHeight! {
+        didSet {
+            collectionReels.registerCellFromNib(cellID: "ReelsCollectionViewCell")
+        }
+    }
     @IBOutlet weak var viewHighLights: UIView!
     @IBOutlet weak var lblTotalCompletedOrder: UILabel!
     @IBOutlet weak var lblTotalCancelledOrder: UILabel!
@@ -84,7 +92,7 @@ class SellerDetailViewController: UIViewController {
     @IBOutlet weak var lblBankName: UILabel!
     @IBOutlet weak var viewAccountHolderName: UIView!
     @IBOutlet weak var lblAccountHolderName: UILabel!
-    @IBOutlet weak var viewProofOfAccount: UIView!    
+    @IBOutlet weak var viewProofOfAccount: UIView!
     @IBOutlet weak var viewPurchasedPlan: CustomView!
     @IBOutlet weak var imgProofAccount: CustomImageView!
     @IBOutlet weak var tblPlans: TableViewDynamicHeight!
@@ -95,6 +103,7 @@ class SellerDetailViewController: UIViewController {
     @IBOutlet weak var btnAccept: CustomButton!
     @IBOutlet weak var viewBottomAction: UIView!
     @IBOutlet weak var lctBottomMainStack: NSLayoutConstraint!
+    @IBOutlet weak var heightOfStoriesCollectionView: NSLayoutConstraint!
     
     // MARK: - Property Decalaration
     private var viewModel: SellerDetailViewModel = SellerDetailViewModel()
@@ -164,6 +173,7 @@ class SellerDetailViewController: UIViewController {
         self.viewModel.setData(sellerData)
     }
     
+    
     private func setUpUi() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.viewTabContainer.addGradientBorder(cornerRadius: 5,direction: .topToBottom,colors: [UIColor.init(hexString: "#DFBF8F"), UIColor.init(hexString: "#6E4527")])
@@ -213,7 +223,8 @@ class SellerDetailViewController: UIViewController {
             self.lblSellerEmail.text = listInfo.email
             self.lblSellerCountry.text = listInfo.country
             self.lctBottomMainStack.constant = listInfo.status == .new ? self.viewBottomAction.frame.height : 50.0
-//            self.viewBottomAction.isHidden = listInfo.status != .new
+            //            self.viewBottomAction.isHidden = listInfo.status != .new
+           
             if listInfo.status == .new {
                 if hasActionPermission {
                     self.viewBottomAction.isHidden = false
@@ -249,7 +260,12 @@ class SellerDetailViewController: UIViewController {
                 }
                 self.btnSwitch.setImage(self.viewModel.isActive ? .toggleOn : .toggleOff , for: .normal)
                 self.viewSellerrating.rating = 4.0
-                
+                let totalOrders = (detailModel.totalCancelledOrders ?? 0) + (detailModel.totalCompletedOrders ?? 0)
+                self.lblTotalOrderText.text = String(format: "Total Orders (%@)".localiz(),"\(totalOrders)")
+                self.lblTotalCompletedOrder.text = String.getString(detailModel.totalCompletedOrders)
+                self.lblTotalCancelledOrder.text = String.getString(detailModel.totalCancelledOrders)
+                self.lblTotalEarningOrder.text = CommonUtils.formatPrice(detailModel.totalEarning)
+                self.lblTotalComissionOrder.text = CommonUtils.formatPrice(detailModel.totalCommission)
                 if let storeInfo = detailModel.storeInfo {
                     self.imgStoreImage.image = .userProfile
                     if let url = URL(string: String.getString(storeInfo.storeImage)) {
@@ -324,6 +340,18 @@ class SellerDetailViewController: UIViewController {
                         }
                     }
                 }
+                
+                let highlightsCount = self.viewModel.detailModel?.highlights?.count ?? 0
+                self.collectionHeighLights.isHidden = highlightsCount == 0
+                if highlightsCount > 0 {
+                    self.heightOfStoriesCollectionView.constant = 100
+                } else {
+                    self.heightOfStoriesCollectionView.constant = 40
+                }
+                self.lblPlaceHighlights.isHidden = highlightsCount > 0
+                self.lblPlaceReels.isHidden = (self.viewModel.detailModel?.stories?.count ?? 0) > 0
+                self.collectionReels.reloadData()
+                self.collectionHeighLights.reloadData()
                 self.lblPlacePlans.isHidden = self.viewModel.arrayPlans.count > 0
                 self.tblPlans.reloadData()
             }
@@ -373,6 +401,56 @@ extension SellerDetailViewController:UITableViewDataSource,UITableViewDelegate {
         return UITableViewCell(frame: .zero)
     }
     
+}
+
+extension SellerDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == collectionReels {
+            self.viewModel.detailModel?.stories?.count ?? 0
+        } else {
+            self.viewModel.detailModel?.highlights?.count ?? 0
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView == collectionReels {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReelsCollectionViewCell", for: indexPath) as! ReelsCollectionViewCell
+            cell.configData(data: viewModel.detailModel?.stories?[indexPath.row])
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HighlightsCollectionViewCell", for: indexPath) as! HighlightsCollectionViewCell
+            cell.configData(data: viewModel.detailModel?.highlights?[indexPath.row])
+            return cell
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == collectionReels {
+            let nextVC = SellerReelsAndHighLightsViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
+            nextVC.comingReason = .sellerReels
+            nextVC.reelsData = self.viewModel.detailModel?.stories?[indexPath.row]
+            self.navigationController?.pushViewController(nextVC, animated: true)
+        } else {
+            let nextVC = SellerReelsAndHighLightsViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
+            nextVC.comingReason = .sellerHightLights
+            nextVC.highlights = self.viewModel.detailModel?.highlights?[indexPath.row]
+            self.navigationController?.pushViewController(nextVC, animated: true)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == collectionReels {
+            let spacing: CGFloat = 10
+            let totalSpacing = spacing * 2 // 3 cells per row → 2 spaces between
+            let width = (collectionReels.frame.width - totalSpacing) / 2
+            return CGSize(width: width, height: 240)
+        } else {
+            let width = collectionHeighLights.frame.width / 5
+            let height: CGFloat = 100
+            return CGSize(width: width, height: height)
+        }
+    }
 }
 
 enum DetailTab:Int {

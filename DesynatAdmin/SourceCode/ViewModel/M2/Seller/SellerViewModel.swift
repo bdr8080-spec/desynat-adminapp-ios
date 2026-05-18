@@ -15,7 +15,7 @@ struct SellerListInfo    {
     var joinedOn:String
     var mobileNumber:String
     var totalOrders:String = "0"
-    var totalEarning:String = "KD 0"
+    var totalEarning:String = "0 KD"
     var reason:String = ""
     var email:String
     var status:SellersTab = .none
@@ -37,8 +37,8 @@ struct SellerListInfo    {
             country: AppLanguageManager.shared.currentLanguage == .ar ? String.getString(data.storeInfo?.countryInfo?.nameAr) : String.getString(data.storeInfo?.countryInfo?.name),
             joinedOn: CommonUtils.getDateString(from: Date(iso8601String: String.getString(data.createdAt)),format: "dd/MM/yyyy"),
             mobileNumber: "\(String.getString(data.countryCode))-\(String.getString(data.mobile))",
-            totalOrders: "0",
-            totalEarning: "KD 0",
+            totalOrders: String.getString((data.totalCancelledOrders ?? 0) + (data.totalCompletedOrders ?? 0)),
+            totalEarning: CommonUtils.formatPrice(data.totalEarning ?? 0),
             reason: String.getString(data.rejectReason),
             email: String.getString(data.email),
             status: status,

@@ -51,6 +51,10 @@ struct SellerDataModel: Codable {
     var deviceToken: String?
     var adminVerify: String?
     var storeInformation: String?
+    var totalCompletedOrders: Int?
+    var totalCancelledOrders: Int?
+    var totalEarning: Double?
+    var totalCommission: Double?
     var bankInformation: String?
     var rejectReason: String?
     @DefaultCodable<DefaultNilStrategy> var lang: [String]?
@@ -62,7 +66,9 @@ struct SellerDataModel: Codable {
     var storeDocument: [StoreDocument]?
     var sellerBankDetails: SellerBankDetails?
     var subcriptionPlan: [PurchasedPlanDataModel]?
-
+    var highlights: [GetHighLightsList]?
+    var stories: [GetMyReelsList]?
+    
     private enum CodingKeys: String, CodingKey {
         case id = "id"
         case profilePic = "profile_pic"
@@ -90,6 +96,12 @@ struct SellerDataModel: Codable {
         case storeDocument = "store_document"
         case sellerBankDetails = "seller_bank_details"
         case subcriptionPlan = "subcription_plan"
+        case totalCompletedOrders = "total_completed_orders"
+        case totalCancelledOrders = "total_cancelled_orders"
+        case totalEarning = "total_earning"
+        case totalCommission = "total_commission"
+        case highlights = "highlights"
+        case stories = "stories"
     }
 
 }
@@ -206,4 +218,43 @@ struct SellerBankDetails: Codable {
         case updatedAt = "updated_at"
     }
 
+}
+
+// MARK: - GetHighLightsList
+struct GetHighLightsList: Codable {
+    let id, type, sellerID: Int?
+    let file: String?
+    let title: String?
+    let thumbnail: String?
+    let status: Int?
+    let createdAt, updatedAt: String?
+
+    enum CodingKeys: String, CodingKey {
+        case id, type
+        case sellerID = "seller_id"
+        case file, title, status, thumbnail
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+    }
+}
+
+// MARK: - GetMyReelsList
+struct GetMyReelsList: Codable {
+    let id, type, sellerID: Int?
+    let file: String?
+    let thumbnail: String?
+    let caption: String?
+    let title:String?
+    let status: Int?
+    let createdAt, updatedAt: String?
+    var isWhishlisted: Int?
+    
+    enum CodingKeys: String, CodingKey {
+        case id, type
+        case sellerID = "seller_id"
+        case file, caption, status, thumbnail, title
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+        case isWhishlisted = "is_whishlisted"
+    }
 }

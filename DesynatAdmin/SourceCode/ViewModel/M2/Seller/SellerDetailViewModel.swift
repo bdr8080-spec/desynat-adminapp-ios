@@ -13,9 +13,9 @@ struct SocialMediaInfo {
 }
 class SellerDetailViewModel {
     private(set) var sellerData :SellerListInfo?
-    private(set) var detailModel :SellerDataModel?
+    private(set) var detailModel: SellerDataModel?
     private(set) var sellerStatus : SellersTab = .none
-    private(set) var arrayReels : [SocialMediaInfo] = []
+//    private(set) var arrayReels : [SocialMediaInfo] = []
     private(set) var arrayPlans : [PurchasedPlanInfo] = []
     private(set) var isActive : Bool = true
     
@@ -26,7 +26,7 @@ class SellerDetailViewModel {
     func getSellerDetailInfo(_ completion:@escaping () -> Void) {
         WebService.shared.getSellerDetail(id: String.getString(sellerData?.id)) { data in
             self.detailModel = data
-            self.arrayPlans = (data.subcriptionPlan ?? []).map({PurchasedPlanInfo.makeData($0)})
+            self.arrayPlans = (data.subcriptionPlan ?? []).map({ PurchasedPlanInfo.makeData($0)} )
             completion()
         }
     }
