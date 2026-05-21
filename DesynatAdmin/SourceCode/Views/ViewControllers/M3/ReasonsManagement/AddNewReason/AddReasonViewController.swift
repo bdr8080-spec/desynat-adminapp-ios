@@ -11,7 +11,7 @@ class AddReasonViewController: UIViewController {
     
     // MARK: - IBOutlet's
     @IBOutlet weak var headerView: UIView!
-    @IBOutlet weak var arabicReasonTF: UITextField!
+    @IBOutlet weak var arabicReasonTF: ArabicTextField!
     @IBOutlet weak var englishReasonTF: UITextField!
     @IBOutlet weak var titleLabel: UILabel!
     

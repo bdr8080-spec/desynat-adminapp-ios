@@ -49,17 +49,55 @@ class SellerListViewController: UIViewController, PermissionAccessible {
     }
     
     @IBAction func handleExport(_ sender: Any) {
-        let csv = generateSellerCSV()
-        guard let fileURL = saveSellerCSV(csv) else { return }
-        let vc = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
-        if let popover = vc.popoverPresentationController {
-            popover.sourceView = self.view
-            popover.sourceRect = CGRect(x: view.bounds.midX,
-                                        y: view.bounds.midY,
-                                        width: 0,
-                                        height: 0)
+        let csvHeader = [
+            "Seller Name".localiz(),
+            "Email".localiz(),
+            "Mobile".localiz(),
+            "Country".localiz(),
+            "Joined on".localiz(),
+            "Status".localiz(),
+            "Total Orders".localiz(),
+            "Total Earning".localiz(),
+            "Rejected Reason".localiz()
+        ].joined(separator: ",") + "\n"
+        
+        var csv = csvHeader
+        
+        for item in viewModel.arraySellers {
+            
+            let name = item.name
+            let email = item.email
+            let mobile = item.mobileNumber
+            let country = item.country
+            let joinedOn = item.joinedOn
+            let status = getSellerStatus(item.status).localiz()
+            let totalOrders = item.totalOrders
+            let totalEarning = item.totalEarning
+            let reason = item.reason
+            
+            csv += "\(name),\(email),\(mobile),\(country),\(joinedOn),\(status),\(totalOrders),\(totalEarning),\(reason)\n"
         }
-        self.present(vc, animated: true)
+        
+        let fileName: String
+        
+        switch viewModel.currentTab {
+        case .new:
+            fileName = "New Sellers".localiz()
+            
+        case .approved:
+            fileName = "Approved Sellers".localiz()
+            
+        case .reject:
+            fileName = "Rejected Sellers".localiz()
+        default:
+            fileName = "Sellers List".localiz()
+        }
+        
+        CSVExporter.exportCSV(
+            fileName: fileName,
+            csvString: csv,
+            vc: self
+        )
     }
     
     @IBAction func handleFilter(_ sender: Any) {
@@ -88,22 +126,6 @@ class SellerListViewController: UIViewController, PermissionAccessible {
     }
     
     //MARK: Function's declaration
-    func generateSellerCSV() -> String {
-        var csv = "Seller Name,Email,Mobile,Country,Joined On,Status,Total Orders,Total Earning,Rejected Reason\n"
-        for item in viewModel.arraySellers {
-            let name = item.name
-            let email = item.email
-            let mobile = item.mobileNumber
-            let country = item.country
-            let joinedOn = item.joinedOn
-            let status = getSellerStatus(item.status)
-            let totalOrders = item.totalOrders
-            let totalEarning = item.totalEarning
-            let reason = item.reason
-            csv += "\(name),\(email),\(mobile),\(country),\(joinedOn),\(status),\(totalOrders),\(totalEarning),\(reason)\n"
-        }
-        return csv
-    }
     
     func getSellerStatus(_ status: SellersTab?) -> String {
         switch status {
@@ -111,18 +133,6 @@ class SellerListViewController: UIViewController, PermissionAccessible {
         case .approved: return "Approved"
         case .reject: return "Rejected"
         default: return ""
-        }
-    }
-    
-    func saveSellerCSV(_ csv: String) -> URL? {
-        let fileName = "Sellers_\(viewModel.currentTab).csv"
-        let url = FileManager.default.temporaryDirectory.appendingPathComponent(fileName)
-        do {
-            try csv.write(to: url, atomically: true, encoding: .utf8)
-            return url
-        } catch {
-//            print("CSV error:", error)
-            return nil
         }
     }
     

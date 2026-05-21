@@ -273,7 +273,7 @@ class SellerViewModel {
     func rejectSeller(id:String,reason:String,type:SellerRejectionType,_ completion:@escaping() -> Void ) {
         let parameter :[String:Any] = [
             APIKeys.seller_id:id,
-            APIKeys.reject_reason:reason,
+            APIKeys.seller_reject_reason:reason,
             APIKeys.reject_type:type.paramterValue,
         ]
         WebService.shared.rejectSellers(paramter: parameter) { data in

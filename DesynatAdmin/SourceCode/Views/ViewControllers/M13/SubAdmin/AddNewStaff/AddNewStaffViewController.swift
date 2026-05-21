@@ -33,7 +33,7 @@ class AddNewStaffViewController: UIViewController {
     @IBOutlet weak var userProfileImageView: CustomImageView!
     @IBOutlet weak var countryCodeTF: UITextField!
     @IBOutlet weak var fullNameInEnglishTF: UITextField!
-    @IBOutlet weak var fullNameInArabicTF: UITextField!
+    @IBOutlet weak var fullNameInArabicTF: ArabicTextField!
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var mobileTF: UITextField!
     @IBOutlet weak var selcetdCountryLabel: CustomLabelFont!

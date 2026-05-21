@@ -16,7 +16,7 @@ class AddDealViewController: UIViewController {
     @IBOutlet weak var fromTf: UITextField!
     @IBOutlet weak var discountTF: UITextField!
     @IBOutlet weak var subCategoryTF: UITextField!
-    @IBOutlet weak var fullNameInArabicTF: UITextField!
+    @IBOutlet weak var fullNameInArabicTF: ArabicTextField!
     @IBOutlet weak var fullNameTF: UITextField!
     @IBOutlet weak var mainImageView: CustomImageView!
     @IBOutlet weak var buttonTitleLabel: UILabel!

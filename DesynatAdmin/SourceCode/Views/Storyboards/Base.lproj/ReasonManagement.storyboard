@@ -505,7 +505,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VGe-7X-Jcu" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="25" width="345" height="50"/>
                                                         <subviews>
-                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Reason " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tqm-qD-wTi">
+                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Reason " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tqm-qD-wTi" customClass="ArabicTextField" customModule="DesynatAdmin" customModuleProvider="target">
                                                                 <rect key="frame" x="20" y="5" width="305" height="40"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                                                 <textInputTraits key="textInputTraits"/>
@@ -620,7 +620,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="arabicReasonTF" destination="Tqm-qD-wTi" id="B0K-PI-Lx4"/>
+                        <outlet property="arabicReasonTF" destination="Tqm-qD-wTi" id="Iar-xc-FOR"/>
                         <outlet property="englishReasonTF" destination="U00-OK-jiB" id="sv0-kL-h1Y"/>
                         <outlet property="headerView" destination="tev-W2-25n" id="Gb3-a7-mIf"/>
                         <outlet property="titleLabel" destination="6R8-IS-HX2" id="ta1-n6-v4Q"/>
@@ -1185,7 +1185,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I7T-vA-YAN">
-                                <rect key="frame" x="0.0" y="178" width="390" height="606"/>
+                                <rect key="frame" x="0.0" y="178" width="390" height="606.00000000000045"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zep-uj-nRL">
                                         <rect key="frame" x="0.0" y="0.0" width="390" height="2460.6666666666665"/>
@@ -1335,7 +1335,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kB0-7C-BpX" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="25" width="350" height="50"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Icd-xd-a2N">
+                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Icd-xd-a2N" customClass="ArabicTextField" customModule="DesynatAdmin" customModuleProvider="target">
                                                                         <rect key="frame" x="20" y="5" width="310" height="40"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                                                         <textInputTraits key="textInputTraits"/>
@@ -3217,7 +3217,7 @@
                         <outlet property="drivingLcenseBackImageView" destination="rHj-q4-Ih2" id="9DV-zc-Uva"/>
                         <outlet property="drivingLcenseFrontImageView" destination="rb6-Ai-gqB" id="a2b-tm-99c"/>
                         <outlet property="emailTF" destination="sm8-1u-tM1" id="h2Y-hk-v0H"/>
-                        <outlet property="fullNameInArabicTF" destination="Icd-xd-a2N" id="qR1-4k-MBM"/>
+                        <outlet property="fullNameInArabicTF" destination="Icd-xd-a2N" id="7Dn-CM-vex"/>
                         <outlet property="fullNameInEnglishTF" destination="Eri-2y-B5i" id="iXq-Au-Qy2"/>
                         <outlet property="identityProofBackImageView" destination="TaD-g7-hGg" id="pID-ik-ejx"/>
                         <outlet property="identityProofFrontImageView" destination="fY6-Fo-sew" id="zbu-hA-cSW"/>
@@ -6118,13 +6118,13 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

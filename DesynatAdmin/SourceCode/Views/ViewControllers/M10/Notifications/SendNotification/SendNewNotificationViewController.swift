@@ -17,9 +17,9 @@ class SendNewNotificationViewController: UIViewController {
     }
     @IBOutlet weak var selectedUserNameTF: UITextField!
     @IBOutlet weak var titleInEnglishTF: UITextField!
-    @IBOutlet weak var titleInArabicTF: UITextField!
+    @IBOutlet weak var titleInArabicTF: ArabicTextField!
     @IBOutlet weak var decriptionInEnglishTF: UITextView!
-    @IBOutlet weak var decriptionInArabicTF: UITextView!
+    @IBOutlet weak var decriptionInArabicTF: ArabicTextView!
     @IBOutlet weak var userSelectionDropDownView: CustomView!
     
     

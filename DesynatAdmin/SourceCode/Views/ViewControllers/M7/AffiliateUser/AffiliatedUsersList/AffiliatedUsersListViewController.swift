@@ -59,27 +59,38 @@ class AffiliatedUsersListViewController: UIViewController {
     }
     
     @IBAction func exportDidTapped(_ sender: Any) {
-        var csv = "Name,Email,Phone,Country,Joined On,Reason,User Type\n"
-            for user in viewModel.affilitaitedUsersList {
-                let name = user.fullName ?? ""
-                let email = user.email ?? ""
-                let phone = "\(user.countryCode ?? "")-\(user.mobile ?? "")"
-                let country = user.countryDetails?.name ?? ""
-                let joined = convertISOToDMY(user.createdAt ?? "") ?? ""
-                let reason = user.rejectReason ?? ""
-                let type: String
-                switch userType {
-                case .newUsers:
-                    type = "New"
-                case .approvedUsers:
-                    type = "Approved"
-                case .rejectedUsers:
-                    type = "Rejected"
-                }
-                let row = "\(name),\(email),\(phone),\(country),\(joined),\(reason),\(type)\n"
-                csv.append(row)
+        //        var csv = "Name,Email,Phone,Country,Joined On,Reason,User Type\n"
+        var csvHeader = [
+            "Name".localiz(),
+            "Email".localiz(),
+            "Phone".localiz(),
+            "Country".localiz(),
+            "Joined on".localiz(),
+            "Reason".localiz(),
+            "User Type".localiz()
+        ].joined(separator: ",") + "\n"
+        
+        var csv = csvHeader
+        for user in viewModel.affilitaitedUsersList {
+            let name = user.fullName ?? ""
+            let email = user.email ?? ""
+            let phone = "\(user.countryCode ?? "")-\(user.mobile ?? "")"
+            let country = AppLanguageManager.shared.currentLanguage == .ar ? user.countryDetails?.nameAr ?? "" : user.countryDetails?.name ?? ""
+            let joined = convertISOToDMY(user.createdAt ?? "") ?? ""
+            let reason = user.rejectReason ?? ""
+            let type: String
+            switch userType {
+            case .newUsers:
+                type = "New".localiz()
+            case .approvedUsers:
+                type = "Approved".localiz()
+            case .rejectedUsers:
+                type = "Rejected".localiz()
             }
-            CSVExporter.exportCSV(fileName: "AffiliatedUsers", csvString: csv, vc: self)
+            let row = "\(name),\(email),\(phone),\(country),\(joined),\(reason),\(type)\n"
+            csv.append(row)
+        }
+        CSVExporter.exportCSV(fileName: "Affiliated Users List".localiz(), csvString: csv, vc: self)
     }
     
     @IBAction func newDidTapped(_ sender: Any) {
@@ -163,14 +174,14 @@ class AffiliatedUsersListViewController: UIViewController {
     func convertISOToDMY(_ isoString: String) -> String? {
         let isoFormatter = ISO8601DateFormatter()
         isoFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-
+        
         guard let date = isoFormatter.date(from: isoString) else {
             return nil
         }
-
+        
         let outputFormatter = DateFormatter()
         outputFormatter.dateFormat = "dd/MM/yyyy"
-
+        
         return outputFormatter.string(from: date)
     }
     

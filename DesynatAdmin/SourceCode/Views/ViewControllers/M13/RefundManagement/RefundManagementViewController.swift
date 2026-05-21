@@ -71,7 +71,21 @@ class RefundManagementViewController: UIViewController {
     }
     
     @IBAction func exportDidTapped(_ sender: Any) {
-        var csv = "Username,Order ID,Transaction ID,Ordered On,Total Amount,Cancelled/Returned Date,Seller Name,Country,Rejected Reason,Status\n"
+//        var csv = "Username,Order ID,Transaction ID,Ordered On,Total Amount,Cancelled/Returned Date,Seller Name,Country,Rejected Reason,Status\n"
+        let csvHeader = [
+            "Username".localiz(),
+            "Order ID".localiz(),
+            "Transaction Id".localiz(),
+            "Ordered on".localiz(),
+            "Total Amount".localiz(),
+            "Cancelled/Returned Date".localiz(),
+            "Seller Name".localiz(),
+            "Country".localiz(),
+            "Rejected Reason".localiz(),
+            "Status".localiz()
+        ].joined(separator: ",") + "\n"
+
+        var csv = csvHeader
            for data in viewModel.refundListData {
                let username = data.order?.deliveryDetails?.name ?? ""
                let orderId = "#\(data.order?.id ?? 0)"
@@ -87,14 +101,14 @@ class RefundManagementViewController: UIViewController {
                    outputFormat: "dd/MM/yyyy 'at' hh:mm a")
                let amount = CommonUtils.formatPriceStringInput(data.order?.totalAmount)
                let seller = "\(data.productDetails?.sellerDetails?.firstName ?? "") \(data.productDetails?.sellerDetails?.lastName ?? "")"
-               let country = data.productDetails?.store?.countryInfo?.name ?? ""
+               let country = AppLanguageManager.shared.currentLanguage == .ar ? data.productDetails?.store?.countryInfo?.nameAr ?? "" : data.productDetails?.store?.countryInfo?.name ?? ""
                let reason = data.cancelReason ?? data.returnReason ?? data.exchangeReason ?? ""
-               let status = "Pending"
+               let status = "Pending".localiz()
                let row = "\"\(username)\",\"\(orderId)\",\"\(transactionId)\",\"\(orderedOn)\",\"\(amount)\",\"\(cancelledDate)\",\"\(seller)\",\"\(country)\",\"\(reason)\",\"\(status)\"\n"
                
                csv.append(row)
            }
-           CSVExporter.exportCSV(fileName: "Refund_List", csvString: csv, vc: self)
+        CSVExporter.exportCSV(fileName: "Refund List".localiz(), csvString: csv, vc: self)
     }
     
     func updatePaginationButtonImages() {

@@ -11,9 +11,9 @@ class AddFAQViewController: UIViewController {
     
     @IBOutlet weak var questionEngTF: UITextField!
     @IBOutlet weak var headerView: UIView!
-    @IBOutlet weak var questionArabicTF: UITextField!
+    @IBOutlet weak var questionArabicTF: ArabicTextField!
     @IBOutlet weak var answerEnglishTF: UITextField!
-    @IBOutlet weak var answerArabicTF: UITextField!
+    @IBOutlet weak var answerArabicTF: ArabicTextField!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var buttonTitleLabel: UILabel!
     

@@ -118,8 +118,8 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func exportDidTapped(_ sender: Any) {
-        let csvString = generateDashboardCSV()
-        guard let fileURL = saveCSVFile(csvString: csvString) else { return }
+        let csvString = viewModel.generateDashboardCSV()
+        guard let fileURL = viewModel.saveCSVFile(csvString: csvString) else { return }
         let activityVC = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
         // For iPad support
         if let popover = activityVC.popoverPresentationController {
@@ -246,65 +246,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         collectionView.reloadData()
         callDashboardAPI()
-    }
-    
-    func saveCSVFile(csvString: String) -> URL? {
-        
-        let fileName = "DashboardData.csv"
-        let path = FileManager.default.temporaryDirectory.appendingPathComponent(fileName)
-        
-        do {
-            try csvString.write(to: path, atomically: true, encoding: .utf8)
-            return path
-        } catch {
-//            print("Error writing CSV:", error)
-            return nil
-        }
-    }
-    
-    func generateDashboardCSV() -> String {
-        
-        guard let data = viewModel.adminDashboardData else { return "" }
-        
-        var csv = "Title,Value\n"
-        
-        csv += "Total Revenue,\(data.totalRevenue ?? "0")\n"
-        csv += "By Order,\(data.totalOrderRevenue ?? "0")\n"
-        csv += "By Subscription,\(data.totalSubscriptionPlanRevenue ?? "0")\n"
-        csv += "By Affiliate Orders,\(data.totalAffiliateOrdersRevenue ?? "0")\n"
-        csv += "By Banner,\(data.totalBannerRevenue ?? "0")\n"
-        
-        csv += "Total Users Registered,\(data.totalUsers ?? 0)\n"
-        csv += "Active Users,\(data.totalActiveUsers ?? 0)\n"
-        csv += "Inactive Users,\(data.totalInactiveUsers ?? 0)\n"
-        
-        csv += "Total Affiliated,\(data.totalAffiliateUsers ?? 0)\n"
-        csv += "Active Affiliated,\(data.totalActiveAffiliateUsers ?? 0)\n"
-        csv += "Inactive Affiliated,\(data.totalInactiveAffiliateUsers ?? 0)\n"
-        
-        csv += "Total Drivers,\(data.totalDeliveryBoy ?? 0)\n"
-        csv += "Active Drivers,\(data.totalActiveDeliveryBoy ?? 0)\n"
-        csv += "Inactive Drivers,\(data.totalInactiveDeliveryBoy ?? 0)\n"
-        
-        csv += "Total Sellers,\(data.totalSellers ?? 0)\n"
-        csv += "Active Sellers,\(data.totalActiveSellers ?? 0)\n"
-        csv += "Inactive Sellers,\(data.totalInactiveSellers ?? 0)\n"
-        
-        csv += "Total Orders,\(data.totalOrders ?? 0)\n"
-        csv += "Returned Orders,\(data.totalReturnedOrders ?? 0)\n"
-        csv += "Ongoing Orders,\(data.totalOngoingOrders ?? 0)\n"
-        csv += "Completed Orders,\(data.totalCompletedOrders ?? 0)\n"
-        csv += "Cancelled Orders,\(data.totalCancelledOrders ?? 0)\n"
-        
-        csv += "Total Tickets,\(data.totalTickets ?? 0)\n"
-        csv += "Resolved Tickets,\(data.totalResolvedTickets ?? 0)\n"
-        csv += "Unresolved Tickets,\(data.totalUnresolvedTickets ?? 0)\n"
-        
-        csv += "Total Online Users,\(data.totalOnlineUsers ?? 0)\n"
-        csv += "App Visitors,\(data.totalAppVisitorUsers ?? 0)\n"
-        csv += "Website Visitors,\(data.totalWebsiteVisitorUsers ?? 0)\n"
-        
-        return csv
     }
 }
 

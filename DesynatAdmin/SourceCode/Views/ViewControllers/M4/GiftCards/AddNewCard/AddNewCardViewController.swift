@@ -12,7 +12,7 @@ class AddNewCardViewController: UIViewController {
     // MARK: - IBOutlet's
     @IBOutlet weak var submitTitleLabel: UILabel!
     @IBOutlet weak var cardImageView: CustomImageView!
-    @IBOutlet weak var cardNameArabicTextField: UITextField!
+    @IBOutlet weak var cardNameArabicTextField: ArabicTextField!
     @IBOutlet weak var cardNameEnglishTextField: UITextField!
     @IBOutlet weak var titleLabel: UILabel!
     

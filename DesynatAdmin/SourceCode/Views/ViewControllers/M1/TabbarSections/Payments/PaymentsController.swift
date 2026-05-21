@@ -164,35 +164,35 @@ class PaymentsController: UIViewController {
     }
     
     @IBAction func chooseMonthDidTapped(_ sender: Any) {
-//        let alert = UIAlertController(title: "Select Month".localiz(), message: nil, preferredStyle: .actionSheet)
-//        
-//        let months = Calendar.current.monthSymbols
-//        
-//        for (index, month) in months.enumerated() {
-//            alert.addAction(UIAlertAction(title: month, style: .default, handler: { _ in
-//                self.selectedMonth = index + 1
-//                self.chooseMonthLbl.text = month
-//                self.applyMonthYearFilter()
-//            }))
-//        }
-//        
-//        alert.addAction(UIAlertAction(title: "Cancel".localiz(), style: .cancel))
-//        present(alert, animated: true)
+        //        let alert = UIAlertController(title: "Select Month".localiz(), message: nil, preferredStyle: .actionSheet)
+        //
+        //        let months = Calendar.current.monthSymbols
+        //
+        //        for (index, month) in months.enumerated() {
+        //            alert.addAction(UIAlertAction(title: month, style: .default, handler: { _ in
+        //                self.selectedMonth = index + 1
+        //                self.chooseMonthLbl.text = month
+        //                self.applyMonthYearFilter()
+        //            }))
+        //        }
+        //
+        //        alert.addAction(UIAlertAction(title: "Cancel".localiz(), style: .cancel))
+        //        present(alert, animated: true)
         
         let alert = UIAlertController(title: "Select Month".localiz(),
                                       message: nil,
                                       preferredStyle: .actionSheet)
-
+        
         let formatter = DateFormatter()
-
+        
         if AppLanguageManager.shared.currentLanguage == .ar {
             formatter.locale = Locale(identifier: "ar")
         } else {
             formatter.locale = Locale(identifier: "en")
         }
-
+        
         let months = formatter.monthSymbols ?? []
-
+        
         for (index, month) in months.enumerated() {
             alert.addAction(UIAlertAction(title: month, style: .default, handler: { _ in
                 self.selectedMonth = index + 1
@@ -200,9 +200,9 @@ class PaymentsController: UIViewController {
                 self.applyMonthYearFilter()
             }))
         }
-
+        
         alert.addAction(UIAlertAction(title: "Cancel".localiz(), style: .cancel))
-
+        
         present(alert, animated: true)
     }
     
@@ -222,16 +222,16 @@ class PaymentsController: UIViewController {
     
     @IBAction func exportDidTapped(_ sender: Any) {
         let csv = generatePaymentsCSV()
-            guard let fileURL = saveCSV(csv) else { return }
-            let vc = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
-            if let popover = vc.popoverPresentationController {
-                popover.sourceView = self.view
-                popover.sourceRect = CGRect(x: view.bounds.midX,
-                                            y: view.bounds.midY,
-                                            width: 0,
-                                            height: 0)
-            }
-            present(vc, animated: true)
+        guard let fileURL = saveCSV(csv) else { return }
+        let vc = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+        if let popover = vc.popoverPresentationController {
+            popover.sourceView = self.view
+            popover.sourceRect = CGRect(x: view.bounds.midX,
+                                        y: view.bounds.midY,
+                                        width: 0,
+                                        height: 0)
+        }
+        present(vc, animated: true)
     }
     
     //MARK: Function's declaration
@@ -243,58 +243,150 @@ class PaymentsController: UIViewController {
         chooseYear.text = "Choose Year".localiz()
     }
     
+    //    func generatePaymentsCSV() -> String {
+    //        var csv = ""
+    //        switch selectedTab {
+    //        case .orders:
+    //            csv += "User Name,Order Id,Transaction Id,Ordered On,Amount,Payment Mode,Applied Promocode,Discount,Seller,Commission\n"
+    //            for item in viewModel.paymentList {
+    //                let user = item.userDetails?.fullName ?? ""
+    //                let orderId = "#\(item.order?.id ?? 0)"
+    //                let transactionId = "#\(item.order?.transactionID ?? "0")"
+    //                let date = formatDate(item.order?.createdAt ?? "")
+    //                let amount = CommonUtils.formatPrice(item.total_paid_amount)
+    //                let paymentMode = getPaymentMode(item.order?.paymentMethod)
+    //                let promocodeValue = item.promocodeValue ?? "Nan"
+    //                let discount = CommonUtils.formatPrice(item.totalDiscount)
+    //                let seller = "\(item.productDetails?.sellerDetails?.firstName ?? "") \(item.productDetails?.sellerDetails?.lastName ?? "")"
+    //                let commission = "\(CommonUtils.formatPriceStringInput(item.adminCommission))"
+    //                csv += "\(user),\(orderId),\(transactionId),\(date),\(amount),\(paymentMode),\(promocodeValue),\(discount),\(seller),\(commission)\n"
+    //            }
+    //        case .plans:
+    //            csv += "Seller Name,Plan Name,Transaction Id,Date,Amount,Payment Mode\n"
+    //            for item in viewModel.paymentList {
+    //                let seller = "\(item.sellerDetails?.firstName ?? "") \(item.sellerDetails?.lastName ?? "")"
+    //                let plan = item.planInfo?.planNameEnglish ?? ""
+    //                let transactionId = "#\(item.transactionId ?? "0")"
+    //                let date = formatDate(item.createdAt ?? "")
+    //                let amount = CommonUtils.formatPriceStringInput(item.amount)
+    //                let paymentMode = item.paymentMethod ?? ""
+    //                csv += "\(seller),\(plan),\(transactionId),\(date),\(amount),\(paymentMode)\n"
+    //            }
+    //        case .giftCards:
+    //            csv += "Purchased By,Card Type,Date,Amount,Payment Mode,Country\n"
+    //            for item in viewModel.paymentList {
+    //                let user = item.userDetails?.fullName ?? ""
+    //                let card = item.giftDetails?.nameEnglish ?? ""
+    ////                let transactionId = "#\(item.transactionId ?? "0")"
+    //                let date = formatDate(item.createdAt ?? "")
+    //                let amount = CommonUtils.formatPriceStringInput(item.amount)
+    //                let paymentMode = getPaymentMode(item.paymentMethod)
+    //                let country = item.userDetails?.countryInfo?.name ?? ""
+    //                csv += "\(user),\(card),\(date),\(amount),\(paymentMode),\(country)\n"
+    //            }
+    //        case .banners:
+    //            csv += "Purchased By,Request Id,Date,Amount,Payment Mode,Country\n"
+    //            for item in viewModel.paymentList {
+    //                let seller = "\(item.sellerDetails?.firstName ?? "") \(item.sellerDetails?.lastName ?? "")"
+    //                let requestId = "#\(item.orderID ?? "0")"
+    //                let transactionId = "#\(item.transactionId ?? "0")"
+    //                let date = formatDate(item.createdAt ?? "")
+    //                let amount = CommonUtils.formatPriceStringInput(item.price)
+    //                let paymentMode = getPaymentMode(item.paymentMethod)
+    //                let country = item.sellerDetails?.storeInfo?.countryInfo?.name ?? ""
+    //                csv += "\(seller),\(requestId),\(transactionId),\(date),\(amount),\(paymentMode),\(country)\n"
+    //            }
+    //        }
+    //        return csv
+    //    }
+    
     func generatePaymentsCSV() -> String {
         var csv = ""
         switch selectedTab {
         case .orders:
-            csv += "User Name,Order Id,Transaction Id,Ordered On,Amount,Payment Mode,Applied Promocode,Discount,Seller,Commission\n"
+            csv += [
+                "User Name".localiz(),
+                "Order Id".localiz(),
+                "Transaction Id".localiz(),
+                "Ordered on".localiz(),
+                "Amount".localiz(),
+                "Payment Mode".localiz(),
+                "Applied Promocode".localiz(),
+                "Discount".localiz(),
+                "Seller".localiz(),
+                "Commission".localiz()
+            ].joined(separator: ",") + "\n"
+            
             for item in viewModel.paymentList {
                 let user = item.userDetails?.fullName ?? ""
                 let orderId = "#\(item.order?.id ?? 0)"
                 let transactionId = "#\(item.order?.transactionID ?? "0")"
                 let date = formatDate(item.order?.createdAt ?? "")
                 let amount = CommonUtils.formatPrice(item.total_paid_amount)
-                let paymentMode = getPaymentMode(item.order?.paymentMethod)
-                let promocodeValue = item.promocodeValue ?? "Nan"
+                let paymentMode = getPaymentMode(item.order?.paymentMethod).localiz()
+                let promocodeValue = item.promocodeValue ?? "Nan".localiz()
                 let discount = CommonUtils.formatPrice(item.totalDiscount)
                 let seller = "\(item.productDetails?.sellerDetails?.firstName ?? "") \(item.productDetails?.sellerDetails?.lastName ?? "")"
                 let commission = "\(CommonUtils.formatPriceStringInput(item.adminCommission))"
-                csv += "\(user),\(orderId),\(transactionId),\(date),\(amount),\(paymentMode),\(promocodeValue),\(discount),\(seller),\(commission)\n"
+                csv += "\"\(user)\",\"\(orderId)\",\"\(transactionId)\",\"\(date)\",\"\(amount)\",\"\(paymentMode)\",\"\(promocodeValue)\",\"\(discount)\",\"\(seller)\",\"\(commission)\"\n"
             }
         case .plans:
-            csv += "Seller Name,Plan Name,Transaction Id,Date,Amount,Payment Mode\n"
+            csv += [
+                "Seller Name".localiz(),
+                "Plan name".localiz(),
+                "Transaction Id".localiz(),
+                "Date".localiz(),
+                "Amount".localiz(),
+                "Payment Mode".localiz()
+            ].joined(separator: ",") + "\n"
             for item in viewModel.paymentList {
                 let seller = "\(item.sellerDetails?.firstName ?? "") \(item.sellerDetails?.lastName ?? "")"
                 let plan = item.planInfo?.planNameEnglish ?? ""
                 let transactionId = "#\(item.transactionId ?? "0")"
                 let date = formatDate(item.createdAt ?? "")
                 let amount = CommonUtils.formatPriceStringInput(item.amount)
-                let paymentMode = item.paymentMethod ?? ""
-                csv += "\(seller),\(plan),\(transactionId),\(date),\(amount),\(paymentMode)\n"
+                let paymentMode = item.paymentMethod?.localiz() ?? ""
+                csv += "\"\(seller)\",\"\(plan)\",\"\(transactionId)\",\"\(date)\",\"\(amount)\",\"\(paymentMode)\"\n"
             }
+            
         case .giftCards:
-            csv += "Purchased By,Card Type,Date,Amount,Payment Mode,Country\n"
+            csv += [
+                "Purchased By".localiz(),
+                "Card Type".localiz(),
+                "Date".localiz(),
+                "Amount".localiz(),
+                "Payment Mode".localiz(),
+                "Country".localiz()
+            ].joined(separator: ",") + "\n"
             for item in viewModel.paymentList {
                 let user = item.userDetails?.fullName ?? ""
                 let card = item.giftDetails?.nameEnglish ?? ""
-//                let transactionId = "#\(item.transactionId ?? "0")"
                 let date = formatDate(item.createdAt ?? "")
                 let amount = CommonUtils.formatPriceStringInput(item.amount)
-                let paymentMode = getPaymentMode(item.paymentMethod)
+                let paymentMode = getPaymentMode(item.paymentMethod).localiz()
                 let country = item.userDetails?.countryInfo?.name ?? ""
-                csv += "\(user),\(card),\(date),\(amount),\(paymentMode),\(country)\n"
+                csv += "\"\(user)\",\"\(card)\",\"\(date)\",\"\(amount)\",\"\(paymentMode)\",\"\(country)\"\n"
             }
+            
         case .banners:
-            csv += "Purchased By,Request Id,Date,Amount,Payment Mode,Country\n"
+            csv += [
+                "Purchased By".localiz(),
+                "Request Id".localiz(),
+                "Transaction Id".localiz(),
+                "Date".localiz(),
+                "Amount".localiz(),
+                "Payment Mode".localiz(),
+                "Country".localiz()
+            ].joined(separator: ",") + "\n"
             for item in viewModel.paymentList {
                 let seller = "\(item.sellerDetails?.firstName ?? "") \(item.sellerDetails?.lastName ?? "")"
                 let requestId = "#\(item.orderID ?? "0")"
                 let transactionId = "#\(item.transactionId ?? "0")"
                 let date = formatDate(item.createdAt ?? "")
                 let amount = CommonUtils.formatPriceStringInput(item.price)
-                let paymentMode = getPaymentMode(item.paymentMethod)
+                let paymentMode = getPaymentMode(item.paymentMethod).localiz()
                 let country = item.sellerDetails?.storeInfo?.countryInfo?.name ?? ""
-                csv += "\(seller),\(requestId),\(transactionId),\(date),\(amount),\(paymentMode),\(country)\n"
+                csv += "\"\(seller)\",\"\(requestId)\",\"\(transactionId)\",\"\(date)\",\"\(amount)\",\"\(paymentMode)\",\"\(country)\"\n"
             }
         }
         return csv
@@ -308,7 +400,7 @@ class PaymentsController: UIViewController {
         default: return "COD"
         }
     }
-
+    
     func formatDate(_ iso: String) -> String {
         let input = ISO8601DateFormatter()
         input.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
@@ -318,18 +410,46 @@ class PaymentsController: UIViewController {
         let output = DateFormatter()
         output.dateFormat = "dd/MM/yyyy hh:mm a"
         
+        if AppLanguageManager.shared.currentLanguage == .ar {
+            output.locale = Locale(identifier: "ar")
+        } else {
+            output.locale = Locale(identifier: "en_US_POSIX")
+        }
+        
         return output.string(from: date)
     }
     
+//    func saveCSV(_ csv: String) -> URL? {
+//        let fileName = "Payments_\(selectedTab).csv"
+//        let url = FileManager.default.temporaryDirectory.appendingPathComponent(fileName)
+//        
+//        do {
+//            try csv.write(to: url, atomically: true, encoding: .utf8)
+//            return url
+//        } catch {
+//            //            print("CSV save error:", error)
+//            return nil
+//        }
+//    }
+    
     func saveCSV(_ csv: String) -> URL? {
-        let fileName = "Payments_\(selectedTab).csv"
+        let localizedTab: String
+        switch selectedTab {
+        case .orders:
+            localizedTab = "Orders".localiz()
+        case .plans:
+            localizedTab = "Plans".localiz()
+        case .giftCards:
+            localizedTab = "Gift Cards".localiz()
+        case .banners:
+            localizedTab = "Banners".localiz()
+        }
+        let fileName = "\("Payments".localiz())_\(localizedTab).csv"
         let url = FileManager.default.temporaryDirectory.appendingPathComponent(fileName)
-        
         do {
             try csv.write(to: url, atomically: true, encoding: .utf8)
             return url
         } catch {
-//            print("CSV save error:", error)
             return nil
         }
     }

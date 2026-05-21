@@ -71,19 +71,30 @@ class UserManagementViewController: UIViewController {
     }
     
     @IBAction func exportDidTapped(_ sender: Any) {
-        var csv = "Name,Email,Phone,Country,Joined On,Wallet Balance,Status\n"
+//        var csv = "Name,Email,Phone,Country,Joined On,Wallet Balance,Status\n"
+        var csvHeader = [
+            "Name".localiz(),
+            "Email".localiz(),
+            "Phone".localiz(),
+            "Country".localiz(),
+            "Joined on".localiz(),
+            "Wallet Balance".localiz(),
+            "Status".localiz()
+        ].joined(separator: ",") + "\n"
+
+        var csv = csvHeader
         for user in viewModel.usersListData {
             let name = user.fullName ?? ""
             let email = user.email ?? ""
             let phone = "\(user.countryCode ?? "")-\(user.mobile ?? "")"
-            let country = user.countryInfo?.name ?? ""
+            let country = AppLanguageManager.shared.currentLanguage == .ar ? user.countryInfo?.nameAr ?? "" : user.countryInfo?.name ?? ""
             let joined = user.createdAt ?? ""
             let wallet = user.walletInfo?.amount ?? "0"
-            let status = user.status == "1" ? "Active" : "Blocked"
+            let status = user.status == "1" ? "Active".localiz() : "Blocked".localiz()
             let row = "\(name),\(email),\(phone),\(country),\(joined),\(wallet),\(status)\n"
             csv.append(row)
         }
-        CSVExporter.exportCSV(fileName: "User Management", csvString: csv, vc: self)
+        CSVExporter.exportCSV(fileName: "User Management".localiz(), csvString: csv, vc: self)
     }
     
     //MARK: Function's declaration

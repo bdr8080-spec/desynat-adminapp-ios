@@ -432,7 +432,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LPR-Gk-WKA" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="25" width="345" height="50"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Notification Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bQf-tg-6G9">
+                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Notification Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bQf-tg-6G9" customClass="ArabicTextField" customModule="DesynatAdmin" customModuleProvider="target">
                                                                         <rect key="frame" x="15" y="5" width="315" height="40"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                                                         <textInputTraits key="textInputTraits"/>
@@ -553,7 +553,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eim-BJ-605" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="22" width="345" height="94"/>
                                                                 <subviews>
-                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3FD-TV-XX2">
+                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3FD-TV-XX2" customClass="ArabicTextView" customModule="DesynatAdmin" customModuleProvider="target">
                                                                         <rect key="frame" x="12" y="5" width="321" height="84"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <color key="textColor" systemColor="labelColor"/>
@@ -790,11 +790,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="decriptionInArabicTF" destination="3FD-TV-XX2" id="M9Y-8W-n4w"/>
+                        <outlet property="decriptionInArabicTF" destination="3FD-TV-XX2" id="KF4-Xg-T9Q"/>
                         <outlet property="decriptionInEnglishTF" destination="Iqg-Rt-P1l" id="pKU-A3-U7Q"/>
                         <outlet property="selectedUserNameTF" destination="l1n-Xy-wcX" id="w5m-Gb-zcG"/>
                         <outlet property="sendToCollectionView" destination="yle-ru-slt" id="qF0-gj-afB"/>
-                        <outlet property="titleInArabicTF" destination="bQf-tg-6G9" id="5IA-1g-qIi"/>
+                        <outlet property="titleInArabicTF" destination="bQf-tg-6G9" id="s6O-7I-ryH"/>
                         <outlet property="titleInEnglishTF" destination="GaV-dL-vR6" id="CIp-Gx-JeX"/>
                         <outlet property="userSelectionDropDownView" destination="ClJ-jQ-Kve" id="EgS-G9-GhD"/>
                     </connections>
@@ -2133,7 +2133,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P4I-kx-lZ9" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="25" width="345" height="50"/>
                                                         <subviews>
-                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Question" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2a2-LO-oFP">
+                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Question" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2a2-LO-oFP" customClass="ArabicTextField" customModule="DesynatAdmin" customModuleProvider="target">
                                                                 <rect key="frame" x="15" y="5" width="315" height="40"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                                                 <textInputTraits key="textInputTraits"/>
@@ -2249,7 +2249,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ba6-RE-kNm" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="25" width="345" height="50"/>
                                                         <subviews>
-                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Answer" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gqi-he-Qzh">
+                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Answer" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gqi-he-Qzh" customClass="ArabicTextField" customModule="DesynatAdmin" customModuleProvider="target">
                                                                 <rect key="frame" x="15" y="5" width="315" height="40"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                                                 <textInputTraits key="textInputTraits"/>
@@ -2366,12 +2366,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="answerArabicTF" destination="Gqi-he-Qzh" id="pRr-dE-UP6"/>
+                        <outlet property="answerArabicTF" destination="Gqi-he-Qzh" id="cdA-Ac-l5v"/>
                         <outlet property="answerEnglishTF" destination="VsD-UR-2fq" id="mcT-sz-F7C"/>
                         <outlet property="buttonTitleLabel" destination="GxG-yw-PQN" id="pTT-gH-a9v"/>
                         <outlet property="headerLabel" destination="Adh-AG-m0F" id="svA-SQ-Ypz"/>
                         <outlet property="headerView" destination="rAD-vg-Bgp" id="4lC-YO-JK4"/>
-                        <outlet property="questionArabicTF" destination="2a2-LO-oFP" id="U7g-x7-VCP"/>
+                        <outlet property="questionArabicTF" destination="2a2-LO-oFP" id="0Qy-6w-o8X"/>
                         <outlet property="questionEngTF" destination="gjF-B8-11p" id="hWe-An-iRW"/>
                     </connections>
                 </viewController>
@@ -4666,7 +4666,7 @@ dolor sit amet, consectetur..</string>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kEX-Lf-9TE">
-                                <rect key="frame" x="0.0" y="158" width="393" height="626"/>
+                                <rect key="frame" x="0.0" y="158" width="393" height="626.00000000000023"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IMs-z2-Hdr">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="1269.3333333333333"/>
@@ -4866,7 +4866,7 @@ dolor sit amet, consectetur..</string>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EKu-YN-h8D" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="25" width="345" height="50"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Full  name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1uy-bg-6b4">
+                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Full  name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1uy-bg-6b4" customClass="ArabicTextField" customModule="DesynatAdmin" customModuleProvider="target">
                                                                         <rect key="frame" x="20" y="5" width="305" height="40"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                                                         <textInputTraits key="textInputTraits"/>
@@ -5467,7 +5467,7 @@ dolor sit amet, consectetur..</string>
                         <outlet property="countryCodeTF" destination="2P8-Z3-sjG" id="Kga-f3-hoa"/>
                         <outlet property="editStaffView" destination="Ljw-lW-Jcn" id="iJQ-Nd-rrq"/>
                         <outlet property="emailTF" destination="FdK-tK-QFz" id="shs-dm-iGI"/>
-                        <outlet property="fullNameInArabicTF" destination="1uy-bg-6b4" id="7fu-pd-uzb"/>
+                        <outlet property="fullNameInArabicTF" destination="1uy-bg-6b4" id="LlU-K9-cYP"/>
                         <outlet property="fullNameInEnglishTF" destination="S7W-7S-4d0" id="ONv-nB-p1f"/>
                         <outlet property="mobileTF" destination="TPd-6J-BOw" id="pZ7-B8-v2I"/>
                         <outlet property="passwordTxtField" destination="uHO-rQ-glX" id="sxe-if-DBR"/>
@@ -8478,7 +8478,7 @@ dolor sit amet, consectetur..</string>
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -12,7 +12,7 @@ class AddSubCategoryViewController: UIViewController {
     // MARK: - IBOutlet's
     @IBOutlet weak var submitLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var subCategoryArabicTextField: UITextField!
+    @IBOutlet weak var subCategoryArabicTextField: ArabicTextField!
     @IBOutlet weak var mainImageView: CustomImageView!
     @IBOutlet weak var subCategoryTextField: UITextField!
     

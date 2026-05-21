@@ -60,26 +60,35 @@ class SubAdminListViewController: UIViewController {
     }
     
     @IBAction func exportDidTapped(_ sender: Any) {
-        var csv = "Name,Email,Phone,Country,Joined On,Status\n"
+//        var csv = "Name,Email,Phone,Country,Joined On,Status\n"
+        let csvHeader = [
+                "Name".localiz(),
+                "Email".localiz(),
+                "Phone".localiz(),
+                "Country".localiz(),
+                "Joined On".localiz(),
+                "Status".localiz()
+            ].joined(separator: ",") + "\n"
+        var csv = csvHeader
         for user in viewModel.subAdminUsersList {
-            let name = user.fullName ?? ""
+            let name = AppLanguageManager.shared.currentLanguage == .ar ? user.fullNameInArabic ?? "" : user.fullName ?? ""
             let email = user.email ?? ""
             let phone = "\(user.countryCode ?? "")-\(user.mobile ?? "")"
-            let country = user.countryInfo?.name ?? ""
+            let country = AppLanguageManager.shared.currentLanguage == .ar ? user.countryInfo?.nameAr ?? "" : user.countryInfo?.name ?? ""
             let joined = convertISOToDMY(user.createdAt ?? "") ?? ""
             let status: String
             switch userType {
             case .all:
-                status = "All"
+                status = "All".localiz()
             case .active:
-                status = "Active"
+                status = "Active".localiz()
             case .inactive:
-                status = "Inactive"
+                status = "Inactive".localiz()
             }
             let row = "\(name),\(email),\(phone),\(country),\(joined),\(status)\n"
             csv.append(row)
         }
-        CSVExporter.exportCSV(fileName: "SubAdmins", csvString: csv, vc: self)
+        CSVExporter.exportCSV(fileName: "SubAdmins".localiz(), csvString: csv, vc: self)
     }
     
     @IBAction func allDidTapped(_ sender: Any) {

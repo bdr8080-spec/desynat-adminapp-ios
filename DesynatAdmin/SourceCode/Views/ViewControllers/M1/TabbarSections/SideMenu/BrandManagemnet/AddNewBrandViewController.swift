@@ -12,7 +12,7 @@ class AddNewBrandViewController: UIViewController {
     // MARK: - IBOutlet's
     @IBOutlet weak var submitTitleLabel: UILabel!
     @IBOutlet weak var brandImageView: CustomImageView!
-    @IBOutlet weak var brandNameArabicTextField: UITextField!
+    @IBOutlet weak var brandNameArabicTextField: ArabicTextField!
     @IBOutlet weak var brandNameEnglishTextField: UITextField!
     @IBOutlet weak var titleLabel: UILabel!
     

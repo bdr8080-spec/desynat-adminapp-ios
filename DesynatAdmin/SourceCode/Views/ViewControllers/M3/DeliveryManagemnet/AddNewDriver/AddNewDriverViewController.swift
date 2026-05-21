@@ -14,7 +14,7 @@ class AddNewDriverViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var profileImageView: CustomImageView!
     @IBOutlet weak var fullNameInEnglishTF: UITextField!
-    @IBOutlet weak var fullNameInArabicTF: UITextField!
+    @IBOutlet weak var fullNameInArabicTF: ArabicTextField!
     @IBOutlet weak var mobileTF: UITextField!
     @IBOutlet weak var countryCodeTF: UITextField!
     @IBOutlet weak var emailTF: UITextField!

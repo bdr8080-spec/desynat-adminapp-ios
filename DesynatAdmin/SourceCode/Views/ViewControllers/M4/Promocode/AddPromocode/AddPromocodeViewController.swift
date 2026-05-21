@@ -12,9 +12,9 @@ class AddPromocodeViewController: UIViewController {
     // MARK: - IBOutlet's
     @IBOutlet weak var promocodeEnglishTF: UITextField!
     @IBOutlet weak var countryTF: UITextField!
-    @IBOutlet weak var promocodeArabicTF: UITextField!
+    @IBOutlet weak var promocodeArabicTF: ArabicTextField!
     @IBOutlet weak var descriptionEnglishTF: UITextField!
-    @IBOutlet weak var descriptionArabicTF: UITextField!
+    @IBOutlet weak var descriptionArabicTF: ArabicTextField!
     @IBOutlet weak var fristOrderImageView: UIImageView!
     @IBOutlet weak var everyOrderImageView: UIImageView!
     @IBOutlet weak var discountF: UITextField!

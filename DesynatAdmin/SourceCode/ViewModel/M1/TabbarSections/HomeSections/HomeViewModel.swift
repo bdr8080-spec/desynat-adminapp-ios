@@ -42,6 +42,51 @@ class HomeViewModel {
         }
     }
     
+    func saveCSVFile(csvString: String) -> URL? {
+        let fileName = "DashboardData".localiz()
+        let path = FileManager.default.temporaryDirectory.appendingPathComponent("\(fileName).csv")
+        do {
+            try csvString.write(to: path, atomically: true, encoding: .utf8)
+            return path
+        } catch {
+            return nil
+        }
+    }
+    
+    func generateDashboardCSV() -> String {
+        guard let data = adminDashboardData else { return "" }
+        var csv = "\"\("Title".localiz())\",\"\("Value".localiz())\"\n"
+        csv += "\"\("Total Revenue".localiz())\",\"\(data.totalRevenue ?? "0")\"\n"
+        csv += "\"\("By Order".localiz())\",\"\(data.totalOrderRevenue ?? "0")\"\n"
+        csv += "\"\("By Subscription".localiz())\",\"\(data.totalSubscriptionPlanRevenue ?? "0")\"\n"
+        csv += "\"\("By Affiliate Orders".localiz())\",\"\(data.totalAffiliateOrdersRevenue ?? "0")\"\n"
+        csv += "\"\("By Banner".localiz())\",\"\(data.totalBannerRevenue ?? "0")\"\n"
+        csv += "\"\("Total Users Registered".localiz())\",\"\(data.totalUsers ?? 0)\"\n"
+        csv += "\"\("Active Users".localiz())\",\"\(data.totalActiveUsers ?? 0)\"\n"
+        csv += "\"\("Inactive Users".localiz())\",\"\(data.totalInactiveUsers ?? 0)\"\n"
+        csv += "\"\("Total Affiliated".localiz())\",\"\(data.totalAffiliateUsers ?? 0)\"\n"
+        csv += "\"\("Active Affiliated".localiz())\",\"\(data.totalActiveAffiliateUsers ?? 0)\"\n"
+        csv += "\"\("Inactive Affiliated".localiz())\",\"\(data.totalInactiveAffiliateUsers ?? 0)\"\n"
+        csv += "\"\("Total Drivers".localiz())\",\"\(data.totalDeliveryBoy ?? 0)\"\n"
+        csv += "\"\("Active Drivers".localiz())\",\"\(data.totalActiveDeliveryBoy ?? 0)\"\n"
+        csv += "\"\("Inactive Drivers".localiz())\",\"\(data.totalInactiveDeliveryBoy ?? 0)\"\n"
+        csv += "\"\("Total Sellers".localiz())\",\"\(data.totalSellers ?? 0)\"\n"
+        csv += "\"\("Active Sellers".localiz())\",\"\(data.totalActiveSellers ?? 0)\"\n"
+        csv += "\"\("Inactive Sellers".localiz())\",\"\(data.totalInactiveSellers ?? 0)\"\n"
+        csv += "\"\("Total Orders".localiz())\",\"\(data.totalOrders ?? 0)\"\n"
+        csv += "\"\("Returned Orders".localiz())\",\"\(data.totalReturnedOrders ?? 0)\"\n"
+        csv += "\"\("Ongoing Orders".localiz())\",\"\(data.totalOngoingOrders ?? 0)\"\n"
+        csv += "\"\("Completed Orders".localiz())\",\"\(data.totalCompletedOrders ?? 0)\"\n"
+        csv += "\"\("Cancelled Orders".localiz())\",\"\(data.totalCancelledOrders ?? 0)\"\n"
+        csv += "\"\("Total Tickets".localiz())\",\"\(data.totalTickets ?? 0)\"\n"
+        csv += "\"\("Resolved Tickets".localiz())\",\"\(data.totalResolvedTickets ?? 0)\"\n"
+        csv += "\"\("Unresolved Tickets".localiz())\",\"\(data.totalUnresolvedTickets ?? 0)\"\n"
+        csv += "\"\("Total Online Users".localiz())\",\"\(data.totalOnlineUsers ?? 0)\"\n"
+        csv += "\"\("App Visitors".localiz())\",\"\(data.totalAppVisitorUsers ?? 0)\"\n"
+        csv += "\"\("Website Visitors".localiz())\",\"\(data.totalWebsiteVisitorUsers ?? 0)\"\n"
+        return csv
+    }
+    
     func getUserData() {
         if let savedUser: UserModel = kSharedUserDefaults.retrieveModelFor(key: .user, model: UserModel.self) {
             userProfileData = savedUser
