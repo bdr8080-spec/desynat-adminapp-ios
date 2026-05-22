@@ -195,8 +195,10 @@ class AddZoneViewController: UIViewController {
             polygon.path = polyGonPath
         }
         polygon.title = ""
-        polygon.fillColor = UIColor(hexString: "#875C3A").withAlphaComponent(0.5)
-        polygon.strokeColor = UIColor(hexString: "#875C3A")
+//        polygon.fillColor = UIColor(hexString: "#875C3A").withAlphaComponent(0.5)
+//        polygon.strokeColor = UIColor(hexString: "#875C3A")
+        polygon.fillColor = UIColor(hexString: "#44FF0000").withAlphaComponent(0.5)
+        polygon.strokeColor = UIColor(hexString: "#44FF0000")
         polygon.strokeWidth = 1;
         polygon.isTappable = false
         polygon.map = mapView
