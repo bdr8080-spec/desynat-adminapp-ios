@@ -67,6 +67,7 @@ struct SellerDataModel: Codable {
     var sellerBankDetails: SellerBankDetails?
     var subcriptionPlan: [PurchasedPlanDataModel]?
     var highlights: [GetHighLightsList]?
+    var reels: [GetMyReelsList]?
     var stories: [GetMyReelsList]?
     
     private enum CodingKeys: String, CodingKey {
@@ -102,6 +103,7 @@ struct SellerDataModel: Codable {
         case totalCommission = "total_commission"
         case highlights = "highlights"
         case stories = "stories"
+        case reels = "reels"
     }
 
 }

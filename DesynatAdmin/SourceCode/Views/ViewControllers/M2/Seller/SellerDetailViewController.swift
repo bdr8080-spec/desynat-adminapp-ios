@@ -104,6 +104,7 @@ class SellerDetailViewController: UIViewController {
     @IBOutlet weak var viewBottomAction: UIView!
     @IBOutlet weak var lctBottomMainStack: NSLayoutConstraint!
     @IBOutlet weak var heightOfStoriesCollectionView: NSLayoutConstraint!
+    @IBOutlet weak var reelButtonOytlet: UIButton!
     
     // MARK: - Property Decalaration
     private var viewModel: SellerDetailViewModel = SellerDetailViewModel()
@@ -125,6 +126,13 @@ class SellerDetailViewController: UIViewController {
         if let type = DetailTab(rawValue: sender.tag) {
             self.switchTab(type)
         }
+    }
+    
+    @IBAction func profileImageDidTapped(_ sender: Any) {
+        let nextVC = StoryViewerViewController.instantiate(fromAppStoryboard: .Home)
+        nextVC.comingFor = .forSellerStory
+        nextVC.viewModel.sellerStories = viewModel.detailModel?.stories ?? []
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
     @IBAction func handleReject(_ sender: Any) {
@@ -203,6 +211,17 @@ class SellerDetailViewController: UIViewController {
                 } else {
                     self.btnSwitch.isUserInteractionEnabled = false
                 }
+            }
+            let storiesCount = viewModel.detailModel?.stories?.count ?? 0
+            if storiesCount > 0 {
+//                self.hostVC.userProfileImageView.borderWidth = 3
+                self.reelButtonOytlet.setImage(.gradientBorder, for: .normal)
+                self.reelButtonOytlet.isUserInteractionEnabled = true
+            }else {
+//                self.hostVC.userProfileImageView.borderWidth = 0
+                self.reelButtonOytlet.setImage(UIImage(named: ""), for: .normal)
+                self.reelButtonOytlet.isUserInteractionEnabled = false
+//                false
             }
             self.btnPending.isHidden =  listInfo.status == .approved
             self.btnPending.setTitle(listInfo.status.title, for: .normal)
@@ -284,6 +303,17 @@ class SellerDetailViewController: UIViewController {
                         self.lblSellerCountry.text = storeInfo.countryInfo?.name
                         self.lblStoreSellerCountry.text = storeInfo.countryInfo?.name
                     }
+                }
+                let storiesCount = self.viewModel.detailModel?.stories?.count ?? 0
+                if storiesCount > 0 {
+    //                self.hostVC.userProfileImageView.borderWidth = 3
+                    self.reelButtonOytlet.setImage(.gradientBorder, for: .normal)
+                    self.reelButtonOytlet.isUserInteractionEnabled = true
+                }else {
+    //                self.hostVC.userProfileImageView.borderWidth = 0
+                    self.reelButtonOytlet.setImage(UIImage(named: ""), for: .normal)
+                    self.reelButtonOytlet.isUserInteractionEnabled = false
+    //                false
                 }
                 if let bankInformation = detailModel.sellerBankDetails {
                     self.lblAccountType.text = bankInformation.accountType == "0" ? "Personal".localiz() : "Business".localiz()
@@ -407,7 +437,7 @@ extension SellerDetailViewController: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == collectionReels {
-            self.viewModel.detailModel?.stories?.count ?? 0
+            self.viewModel.detailModel?.reels?.count ?? 0
         } else {
             self.viewModel.detailModel?.highlights?.count ?? 0
         }
@@ -416,7 +446,13 @@ extension SellerDetailViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == collectionReels {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReelsCollectionViewCell", for: indexPath) as! ReelsCollectionViewCell
-            cell.configData(data: viewModel.detailModel?.stories?[indexPath.row])
+            cell.configData(data: viewModel.detailModel?.reels?[indexPath.row])
+            cell.onDeleteTapped = { [weak self] in
+                self?.showConfirmationAlert(msg: "Are you sure you want to delete this reel?".localiz()) { [weak self] in
+                    guard let self = self else { return }
+                    self.deleteReel(reelId: viewModel.detailModel?.reels?[indexPath.row].id)
+                }
+            }
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HighlightsCollectionViewCell", for: indexPath) as! HighlightsCollectionViewCell
@@ -425,11 +461,20 @@ extension SellerDetailViewController: UICollectionViewDelegate, UICollectionView
         }
     }
     
+    func deleteReel(reelId: Int?) {
+        let param: [String: Any] = ["reel_id": reelId ?? 0]
+        WebService.sharedInstance.deleetSellerReelListService(param: param) { [weak self] response in
+            guard let self = self else { return }
+            CommonUtils.showToast(message: "Reel deleted Successfully".localiz())
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == collectionReels {
             let nextVC = SellerReelsAndHighLightsViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
             nextVC.comingReason = .sellerReels
-            nextVC.reelsData = self.viewModel.detailModel?.stories?[indexPath.row]
+            nextVC.reelsData = self.viewModel.detailModel?.reels?[indexPath.row]
             self.navigationController?.pushViewController(nextVC, animated: true)
         } else {
             let nextVC = SellerReelsAndHighLightsViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)

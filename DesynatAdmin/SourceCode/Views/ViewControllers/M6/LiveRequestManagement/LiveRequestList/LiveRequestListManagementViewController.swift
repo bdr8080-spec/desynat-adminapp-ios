@@ -393,47 +393,6 @@ class LiveRequestListManagementViewController: UIViewController {
         dateAndYearLabel.text = monthYearFormatter.string(from: viewCalendar.currentPage)
     }
     
-//    private func configureCalendar() {
-//        viewCalendar.delegate = self
-//        viewCalendar.dataSource = self
-//        
-//        // ==================== STRONG RTL FIX ====================
-//        if AppLanguageManager.shared.currentLanguage == .ar {
-//            viewCalendar.locale = Locale(identifier: "ar")     // Better than "ar"
-//            viewCalendar.semanticContentAttribute = .forceRightToLeft
-//            viewCalendar.firstWeekday = 7                          // Sunday start for Arabic (or 6 for Monday)
-//            
-//            // Force direction on calendar itself
-//            viewCalendar.semanticContentAttribute = .forceRightToLeft
-//        } else {
-//            viewCalendar.locale = Locale(identifier: "en_US_POSIX")
-//            viewCalendar.semanticContentAttribute = .forceLeftToRight
-//            viewCalendar.firstWeekday = 1                          // Sunday start for English
-//        }
-//        // ======================================================
-//        
-//        viewCalendar.register(GradientCalendarCell.self, forCellReuseIdentifier: "GradientCalendarCell")
-//        
-//        viewCalendar.appearance.selectionColor = .clear
-//        viewCalendar.appearance.titleSelectionColor = .white
-//        viewCalendar.appearance.todayColor = .clear
-//        viewCalendar.appearance.titleTodayColor = .black
-//        
-//        viewCalendar.appearance.weekdayFont = UIFont.systemFont(ofSize: 15, weight: .semibold)
-//        viewCalendar.appearance.weekdayTextColor = .black
-//        viewCalendar.appearance.headerTitleColor = .black
-//        viewCalendar.appearance.headerTitleFont = UIFont.systemFont(ofSize: 18, weight: .bold)
-//        
-//        viewCalendar.appearance.caseOptions = [.weekdayUsesSingleUpperCase]
-//        viewCalendar.appearance.headerMinimumDissolvedAlpha = 0.0
-//        viewCalendar.headerHeight = 0
-//        
-//        // Force refresh
-//        viewCalendar.reloadData()
-//        viewCalendar.setNeedsLayout()
-//        viewCalendar.layoutIfNeeded()
-//    }
-    
     private func toggleReasonStatus(at indexPath: IndexPath) {
         var category = viewModel.slectedTimeSlot[indexPath.row]
         let newStatus = category.status == 1 ? 0 : 1

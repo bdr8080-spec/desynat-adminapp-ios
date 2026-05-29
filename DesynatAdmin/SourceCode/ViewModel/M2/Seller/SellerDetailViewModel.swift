@@ -31,6 +31,8 @@ class SellerDetailViewModel {
         }
     }
     
+    
+    
     func setActive(_ bool:Bool) {
         self.isActive = bool
     }

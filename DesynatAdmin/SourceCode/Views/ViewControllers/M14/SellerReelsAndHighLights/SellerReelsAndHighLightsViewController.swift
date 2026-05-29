@@ -185,7 +185,7 @@ class SellerReelsAndHighLightsViewController: UIViewController {
         case .sellerHightLights:
             self.showConfirmationAlert(msg: "Are you sure you want to delete this highlights?".localiz()) { [weak self] in
                 guard let self = self else { return }
-                self.viewModel.deleteReel()
+                self.viewModel.deleteHighlight()
             }
         case .sellerReels:
             self.showConfirmationAlert(msg: "Are you sure you want to delete this reel?".localiz()) { [weak self] in

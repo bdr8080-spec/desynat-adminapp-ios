@@ -249,6 +249,9 @@ enum NetworkEndPoint: String {
     case getRefundOrders                    = "api/admin/get_refund_orders"
     case uploadWithResolutionPromotional    = "api/uploadWithResolutionPromotional"
     case shareCeredential                   = "api/admin/send_subadmin_credentials"
+    case deleteSellerReel                   = "api/admin/delete_seller_reel"
+    case deleteSellerHighlight              = "api/admin/delete_seller_highlight"
+    case deleteSellerStory                  = "api/admin/delete_seller_story"
     
     //M14
     case getHomeData                        = "api/admin/dashboard_data"

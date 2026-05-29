@@ -16,12 +16,21 @@ class SellerReelsAndHighLightsViewModel {
     }
     
     func deleteReel() {
-//        let param: [String: Any] = ["reel_id": hostVC.reelsData?.id ?? 0]
-//        WebService.sharedInstance.deleteReelsServices(param: param) { [weak self] response in
-//            guard let self = self else { return }
-//            CommonUtils.showToast(message: "Reel deleted Successfully".localiz())
-//            self.hostVC.navigationController?.popViewController(animated: true)
-//        }
+        let param: [String: Any] = ["reel_id": hostVC.reelsData?.id ?? 0]
+        WebService.sharedInstance.deleetSellerReelListService(param: param) { [weak self] response in
+            guard let self = self else { return }
+            CommonUtils.showToast(message: "Reel deleted Successfully".localiz())
+            self.hostVC.navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    func deleteHighlight() {
+        let param: [String: Any] = ["highlight_id": hostVC.highlights?.id ?? 0]
+        WebService.sharedInstance.deleetSellerHighlightListService(param: param) { [weak self] response in
+            guard let self = self else { return }
+            CommonUtils.showToast(message: "Highlight deleted Successfully".localiz())
+            self.hostVC.navigationController?.popViewController(animated: true)
+        }
     }
     
     func updateMyReelsStatusRequest() {
