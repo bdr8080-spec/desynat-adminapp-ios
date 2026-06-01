@@ -20,6 +20,7 @@ struct SellerListInfo    {
     var email:String
     var status:SellersTab = .none
     var handler:HandleSellerAction?
+    var stories: [GetMyReelsList]?
     
     func accceptSeller() {
         self.handler?.aprovedSeller(self)
@@ -42,7 +43,8 @@ struct SellerListInfo    {
             reason: String.getString(data.rejectReason),
             email: String.getString(data.email),
             status: status,
-            handler: handler
+            handler: handler,
+            stories: data.stories
         )
     }
 }

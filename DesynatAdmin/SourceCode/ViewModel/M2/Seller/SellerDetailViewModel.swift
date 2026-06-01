@@ -23,6 +23,10 @@ class SellerDetailViewModel {
         self.sellerData = sellerData
     }
     
+    func removeReel(at index: Int) {
+        detailModel?.reels?.remove(at: index)
+    }
+    
     func getSellerDetailInfo(_ completion:@escaping () -> Void) {
         WebService.shared.getSellerDetail(id: String.getString(sellerData?.id)) { data in
             self.detailModel = data
@@ -30,8 +34,6 @@ class SellerDetailViewModel {
             completion()
         }
     }
-    
-    
     
     func setActive(_ bool:Bool) {
         self.isActive = bool

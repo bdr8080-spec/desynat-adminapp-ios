@@ -37,6 +37,7 @@ struct PurchasedPlanInfo {
     var status: PurchasedStatus = .none
     var purchasedOn:String = ""
     var price:String = ""
+    
     static func makeData(_ data:PurchasedPlanDataModel) -> Self {
         PurchasedPlanInfo(
             id: String.getString(data.id),
@@ -48,13 +49,14 @@ struct PurchasedPlanInfo {
                 from: Date(iso8601String: String.getString(data.createdAt)),
                 format: "dd/MM/yyyy 'at' hh:mm a"
             ),
-            price: "KD \(Int.getInt(Double.getDouble(data.planInfo?.price).clean))"
+            price: CommonUtils.formatPrice(data.planInfo?.price)
         )
     }
 }
+
 class PurchasedPlanTableViewCell: ResuableTableCell {
-    @IBOutlet weak var lblPlanDurationType: CustomLabelFont!
     
+    @IBOutlet weak var lblPlanDurationType: CustomLabelFont!
     @IBOutlet weak var lblTotalAmount: CustomLabelFont!
     @IBOutlet weak var lblPurchasedOn: CustomLabelFont!
     @IBOutlet weak var lblStatus: CustomLabelFont!

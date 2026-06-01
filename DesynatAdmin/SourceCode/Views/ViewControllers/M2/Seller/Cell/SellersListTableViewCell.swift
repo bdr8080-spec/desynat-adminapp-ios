@@ -9,6 +9,7 @@ import UIKit
 
 class SellersListTableViewCell: ResuableTableCell {
     
+    @IBOutlet weak var reelButtonOytlet: UIButton!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblCountry: UILabel!
     @IBOutlet weak var lblJoinOn: UILabel!
@@ -25,6 +26,7 @@ class SellersListTableViewCell: ResuableTableCell {
     @IBOutlet weak var imgProfile: CustomImageView!
     
     private var data : SellerListInfo?
+    var onProfileImageTapped: (()-> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,7 +39,40 @@ class SellersListTableViewCell: ResuableTableCell {
             self.btnAccept.applyGradient(colours: [UIColor.init(hexString: "#DFBF8F"), UIColor.init(hexString: "#6E4527")],gradientDirection: .topToBottom,cornerRadius: 5)
         }
     }
-
+    
+    func updateStoryUI(stories: [GetMyReelsList]?) {
+        let stories = stories ?? []
+        
+        // No stories uploaded
+        guard !stories.isEmpty else {
+            reelButtonOytlet.setImage(UIImage(named: ""), for: .normal)
+            reelButtonOytlet.layer.borderWidth = 0
+            reelButtonOytlet.isUserInteractionEnabled = false
+            return
+        }
+        
+        reelButtonOytlet.isUserInteractionEnabled = true
+        
+        let hasUnseenStory = stories.contains { $0.isSeen == 0 }
+        
+        if hasUnseenStory {
+            // Show border for unseen stories
+            reelButtonOytlet.setImage(nil, for: .normal)
+            reelButtonOytlet.layer.borderWidth = 3
+            reelButtonOytlet.layer.borderColor = UIColor.accent.cgColor
+            reelButtonOytlet.layer.cornerRadius = reelButtonOytlet.frame.width / 2
+            reelButtonOytlet.clipsToBounds = true
+        } else {
+            // All stories seen
+            reelButtonOytlet.layer.borderWidth = 0
+            reelButtonOytlet.setImage(.gradientBorder, for: .normal)
+        }
+    }
+    
+    @IBAction func profileImageDidTapped(_ sender: Any) {
+        onProfileImageTapped?()
+    }
+    
     func setData(_ data:SellerListInfo, hasActionPermission: Bool) {
         self.data = data
         self.lblName.text = data.name
@@ -65,7 +100,7 @@ class SellersListTableViewCell: ResuableTableCell {
         }
         self.viewStats.isHidden = data.status != .approved
         self.viewReason.isHidden = data.status != .reject
-        
+        updateStoryUI(stories: data.stories)
         
     }
     @IBAction func hadlerReject(_ sender: Any) {

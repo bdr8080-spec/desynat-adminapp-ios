@@ -114,7 +114,12 @@ class SellerDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpUi()
-        self.setData()
+        //        self.setData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setData()
     }
     
     // MARK: - Button's Action
@@ -212,17 +217,7 @@ class SellerDetailViewController: UIViewController {
                     self.btnSwitch.isUserInteractionEnabled = false
                 }
             }
-            let storiesCount = viewModel.detailModel?.stories?.count ?? 0
-            if storiesCount > 0 {
-//                self.hostVC.userProfileImageView.borderWidth = 3
-                self.reelButtonOytlet.setImage(.gradientBorder, for: .normal)
-                self.reelButtonOytlet.isUserInteractionEnabled = true
-            }else {
-//                self.hostVC.userProfileImageView.borderWidth = 0
-                self.reelButtonOytlet.setImage(UIImage(named: ""), for: .normal)
-                self.reelButtonOytlet.isUserInteractionEnabled = false
-//                false
-            }
+            
             self.btnPending.isHidden =  listInfo.status == .approved
             self.btnPending.setTitle(listInfo.status.title, for: .normal)
             self.stackCanceReason.isHidden = listInfo.status != .reject
@@ -243,7 +238,7 @@ class SellerDetailViewController: UIViewController {
             self.lblSellerCountry.text = listInfo.country
             self.lctBottomMainStack.constant = listInfo.status == .new ? self.viewBottomAction.frame.height : 50.0
             //            self.viewBottomAction.isHidden = listInfo.status != .new
-           
+            
             if listInfo.status == .new {
                 if hasActionPermission {
                     self.viewBottomAction.isHidden = false
@@ -267,6 +262,35 @@ class SellerDetailViewController: UIViewController {
             self.viewPurchasedPlan.isHidden = listInfo.status != .approved
         }
         self.setUpStoreInfo()
+    }
+    
+    func updateStoryUI() {
+        let stories = viewModel.detailModel?.stories ?? []
+        
+        // No stories uploaded
+        guard !stories.isEmpty else {
+            reelButtonOytlet.setImage(UIImage(named: ""), for: .normal)
+            reelButtonOytlet.layer.borderWidth = 0
+            reelButtonOytlet.isUserInteractionEnabled = false
+            return
+        }
+        
+        reelButtonOytlet.isUserInteractionEnabled = true
+        
+        let hasUnseenStory = stories.contains { $0.isSeen == 0 }
+        
+        if hasUnseenStory {
+            // Show border for unseen stories
+            reelButtonOytlet.setImage(nil, for: .normal)
+            reelButtonOytlet.layer.borderWidth = 3
+            reelButtonOytlet.layer.borderColor = UIColor.accent.cgColor
+            reelButtonOytlet.layer.cornerRadius = reelButtonOytlet.frame.width / 2
+            reelButtonOytlet.clipsToBounds = true
+        } else {
+            // All stories seen
+            reelButtonOytlet.layer.borderWidth = 0
+            reelButtonOytlet.setImage(.gradientBorder, for: .normal)
+        }
     }
     
     private func setUpStoreInfo() {
@@ -304,17 +328,20 @@ class SellerDetailViewController: UIViewController {
                         self.lblStoreSellerCountry.text = storeInfo.countryInfo?.name
                     }
                 }
-                let storiesCount = self.viewModel.detailModel?.stories?.count ?? 0
-                if storiesCount > 0 {
-    //                self.hostVC.userProfileImageView.borderWidth = 3
-                    self.reelButtonOytlet.setImage(.gradientBorder, for: .normal)
-                    self.reelButtonOytlet.isUserInteractionEnabled = true
-                }else {
-    //                self.hostVC.userProfileImageView.borderWidth = 0
-                    self.reelButtonOytlet.setImage(UIImage(named: ""), for: .normal)
-                    self.reelButtonOytlet.isUserInteractionEnabled = false
-    //                false
-                }
+                
+                //                let storiesCount = self.viewModel.detailModel?.stories?.count ?? 0
+                //                if storiesCount > 0 {
+                //                    //                self.hostVC.userProfileImageView.borderWidth = 3
+                //                    self.reelButtonOytlet.setImage(.gradientBorder, for: .normal)
+                //                    self.reelButtonOytlet.isUserInteractionEnabled = true
+                //                }else {
+                //                    //                self.hostVC.userProfileImageView.borderWidth = 0
+                //                    self.reelButtonOytlet.setImage(UIImage(named: ""), for: .normal)
+                //                    self.reelButtonOytlet.isUserInteractionEnabled = false
+                //                    //                false
+                //                }
+                
+                self.updateStoryUI()
                 if let bankInformation = detailModel.sellerBankDetails {
                     self.lblAccountType.text = bankInformation.accountType == "0" ? "Personal".localiz() : "Business".localiz()
                     self.lblIBAN.text = bankInformation.iban
@@ -379,7 +406,7 @@ class SellerDetailViewController: UIViewController {
                     self.heightOfStoriesCollectionView.constant = 40
                 }
                 self.lblPlaceHighlights.isHidden = highlightsCount > 0
-                self.lblPlaceReels.isHidden = (self.viewModel.detailModel?.stories?.count ?? 0) > 0
+                self.lblPlaceReels.isHidden = (self.viewModel.detailModel?.reels?.count ?? 0) > 0
                 self.collectionReels.reloadData()
                 self.collectionHeighLights.reloadData()
                 self.lblPlacePlans.isHidden = self.viewModel.arrayPlans.count > 0
@@ -450,7 +477,12 @@ extension SellerDetailViewController: UICollectionViewDelegate, UICollectionView
             cell.onDeleteTapped = { [weak self] in
                 self?.showConfirmationAlert(msg: "Are you sure you want to delete this reel?".localiz()) { [weak self] in
                     guard let self = self else { return }
-                    self.deleteReel(reelId: viewModel.detailModel?.reels?[indexPath.row].id)
+                    guard let reels = self.viewModel.detailModel?.reels,
+                          indexPath.row < reels.count else {
+                        return
+                    }
+                    let reelId = reels[indexPath.row].id
+                    self.deleteReel(reelId: reelId, at: indexPath.row)
                 }
             }
             return cell
@@ -461,12 +493,28 @@ extension SellerDetailViewController: UICollectionViewDelegate, UICollectionView
         }
     }
     
-    func deleteReel(reelId: Int?) {
+    func deleteReel(reelId: Int?, at index: Int) {
         let param: [String: Any] = ["reel_id": reelId ?? 0]
         WebService.sharedInstance.deleetSellerReelListService(param: param) { [weak self] response in
             guard let self = self else { return }
             CommonUtils.showToast(message: "Reel deleted Successfully".localiz())
-            self.navigationController?.popViewController(animated: true)
+            self.viewModel.removeReel(at: index)
+            self.collectionReels.performBatchUpdates({
+                self.collectionReels.deleteItems(at: [IndexPath(item: index, section: 0)])
+            })
+            
+//            let reelsCount = self.viewModel.detailModel?.reels?.count ?? 0
+//
+//                    if reelsCount == 0 {
+//                        self.collectionReels.reloadData()
+//                    } else {
+//                        self.collectionReels.performBatchUpdates({
+//                            self.collectionReels.deleteItems(at: [IndexPath(item: index, section: 0)])
+//                        })
+//                    }
+//
+//                    self.updateReelsUI()
+            
         }
     }
     

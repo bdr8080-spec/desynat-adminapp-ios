@@ -252,6 +252,7 @@ enum NetworkEndPoint: String {
     case deleteSellerReel                   = "api/admin/delete_seller_reel"
     case deleteSellerHighlight              = "api/admin/delete_seller_highlight"
     case deleteSellerStory                  = "api/admin/delete_seller_story"
+    case seeStory                           = "api/see_story"
     
     //M14
     case getHomeData                        = "api/admin/dashboard_data"

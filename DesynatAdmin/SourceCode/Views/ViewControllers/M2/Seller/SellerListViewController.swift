@@ -179,6 +179,12 @@ extension SellerListViewController:UITableViewDelegate,UITableViewDataSource {
             if (self.viewModel.arraySellers.count > indexPath.row) {
                 cell.setData(self.viewModel.arraySellers[indexPath.row], hasActionPermission: hasActionPermission)
             }
+            cell.onProfileImageTapped = { [weak self] in
+                let nextVC = StoryViewerViewController.instantiate(fromAppStoryboard: .Home)
+                nextVC.comingFor = .forSellerStory
+                nextVC.viewModel.sellerStories = self?.viewModel.arraySellers[indexPath.row].stories ?? []
+                self?.navigationController?.pushViewController(nextVC, animated: true)
+            }
             cell.selectionStyle = .none
             return cell
         }
@@ -202,7 +208,6 @@ extension SellerListViewController:HandleTableRefresh {
         self.tblSellers.reloadData()
     }
 }
-
 
 extension SellerListViewController:HandleSellerAction {
     func aprovedSeller(_ data: SellerListInfo) {

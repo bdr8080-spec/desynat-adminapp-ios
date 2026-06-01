@@ -10,48 +10,29 @@ import AVFoundation
 
 class StoryViewerViewModel {
     
-//    var adminStories: [SellerHighlightsModel] = []
     var sellerStories: [GetMyReelsList] = []
-//    var sellerHighlight: [GetHighLightsList] = []
-    
-//    func getAdminStory(completion: @escaping () -> Void) {
-//        WebService.sharedInstance.getAdminStoryService() { list in
-//            self.adminStories = list
-//            completion()
-//        }
-//    }
-//    
-//    func getSelfStory(completion: @escaping () -> Void) {
-//        WebService.sharedInstance.getSellerStoryService() { list in
-//            self.sellerStories = list
-//            completion()
-//        }
-//    }
-//    
-//    func getSelfHighlight(completion: @escaping () -> Void) {
-//        WebService.sharedInstance.getMyAllHighLights() { list in
-//            self.sellerHighlight = list
-//            completion()
-//        }
-//    }
-    
-//    func deleteSelfHighlight(id: Int, completion: @escaping (Bool) -> Void) {
-//        let param: [String:Any] = ["highlight_id": id]
-//        WebService.sharedInstance.deleteMyHighLights(param: param) { success in
-//            completion(true)
-//        }
-//    }
-//
+
     func deleteSellerStory(id: Int, completion: @escaping (Bool) -> Void) {
         let param: [String:Any] = ["story_id": id]
         WebService.sharedInstance.deleetSellerstoryListService(param: param) { success in
             completion(true)
         }
     }
+    
+    func seeStoryService(storyId: Int) {
+        let savedUser = kSharedUserDefaults.retrieveModelFor(key: .user, model: UserModel.self)
+        let param: [String:Any] = ["story_id": storyId,
+                                   "type": 3, //1-user,2-seller,3-admin
+                                   "user_id": savedUser?.id ?? 0]
+        WebService.sharedInstance.seeStoryListService(param: param) { success in
+            print("Stopry viewed")
+        }
+    }
+    
+    
+
 }
 
 enum ComingReasonAtStoryViewer {
-//    case forAdminStory
     case forSellerStory
-//    case forSelfHighlight
 }

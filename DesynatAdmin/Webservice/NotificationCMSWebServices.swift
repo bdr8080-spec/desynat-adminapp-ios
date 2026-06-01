@@ -202,6 +202,21 @@ extension WebService {
         }
     }
     
+    func seeStoryListService(param: [String:Any], completion: @escaping(EmptyModel) -> Void) {
+//        CommonUtils.showHud(show: true)
+        NetworkManager.shared.request(withAPI: .endpoint(.seeStory),requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
+//            CommonUtils.showHud(show: false)
+            self.evaluateWebServiceResponse(response: result) { response, message, error in
+                guard let response = response else {
+                    if let error {
+                        UIApplication.shared.topViewController()?.showAlert(msg: error)
+                    }
+                    return
+                }
+                completion(response)
+            }
+        }
+    }
     
     func markReadNotificationsService(param: [String:Any], completion: @escaping(EmptyModel) -> Void) {
         CommonUtils.showHud(show: true)

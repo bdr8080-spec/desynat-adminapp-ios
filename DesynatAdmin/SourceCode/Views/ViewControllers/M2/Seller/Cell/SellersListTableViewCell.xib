@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -29,6 +29,14 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="circleCorner" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4i6-Eo-jb0">
+                                <rect key="frame" x="6" y="6" width="48" height="48"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="gradientBorder"/>
+                                <connections>
+                                    <action selector="profileImageDidTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="7tp-UM-D3h"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fde-CD-Yv3">
                                 <rect key="frame" x="64" y="8" width="36" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
@@ -300,11 +308,15 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="4i6-Eo-jb0" firstAttribute="top" secondItem="bKD-Cy-OVE" secondAttribute="top" constant="-2" id="05u-cK-kJV"/>
                             <constraint firstItem="bKD-Cy-OVE" firstAttribute="leading" secondItem="f0W-rZ-Jd3" secondAttribute="leading" constant="8" id="4fY-CV-uDt"/>
+                            <constraint firstItem="4i6-Eo-jb0" firstAttribute="bottom" secondItem="bKD-Cy-OVE" secondAttribute="bottom" constant="2" id="9bM-x6-pIy"/>
                             <constraint firstItem="Fde-CD-Yv3" firstAttribute="top" secondItem="bKD-Cy-OVE" secondAttribute="top" id="CPh-QW-emV"/>
+                            <constraint firstItem="4i6-Eo-jb0" firstAttribute="leading" secondItem="bKD-Cy-OVE" secondAttribute="leading" constant="-2" id="CPw-BV-iR5"/>
                             <constraint firstItem="46q-lb-8TI" firstAttribute="top" secondItem="Fde-CD-Yv3" secondAttribute="bottom" constant="6" id="FWv-Ed-ThU"/>
                             <constraint firstItem="Fde-CD-Yv3" firstAttribute="leading" secondItem="bKD-Cy-OVE" secondAttribute="trailing" constant="12" id="H1w-4e-OGW"/>
                             <constraint firstItem="hUU-2x-VOe" firstAttribute="leading" secondItem="f0W-rZ-Jd3" secondAttribute="leading" constant="8" id="IrZ-1i-a6E"/>
+                            <constraint firstItem="4i6-Eo-jb0" firstAttribute="trailing" secondItem="bKD-Cy-OVE" secondAttribute="trailing" constant="2" id="KEN-6d-v4i"/>
                             <constraint firstAttribute="trailing" secondItem="hUU-2x-VOe" secondAttribute="trailing" constant="8" id="MWJ-Rm-Wkc"/>
                             <constraint firstAttribute="trailing" secondItem="FPs-d9-T4I" secondAttribute="trailing" constant="8" id="Rb1-wU-rlV"/>
                             <constraint firstItem="FPs-d9-T4I" firstAttribute="leading" secondItem="f0W-rZ-Jd3" secondAttribute="leading" constant="8" id="TaV-X6-4n0"/>
@@ -354,6 +366,7 @@
                 <outlet property="lblReason" destination="r9b-8U-AUY" id="Vw9-JX-uD7"/>
                 <outlet property="lblTotalEarning" destination="Obn-VW-bN0" id="SzA-d7-ufB"/>
                 <outlet property="lblTotalOrders" destination="dPf-Gr-uAC" id="idN-3Z-ezy"/>
+                <outlet property="reelButtonOytlet" destination="4i6-Eo-jb0" id="lRF-Au-kxT"/>
                 <outlet property="stackActionButton" destination="k4x-LO-5TL" id="GOV-mP-B5h"/>
                 <outlet property="viewReason" destination="GeF-DG-l52" id="lkX-jW-Nya"/>
                 <outlet property="viewStats" destination="uNI-qI-dep" id="Uu8-ut-sRo"/>
@@ -362,6 +375,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="gradientBorder" width="44" height="44"/>
         <image name="ic_mail" width="16" height="16"/>
         <image name="ic_phone" width="16" height="16"/>
         <image name="locationMarker" width="12" height="12"/>

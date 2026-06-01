@@ -250,6 +250,7 @@ struct GetMyReelsList: Codable {
     let status: Int?
     let createdAt, updatedAt: String?
     var isWhishlisted: Int?
+    var isSeen: Int?
     
     enum CodingKeys: String, CodingKey {
         case id, type
@@ -258,5 +259,6 @@ struct GetMyReelsList: Codable {
         case createdAt = "created_at"
         case updatedAt = "updated_at"
         case isWhishlisted = "is_whishlisted"
+        case isSeen = "is_seen"
     }
 }
