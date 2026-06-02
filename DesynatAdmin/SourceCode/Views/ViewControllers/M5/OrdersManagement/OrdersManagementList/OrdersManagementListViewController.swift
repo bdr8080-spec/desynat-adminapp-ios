@@ -67,7 +67,6 @@ class OrdersManagementListViewController: UIViewController {
             self.viewModel.filterInfo = updatedFilter
             self.viewModel.setCategory(self.viewModel.currentCategory)
         }
-        
         self.present(vc, animated: true)
     }
     
@@ -139,18 +138,19 @@ extension OrdersManagementListViewController: UICollectionViewDelegate, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let text = orderCategoriesList[indexPath.item]
-        let font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        let textWidth = text.size(withAttributes: [.font: font]).width
-        let padding: CGFloat = 24
-        return CGSize(width: textWidth + padding, height: 40)
+//        let text = orderCategoriesList[indexPath.item]
+//        let font = UIFont.systemFont(ofSize: 10, weight: .medium)
+//        let textWidth = text.size(withAttributes: [.font: font]).width
+//        let padding: CGFloat = 26//24
+//        return CGSize(width: textWidth + padding, height: 40)
+        
+        let width = categorriesCollectionView.frame.width / 4
+        return CGSize(width: width, height: 40)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         selecetedCategoryId = indexPath.row
         categorriesCollectionView.reloadData()
-        
         let category: OrderCategory
         switch indexPath.row {
         case 0: category = .active

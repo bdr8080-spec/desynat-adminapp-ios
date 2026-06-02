@@ -167,9 +167,10 @@ struct ExchangeOrderDetails: Codable {
 struct UserRatingReviewProvide: Codable {
     let id, userID, orderID, orderdetailsID: Int?
     let productID: Int?
-    let productRating, productReview, productImage: String?
+    let productRating, productReview: String?
+    let productImage, storeImage: [String]?
     let storeID: Int?
-    let storeRating, storeReview, storeImage, createdAt: String?
+    let storeRating, storeReview, createdAt: String?
     let updatedAt: String?
     
     enum CodingKeys: String, CodingKey {

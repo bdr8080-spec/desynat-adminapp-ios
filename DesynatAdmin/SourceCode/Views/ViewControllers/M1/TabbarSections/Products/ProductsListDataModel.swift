@@ -120,11 +120,11 @@ struct Review: Codable {
     let productID: Int?
     let productRating: String?
     let productReview: String?
-    let productImage: String?
+    let productImage: [String]?
     let storeID: Int?
     let storeRating: String?
     let storeReview: String?
-    let storeImage: String?
+    let storeImage: [String]?
     let createdAt, updatedAt: String?
 
     enum CodingKeys: String, CodingKey {
