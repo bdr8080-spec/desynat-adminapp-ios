@@ -127,13 +127,17 @@ extension OrdersManagementListViewController: UICollectionViewDelegate, UICollec
         cell.mainImageView.layer.cornerRadius = 5
         cell.mainImageView.clipsToBounds = true
         if indexPath.row == 0 {
+            cell.sepeartorLabel.isHidden = false
             cell.mainImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
         } else if indexPath.row == lastIndex {
             cell.mainImageView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+            cell.sepeartorLabel.isHidden = true
         } else {
+            cell.sepeartorLabel.isHidden = false
             cell.mainImageView.layer.cornerRadius = 0
             cell.mainImageView.layer.maskedCorners = []
         }
+       
         return cell
     }
     
@@ -145,7 +149,7 @@ extension OrdersManagementListViewController: UICollectionViewDelegate, UICollec
 //        return CGSize(width: textWidth + padding, height: 40)
         
         let width = categorriesCollectionView.frame.width / 4
-        return CGSize(width: width, height: 40)
+        return CGSize(width: width, height: 42)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
