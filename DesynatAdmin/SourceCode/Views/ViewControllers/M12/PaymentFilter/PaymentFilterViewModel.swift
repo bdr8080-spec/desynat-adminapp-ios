@@ -11,7 +11,7 @@ class PaymentFilterViewModel{
     
     private var hostVC: PaymentFilterViewController?
     var countryListData: [GetCountryDataModel] = []
-    var allCountryListData: [GetAllUserCountryModel] = []
+    var allCountryListData: [GetCountryDataModel] = []
     
     init(hostVC: PaymentFilterViewController) {
         self.hostVC = hostVC
@@ -25,8 +25,16 @@ class PaymentFilterViewModel{
         }
     }
     
+//    func getAllCountryRequest(completion: (() -> Void)? = nil) {
+//        WebService.shared.getAllUsersCountryList(){ [weak self] response in
+//            guard let self = self else { return }
+//            allCountryListData = response
+//            completion?()
+//        }
+//    }
+    
     func getAllCountryRequest(completion: (() -> Void)? = nil) {
-        WebService.shared.getAllUsersCountryList(){ [weak self] response in
+        WebService.shared.getAllCountry(){ [weak self] response in
             guard let self = self else { return }
             allCountryListData = response
             completion?()

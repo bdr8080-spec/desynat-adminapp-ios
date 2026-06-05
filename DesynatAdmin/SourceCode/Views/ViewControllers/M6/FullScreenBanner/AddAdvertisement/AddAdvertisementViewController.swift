@@ -53,7 +53,7 @@ class AddAdvertisementViewController: UIViewController {
         let countryNames = viewModel.countryListData.map { country -> String in
             let name = AppLanguageManager.shared.currentLanguage == .en ?  country.name ?? "" : country.nameAr ?? ""
             let dialCode = country.dialCode ?? ""
-            let flag = country.flag1 ?? "🇰🇼"
+            let flag = country.flag ?? "🇰🇼"
             return "\(flag)  \(name) (\(dialCode))"
         }
         

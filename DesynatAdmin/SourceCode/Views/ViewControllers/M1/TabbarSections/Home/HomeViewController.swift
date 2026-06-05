@@ -152,7 +152,7 @@ class HomeViewController: UIViewController {
     //MARK: Function's declaration
     
     func setDefaultSelection() {
-        let country = viewModel.countryListData.first(where: { $0.id == 89 })
+        let country = viewModel.countryListData.first(where: { $0.id == 1 })
         if AppLanguageManager.shared.currentLanguage == .ar {
             dropdownCountryLabel.text = country?.nameAr
             selectedCountryLabel.text = country?.nameAr
@@ -160,7 +160,7 @@ class HomeViewController: UIViewController {
             dropdownCountryLabel.text = country?.name
             selectedCountryLabel.text = country?.name
         }
-        dropDownCountryFlagEmoji.text = country?.flag1
+        dropDownCountryFlagEmoji.text = country?.flag
         durationCollectionView.reloadData()
         callDashboardAPI()
     }
@@ -270,7 +270,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let data = viewModel.countryListData[indexPath.row]
         
 //        dropdownCountryLabel.text = data.name
-        dropDownCountryFlagEmoji.text = data.flag1
+        dropDownCountryFlagEmoji.text = data.flag
 //        selectedCountryLabel.text = data.name
         if AppLanguageManager.shared.currentLanguage == .ar {
             dropdownCountryLabel.text = data.nameAr

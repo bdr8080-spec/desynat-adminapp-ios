@@ -10,7 +10,7 @@ import Foundation
 class AddAdvertisementViewModel {
     
     private var hostVC: AddAdvertisementViewController
-    var countryListData: [GetAllUserCountryModel] = []
+    var countryListData: [GetCountryDataModel] = []
     
     init(hostVC: AddAdvertisementViewController) {
         self.hostVC = hostVC
@@ -72,8 +72,15 @@ class AddAdvertisementViewModel {
     }
     
     
+//    func getAllCountry() {
+//        WebService.shared.getAllUsersCountryList(){ [weak self] response in
+//            guard let self = self else { return }
+//            countryListData = response
+//        }
+//    }
+    
     func getAllCountry() {
-        WebService.shared.getAllUsersCountryList(){ [weak self] response in
+        WebService.shared.getAllCountry{ [weak self] response in
             guard let self = self else { return }
             countryListData = response
         }

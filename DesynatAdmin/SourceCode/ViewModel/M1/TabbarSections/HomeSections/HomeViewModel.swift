@@ -12,7 +12,7 @@ import SDWebImage
 class HomeViewModel {
     
     private var hostVC: HomeViewController
-    var countryListData: [GetAllUserCountryModel] = []
+    var countryListData: [GetCountryDataModel] = []
     var userProfileData: UserModel?
     var dashboardFilter = AdminDashboardFilterModel()
     var adminDashboardData: AdminHomeDashboardDataModel?
@@ -32,8 +32,18 @@ class HomeViewModel {
         }
     }
     
+//    func getAllCountry() {
+//        WebService.shared.getAllUsersCountryList(){ [weak self] response in
+//            guard let self = self else { return }
+//            countryListData = response
+//            hostVC.countryTableView.reloadData()
+//            self.hostVC.setDefaultSelection()
+//            self.hostVC.callDashboardAPI()
+//        }
+//    }
+    
     func getAllCountry() {
-        WebService.shared.getAllUsersCountryList(){ [weak self] response in
+        WebService.shared.getAllCountry(){ [weak self] response in
             guard let self = self else { return }
             countryListData = response
             hostVC.countryTableView.reloadData()

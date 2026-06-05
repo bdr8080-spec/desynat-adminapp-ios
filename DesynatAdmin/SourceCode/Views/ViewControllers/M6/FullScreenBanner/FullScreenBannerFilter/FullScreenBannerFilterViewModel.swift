@@ -10,14 +10,21 @@ import Foundation
 class FullScreenBannerFilterViewModel {
   
   private var hostVC: FullScreenBannerFilterViewController?
-  var countryListData: [GetAllUserCountryModel] = []
+  var countryListData: [GetCountryDataModel] = []
   
   init(hostVC: FullScreenBannerFilterViewController) {
     self.hostVC = hostVC
   }
   
-  func getAllCountry(completion: (() -> Void)? = nil) {
-    WebService.shared.getAllUsersCountryList(){ [weak self] response in
+//  func getAllCountry(completion: (() -> Void)? = nil) {
+//    WebService.shared.getAllUsersCountryList(){ [weak self] response in
+//      guard let self = self else { return }
+//      countryListData = response
+//      completion?()
+//    }
+//  }
+    func getAllCountry(completion: (() -> Void)? = nil) {
+    WebService.shared.getAllCountry(){ [weak self] response in
       guard let self = self else { return }
       countryListData = response
       completion?()

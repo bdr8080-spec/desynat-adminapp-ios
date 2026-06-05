@@ -35,14 +35,14 @@ class CountryTableViewCell: ResuableTableCell {
         self.selectedImageView.image = UIImage(named: isSelected ? "radioSelected" : "radioUnselected")
     }
     
-    func configAdminDashboardData(data: GetAllUserCountryModel,isSelected:Bool) {
+    func configAdminDashboardData(data: GetCountryDataModel,isSelected:Bool) {
         countryLabel.text = data.name
         if AppLanguageManager.shared.currentLanguage == .ar {
             countryLabel.text = data.nameAr
         }else {
             countryLabel.text = data.name
         }
-        countryFlagEmojiLabel.text = data.flag1
+        countryFlagEmojiLabel.text = data.flag
         self.selectedImageView.image = UIImage(named: isSelected ? "radioSelected" : "radioUnselected")
     }
     

@@ -136,7 +136,7 @@ enum NetworkEndPoint: String {
     //FULL SCREEN BANNER MANAGEMENT
     case getFullScreenBanners               = "api/admin/get_full_banners"
     case getFullScreenDetailsBanners        = "api/admin/get_banner_detail"
-    case allUserCountry                     = "api/all_country"
+//    case allUserCountry                     = "api/all_country"
     case addFullScreenBanner                = "api/admin/add_full_banner"
     case updateFullScreenBanner             = "api/admin/update_full_banner"
     case deleteFullScreenBanner             = "api/admin/delete_full_banner"

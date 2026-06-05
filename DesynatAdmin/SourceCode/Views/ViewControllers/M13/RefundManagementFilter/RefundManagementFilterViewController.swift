@@ -76,7 +76,7 @@ class RefundManagementFilterViewController: UIViewController {
     
     @IBAction func countryDidTapped(_ sender: UIButton) {
         let countryNames = viewModel.allCountryListData.map {
-            "\($0.flag1 ?? "🇰🇼") \(AppLanguageManager.shared.currentLanguage == .en ? $0.name ?? "": $0.nameAr ?? "") (\($0.dialCode ?? ""))"
+            "\($0.flag ?? "🇰🇼") \(AppLanguageManager.shared.currentLanguage == .en ? $0.name ?? "": $0.nameAr ?? "") (\($0.dialCode ?? ""))"
         }//$0.name
         kSharedAppDelegate.dropDown(dataSource: countryNames, anchorView: sender) { index, _ in
             let selectedCountry = self.viewModel.allCountryListData[index]
