@@ -28,6 +28,8 @@ class BrandDetailsViewController: UIViewController {
         bindData()
         buttonsStackView.isHidden = !hasActionPermission
         statusToggleButton.isHidden = !hasActionPermission
+        buttonsStackView.semanticContentAttribute = .forceLeftToRight
+
     }
     
     // MARK: - Button's Action

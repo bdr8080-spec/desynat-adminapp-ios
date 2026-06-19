@@ -15,6 +15,7 @@ class BannersMangementFilterViewController: UIViewController {
     @IBOutlet weak var toTextField: UITextField!
     @IBOutlet weak var fromTextField: UITextField!
     @IBOutlet weak var countryLabel: CustomLabelFont!
+    @IBOutlet weak var buttonActionStackView: UIStackView!
     
     // MARK: - Property Decalaration
     private var viewModel : BannersMangementFilterViewModel = BannersMangementFilterViewModel()
@@ -32,6 +33,7 @@ class BannersMangementFilterViewController: UIViewController {
         viewModel.getAllCountry { [weak self] in
             self?.setData()
         }
+        buttonActionStackView.semanticContentAttribute = .forceLeftToRight
     }
     
     // MARK: - Button's Action

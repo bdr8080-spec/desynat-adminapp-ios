@@ -34,6 +34,7 @@ class PromocodeDetailsViewController: UIViewController {
         configData()
         statusToggleButton.isUserInteractionEnabled = hasActionPermission
         bottomstackView.isHidden = !hasActionPermission
+        bottomstackView.semanticContentAttribute = .forceLeftToRight
     }
     
     // MARK: - Button's Action

@@ -13,6 +13,7 @@ class DeliveryManagementFilterViewController: UIViewController {
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var toTextField: UITextField!
     @IBOutlet weak var fromTextField: UITextField!
+    @IBOutlet weak var buttonActionStackView: UIStackView!
     
     // MARK: - Property Decalaration
     let datePicker = UIDatePicker()
@@ -26,6 +27,7 @@ class DeliveryManagementFilterViewController: UIViewController {
         super.viewDidLoad()
         handleUISetup()
         applyPreselectedData()
+        buttonActionStackView.semanticContentAttribute = .forceLeftToRight
     }
     
     // MARK: - Button's Action

@@ -22,6 +22,7 @@ class AddNewStaffViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var buttonActionStackView: UIStackView!
     @IBOutlet weak var uploadNewProfileImageView: CustomImageView!
     @IBOutlet weak var addBtnLbl: UILabel!
     @IBOutlet weak var confirmPasswortTxtField: UITextField!
@@ -63,6 +64,7 @@ class AddNewStaffViewController: UIViewController {
             self.configData()
         }
         changeImageButton.setTitle("Change Image".localiz(), for: .normal)
+        buttonActionStackView.semanticContentAttribute = .forceLeftToRight
     }
     
     override func viewWillLayoutSubviews() {

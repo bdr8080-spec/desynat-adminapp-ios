@@ -21,6 +21,7 @@ class FullScreenBannerFilterViewController: UIViewController {
     @IBOutlet weak var toTextField: UITextField!
     @IBOutlet weak var fromTextField: UITextField!
     @IBOutlet weak var countryLabel: CustomLabelFont!
+    @IBOutlet weak var buttonActionStackView: UIStackView!
     
     // MARK: - Property Decalaration
     let datePicker = UIDatePicker()
@@ -48,6 +49,7 @@ class FullScreenBannerFilterViewController: UIViewController {
         case .promotional:
             countryView.isHidden = true
         }
+        buttonActionStackView.semanticContentAttribute = .forceLeftToRight
     }
     
     // MARK: - Button's Action

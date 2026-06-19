@@ -9,6 +9,7 @@ import UIKit
 
 class RefundManagementFilterViewController: UIViewController {
     
+    @IBOutlet weak var buttonActionStackView: UIStackView!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var toTextField: UITextField!
     @IBOutlet weak var fromTextField: UITextField!
@@ -34,6 +35,7 @@ class RefundManagementFilterViewController: UIViewController {
         viewModel.getAllCountryRequest { [weak self] in
             self?.applyPreselectedData()
         }
+        buttonActionStackView.semanticContentAttribute = .forceLeftToRight
     }
     
     // MARK: - Navigation

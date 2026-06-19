@@ -10,6 +10,7 @@ import AVFoundation
 import AVKit
 class UploadPostViewController: UIViewController {
     
+    @IBOutlet weak var buttonActionStackView: UIStackView!
     @IBOutlet weak var imageView: CustomImageView!
     @IBOutlet weak var playButton: UIButton!
     
@@ -29,6 +30,7 @@ class UploadPostViewController: UIViewController {
             imageView.image = selectedImage
             playButton.isHidden = true   // ❌ HIDE BUTTON
         }
+        buttonActionStackView.semanticContentAttribute = .forceLeftToRight
     }
     
     

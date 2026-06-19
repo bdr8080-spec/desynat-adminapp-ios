@@ -51,6 +51,7 @@ class AffiliatedUserDetailsViewController: UIViewController {
         super.viewDidLoad()
         initailSetupUI()
         statusToggleButton.isUserInteractionEnabled = hasActionPermission
+        buttonActionStackView.semanticContentAttribute = .forceLeftToRight
     }
     
     override func viewWillAppear(_ animated: Bool) {

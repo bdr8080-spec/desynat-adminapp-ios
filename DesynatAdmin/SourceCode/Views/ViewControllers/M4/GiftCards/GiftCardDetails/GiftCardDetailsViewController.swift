@@ -28,6 +28,7 @@ class GiftCardDetailsViewController: UIViewController {
         bindData()
         btnstatus.isUserInteractionEnabled = hasActionPermission
         bottomstackView.isHidden = !hasActionPermission
+        bottomstackView.semanticContentAttribute = .forceLeftToRight
     }
     
     // MARK: - Button's Action

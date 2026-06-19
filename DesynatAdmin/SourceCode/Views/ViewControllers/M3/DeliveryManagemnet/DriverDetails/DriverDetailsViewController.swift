@@ -42,6 +42,7 @@ class DriverDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bottomButttonStackView.isHidden = !hasActionPermission
+        bottomButttonStackView.semanticContentAttribute = .forceLeftToRight
     }
     
     override func viewWillAppear(_ animated: Bool) {

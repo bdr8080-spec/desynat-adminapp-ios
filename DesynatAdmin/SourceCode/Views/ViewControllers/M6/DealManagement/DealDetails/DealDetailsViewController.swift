@@ -61,6 +61,7 @@ class DealDetailsViewController: UIViewController {
             hotDealsstackView.isHidden = true
         }
         statusToggleButton.isUserInteractionEnabled = hasActionPermission
+        activeButtonStackView.semanticContentAttribute = .forceLeftToRight
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -13,6 +13,7 @@ class FilterForDealsViewController: UIViewController {
     // MARK: - IBOutlet's
     @IBOutlet weak var titleLabel: CustomLabelFont!
     @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var buttonActionStackView: UIStackView!
     
     // MARK: - Property Decalaration
     private var brandList: [GetBrandDataList] = []
@@ -29,6 +30,7 @@ class FilterForDealsViewController: UIViewController {
         if let brandName = selectedFilter.brandName {
             titleLabel.text = brandName
         }
+        buttonActionStackView.semanticContentAttribute = .forceLeftToRight
     }
     
     // MARK: - Button's Action

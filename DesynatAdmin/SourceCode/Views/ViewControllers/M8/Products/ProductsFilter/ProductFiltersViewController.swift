@@ -12,6 +12,7 @@ class ProductFiltersViewController: UIViewController {
     // MARK: - IBOutlet's
     @IBOutlet weak var filterTableView: UITableView!
     @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var buttonActionStackView: UIStackView!
     
     // MARK: - Data Lists
     var countriesList: [GetCountryDataModel] = []
@@ -52,6 +53,7 @@ class ProductFiltersViewController: UIViewController {
         if !selectedCategoryIDs.isEmpty {
             getAllsubcategoryApi(id: Int(selectedCategoryIDs))
         }
+        buttonActionStackView.semanticContentAttribute = .forceLeftToRight
     }
     
     // MARK: - Button's Action

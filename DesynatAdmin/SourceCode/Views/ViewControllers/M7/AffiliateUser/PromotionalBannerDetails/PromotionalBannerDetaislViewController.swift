@@ -41,6 +41,7 @@ class PromotionalBannerDetaislViewController: UIViewController {
         viewModel.getPromotionalScreenBannerDetailsList()
         togglestatus.isUserInteractionEnabled = hasActionPermission
         bottomStackView.isHidden = !hasActionPermission
+        bottomStackView.semanticContentAttribute = .forceLeftToRight
     }
     
     // MARK: - Button's Action

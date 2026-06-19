@@ -68,6 +68,7 @@ class BannersManagementDetailsViewController: UIViewController {
             toggleImageView.isHidden = true
             toggleButtonOutlet.isHidden = true
         }
+        rejectAcceptStackView.semanticContentAttribute = .forceLeftToRight
     }
     
     // MARK: - Button's Action

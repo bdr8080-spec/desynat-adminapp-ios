@@ -14,6 +14,7 @@ class PaymentFilterViewController: UIViewController {
     @IBOutlet weak var fromTextField: UITextField!
     @IBOutlet weak var countryLabel: CustomLabelFont!
     @IBOutlet weak var statusLabel: CustomLabelFont!
+    @IBOutlet weak var buttonActionStackView: UIStackView!
     
     // MARK: - Property Decalaration
     private var activeTextField: UITextField?
@@ -31,6 +32,7 @@ class PaymentFilterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         handleUISetup()
+        buttonActionStackView.semanticContentAttribute = .forceLeftToRight
         switch selectedTab {
         case .orders, .giftCards:
             viewModel.getAllCountryRequest { [weak self] in

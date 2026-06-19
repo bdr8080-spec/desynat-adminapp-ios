@@ -37,6 +37,7 @@ class FullScreenBanerDetailsViewController: UIViewController {
         super.viewDidLoad()
         typeTitleLabel.text = "Type".localiz()
         viewModel.getFullScreenBannerDetailsList()
+        botttomActionStackView.semanticContentAttribute = .forceLeftToRight
         botttomActionStackView.isHidden = !hasActionPermission
         
     }

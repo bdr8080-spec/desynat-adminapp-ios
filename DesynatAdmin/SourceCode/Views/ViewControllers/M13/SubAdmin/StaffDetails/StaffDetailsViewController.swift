@@ -47,6 +47,7 @@ class StaffDetailsViewController: UIViewController {
         shareCredentailLabel.isHidden = !hasActionPermission
         buttonActionStackView.isHidden = !hasActionPermission
         activeStatusbtn.isUserInteractionEnabled = hasActionPermission
+        buttonActionStackView.semanticContentAttribute = .forceLeftToRight
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -3494,6 +3494,7 @@ Visit Website</string>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="buttonActionStackView" destination="Dr3-es-3Rj" id="j1P-2W-MZZ"/>
                         <outlet property="filterTableView" destination="1e0-dW-Uh0" id="pLW-zc-ctV"/>
                         <outlet property="headerView" destination="4Jh-Oh-Iig" id="eL8-TL-zQI"/>
                     </connections>
@@ -3706,6 +3707,7 @@ the event</string>
                         <outlet property="btnGoLive" destination="o05-AV-60O" id="0XW-1t-2cO"/>
                         <outlet property="btnMute" destination="upH-59-ftw" id="Ar5-i9-ySK"/>
                         <outlet property="btnSwitch" destination="2fD-ah-uUU" id="w91-r9-m0x"/>
+                        <outlet property="buttonActionStackView" destination="IcV-6a-4ML" id="xvW-2I-HkO"/>
                         <outlet property="lblLive" destination="eTV-QV-vzJ" id="lN8-xD-CdX"/>
                         <outlet property="lblUserCount" destination="qje-NM-Mhp" id="vup-87-8f2"/>
                         <outlet property="lblWaiting" destination="5l3-kn-Qth" id="Kun-UU-b0j"/>
@@ -3788,7 +3790,7 @@ the event</string>
                                     <outlet property="delegate" destination="e9S-uJ-sHx" id="3cy-Ew-6Hz"/>
                                 </connections>
                             </collectionView>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iH1-9D-aeq" customClass="CustomView" customModule="DesynatDealer" customModuleProvider="target">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iH1-9D-aeq" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
                                 <rect key="frame" x="24" y="120" width="16" height="10"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Di-XN-lug">
@@ -3811,7 +3813,7 @@ the event</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oa2-hL-YzS" customClass="CustomView" customModule="DesynatDealer" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oa2-hL-YzS" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
                                 <rect key="frame" x="24.000000000000004" y="155" width="59.333333333333343" height="29.666666666666657"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Active" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sKK-CV-8Cw">
