@@ -32,7 +32,7 @@ class ProductListTableViewCell: UITableViewCell {
         if AppLanguageManager.shared.currentLanguage == .ar {
             nameLabel.text = data?.productDetails?.productNameAr
             materialLabel.text = data?.productDetails?.brand?.nameArabic ?? ""
-            sizeLabel.text = data?.variationDetails?.size?.nameAr ?? ""
+            sizeLabel.text = data?.variationDetails?.size?.name ?? ""
             colourLabel.text = data?.variationDetails?.color?.nameAr ?? ""
             categoryLabel.text = data?.productDetails?.category?.nameAr ?? ""
         } else {

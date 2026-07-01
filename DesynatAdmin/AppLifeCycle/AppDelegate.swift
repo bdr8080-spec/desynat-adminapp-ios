@@ -97,6 +97,11 @@ extension AppDelegate:UNUserNotificationCenterDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Messaging.messaging().apnsToken = deviceToken
         Messaging.messaging().setAPNSToken(deviceToken,type: .unknown)
+        let tokenParts = deviceToken.map { data in
+                String(format: "%02.2hhx", data)
+            }
+
+            print("APNs Token: \(tokenParts.joined())")
         fetchFirebaseToken()
     }
     
@@ -109,6 +114,7 @@ extension AppDelegate:UNUserNotificationCenterDelegate {
             if let error = error {
                 print("Error fetching remote instange ID: \(error)")
             } else if let result = token {
+                print("token=======>\(token)")
                 kSharedUserDefaults.saveModelFor(key: .deviceToken, value: token)
             }
         }
