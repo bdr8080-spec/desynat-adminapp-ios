@@ -10,8 +10,11 @@ import AVFoundation
 
 class StoryViewerViewModel {
     
+    private var hostVC: StoryViewerViewController?
+    
     var sellerStories: [GetMyReelsList] = []
-
+    var sellerHighlights: [HighlightsList] = []
+    
     func deleteSellerStory(id: Int, completion: @escaping (Bool) -> Void) {
         let param: [String:Any] = ["story_id": id]
         WebService.sharedInstance.deleetSellerstoryListService(param: param) { success in
@@ -29,10 +32,16 @@ class StoryViewerViewModel {
         }
     }
     
-    
+    func deleteHighlight(id: Int, completion: @escaping (Bool) -> Void) {
+        let param: [String: Any] = ["highlight_id": id]
+        WebService.sharedInstance.deleetSellerHighlightListService(param: param) { response in
+            completion(true)
+        }
+    }
 
 }
 
 enum ComingReasonAtStoryViewer {
     case forSellerStory
+    case forSellerHighlights
 }

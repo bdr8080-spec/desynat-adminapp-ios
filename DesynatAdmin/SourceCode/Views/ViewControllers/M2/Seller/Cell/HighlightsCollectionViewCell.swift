@@ -18,23 +18,14 @@ class HighlightsCollectionViewCell: UICollectionViewCell {
     }
     
     func configData(data: GetHighLightsList?){
-        let fileString = data?.file ?? ""
-        let thumbnailString = data?.thumbnail ?? ""
-        
-        // Detect video
+        let fileString = data?.highlights?.first?.file ?? ""
+        let thumbnailString = data?.highlights?.first?.thumbnail ?? ""
         let isVideo = fileString.lowercased().contains(".mp4")
-        
-        // Decide which URL to load
         let finalURLString = isVideo ? thumbnailString : fileString
         let url = URL(string: finalURLString)
         mainImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
         mainImageView.sd_imageIndicator?.startAnimatingIndicator()
-        
-        // Set image
-        mainImageView.sd_setImage(
-            with: url,
-            placeholderImage: UIImage(named: "placeholder")
-        )
+        mainImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"))
         lblTitle.text = data?.title
     }
     

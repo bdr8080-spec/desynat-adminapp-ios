@@ -328,19 +328,6 @@ class SellerDetailViewController: UIViewController {
                         self.lblStoreSellerCountry.text = storeInfo.countryInfo?.name
                     }
                 }
-                
-                //                let storiesCount = self.viewModel.detailModel?.stories?.count ?? 0
-                //                if storiesCount > 0 {
-                //                    //                self.hostVC.userProfileImageView.borderWidth = 3
-                //                    self.reelButtonOytlet.setImage(.gradientBorder, for: .normal)
-                //                    self.reelButtonOytlet.isUserInteractionEnabled = true
-                //                }else {
-                //                    //                self.hostVC.userProfileImageView.borderWidth = 0
-                //                    self.reelButtonOytlet.setImage(UIImage(named: ""), for: .normal)
-                //                    self.reelButtonOytlet.isUserInteractionEnabled = false
-                //                    //                false
-                //                }
-                
                 self.updateStoryUI()
                 if let bankInformation = detailModel.sellerBankDetails {
                     self.lblAccountType.text = bankInformation.accountType == "0" ? "Personal".localiz() : "Business".localiz()
@@ -502,19 +489,6 @@ extension SellerDetailViewController: UICollectionViewDelegate, UICollectionView
             self.collectionReels.performBatchUpdates({
                 self.collectionReels.deleteItems(at: [IndexPath(item: index, section: 0)])
             })
-            
-//            let reelsCount = self.viewModel.detailModel?.reels?.count ?? 0
-//
-//                    if reelsCount == 0 {
-//                        self.collectionReels.reloadData()
-//                    } else {
-//                        self.collectionReels.performBatchUpdates({
-//                            self.collectionReels.deleteItems(at: [IndexPath(item: index, section: 0)])
-//                        })
-//                    }
-//
-//                    self.updateReelsUI()
-            
         }
     }
     
@@ -525,9 +499,14 @@ extension SellerDetailViewController: UICollectionViewDelegate, UICollectionView
             nextVC.reelsData = self.viewModel.detailModel?.reels?[indexPath.row]
             self.navigationController?.pushViewController(nextVC, animated: true)
         } else {
-            let nextVC = SellerReelsAndHighLightsViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
-            nextVC.comingReason = .sellerHightLights
-            nextVC.highlights = self.viewModel.detailModel?.highlights?[indexPath.row]
+//            let nextVC = SellerReelsAndHighLightsViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
+//            nextVC.comingReason = .sellerHightLights
+//            nextVC.highlights = self.viewModel.detailModel?.highlights?[indexPath.row]
+//            self.navigationController?.pushViewController(nextVC, animated: true)
+            
+            let nextVC = StoryViewerViewController.instantiate(fromAppStoryboard: .Home)
+            nextVC.comingFor = .forSellerHighlights
+            nextVC.viewModel.sellerHighlights = viewModel.detailModel?.highlights?[indexPath.row].highlights ?? []
             self.navigationController?.pushViewController(nextVC, animated: true)
         }
     }

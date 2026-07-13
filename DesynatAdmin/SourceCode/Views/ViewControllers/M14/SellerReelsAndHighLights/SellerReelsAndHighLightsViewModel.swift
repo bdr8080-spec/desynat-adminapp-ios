@@ -25,7 +25,8 @@ class SellerReelsAndHighLightsViewModel {
     }
     
     func deleteHighlight() {
-        let param: [String: Any] = ["highlight_id": hostVC.highlights?.id ?? 0]
+//        let param: [String: Any] = ["highlight_id": hostVC.highlights?.id ?? 0]
+        let param: [String: Any] = ["highlight_id": hostVC.highlights?.highlights?.first?.id ?? 0]
         WebService.sharedInstance.deleetSellerHighlightListService(param: param) { [weak self] response in
             guard let self = self else { return }
             CommonUtils.showToast(message: "Highlight deleted Successfully".localiz())

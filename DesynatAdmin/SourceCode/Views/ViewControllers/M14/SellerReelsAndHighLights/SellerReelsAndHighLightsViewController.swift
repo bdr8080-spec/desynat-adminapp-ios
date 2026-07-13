@@ -120,8 +120,8 @@ class SellerReelsAndHighLightsViewController: UIViewController {
         guard let data = highlights else { return }
         highLightsTitleLabel.text = data.title ?? ""
         
-        let fileString = data.file ?? ""
-        let thumbnailString = data.thumbnail ?? ""
+        let fileString = data.highlights?.first?.file ?? ""
+        let thumbnailString = data.highlights?.first?.thumbnail ?? ""
         
         // Detect video
         let isVideo = fileString.lowercased().contains(".mp4")
@@ -130,7 +130,7 @@ class SellerReelsAndHighLightsViewController: UIViewController {
         let finalURLString = isVideo ? thumbnailString : fileString
         let url = URL(string: finalURLString)
         if isVideo {
-            videoURL = URL(string: data.file ?? "")
+            videoURL = URL(string: data.highlights?.first?.file ?? "")
         }
         playVideoButton.isHidden = !isVideo
         // Loader
