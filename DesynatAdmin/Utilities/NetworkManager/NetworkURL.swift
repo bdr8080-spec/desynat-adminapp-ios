@@ -256,6 +256,8 @@ enum NetworkEndPoint: String {
     
     //M14
     case getHomeData                        = "api/admin/dashboard_data"
+    case getSellerStoryPrice                = "api/admin/get_seller_story_price"
+    case updateSellerStoryPrice             = "api/admin/add_update_seller_story_price"
     
     
     func withBaseURL() -> String {

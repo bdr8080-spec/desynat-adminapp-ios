@@ -56,7 +56,6 @@ class BannersManagementDetailsViewController: UIViewController {
             rejectAcceptStackView.isHidden = true
             acceptView.isHidden = true
             rejectView.isHidden = true
-            
         }
         initialSetUp()
         setData()

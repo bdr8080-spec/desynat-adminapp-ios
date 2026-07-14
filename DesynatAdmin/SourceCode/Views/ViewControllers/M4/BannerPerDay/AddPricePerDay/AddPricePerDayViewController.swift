@@ -12,11 +12,13 @@ class AddPricePerDayViewController: UIViewController {
     // MARK: - IBOutlet's
     @IBOutlet weak var amountTF: UITextField!
     @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var titleLabel: UILabel!
     
     // MARK: - Property Decalaration
     var bannerDetails: BannersPerDayListDataModel?
     private lazy var viewModel = AddPricePerDayViewModel(hostVC: self)
     var onChangesAreDone: (() -> Void)?
+    var isStorySelected: Bool = false
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
@@ -24,6 +26,11 @@ class AddPricePerDayViewController: UIViewController {
         handleUISetup()
         amountTF.delegate = self
         amountTF.text = bannerDetails?.perDayPrice
+        if isStorySelected {
+            titleLabel.text = "Story per day price".localiz()
+        } else {
+            titleLabel.text = "Banner per day price".localiz()
+        }
     }
     
     // MARK: - Button's Action
@@ -32,7 +39,11 @@ class AddPricePerDayViewController: UIViewController {
             showAlert(msg: "Please enter price".localiz())
             return
         }
-        viewModel.addPricePerDay()
+        if isStorySelected {
+            viewModel.updateStoryPricePerDay()
+        } else {
+            viewModel.addPricePerDay()
+        }
     }
     
     @IBAction func dismissDidTapepd(_ sender: Any) {

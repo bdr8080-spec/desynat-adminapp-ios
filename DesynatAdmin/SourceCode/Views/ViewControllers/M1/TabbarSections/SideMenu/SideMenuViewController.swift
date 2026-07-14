@@ -32,14 +32,14 @@ class SideMenuViewController: UIViewController {
         SideMenuModel(title: "Gift Card Category Management", image: "gift"),
         SideMenuModel(title: "Delivery charges & Tax Management", image: "shippingCharges"),
         SideMenuModel(title: "Promocode Management", image: "promocode"),
-        SideMenuModel(title: "Banner per day price", image: "bannerPay"),
+        SideMenuModel(title: "Banner & Story per day price", image: "bannerPay"),
         SideMenuModel(title: "Banner requests Management", image: "bannerRequest"),
         SideMenuModel(title: "Banner Management", image: "bannerRequest"),
         SideMenuModel(title: "Orders Management", image: "orderManagemnt"),
         SideMenuModel(title: "Affiliate User Management", image: "userManagemnet"),
         SideMenuModel(title: "Affiliate Commission percentage", image: "affilitaeCommisiin"),
         SideMenuModel(title: "Affiliate withdrawal requests", image: "affilateWithdraw"),
-        SideMenuModel(title: "Live Request  & Timeslot Management", image: "liveReuqest"),
+        SideMenuModel(title: "Live Request & Timeslot Management", image: "liveReuqest"),
         SideMenuModel(title: "Story Management", image: "storyManagment"),
         SideMenuModel(title: "Deals Management", image: "dealsManagement"),
         SideMenuModel(title: "Sub Admin", image: "subadmin"),
@@ -146,7 +146,7 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             let vc = DeliveryBoyViewController.instantiate(fromAppStoryboard: .ReasonManagement)
             vc.hasActionPermission = true
             self.navigationController?.pushViewController(vc, animated: false)
-        case "Live Request  & Timeslot Management":
+        case "Live Request & Timeslot Management":
             let nextVC = LiveRequestListManagementViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
             nextVC.hasActionPermission = true
             self.navigationController?.pushViewController(nextVC, animated: false)
@@ -200,7 +200,7 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             let nextVC = DealsManagementListViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
             nextVC.hasActionPermission = true
             self.navigationController?.pushViewController(nextVC, animated: true)
-        case "Banner per day price":
+        case "Banner & Story per day price":
             let vc = BannerPerDayListViewController.instantiate(fromAppStoryboard: .ShippingPromocode)
             vc.hasActionPermission = true
             self.navigationController?.pushViewController(vc, animated: false)

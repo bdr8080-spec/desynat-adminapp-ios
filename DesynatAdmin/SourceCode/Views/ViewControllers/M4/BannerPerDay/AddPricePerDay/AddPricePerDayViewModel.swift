@@ -39,5 +39,18 @@ class AddPricePerDayViewModel {
             }
         }
     }
+
+    func updateStoryPricePerDay() {
+        let params: [String : Any] = ["per_day_price": hostVC.amountTF.text?.trimmed() ?? "",
+                                      "country_id": hostVC.bannerDetails?.countryID ?? 0]
+        WebService.shared.updatePriceBannersPerDay(param: params) { [weak self] response in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.hostVC.onChangesAreDone?()
+                self.hostVC.dismiss(animated: true)
+                CommonUtils.showToast(message: "Story Per Day Price updated succesfully".localiz())
+            }
+        }
+    }
     
 }
