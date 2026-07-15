@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+class SellerStoryRequestListViewModel {
+    
+    private var hostVC: SellerStoryRequestListViewController
+    
+    init(hostVC: SellerStoryRequestListViewController) {
+        self.hostVC = hostVC
+    }
+    
+    
+}

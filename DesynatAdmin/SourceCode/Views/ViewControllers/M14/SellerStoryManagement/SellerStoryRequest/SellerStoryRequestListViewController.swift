@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SellerStoryRequestListViewController: UIViewController{//}, HandleTableRefresh {
+class SellerStoryRequestListViewController: UIViewController{ //}, HandleTableRefresh {
     
 //    func refreshTable(for string: String) {
 //        bannersTableView.reloadData()
