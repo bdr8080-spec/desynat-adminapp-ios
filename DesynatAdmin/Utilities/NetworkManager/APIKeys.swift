@@ -51,6 +51,7 @@ struct APIKeys {
     static let lat = "lat"
     static let lng = "lng"
     static let bannerId            = "banner_id"
+    static let storyId            = "story_id"
     static let bannerType            = "type"
     static let countryName            = "country_name"
     static let isFreeMonths           = "is_free_months"

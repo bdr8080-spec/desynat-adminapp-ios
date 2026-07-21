@@ -41,6 +41,7 @@ class SideMenuViewController: UIViewController {
         SideMenuModel(title: "Affiliate withdrawal requests", image: "affilateWithdraw"),
         SideMenuModel(title: "Live Request & Timeslot Management", image: "liveReuqest"),
         SideMenuModel(title: "Story Management", image: "storyManagment"),
+        SideMenuModel(title: "Seller Story Request Management", image: "storyManagment"),
         SideMenuModel(title: "Deals Management", image: "dealsManagement"),
         SideMenuModel(title: "Sub Admin", image: "subadmin"),
         SideMenuModel(title: "Refund Management", image: "refundManagemnt"),
@@ -86,15 +87,13 @@ class SideMenuViewController: UIViewController {
     
     //MARK: Function's declaration
     private func updateTableHeight() {
-        
         sideMenuTableView.layoutIfNeeded()
-        
         let height = sideMenuTableView.contentSize.height
-        
         if sideMenuHeightConstaint.constant != height {
             sideMenuHeightConstaint.constant = height
         }
     }
+    
     @IBAction func editProfileBtnTapped(_ sender: Any) {
         let vc  = EditProfileViewController.instantiate(fromAppStoryboard: .NotificationCMS)
         vc.hasActionPermission = true
@@ -186,6 +185,10 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             self.navigationController?.pushViewController(nextVC, animated: true)
         case "Story Management":
             let nextVC = StoryManagemnetViewController.instantiate(fromAppStoryboard: .LiveStoryDealManagement)
+            nextVC.hasActionPermission = true
+            self.navigationController?.pushViewController(nextVC, animated: true)
+        case "Seller Story Request Management":
+            let nextVC = SellerStoryRequestListViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
             nextVC.hasActionPermission = true
             self.navigationController?.pushViewController(nextVC, animated: true)
         case "Ticket Management":

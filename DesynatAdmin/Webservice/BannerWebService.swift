@@ -77,4 +77,70 @@ extension WebService {
             }
         }
     }
+    
+    func getNewSellerStories(parameter:[String:Any],completion: @escaping(SellerStoryRequestManagementModel) -> Void) {
+        CommonUtils.showHud(show: true)
+        NetworkManager.shared.request(
+            withAPI: .endpoint(.getSellerPromoStory),
+            requestMethod: .post,
+            requestParams: parameter,
+            requestModel: SellerStoryRequestManagementModel.self
+        ) { result, code in
+            CommonUtils.showHud(show: false)
+            self.evaluateWebServiceResponse(response: result) { response, message, error in
+                guard let response = response else {
+                    if let error {
+                        UIApplication.shared.topViewController()?.showAlert(msg: error)
+                    }
+                    return
+                }
+                completion(response)
+            }
+        }
+    }
+    
+    func acceptSellerStories(id:String,completion: @escaping(EmptyModel) -> Void) {
+        CommonUtils.showHud(show: true)
+        NetworkManager.shared.request(
+            withAPI: .endpoint(.approveSellerStoryRequest),
+            requestMethod: .post,
+            requestParams: [APIKeys.storyId:id],
+            encoding: JSONEncoding.default,
+            requestModel: EmptyModel.self
+        ) { result, code in
+            CommonUtils.showHud(show: false)
+            self.evaluateWebServiceResponse(response: result) { response, message, error in
+                guard let response = response else {
+                    if let error {
+                        UIApplication.shared.topViewController()?.showAlert(msg: error)
+                    }
+                    return
+                }
+                completion(response)
+            }
+        }
+    }
+
+    
+    func rejectSellerStories(paramter:[String:Any],completion: @escaping(EmptyModel) -> Void) {
+        CommonUtils.showHud(show: true)
+        NetworkManager.shared.request(
+            withAPI: .endpoint(.rejectSellerStoryRequest),
+            requestMethod: .post,
+            requestParams: paramter,
+            encoding: JSONEncoding.default,
+            requestModel: EmptyModel.self
+        ) { result, code in
+            CommonUtils.showHud(show: false)
+            self.evaluateWebServiceResponse(response: result) { response, message, error in
+                guard let response = response else {
+                    if let error {
+                        UIApplication.shared.topViewController()?.showAlert(msg: error)
+                    }
+                    return
+                }
+                completion(response)
+            }
+        }
+    }
 }
