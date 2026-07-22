@@ -34,7 +34,6 @@ class BannersManagementListTableViewCell: UITableViewCell {
     @IBOutlet weak var lblReason: UILabel!
     @IBOutlet weak var lblStatus: UILabel!
     
-    
     //MARK: VARIABLE
     var rejectAction: (() -> Void)?
     var acceptAction: (() -> Void)?
@@ -102,7 +101,7 @@ class BannersManagementListTableViewCell: UITableViewCell {
         self.sellerStoryRequestData = data
         self.lblName.text = data.name
         self.lblCity.text = data.country
-        let fullId = data.orderID
+        let fullId = data.id
         let last7 = fullId.count >= 7 ? String(fullId.suffix(7)) : fullId
         self.lblRequestId.text = "#\(last7)"
         self.lblRequestOn.text = data.joinedOn
@@ -128,14 +127,14 @@ class BannersManagementListTableViewCell: UITableViewCell {
         } else if data.paymentStatus == "3" {
             self.lblAmount.text = "Failed".localiz()
         }
-        self.lblStatus.textColor = UIColor(hexString: "34A853") //green
+        self.lblStatus.textColor = UIColor(hexString: "34A853")
         if type.rawValue == 1 {
             if data.paymentStatus == "0" {
-                self.lblStatus.textColor = UIColor(hexString: "34A853") //green
+                self.lblStatus.textColor = UIColor(hexString: "34A853")
                 self.lblStatus.text = "Upcoming".localiz()
                 
             } else if data.paymentStatus == "1" {
-                self.lblStatus.textColor = UIColor(hexString: "34A853") //green
+                self.lblStatus.textColor = UIColor(hexString: "34A853")
                 self.lblStatus.text = "Active".localiz()
             }
         }else if type.rawValue == 2 {
@@ -143,19 +142,24 @@ class BannersManagementListTableViewCell: UITableViewCell {
             self.lblStatus.text = "Rejected".localiz()
             
         }
+        bannerPosiitonStackView.isHidden = true
         hideAndShowSellerStoryRequestDetails(for: type, hasActionPermission: hasActionPermission)
     }
     
-    
     @IBAction func rejectDidTapped(_ sender: Any) {
-        self.data?.rejectBanner()
-        self.sellerStoryRequestData?.rejectBanner()
+        if self.data == nil {
+            self.sellerStoryRequestData?.rejectBanner()
+        }else {
+            self.data?.rejectBanner()
+        }
     }
     
-    
     @IBAction func acceptDidTapped(_ sender: Any) {
-        self.data?.accceptBanner()
-        self.sellerStoryRequestData?.accceptBanner()
+        if self.data == nil {
+            self.sellerStoryRequestData?.accceptBanner()
+        }else {
+            self.data?.accceptBanner()
+        }
     }
     
     func hideAndShowDetails(for type: BannersSelectedListType, hasActionPermission: Bool) {
@@ -226,7 +230,7 @@ class BannersManagementListTableViewCell: UITableViewCell {
             statusLabel.isHidden = false
             statusValueLabel.isHidden = false
             amountStackView.isHidden = false
-            bannerPosiitonStackView.isHidden = false
+            bannerPosiitonStackView.isHidden = true
             totalAmountStackView.isHidden = false
             durationstackView.isHidden = false
             

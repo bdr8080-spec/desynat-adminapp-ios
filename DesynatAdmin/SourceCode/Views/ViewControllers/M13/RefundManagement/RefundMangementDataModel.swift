@@ -65,6 +65,7 @@ struct RefundMangementList: Codable {
     let productDetails: ProductDetails?
     let variationDetails: VariationDetails?
     let userRatingReviewProvide, driverDetails: String?
+    let refundStatus:String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -113,6 +114,8 @@ struct RefundMangementList: Codable {
         case variationDetails = "variation_details"
         case userRatingReviewProvide = "user_rating_review_provide"
         case driverDetails = "driver_details"
+        case refundStatus = "refund_status"
     }
 }
 
+//Refund

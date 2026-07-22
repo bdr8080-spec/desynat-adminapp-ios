@@ -30,6 +30,7 @@ struct PlanInfo {
     var isFreeMonths: Bool = false
     var noOfFreeMonths: Int = 0
     var productType: Bool = false
+    var showInRecommendedStore: Bool = false
     
     static func makeInfo(_ data:SubscriptionPlanDataModel) -> Self {
         PlanInfo(
@@ -54,8 +55,8 @@ struct PlanInfo {
             NewdurationType: DurationType(rawValue: Int.getInt(data.newdurationType)) ?? .none,
             isFreeMonths: Int.getInt(data.isFreeMonths) == 1,
             noOfFreeMonths: Int.getInt(data.noOfFreeMonths),
-            productType: Int.getInt(data.productType) == 0
-
+            productType: Int.getInt(data.productType) == 0,
+            showInRecommendedStore: Int.getInt(data.showInRecommendedStores) == 0
         )
     }
     func validateData(isForEdit: Bool = false) -> AlertConstant{
@@ -151,7 +152,8 @@ struct PlanInfo {
             APIKeys.stories: self.isStoryOpen ? 1 : 0,
             APIKeys.price: self.price,
             APIKeys.commission: self.isComission ? 1 : 0,
-            APIKeys.commissionPercentage: self.isComission ? self.comission : 0
+            APIKeys.commissionPercentage: self.isComission ? self.comission : 0,
+            APIKeys.showInRecommendedStores:self.showInRecommendedStore ? 1 : 0
         ]
         
         // ✅ Product Type
@@ -189,7 +191,8 @@ struct PlanInfo {
             APIKeys.commissionPercentage: self.isComission ? self.comission : 0,
             APIKeys.newprice: self.NewPrice,
             APIKeys.newduration: self.Newduration,
-            APIKeys.newduration_type: self.NewdurationType.rawValue
+            APIKeys.newduration_type: self.NewdurationType.rawValue,
+            APIKeys.showInRecommendedStores:self.showInRecommendedStore ? 1 : 0
         ]
         
         // ✅ Product Type
@@ -308,7 +311,9 @@ class AddSubscriptionPlansViewModel {
     func productType(_ bool:Bool)  {
         self.subscriptionInfo.productType = bool
     }
-    
+    func setShowInRecommendedStores(_ value: Bool) {
+        self.subscriptionInfo.showInRecommendedStore = value
+    }
     
     func getAllCountry(_ completion:@escaping(() -> Void) ) {
         WebService.shared.getAllCountry(){ [weak self] response in

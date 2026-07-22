@@ -6519,7 +6519,7 @@ Address Zone</string>
         <!--Seller Story Request Details View Controller-->
         <scene sceneID="OvE-Xh-mkQ">
             <objects>
-                <viewController id="Snb-pG-r4d" customClass="SellerStoryRequestDetailsViewController" customModule="DesynatAdmin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SellerStoryRequestDetailsViewController" id="Snb-pG-r4d" customClass="SellerStoryRequestDetailsViewController" customModule="DesynatAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rIk-4i-0jc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -6540,6 +6540,9 @@ Address Zone</string>
                                                 <integer key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="backDidTapped:" destination="Snb-pG-r4d" eventType="touchUpInside" id="qeG-aQ-nOs"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Details" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zYk-Kc-QPL">
                                         <rect key="frame" x="66" y="8.6666666666666732" width="261" height="22.666666666666671"/>
@@ -6561,6 +6564,9 @@ Address Zone</string>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain"/>
+                                                <connections>
+                                                    <action selector="toggleButtonDidTapped:" destination="Snb-pG-r4d" eventType="touchUpInside" id="DNh-Y9-6k9"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -6587,11 +6593,11 @@ Address Zone</string>
                                     <constraint firstItem="9QR-Tg-oS5" firstAttribute="top" secondItem="NQm-Nu-kHS" secondAttribute="top" id="hbS-mC-QeD"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LbQ-kv-mPK">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LbQ-kv-mPK">
                                 <rect key="frame" x="24" y="178" width="345" height="606"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i5i-hw-SS6" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="345" height="668.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="345" height="604.66666666666663"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="fbT-xr-O4g">
                                                 <rect key="frame" x="115.33333333333334" y="26" width="114.66666666666666" height="69"/>
@@ -6631,9 +6637,12 @@ Address Zone</string>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2hr-Re-hCU">
                                                 <rect key="frame" x="0.0" y="0.0" width="345" height="120.66666666666667"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <connections>
+                                                    <action selector="bannerImageDidTapped:" destination="Snb-pG-r4d" eventType="touchUpInside" id="ddC-A2-TSc"/>
+                                                </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAW-Fa-Ofe">
-                                                <rect key="frame" x="0.0" y="120.66666666666669" width="345" height="538"/>
+                                                <rect key="frame" x="0.0" y="120.66666666666669" width="345" height="474.00000000000006"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request By" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ixx-T9-HZJ">
                                                         <rect key="frame" x="15" y="15" width="180" height="17"/>
@@ -6682,7 +6691,7 @@ Address Zone</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ybQ-0T-1mC">
-                                                        <rect key="frame" x="15" y="78.666666666666629" width="315" height="113"/>
+                                                        <rect key="frame" x="15" y="78.666666666666629" width="315" height="81"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="9zk-dB-My6">
                                                                 <rect key="frame" x="0.0" y="0.0" width="315" height="17"/>
@@ -6718,17 +6727,17 @@ Address Zone</string>
                                                                     </label>
                                                                 </subviews>
                                                             </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="RdL-F5-y4R">
-                                                                <rect key="frame" x="0.0" y="64" width="315" height="17"/>
+                                                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="RdL-F5-y4R">
+                                                                <rect key="frame" x="0.0" y="56.333333333333371" width="315" height="0.0"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Banner position" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UOB-Nq-OBA">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="17"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="0.0"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                                                         <color key="textColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sub-category" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZbW-i8-jWt">
-                                                                        <rect key="frame" x="165" y="0.0" width="150" height="17"/>
+                                                                        <rect key="frame" x="165" y="0.0" width="150" height="0.0"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -6736,7 +6745,7 @@ Address Zone</string>
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="IJA-cj-46z">
-                                                                <rect key="frame" x="0.0" y="96" width="315" height="17"/>
+                                                                <rect key="frame" x="0.0" y="64" width="315" height="17"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sub-category name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sAg-9P-J5O">
                                                                         <rect key="frame" x="0.0" y="0.0" width="150" height="17"/>
@@ -6755,16 +6764,16 @@ Address Zone</string>
                                                         </subviews>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3p-Cx-nQy">
-                                                        <rect key="frame" x="15" y="206.66666666666663" width="315" height="17"/>
+                                                        <rect key="frame" x="15" y="174.66666666666663" width="315" height="17"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bB8-zK-FPx" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                        <rect key="frame" x="15" y="235.66666666666669" width="315" height="105"/>
+                                                        <rect key="frame" x="15" y="203.66666666666663" width="315" height="73"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ZhP-X2-uVf">
-                                                                <rect key="frame" x="10" y="12" width="295" height="81"/>
+                                                                <rect key="frame" x="10" y="12.000000000000057" width="295" height="49"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="PO9-bj-10Q">
                                                                         <rect key="frame" x="0.0" y="0.0" width="295" height="17"/>
@@ -6783,17 +6792,17 @@ Address Zone</string>
                                                                             </label>
                                                                         </subviews>
                                                                     </stackView>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="1Vb-7h-I15">
-                                                                        <rect key="frame" x="0.0" y="32" width="295" height="17"/>
+                                                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="1Vb-7h-I15">
+                                                                        <rect key="frame" x="0.0" y="24.333333333333258" width="295" height="0.0"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uc5-CE-rh2">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="140" height="17"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="140" height="0.0"/>
                                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                                                                 <color key="textColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21/09/2025 " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="87b-at-ZvV">
-                                                                                <rect key="frame" x="155" y="0.0" width="140" height="17"/>
+                                                                                <rect key="frame" x="155" y="0.0" width="140" height="0.0"/>
                                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
@@ -6801,7 +6810,7 @@ Address Zone</string>
                                                                         </subviews>
                                                                     </stackView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="kRa-me-4b1">
-                                                                        <rect key="frame" x="0.0" y="64" width="295" height="17"/>
+                                                                        <rect key="frame" x="0.0" y="32" width="295" height="17"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total days" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4F-NM-qFB">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="140" height="17"/>
@@ -6840,7 +6849,7 @@ Address Zone</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i7I-dD-mft" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
-                                                        <rect key="frame" x="15" y="352.66666666666669" width="315" height="110.33333333333331"/>
+                                                        <rect key="frame" x="15" y="288.66666666666669" width="315" height="110.33333333333331"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="hqq-hK-SQQ">
                                                                 <rect key="frame" x="10" y="12" width="295" height="86.333333333333329"/>
@@ -6919,7 +6928,7 @@ Address Zone</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="pN4-a7-4Dy">
-                                                        <rect key="frame" x="15" y="477.99999999999994" width="315" height="50.000000000000057"/>
+                                                        <rect key="frame" x="15" y="413.99999999999994" width="315" height="50"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LOF-T0-Sdr">
                                                                 <rect key="frame" x="0.0" y="0.0" width="147.66666666666666" height="50"/>
@@ -6940,6 +6949,9 @@ Address Zone</string>
                                                                                 <real key="value" value="1"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <action selector="rejectDidTapped:" destination="Snb-pG-r4d" eventType="touchUpInside" id="0dx-mJ-IH0"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reject" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IjW-8Q-pj9">
                                                                         <rect key="frame" x="52" y="15.000000000000002" width="43.666666666666657" height="19.666666666666671"/>
@@ -6972,6 +6984,9 @@ Address Zone</string>
                                                                                 <real key="value" value="5"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <action selector="acceptDidTapped:" destination="Snb-pG-r4d" eventType="touchUpInside" id="5dD-7v-Biy"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accept" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lMo-rL-49V">
                                                                         <rect key="frame" x="48.666666666666686" y="15.000000000000002" width="50" height="19.666666666666671"/>
@@ -7068,8 +7083,6 @@ Address Zone</string>
                                     <constraint firstItem="i5i-hw-SS6" firstAttribute="top" secondItem="LbQ-kv-mPK" secondAttribute="top" id="wnm-TI-Iuv"/>
                                     <constraint firstAttribute="bottom" secondItem="i5i-hw-SS6" secondAttribute="bottom" id="yw3-Ai-E2N"/>
                                 </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="xkX-uQ-kdi"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="MmW-0K-iS9"/>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="KLW-hW-4g6"/>
@@ -7084,6 +7097,29 @@ Address Zone</string>
                             <constraint firstItem="LbQ-kv-mPK" firstAttribute="leading" secondItem="KLW-hW-4g6" secondAttribute="leading" constant="24" id="y0b-Kg-tdY"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="acceptView" destination="832-2u-Iyq" id="dFy-0f-Deg"/>
+                        <outlet property="amountPaidOrNotStackView" destination="20V-Yq-y3p" id="isv-a4-ypb"/>
+                        <outlet property="banneImageView" destination="wHu-v6-52g" id="FN3-uY-TW6"/>
+                        <outlet property="lblAmount" destination="wbn-0g-Gqp" id="tCV-yF-A99"/>
+                        <outlet property="lblBannerPosition" destination="ZbW-i8-jWt" id="9YR-gd-uuy"/>
+                        <outlet property="lblCity" destination="L6Z-dF-zFM" id="jSb-gi-iVr"/>
+                        <outlet property="lblFrom" destination="RPW-gu-mJa" id="HDC-EZ-IHh"/>
+                        <outlet property="lblName" destination="ix7-g6-Kui" id="vfo-34-o27"/>
+                        <outlet property="lblRequestId" destination="vqX-gq-SBY" id="2pY-px-9iE"/>
+                        <outlet property="lblRequestOn" destination="H19-M9-0TT" id="JyO-EK-BJh"/>
+                        <outlet property="lblStatus" destination="SL0-Td-TcD" id="Xbx-Rl-xke"/>
+                        <outlet property="lblSubcategoryName" destination="A6s-Of-4bl" id="HNJ-Wd-TbY"/>
+                        <outlet property="lblTo" destination="87b-at-ZvV" id="oEW-l3-MGz"/>
+                        <outlet property="lblTotalAmount" destination="Pw3-PU-jRe" id="BKX-jm-y0w"/>
+                        <outlet property="lblTransactionId" destination="FhO-pm-nHx" id="jZK-hG-It8"/>
+                        <outlet property="rejectAcceptStackView" destination="pN4-a7-4Dy" id="qGP-s9-hFK"/>
+                        <outlet property="rejectView" destination="LOF-T0-Sdr" id="gYE-AG-P3P"/>
+                        <outlet property="subCategoryStackView" destination="IJA-cj-46z" id="P6z-gx-gzT"/>
+                        <outlet property="toggleButtonOutlet" destination="yZS-6N-mHq" id="gYG-Tk-L6c"/>
+                        <outlet property="toggleImageView" destination="YBr-zZ-Rrt" id="WtX-yH-a3t"/>
+                        <outlet property="transactionIdStackView" destination="ixQ-Di-rXd" id="9Hb-aq-yZG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VcF-ux-5hg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

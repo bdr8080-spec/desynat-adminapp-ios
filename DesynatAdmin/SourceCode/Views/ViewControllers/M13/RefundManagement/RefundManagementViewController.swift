@@ -132,7 +132,8 @@ class RefundManagementViewController: UIViewController {
     }
     
 }
-extension RefundManagementViewController: UITableViewDelegate, UITableViewDataSource{
+
+extension RefundManagementViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.refundListData.count
     }
@@ -148,8 +149,10 @@ extension RefundManagementViewController: UITableViewDelegate, UITableViewDataSo
             } else {
                 self.expandedIndex = indexPath
             }
-            
             self.refundTableView.reloadData()
+        }
+        cell.refundCompletion = {
+            self.viewModel.refundOrder(orderDetailId: data.orderID ?? 0)
         }
         return cell
     }

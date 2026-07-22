@@ -10,7 +10,6 @@ import UIKit
 class AddPlanViewController: UIViewController {
     
     // MARK: - IBOutlet's
-    
     @IBOutlet weak var noOfProductView: UIView!
     @IBOutlet weak var freeMonthYesButton: CustomButton!
     @IBOutlet weak var freeMonthNoButton: CustomButton!
@@ -22,8 +21,7 @@ class AddPlanViewController: UIViewController {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var newDurationView: UIView!
-    @IBOutlet weak var newPriceTextField: BindableTextField!
-    {
+    @IBOutlet weak var newPriceTextField: BindableTextField! {
         didSet {
             newPriceTextField.bind(callback: {self.viewModel.setnewPrice($0)})
         }
@@ -91,14 +89,14 @@ class AddPlanViewController: UIViewController {
     @IBOutlet weak var viewComission: UIView!
     @IBOutlet weak var btnDefined: CustomButton!
     @IBOutlet weak var btnUnlimited: CustomButton!
-    
     @IBOutlet weak var enterNumberOfMonths: BindableTextField!{
         didSet {
             enterNumberOfMonths.bind(callback: {self.viewModel.setFreeMonths($0)})
         }
     }
     @IBOutlet weak var viewFreeMonths: CustomView!
-    
+    @IBOutlet weak var showInRecommendedStoreYes: CustomButton!
+    @IBOutlet weak var showInRecommendedStoreNo: CustomButton!
     
     // MARK: - Property Decalaration
     private var isCountryExpanded : Bool = false
@@ -148,8 +146,8 @@ class AddPlanViewController: UIViewController {
             self.txtFielNoProducts.text = ""
         }
         self.viewModel.productType(sender.tag == 0) // isko chnage karna hai
-        
     }
+    
     @IBAction func handleFreeMonthsOption(_ sender: UIButton) {
         self.freeMonthYesButton.setImage(sender.tag == 0 ? .radioSelected : .radioUnselected, for: .normal)
         self.freeMonthNoButton.setImage(sender.tag == 1 ? .radioSelected : .radioUnselected, for: .normal)
@@ -187,6 +185,12 @@ class AddPlanViewController: UIViewController {
             self.viewModel.setnewDurationType(index)
             self.lblNewDurationType.text = self.viewModel.subscriptionInfo.durationType.title
         }
+    }
+    
+    @IBAction func showInRecommendedStoreTapped(_ sender: UIButton) {
+        self.showInRecommendedStoreYes.setImage(sender.tag == 0 ? .radioSelected : .radioUnselected, for: .normal)
+        self.showInRecommendedStoreNo.setImage(sender.tag == 1 ? .radioSelected : .radioUnselected, for: .normal)
+        self.viewModel.setShowInRecommendedStores(sender.tag == 0)
     }
     
     //MARK: Function's declaration
@@ -267,7 +271,7 @@ class AddPlanViewController: UIViewController {
         self.noOfProductView.isHidden = !self.viewModel.subscriptionInfo.productType
         self.viewFreeMonths.isHidden = !self.viewModel.subscriptionInfo.isFreeMonths
         self.selectStoryOpen(self.viewModel.subscriptionInfo.isStoryOpen)
-
+        self.selectShowInRecommendedStores(self.viewModel.subscriptionInfo.showInRecommendedStore)
     }
     func selectStoryOpen(_ bool:Bool) {
         self.btnOpen.setImage(bool ? .radioSelected : .radioUnselected, for: .normal)
@@ -284,6 +288,10 @@ class AddPlanViewController: UIViewController {
     func selectProductType(_ bool:Bool) {
         self.btnDefined.setImage(bool ? .radioSelected : .radioUnselected, for: .normal)
         self.btnUnlimited.setImage(!bool ? .radioSelected : .radioUnselected, for: .normal)
+    }
+    func selectShowInRecommendedStores(_ bool:Bool) {
+        self.showInRecommendedStoreYes.setImage(bool ? .radioSelected : .radioUnselected, for: .normal)
+        self.showInRecommendedStoreNo.setImage(!bool ? .radioSelected : .radioUnselected, for: .normal)
     }
 }
 

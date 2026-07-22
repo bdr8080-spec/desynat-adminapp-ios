@@ -9,7 +9,7 @@ import UIKit
 
 class SellerStoryRequestDetailsViewController: UIViewController {
     
-    // MARK: - IBOutlet's
+    // MARK: - IB Outlet's
     @IBOutlet weak var acceptView: UIView!
     @IBOutlet weak var rejectView: UIView!
     @IBOutlet weak var banneImageView: UIImageView!
@@ -60,8 +60,8 @@ class SellerStoryRequestDetailsViewController: UIViewController {
         initialSetUp()
         setData()
         if type == .approved {
-            toggleImageView.isHidden = false
-            toggleButtonOutlet.isHidden = false
+            toggleImageView.isHidden = true
+            toggleButtonOutlet.isHidden = true
             toggleButtonOutlet.isUserInteractionEnabled = hasActionPermission
         } else {
             toggleImageView.isHidden = true
@@ -87,21 +87,18 @@ class SellerStoryRequestDetailsViewController: UIViewController {
         
         viewModel.upadteBannerStatus(param: param) { [weak self] success in
             guard let self = self else { return }
-            
             DispatchQueue.main.async {
                 if success {
                     // Update local toggle
                     self.toggleStatus = newStatus
                     self.updateToggleUI()
-                    
                     // Update model object
                     self.detailData.bannerBlockStatus = "\(newStatus)"
-                    
                     // Send updated model back
                     self.onStatusUpdated?(self.detailData)
                     let message = newStatus == 1
-                    ? "Banner activated successfully".localiz()
-                    : "Banner deactivated successfully".localiz()
+                    ? "Seller story activated successfully".localiz()
+                    : "Seller story deactivated successfully".localiz()
                     CommonUtils.showToast(message: message)
                 }
             }
@@ -112,10 +109,10 @@ class SellerStoryRequestDetailsViewController: UIViewController {
         let vc = RejectReasonViewController.viewFromNIB
         vc.needToShowButtonStackView = false
         vc.setCallback { reason,type in
-            self.viewModel.rejectBanner(id: self.detailData.id, reason: reason) {
+            self.viewModel.rejectSellerStory(id: self.detailData.id, reason: reason) {
                 DispatchQueue.main.async {
                     let succesVC = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
-                    succesVC.setTitle("Banner rejected\nsuccessfully!".localiz())
+                    succesVC.setTitle("Seller story request rejected\nsuccessfully!".localiz())
                     succesVC.callBackDismiss = {
                         self.navigationController?.popViewController(animated: true)
                     }
@@ -128,10 +125,10 @@ class SellerStoryRequestDetailsViewController: UIViewController {
     }
     
     @IBAction func acceptDidTapped(_ sender: Any) {
-        viewModel.acceptBanner(id: self.detailData.id) {
+        viewModel.acceptSellerStory(id: self.detailData.id) {
             DispatchQueue.main.async {
                 let vc = RegisterationSuccessViewController.instantiate(fromAppStoryboard: .Main)
-                vc.setTitle("Banner approved\nsuccessfully!".localiz())
+                vc.setTitle("Seller story request approved\nsuccessfully!".localiz())
                 vc.callBackDismiss = {
                     self.navigationController?.popViewController(animated: true)
                 }
@@ -162,7 +159,7 @@ class SellerStoryRequestDetailsViewController: UIViewController {
         let lastTransactionId7 = fullTransactionId.count >= 7 ? String(fullTransactionId.suffix(7)) : fullTransactionId
         self.lblTransactionId.text = "#\(lastTransactionId7)"
         self.lblRequestOn.text = detailData.joinedOn
-        self.lblDuration.text = "\(detailData.totalDays) \("days".localiz())"
+//        self.lblDuration.text = "\(detailData.totalDays) \("days".localiz())"
         self.lblTotalAmount.text = detailData.totalEarning
         self.subCategoryStackView.isHidden = true
         self.lblSubcategoryName.text = detailData.subcategory

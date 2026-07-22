@@ -15,7 +15,7 @@ class SellerStoryRequestListViewController: UIViewController,HandleTableRefresh{
         refreshPageActionButton()
     }
     
-    // MARK: - IBOutlet's
+    // MARK: - IB Outlet's
     @IBOutlet weak var txtFieldSearch: BindableTextField! {
         didSet {
             self.txtFieldSearch.bind(callback: {self.viewModel.setSearch($0)})
@@ -179,7 +179,7 @@ extension SellerStoryRequestListViewController: UITableViewDelegate, UITableView
         }
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = SellerStoryRequestDetailsViewController
             .instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
@@ -188,13 +188,11 @@ extension SellerStoryRequestListViewController: UITableViewDelegate, UITableView
         vc.hasActionPermission = hasActionPermission
         vc.onStatusUpdated = { [weak self] updatedBanner in
             guard let self = self else { return }
-            
             // Find same banner & update it
             if let index = self.viewModel.arraySellers.firstIndex(where: {
                 $0.id == updatedBanner.id
             }) {
                 self.viewModel.arraySellers[index] = updatedBanner
-                
                 // Reload only that row (efficient)
                 let indexPath = IndexPath(row: index, section: 0)
                 self.bannersTableView.reloadRows(
@@ -203,7 +201,6 @@ extension SellerStoryRequestListViewController: UITableViewDelegate, UITableView
                 )
             }
         }
-        
         navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -69,6 +69,7 @@ struct SubscriptionPlanDataModel: Codable {
     var isFreeMonths: Int?
     var noOfFreeMonths: Int?
     var productType: Int?
+    var showInRecommendedStores:Int?
 
     private enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -97,6 +98,7 @@ struct SubscriptionPlanDataModel: Codable {
         case productType = "product_type"
         case noOfFreeMonths = "no_of_free_months"
         case isFreeMonths = "is_free_months"
+        case showInRecommendedStores = "show_in_recommended_stores"
     }
 
     init(from decoder: Decoder) throws {

@@ -586,6 +586,22 @@ extension WebService {
         }
     }
     
+    func refundOrderService(param: [String: Any], completion: @escaping(RefundMangementDataModel) -> Void) {
+        CommonUtils.showHud(show: true)
+        NetworkManager.shared.request(withAPI: .endpoint(.refundOrder),requestMethod: .post, requestParams: param, requestModel: RefundMangementDataModel.self) { result, code in
+            CommonUtils.showHud(show: false)
+            self.evaluateWebServiceResponse(response: result) { response, message, error in
+                guard let response = response else {
+                    if let error {
+                        UIApplication.shared.topViewController()?.showAlert(msg: error)
+                    }
+                    return
+                }
+                completion(response)
+            }
+        }
+    }
+    
     func getDashboardDataService(param: [String:Any], completion: @escaping(AdminHomeDashboardDataModel) -> Void) {
         CommonUtils.showHud(show: true)
         NetworkManager.shared.request(withAPI: .endpoint(.getHomeData),requestMethod: .get, requestParams: param, requestModel: AdminHomeDashboardDataModel.self) { result, code in

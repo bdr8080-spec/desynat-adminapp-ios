@@ -63,6 +63,22 @@ class RefundManagementViewModel {
       }
     }
     
+    func refundOrder(orderDetailId: Int) {
+        let params: [String: Any] = [
+            "orderdetail_id": orderDetailId
+        ]
+        WebService.shared.refundOrderService(param: params) { [weak self] response in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                // Show success message
+                CommonUtils.showToast(message: "Amount refunded to wallet successfully.".localiz())
+                // Refresh list after successful refund
+                self.currentPage = 1
+                self.getAllRefundRequest()
+            }
+        }
+    }
+    
     func goToNextPage() {
       guard currentPage < totalPages else { return }
       currentPage += 1

@@ -22,8 +22,10 @@ class RefundManagementTableViewCell: UITableViewCell {
     @IBOutlet weak var rejectedReasonLabel: CustomLabelFont!
     @IBOutlet weak var statusLabel: CustomLabelFont!
     @IBOutlet weak var transactionstackView: UIStackView!
+    @IBOutlet weak var btnRefund: CustomButton!
     
     var isViewMore: (() -> Void)?
+    var refundCompletion: (() -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -41,7 +43,6 @@ class RefundManagementTableViewCell: UITableViewCell {
         forHideView.isHidden = !isExpanded
         let title = isExpanded ? "View Less".localiz() : "More info".localiz()
         viewMoreButton.setTitle(title, for: .normal)
-        
         usernameLabel.text = data?.order?.deliveryDetails?.name
         orderIdLabel.text = "#\(data?.order?.id ?? 0)"
         let fullTransactionIdString = data?.order?.transactionID.map { String(describing: $0) } ?? ""
@@ -52,14 +53,12 @@ class RefundManagementTableViewCell: UITableViewCell {
             transactionstackView.isHidden = false
         }
         transactionId.text = "#\(last7TransactionID)"
-
         let orderedOn = CommonUtils.customizeChangeDateFormatZone(
             inputDate: data?.order?.createdAt ?? "",
             inputFormat: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
             outputFormat: "dd/MM/yyyy 'at' hh:mm a"
         )
         orderedOnLbael.text = orderedOn
-        
         let cancelledReturnedDate = CommonUtils.customizeChangeDateFormatZone(
             inputDate: data?.updatedAt ?? "",
             inputFormat: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
@@ -74,7 +73,21 @@ class RefundManagementTableViewCell: UITableViewCell {
             countryNameLabel.text = data?.productDetails?.store?.countryInfo?.name
         }
         rejectedReasonLabel.text = data?.cancelReason ?? data?.returnReason ?? data?.exchangeReason ?? ""
-        statusLabel.text = "Pending".localiz()
+        switch data?.refundStatus {
+        case "0":
+            statusLabel.text = "Pending".localiz()
+            btnRefund.isHidden = false
+        case "1":
+            statusLabel.text = "Completed".localiz()
+            statusLabel.textColor = .green
+            btnRefund.isHidden = true
+        case "2":
+            statusLabel.text = "Failed".localiz()
+            statusLabel.textColor = .red
+            btnRefund.isHidden = true
+        default:
+            break
+        }
     }
     
     private func convertISOToDMY(_ isoString: String) -> String? {
@@ -93,6 +106,10 @@ class RefundManagementTableViewCell: UITableViewCell {
         outputFormatter.timeZone = TimeZone.current   // ✅ LOCAL TIME
         outputFormatter.dateFormat = "dd/MM/yyyy"
         return outputFormatter.string(from: date)
+    }
+    
+    @IBAction func refundTapped(_ sender: Any) {
+        refundCompletion?()
     }
     
 }

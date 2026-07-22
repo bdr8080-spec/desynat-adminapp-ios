@@ -39,6 +39,8 @@
                 <outlet property="newPriceView" destination="mPU-Le-uAs" id="Hmn-dc-Jl8"/>
                 <outlet property="noOfProductView" destination="LrG-LP-AUV" id="kn9-fv-grV"/>
                 <outlet property="priceLabel" destination="66y-IB-oLg" id="R9z-do-xvI"/>
+                <outlet property="showInRecommendedStoreNo" destination="xrq-6C-OHk" id="Wh8-Ob-bFa"/>
+                <outlet property="showInRecommendedStoreYes" destination="nZ3-Rt-fOd" id="WB5-GJ-NFz"/>
                 <outlet property="tblCountry" destination="03v-l8-661" id="VBU-7c-Fpj"/>
                 <outlet property="textNewDuration" destination="qMY-Oy-g3n" id="VbW-Uo-nVM"/>
                 <outlet property="txtFielNoEmployee" destination="can-uT-r9M" id="a0a-NE-A1t"/>
@@ -101,10 +103,10 @@
                     <rect key="frame" x="0.0" y="147" width="375" height="549"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0i8-2l-zvi">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="1381"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="1476"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="kki-a4-rOT">
-                                    <rect key="frame" x="16" y="7" width="343" height="1374"/>
+                                    <rect key="frame" x="16" y="7" width="343" height="1469"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6LD-OE-gWg">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="69"/>
@@ -1194,6 +1196,69 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gb5-13-tjf">
+                                            <rect key="frame" x="0.0" y="1394" width="343" height="75"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show in Recommended Stores" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQC-TE-UCY">
+                                                    <rect key="frame" x="0.0" y="0.0" width="246" height="22.666666666666668"/>
+                                                    <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="og7-QK-6H9">
+                                                    <rect key="frame" x="0.0" y="32.666666666666742" width="125" height="42.333333333333343"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZ3-Rt-fOd" customClass="CustomButton" customModule="DesynatAdmin" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="42.333333333333336"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="50" id="phG-b6-cKj"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
+                                                            <state key="normal" title="Yes" image="radioUnselected">
+                                                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="showInRecommendedStoreTapped:" destination="-1" eventType="touchUpInside" id="pAy-ii-O3N"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xrq-6C-OHk" customClass="CustomButton" customModule="DesynatAdmin" customModuleProvider="target">
+                                                            <rect key="frame" x="65" y="0.0" width="60" height="42.333333333333336"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="60" id="oTB-3H-Puh"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
+                                                            <state key="normal" title="No" image="radioUnselected">
+                                                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="showInRecommendedStoreTapped:" destination="-1" eventType="touchUpInside" id="iWo-h0-YAs"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <viewLayoutGuide key="safeArea" id="OK4-XB-qTg"/>
+                                            <constraints>
+                                                <constraint firstItem="dQC-TE-UCY" firstAttribute="leading" secondItem="gb5-13-tjf" secondAttribute="leading" id="62o-xF-Pzx"/>
+                                                <constraint firstAttribute="bottom" secondItem="og7-QK-6H9" secondAttribute="bottom" id="MTg-AB-JjN"/>
+                                                <constraint firstItem="dQC-TE-UCY" firstAttribute="top" secondItem="gb5-13-tjf" secondAttribute="top" id="TaT-TR-nPz"/>
+                                                <constraint firstItem="og7-QK-6H9" firstAttribute="top" secondItem="dQC-TE-UCY" secondAttribute="bottom" constant="10" id="iOo-SZ-5Mr"/>
+                                                <constraint firstAttribute="height" constant="75" id="n9z-Wm-Thy"/>
+                                                <constraint firstItem="og7-QK-6H9" firstAttribute="leading" secondItem="gb5-13-tjf" secondAttribute="leading" id="wbg-jg-gep"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                 </stackView>
                             </subviews>
@@ -1273,7 +1338,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
