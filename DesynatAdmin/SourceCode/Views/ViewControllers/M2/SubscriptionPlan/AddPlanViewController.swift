@@ -273,6 +273,7 @@ class AddPlanViewController: UIViewController {
         self.selectStoryOpen(self.viewModel.subscriptionInfo.isStoryOpen)
         self.selectShowInRecommendedStores(self.viewModel.subscriptionInfo.showInRecommendedStore)
     }
+    
     func selectStoryOpen(_ bool:Bool) {
         self.btnOpen.setImage(bool ? .radioSelected : .radioUnselected, for: .normal)
         self.btnClose.setImage(!bool ? .radioSelected : .radioUnselected, for: .normal)

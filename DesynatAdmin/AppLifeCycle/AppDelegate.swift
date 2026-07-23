@@ -13,6 +13,7 @@ import DropDown
 import UserNotifications
 import FirebaseCore
 import FirebaseMessaging
+import MFSDK
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
@@ -36,6 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         Messaging.messaging().isAutoInitEnabled = true
         confrigNotification(application: application)
         BadgeManager.reset()
+        MFSettings.shared.configure(token: "SK_KWT_Xn6nYzfdgF3Lz7TKhrGLhruKiBT5OgesD080ZIJohon0q0CEqCRrwdAsV0qICIsx", country: .kuwait, environment: MFEnvironment.live)
+//        MFSettings.shared.configure(token: "SK_KWT_vVZlnnAqu8jRByOWaRPNId4ShzEDNt256dvnjebuyzo52dXjAfRx2ixW5umjWSUx", country: .kuwait, environment: MFEnvironment.test)
+        let them = MFTheme(navigationTintColor: .white, navigationBarTintColor: .lightGray, navigationTitle: "Payment", cancelButtonTitle: "Cancel")
+        MFSettings.shared.setTheme(theme: them)
         return true
     }
     

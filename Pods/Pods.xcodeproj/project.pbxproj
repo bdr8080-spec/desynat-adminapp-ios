@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -14,7 +14,7 @@
 				4ADCCF1EE25517194697A524ABEDD36C /* [CP] Copy XCFrameworks */,
 			);
 			dependencies = (
-				DA09A1C1C0026CAB39AD374C772D5E3E /* PBXTargetDependency */,
+				0FC4CB6636317A6EC4BFC40402D58E6E /* PBXTargetDependency */,
 			);
 			name = AgoraRtcEngine_iOS;
 		};
@@ -28,251 +28,290 @@
 			);
 			name = AgoraInfra_iOS;
 		};
+		B1BFD2E9555988074A99B8C78A5C9575 /* MyFatoorah */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 2F3CB0291CD013FDB74D49AC9D3A32FB /* Build configuration list for PBXAggregateTarget "MyFatoorah" */;
+			buildPhases = (
+				2CBF5421D70E08B9DCDCDC859113E7F6 /* [CP] Copy XCFrameworks */,
+			);
+			dependencies = (
+				8D4B6E4CAA855C11317C394439D1CDC4 /* PBXTargetDependency */,
+			);
+			name = MyFatoorah;
+		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		03A0E011F67713B5CABEB24D5C20E053 /* DPDKeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F18273AE543EF3B158487DC886C052 /* DPDKeyboardListener.swift */; };
+		03A0E011F67713B5CABEB24D5C20E053 /* DPDKeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83565C256B3E9CCD786DF72CB2ED7E09 /* DPDKeyboardListener.swift */; };
 		0ABF927E9C3D6229823AEC42F16356E8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F74CDD0F204E4DE08261A6ACA555047 /* Foundation.framework */; };
-		0CBC261525FB8A693CF9FF73B1C99389 /* DropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354110ADD7731992AC69648D0086D420 /* DropDown.swift */; };
-		10E1A46382FCE1B047A647076A21822A /* FTIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = B43A53154FA27DF265A6CC28EC5E6495 /* FTIndicator.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		1FD13161FE1479A187B914B86C494D66 /* RangeSeekSlider-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5400C67450036A6C1189CE3EC90F72 /* RangeSeekSlider-dummy.m */; };
-		21522E8BAAE97772E92F3943202B758C /* SwiftyGif-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AE9BC66EBF3B853C8C6561BB9E8E165D /* SwiftyGif-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		29F1D9FADE401C87C762D05F2B8BB286 /* DPDUIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99180DA403B2C8DF610EE0D53F11B51A /* DPDUIView+Extension.swift */; };
-		34692DFC8B6C00379FA395C90AF0BF78 /* ScalingCarousel-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B989C880B3307501FB88C5994CE8C16C /* ScalingCarousel-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3ABF241698D97BA6E0EAABAF693A3095 /* ScalingCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B63EDAEBEE1239E7F72E56C3E1BD4FB /* ScalingCarouselView.swift */; };
-		44A92BD6A7CC8DE76494A085164FE472 /* NSImage+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7B9352D93416FE3B983AA129F5ED34 /* NSImage+SwiftyGif.swift */; };
-		48C7E29D6720C8D86A0390664C053A2A /* FTProgressIndicator.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5E81D94C9178D5A106A9CF0245E4C682 /* FTProgressIndicator.bundle */; };
+		0CBC261525FB8A693CF9FF73B1C99389 /* DropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D56839300DCE0AE51240421D56E52E4 /* DropDown.swift */; };
+		10E1A46382FCE1B047A647076A21822A /* FTIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = D79DF93A6925EE4BFD02A171D14F134D /* FTIndicator.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		1FD13161FE1479A187B914B86C494D66 /* RangeSeekSlider-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EC8DF7577D01E57A592284B8CCE626 /* RangeSeekSlider-dummy.m */; };
+		21522E8BAAE97772E92F3943202B758C /* SwiftyGif-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8749CFCA0C90DC44AD575832403F523E /* SwiftyGif-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		29F1D9FADE401C87C762D05F2B8BB286 /* DPDUIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262786B30B48D3FD845B49DB98F3AA88 /* DPDUIView+Extension.swift */; };
+		34692DFC8B6C00379FA395C90AF0BF78 /* ScalingCarousel-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 89958CA14A8A7064CA06A7AE38C54F37 /* ScalingCarousel-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3ABF241698D97BA6E0EAABAF693A3095 /* ScalingCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AAA9E3C4EEFE1129A05F7F6E79B415 /* ScalingCarouselView.swift */; };
+		44A92BD6A7CC8DE76494A085164FE472 /* NSImage+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF0A7AB965AF5A261448761A6CA2808 /* NSImage+SwiftyGif.swift */; };
+		488E372698F2696AD24D9F719C023C38 /* Pods-DesynatAdmin-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 25012471D35197B388302F936E429EF6 /* Pods-DesynatAdmin-dummy.m */; };
+		48C7E29D6720C8D86A0390664C053A2A /* FTProgressIndicator.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EBBE567F252157CF3C72D3024BBD9DED /* FTProgressIndicator.bundle */; };
 		48F328E430C33B23EB1880CB16E71FDC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F74CDD0F204E4DE08261A6ACA555047 /* Foundation.framework */; };
-		4D9B752F37D0EF99306F946EDA8A456B /* RangeSeekSlider-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E8DB22F26DF2C2F0E1204E19E974E32 /* RangeSeekSlider-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4D9B752F37D0EF99306F946EDA8A456B /* RangeSeekSlider-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BF4973EBF1087CADB0B86EEB3DFC351F /* RangeSeekSlider-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4EBCA879E8D63ADBFFCF2A41B78024C8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6A872B5A57F0829ED105CBC6570AE6 /* CoreGraphics.framework */; };
-		4FCA85271F651693A24D1F56D3325255 /* FTNotificationIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 990BBF118424B0BEDDB02580F78DB747 /* FTNotificationIndicator.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -DOS_OBJECT_USE_OBJC=0"; }; };
-		517CF65970B20A23E33AA7C44ECA7E20 /* RangeSeekSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E28CA51B4595BC724F621B5EAC9B8B /* RangeSeekSlider.swift */; };
-		560CEEB2B821881CB864D5418AC664BC /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE89FD4B8B89EAF90C7FB6604FBE9D2 /* DropDownCell.swift */; };
-		578BE9CA4EC5BE2927ACA0271B178555 /* FTIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = DDC3EC0CE9B48EB4A058AC267E46DB04 /* FTIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		58414F6E60D8084B2070FA1166AB2E1E /* FTIndicator-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D9F0B99379816AA44A23BA70CAAEC96B /* FTIndicator-dummy.m */; };
+		4FCA85271F651693A24D1F56D3325255 /* FTNotificationIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDFC145903E01D17D1F259087EA5C96 /* FTNotificationIndicator.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -DOS_OBJECT_USE_OBJC=0"; }; };
+		517CF65970B20A23E33AA7C44ECA7E20 /* RangeSeekSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5402C2384BC50F557937914DA4C0873E /* RangeSeekSlider.swift */; };
+		560CEEB2B821881CB864D5418AC664BC /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52FC55DD174661E194728520F9E9649 /* DropDownCell.swift */; };
+		578BE9CA4EC5BE2927ACA0271B178555 /* FTIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = 78A9B558D52C5B5E12F6319B2788B520 /* FTIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		58414F6E60D8084B2070FA1166AB2E1E /* FTIndicator-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7B5B28A38CAB547A3D7B855722EC4C /* FTIndicator-dummy.m */; };
 		59F9D1B6BE203AF9CFF9177330776F9A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F74CDD0F204E4DE08261A6ACA555047 /* Foundation.framework */; };
-		5D043141CC2DA5DF01D3FF3BFFCBAA7F /* UIImageView+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F58EDA98B2ADC37A1798363F4444D5 /* UIImageView+SwiftyGif.swift */; };
-		5D5B97FA9366714EAB37D1A8DB04A6E5 /* DPDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DD36F17CD277D206E22E01F1031863 /* DPDConstants.swift */; };
-		6425D3D67337F091084503C361D6F23C /* Pods-DesynatAdmin-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 33695F79FF9E4AAB786EE4B43C722864 /* Pods-DesynatAdmin-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6A72B739D52D83ECFF7E96AFF26AB577 /* UIImage+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F334E7A70F55E1387D219CC0678FFB0 /* UIImage+SwiftyGif.swift */; };
-		6A8CEAC3326863F09F8D79464BBA2C3D /* DropDown+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD64DB7F8F8A7E53B9B78FDBA7E8959 /* DropDown+Appearance.swift */; };
-		6B928141B37AB6DA35D31CA62870897F /* FTNotificationIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = A38FA20E1E0E621777032737C8E22C51 /* FTNotificationIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		757417BA342829DDADC7E31C6A4C62F6 /* FTToastIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 145EDF4DDEB8FD36B03F306CF2F9EC29 /* FTToastIndicator.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -DOS_OBJECT_USE_OBJC=0"; }; };
+		5D043141CC2DA5DF01D3FF3BFFCBAA7F /* UIImageView+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A8F25AA3AF8CD9E2DEA107AEF1E404 /* UIImageView+SwiftyGif.swift */; };
+		5D5B97FA9366714EAB37D1A8DB04A6E5 /* DPDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D00BD9951A4F206ED3D131AB7938CED /* DPDConstants.swift */; };
+		6A72B739D52D83ECFF7E96AFF26AB577 /* UIImage+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9955FCB5D1CE456FE3229B6B2DB54D /* UIImage+SwiftyGif.swift */; };
+		6A8CEAC3326863F09F8D79464BBA2C3D /* DropDown+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82D721ACCC35839F269D820932357B /* DropDown+Appearance.swift */; };
+		6B928141B37AB6DA35D31CA62870897F /* FTNotificationIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = 081D91F8268E4E29E7B2DF2B422DB184 /* FTNotificationIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		757417BA342829DDADC7E31C6A4C62F6 /* FTToastIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC9FE4F7EC674052AB78554E0EBF0A3 /* FTToastIndicator.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -DOS_OBJECT_USE_OBJC=0"; }; };
 		7BB0546DA257AB7377A55B52E29E2524 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F74CDD0F204E4DE08261A6ACA555047 /* Foundation.framework */; };
-		8688D6D0F29874BF2CF2155F9CD21A87 /* TapticEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C5FC3866488932412698202B874B9D /* TapticEngine.swift */; };
-		8B7B169F3BAD8C4239134DE7876A5595 /* FTToastIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A798C2012C1CAA2CBFBB76A42AB02CC /* FTToastIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7DB0DF8253CC0BCCB8A3C3380D8FF0F6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F74CDD0F204E4DE08261A6ACA555047 /* Foundation.framework */; };
+		8168B9535C1531102C95C7CC6AD86885 /* apple-pay.png in Resources */ = {isa = PBXBuildFile; fileRef = F3811328A253724534E9C4B74928D659 /* apple-pay.png */; };
+		8688D6D0F29874BF2CF2155F9CD21A87 /* TapticEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57012D07421F2015A96D45CD41EAE1C1 /* TapticEngine.swift */; };
+		8B7B169F3BAD8C4239134DE7876A5595 /* FTToastIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = 04512918A3A18104436209942D373B0D /* FTToastIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8E07223DB3D2743E1253E5D3526A14CD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F1BB16A9DC931B1D2C69F0A8B499CB /* UIKit.framework */; };
-		8F4C1E872A283192888BA0C6D4A74797 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F74CDD0F204E4DE08261A6ACA555047 /* Foundation.framework */; };
-		933093C5E43D7E9BC502A28B7D371924 /* DropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7FD47755729E657778F5655F562CFD4 /* DropDownCell.xib */; };
-		999253842B8244633FEF4EADCF8B7B9A /* SwiftyGif-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0695411490F1DE8A64BF5596AC24C3CB /* SwiftyGif-dummy.m */; };
-		9D3911EFEC414CF24FD0EBFEACA5F1E2 /* FTProgressIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = ADD06F8C764BF06BF29ACF0A42E10ACB /* FTProgressIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9D45243582C808F6F88C78F4540CC4B9 /* ObjcAssociatedWeakObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36A3A86033E83CCD0A2CE6836DCE792 /* ObjcAssociatedWeakObject.swift */; };
-		9FDE02B4BDF6E28E0CDF0622EA9559BC /* DropDown-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C322E39C6838B88CE017498CF9A6346 /* DropDown-dummy.m */; };
-		A4659B725777EB2731C4F056A59BE83D /* SwiftyGif.h in Headers */ = {isa = PBXBuildFile; fileRef = FEACF5CFF6FF7183B3DAD2D3889DB3E6 /* SwiftyGif.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AC6B571F0C8900F0D72B4A68BBC3DE64 /* FTIndicator-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F583F11CE164246F1AF3A16FD40612E /* FTIndicator-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ADA6CC7EE505342EA63EC876FF0EEDB0 /* DropDown-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EE5A788FD3826B3734916616F7DFB88 /* DropDown-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AE4E4B274A652ED362AE57211ED07D63 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 66DF23B7C6E25C299ECB840B29E165D9 /* PrivacyInfo.xcprivacy */; };
-		BEC562573E6C82A1FC8BCA87080A35E9 /* ScalingCarouselLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309F3636B397180F815C15E423FE17E6 /* ScalingCarouselLayout.swift */; };
+		933093C5E43D7E9BC502A28B7D371924 /* DropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BEB81F8390C2534FF3848CF4C7AE3BC /* DropDownCell.xib */; };
+		999253842B8244633FEF4EADCF8B7B9A /* SwiftyGif-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF3D865D4F833C73DF6B04ECAF7673E /* SwiftyGif-dummy.m */; };
+		9D3911EFEC414CF24FD0EBFEACA5F1E2 /* FTProgressIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = 59CF04C4A0512D93FA938C48CC223D2E /* FTProgressIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9D45243582C808F6F88C78F4540CC4B9 /* ObjcAssociatedWeakObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F1419061FAE4448052FD78A651D5B5 /* ObjcAssociatedWeakObject.swift */; };
+		9FD08F1C3FA5D6AF5D1FCEB1AB209ADE /* Button.html in Resources */ = {isa = PBXBuildFile; fileRef = A0016FBF382331CD98CF266FF4626C87 /* Button.html */; };
+		9FDE02B4BDF6E28E0CDF0622EA9559BC /* DropDown-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E037C33F88603A378588D1257D62FE78 /* DropDown-dummy.m */; };
+		A4659B725777EB2731C4F056A59BE83D /* SwiftyGif.h in Headers */ = {isa = PBXBuildFile; fileRef = 342BF281B3597E4EACEFB4EF8BBE8DFB /* SwiftyGif.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AC6B571F0C8900F0D72B4A68BBC3DE64 /* FTIndicator-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FDC52D945F29F33D2DABB02F94AB1301 /* FTIndicator-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ADA6CC7EE505342EA63EC876FF0EEDB0 /* DropDown-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5854799E4823574B40CFA718CD8754D3 /* DropDown-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BEC562573E6C82A1FC8BCA87080A35E9 /* ScalingCarouselLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A97645C5E65E81041A3B4651A60D6DB /* ScalingCarouselLayout.swift */; };
 		C4637B3497FCC2DF78809E144241B225 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F74CDD0F204E4DE08261A6ACA555047 /* Foundation.framework */; };
-		C9B2111B50CAB17C92CC286E436CF3FF /* NSImageView+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4C59A85EB057B3F3C59392A0CEC467 /* NSImageView+SwiftyGif.swift */; };
-		D2C48346115244F1D54C5C2C3152F160 /* FTProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA799F3EC1BD3F5A5683BD864F70377 /* FTProgressIndicator.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -DOS_OBJECT_USE_OBJC=0"; }; };
-		D6B933482B38BFA1DF90C920B831765F /* ScalingCarousel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EA30E739CECA3EF3B996BB582766EBD6 /* ScalingCarousel-dummy.m */; };
-		DE20025E65378775662C9C32D18A931F /* SwiftyGifManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1831E1E8048D8BCD6ADC0D01D26268CE /* SwiftyGifManager.swift */; };
-		E7122B270D5F75D05DBD2A6D2E11336E /* Pods-DesynatAdmin-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DDCA2060010DFABC072C05D70E99C78 /* Pods-DesynatAdmin-dummy.m */; };
-		EA1FA712BBF299C3726ADD186CEC904C /* RangeSeekSliderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FC8C48268F6B722906614F9C793DFE /* RangeSeekSliderDelegate.swift */; };
+		C628460CE7696E65962DBE6FEA71EF7B /* Pods-DesynatAdmin-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 70158FD3E54D4DD020DBA7AD0B9B31EC /* Pods-DesynatAdmin-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9B2111B50CAB17C92CC286E436CF3FF /* NSImageView+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5DF8991947294FF686D3B09542EAC1 /* NSImageView+SwiftyGif.swift */; };
+		D2C48346115244F1D54C5C2C3152F160 /* FTProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 02CD40AD245E54CCD9F56AF0E6DB55E3 /* FTProgressIndicator.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -DOS_OBJECT_USE_OBJC=0"; }; };
+		D6B933482B38BFA1DF90C920B831765F /* ScalingCarousel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FE0A486380589817E4ADEC29ADE1797 /* ScalingCarousel-dummy.m */; };
+		DE20025E65378775662C9C32D18A931F /* SwiftyGifManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9501BE275E9CF51C5C57F1EEC69F94 /* SwiftyGifManager.swift */; };
+		EA1FA712BBF299C3726ADD186CEC904C /* RangeSeekSliderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AA96BCED181DB40A912BC5B121C2D1 /* RangeSeekSliderDelegate.swift */; };
 		F41CA210E56B3043EDD75C851FB4061B /* SwiftyGif-SwiftyGif in Resources */ = {isa = PBXBuildFile; fileRef = 0A37DE9A55F6CEA1AF18BDEF878BF1F5 /* SwiftyGif-SwiftyGif */; };
-		F57A87D6F7201F6365648CAA130BFD27 /* ScalingCarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87383BB9EEF2D8EA4EFA26EC20EA1ABD /* ScalingCarouselCell.swift */; };
+		F57A87D6F7201F6365648CAA130BFD27 /* ScalingCarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFC90517B4E4A3AF1DC201732897AF4 /* ScalingCarouselCell.swift */; };
+		FE2A87DA391565C2F4733979C7073C47 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 80E8EC22E253116755CB5876EBFECB9B /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2A162BF0C4B484F1237ED5E394D0148A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2F7F7AAA1C81C1ECBEECAABE3C3609AC;
-			remoteInfo = AgoraInfra_iOS;
-		};
-		3AA113B7C7A23B784CF3E1B0FADA4785 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 15AEBAFA43912F898FC2E1A73025C946;
-			remoteInfo = SwiftyGif;
-		};
-		57ECD2215509601BC3FAED37C3845CF5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7050FECE58DF970CF84F4FE403CA67D9;
-			remoteInfo = ScalingCarousel;
-		};
-		5E9A91D700EFF312380CA3877558E972 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 176E48377247D5011E906CB1A39E71BA;
-			remoteInfo = "SwiftyGif-SwiftyGif";
-		};
-		7F503C5D504508BAC46E344DF244D8C1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E9F9401E9C74C0C393164FD8D86D0068;
-			remoteInfo = DropDown;
-		};
-		90DD46198539A67790F706566700B8E1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4AFB864B337D1F74C1D79F4FC8F6C67F;
-			remoteInfo = RangeSeekSlider;
-		};
-		922004D23FDBDE33E01E942AF5BB312A /* PBXContainerItemProxy */ = {
+		06877C8890B4DF9B6FED1FFAAF2C4DA3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 183C29DD6DE04D22CA29BAE61F5C530B;
 			remoteInfo = AgoraRtcEngine_iOS;
 		};
-		965A2573B62BC6423B6B56D3A8FA9FE2 /* PBXContainerItemProxy */ = {
+		1FD497CB2B3021C8A6C6FB9323D92778 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15AEBAFA43912F898FC2E1A73025C946;
+			remoteInfo = SwiftyGif;
+		};
+		2C1F818F50C3C1E56F7F26B6D35EF09B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = B957A4FD9E608C9E3554AB85D106B08D;
 			remoteInfo = FTIndicator;
 		};
-		E5F8A40A0D41AC4BFBABE60A8310E16E /* PBXContainerItemProxy */ = {
+		2DBF2FF6C68B11F1C7B37D91447135E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4AFB864B337D1F74C1D79F4FC8F6C67F;
+			remoteInfo = RangeSeekSlider;
+		};
+		3995D5DA1768DD230CA23B1F4F63E5D9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B1BFD2E9555988074A99B8C78A5C9575;
+			remoteInfo = MyFatoorah;
+		};
+		64DE16DC39626E4038DBE588BAF2BBE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 176E48377247D5011E906CB1A39E71BA;
+			remoteInfo = "SwiftyGif-SwiftyGif";
+		};
+		A393810AFD30EBB4B626477719A6027C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 67EF8338569A972E661FADAB382FA73E;
+			remoteInfo = "MyFatoorah-MyFatoorah";
+		};
+		B0CCC6C46BF745009C3FB6E44C2A80FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7050FECE58DF970CF84F4FE403CA67D9;
+			remoteInfo = ScalingCarousel;
+		};
+		F000F2B86BDE6EE0D3ED605296CEA996 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2F7F7AAA1C81C1ECBEECAABE3C3609AC;
 			remoteInfo = AgoraInfra_iOS;
 		};
+		F0243D061071D96AE5D5ECD173F96720 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2F7F7AAA1C81C1ECBEECAABE3C3609AC;
+			remoteInfo = AgoraInfra_iOS;
+		};
+		F1FB9D3AFA09F4068BE45B2F74D7085D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E9F9401E9C74C0C393164FD8D86D0068;
+			remoteInfo = DropDown;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00A1DFFFC4DA7912BFBE8C3043AC8E79 /* FTIndicator-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FTIndicator-prefix.pch"; sourceTree = "<group>"; };
-		00B4F35CEE0A401925F3D5A1A90F00C1 /* ResourceBundle-SwiftyGif-SwiftyGif-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-SwiftyGif-SwiftyGif-Info.plist"; sourceTree = "<group>"; };
-		0132231C2927D85A9B6E02E0E9AF3BFA /* SwiftyGif.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyGif.release.xcconfig; sourceTree = "<group>"; };
-		0695411490F1DE8A64BF5596AC24C3CB /* SwiftyGif-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftyGif-dummy.m"; sourceTree = "<group>"; };
+		018E64A1BBA0318BA410D0D3E6ACC9F7 /* Agoraffmpeg.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = Agoraffmpeg.xcframework; sourceTree = "<group>"; };
+		018ECF95C9E084D57F75C960D7118D21 /* Pods-DesynatAdmin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DesynatAdmin.release.xcconfig"; sourceTree = "<group>"; };
+		02A7CA9C687925BF748CF1BD621D0457 /* AgoraRtcKit.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraRtcKit.xcframework; sourceTree = "<group>"; };
+		02B29824A928FA94E53A92A7B6A7C36A /* ResourceBundle-SwiftyGif-SwiftyGif-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-SwiftyGif-SwiftyGif-Info.plist"; sourceTree = "<group>"; };
+		02CD40AD245E54CCD9F56AF0E6DB55E3 /* FTProgressIndicator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTProgressIndicator.m; path = FTIndicator/FTProgressIndicator/FTProgressIndicator.m; sourceTree = "<group>"; };
+		03A52CD82F4A228D39EEE58BAE02D740 /* AgoraAiEchoCancellationLLExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraAiEchoCancellationLLExtension.xcframework; sourceTree = "<group>"; };
+		04512918A3A18104436209942D373B0D /* FTToastIndicator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTToastIndicator.h; path = FTIndicator/FTToastIndicator/FTToastIndicator.h; sourceTree = "<group>"; };
+		06D749477372E40635C5D0908ABFAF13 /* SwiftyGif-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyGif-prefix.pch"; sourceTree = "<group>"; };
+		07063DD652011B1BDC02AC5F46B2845E /* AgoraFaceCaptureExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraFaceCaptureExtension.xcframework; sourceTree = "<group>"; };
+		07FCF4CAF6A5BEE5966FF014A964A863 /* Agorafdkaac.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = Agorafdkaac.xcframework; sourceTree = "<group>"; };
+		081D91F8268E4E29E7B2DF2B422DB184 /* FTNotificationIndicator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTNotificationIndicator.h; path = FTIndicator/FTNotificationIndicator/FTNotificationIndicator.h; sourceTree = "<group>"; };
 		0A37DE9A55F6CEA1AF18BDEF878BF1F5 /* SwiftyGif-SwiftyGif */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "SwiftyGif-SwiftyGif"; path = SwiftyGif.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A7F0F61A3EFD04A1DAC1CC614D0E437 /* DropDown.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DropDown.release.xcconfig; sourceTree = "<group>"; };
-		0CA98C735F11D7D8ECE82B538A41C4F5 /* RangeSeekSlider.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RangeSeekSlider.debug.xcconfig; sourceTree = "<group>"; };
-		0D5400C67450036A6C1189CE3EC90F72 /* RangeSeekSlider-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RangeSeekSlider-dummy.m"; sourceTree = "<group>"; };
-		0FCBEF48249F61578C5709EA41B0BDD7 /* AgoraLipSyncExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraLipSyncExtension.xcframework; sourceTree = "<group>"; };
-		107235AA466CFD8DCE82ACEDFF10DCF6 /* Agorafdkaac.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = Agorafdkaac.xcframework; sourceTree = "<group>"; };
-		118083A4A176F276774B22E776350196 /* Pods-DesynatAdmin-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DesynatAdmin-acknowledgements.plist"; sourceTree = "<group>"; };
-		1458BF90A3C40CA503E1AB55C68B9140 /* SwiftyGif.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SwiftyGif.modulemap; sourceTree = "<group>"; };
-		145EDF4DDEB8FD36B03F306CF2F9EC29 /* FTToastIndicator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTToastIndicator.m; path = FTIndicator/FTToastIndicator/FTToastIndicator.m; sourceTree = "<group>"; };
-		146A0C9B9AFAE24793E9B434BD6F21B3 /* AgoraAiEchoCancellationExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraAiEchoCancellationExtension.xcframework; sourceTree = "<group>"; };
-		14D84EB5E7242F1FF28DBB4186D8D0DB /* AgoraVideoQualityAnalyzerExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraVideoQualityAnalyzerExtension.xcframework; sourceTree = "<group>"; };
-		1831E1E8048D8BCD6ADC0D01D26268CE /* SwiftyGifManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftyGifManager.swift; path = SwiftyGif/SwiftyGifManager.swift; sourceTree = "<group>"; };
-		1936CF9740406854537E056F55BF81B1 /* RangeSeekSlider-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RangeSeekSlider-prefix.pch"; sourceTree = "<group>"; };
-		1A798C2012C1CAA2CBFBB76A42AB02CC /* FTToastIndicator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTToastIndicator.h; path = FTIndicator/FTToastIndicator/FTToastIndicator.h; sourceTree = "<group>"; };
-		1D4C59A85EB057B3F3C59392A0CEC467 /* NSImageView+SwiftyGif.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSImageView+SwiftyGif.swift"; path = "SwiftyGif/NSImageView+SwiftyGif.swift"; sourceTree = "<group>"; };
-		1E7B9352D93416FE3B983AA129F5ED34 /* NSImage+SwiftyGif.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSImage+SwiftyGif.swift"; path = "SwiftyGif/NSImage+SwiftyGif.swift"; sourceTree = "<group>"; };
-		22E3CABE69B66B3A8EF3A59EA0F19058 /* AgoraVideoEncoderExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraVideoEncoderExtension.xcframework; sourceTree = "<group>"; };
+		0BEB81F8390C2534FF3848CF4C7AE3BC /* DropDownCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = DropDownCell.xib; path = DropDown/resources/DropDownCell.xib; sourceTree = "<group>"; };
+		0BEE6F6074D9DAF5A445D3F1483682D8 /* ScalingCarousel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ScalingCarousel.debug.xcconfig; sourceTree = "<group>"; };
+		0C25599B20C64DDA8B64F8BABBAE408A /* AgoraClearVisionExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraClearVisionExtension.xcframework; sourceTree = "<group>"; };
+		0CBD373CFBF8733E7A6700C89272D23F /* MyFatoorah.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MyFatoorah.debug.xcconfig; sourceTree = "<group>"; };
+		0DA8828DEE96204265C2D7F67FC87E31 /* FTIndicator.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FTIndicator.modulemap; sourceTree = "<group>"; };
+		0E02F915DCDBA1F0F446DD8B77716AB8 /* Pods-DesynatAdmin.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-DesynatAdmin.modulemap"; sourceTree = "<group>"; };
+		0FE0A486380589817E4ADEC29ADE1797 /* ScalingCarousel-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ScalingCarousel-dummy.m"; sourceTree = "<group>"; };
+		12652EAA695C7E3798E6B88144368DE8 /* AgoraLipSyncExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraLipSyncExtension.xcframework; sourceTree = "<group>"; };
+		12BBED9E9C352C294931527ADC7065B8 /* DropDown.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DropDown.release.xcconfig; sourceTree = "<group>"; };
+		1415625E341F55F23A80337CA6CE8B41 /* AgoraInfra_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AgoraInfra_iOS.release.xcconfig; sourceTree = "<group>"; };
+		1535EEDE1F05630221A21B7DD1CDC3AA /* ResourceBundle-MyFatoorah-MyFatoorah-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-MyFatoorah-MyFatoorah-Info.plist"; sourceTree = "<group>"; };
+		1A97645C5E65E81041A3B4651A60D6DB /* ScalingCarouselLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScalingCarouselLayout.swift; path = Sources/ScalingCarousel/ScalingCarouselLayout.swift; sourceTree = "<group>"; };
+		23D22D7EA5FDEA0E1BC413CEC7386383 /* AgoraAudioBeautyExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraAudioBeautyExtension.xcframework; sourceTree = "<group>"; };
+		23F17CFCB13004E0794337ED9F25C426 /* Pods-DesynatAdmin-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DesynatAdmin-frameworks.sh"; sourceTree = "<group>"; };
 		24E96286E41476A4E7F4D8742B9B16D7 /* ScalingCarousel */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ScalingCarousel; path = ScalingCarousel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2684F7FD55F3943638ABC7DE03B30B91 /* ScalingCarousel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ScalingCarousel.modulemap; sourceTree = "<group>"; };
-		26C5FC3866488932412698202B874B9D /* TapticEngine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TapticEngine.swift; path = Sources/TapticEngine.swift; sourceTree = "<group>"; };
-		28C4057282CD7E54F8E4F1F12093D610 /* DropDown-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "DropDown-Info.plist"; sourceTree = "<group>"; };
+		25012471D35197B388302F936E429EF6 /* Pods-DesynatAdmin-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DesynatAdmin-dummy.m"; sourceTree = "<group>"; };
+		262786B30B48D3FD845B49DB98F3AA88 /* DPDUIView+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DPDUIView+Extension.swift"; path = "DropDown/helpers/DPDUIView+Extension.swift"; sourceTree = "<group>"; };
 		28F1BB16A9DC931B1D2C69F0A8B499CB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		2D076CA815F04A6E17714C44DA64AA11 /* ScalingCarousel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ScalingCarousel.debug.xcconfig; sourceTree = "<group>"; };
-		2EA799F3EC1BD3F5A5683BD864F70377 /* FTProgressIndicator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTProgressIndicator.m; path = FTIndicator/FTProgressIndicator/FTProgressIndicator.m; sourceTree = "<group>"; };
-		2F334E7A70F55E1387D219CC0678FFB0 /* UIImage+SwiftyGif.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImage+SwiftyGif.swift"; path = "SwiftyGif/UIImage+SwiftyGif.swift"; sourceTree = "<group>"; };
-		309F3636B397180F815C15E423FE17E6 /* ScalingCarouselLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScalingCarouselLayout.swift; path = Sources/ScalingCarousel/ScalingCarouselLayout.swift; sourceTree = "<group>"; };
-		30F23F220CC96B709309DA7E12DAB7AF /* SwiftyGif-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SwiftyGif-Info.plist"; sourceTree = "<group>"; };
-		31163107744EE5C732A34660EA3FCDC6 /* AgoraRtcEngine_iOS-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "AgoraRtcEngine_iOS-xcframeworks.sh"; sourceTree = "<group>"; };
-		33695F79FF9E4AAB786EE4B43C722864 /* Pods-DesynatAdmin-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-DesynatAdmin-umbrella.h"; sourceTree = "<group>"; };
-		354110ADD7731992AC69648D0086D420 /* DropDown.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DropDown.swift; path = DropDown/src/DropDown.swift; sourceTree = "<group>"; };
-		3C322E39C6838B88CE017498CF9A6346 /* DropDown-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DropDown-dummy.m"; sourceTree = "<group>"; };
-		3CF7BEC6AD05AFD486F1F1F051B6ACEB /* AgoraRtcKit.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraRtcKit.xcframework; sourceTree = "<group>"; };
-		40DD36F17CD277D206E22E01F1031863 /* DPDConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDConstants.swift; path = DropDown/helpers/DPDConstants.swift; sourceTree = "<group>"; };
-		4165A4BF908CC0AD02C8C98A9C771EDE /* RangeSeekSlider-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "RangeSeekSlider-Info.plist"; sourceTree = "<group>"; };
-		42A1502B757C77B087E4C1DBBE696818 /* SwiftyGif.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyGif.debug.xcconfig; sourceTree = "<group>"; };
-		462AADE87A542EF4ED25D53C9B231B58 /* AgoraAiNoiseSuppressionExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraAiNoiseSuppressionExtension.xcframework; sourceTree = "<group>"; };
-		468C73D15C49F8C021906264F768FBE4 /* Agoraffmpeg.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = Agoraffmpeg.xcframework; sourceTree = "<group>"; };
-		4B63EDAEBEE1239E7F72E56C3E1BD4FB /* ScalingCarouselView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScalingCarouselView.swift; path = Sources/ScalingCarousel/ScalingCarouselView.swift; sourceTree = "<group>"; };
-		4FC4DBB3D9E6BAC77389DDFDC5CAA8C1 /* AgoraSoundTouch.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraSoundTouch.xcframework; sourceTree = "<group>"; };
-		506072867C5B01B553996601D0389018 /* AgoraInfra_iOS-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "AgoraInfra_iOS-xcframeworks.sh"; sourceTree = "<group>"; };
-		558827EBFCC6416C0845ECE6C9996997 /* FTIndicator-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "FTIndicator-Info.plist"; sourceTree = "<group>"; };
-		55F18273AE543EF3B158487DC886C052 /* DPDKeyboardListener.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDKeyboardListener.swift; path = DropDown/helpers/DPDKeyboardListener.swift; sourceTree = "<group>"; };
-		5788F58009F7F8DFAA852484730FB18E /* AgoraAudioBeautyExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraAudioBeautyExtension.xcframework; sourceTree = "<group>"; };
-		5CBCD51F7598F0D3FBA5DDC7C6911494 /* AgoraInfra_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AgoraInfra_iOS.release.xcconfig; sourceTree = "<group>"; };
-		5E81D94C9178D5A106A9CF0245E4C682 /* FTProgressIndicator.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = FTProgressIndicator.bundle; path = FTIndicator/FTProgressIndicator/FTProgressIndicator.bundle; sourceTree = "<group>"; };
-		62B71F34377DC43B96D7CE7FD8620556 /* AgoraContentInspectExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraContentInspectExtension.xcframework; sourceTree = "<group>"; };
-		632E0C22DE7615722394CE3EFC77FFD3 /* video_enc.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = video_enc.xcframework; sourceTree = "<group>"; };
-		648352729B2241E9C506B38F3BE3D280 /* Pods-DesynatAdmin-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DesynatAdmin-frameworks.sh"; sourceTree = "<group>"; };
-		66DF23B7C6E25C299ECB840B29E165D9 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = SwiftyGif/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		6F583F11CE164246F1AF3A16FD40612E /* FTIndicator-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FTIndicator-umbrella.h"; sourceTree = "<group>"; };
-		70E28CA51B4595BC724F621B5EAC9B8B /* RangeSeekSlider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RangeSeekSlider.swift; path = Sources/RangeSeekSlider.swift; sourceTree = "<group>"; };
-		7478A1345859F0D198885EE675C9450C /* Pods-DesynatAdmin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DesynatAdmin.release.xcconfig"; sourceTree = "<group>"; };
-		74CBE0B5EE0C2F63D860D5BBE02E1A86 /* AgoraRtcEngine_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AgoraRtcEngine_iOS.debug.xcconfig; sourceTree = "<group>"; };
-		76564AEEFD3D15E6D5175D880581A4CD /* FTIndicator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FTIndicator.release.xcconfig; sourceTree = "<group>"; };
+		2B42A004F7F0610E6C978B3781DD238E /* MFSDK.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MFSDK.h; path = "SDK/v2/MFSDK.xcframework/ios-arm64/MFSDK.framework/Headers/MFSDK.h"; sourceTree = "<group>"; };
+		2D56839300DCE0AE51240421D56E52E4 /* DropDown.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DropDown.swift; path = DropDown/src/DropDown.swift; sourceTree = "<group>"; };
+		2DA3A13C4466E903F6F49C9714BF9FA9 /* ScalingCarousel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ScalingCarousel.release.xcconfig; sourceTree = "<group>"; };
+		342BF281B3597E4EACEFB4EF8BBE8DFB /* SwiftyGif.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SwiftyGif.h; path = SwiftyGif/SwiftyGif.h; sourceTree = "<group>"; };
+		3AF0A7AB965AF5A261448761A6CA2808 /* NSImage+SwiftyGif.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSImage+SwiftyGif.swift"; path = "SwiftyGif/NSImage+SwiftyGif.swift"; sourceTree = "<group>"; };
+		3F2A34DFB1D061B9717B11A063977F8A /* AgoraVideoQualityAnalyzerExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraVideoQualityAnalyzerExtension.xcframework; sourceTree = "<group>"; };
+		3FEC71685DD137E8C5806A23D98080B9 /* RangeSeekSlider-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RangeSeekSlider-prefix.pch"; sourceTree = "<group>"; };
+		4747FF1B445DE80E60164E62C5188E46 /* ScalingCarousel-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ScalingCarousel-Info.plist"; sourceTree = "<group>"; };
+		49A8F25AA3AF8CD9E2DEA107AEF1E404 /* UIImageView+SwiftyGif.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImageView+SwiftyGif.swift"; path = "SwiftyGif/UIImageView+SwiftyGif.swift"; sourceTree = "<group>"; };
+		4C7B5B28A38CAB547A3D7B855722EC4C /* FTIndicator-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FTIndicator-dummy.m"; sourceTree = "<group>"; };
+		4FDFC145903E01D17D1F259087EA5C96 /* FTNotificationIndicator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTNotificationIndicator.m; path = FTIndicator/FTNotificationIndicator/FTNotificationIndicator.m; sourceTree = "<group>"; };
+		529740B6072DF4372AE78912286ACAB9 /* MFSDK-Swift.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "MFSDK-Swift.h"; path = "SDK/v2/MFSDK.xcframework/ios-arm64/MFSDK.framework/Headers/MFSDK-Swift.h"; sourceTree = "<group>"; };
+		5402C2384BC50F557937914DA4C0873E /* RangeSeekSlider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RangeSeekSlider.swift; path = Sources/RangeSeekSlider.swift; sourceTree = "<group>"; };
+		54FE5E24A715C40E974AC77CC7227E10 /* Pods-DesynatAdmin-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DesynatAdmin-acknowledgements.markdown"; sourceTree = "<group>"; };
+		57012D07421F2015A96D45CD41EAE1C1 /* TapticEngine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TapticEngine.swift; path = Sources/TapticEngine.swift; sourceTree = "<group>"; };
+		57C834CB9E8A3753DF6D5CD954F45D47 /* DropDown.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = DropDown.modulemap; sourceTree = "<group>"; };
+		5854799E4823574B40CFA718CD8754D3 /* DropDown-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DropDown-umbrella.h"; sourceTree = "<group>"; };
+		59B7FBC0A067F437A144435E8340E5F5 /* AgoraInfra_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AgoraInfra_iOS.debug.xcconfig; sourceTree = "<group>"; };
+		59CF04C4A0512D93FA938C48CC223D2E /* FTProgressIndicator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTProgressIndicator.h; path = FTIndicator/FTProgressIndicator/FTProgressIndicator.h; sourceTree = "<group>"; };
+		5E64EF94818E13C103DD8462E465CDE3 /* DropDown-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DropDown-prefix.pch"; sourceTree = "<group>"; };
+		64DC561E284F7FBDFBB7838FD434E6AA /* FTIndicator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FTIndicator.release.xcconfig; sourceTree = "<group>"; };
+		66EC8DF7577D01E57A592284B8CCE626 /* RangeSeekSlider-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RangeSeekSlider-dummy.m"; sourceTree = "<group>"; };
+		67CCDAE14AF970480E36A366BA536A06 /* AgoraAiEchoCancellationExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraAiEchoCancellationExtension.xcframework; sourceTree = "<group>"; };
+		68D2EFC55075D4F2B564DC7DC06C0463 /* SwiftyGif.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyGif.release.xcconfig; sourceTree = "<group>"; };
+		6B7D9E763AC503E007653478E6401D57 /* MyFatoorah.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MyFatoorah.release.xcconfig; sourceTree = "<group>"; };
+		6C82A8701D7360312BC4D8DF7CF3D08D /* aosl.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = aosl.xcframework; sourceTree = "<group>"; };
+		6CF3D865D4F833C73DF6B04ECAF7673E /* SwiftyGif-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftyGif-dummy.m"; sourceTree = "<group>"; };
+		70158FD3E54D4DD020DBA7AD0B9B31EC /* Pods-DesynatAdmin-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-DesynatAdmin-umbrella.h"; sourceTree = "<group>"; };
+		704D9378E88E400EEC78330EDA32DAA9 /* AgoraVideoAv1EncoderExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraVideoAv1EncoderExtension.xcframework; sourceTree = "<group>"; };
+		72CA13E666A4A67D13F6F516AB3BC753 /* RangeSeekSlider-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "RangeSeekSlider-Info.plist"; sourceTree = "<group>"; };
+		741E5FDF98BA0C348A5F6D28F4A13B0E /* AgoraVideoSegmentationExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraVideoSegmentationExtension.xcframework; sourceTree = "<group>"; };
+		78A9B558D52C5B5E12F6319B2788B520 /* FTIndicator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTIndicator.h; path = FTIndicator/FTIndicator.h; sourceTree = "<group>"; };
 		7AD67EFB9A7864151301DC2890207AA2 /* SwiftyGif */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftyGif; path = SwiftyGif.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7EE5A788FD3826B3734916616F7DFB88 /* DropDown-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DropDown-umbrella.h"; sourceTree = "<group>"; };
-		80918EC29CEBF12016B09F398C82E86E /* SwiftyGif-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyGif-prefix.pch"; sourceTree = "<group>"; };
-		80C4463EBEFFB7A148D602500E6E3945 /* AgoraFaceCaptureExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraFaceCaptureExtension.xcframework; sourceTree = "<group>"; };
-		857B78B2A5B7484ECFBAB18AE9660A4A /* RangeSeekSlider.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RangeSeekSlider.release.xcconfig; sourceTree = "<group>"; };
-		87383BB9EEF2D8EA4EFA26EC20EA1ABD /* ScalingCarouselCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScalingCarouselCell.swift; path = Sources/ScalingCarousel/ScalingCarouselCell.swift; sourceTree = "<group>"; };
-		8DDCA2060010DFABC072C05D70E99C78 /* Pods-DesynatAdmin-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DesynatAdmin-dummy.m"; sourceTree = "<group>"; };
+		7B0EC101FFA50FE5A74409A6F6707C12 /* FTIndicator-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FTIndicator-prefix.pch"; sourceTree = "<group>"; };
+		80E8EC22E253116755CB5876EBFECB9B /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = SwiftyGif/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		83565C256B3E9CCD786DF72CB2ED7E09 /* DPDKeyboardListener.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDKeyboardListener.swift; path = DropDown/helpers/DPDKeyboardListener.swift; sourceTree = "<group>"; };
+		846259322D60B42FCC1CCC301386DB30 /* SwiftyGif.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyGif.debug.xcconfig; sourceTree = "<group>"; };
+		854677C49ADA1006BAEAA802EBB5D8F6 /* SwiftyGif-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SwiftyGif-Info.plist"; sourceTree = "<group>"; };
+		85AA96BCED181DB40A912BC5B121C2D1 /* RangeSeekSliderDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RangeSeekSliderDelegate.swift; path = Sources/RangeSeekSliderDelegate.swift; sourceTree = "<group>"; };
+		85D83547F676E895DA2A96047E41A7B4 /* AgoraRtcEngine_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AgoraRtcEngine_iOS.debug.xcconfig; sourceTree = "<group>"; };
+		8749CFCA0C90DC44AD575832403F523E /* SwiftyGif-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyGif-umbrella.h"; sourceTree = "<group>"; };
+		89958CA14A8A7064CA06A7AE38C54F37 /* ScalingCarousel-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ScalingCarousel-umbrella.h"; sourceTree = "<group>"; };
+		8E780081B422ADEC0F0776F5978D4F24 /* Pods-DesynatAdmin-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DesynatAdmin-Info.plist"; sourceTree = "<group>"; };
 		8F74CDD0F204E4DE08261A6ACA555047 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		93C89F2CFB8E86B24E2AC08302C20CE9 /* AgoraVideoAv1EncoderExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraVideoAv1EncoderExtension.xcframework; sourceTree = "<group>"; };
-		94AAC17825621822DEDA8CC232DDA142 /* AgoraAiEchoCancellationLLExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraAiEchoCancellationLLExtension.xcframework; sourceTree = "<group>"; };
-		94D6793B3ED88E446F9FB5AD36DB9EFB /* FTIndicator.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FTIndicator.modulemap; sourceTree = "<group>"; };
-		95C549E84ADE3F08972DEA82B4308389 /* DropDown.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DropDown.debug.xcconfig; sourceTree = "<group>"; };
-		96C033DCAA16DA67054DC3F66D279FA3 /* aosl.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = aosl.xcframework; sourceTree = "<group>"; };
-		97F58EDA98B2ADC37A1798363F4444D5 /* UIImageView+SwiftyGif.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImageView+SwiftyGif.swift"; path = "SwiftyGif/UIImageView+SwiftyGif.swift"; sourceTree = "<group>"; };
-		984BAD72969882FE483C5CDC3476E740 /* AgoraAiNoiseSuppressionLLExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraAiNoiseSuppressionLLExtension.xcframework; sourceTree = "<group>"; };
-		990BBF118424B0BEDDB02580F78DB747 /* FTNotificationIndicator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTNotificationIndicator.m; path = FTIndicator/FTNotificationIndicator/FTNotificationIndicator.m; sourceTree = "<group>"; };
-		99180DA403B2C8DF610EE0D53F11B51A /* DPDUIView+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DPDUIView+Extension.swift"; path = "DropDown/helpers/DPDUIView+Extension.swift"; sourceTree = "<group>"; };
+		92BA85399A5799AB92D31DE5AF079EA8 /* RangeSeekSlider.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RangeSeekSlider.release.xcconfig; sourceTree = "<group>"; };
+		983EA3D77EF7B0A26DB07C17BF86266C /* AgoraRtcEngine_iOS-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "AgoraRtcEngine_iOS-xcframeworks.sh"; sourceTree = "<group>"; };
 		9A6A872B5A57F0829ED105CBC6570AE6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		9AFC90517B4E4A3AF1DC201732897AF4 /* ScalingCarouselCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScalingCarouselCell.swift; path = Sources/ScalingCarousel/ScalingCarouselCell.swift; sourceTree = "<group>"; };
 		9B6725B782188F18CB76A740433F14E4 /* DropDown */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DropDown; path = DropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9CD6491470B6ADA3AFD7C3B01FC2E622 /* Pods-DesynatAdmin-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DesynatAdmin-Info.plist"; sourceTree = "<group>"; };
+		9C9501BE275E9CF51C5C57F1EEC69F94 /* SwiftyGifManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftyGifManager.swift; path = SwiftyGif/SwiftyGifManager.swift; sourceTree = "<group>"; };
+		9D00BD9951A4F206ED3D131AB7938CED /* DPDConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDConstants.swift; path = DropDown/helpers/DPDConstants.swift; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9E8DB22F26DF2C2F0E1204E19E974E32 /* RangeSeekSlider-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RangeSeekSlider-umbrella.h"; sourceTree = "<group>"; };
-		A2440A65A1EAC283492783917119A15A /* Pods-DesynatAdmin-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DesynatAdmin-acknowledgements.markdown"; sourceTree = "<group>"; };
-		A38FA20E1E0E621777032737C8E22C51 /* FTNotificationIndicator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTNotificationIndicator.h; path = FTIndicator/FTNotificationIndicator/FTNotificationIndicator.h; sourceTree = "<group>"; };
+		9F9AB90FB8B26AC314CC2CE941BFD2A8 /* Pods-DesynatAdmin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DesynatAdmin.debug.xcconfig"; sourceTree = "<group>"; };
+		A0016FBF382331CD98CF266FF4626C87 /* Button.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Button.html; path = "SDK/v2/MFSDK.xcframework/ios-arm64/MFSDK.framework/SDKResources.bundle/Button.html"; sourceTree = "<group>"; };
+		A19276FD01781C7C0735863FFC700E80 /* MyFatoorah-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "MyFatoorah-xcframeworks.sh"; sourceTree = "<group>"; };
+		A1C143ADAC11B92F37FC36213416CAF5 /* AgoraAiNoiseSuppressionLLExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraAiNoiseSuppressionLLExtension.xcframework; sourceTree = "<group>"; };
+		A35BEF87A2862928EF9FA7BF72FF6F21 /* video_dec.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = video_dec.xcframework; sourceTree = "<group>"; };
+		A448E78C9FCCF395AE6FE3939B9BE2D7 /* AgoraContentInspectExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraContentInspectExtension.xcframework; sourceTree = "<group>"; };
 		A5FF86815A172B2D5FBB33528EB522DF /* Pods-DesynatAdmin */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-DesynatAdmin"; path = Pods_DesynatAdmin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB0477FE8E9F88EF032BAC48C357C940 /* AgoraFaceDetectionExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraFaceDetectionExtension.xcframework; sourceTree = "<group>"; };
-		AB0B9715C7413ED4E93E31F6F018DC0B /* AgoraInfra_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AgoraInfra_iOS.debug.xcconfig; sourceTree = "<group>"; };
-		ADD06F8C764BF06BF29ACF0A42E10ACB /* FTProgressIndicator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTProgressIndicator.h; path = FTIndicator/FTProgressIndicator/FTProgressIndicator.h; sourceTree = "<group>"; };
-		AE9BC66EBF3B853C8C6561BB9E8E165D /* SwiftyGif-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyGif-umbrella.h"; sourceTree = "<group>"; };
-		B43A53154FA27DF265A6CC28EC5E6495 /* FTIndicator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTIndicator.m; path = FTIndicator/FTIndicator.m; sourceTree = "<group>"; };
-		B97B12EFB4400A1AD180C797BE7CD633 /* Pods-DesynatAdmin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DesynatAdmin.debug.xcconfig"; sourceTree = "<group>"; };
-		B989C880B3307501FB88C5994CE8C16C /* ScalingCarousel-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ScalingCarousel-umbrella.h"; sourceTree = "<group>"; };
+		AD5DF8991947294FF686D3B09542EAC1 /* NSImageView+SwiftyGif.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSImageView+SwiftyGif.swift"; path = "SwiftyGif/NSImageView+SwiftyGif.swift"; sourceTree = "<group>"; };
+		AE82D721ACCC35839F269D820932357B /* DropDown+Appearance.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DropDown+Appearance.swift"; path = "DropDown/src/DropDown+Appearance.swift"; sourceTree = "<group>"; };
+		AF86603E7C60DE8A263AE7E30364F4D7 /* AgoraAiNoiseSuppressionExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraAiNoiseSuppressionExtension.xcframework; sourceTree = "<group>"; };
+		B1599103A1D861E6314070835F6E2F0F /* DropDown-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "DropDown-Info.plist"; sourceTree = "<group>"; };
+		BF4973EBF1087CADB0B86EEB3DFC351F /* RangeSeekSlider-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RangeSeekSlider-umbrella.h"; sourceTree = "<group>"; };
 		C027A7405E856E45431E9E1E7913015F /* RangeSeekSlider */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RangeSeekSlider; path = RangeSeekSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C5FC8C48268F6B722906614F9C793DFE /* RangeSeekSliderDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RangeSeekSliderDelegate.swift; path = Sources/RangeSeekSliderDelegate.swift; sourceTree = "<group>"; };
+		C1B1C4E47B895DE17BE12E2BF035A104 /* ScalingCarousel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ScalingCarousel.modulemap; sourceTree = "<group>"; };
+		C1F1419061FAE4448052FD78A651D5B5 /* ObjcAssociatedWeakObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObjcAssociatedWeakObject.swift; path = SwiftyGif/ObjcAssociatedWeakObject.swift; sourceTree = "<group>"; };
+		C3EE5B833B5E07274E66E23938F2DBEA /* FTIndicator-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "FTIndicator-Info.plist"; sourceTree = "<group>"; };
+		C4E4F8F89866300DEC17FF12A16556F7 /* AgoraSpatialAudioExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraSpatialAudioExtension.xcframework; sourceTree = "<group>"; };
+		C8619E3E92ABA984F1B47B4338CD98AE /* SwiftyGif.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SwiftyGif.modulemap; sourceTree = "<group>"; };
 		CC9121AC5A6A67555773F3AF643E8787 /* FTIndicator */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FTIndicator; path = FTIndicator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD37D9D74ADCFB2168560C19C4D4E815 /* AgoraSpatialAudioExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraSpatialAudioExtension.xcframework; sourceTree = "<group>"; };
-		D06122C102DC9F77060D1D515EEB77A5 /* FTIndicator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FTIndicator.debug.xcconfig; sourceTree = "<group>"; };
-		D082D15D6FE0ABCF1D430D6912919B23 /* Pods-DesynatAdmin.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-DesynatAdmin.modulemap"; sourceTree = "<group>"; };
-		D0EF22EE2D5DE87E1218392EDD84D84D /* AgoraRtcEngine_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AgoraRtcEngine_iOS.release.xcconfig; sourceTree = "<group>"; };
-		D32185DCFDBE2B6E949CD162225F7931 /* ScalingCarousel-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ScalingCarousel-Info.plist"; sourceTree = "<group>"; };
-		D9F0B99379816AA44A23BA70CAAEC96B /* FTIndicator-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FTIndicator-dummy.m"; sourceTree = "<group>"; };
-		DBC6163598E24DFE39081531E593FD27 /* ScalingCarousel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ScalingCarousel.release.xcconfig; sourceTree = "<group>"; };
-		DCD4BA531E3E826C91AB885D5B5577CC /* AgoraVideoSegmentationExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraVideoSegmentationExtension.xcframework; sourceTree = "<group>"; };
-		DDC3EC0CE9B48EB4A058AC267E46DB04 /* FTIndicator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTIndicator.h; path = FTIndicator/FTIndicator.h; sourceTree = "<group>"; };
-		E6E817C8FF0A613E5085F753D87CA070 /* AgoraReplayKitExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraReplayKitExtension.xcframework; sourceTree = "<group>"; };
-		E734851C26062FE75CB27C2055857176 /* ScalingCarousel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ScalingCarousel-prefix.pch"; sourceTree = "<group>"; };
-		E7FD47755729E657778F5655F562CFD4 /* DropDownCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = DropDownCell.xib; path = DropDown/resources/DropDownCell.xib; sourceTree = "<group>"; };
-		EA30E739CECA3EF3B996BB582766EBD6 /* ScalingCarousel-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ScalingCarousel-dummy.m"; sourceTree = "<group>"; };
-		EA717882756AEE20C10614A22DC68352 /* RangeSeekSlider.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = RangeSeekSlider.modulemap; sourceTree = "<group>"; };
-		EBD64DB7F8F8A7E53B9B78FDBA7E8959 /* DropDown+Appearance.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DropDown+Appearance.swift"; path = "DropDown/src/DropDown+Appearance.swift"; sourceTree = "<group>"; };
-		EDE89FD4B8B89EAF90C7FB6604FBE9D2 /* DropDownCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DropDownCell.swift; path = DropDown/src/DropDownCell.swift; sourceTree = "<group>"; };
-		EEF2C194EE876BC78BF7CD5EBF58F361 /* video_dec.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = video_dec.xcframework; sourceTree = "<group>"; };
-		F056C1326CF5F642B7CA88175457308F /* DropDown.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = DropDown.modulemap; sourceTree = "<group>"; };
-		F36A3A86033E83CCD0A2CE6836DCE792 /* ObjcAssociatedWeakObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObjcAssociatedWeakObject.swift; path = SwiftyGif/ObjcAssociatedWeakObject.swift; sourceTree = "<group>"; };
-		F869C564E7E466B9ABE9AFBEF82FD02C /* AgoraClearVisionExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraClearVisionExtension.xcframework; sourceTree = "<group>"; };
-		F8884A8F41209EA5AEA71DA80FCF1BF5 /* DropDown-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DropDown-prefix.pch"; sourceTree = "<group>"; };
-		FEACF5CFF6FF7183B3DAD2D3889DB3E6 /* SwiftyGif.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SwiftyGif.h; path = SwiftyGif/SwiftyGif.h; sourceTree = "<group>"; };
+		CF9955FCB5D1CE456FE3229B6B2DB54D /* UIImage+SwiftyGif.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImage+SwiftyGif.swift"; path = "SwiftyGif/UIImage+SwiftyGif.swift"; sourceTree = "<group>"; };
+		D0F1E58EEDA69A9F03CC6515CACA33C3 /* RangeSeekSlider.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = RangeSeekSlider.modulemap; sourceTree = "<group>"; };
+		D4BA14F53AB3669EF23A0C2A5351492A /* video_enc.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = video_enc.xcframework; sourceTree = "<group>"; };
+		D70BA20EE111B830BF6943C315CB202C /* AgoraSoundTouch.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraSoundTouch.xcframework; sourceTree = "<group>"; };
+		D72A81DDB8DCA60D4FD2DEE13A7754AF /* MFSDK.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; name = MFSDK.xcframework; path = SDK/v2/MFSDK.xcframework; sourceTree = "<group>"; };
+		D79DF93A6925EE4BFD02A171D14F134D /* FTIndicator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTIndicator.m; path = FTIndicator/FTIndicator.m; sourceTree = "<group>"; };
+		D7FE405D943B92B458C53B59AD398704 /* RangeSeekSlider.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RangeSeekSlider.debug.xcconfig; sourceTree = "<group>"; };
+		D837C770CEE4A373F2BCF0677E92F204 /* AgoraReplayKitExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraReplayKitExtension.xcframework; sourceTree = "<group>"; };
+		DDC9FE4F7EC674052AB78554E0EBF0A3 /* FTToastIndicator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTToastIndicator.m; path = FTIndicator/FTToastIndicator/FTToastIndicator.m; sourceTree = "<group>"; };
+		E037C33F88603A378588D1257D62FE78 /* DropDown-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DropDown-dummy.m"; sourceTree = "<group>"; };
+		E1CBE67C48C94166436B9D670BD15F16 /* Pods-DesynatAdmin-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DesynatAdmin-acknowledgements.plist"; sourceTree = "<group>"; };
+		E52FC55DD174661E194728520F9E9649 /* DropDownCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DropDownCell.swift; path = DropDown/src/DropDownCell.swift; sourceTree = "<group>"; };
+		E99311D4089B822FA8AE7E1DC2413290 /* FTIndicator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FTIndicator.debug.xcconfig; sourceTree = "<group>"; };
+		E997D2C536AB62BDAD0A63E13790A265 /* AgoraInfra_iOS-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "AgoraInfra_iOS-xcframeworks.sh"; sourceTree = "<group>"; };
+		E9F0B83F642F2445432B1137314E78C0 /* ScalingCarousel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ScalingCarousel-prefix.pch"; sourceTree = "<group>"; };
+		EA15EFDEAC181D25131085ED28AC649C /* AgoraRtcEngine_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AgoraRtcEngine_iOS.release.xcconfig; sourceTree = "<group>"; };
+		EBBE567F252157CF3C72D3024BBD9DED /* FTProgressIndicator.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = FTProgressIndicator.bundle; path = FTIndicator/FTProgressIndicator/FTProgressIndicator.bundle; sourceTree = "<group>"; };
+		ED9BF25A02A4F91E418637536CF1B161 /* AgoraFaceDetectionExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraFaceDetectionExtension.xcframework; sourceTree = "<group>"; };
+		F3811328A253724534E9C4B74928D659 /* apple-pay.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "apple-pay.png"; path = "SDK/v2/MFSDK.xcframework/ios-arm64/MFSDK.framework/SDKResources.bundle/apple-pay.png"; sourceTree = "<group>"; };
+		F3AAA9E3C4EEFE1129A05F7F6E79B415 /* ScalingCarouselView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScalingCarouselView.swift; path = Sources/ScalingCarousel/ScalingCarouselView.swift; sourceTree = "<group>"; };
+		F8CAA5FAA62D819C3AB7BB802A07A542 /* MyFatoorah-MyFatoorah */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "MyFatoorah-MyFatoorah"; path = MyFatoorah.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9735258BBB3CC38707BF192039564AE /* DropDown.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DropDown.debug.xcconfig; sourceTree = "<group>"; };
+		FB16041BE3BD4564A85FA88A5DE35AFC /* AgoraVideoEncoderExtension.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = AgoraVideoEncoderExtension.xcframework; sourceTree = "<group>"; };
+		FD7CF4032A4EF57C1CEBBFD6096D48C6 /* Pods-DesynatAdmin-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DesynatAdmin-resources.sh"; sourceTree = "<group>"; };
+		FDC52D945F29F33D2DABB02F94AB1301 /* FTIndicator-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FTIndicator-umbrella.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		0234D9B31D5F350CB36A22360206A8B0 /* Frameworks */ = {
+		0E639DAD9AFEF99CA9599A64A63F25B7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DB0DF8253CC0BCCB8A3C3380D8FF0F6 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +349,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AB7BEC661EA699F0AA1196C3BE36CF70 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B1AD4AE119250DE068268EFE0A0A8DA4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -318,23 +364,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C9145E0B21390631162CEDBDEFFBEC69 /* Frameworks */ = {
+		C706EACDBAB186C44C905BFE060CFD31 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F4C1E872A283192888BA0C6D4A74797 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0030C7E884D39B936F762F8E521F9F15 /* ReplayKit */ = {
+		0158969A8976337BB20FDE9700C0E9B8 /* VideoCodecEnc */ = {
 			isa = PBXGroup;
 			children = (
-				1292DC7F7DAC6175F90F5F3DBCC3E3B9 /* Frameworks */,
+				79F15631A4E184D2D57CEF06239FABB5 /* Frameworks */,
 			);
-			name = ReplayKit;
+			name = VideoCodecEnc;
 			sourceTree = "<group>";
 		};
 		03C5C200A0787E300053CFA8F53CA094 /* Frameworks */ = {
@@ -345,133 +390,105 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		0527E9C0E8A1AF31043620775216FC60 /* Frameworks */ = {
+		08EF987B3DCD1D716C02AE22C2C8164D /* AgoraInfra_iOS */ = {
 			isa = PBXGroup;
 			children = (
-				146A0C9B9AFAE24793E9B434BD6F21B3 /* AgoraAiEchoCancellationExtension.xcframework */,
+				AA97D8606B209B8D4A5C05AF3A69977C /* Frameworks */,
+				BFDBBD4BA046FE6D21A8F8F482FB01A9 /* Support Files */,
+			);
+			name = AgoraInfra_iOS;
+			path = AgoraInfra_iOS;
+			sourceTree = "<group>";
+		};
+		0B25FFD0B3C5DCDA2BD21318D5BBC719 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				57C834CB9E8A3753DF6D5CD954F45D47 /* DropDown.modulemap */,
+				E037C33F88603A378588D1257D62FE78 /* DropDown-dummy.m */,
+				B1599103A1D861E6314070835F6E2F0F /* DropDown-Info.plist */,
+				5E64EF94818E13C103DD8462E465CDE3 /* DropDown-prefix.pch */,
+				5854799E4823574B40CFA718CD8754D3 /* DropDown-umbrella.h */,
+				F9735258BBB3CC38707BF192039564AE /* DropDown.debug.xcconfig */,
+				12BBED9E9C352C294931527ADC7065B8 /* DropDown.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/DropDown";
+			sourceTree = "<group>";
+		};
+		11541615023A33756AAF60C97A71BFFB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				03A52CD82F4A228D39EEE58BAE02D740 /* AgoraAiEchoCancellationLLExtension.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		09E8907DF593BC9971C271889BC42094 /* FTProgressIndicator */ = {
+		11E8C941F4581C9E043CD5136D09FF42 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AA21FA08106D86CCCDC69EB4E118D7BF /* Resources */,
+				A448E78C9FCCF395AE6FE3939B9BE2D7 /* AgoraContentInspectExtension.xcframework */,
 			);
-			name = FTProgressIndicator;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		0D1628FF12AE806164B690DAFF57F19E /* SpatialAudio */ = {
+		1AFAFD9E41376F46996705A4D7EAE2C2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4F58D1B7AE70D2F2642908F9FC9DF888 /* Frameworks */,
+				07FCF4CAF6A5BEE5966FF014A964A863 /* Agorafdkaac.xcframework */,
+				018E64A1BBA0318BA410D0D3E6ACC9F7 /* Agoraffmpeg.xcframework */,
+				02A7CA9C687925BF748CF1BD621D0457 /* AgoraRtcKit.xcframework */,
+				D70BA20EE111B830BF6943C315CB202C /* AgoraSoundTouch.xcframework */,
+				A35BEF87A2862928EF9FA7BF72FF6F21 /* video_dec.xcframework */,
 			);
-			name = SpatialAudio;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		11A729B183374E3DFF5A5542322B3D56 /* Resources */ = {
+		1EF9020CB2FAEEC747094EE44BFF3098 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				66DF23B7C6E25C299ECB840B29E165D9 /* PrivacyInfo.xcprivacy */,
+				D0F1E58EEDA69A9F03CC6515CACA33C3 /* RangeSeekSlider.modulemap */,
+				66EC8DF7577D01E57A592284B8CCE626 /* RangeSeekSlider-dummy.m */,
+				72CA13E666A4A67D13F6F516AB3BC753 /* RangeSeekSlider-Info.plist */,
+				3FEC71685DD137E8C5806A23D98080B9 /* RangeSeekSlider-prefix.pch */,
+				BF4973EBF1087CADB0B86EEB3DFC351F /* RangeSeekSlider-umbrella.h */,
+				D7FE405D943B92B458C53B59AD398704 /* RangeSeekSlider.debug.xcconfig */,
+				92BA85399A5799AB92D31DE5AF079EA8 /* RangeSeekSlider.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/RangeSeekSlider";
+			sourceTree = "<group>";
+		};
+		2E9E38098137B4E5683C3A241B216711 /* AIAEC */ = {
+			isa = PBXGroup;
+			children = (
+				7C91F3A8E6A0179E3FB8F26ABA733240 /* Frameworks */,
+			);
+			name = AIAEC;
+			sourceTree = "<group>";
+		};
+		34C1FEC77C89ED4193EFEEC3F17EBFC0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F3811328A253724534E9C4B74928D659 /* apple-pay.png */,
+				A0016FBF382331CD98CF266FF4626C87 /* Button.html */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		1292DC7F7DAC6175F90F5F3DBCC3E3B9 /* Frameworks */ = {
+		3DD8E4C0F7CD318AE05913A416410B95 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E6E817C8FF0A613E5085F753D87CA070 /* AgoraReplayKitExtension.xcframework */,
+				EBBE567F252157CF3C72D3024BBD9DED /* FTProgressIndicator.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		406487F9C143B7845158F13E0FBFAD0F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				07063DD652011B1BDC02AC5F46B2845E /* AgoraFaceCaptureExtension.xcframework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		1B4BBB1DF1225C3D4B463B7089CFC3C2 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				0FCBEF48249F61578C5709EA41B0BDD7 /* AgoraLipSyncExtension.xcframework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		22FE674D708703C92738059DF43B9277 /* FTIndicator */ = {
-			isa = PBXGroup;
-			children = (
-				DDC3EC0CE9B48EB4A058AC267E46DB04 /* FTIndicator.h */,
-				B43A53154FA27DF265A6CC28EC5E6495 /* FTIndicator.m */,
-				A38FA20E1E0E621777032737C8E22C51 /* FTNotificationIndicator.h */,
-				990BBF118424B0BEDDB02580F78DB747 /* FTNotificationIndicator.m */,
-				ADD06F8C764BF06BF29ACF0A42E10ACB /* FTProgressIndicator.h */,
-				2EA799F3EC1BD3F5A5683BD864F70377 /* FTProgressIndicator.m */,
-				1A798C2012C1CAA2CBFBB76A42AB02CC /* FTToastIndicator.h */,
-				145EDF4DDEB8FD36B03F306CF2F9EC29 /* FTToastIndicator.m */,
-				FC912CCE648F73DF7F3F34A5DA89B87F /* FTNotificationIndicator */,
-				09E8907DF593BC9971C271889BC42094 /* FTProgressIndicator */,
-				F90B49AB81FF27E47DF4DD895E3A51C8 /* FTToastIndicator */,
-				863C8CD35A582F199584D7ABEC87C937 /* Resources */,
-				3C7EF0D3BE1A2DA39C8DCB2711F6051A /* Support Files */,
-			);
-			name = FTIndicator;
-			path = FTIndicator;
-			sourceTree = "<group>";
-		};
-		2D110021B4972B26E6639694827D7C34 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				984BAD72969882FE483C5CDC3476E740 /* AgoraAiNoiseSuppressionLLExtension.xcframework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		3749EC3548048A343387931B0D002DFE /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				506072867C5B01B553996601D0389018 /* AgoraInfra_iOS-xcframeworks.sh */,
-				AB0B9715C7413ED4E93E31F6F018DC0B /* AgoraInfra_iOS.debug.xcconfig */,
-				5CBCD51F7598F0D3FBA5DDC7C6911494 /* AgoraInfra_iOS.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/AgoraInfra_iOS";
-			sourceTree = "<group>";
-		};
-		3A41CFD2F84369E0E72C3A72660EDDEB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9B6725B782188F18CB76A740433F14E4 /* DropDown */,
-				CC9121AC5A6A67555773F3AF643E8787 /* FTIndicator */,
-				A5FF86815A172B2D5FBB33528EB522DF /* Pods-DesynatAdmin */,
-				C027A7405E856E45431E9E1E7913015F /* RangeSeekSlider */,
-				24E96286E41476A4E7F4D8742B9B16D7 /* ScalingCarousel */,
-				7AD67EFB9A7864151301DC2890207AA2 /* SwiftyGif */,
-				0A37DE9A55F6CEA1AF18BDEF878BF1F5 /* SwiftyGif-SwiftyGif */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		3C7EF0D3BE1A2DA39C8DCB2711F6051A /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				94D6793B3ED88E446F9FB5AD36DB9EFB /* FTIndicator.modulemap */,
-				D9F0B99379816AA44A23BA70CAAEC96B /* FTIndicator-dummy.m */,
-				558827EBFCC6416C0845ECE6C9996997 /* FTIndicator-Info.plist */,
-				00A1DFFFC4DA7912BFBE8C3043AC8E79 /* FTIndicator-prefix.pch */,
-				6F583F11CE164246F1AF3A16FD40612E /* FTIndicator-umbrella.h */,
-				D06122C102DC9F77060D1D515EEB77A5 /* FTIndicator.debug.xcconfig */,
-				76564AEEFD3D15E6D5175D880581A4CD /* FTIndicator.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/FTIndicator";
-			sourceTree = "<group>";
-		};
-		45D1E4D1A75C927FF0EFDF96190685FE /* RangeSeekSlider */ = {
-			isa = PBXGroup;
-			children = (
-				70E28CA51B4595BC724F621B5EAC9B8B /* RangeSeekSlider.swift */,
-				C5FC8C48268F6B722906614F9C793DFE /* RangeSeekSliderDelegate.swift */,
-				26C5FC3866488932412698202B874B9D /* TapticEngine.swift */,
-				B244C59B8FFE75C19A5DB8152CAA3049 /* Support Files */,
-			);
-			name = RangeSeekSlider;
-			path = RangeSeekSlider;
 			sourceTree = "<group>";
 		};
 		46931A4A35EF02235D765EC23D907607 /* iOS */ = {
@@ -484,304 +501,432 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		4D5DFAB786550C9CCCFA9877BAD34B1F /* Frameworks */ = {
+		49852EE5D17DB06A3403BA1F0C9064DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5788F58009F7F8DFAA852484730FB18E /* AgoraAudioBeautyExtension.xcframework */,
+				741E5FDF98BA0C348A5F6D28F4A13B0E /* AgoraVideoSegmentationExtension.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4F58D1B7AE70D2F2642908F9FC9DF888 /* Frameworks */ = {
+		4A5B4B5BC2EE1A384C31E35A44DA6FED /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CD37D9D74ADCFB2168560C19C4D4E815 /* AgoraSpatialAudioExtension.xcframework */,
+				9B6725B782188F18CB76A740433F14E4 /* DropDown */,
+				CC9121AC5A6A67555773F3AF643E8787 /* FTIndicator */,
+				F8CAA5FAA62D819C3AB7BB802A07A542 /* MyFatoorah-MyFatoorah */,
+				A5FF86815A172B2D5FBB33528EB522DF /* Pods-DesynatAdmin */,
+				C027A7405E856E45431E9E1E7913015F /* RangeSeekSlider */,
+				24E96286E41476A4E7F4D8742B9B16D7 /* ScalingCarousel */,
+				7AD67EFB9A7864151301DC2890207AA2 /* SwiftyGif */,
+				0A37DE9A55F6CEA1AF18BDEF878BF1F5 /* SwiftyGif-SwiftyGif */,
 			);
-			name = Frameworks;
+			name = Products;
 			sourceTree = "<group>";
 		};
-		526AC2E1D7FA783705B00CB6DC33583A /* Frameworks */ = {
+		4A9233B5E9A0E12B098E11348CF408AA /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				94AAC17825621822DEDA8CC232DDA142 /* AgoraAiEchoCancellationLLExtension.xcframework */,
+				A19276FD01781C7C0735863FFC700E80 /* MyFatoorah-xcframeworks.sh */,
+				0CBD373CFBF8733E7A6700C89272D23F /* MyFatoorah.debug.xcconfig */,
+				6B7D9E763AC503E007653478E6401D57 /* MyFatoorah.release.xcconfig */,
+				1535EEDE1F05630221A21B7DD1CDC3AA /* ResourceBundle-MyFatoorah-MyFatoorah-Info.plist */,
 			);
-			name = Frameworks;
+			name = "Support Files";
+			path = "../Target Support Files/MyFatoorah";
 			sourceTree = "<group>";
 		};
-		53B54B9AEBC740B9E5DACCC984DB4CFC /* Frameworks */ = {
+		4C60649646CD3ECFEF13D655B01E9FCE /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				93C89F2CFB8E86B24E2AC08302C20CE9 /* AgoraVideoAv1EncoderExtension.xcframework */,
+				C1B1C4E47B895DE17BE12E2BF035A104 /* ScalingCarousel.modulemap */,
+				0FE0A486380589817E4ADEC29ADE1797 /* ScalingCarousel-dummy.m */,
+				4747FF1B445DE80E60164E62C5188E46 /* ScalingCarousel-Info.plist */,
+				E9F0B83F642F2445432B1137314E78C0 /* ScalingCarousel-prefix.pch */,
+				89958CA14A8A7064CA06A7AE38C54F37 /* ScalingCarousel-umbrella.h */,
+				0BEE6F6074D9DAF5A445D3F1483682D8 /* ScalingCarousel.debug.xcconfig */,
+				2DA3A13C4466E903F6F49C9714BF9FA9 /* ScalingCarousel.release.xcconfig */,
 			);
-			name = Frameworks;
+			name = "Support Files";
+			path = "../Target Support Files/ScalingCarousel";
 			sourceTree = "<group>";
 		};
-		67457073D1272124A2B9453A887A0B25 /* Targets Support Files */ = {
+		4F15C86FEF6EF692FFFC75DF365C48CD /* VQA */ = {
 			isa = PBXGroup;
 			children = (
-				CEDE88C77DF04E58D79B79B77E8FD0BB /* Pods-DesynatAdmin */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		6B4B96E600DDC0A65A5ED7E3C7508271 /* FaceDetection */ = {
-			isa = PBXGroup;
-			children = (
-				F8999AA0ED7335B126D3E7BC0AC00162 /* Frameworks */,
-			);
-			name = FaceDetection;
-			sourceTree = "<group>";
-		};
-		6C465F832F9D142BE292A6FE9B7A2061 /* VQA */ = {
-			isa = PBXGroup;
-			children = (
-				8AE316102391D3C4836CD083D5140FF8 /* Frameworks */,
+				C2133D01C5F8E0F94DECDB59DB204797 /* Frameworks */,
 			);
 			name = VQA;
 			sourceTree = "<group>";
 		};
-		704727F5FBDC394418EBD4E1660C3201 /* Frameworks */ = {
+		5A078BBB25C804C4F9DF310E5BED1B8D /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				62B71F34377DC43B96D7CE7FD8620556 /* AgoraContentInspectExtension.xcframework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		76615CC9E21267E981507820D8569678 /* AIAEC */ = {
-			isa = PBXGroup;
-			children = (
-				0527E9C0E8A1AF31043620775216FC60 /* Frameworks */,
-			);
-			name = AIAEC;
-			sourceTree = "<group>";
-		};
-		78210A379DE5524712BAB4CD18A5D797 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				462AADE87A542EF4ED25D53C9B231B58 /* AgoraAiNoiseSuppressionExtension.xcframework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		78296428397478946E25FF6BE3465FE3 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				96C033DCAA16DA67054DC3F66D279FA3 /* aosl.xcframework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		7E9F5ACA2513F98D54CEEACAE39AC25E /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				31163107744EE5C732A34660EA3FCDC6 /* AgoraRtcEngine_iOS-xcframeworks.sh */,
-				74CBE0B5EE0C2F63D860D5BBE02E1A86 /* AgoraRtcEngine_iOS.debug.xcconfig */,
-				D0EF22EE2D5DE87E1218392EDD84D84D /* AgoraRtcEngine_iOS.release.xcconfig */,
+				983EA3D77EF7B0A26DB07C17BF86266C /* AgoraRtcEngine_iOS-xcframeworks.sh */,
+				85D83547F676E895DA2A96047E41A7B4 /* AgoraRtcEngine_iOS.debug.xcconfig */,
+				EA15EFDEAC181D25131085ED28AC649C /* AgoraRtcEngine_iOS.release.xcconfig */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/AgoraRtcEngine_iOS";
 			sourceTree = "<group>";
 		};
-		863C8CD35A582F199584D7ABEC87C937 /* Resources */ = {
+		5BFAF552C927FDBA0F8A379578C4BAC5 /* MyFatoorah */ = {
 			isa = PBXGroup;
 			children = (
-				5E81D94C9178D5A106A9CF0245E4C682 /* FTProgressIndicator.bundle */,
+				2B42A004F7F0610E6C978B3781DD238E /* MFSDK.h */,
+				529740B6072DF4372AE78912286ACAB9 /* MFSDK-Swift.h */,
+				F8D632EFDECAC5C40B5E45D88DE13D41 /* Frameworks */,
+				34C1FEC77C89ED4193EFEEC3F17EBFC0 /* Resources */,
+				4A9233B5E9A0E12B098E11348CF408AA /* Support Files */,
+			);
+			name = MyFatoorah;
+			path = MyFatoorah;
+			sourceTree = "<group>";
+		};
+		5D18A50CC982BB58DBD509B50BD7D9AA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		872726D12D05F9A82B6C7F0A32EED0F2 /* Frameworks */ = {
+		62988ED090293D690D40D7E9A83D440C /* RangeSeekSlider */ = {
 			isa = PBXGroup;
 			children = (
-				80C4463EBEFFB7A148D602500E6E3945 /* AgoraFaceCaptureExtension.xcframework */,
+				5402C2384BC50F557937914DA4C0873E /* RangeSeekSlider.swift */,
+				85AA96BCED181DB40A912BC5B121C2D1 /* RangeSeekSliderDelegate.swift */,
+				57012D07421F2015A96D45CD41EAE1C1 /* TapticEngine.swift */,
+				1EF9020CB2FAEEC747094EE44BFF3098 /* Support Files */,
+			);
+			name = RangeSeekSlider;
+			path = RangeSeekSlider;
+			sourceTree = "<group>";
+		};
+		6441AE8B5C879A29806818D94189AA5A /* FTToastIndicator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = FTToastIndicator;
+			sourceTree = "<group>";
+		};
+		6E590DC59279C8E6C0D163E7EDDDC1C2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0C25599B20C64DDA8B64F8BABBAE408A /* AgoraClearVisionExtension.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		8AE316102391D3C4836CD083D5140FF8 /* Frameworks */ = {
+		6FF624C5451F92E7F61589D6AF783A47 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				14D84EB5E7242F1FF28DBB4186D8D0DB /* AgoraVideoQualityAnalyzerExtension.xcframework */,
+				D837C770CEE4A373F2BCF0677E92F204 /* AgoraReplayKitExtension.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		8C2AE2B32F43CF47E2748FFBB1D2D8A3 /* AINS */ = {
+		73377F405BCF3DA2E26D2BD031360E60 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				78210A379DE5524712BAB4CD18A5D797 /* Frameworks */,
-			);
-			name = AINS;
-			sourceTree = "<group>";
-		};
-		8D871885227B5AFA3E97506513499600 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				F056C1326CF5F642B7CA88175457308F /* DropDown.modulemap */,
-				3C322E39C6838B88CE017498CF9A6346 /* DropDown-dummy.m */,
-				28C4057282CD7E54F8E4F1F12093D610 /* DropDown-Info.plist */,
-				F8884A8F41209EA5AEA71DA80FCF1BF5 /* DropDown-prefix.pch */,
-				7EE5A788FD3826B3734916616F7DFB88 /* DropDown-umbrella.h */,
-				95C549E84ADE3F08972DEA82B4308389 /* DropDown.debug.xcconfig */,
-				0A7F0F61A3EFD04A1DAC1CC614D0E437 /* DropDown.release.xcconfig */,
+				02B29824A928FA94E53A92A7B6A7C36A /* ResourceBundle-SwiftyGif-SwiftyGif-Info.plist */,
+				C8619E3E92ABA984F1B47B4338CD98AE /* SwiftyGif.modulemap */,
+				6CF3D865D4F833C73DF6B04ECAF7673E /* SwiftyGif-dummy.m */,
+				854677C49ADA1006BAEAA802EBB5D8F6 /* SwiftyGif-Info.plist */,
+				06D749477372E40635C5D0908ABFAF13 /* SwiftyGif-prefix.pch */,
+				8749CFCA0C90DC44AD575832403F523E /* SwiftyGif-umbrella.h */,
+				846259322D60B42FCC1CCC301386DB30 /* SwiftyGif.debug.xcconfig */,
+				68D2EFC55075D4F2B564DC7DC06C0463 /* SwiftyGif.release.xcconfig */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/DropDown";
+			path = "../Target Support Files/SwiftyGif";
 			sourceTree = "<group>";
 		};
-		8DCE4FD116F3A04D17E080365D0A98CB /* VirtualBackground */ = {
+		758B4EAFA5BCAEB18FB4B266DD855813 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EB6B51E4BC0E569894B3A08D6B898DF3 /* Frameworks */,
+				ED9BF25A02A4F91E418637536CF1B161 /* AgoraFaceDetectionExtension.xcframework */,
 			);
-			name = VirtualBackground;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		94A55557AB72C8CF510F74F25D7803D8 /* SwiftyGif */ = {
+		774FE51B40DFD72BD4A42B27DBFE38C0 /* FTIndicator */ = {
 			isa = PBXGroup;
 			children = (
-				1E7B9352D93416FE3B983AA129F5ED34 /* NSImage+SwiftyGif.swift */,
-				1D4C59A85EB057B3F3C59392A0CEC467 /* NSImageView+SwiftyGif.swift */,
-				F36A3A86033E83CCD0A2CE6836DCE792 /* ObjcAssociatedWeakObject.swift */,
-				FEACF5CFF6FF7183B3DAD2D3889DB3E6 /* SwiftyGif.h */,
-				1831E1E8048D8BCD6ADC0D01D26268CE /* SwiftyGifManager.swift */,
-				2F334E7A70F55E1387D219CC0678FFB0 /* UIImage+SwiftyGif.swift */,
-				97F58EDA98B2ADC37A1798363F4444D5 /* UIImageView+SwiftyGif.swift */,
-				11A729B183374E3DFF5A5542322B3D56 /* Resources */,
-				DFE758E3FC9BFA196DF0BF4961DBB8DD /* Support Files */,
+				78A9B558D52C5B5E12F6319B2788B520 /* FTIndicator.h */,
+				D79DF93A6925EE4BFD02A171D14F134D /* FTIndicator.m */,
+				081D91F8268E4E29E7B2DF2B422DB184 /* FTNotificationIndicator.h */,
+				4FDFC145903E01D17D1F259087EA5C96 /* FTNotificationIndicator.m */,
+				59CF04C4A0512D93FA938C48CC223D2E /* FTProgressIndicator.h */,
+				02CD40AD245E54CCD9F56AF0E6DB55E3 /* FTProgressIndicator.m */,
+				04512918A3A18104436209942D373B0D /* FTToastIndicator.h */,
+				DDC9FE4F7EC674052AB78554E0EBF0A3 /* FTToastIndicator.m */,
+				E9530D0CBCC2C23306B894A0D6410E51 /* FTNotificationIndicator */,
+				7B6DC3EF6DACDF2E0D5E35A2485DC193 /* FTProgressIndicator */,
+				6441AE8B5C879A29806818D94189AA5A /* FTToastIndicator */,
+				3DD8E4C0F7CD318AE05913A416410B95 /* Resources */,
+				E419B791C30A90A0E28D05D4C7939ED8 /* Support Files */,
 			);
-			name = SwiftyGif;
-			path = SwiftyGif;
+			name = FTIndicator;
+			path = FTIndicator;
 			sourceTree = "<group>";
 		};
-		95C50BFD1B9FDB59CA5926873E974797 /* AudioBeauty */ = {
+		7784D66F6C103B33602A2DBC483AAB67 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4D5DFAB786550C9CCCFA9877BAD34B1F /* Frameworks */,
+				80E8EC22E253116755CB5876EBFECB9B /* PrivacyInfo.xcprivacy */,
 			);
-			name = AudioBeauty;
+			name = Resources;
 			sourceTree = "<group>";
 		};
-		98DA6E732B9C326332A1A93475B69B09 /* ScalingCarousel */ = {
+		79F15631A4E184D2D57CEF06239FABB5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				87383BB9EEF2D8EA4EFA26EC20EA1ABD /* ScalingCarouselCell.swift */,
-				309F3636B397180F815C15E423FE17E6 /* ScalingCarouselLayout.swift */,
-				4B63EDAEBEE1239E7F72E56C3E1BD4FB /* ScalingCarouselView.swift */,
-				EC49B973DD4DEE2D0105B57D85BB20B8 /* Support Files */,
+				FB16041BE3BD4564A85FA88A5DE35AFC /* AgoraVideoEncoderExtension.xcframework */,
+				D4BA14F53AB3669EF23A0C2A5351492A /* video_enc.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7A3DA7E164258C398AEE8B3809EB07B3 /* ClearVision */ = {
+			isa = PBXGroup;
+			children = (
+				6E590DC59279C8E6C0D163E7EDDDC1C2 /* Frameworks */,
+			);
+			name = ClearVision;
+			sourceTree = "<group>";
+		};
+		7AA533C0CADB821C321E53580A685B43 /* LipSync */ = {
+			isa = PBXGroup;
+			children = (
+				99ACB2370A6363E368B3CF03557920F1 /* Frameworks */,
+			);
+			name = LipSync;
+			sourceTree = "<group>";
+		};
+		7B6DC3EF6DACDF2E0D5E35A2485DC193 /* FTProgressIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				5D18A50CC982BB58DBD509B50BD7D9AA /* Resources */,
+			);
+			name = FTProgressIndicator;
+			sourceTree = "<group>";
+		};
+		7BAFB564018780D62955997C01D2D513 /* AgoraRtcEngine_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				2E9E38098137B4E5683C3A241B216711 /* AIAEC */,
+				E5B43A9A6B848624B609A783AF36A07B /* AIAECLL */,
+				862C8D0FA60642AFC693C9A8E3203CEF /* AINS */,
+				9D188A11C9CAF09B7570EAB3A29C0B0C /* AINSLL */,
+				95477BFB1D3B0A3156BD926BBE5D90F3 /* AudioBeauty */,
+				7A3DA7E164258C398AEE8B3809EB07B3 /* ClearVision */,
+				E256C5FBBD37A6AD425543EAF66804A3 /* ContentInspect */,
+				82C0B4F41F6CCF0E8C809A22597E59E1 /* FaceCapture */,
+				C510FEDE55D47097B55B4190B64D1210 /* FaceDetection */,
+				7AA533C0CADB821C321E53580A685B43 /* LipSync */,
+				8D9BBED626F80E2810F6D7236585AC7C /* ReplayKit */,
+				8C50396C35964832CD0442FF46C92137 /* RtcBasic */,
+				C59B772696B1C622DA9D22DDE0E0D30A /* SpatialAudio */,
+				5A078BBB25C804C4F9DF310E5BED1B8D /* Support Files */,
+				A42F660F2B6ED664666455E50864A3BF /* VideoAv1CodecEnc */,
+				0158969A8976337BB20FDE9700C0E9B8 /* VideoCodecEnc */,
+				E3C7741C217FCE7CD5350AE6382157C1 /* VirtualBackground */,
+				4F15C86FEF6EF692FFFC75DF365C48CD /* VQA */,
+			);
+			name = AgoraRtcEngine_iOS;
+			path = AgoraRtcEngine_iOS;
+			sourceTree = "<group>";
+		};
+		7C91F3A8E6A0179E3FB8F26ABA733240 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				67CCDAE14AF970480E36A366BA536A06 /* AgoraAiEchoCancellationExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7D6960A58DDE09229A3CA0376E9F2226 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				F807DABDF607F58414BB10042ED9AF7D /* Pods-DesynatAdmin */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		7E4BE2A099C2A8CBBF568CE57C7F6120 /* ScalingCarousel */ = {
+			isa = PBXGroup;
+			children = (
+				9AFC90517B4E4A3AF1DC201732897AF4 /* ScalingCarouselCell.swift */,
+				1A97645C5E65E81041A3B4651A60D6DB /* ScalingCarouselLayout.swift */,
+				F3AAA9E3C4EEFE1129A05F7F6E79B415 /* ScalingCarouselView.swift */,
+				4C60649646CD3ECFEF13D655B01E9FCE /* Support Files */,
 			);
 			name = ScalingCarousel;
 			path = ScalingCarousel;
 			sourceTree = "<group>";
 		};
-		9EA9CD7D27F84315B212A11C0292C719 /* RtcBasic */ = {
+		82C0B4F41F6CCF0E8C809A22597E59E1 /* FaceCapture */ = {
 			isa = PBXGroup;
 			children = (
-				9F1FE02A48F7ECECD40348798AB07343 /* Frameworks */,
+				406487F9C143B7845158F13E0FBFAD0F /* Frameworks */,
 			);
-			name = RtcBasic;
+			name = FaceCapture;
 			sourceTree = "<group>";
 		};
-		9F1FE02A48F7ECECD40348798AB07343 /* Frameworks */ = {
+		8438047C607AEB22C4D1598DE647B43D /* DropDown */ = {
 			isa = PBXGroup;
 			children = (
-				107235AA466CFD8DCE82ACEDFF10DCF6 /* Agorafdkaac.xcframework */,
-				468C73D15C49F8C021906264F768FBE4 /* Agoraffmpeg.xcframework */,
-				3CF7BEC6AD05AFD486F1F1F051B6ACEB /* AgoraRtcKit.xcframework */,
-				4FC4DBB3D9E6BAC77389DDFDC5CAA8C1 /* AgoraSoundTouch.xcframework */,
-				EEF2C194EE876BC78BF7CD5EBF58F361 /* video_dec.xcframework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		A0D4F6E1BD8C858784219A770BD1BDF1 /* ClearVision */ = {
-			isa = PBXGroup;
-			children = (
-				E6F31B6D62A9D196EDEC5955BE11DBB6 /* Frameworks */,
-			);
-			name = ClearVision;
-			sourceTree = "<group>";
-		};
-		A2890A9D69C51E3E023EBBCEB527EDA7 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				E7FD47755729E657778F5655F562CFD4 /* DropDownCell.xib */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		AA21FA08106D86CCCDC69EB4E118D7BF /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		B02BD6B5227D6C1563B46F3049F31DC8 /* AgoraInfra_iOS */ = {
-			isa = PBXGroup;
-			children = (
-				78296428397478946E25FF6BE3465FE3 /* Frameworks */,
-				3749EC3548048A343387931B0D002DFE /* Support Files */,
-			);
-			name = AgoraInfra_iOS;
-			path = AgoraInfra_iOS;
-			sourceTree = "<group>";
-		};
-		B244C59B8FFE75C19A5DB8152CAA3049 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				EA717882756AEE20C10614A22DC68352 /* RangeSeekSlider.modulemap */,
-				0D5400C67450036A6C1189CE3EC90F72 /* RangeSeekSlider-dummy.m */,
-				4165A4BF908CC0AD02C8C98A9C771EDE /* RangeSeekSlider-Info.plist */,
-				1936CF9740406854537E056F55BF81B1 /* RangeSeekSlider-prefix.pch */,
-				9E8DB22F26DF2C2F0E1204E19E974E32 /* RangeSeekSlider-umbrella.h */,
-				0CA98C735F11D7D8ECE82B538A41C4F5 /* RangeSeekSlider.debug.xcconfig */,
-				857B78B2A5B7484ECFBAB18AE9660A4A /* RangeSeekSlider.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/RangeSeekSlider";
-			sourceTree = "<group>";
-		};
-		CB676335B551ED646F2835243B2EF53F /* AINSLL */ = {
-			isa = PBXGroup;
-			children = (
-				2D110021B4972B26E6639694827D7C34 /* Frameworks */,
-			);
-			name = AINSLL;
-			sourceTree = "<group>";
-		};
-		CDAEB9C22F43567E18B455A4755C1D2B /* DropDown */ = {
-			isa = PBXGroup;
-			children = (
-				40DD36F17CD277D206E22E01F1031863 /* DPDConstants.swift */,
-				55F18273AE543EF3B158487DC886C052 /* DPDKeyboardListener.swift */,
-				99180DA403B2C8DF610EE0D53F11B51A /* DPDUIView+Extension.swift */,
-				354110ADD7731992AC69648D0086D420 /* DropDown.swift */,
-				EBD64DB7F8F8A7E53B9B78FDBA7E8959 /* DropDown+Appearance.swift */,
-				EDE89FD4B8B89EAF90C7FB6604FBE9D2 /* DropDownCell.swift */,
-				A2890A9D69C51E3E023EBBCEB527EDA7 /* Resources */,
-				8D871885227B5AFA3E97506513499600 /* Support Files */,
+				9D00BD9951A4F206ED3D131AB7938CED /* DPDConstants.swift */,
+				83565C256B3E9CCD786DF72CB2ED7E09 /* DPDKeyboardListener.swift */,
+				262786B30B48D3FD845B49DB98F3AA88 /* DPDUIView+Extension.swift */,
+				2D56839300DCE0AE51240421D56E52E4 /* DropDown.swift */,
+				AE82D721ACCC35839F269D820932357B /* DropDown+Appearance.swift */,
+				E52FC55DD174661E194728520F9E9649 /* DropDownCell.swift */,
+				E7B3CF19FD4FD6EAA685EEED75F364A6 /* Resources */,
+				0B25FFD0B3C5DCDA2BD21318D5BBC719 /* Support Files */,
 			);
 			name = DropDown;
 			path = DropDown;
 			sourceTree = "<group>";
 		};
-		CEDE88C77DF04E58D79B79B77E8FD0BB /* Pods-DesynatAdmin */ = {
+		862C8D0FA60642AFC693C9A8E3203CEF /* AINS */ = {
 			isa = PBXGroup;
 			children = (
-				D082D15D6FE0ABCF1D430D6912919B23 /* Pods-DesynatAdmin.modulemap */,
-				A2440A65A1EAC283492783917119A15A /* Pods-DesynatAdmin-acknowledgements.markdown */,
-				118083A4A176F276774B22E776350196 /* Pods-DesynatAdmin-acknowledgements.plist */,
-				8DDCA2060010DFABC072C05D70E99C78 /* Pods-DesynatAdmin-dummy.m */,
-				648352729B2241E9C506B38F3BE3D280 /* Pods-DesynatAdmin-frameworks.sh */,
-				9CD6491470B6ADA3AFD7C3B01FC2E622 /* Pods-DesynatAdmin-Info.plist */,
-				33695F79FF9E4AAB786EE4B43C722864 /* Pods-DesynatAdmin-umbrella.h */,
-				B97B12EFB4400A1AD180C797BE7CD633 /* Pods-DesynatAdmin.debug.xcconfig */,
-				7478A1345859F0D198885EE675C9450C /* Pods-DesynatAdmin.release.xcconfig */,
+				AD5617A69445BBDCA87B47F09AE2806B /* Frameworks */,
 			);
-			name = "Pods-DesynatAdmin";
-			path = "Target Support Files/Pods-DesynatAdmin";
+			name = AINS;
+			sourceTree = "<group>";
+		};
+		8C50396C35964832CD0442FF46C92137 /* RtcBasic */ = {
+			isa = PBXGroup;
+			children = (
+				1AFAFD9E41376F46996705A4D7EAE2C2 /* Frameworks */,
+			);
+			name = RtcBasic;
+			sourceTree = "<group>";
+		};
+		8D9BBED626F80E2810F6D7236585AC7C /* ReplayKit */ = {
+			isa = PBXGroup;
+			children = (
+				6FF624C5451F92E7F61589D6AF783A47 /* Frameworks */,
+			);
+			name = ReplayKit;
+			sourceTree = "<group>";
+		};
+		95477BFB1D3B0A3156BD926BBE5D90F3 /* AudioBeauty */ = {
+			isa = PBXGroup;
+			children = (
+				CFABE7613145D410B79D0BE9FE9E7484 /* Frameworks */,
+			);
+			name = AudioBeauty;
+			sourceTree = "<group>";
+		};
+		99ACB2370A6363E368B3CF03557920F1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				12652EAA695C7E3798E6B88144368DE8 /* AgoraLipSyncExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9D188A11C9CAF09B7570EAB3A29C0B0C /* AINSLL */ = {
+			isa = PBXGroup;
+			children = (
+				DA26491D0CDCFCF875C26E3A408597D1 /* Frameworks */,
+			);
+			name = AINSLL;
+			sourceTree = "<group>";
+		};
+		A42F660F2B6ED664666455E50864A3BF /* VideoAv1CodecEnc */ = {
+			isa = PBXGroup;
+			children = (
+				C680E661C271911A00378BF0C80A4998 /* Frameworks */,
+			);
+			name = VideoAv1CodecEnc;
+			sourceTree = "<group>";
+		};
+		AA97D8606B209B8D4A5C05AF3A69977C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6C82A8701D7360312BC4D8DF7CF3D08D /* aosl.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AD5617A69445BBDCA87B47F09AE2806B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AF86603E7C60DE8A263AE7E30364F4D7 /* AgoraAiNoiseSuppressionExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AFF009B19BC7E4C7ABA8675F5CDF8358 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C4E4F8F89866300DEC17FF12A16556F7 /* AgoraSpatialAudioExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BFDBBD4BA046FE6D21A8F8F482FB01A9 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				E997D2C536AB62BDAD0A63E13790A265 /* AgoraInfra_iOS-xcframeworks.sh */,
+				59B7FBC0A067F437A144435E8340E5F5 /* AgoraInfra_iOS.debug.xcconfig */,
+				1415625E341F55F23A80337CA6CE8B41 /* AgoraInfra_iOS.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/AgoraInfra_iOS";
+			sourceTree = "<group>";
+		};
+		C2133D01C5F8E0F94DECDB59DB204797 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3F2A34DFB1D061B9717B11A063977F8A /* AgoraVideoQualityAnalyzerExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C510FEDE55D47097B55B4190B64D1210 /* FaceDetection */ = {
+			isa = PBXGroup;
+			children = (
+				758B4EAFA5BCAEB18FB4B266DD855813 /* Frameworks */,
+			);
+			name = FaceDetection;
+			sourceTree = "<group>";
+		};
+		C59B772696B1C622DA9D22DDE0E0D30A /* SpatialAudio */ = {
+			isa = PBXGroup;
+			children = (
+				AFF009B19BC7E4C7ABA8675F5CDF8358 /* Frameworks */,
+			);
+			name = SpatialAudio;
+			sourceTree = "<group>";
+		};
+		C680E661C271911A00378BF0C80A4998 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				704D9378E88E400EEC78330EDA32DAA9 /* AgoraVideoAv1EncoderExtension.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C94E6678592E8EC42AFBA3EEB6EE875E /* SwiftyGif */ = {
+			isa = PBXGroup;
+			children = (
+				3AF0A7AB965AF5A261448761A6CA2808 /* NSImage+SwiftyGif.swift */,
+				AD5DF8991947294FF686D3B09542EAC1 /* NSImageView+SwiftyGif.swift */,
+				C1F1419061FAE4448052FD78A651D5B5 /* ObjcAssociatedWeakObject.swift */,
+				342BF281B3597E4EACEFB4EF8BBE8DFB /* SwiftyGif.h */,
+				9C9501BE275E9CF51C5C57F1EEC69F94 /* SwiftyGifManager.swift */,
+				CF9955FCB5D1CE456FE3229B6B2DB54D /* UIImage+SwiftyGif.swift */,
+				49A8F25AA3AF8CD9E2DEA107AEF1E404 /* UIImageView+SwiftyGif.swift */,
+				7784D66F6C103B33602A2DBC483AAB67 /* Resources */,
+				73377F405BCF3DA2E26D2BD031360E60 /* Support Files */,
+			);
+			name = SwiftyGif;
+			path = SwiftyGif;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -789,176 +934,121 @@
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				03C5C200A0787E300053CFA8F53CA094 /* Frameworks */,
-				D02DA288E320E39A2C77B5F9D7F697C7 /* Pods */,
-				3A41CFD2F84369E0E72C3A72660EDDEB /* Products */,
-				67457073D1272124A2B9453A887A0B25 /* Targets Support Files */,
+				F2FEE0978B1BF3D05902A44280C7C0B5 /* Pods */,
+				4A5B4B5BC2EE1A384C31E35A44DA6FED /* Products */,
+				7D6960A58DDE09229A3CA0376E9F2226 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		D02DA288E320E39A2C77B5F9D7F697C7 /* Pods */ = {
+		CFABE7613145D410B79D0BE9FE9E7484 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B02BD6B5227D6C1563B46F3049F31DC8 /* AgoraInfra_iOS */,
-				DA2E8044DBFC3260145B4E7EE2070F08 /* AgoraRtcEngine_iOS */,
-				CDAEB9C22F43567E18B455A4755C1D2B /* DropDown */,
-				22FE674D708703C92738059DF43B9277 /* FTIndicator */,
-				45D1E4D1A75C927FF0EFDF96190685FE /* RangeSeekSlider */,
-				98DA6E732B9C326332A1A93475B69B09 /* ScalingCarousel */,
-				94A55557AB72C8CF510F74F25D7803D8 /* SwiftyGif */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		D1DB8FAE992098E9A3FC0A6BFC324805 /* FaceCapture */ = {
-			isa = PBXGroup;
-			children = (
-				872726D12D05F9A82B6C7F0A32EED0F2 /* Frameworks */,
-			);
-			name = FaceCapture;
-			sourceTree = "<group>";
-		};
-		D39657C4FB86085E8DDA3C124C70F0D2 /* LipSync */ = {
-			isa = PBXGroup;
-			children = (
-				1B4BBB1DF1225C3D4B463B7089CFC3C2 /* Frameworks */,
-			);
-			name = LipSync;
-			sourceTree = "<group>";
-		};
-		DA2E8044DBFC3260145B4E7EE2070F08 /* AgoraRtcEngine_iOS */ = {
-			isa = PBXGroup;
-			children = (
-				76615CC9E21267E981507820D8569678 /* AIAEC */,
-				DEC05774968BE743BA87ECAC67E6E8C7 /* AIAECLL */,
-				8C2AE2B32F43CF47E2748FFBB1D2D8A3 /* AINS */,
-				CB676335B551ED646F2835243B2EF53F /* AINSLL */,
-				95C50BFD1B9FDB59CA5926873E974797 /* AudioBeauty */,
-				A0D4F6E1BD8C858784219A770BD1BDF1 /* ClearVision */,
-				FADD22F22503DC187C2F7E0BADD746DF /* ContentInspect */,
-				D1DB8FAE992098E9A3FC0A6BFC324805 /* FaceCapture */,
-				6B4B96E600DDC0A65A5ED7E3C7508271 /* FaceDetection */,
-				D39657C4FB86085E8DDA3C124C70F0D2 /* LipSync */,
-				0030C7E884D39B936F762F8E521F9F15 /* ReplayKit */,
-				9EA9CD7D27F84315B212A11C0292C719 /* RtcBasic */,
-				0D1628FF12AE806164B690DAFF57F19E /* SpatialAudio */,
-				7E9F5ACA2513F98D54CEEACAE39AC25E /* Support Files */,
-				F76FA9B65777DACED9EE864FC13FE4B3 /* VideoAv1CodecEnc */,
-				E19FCB98048205CC8E5B63B5CD4ED24E /* VideoCodecEnc */,
-				8DCE4FD116F3A04D17E080365D0A98CB /* VirtualBackground */,
-				6C465F832F9D142BE292A6FE9B7A2061 /* VQA */,
-			);
-			name = AgoraRtcEngine_iOS;
-			path = AgoraRtcEngine_iOS;
-			sourceTree = "<group>";
-		};
-		DEC05774968BE743BA87ECAC67E6E8C7 /* AIAECLL */ = {
-			isa = PBXGroup;
-			children = (
-				526AC2E1D7FA783705B00CB6DC33583A /* Frameworks */,
-			);
-			name = AIAECLL;
-			sourceTree = "<group>";
-		};
-		DFE758E3FC9BFA196DF0BF4961DBB8DD /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				00B4F35CEE0A401925F3D5A1A90F00C1 /* ResourceBundle-SwiftyGif-SwiftyGif-Info.plist */,
-				1458BF90A3C40CA503E1AB55C68B9140 /* SwiftyGif.modulemap */,
-				0695411490F1DE8A64BF5596AC24C3CB /* SwiftyGif-dummy.m */,
-				30F23F220CC96B709309DA7E12DAB7AF /* SwiftyGif-Info.plist */,
-				80918EC29CEBF12016B09F398C82E86E /* SwiftyGif-prefix.pch */,
-				AE9BC66EBF3B853C8C6561BB9E8E165D /* SwiftyGif-umbrella.h */,
-				42A1502B757C77B087E4C1DBBE696818 /* SwiftyGif.debug.xcconfig */,
-				0132231C2927D85A9B6E02E0E9AF3BFA /* SwiftyGif.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/SwiftyGif";
-			sourceTree = "<group>";
-		};
-		E19FCB98048205CC8E5B63B5CD4ED24E /* VideoCodecEnc */ = {
-			isa = PBXGroup;
-			children = (
-				E85F515A38B7BFD67A1D606710D36779 /* Frameworks */,
-			);
-			name = VideoCodecEnc;
-			sourceTree = "<group>";
-		};
-		E6F31B6D62A9D196EDEC5955BE11DBB6 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F869C564E7E466B9ABE9AFBEF82FD02C /* AgoraClearVisionExtension.xcframework */,
+				23D22D7EA5FDEA0E1BC413CEC7386383 /* AgoraAudioBeautyExtension.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E85F515A38B7BFD67A1D606710D36779 /* Frameworks */ = {
+		DA26491D0CDCFCF875C26E3A408597D1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				22E3CABE69B66B3A8EF3A59EA0F19058 /* AgoraVideoEncoderExtension.xcframework */,
-				632E0C22DE7615722394CE3EFC77FFD3 /* video_enc.xcframework */,
+				A1C143ADAC11B92F37FC36213416CAF5 /* AgoraAiNoiseSuppressionLLExtension.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		EB6B51E4BC0E569894B3A08D6B898DF3 /* Frameworks */ = {
+		E256C5FBBD37A6AD425543EAF66804A3 /* ContentInspect */ = {
 			isa = PBXGroup;
 			children = (
-				DCD4BA531E3E826C91AB885D5B5577CC /* AgoraVideoSegmentationExtension.xcframework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		EC49B973DD4DEE2D0105B57D85BB20B8 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				2684F7FD55F3943638ABC7DE03B30B91 /* ScalingCarousel.modulemap */,
-				EA30E739CECA3EF3B996BB582766EBD6 /* ScalingCarousel-dummy.m */,
-				D32185DCFDBE2B6E949CD162225F7931 /* ScalingCarousel-Info.plist */,
-				E734851C26062FE75CB27C2055857176 /* ScalingCarousel-prefix.pch */,
-				B989C880B3307501FB88C5994CE8C16C /* ScalingCarousel-umbrella.h */,
-				2D076CA815F04A6E17714C44DA64AA11 /* ScalingCarousel.debug.xcconfig */,
-				DBC6163598E24DFE39081531E593FD27 /* ScalingCarousel.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/ScalingCarousel";
-			sourceTree = "<group>";
-		};
-		F76FA9B65777DACED9EE864FC13FE4B3 /* VideoAv1CodecEnc */ = {
-			isa = PBXGroup;
-			children = (
-				53B54B9AEBC740B9E5DACCC984DB4CFC /* Frameworks */,
-			);
-			name = VideoAv1CodecEnc;
-			sourceTree = "<group>";
-		};
-		F8999AA0ED7335B126D3E7BC0AC00162 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				AB0477FE8E9F88EF032BAC48C357C940 /* AgoraFaceDetectionExtension.xcframework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		F90B49AB81FF27E47DF4DD895E3A51C8 /* FTToastIndicator */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = FTToastIndicator;
-			sourceTree = "<group>";
-		};
-		FADD22F22503DC187C2F7E0BADD746DF /* ContentInspect */ = {
-			isa = PBXGroup;
-			children = (
-				704727F5FBDC394418EBD4E1660C3201 /* Frameworks */,
+				11E8C941F4581C9E043CD5136D09FF42 /* Frameworks */,
 			);
 			name = ContentInspect;
 			sourceTree = "<group>";
 		};
-		FC912CCE648F73DF7F3F34A5DA89B87F /* FTNotificationIndicator */ = {
+		E3C7741C217FCE7CD5350AE6382157C1 /* VirtualBackground */ = {
+			isa = PBXGroup;
+			children = (
+				49852EE5D17DB06A3403BA1F0C9064DF /* Frameworks */,
+			);
+			name = VirtualBackground;
+			sourceTree = "<group>";
+		};
+		E419B791C30A90A0E28D05D4C7939ED8 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				0DA8828DEE96204265C2D7F67FC87E31 /* FTIndicator.modulemap */,
+				4C7B5B28A38CAB547A3D7B855722EC4C /* FTIndicator-dummy.m */,
+				C3EE5B833B5E07274E66E23938F2DBEA /* FTIndicator-Info.plist */,
+				7B0EC101FFA50FE5A74409A6F6707C12 /* FTIndicator-prefix.pch */,
+				FDC52D945F29F33D2DABB02F94AB1301 /* FTIndicator-umbrella.h */,
+				E99311D4089B822FA8AE7E1DC2413290 /* FTIndicator.debug.xcconfig */,
+				64DC561E284F7FBDFBB7838FD434E6AA /* FTIndicator.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/FTIndicator";
+			sourceTree = "<group>";
+		};
+		E5B43A9A6B848624B609A783AF36A07B /* AIAECLL */ = {
+			isa = PBXGroup;
+			children = (
+				11541615023A33756AAF60C97A71BFFB /* Frameworks */,
+			);
+			name = AIAECLL;
+			sourceTree = "<group>";
+		};
+		E7B3CF19FD4FD6EAA685EEED75F364A6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0BEB81F8390C2534FF3848CF4C7AE3BC /* DropDownCell.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		E9530D0CBCC2C23306B894A0D6410E51 /* FTNotificationIndicator */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = FTNotificationIndicator;
+			sourceTree = "<group>";
+		};
+		F2FEE0978B1BF3D05902A44280C7C0B5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				08EF987B3DCD1D716C02AE22C2C8164D /* AgoraInfra_iOS */,
+				7BAFB564018780D62955997C01D2D513 /* AgoraRtcEngine_iOS */,
+				8438047C607AEB22C4D1598DE647B43D /* DropDown */,
+				774FE51B40DFD72BD4A42B27DBFE38C0 /* FTIndicator */,
+				5BFAF552C927FDBA0F8A379578C4BAC5 /* MyFatoorah */,
+				62988ED090293D690D40D7E9A83D440C /* RangeSeekSlider */,
+				7E4BE2A099C2A8CBBF568CE57C7F6120 /* ScalingCarousel */,
+				C94E6678592E8EC42AFBA3EEB6EE875E /* SwiftyGif */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F807DABDF607F58414BB10042ED9AF7D /* Pods-DesynatAdmin */ = {
+			isa = PBXGroup;
+			children = (
+				0E02F915DCDBA1F0F446DD8B77716AB8 /* Pods-DesynatAdmin.modulemap */,
+				54FE5E24A715C40E974AC77CC7227E10 /* Pods-DesynatAdmin-acknowledgements.markdown */,
+				E1CBE67C48C94166436B9D670BD15F16 /* Pods-DesynatAdmin-acknowledgements.plist */,
+				25012471D35197B388302F936E429EF6 /* Pods-DesynatAdmin-dummy.m */,
+				23F17CFCB13004E0794337ED9F25C426 /* Pods-DesynatAdmin-frameworks.sh */,
+				8E780081B422ADEC0F0776F5978D4F24 /* Pods-DesynatAdmin-Info.plist */,
+				FD7CF4032A4EF57C1CEBBFD6096D48C6 /* Pods-DesynatAdmin-resources.sh */,
+				70158FD3E54D4DD020DBA7AD0B9B31EC /* Pods-DesynatAdmin-umbrella.h */,
+				9F9AB90FB8B26AC314CC2CE941BFD2A8 /* Pods-DesynatAdmin.debug.xcconfig */,
+				018ECF95C9E084D57F75C960D7118D21 /* Pods-DesynatAdmin.release.xcconfig */,
+			);
+			name = "Pods-DesynatAdmin";
+			path = "Target Support Files/Pods-DesynatAdmin";
+			sourceTree = "<group>";
+		};
+		F8D632EFDECAC5C40B5E45D88DE13D41 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D72A81DDB8DCA60D4FD2DEE13A7754AF /* MFSDK.xcframework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -977,6 +1067,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				34692DFC8B6C00379FA395C90AF0BF78 /* ScalingCarousel-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		78F57871FF6B4A26E77DDC5AE677C191 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C628460CE7696E65962DBE6FEA71EF7B /* Pods-DesynatAdmin-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1009,14 +1107,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AC16D89249205620102ACC81C8B69120 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6425D3D67337F091084503C361D6F23C /* Pods-DesynatAdmin-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -1032,7 +1122,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				8E9F16BF4DF1CA948713B264395A8948 /* PBXTargetDependency */,
+				74DB6FD9F1C8359CB202E6A8CFFEEEE0 /* PBXTargetDependency */,
 			);
 			name = SwiftyGif;
 			productName = SwiftyGif;
@@ -1041,11 +1131,11 @@
 		};
 		176E48377247D5011E906CB1A39E71BA /* SwiftyGif-SwiftyGif */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AFC6B28F08966687322F63346FF5CA0D /* Build configuration list for PBXNativeTarget "SwiftyGif-SwiftyGif" */;
+			buildConfigurationList = 94F32501EE3B35655BB4AD17A18BC3F3 /* Build configuration list for PBXNativeTarget "SwiftyGif-SwiftyGif" */;
 			buildPhases = (
-				D8B849546DE3D1139E3953590CC3AEBC /* Sources */,
-				0234D9B31D5F350CB36A22360206A8B0 /* Frameworks */,
-				9A5F06F96182E5CEE7064B501ADB38D5 /* Resources */,
+				F32EE99C47AC0A8C140951E99D7E05B4 /* Sources */,
+				AB7BEC661EA699F0AA1196C3BE36CF70 /* Frameworks */,
+				6F19DB778A9D8FA7F3BBDEB43DC071AC /* Resources */,
 			);
 			buildRules = (
 			);
@@ -1076,28 +1166,46 @@
 		};
 		533F1CC65B389379DC14437DA17142FA /* Pods-DesynatAdmin */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 893CA9967B813D54921D6AF0E7FF173A /* Build configuration list for PBXNativeTarget "Pods-DesynatAdmin" */;
+			buildConfigurationList = AFBB6A9C99D60F4251A46769CE730E02 /* Build configuration list for PBXNativeTarget "Pods-DesynatAdmin" */;
 			buildPhases = (
-				AC16D89249205620102ACC81C8B69120 /* Headers */,
-				30C10782A0BEC4BF7252B70A39E81066 /* Sources */,
-				C9145E0B21390631162CEDBDEFFBEC69 /* Frameworks */,
-				65A5F0C6915EE573B2CCE046B89718AB /* Resources */,
+				78F57871FF6B4A26E77DDC5AE677C191 /* Headers */,
+				3D3BB479DFCAB8EAA99BD7BB56DBCB4D /* Sources */,
+				0E639DAD9AFEF99CA9599A64A63F25B7 /* Frameworks */,
+				D9C55D4EDE0C35D972332FFFF86E2480 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				18C2E3229F5DC0CF7BE223898067A9EC /* PBXTargetDependency */,
-				0B0941DB879D3FA238FA2FC222B67643 /* PBXTargetDependency */,
-				4AF16EA4D5EB0DBEF8E32E7488EB3689 /* PBXTargetDependency */,
-				506F59974D55C69E333268240DCE5EC7 /* PBXTargetDependency */,
-				D924E8DF9AE9E212CEA5E3F678FC9B6F /* PBXTargetDependency */,
-				5E1E12902F53291427526EE3B4E25801 /* PBXTargetDependency */,
-				C7587B3F7575BC894DBF325E4006AF76 /* PBXTargetDependency */,
+				187804E9C7B480CEF7094B0D4B2DD5E2 /* PBXTargetDependency */,
+				D06E121FE9910AA7F8E397FB347EDF88 /* PBXTargetDependency */,
+				FE23C2B6B5638AEBF1691B9D3E10AB02 /* PBXTargetDependency */,
+				C2FAA2DDD3024C15B6D6C47D91A45962 /* PBXTargetDependency */,
+				3AD33D3E4D4B3C7EF9BFFBD2501446BD /* PBXTargetDependency */,
+				3B4C522E712796A9942C80A319E32359 /* PBXTargetDependency */,
+				6145A59EB1001A687F2B8B8F493993AC /* PBXTargetDependency */,
+				BA997752E4151315D199089B0BE384E4 /* PBXTargetDependency */,
 			);
 			name = "Pods-DesynatAdmin";
 			productName = Pods_DesynatAdmin;
 			productReference = A5FF86815A172B2D5FBB33528EB522DF /* Pods-DesynatAdmin */;
 			productType = "com.apple.product-type.framework";
+		};
+		67EF8338569A972E661FADAB382FA73E /* MyFatoorah-MyFatoorah */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 14720C51E4A5B7D4543552D48212E899 /* Build configuration list for PBXNativeTarget "MyFatoorah-MyFatoorah" */;
+			buildPhases = (
+				1A7B7C347F90DE9A44FC54839DD88F7B /* Sources */,
+				C706EACDBAB186C44C905BFE060CFD31 /* Frameworks */,
+				DADA836F9B6FD15CC002CDDB1169526C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MyFatoorah-MyFatoorah";
+			productName = MyFatoorah;
+			productReference = F8CAA5FAA62D819C3AB7BB802A07A542 /* MyFatoorah-MyFatoorah */;
+			productType = "com.apple.product-type.bundle";
 		};
 		7050FECE58DF970CF84F4FE403CA67D9 /* ScalingCarousel */ = {
 			isa = PBXNativeTarget;
@@ -1163,7 +1271,7 @@
 				LastUpgradeCheck = 1600;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
-			compatibilityVersion = "Xcode 12.0";
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -1173,7 +1281,7 @@
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
 			minimizedProjectReferenceProxies = 0;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 3A41CFD2F84369E0E72C3A72660EDDEB /* Products */;
+			productRefGroup = 4A5B4B5BC2EE1A384C31E35A44DA6FED /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -1181,6 +1289,8 @@
 				183C29DD6DE04D22CA29BAE61F5C530B /* AgoraRtcEngine_iOS */,
 				E9F9401E9C74C0C393164FD8D86D0068 /* DropDown */,
 				B957A4FD9E608C9E3554AB85D106B08D /* FTIndicator */,
+				B1BFD2E9555988074A99B8C78A5C9575 /* MyFatoorah */,
+				67EF8338569A972E661FADAB382FA73E /* MyFatoorah-MyFatoorah */,
 				533F1CC65B389379DC14437DA17142FA /* Pods-DesynatAdmin */,
 				4AFB864B337D1F74C1D79F4FC8F6C67F /* RangeSeekSlider */,
 				7050FECE58DF970CF84F4FE403CA67D9 /* ScalingCarousel */,
@@ -1199,10 +1309,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		65A5F0C6915EE573B2CCE046B89718AB /* Resources */ = {
+		6F19DB778A9D8FA7F3BBDEB43DC071AC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE2A87DA391565C2F4733979C7073C47 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1211,14 +1322,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				933093C5E43D7E9BC502A28B7D371924 /* DropDownCell.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9A5F06F96182E5CEE7064B501ADB38D5 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AE4E4B274A652ED362AE57211ED07D63 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1234,6 +1337,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				48C7E29D6720C8D86A0390664C053A2A /* FTProgressIndicator.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9C55D4EDE0C35D972332FFFF86E2480 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DADA836F9B6FD15CC002CDDB1169526C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8168B9535C1531102C95C7CC6AD86885 /* apple-pay.png in Resources */,
+				9FD08F1C3FA5D6AF5D1FCEB1AB209ADE /* Button.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1262,6 +1381,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/AgoraInfra_iOS/AgoraInfra_iOS-xcframeworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2CBF5421D70E08B9DCDCDC859113E7F6 /* [CP] Copy XCFrameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/MyFatoorah/MyFatoorah-xcframeworks-input-files.xcfilelist",
+			);
+			name = "[CP] Copy XCFrameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/MyFatoorah/MyFatoorah-xcframeworks-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/MyFatoorah/MyFatoorah-xcframeworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4ADCCF1EE25517194697A524ABEDD36C /* [CP] Copy XCFrameworks */ = {
@@ -1298,11 +1434,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		30C10782A0BEC4BF7252B70A39E81066 /* Sources */ = {
+		1A7B7C347F90DE9A44FC54839DD88F7B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7122B270D5F75D05DBD2A6D2E11336E /* Pods-DesynatAdmin-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1331,6 +1466,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3D3BB479DFCAB8EAA99BD7BB56DBCB4D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				488E372698F2696AD24D9F719C023C38 /* Pods-DesynatAdmin-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		68C7F36FADAE796430612893602A5452 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1354,7 +1497,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D8B849546DE3D1139E3953590CC3AEBC /* Sources */ = {
+		F32EE99C47AC0A8C140951E99D7E05B4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1364,66 +1507,134 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0B0941DB879D3FA238FA2FC222B67643 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = AgoraRtcEngine_iOS;
-			target = 183C29DD6DE04D22CA29BAE61F5C530B /* AgoraRtcEngine_iOS */;
-			targetProxy = 922004D23FDBDE33E01E942AF5BB312A /* PBXContainerItemProxy */;
-		};
-		18C2E3229F5DC0CF7BE223898067A9EC /* PBXTargetDependency */ = {
+		0FC4CB6636317A6EC4BFC40402D58E6E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = AgoraInfra_iOS;
 			target = 2F7F7AAA1C81C1ECBEECAABE3C3609AC /* AgoraInfra_iOS */;
-			targetProxy = E5F8A40A0D41AC4BFBABE60A8310E16E /* PBXContainerItemProxy */;
+			targetProxy = F000F2B86BDE6EE0D3ED605296CEA996 /* PBXContainerItemProxy */;
 		};
-		4AF16EA4D5EB0DBEF8E32E7488EB3689 /* PBXTargetDependency */ = {
+		187804E9C7B480CEF7094B0D4B2DD5E2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = DropDown;
-			target = E9F9401E9C74C0C393164FD8D86D0068 /* DropDown */;
-			targetProxy = 7F503C5D504508BAC46E344DF244D8C1 /* PBXContainerItemProxy */;
+			name = AgoraInfra_iOS;
+			target = 2F7F7AAA1C81C1ECBEECAABE3C3609AC /* AgoraInfra_iOS */;
+			targetProxy = F0243D061071D96AE5D5ECD173F96720 /* PBXContainerItemProxy */;
 		};
-		506F59974D55C69E333268240DCE5EC7 /* PBXTargetDependency */ = {
+		3AD33D3E4D4B3C7EF9BFFBD2501446BD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = FTIndicator;
-			target = B957A4FD9E608C9E3554AB85D106B08D /* FTIndicator */;
-			targetProxy = 965A2573B62BC6423B6B56D3A8FA9FE2 /* PBXContainerItemProxy */;
+			name = MyFatoorah;
+			target = B1BFD2E9555988074A99B8C78A5C9575 /* MyFatoorah */;
+			targetProxy = 3995D5DA1768DD230CA23B1F4F63E5D9 /* PBXContainerItemProxy */;
 		};
-		5E1E12902F53291427526EE3B4E25801 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ScalingCarousel;
-			target = 7050FECE58DF970CF84F4FE403CA67D9 /* ScalingCarousel */;
-			targetProxy = 57ECD2215509601BC3FAED37C3845CF5 /* PBXContainerItemProxy */;
-		};
-		8E9F16BF4DF1CA948713B264395A8948 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "SwiftyGif-SwiftyGif";
-			target = 176E48377247D5011E906CB1A39E71BA /* SwiftyGif-SwiftyGif */;
-			targetProxy = 5E9A91D700EFF312380CA3877558E972 /* PBXContainerItemProxy */;
-		};
-		C7587B3F7575BC894DBF325E4006AF76 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SwiftyGif;
-			target = 15AEBAFA43912F898FC2E1A73025C946 /* SwiftyGif */;
-			targetProxy = 3AA113B7C7A23B784CF3E1B0FADA4785 /* PBXContainerItemProxy */;
-		};
-		D924E8DF9AE9E212CEA5E3F678FC9B6F /* PBXTargetDependency */ = {
+		3B4C522E712796A9942C80A319E32359 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = RangeSeekSlider;
 			target = 4AFB864B337D1F74C1D79F4FC8F6C67F /* RangeSeekSlider */;
-			targetProxy = 90DD46198539A67790F706566700B8E1 /* PBXContainerItemProxy */;
+			targetProxy = 2DBF2FF6C68B11F1C7B37D91447135E2 /* PBXContainerItemProxy */;
 		};
-		DA09A1C1C0026CAB39AD374C772D5E3E /* PBXTargetDependency */ = {
+		6145A59EB1001A687F2B8B8F493993AC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = AgoraInfra_iOS;
-			target = 2F7F7AAA1C81C1ECBEECAABE3C3609AC /* AgoraInfra_iOS */;
-			targetProxy = 2A162BF0C4B484F1237ED5E394D0148A /* PBXContainerItemProxy */;
+			name = ScalingCarousel;
+			target = 7050FECE58DF970CF84F4FE403CA67D9 /* ScalingCarousel */;
+			targetProxy = B0CCC6C46BF745009C3FB6E44C2A80FB /* PBXContainerItemProxy */;
+		};
+		74DB6FD9F1C8359CB202E6A8CFFEEEE0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "SwiftyGif-SwiftyGif";
+			target = 176E48377247D5011E906CB1A39E71BA /* SwiftyGif-SwiftyGif */;
+			targetProxy = 64DE16DC39626E4038DBE588BAF2BBE9 /* PBXContainerItemProxy */;
+		};
+		8D4B6E4CAA855C11317C394439D1CDC4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "MyFatoorah-MyFatoorah";
+			target = 67EF8338569A972E661FADAB382FA73E /* MyFatoorah-MyFatoorah */;
+			targetProxy = A393810AFD30EBB4B626477719A6027C /* PBXContainerItemProxy */;
+		};
+		BA997752E4151315D199089B0BE384E4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftyGif;
+			target = 15AEBAFA43912F898FC2E1A73025C946 /* SwiftyGif */;
+			targetProxy = 1FD497CB2B3021C8A6C6FB9323D92778 /* PBXContainerItemProxy */;
+		};
+		C2FAA2DDD3024C15B6D6C47D91A45962 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FTIndicator;
+			target = B957A4FD9E608C9E3554AB85D106B08D /* FTIndicator */;
+			targetProxy = 2C1F818F50C3C1E56F7F26B6D35EF09B /* PBXContainerItemProxy */;
+		};
+		D06E121FE9910AA7F8E397FB347EDF88 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AgoraRtcEngine_iOS;
+			target = 183C29DD6DE04D22CA29BAE61F5C530B /* AgoraRtcEngine_iOS */;
+			targetProxy = 06877C8890B4DF9B6FED1FFAAF2C4DA3 /* PBXContainerItemProxy */;
+		};
+		FE23C2B6B5638AEBF1691B9D3E10AB02 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = DropDown;
+			target = E9F9401E9C74C0C393164FD8D86D0068 /* DropDown */;
+			targetProxy = F1FB9D3AFA09F4068BE45B2F74D7085D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		0FE329DB157F837DED02CC3DCBD1F93F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0CBD373CFBF8733E7A6700C89272D23F /* MyFatoorah.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGNING_ALLOWED = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		170A85E609C852A5A8AC1FAA30A2F2F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B7D9E763AC503E007653478E6401D57 /* MyFatoorah.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGNING_ALLOWED = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		19167C5A2F0C8278BFBDE21E85000C05 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 846259322D60B42FCC1CCC301386DB30 /* SwiftyGif.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/SwiftyGif";
+				IBSC_MODULE = SwiftyGif;
+				INFOPLIST_FILE = "Target Support Files/SwiftyGif/ResourceBundle-SwiftyGif-SwiftyGif-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				PRODUCT_NAME = SwiftyGif;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
 		1DFC42CC1774F5A1638BF206E6F84DA7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 857B78B2A5B7484ECFBAB18AE9660A4A /* RangeSeekSlider.release.xcconfig */;
+			baseConfigurationReference = 92BA85399A5799AB92D31DE5AF079EA8 /* RangeSeekSlider.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGNING_ALLOWED = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1463,7 +1674,7 @@
 		};
 		2A4BC382E1C8BD6FCC22765FC430B24E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0132231C2927D85A9B6E02E0E9AF3BFA /* SwiftyGif.release.xcconfig */;
+			baseConfigurationReference = 68D2EFC55075D4F2B564DC7DC06C0463 /* SwiftyGif.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGNING_ALLOWED = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1501,9 +1712,50 @@
 			};
 			name = Release;
 		};
+		2D5F17597BF71F7E1C10E504E75891A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 018ECF95C9E084D57F75C960D7118D21 /* Pods-DesynatAdmin.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGNING_ALLOWED = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				INFOPLIST_FILE = "Target Support Files/Pods-DesynatAdmin/Pods-DesynatAdmin-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-DesynatAdmin/Pods-DesynatAdmin.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		3D2908C492963315750A80ABBFC26835 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0CA98C735F11D7D8ECE82B538A41C4F5 /* RangeSeekSlider.debug.xcconfig */;
+			baseConfigurationReference = D7FE405D943B92B458C53B59AD398704 /* RangeSeekSlider.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGNING_ALLOWED = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1542,7 +1794,7 @@
 		};
 		4AD0BA964B78A5B7AE7983E4FB6FB95D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 95C549E84ADE3F08972DEA82B4308389 /* DropDown.debug.xcconfig */;
+			baseConfigurationReference = F9735258BBB3CC38707BF192039564AE /* DropDown.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGNING_ALLOWED = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1581,7 +1833,7 @@
 		};
 		4CC58EB72A95204CB8D35B92C66923B2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 76564AEEFD3D15E6D5175D880581A4CD /* FTIndicator.release.xcconfig */;
+			baseConfigurationReference = 64DC561E284F7FBDFBB7838FD434E6AA /* FTIndicator.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGNING_ALLOWED = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1621,7 +1873,7 @@
 		};
 		4FDF3181F1DC926BDED9BF16BCC6E845 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A7F0F61A3EFD04A1DAC1CC614D0E437 /* DropDown.release.xcconfig */;
+			baseConfigurationReference = 12BBED9E9C352C294931527ADC7065B8 /* DropDown.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGNING_ALLOWED = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1661,7 +1913,7 @@
 		};
 		545B9496B9E51A77A34A98211B32488E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 74CBE0B5EE0C2F63D860D5BBE02E1A86 /* AgoraRtcEngine_iOS.debug.xcconfig */;
+			baseConfigurationReference = 85D83547F676E895DA2A96047E41A7B4 /* AgoraRtcEngine_iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1677,50 +1929,26 @@
 			};
 			name = Debug;
 		};
-		64DD6E84E0630E3A02CD05C15CA95D6F /* Release */ = {
+		5569EDD320B54593A6FF9E9089951845 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7478A1345859F0D198885EE675C9450C /* Pods-DesynatAdmin.release.xcconfig */;
+			baseConfigurationReference = 0CBD373CFBF8733E7A6700C89272D23F /* MyFatoorah.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGNING_ALLOWED = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = NO;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				INFOPLIST_FILE = "Target Support Files/Pods-DesynatAdmin/Pods-DesynatAdmin-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/MyFatoorah";
+				IBSC_MODULE = MyFatoorah;
+				INFOPLIST_FILE = "Target Support Files/MyFatoorah/ResourceBundle-MyFatoorah-MyFatoorah-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-DesynatAdmin/Pods-DesynatAdmin.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = MyFatoorah;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
+				WRAPPER_EXTENSION = bundle;
 			};
-			name = Release;
+			name = Debug;
 		};
 		78D18A632E62741BF7CFF84101A6A220 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DBC6163598E24DFE39081531E593FD27 /* ScalingCarousel.release.xcconfig */;
+			baseConfigurationReference = 2DA3A13C4466E903F6F49C9714BF9FA9 /* ScalingCarousel.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGNING_ALLOWED = NO;
@@ -1759,9 +1987,9 @@
 			};
 			name = Release;
 		};
-		79C56BD546C0C30D3337462E42461586 /* Debug */ = {
+		7D857DA617310890063CE456BE2E2DD6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 42A1502B757C77B087E4C1DBBE696818 /* SwiftyGif.debug.xcconfig */;
+			baseConfigurationReference = 68D2EFC55075D4F2B564DC7DC06C0463 /* SwiftyGif.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGNING_ALLOWED = NO;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/SwiftyGif";
@@ -1774,7 +2002,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = bundle;
 			};
-			name = Debug;
+			name = Release;
 		};
 		8C9963745FD01B6B3EF95F9CE58D9F10 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1842,16 +2070,16 @@
 			};
 			name = Debug;
 		};
-		8F8FFFA69C7CD201D27D370011B3BED1 /* Release */ = {
+		8FBE86CA37E10E3ABA3707E1D5764589 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0132231C2927D85A9B6E02E0E9AF3BFA /* SwiftyGif.release.xcconfig */;
+			baseConfigurationReference = 6B7D9E763AC503E007653478E6401D57 /* MyFatoorah.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGNING_ALLOWED = NO;
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/SwiftyGif";
-				IBSC_MODULE = SwiftyGif;
-				INFOPLIST_FILE = "Target Support Files/SwiftyGif/ResourceBundle-SwiftyGif-SwiftyGif-Info.plist";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/MyFatoorah";
+				IBSC_MODULE = MyFatoorah;
+				INFOPLIST_FILE = "Target Support Files/MyFatoorah/ResourceBundle-MyFatoorah-MyFatoorah-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				PRODUCT_NAME = SwiftyGif;
+				PRODUCT_NAME = MyFatoorah;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1861,7 +2089,7 @@
 		};
 		9A7E447D79DE0372A2A476A16A3FBC1E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D06122C102DC9F77060D1D515EEB77A5 /* FTIndicator.debug.xcconfig */;
+			baseConfigurationReference = E99311D4089B822FA8AE7E1DC2413290 /* FTIndicator.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGNING_ALLOWED = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1900,7 +2128,7 @@
 		};
 		A5B582993CCC8DCBECF607E4E183B4E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D076CA815F04A6E17714C44DA64AA11 /* ScalingCarousel.debug.xcconfig */;
+			baseConfigurationReference = 0BEE6F6074D9DAF5A445D3F1483682D8 /* ScalingCarousel.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGNING_ALLOWED = NO;
@@ -1940,7 +2168,7 @@
 		};
 		A74234DAAD938BE3BF6B471A9EE45A38 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5CBCD51F7598F0D3FBA5DDC7C6911494 /* AgoraInfra_iOS.release.xcconfig */;
+			baseConfigurationReference = 1415625E341F55F23A80337CA6CE8B41 /* AgoraInfra_iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1957,9 +2185,9 @@
 			};
 			name = Release;
 		};
-		AD2E66A0D2181F46D55A07664D89FF16 /* Debug */ = {
+		B6F62847DBB8751CA2F491460BC2CE27 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B97B12EFB4400A1AD180C797BE7CD633 /* Pods-DesynatAdmin.debug.xcconfig */;
+			baseConfigurationReference = 9F9AB90FB8B26AC314CC2CE941BFD2A8 /* Pods-DesynatAdmin.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -2061,7 +2289,7 @@
 		};
 		D0BA3F9EF558559FA1C19DCAC1C84649 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AB0B9715C7413ED4E93E31F6F018DC0B /* AgoraInfra_iOS.debug.xcconfig */;
+			baseConfigurationReference = 59B7FBC0A067F437A144435E8340E5F5 /* AgoraInfra_iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2079,7 +2307,7 @@
 		};
 		D997E4194A96734A6FE02CB6A11F2EA5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D0EF22EE2D5DE87E1218392EDD84D84D /* AgoraRtcEngine_iOS.release.xcconfig */;
+			baseConfigurationReference = EA15EFDEAC181D25131085ED28AC649C /* AgoraRtcEngine_iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2098,7 +2326,7 @@
 		};
 		F3A4D0E0A6B59FA8CF27B4FD7E57CF84 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 42A1502B757C77B087E4C1DBBE696818 /* SwiftyGif.debug.xcconfig */;
+			baseConfigurationReference = 846259322D60B42FCC1CCC301386DB30 /* SwiftyGif.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGNING_ALLOWED = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -2156,6 +2384,24 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		14720C51E4A5B7D4543552D48212E899 /* Build configuration list for PBXNativeTarget "MyFatoorah-MyFatoorah" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5569EDD320B54593A6FF9E9089951845 /* Debug */,
+				8FBE86CA37E10E3ABA3707E1D5764589 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2F3CB0291CD013FDB74D49AC9D3A32FB /* Build configuration list for PBXAggregateTarget "MyFatoorah" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0FE329DB157F837DED02CC3DCBD1F93F /* Debug */,
+				170A85E609C852A5A8AC1FAA30A2F2F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -2183,11 +2429,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		893CA9967B813D54921D6AF0E7FF173A /* Build configuration list for PBXNativeTarget "Pods-DesynatAdmin" */ = {
+		94F32501EE3B35655BB4AD17A18BC3F3 /* Build configuration list for PBXNativeTarget "SwiftyGif-SwiftyGif" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AD2E66A0D2181F46D55A07664D89FF16 /* Debug */,
-				64DD6E84E0630E3A02CD05C15CA95D6F /* Release */,
+				19167C5A2F0C8278BFBDE21E85000C05 /* Debug */,
+				7D857DA617310890063CE456BE2E2DD6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2201,11 +2447,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AFC6B28F08966687322F63346FF5CA0D /* Build configuration list for PBXNativeTarget "SwiftyGif-SwiftyGif" */ = {
+		AFBB6A9C99D60F4251A46769CE730E02 /* Build configuration list for PBXNativeTarget "Pods-DesynatAdmin" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				79C56BD546C0C30D3337462E42461586 /* Debug */,
-				8F8FFFA69C7CD201D27D370011B3BED1 /* Release */,
+				B6F62847DBB8751CA2F491460BC2CE27 /* Debug */,
+				2D5F17597BF71F7E1C10E504E75891A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

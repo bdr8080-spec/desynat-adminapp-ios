@@ -226,6 +226,10 @@ extension SubAdminSideMenuViewController: UITableViewDelegate, UITableViewDataSo
             let vc = ChatInboxViewController.instantiate(fromAppStoryboard: .NotificationCMS)
             vc.hasActionPermission = hasPermission
             self.navigationController?.pushViewController(vc, animated: false)
+        case "Seller Story Request Management":
+            let nextVC = SellerStoryRequestListViewController.instantiate(fromAppStoryboard: .AffiliatedBannerOrder)
+            nextVC.hasActionPermission = hasPermission
+            self.navigationController?.pushViewController(nextVC, animated: true)
         default:
             print("⚠️ Unknown option selected")
         }

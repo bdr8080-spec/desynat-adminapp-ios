@@ -111,5 +111,4 @@ class RefundManagementTableViewCell: UITableViewCell {
     @IBAction func refundTapped(_ sender: Any) {
         refundCompletion?()
     }
-    
 }

@@ -9,7 +9,7 @@ import UIKit
 
 class SideMenuViewController: UIViewController {
     
-    // MARK: - IBOutlet's
+    // MARK: - IB Outlet's
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var userProfileImageView: CustomImageView!
@@ -50,7 +50,6 @@ class SideMenuViewController: UIViewController {
         SideMenuModel(title: "Seller Payouts", image: "sellerPayout"),
         SideMenuModel(title: "CMS", image: "cms"),
         SideMenuModel(title: "Support Chat", image: "support")]
-    
     private lazy var viewModel = SideMenuViewModel(hostVC: self)
     
     // MARK: - View's LifeCycle Methods
@@ -69,7 +68,6 @@ class SideMenuViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
         updateTableHeight()
     }
     
@@ -99,12 +97,10 @@ class SideMenuViewController: UIViewController {
         vc.hasActionPermission = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
 }
 
 // MARK: - TABLE VIEW METHODS
 extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sideMenuData.count
     }
@@ -233,5 +229,3 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
         sideMenuTableView.deselectRow(at: indexPath, animated: true)
     }
 }
-
-

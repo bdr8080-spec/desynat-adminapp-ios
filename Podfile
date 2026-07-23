@@ -17,6 +17,7 @@ target 'DesynatAdmin' do
     pod 'SwiftyGif'
 #    pod 'SDWebImage'
 #    pod 'JXPageControl'
+    pod 'MyFatoorah'
     pod 'ScalingCarousel'
     pod 'RangeSeekSlider'
     pod 'AgoraRtcEngine_iOS'

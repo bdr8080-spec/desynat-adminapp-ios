@@ -70,7 +70,7 @@ struct SubscriptionPlanDataModel: Codable {
     var noOfFreeMonths: Int?
     var productType: Int?
     var showInRecommendedStores:Int?
-
+    
     private enum CodingKeys: String, CodingKey {
         case id = "id"
         case countryId = "country_id"
@@ -98,7 +98,7 @@ struct SubscriptionPlanDataModel: Codable {
         case productType = "product_type"
         case noOfFreeMonths = "no_of_free_months"
         case isFreeMonths = "is_free_months"
-        case showInRecommendedStores = "show_in_recommended_stores"
+        case showInRecommendedStores = "is_recommended_store"
     }
 
     init(from decoder: Decoder) throws {
@@ -181,6 +181,13 @@ struct SubscriptionPlanDataModel: Codable {
             self.noOfFreeMonths = value
         } else if let value = try? container.decodeIfPresent(String.self, forKey: .noOfFreeMonths) {
             self.noOfFreeMonths = Int(value)
+        }
+        
+        // is_recommended_store
+        if let value = try? container.decodeIfPresent(Int.self, forKey: .showInRecommendedStores) {
+            self.showInRecommendedStores = value
+        } else if let value = try? container.decodeIfPresent(String.self, forKey: .showInRecommendedStores) {
+            self.showInRecommendedStores = Int(value)
         }
     }
 }

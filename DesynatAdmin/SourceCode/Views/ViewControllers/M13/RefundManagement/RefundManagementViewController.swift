@@ -152,7 +152,13 @@ extension RefundManagementViewController: UITableViewDelegate, UITableViewDataSo
             self.refundTableView.reloadData()
         }
         cell.refundCompletion = {
-            self.viewModel.refundOrder(orderDetailId: data.orderID ?? 0)
+            self.viewModel.refundOrder(orderDetailId: data.orderID ?? 0) {
+                let vc = PaymentMethodVC.instantiate(fromAppStoryboard: .NotificationCMS)
+                vc.orderId = data.orderID ?? 0
+                vc.paymentFrom = .refundOrder
+                vc.payAmount = Double(data.amount ?? "") ?? 0
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
         return cell
     }

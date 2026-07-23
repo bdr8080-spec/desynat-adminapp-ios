@@ -31,7 +31,7 @@ struct APIKeys {
     static let duration_type = "duration_type"
     static let newduration = "new_duration"
     static let newduration_type = "new_duration_type"
-    static let showInRecommendedStores = "show_in_recommended_stores"
+    static let showInRecommendedStores = "is_recommended_store"
     
     static let no_of_videos = "no_of_videos"
     static let no_of_products = "no_of_products"

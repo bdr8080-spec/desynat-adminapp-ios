@@ -56,7 +56,7 @@ struct PlanInfo {
             isFreeMonths: Int.getInt(data.isFreeMonths) == 1,
             noOfFreeMonths: Int.getInt(data.noOfFreeMonths),
             productType: Int.getInt(data.productType) == 0,
-            showInRecommendedStore: Int.getInt(data.showInRecommendedStores) == 0
+            showInRecommendedStore: Int.getInt(data.showInRecommendedStores) == 1
         )
     }
     func validateData(isForEdit: Bool = false) -> AlertConstant{

@@ -10,6 +10,7 @@ import UIKit
 class BannerPerDayListViewController: UIViewController {
     
     // MARK: - IBOutlet's
+    @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var storyLabel: UILabel!
     @IBOutlet weak var storyButtonOutlet: CustomButton!
     @IBOutlet weak var noDataFoundLabel: UILabel!
@@ -36,6 +37,7 @@ class BannerPerDayListViewController: UIViewController {
         topButton.layer.cornerRadius = 5
         topButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
         topButton.clipsToBounds = true
+        lblTitle.text = "Banner & Story per day price".localiz()
     }
     
     override func viewWillAppear(_ animated: Bool) {

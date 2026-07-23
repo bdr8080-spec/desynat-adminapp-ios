@@ -143,6 +143,18 @@ class SubscriptionDetailViewController: UIViewController {
                 if (data.isFreeMonths) {
                     self.stackFeature.addArrangedSubview(self.getView("\("Number of Free Month:".localiz()) \(data.noOfFreeMonths)".makeAttributedString(attribute: [.font:UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12,weight: .semibold)], for: "\(data.noOfFreeMonths)")))
                 }
+                let recommendedStoreText = data.showInRecommendedStore == true ? "Yes".localiz() : "No".localiz()
+                self.stackFeature.addArrangedSubview(
+                    self.getView(
+                        "\("Show in Suggested Stores:".localiz()) \(recommendedStoreText)"
+                            .makeAttributedString(
+                                attribute: [
+                                    .font: UIFont(name: "Poppins-SemiBold", size: 14) ?? .systemFont(ofSize: 12, weight: .semibold)
+                                ],
+                                for: recommendedStoreText
+                            )
+                    )
+                )
                 self.refreshStatus()
             }
         }
