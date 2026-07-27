@@ -91,43 +91,63 @@ class AddNewBrandViewController: UIViewController {
 
 //MARK: UITextFieldDelegate Methods
 extension AddNewBrandViewController: UITextFieldDelegate {
-    
+
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let currentText = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-        var validation: StringValidation?
-        
-        if string.isEmpty { return true }
-        
-        if textField == brandNameEnglishTextField {
-            if currentText.hasPrefix(" ") {
-                return false
-            }
-            validation = StringValidation(string: currentText, characterCount: 30, validation: .firstName)
+
+        guard let text = textField.text else { return true }
+
+        let currentText = (text as NSString).replacingCharacters(in: range, with: string)
+
+        // Allow Backspace
+        if string.isEmpty {
+            return true
         }
-        
+
+        // Prevent first character as space
+        if currentText.hasPrefix(" ") {
+            return false
+        }
+
+        // Maximum 30 characters
+        if currentText.count > 30 {
+            return false
+        }
+
+        // MARK: English Brand Name
+        if textField == brandNameEnglishTextField {
+
+            let allowedSet = CharacterSet.letters
+                .union(.decimalDigits)
+                .union(.whitespaces)
+
+            for scalar in string.unicodeScalars {
+                if !allowedSet.contains(scalar) {
+                    return false
+                }
+            }
+
+            return true
+        }
+
+        // MARK: Arabic Brand Name
         if textField == brandNameArabicTextField {
-            
-            // Allowed Arabic Unicode ranges + spaces
+
             let allowedSet = CharacterSet(charactersIn: "\u{0600}"..."\u{06FF}")
                 .union(CharacterSet(charactersIn: "\u{0750}"..."\u{077F}"))
                 .union(CharacterSet(charactersIn: "\u{08A0}"..."\u{08FF}"))
-                .union(CharacterSet.whitespaces)
-            
-            // Check every character (handles paste)
+                .union(.decimalDigits)
+                .union(.whitespaces)
+
             for scalar in string.unicodeScalars {
                 if !allowedSet.contains(scalar) {
                     CommonUtils.showToast(message: "Please switch to Arabic keyboard".localiz())
                     return false
                 }
             }
-            
+
             return true
         }
-        
-        if let data = validation {
-            return data.validate()
-        } else {
-            return true
-        }
+
+        return true
     }
 }
