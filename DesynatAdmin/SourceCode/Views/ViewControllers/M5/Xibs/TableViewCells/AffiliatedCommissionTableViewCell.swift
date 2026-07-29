@@ -37,7 +37,7 @@ class AffiliatedCommissionTableViewCell: UITableViewCell {
             self.titleLabel.text = data.nameAr ?? ""
         }
         self.flagEmojLabel.text = data.flag ?? ""
-        commissionLabel.text = "\(CommonUtils.formatPriceStringInputDecimal(data.affiliateCommissionInfo?.commission))"
+        commissionLabel.text = "\(CommonUtils.formatPriceStringInputDecimal(data.affiliateCommissionInfo?.commission, currency: data.currencyCode ?? ""))"
     }
     
 }

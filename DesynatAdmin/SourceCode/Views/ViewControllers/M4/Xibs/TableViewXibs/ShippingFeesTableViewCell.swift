@@ -47,7 +47,8 @@ class ShippingFeesTableViewCell: UITableViewCell {
         let text = "km".localiz()
         let text1 = "KD".localiz()
         distanceLabel.text = "\(rangeFrom)\(text) - \(rangeTo)\(text)"
-        priceLabel.text = "\(shippingFee) \(text1)"
+//        priceLabel.text = "\(shippingFee) \(text1)"
+        priceLabel.text = CommonUtils.formatPriceStringInputDecimal(data?.shippingFee ?? "0", currency: data?.countryInfo?.currencyCode ?? "")
         
         if data?.status == 1 {
             statusButtonOutlet.setImage(UIImage(named: "toggleOn"), for: .normal)

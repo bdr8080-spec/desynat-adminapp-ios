@@ -36,7 +36,8 @@ class BannerPerDayListTableViewCell: UITableViewCell {
             countryNameLabel.text = data?.countryInfo?.name
         }
         countryEmojiLabel.text = data?.countryInfo?.flag
-        let text = "KD".localiz()
-        priceLabel.text = "\(data?.perDayPrice ?? "") \(text)"
+//        let text = "KD".localiz()
+//        priceLabel.text = "\(data?.perDayPrice ?? "") \(text)"
+        priceLabel.text = "\(CommonUtils.formatPriceStringInputDecimal(data?.perDayPrice ?? "", currency: data?.countryInfo?.currencyCode ?? ""))"
     }
 }

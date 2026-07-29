@@ -53,9 +53,9 @@ class ShippingChargesAndTaxViewModel {
             hostVC?.defaultTaxAmount = response.shippingFee
             if let taxString = response.shippingFee,
                let taxDouble = Double(taxString) {
-                self.hostVC?.defaultDeliveryFeeLabel.text = CommonUtils.formatPrice(taxDouble, currency: "KD")
+                self.hostVC?.defaultDeliveryFeeLabel.text = CommonUtils.formatPrice(taxDouble, currency: response.countryInfo?.currencyCode ?? "")
             } else {
-                self.hostVC?.defaultDeliveryFeeLabel.text = "0 KD"
+                self.hostVC?.defaultDeliveryFeeLabel.text = CommonUtils.formatPriceStringInputDecimal("0", currency: response.countryInfo?.currencyCode ?? "")
             }
         }
     }
