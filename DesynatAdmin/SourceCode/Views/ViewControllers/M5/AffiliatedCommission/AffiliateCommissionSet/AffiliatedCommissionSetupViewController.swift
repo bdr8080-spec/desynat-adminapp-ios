@@ -13,6 +13,7 @@ class AffiliatedCommissionSetupViewController: UIViewController {
     @IBOutlet weak var saveChangesButton: CustomButton!
     @IBOutlet weak var taxTF: UITextField!
     @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var adminCommisonTF: UITextField!
     
     // MARK: - Property Decalaration
     private lazy var viewModel = AffiliatedCommissionSetupViewModel(hostVC: self)
@@ -29,7 +30,7 @@ class AffiliatedCommissionSetupViewController: UIViewController {
         if let taxString = taxAmount,
            let taxValue = Double(taxString) {
             taxTF.text = formatTax(taxValue)
-            originalTaxValue = taxValue // store exact original value
+            originalTaxValue = taxValue
             updateSaveButtonState()
         }
         

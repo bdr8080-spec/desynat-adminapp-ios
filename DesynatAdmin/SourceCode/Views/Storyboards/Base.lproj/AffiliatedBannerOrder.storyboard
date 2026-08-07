@@ -216,6 +216,70 @@
                                                     <constraint firstItem="0pl-oa-Qnt" firstAttribute="top" secondItem="tdG-JQ-PV5" secondAttribute="bottom" constant="10" id="xSp-q8-kpD"/>
                                                 </constraints>
                                             </view>
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TFK-6x-gBH">
+                                                <rect key="frame" x="0.0" y="0.0" width="345" height="87.666666666666671"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Desynat" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uJx-WI-Xdm">
+                                                        <rect key="frame" x="0.0" y="0.0" width="345" height="27.666666666666668"/>
+                                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0sB-yK-YQX" customClass="CustomView" customModule="DesynatAdmin" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="37.666666666666629" width="345" height="50"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Set Commission" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6a2-nz-zxw">
+                                                                <rect key="frame" x="20" y="5" width="287" height="40"/>
+                                                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </textField>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="setTaxPercentage" translatesAutoresizingMaskIntoConstraints="NO" id="th2-2D-IH8">
+                                                                <rect key="frame" x="317" y="12.666666666666629" width="18" height="25"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="25" id="RaX-rc-8fV"/>
+                                                                    <constraint firstAttribute="width" constant="18" id="gRL-5j-zu7"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="th2-2D-IH8" firstAttribute="centerY" secondItem="0sB-yK-YQX" secondAttribute="centerY" id="10q-5s-0gv"/>
+                                                            <constraint firstAttribute="height" constant="50" id="1Xs-pi-BSg"/>
+                                                            <constraint firstItem="th2-2D-IH8" firstAttribute="leading" secondItem="6a2-nz-zxw" secondAttribute="trailing" constant="10" id="SRM-B2-g6i"/>
+                                                            <constraint firstAttribute="trailing" secondItem="th2-2D-IH8" secondAttribute="trailing" constant="10" id="Vnd-nI-1bQ"/>
+                                                            <constraint firstItem="6a2-nz-zxw" firstAttribute="top" secondItem="0sB-yK-YQX" secondAttribute="top" constant="5" id="bJ3-26-sNV"/>
+                                                            <constraint firstAttribute="bottom" secondItem="6a2-nz-zxw" secondAttribute="bottom" constant="5" id="ePF-Nr-NK8"/>
+                                                            <constraint firstItem="6a2-nz-zxw" firstAttribute="leading" secondItem="0sB-yK-YQX" secondAttribute="leading" constant="20" id="rpv-Ak-Igo"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="12"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="87.666666666666671" id="C0U-3E-tUa"/>
+                                                    <constraint firstItem="uJx-WI-Xdm" firstAttribute="top" secondItem="TFK-6x-gBH" secondAttribute="top" id="MsN-fY-c7r"/>
+                                                    <constraint firstItem="0sB-yK-YQX" firstAttribute="leading" secondItem="uJx-WI-Xdm" secondAttribute="leading" id="TaR-ta-Fcx"/>
+                                                    <constraint firstItem="0sB-yK-YQX" firstAttribute="top" secondItem="uJx-WI-Xdm" secondAttribute="bottom" constant="10" id="UD2-J3-BP6"/>
+                                                    <constraint firstAttribute="bottom" secondItem="0sB-yK-YQX" secondAttribute="bottom" id="iWz-kk-NJU"/>
+                                                    <constraint firstAttribute="trailing" secondItem="0sB-yK-YQX" secondAttribute="trailing" id="rAo-i7-UBk"/>
+                                                    <constraint firstItem="uJx-WI-Xdm" firstAttribute="leading" secondItem="TFK-6x-gBH" secondAttribute="leading" id="s3Q-gU-m9t"/>
+                                                    <constraint firstAttribute="trailing" secondItem="uJx-WI-Xdm" secondAttribute="trailing" id="vee-0v-k8f"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="oHK-RY-C2R">
@@ -293,6 +357,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="adminCommisonTF" destination="6a2-nz-zxw" id="FRL-d8-l9D"/>
                         <outlet property="headerView" destination="U9l-n1-cVg" id="jRc-r7-Qcc"/>
                         <outlet property="saveChangesButton" destination="zuc-tp-1y9" id="dOI-4e-woi"/>
                         <outlet property="taxTF" destination="Npy-UW-YgE" id="rbg-vJ-ijo"/>
@@ -2308,8 +2373,8 @@
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="starSize">
                                                                                 <real key="value" value="30"/>
                                                                             </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="image" keyPath="filledImage" value="ic_star_fill"/>
-                                                                            <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="ic_star_half_fil"/>
+                                                                            <userDefinedRuntimeAttribute type="image" keyPath="filledImage" value="filledStar"/>
+                                                                            <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="emptyStar"/>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
                                                                                 <integer key="value" value="5"/>
                                                                             </userDefinedRuntimeAttribute>
@@ -2361,8 +2426,8 @@
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="starSize">
                                                                                 <real key="value" value="30"/>
                                                                             </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="image" keyPath="filledImage" value="ic_star_fill"/>
-                                                                            <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="ic_star_half_fil"/>
+                                                                            <userDefinedRuntimeAttribute type="image" keyPath="filledImage" value="filledStar"/>
+                                                                            <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="emptyStar"/>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
                                                                                 <integer key="value" value="5"/>
                                                                             </userDefinedRuntimeAttribute>
@@ -7136,9 +7201,9 @@ Address Zone</string>
         <image name="delivered" width="29" height="29"/>
         <image name="deliveryFilter" width="50" height="38"/>
         <image name="downArrow" width="20" height="20"/>
+        <image name="emptyStar" width="10" height="10"/>
+        <image name="filledStar" width="10" height="10"/>
         <image name="greadientBorder" width="343" height="38"/>
-        <image name="ic_star_fill" width="10" height="10"/>
-        <image name="ic_star_half_fil" width="10" height="10"/>
         <image name="leftVector" width="9.6666669845581055" height="17.666666030883789"/>
         <image name="myOrderBag" width="30" height="30"/>
         <image name="nextRight" width="32" height="32"/>
