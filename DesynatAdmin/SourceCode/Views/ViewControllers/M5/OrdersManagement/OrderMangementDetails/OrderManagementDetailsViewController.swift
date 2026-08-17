@@ -130,8 +130,7 @@ class OrderManagementDetailsViewController: UIViewController {
     
     @IBAction func downloadInvoiceDidTapped(_ sender: Any) {
         let orderId = self.viewModel.orderDetail?.order?.orderID ?? ""
-        let urlString = "\(BaseURL.value())Invoice/\(orderId)"
-        
+        let urlString = "\(BaseURL.value())Invoice/\(orderId)?lang=\(AppLanguageManager.shared.currentLanguage.rawValue)"
         guard let url = URL(string: urlString) else {
             showAlert(msg: "Invalid invoice URL".localiz())
             return
