@@ -13,7 +13,7 @@ enum AppLanguage {
     case arabic
 
     static var current: AppLanguage {
-        let lang = UserDefaults.standard.string(forKey: "AppLanguage") ?? "en"
+        let lang = UserDefaults.standard.string(forKey: "AppLanguage") ?? "ar"
         return lang == "ar" ? .arabic : .english
     }
 }
@@ -21,7 +21,7 @@ enum AppLanguage {
 class LanguageManager {
 
     static var currentLanguageCode: String {
-        return UserDefaults.standard.string(forKey: "AppLanguage") ?? "en"
+        return UserDefaults.standard.string(forKey: "AppLanguage") ?? "ar"
     }
 
     static var isArabic: Bool {

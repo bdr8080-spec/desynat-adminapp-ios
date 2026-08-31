@@ -55,7 +55,7 @@ public class AppLanguageManager {
             
             var language = newValue
             if language == .deviceLanguage {
-                language = deviceLanguage ?? .en
+                language = deviceLanguage ?? .ar
             }
             
             UserDefaults.standard.set(language.rawValue, forKey: UserDefaultsKey.defaultLanguage.rawValue)

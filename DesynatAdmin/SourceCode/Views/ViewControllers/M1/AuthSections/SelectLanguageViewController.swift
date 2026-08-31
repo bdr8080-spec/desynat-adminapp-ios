@@ -15,7 +15,7 @@ class SelectLanguageViewController: UIViewController {
     @IBOutlet weak var imgArabic: UIImageView!
     @IBOutlet weak var imgEnglish: UIImageView!
     
-    var selectedLanguage: Languages = .en
+    var selectedLanguage: Languages = .ar
     
     // MARK: - View's LifeCycle Methods
     override func viewDidLoad() {
