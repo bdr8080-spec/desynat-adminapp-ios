@@ -24,14 +24,7 @@ class RefundManagementFilterViewModel {
             completion?()
         }
     }
-    
-//    func getAllCountryRequest(completion: (() -> Void)? = nil) {
-//        WebService.shared.getAllUsersCountryList(){ [weak self] response in
-//            guard let self = self else { return }
-//            allCountryListData = response
-//            completion?()
-//        }
-//    }
+
     func getAllCountryRequest(completion: (() -> Void)? = nil) {
         WebService.shared.getAllCountry(){ [weak self] response in
             guard let self = self else { return }

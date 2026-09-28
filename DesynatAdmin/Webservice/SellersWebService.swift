@@ -176,4 +176,20 @@ extension WebService {
             }
         }
     }
+    
+    func getSellerPayoutsRequests(param: [String :Any], completion:@escaping (_ user: SellerPayoutListDataModel)-> Void) {
+        CommonUtils.showHud(show: true)
+        NetworkManager.shared.request(withAPI:.endpoint(.getSellerPayouts), requestMethod: .get, requestParams: param, requestModel: SellerPayoutListDataModel.self) { result, code in
+            CommonUtils.showHud(show: false)
+            self.evaluateWebServiceResponse(response: result) { response, message,error in
+                guard let user = response else {
+                    if let error {
+                        UIApplication.shared.topViewController()?.showAlert(msg: error)
+                    }
+                    return
+                }
+                completion(user)
+            }
+        }
+    }
 }

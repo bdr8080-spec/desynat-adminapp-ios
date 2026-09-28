@@ -262,9 +262,10 @@ enum NetworkEndPoint: String {
     
     
     //Seller Story REQUEST MANAGEMENT
-    case getSellerPromoStory                   = "api/admin/get_seller_promotional_stories"
-    case approveSellerStoryRequest               = "api/admin/approve_story"
-    case rejectSellerStoryRequest                = "api/admin/reject_story"
+    case getSellerPromoStory                 = "api/admin/get_seller_promotional_stories"
+    case approveSellerStoryRequest           = "api/admin/approve_story"
+    case rejectSellerStoryRequest            = "api/admin/reject_story"
+    case getSellerPayouts                    = "api/admin/get_seller_payouts"
     
     func withBaseURL() -> String {
         return "\(BaseURL.value())\(self.rawValue)"

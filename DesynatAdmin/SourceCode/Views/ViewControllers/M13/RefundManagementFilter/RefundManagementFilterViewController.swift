@@ -119,9 +119,7 @@ class RefundManagementFilterViewController: UIViewController {
                     self.countryName = selectedCountry.nameAr ?? ""
                     self.countryLabel.text = selectedCountry.nameAr
                 }
-//                countryLabel.text = selectedCountry.name
                 countryId = id
-//                countryName = selectedCountry.name ?? ""
             }
         }
         
@@ -129,7 +127,7 @@ class RefundManagementFilterViewController: UIViewController {
         fromTextField.text = selectedFilter.fromDate
         toTextField.text = selectedFilter.toDate
         
-        // ✅ Status restore
+        // Status restore
         if let status = selectedFilter.status {
             selectedStatus = status
             
@@ -164,11 +162,10 @@ extension RefundManagementFilterViewController {
             datePicker.locale = Locale(identifier: "en")
             datePicker.semanticContentAttribute = .forceLeftToRight
         }
-        // 🔥 Key Change: Respect the disableFutureDateSelection flag
         if disbaleFutureDateSelection {
-            datePicker.maximumDate = Date()   // Disable future dates
+            datePicker.maximumDate = Date()
         } else {
-            datePicker.maximumDate = nil      // Allow future dates
+            datePicker.maximumDate = nil
         }
         
         let toolbar = UIToolbar()
