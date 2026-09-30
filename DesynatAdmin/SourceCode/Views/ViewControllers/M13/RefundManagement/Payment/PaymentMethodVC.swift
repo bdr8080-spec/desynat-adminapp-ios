@@ -11,6 +11,7 @@ enum PayFrom {
     case mySubscriptionPlan
     case storyManagementPayment
     case refundOrder
+    case sellerPayout
 }
 
 import UIKit
@@ -112,7 +113,23 @@ class PaymentMethodVC: UIViewController {
                         return
                     }
                 }
+        
+            
+        case .sellerPayout:
+            cardSelectionImageView.image = UIImage(named: "radioSelected")
+            isCardIsSlecteed = true
+            selectedPaymentMethodID = nil
+            creditDebitCardPayment(
+                invoiceValue: Decimal(payAmount),
+                orderId: transactionIds ?? ""
+            ) { [weak self] response, invoiceId, error in
+                guard let self = self else { return }
+                if let err = error {
+                    self.showAlert(msg: err.localizedDescription)
+                    return
+                }
             }
+        }
         }
     }
 }
@@ -134,6 +151,12 @@ extension PaymentMethodVC {
     
     func completeRefundOrder(_ paymentId:String) {
         self.viewModel.refundOrder(orderDetailId: orderId ?? 0, paymentId) {
+            self.navigationController?.popViewController(animated: false)
+        }
+    }
+    
+    func completeSellerPayout(_ paymentId:String) {
+        self.viewModel.sellerPayout(sellerID: orderId ?? 0, payAmount: payAmount, paymentId) {
             self.navigationController?.popViewController(animated: false)
         }
     }
@@ -207,6 +230,8 @@ extension PaymentMethodVC {
                 break
             case .refundOrder:
                 completeRefundOrder(paymentId)
+            case .sellerPayout:
+                completeSellerPayout(paymentId)
             }
         }
     }

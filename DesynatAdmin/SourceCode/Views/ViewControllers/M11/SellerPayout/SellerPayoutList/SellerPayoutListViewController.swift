@@ -73,6 +73,7 @@ extension SellerPayoutListViewController: UITableViewDelegate, UITableViewDataSo
         cell.configData(data: viewModel.sellerPayoutList[indexPath.row])
         cell.onManagePayoutTapped = { [weak self] in
             let nextVC = ManageSellerPayoutViewController.instantiate(fromAppStoryboard: .NotificationCMS)
+            nextVC.payoutDetails = self?.viewModel.sellerPayoutList[indexPath.row]
             self?.navigationController?.pushViewController(nextVC, animated: true)
         }
         return cell

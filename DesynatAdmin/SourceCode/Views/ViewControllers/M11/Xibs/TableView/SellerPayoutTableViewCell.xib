@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -253,6 +253,15 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="countryLabel" destination="H87-YL-vHs" id="Rou-Cf-let"/>
+                <outlet property="lastPayoutDateLabel" destination="SQc-3g-8HR" id="URy-IT-gQT"/>
+                <outlet property="lastPayoutLabel" destination="u2b-UW-Gvm" id="N5d-EN-tNB"/>
+                <outlet property="pendingAmountLabel" destination="Ob2-yl-coT" id="VbE-Xn-ofx"/>
+                <outlet property="totalEarningLabel" destination="nk9-ml-Vod" id="HhF-Ck-pCz"/>
+                <outlet property="userProfileImageView" destination="Be4-eX-CZe" id="f0n-HS-TDg"/>
+                <outlet property="usernameLabel" destination="djJ-cU-4Br" id="iKy-b4-Eow"/>
+            </connections>
             <point key="canvasLocation" x="329.7709923664122" y="73.591549295774655"/>
         </tableViewCell>
     </objects>
@@ -264,7 +273,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

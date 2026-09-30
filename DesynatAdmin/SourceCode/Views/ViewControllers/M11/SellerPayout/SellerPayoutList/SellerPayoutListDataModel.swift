@@ -7,7 +7,18 @@
 
 import Foundation
 
-// MARK: - SellerPayoutListDataModel
+// MARK: - SellerPayoutModel
+struct SellerPayoutModel: Codable {
+    let totalPayoutPending: String?
+    let sellers: SellerPayoutListDataModel?
+
+    enum CodingKeys: String, CodingKey {
+        case totalPayoutPending = "total_payout_pending"
+        case sellers
+    }
+}
+
+// MARK: - Sellers
 struct SellerPayoutListDataModel: Codable {
     let currentPage: Int?
     let data: [SellerPayoutListDataList]?
@@ -39,29 +50,71 @@ struct SellerPayoutListDataModel: Codable {
 
 // MARK: - SellerPayoutListDataList
 struct SellerPayoutListDataList: Codable {
-    let id, type, sellerID: Int?
-    let file: String?
-    let status: Int?
-    let thumbnail: String?
-    let createdAt, updatedAt, isPromotional, startDate: String?
-    let endDate, totalDays, amount, adminVerify: String?
-    let paymentStatus: String?
-    let transactionID, rejectReason: String?
+    let id: Int?
+    let type: String?
+    let parentID: String?
+    let profilePic: String?
+    let firstName, lastName, countryCode, mobile: String?
+    let email, password, acceptTerms, otp: String?
+    let otpVerify, deviceType: String?
+    let deviceToken: String?
+    let adminVerify, storeInformation, bankInformation: String?
+    let rejectReason: String?
+    let lang: String?
+    let isBlock: Int?
+    let affilateCommission, fcmToken: String?
+    let profileQr: String?
+    let qrSellerURL: String?
+    let createdAt, updatedAt: String?
+    let notification, appNotification: Int?
+    let nameAr, selectCategory, savePassword, deletedAt: String?
+    let sellerName: String?
+    let countryName, currencyCode, currencySymbol: String?
+    let totalEarning, lastPayout: String?
+    let lastPayoutDate: String?
+    let pendingAmount: String?
+    let storeInfo: StoreInfo?
 
     enum CodingKeys: String, CodingKey {
         case id, type
-        case sellerID = "seller_id"
-        case file, status, thumbnail
+        case parentID = "parent_id"
+        case profilePic = "profile_pic"
+        case firstName = "first_name"
+        case lastName = "last_name"
+        case countryCode = "country_code"
+        case mobile, email, password
+        case acceptTerms = "accept_terms"
+        case otp
+        case otpVerify = "otp_verify"
+        case deviceType = "device_type"
+        case deviceToken = "device_token"
+        case adminVerify = "admin_verify"
+        case storeInformation = "store_information"
+        case bankInformation = "bank_information"
+        case rejectReason = "reject_reason"
+        case lang
+        case isBlock = "is_block"
+        case affilateCommission = "affilate_commission"
+        case fcmToken = "fcm_token"
+        case profileQr = "profile_qr"
+        case qrSellerURL = "qrSellerUrl"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
-        case isPromotional = "is_promotional"
-        case startDate = "start_date"
-        case endDate = "end_date"
-        case totalDays = "total_days"
-        case amount
-        case adminVerify = "Admin_verify"
-        case paymentStatus = "payment_status"
-        case transactionID = "transaction_id"
-        case rejectReason = "reject_reason"
+        case notification
+        case appNotification = "app_notification"
+        case nameAr = "name_ar"
+        case selectCategory = "select_category"
+        case savePassword = "save_password"
+        case deletedAt = "deleted_at"
+        case sellerName = "seller_name"
+        case countryName = "country_name"
+        case currencyCode = "currency_code"
+        case currencySymbol = "currency_symbol"
+        case totalEarning = "total_earning"
+        case lastPayout = "last_payout"
+        case lastPayoutDate = "last_payout_date"
+        case pendingAmount = "pending_amount"
+        case storeInfo = "store_info"
     }
 }
+

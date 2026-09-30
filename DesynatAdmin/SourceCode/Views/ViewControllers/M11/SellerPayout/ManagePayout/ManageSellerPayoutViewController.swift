@@ -17,6 +17,9 @@ class ManageSellerPayoutViewController: UIViewController {
             listTableView.registerCellFromNib(cellID: "ManagePayoutTableViewCell")
         }
     }
+    
+    var payoutDetails: SellerPayoutListDataList?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,8 +31,12 @@ class ManageSellerPayoutViewController: UIViewController {
     
     @IBAction func addPayoutDidTapped(_ sender: Any) {
         let nextVC = AddPayoutAmountViewController.instantiate(fromAppStoryboard: .NotificationCMS)
-        nextVC.onSubmit = { [weak self] in
-            // Call API Here
+        nextVC.onSubmit = { [weak self] amount in
+            let vc = PaymentMethodVC.instantiate(fromAppStoryboard: .NotificationCMS)
+            vc.orderId = self?.payoutDetails?.storeInfo?.sellerId ?? 0
+            vc.paymentFrom = .sellerPayout
+            vc.payAmount = amount
+            self?.navigationController?.pushViewController(vc, animated: true)
         }
         self.navigationController?.present(nextVC, animated: true)
     }

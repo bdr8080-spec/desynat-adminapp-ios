@@ -49,7 +49,8 @@ class SellerPayoutListViewModel {
         }
         WebService.sharedInstance.getSellerPayoutsRequests(param: params) { [weak self] data in
             guard let self = self else { return }
-            let newData = data.data ?? []
+            let newData = data.sellers?.data ?? []
+            hostVC.totalPayoutPendingLabel.text = CommonUtils.formatPriceStringInput(data.totalPayoutPending)
             if self.currentPage == 1 {
                 self.sellerPayoutList = newData
             } else {

@@ -177,9 +177,25 @@ extension WebService {
         }
     }
     
-    func getSellerPayoutsRequests(param: [String :Any], completion:@escaping (_ user: SellerPayoutListDataModel)-> Void) {
+    func getSellerPayoutsRequests(param: [String :Any], completion:@escaping (_ user: SellerPayoutModel)-> Void) {
         CommonUtils.showHud(show: true)
-        NetworkManager.shared.request(withAPI:.endpoint(.getSellerPayouts), requestMethod: .get, requestParams: param, requestModel: SellerPayoutListDataModel.self) { result, code in
+        NetworkManager.shared.request(withAPI:.endpoint(.getSellerPayouts), requestMethod: .get, requestParams: param, requestModel: SellerPayoutModel.self) { result, code in
+            CommonUtils.showHud(show: false)
+            self.evaluateWebServiceResponse(response: result) { response, message,error in
+                guard let user = response else {
+                    if let error {
+                        UIApplication.shared.topViewController()?.showAlert(msg: error)
+                    }
+                    return
+                }
+                completion(user)
+            }
+        }
+    }
+    
+    func addSellerPayoutsRequests(param: [String :Any], completion:@escaping (_ user: EmptyModel)-> Void) {
+        CommonUtils.showHud(show: true)
+        NetworkManager.shared.request(withAPI:.endpoint(.transferSellerWithdrawRequest), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
             CommonUtils.showHud(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message,error in
                 guard let user = response else {

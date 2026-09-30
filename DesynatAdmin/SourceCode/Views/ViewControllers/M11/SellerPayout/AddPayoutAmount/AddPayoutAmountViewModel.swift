@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+class AddPayoutAmountViewModel {
+    
+    private var hostVC: AddPayoutAmountViewController
+    
+    init(hostVC: AddPayoutAmountViewController) {
+        self.hostVC = hostVC
+    }
+    
+    
+}

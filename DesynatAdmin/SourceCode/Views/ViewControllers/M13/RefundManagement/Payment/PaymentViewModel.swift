@@ -30,4 +30,15 @@ class PaymentViewModel {
         }
     }
     
+    func sellerPayout(sellerID: Int, payAmount: Double, _ transactionId: String, _ completion: @escaping () -> Void) {
+        let param: [String: Any] = ["transaction_id": transactionId,
+                                    "amount": payAmount,
+                                    "seller_id": sellerID]
+        WebService.shared.addSellerPayoutsRequests(param: param){ [weak self] response in
+            guard let self = self else { return }
+            completion()
+        }
+    }
+
+    
 }
