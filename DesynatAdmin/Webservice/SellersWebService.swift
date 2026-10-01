@@ -208,4 +208,20 @@ extension WebService {
             }
         }
     }
+    
+    func getSellerPayoutHistoryRequests(param: [String :Any], completion:@escaping (_ user: SellerPayoutDetails)-> Void) {
+        CommonUtils.showHud(show: true)
+        NetworkManager.shared.request(withAPI: .endpoint(.getSellerPayoutHistory), requestMethod: .get, requestParams: param, requestModel: SellerPayoutDetails.self) { result, code in
+            CommonUtils.showHud(show: false)
+            self.evaluateWebServiceResponse(response: result) { response, message,error in
+                guard let user = response else {
+                    if let error {
+                        UIApplication.shared.topViewController()?.showAlert(msg: error)
+                    }
+                    return
+                }
+                completion(user)
+            }
+        }
+    }
 }

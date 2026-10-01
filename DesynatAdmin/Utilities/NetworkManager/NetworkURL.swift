@@ -267,6 +267,7 @@ enum NetworkEndPoint: String {
     case rejectSellerStoryRequest            = "api/admin/reject_story"
     case getSellerPayouts                    = "api/admin/get_seller_payouts"
     case transferSellerWithdrawRequest       = "api/admin/transfer_seller_withdraw_request"
+    case getSellerPayoutHistory              = "api/admin/get_seller_payout_history"
     
     func withBaseURL() -> String {
         return "\(BaseURL.value())\(self.rawValue)"

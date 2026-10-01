@@ -2986,6 +2986,12 @@
                                     <outlet property="delegate" destination="99L-ia-aSK" id="wuN-EN-uAo"/>
                                 </connections>
                             </tableView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Result found " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zac-wL-kpt">
+                                <rect key="frame" x="131.33333333333337" y="439.66666666666669" width="130.66666666666663" height="22.666666666666686"/>
+                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vTk-Z8-H5Z">
                                 <rect key="frame" x="0.0" y="744" width="393" height="40"/>
                                 <subviews>
@@ -3045,11 +3051,13 @@
                         <viewLayoutGuide key="safeArea" id="DKg-rj-kpd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Zac-wL-kpt" firstAttribute="centerY" secondItem="DKg-rj-kpd" secondAttribute="centerY" id="0aU-AR-5c3"/>
                             <constraint firstItem="vTk-Z8-H5Z" firstAttribute="bottom" secondItem="DKg-rj-kpd" secondAttribute="bottom" id="3lI-Qz-hX6"/>
                             <constraint firstItem="Dwt-CW-KNY" firstAttribute="trailing" secondItem="DKg-rj-kpd" secondAttribute="trailing" id="731-wa-FyV"/>
                             <constraint firstItem="DKg-rj-kpd" firstAttribute="trailing" secondItem="Uot-vq-qSs" secondAttribute="trailing" constant="24" id="Dse-Lo-9Dy"/>
                             <constraint firstItem="Dwt-CW-KNY" firstAttribute="top" secondItem="DKg-rj-kpd" secondAttribute="top" id="EIv-Yb-qc1"/>
                             <constraint firstItem="vTk-Z8-H5Z" firstAttribute="trailing" secondItem="DKg-rj-kpd" secondAttribute="trailing" id="QOo-Vi-asN"/>
+                            <constraint firstItem="Zac-wL-kpt" firstAttribute="centerX" secondItem="DKg-rj-kpd" secondAttribute="centerX" id="WgX-A2-eyW"/>
                             <constraint firstItem="Uot-vq-qSs" firstAttribute="leading" secondItem="DKg-rj-kpd" secondAttribute="leading" constant="24" id="Wrk-ge-fK4"/>
                             <constraint firstItem="Uot-vq-qSs" firstAttribute="top" secondItem="Dwt-CW-KNY" secondAttribute="bottom" constant="20" id="b2N-CU-bEY"/>
                             <constraint firstItem="vTk-Z8-H5Z" firstAttribute="leading" secondItem="DKg-rj-kpd" secondAttribute="leading" id="i0K-ST-rwL"/>
@@ -3060,8 +3068,10 @@
                     <connections>
                         <outlet property="listTableView" destination="Uot-vq-qSs" id="0Dq-hk-v3d"/>
                         <outlet property="nextButtonOutlet" destination="RoX-QR-4nE" id="rc0-c9-hDO"/>
+                        <outlet property="noDataFoundLabel" destination="Zac-wL-kpt" id="8Zg-W5-k3v"/>
                         <outlet property="pageLabel" destination="yrY-wF-MN6" id="6Fm-ah-7CR"/>
                         <outlet property="previousButtonOutlet" destination="hW4-Ja-mhL" id="iI2-cH-DUU"/>
+                        <outlet property="totalPendingAmountLabel" destination="5xM-Ag-xrv" id="fYr-m7-p9J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jh8-rp-yMy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -8531,7 +8541,7 @@ dolor sit amet, consectetur..</string>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credit/ Debit Card" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dw4-4h-VX2" customClass="CustomLabelFont" customModule="DesynatAdmin" customModuleProvider="target">
-                                                        <rect key="frame" x="60" y="14.333333333333345" width="130" height="19.666666666666671"/>
+                                                        <rect key="frame" x="60" y="14.333333333333345" width="130" height="19.666666666666664"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -9211,8 +9221,8 @@ dolor sit amet, consectetur..</string>
         <image name="leftVector" width="9.6666669845581055" height="17.666666030883789"/>
         <image name="nextRight" width="32" height="32"/>
         <image name="paperplane.fill" catalog="system" width="128" height="119"/>
-        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus" width="64" height="64"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plusAdd" width="14" height="14"/>
         <image name="previousLeft" width="32" height="32"/>
         <image name="radioSelected" width="20" height="20"/>
@@ -9238,7 +9248,7 @@ dolor sit amet, consectetur..</string>
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
