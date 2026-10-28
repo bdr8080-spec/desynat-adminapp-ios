@@ -10,14 +10,14 @@ import UIKit
 import Alamofire
 extension WebService {
     func getServiceCities(parameter:[String:Any],completion: @escaping(AdminCityModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.getServiceCitites),
             requestMethod: .get,
             requestParams: parameter,
             requestModel: AdminCityModel.self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -30,14 +30,14 @@ extension WebService {
         }
     }
     func getZones(parameter:[String:Any],completion: @escaping(AdminZoneModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.getZone),
             requestMethod: .get,
             requestParams: parameter,
             requestModel: AdminZoneModel.self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -50,14 +50,14 @@ extension WebService {
         }
     }
     func getCities(countryId:String,completion: @escaping([CountryCitiesDataModel]) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.getCitites),
             requestMethod: .get,
             requestParams: [APIKeys.country_id:countryId],
             requestModel: [CountryCitiesDataModel].self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -70,7 +70,7 @@ extension WebService {
         }
     }
     func addCity(cityId:String,completion: @escaping(CountryCitiesDataModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.addServiceCity),
             requestMethod: .post,
@@ -78,7 +78,7 @@ extension WebService {
             encoding: JSONEncoding.default,
             requestModel: CountryCitiesDataModel.self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -91,7 +91,7 @@ extension WebService {
         }
     }
     func addZone(parameter:[String:Any],completion: @escaping(ZoneDataModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.addZone),
             requestMethod: .post,
@@ -99,7 +99,7 @@ extension WebService {
             encoding: JSONEncoding.default,
             requestModel: ZoneDataModel.self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -112,7 +112,7 @@ extension WebService {
         }
     }
     func updateZone(parameter:[String:Any],completion: @escaping(ZoneDataModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.updateZone),
             requestMethod: .post,
@@ -120,7 +120,7 @@ extension WebService {
             encoding: JSONEncoding.default,
             requestModel: ZoneDataModel.self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -133,7 +133,7 @@ extension WebService {
         }
     }
     func deleteCity(cityId:String,completion: @escaping(CountryCitiesDataModel?) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.deleteServiceCity),
             requestMethod: .post,
@@ -141,7 +141,7 @@ extension WebService {
             encoding: JSONEncoding.default,
             requestModel: CountryCitiesDataModel?.self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -154,7 +154,7 @@ extension WebService {
         }
     }
     func deleteZone(zoneId:String,completion: @escaping(ZoneDataModel?) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.delteZone),
             requestMethod: .post,
@@ -162,7 +162,7 @@ extension WebService {
             encoding: JSONEncoding.default,
             requestModel: ZoneDataModel?.self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -175,7 +175,7 @@ extension WebService {
         }
     }
     func changeCityStatus(cityId:String,completion: @escaping(CountryCitiesDataModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.changeServiceCityStatus),
             requestMethod: .post,
@@ -183,7 +183,7 @@ extension WebService {
             encoding: JSONEncoding.default,
             requestModel: CountryCitiesDataModel.self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -198,7 +198,7 @@ extension WebService {
         }
     }
     func changeZoneStatus(zoneID:String,completion: @escaping(ZoneDataModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.changeUpdateZoneStatus),
             requestMethod: .post,
@@ -206,7 +206,7 @@ extension WebService {
             encoding: JSONEncoding.default,
             requestModel: ZoneDataModel.self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {

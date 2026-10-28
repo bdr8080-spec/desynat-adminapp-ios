@@ -103,9 +103,9 @@ class AddZoneViewController: UIViewController {
     func searchLocation(text:String,_ completion:@escaping (String) -> Void)  {
         let placesClient : GMSPlacesClient = GMSPlacesClient.shared()
         let filter = GMSAutocompleteFilter()
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         placesClient.findAutocompletePredictions(fromQuery: text, filter: filter, sessionToken: GMSAutocompleteSessionToken.init()) {(results, error) in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             if let error = error {
                 return
             }

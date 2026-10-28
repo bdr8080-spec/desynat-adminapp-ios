@@ -12,14 +12,14 @@ import Alamofire
 extension WebService {
     
     func getActiveOrders(parameter:[String:Any],completion: @escaping(OrderListModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.activeOrders),
             requestMethod: .get,
             requestParams: parameter,
             requestModel: OrderListModel.self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -33,14 +33,14 @@ extension WebService {
     }
     
     func getReturnOrders(parameter:[String:Any],completion: @escaping(OrderListModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.returnOrders),
             requestMethod: .get,
             requestParams: parameter,
             requestModel: OrderListModel.self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -54,14 +54,14 @@ extension WebService {
     }
     
     func getCompletedOrders(parameter:[String:Any],completion: @escaping(OrderListModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.completedOrders),
             requestMethod: .get,
             requestParams: parameter,
             requestModel: OrderListModel.self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -75,14 +75,14 @@ extension WebService {
     }
     
     func getCancelledOrders(parameter:[String:Any],completion: @escaping(OrderListModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.cancelledOrders),
             requestMethod: .get,
             requestParams: parameter,
             requestModel: OrderListModel.self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -96,14 +96,14 @@ extension WebService {
     }
     
     func getOrderDetail(parameter:[String:Any],completion: @escaping(OrderData) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.singleOrderDetail),
             requestMethod: .get,
             requestParams: parameter,
             requestModel: OrderData.self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -117,14 +117,14 @@ extension WebService {
     }
     
     func getDeliveryBoy(parameter:[String:Any],completion: @escaping([DeliveryBoyListModel]) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.getDriversAssign),
             requestMethod: .get,
             requestParams: parameter,
             requestModel: [DeliveryBoyListModel].self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -138,14 +138,14 @@ extension WebService {
     }
     
     func assignDriver(parameter:[String:Any],completion: @escaping(EmptyModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.assignDriver),
             requestMethod: .post,
             requestParams: parameter,
             requestModel: EmptyModel.self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {

@@ -12,9 +12,9 @@ import Alamofire
 extension WebService {
     
     func getAffiliateCommissionByCities(completion: @escaping([CommissionPercentageModel]) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(withAPI: .endpoint(.countriesWithAffiliateCommission), requestMethod: .get, requestModel: [CommissionPercentageModel].self) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -28,9 +28,9 @@ extension WebService {
     }
     
     func updateCommissionByCities(param: [String:Any], completion: @escaping(EmptyModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(withAPI: .endpoint(.updateAffiliateCommission), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {

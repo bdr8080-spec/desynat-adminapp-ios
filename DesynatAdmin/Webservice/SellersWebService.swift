@@ -11,14 +11,14 @@ import Alamofire
 extension WebService {
     
     func getNewSellers(parameter:[String:Any],completion: @escaping(SellerModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.getNewSellers),
             requestMethod: .get,
             requestParams: parameter,
             requestModel: SellerModel.self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -31,14 +31,14 @@ extension WebService {
         }
     }
     func getApprovedSellers(parameter:[String:Any],completion: @escaping(SellerModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.getApprovedSellers),
             requestMethod: .get,
             requestParams: parameter,
             requestModel: SellerModel.self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -52,13 +52,13 @@ extension WebService {
     }
     
     func getApprovedSellersWithoutPagination(completion: @escaping([SellerDataModel]) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.getApprovedSellers),
             requestMethod: .get,
             requestModel: [SellerDataModel].self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -72,14 +72,14 @@ extension WebService {
     }
     
     func getRejectSellers(parameter:[String:Any],completion: @escaping(SellerModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.getRejectedSellers),
             requestMethod: .get,
             requestParams: parameter,
             requestModel: SellerModel.self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -92,7 +92,7 @@ extension WebService {
         }
     }
     func approveSellers(id:String,completion: @escaping(SellerDataModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.acceptSeller),
             requestMethod: .post,
@@ -100,7 +100,7 @@ extension WebService {
             encoding: JSONEncoding.default,
             requestModel: SellerDataModel.self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -113,7 +113,7 @@ extension WebService {
         }
     }
     func updateStatusSellers(id:String,completion: @escaping(SellerDataModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.blockUnBlockSeller),
             requestMethod: .post,
@@ -121,7 +121,7 @@ extension WebService {
             encoding: JSONEncoding.default,
             requestModel: SellerDataModel.self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -136,7 +136,7 @@ extension WebService {
         }
     }
     func rejectSellers(paramter:[String:Any],completion: @escaping(SellerDataModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.rejectSeller),
             requestMethod: .post,
@@ -144,7 +144,7 @@ extension WebService {
             encoding: JSONEncoding.default,
             requestModel: SellerDataModel.self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -157,14 +157,14 @@ extension WebService {
         }
     }
     func getSellerDetail(id:String,completion: @escaping(SellerDataModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.getSellerDetail),
             requestMethod: .get,
             requestParams: [APIKeys.seller_id:id],
             requestModel: SellerDataModel.self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -178,9 +178,9 @@ extension WebService {
     }
     
     func getSellerPayoutsRequests(param: [String :Any], completion:@escaping (_ user: SellerPayoutModel)-> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(withAPI:.endpoint(.getSellerPayouts), requestMethod: .get, requestParams: param, requestModel: SellerPayoutModel.self) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message,error in
                 guard let user = response else {
                     if let error {
@@ -194,9 +194,9 @@ extension WebService {
     }
     
     func addSellerPayoutsRequests(param: [String :Any], completion:@escaping (_ user: EmptyModel)-> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(withAPI:.endpoint(.transferSellerWithdrawRequest), requestMethod: .post, requestParams: param, requestModel: EmptyModel.self) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message,error in
                 guard let user = response else {
                     if let error {
@@ -210,9 +210,9 @@ extension WebService {
     }
     
     func getSellerPayoutHistoryRequests(param: [String :Any], completion:@escaping (_ user: SellerPayoutDetails)-> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(withAPI: .endpoint(.getSellerPayoutHistory), requestMethod: .get, requestParams: param, requestModel: SellerPayoutDetails.self) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message,error in
                 guard let user = response else {
                     if let error {

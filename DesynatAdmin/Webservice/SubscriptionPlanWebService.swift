@@ -11,7 +11,7 @@ import UIKit
 extension WebService {
     
     func addPlan(paramter:[String:Any],completion: @escaping(SubscriptionPlanDataModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.addPlan),
             requestMethod: .post,
@@ -19,7 +19,7 @@ extension WebService {
             encoding: JSONEncoding.default,
             requestModel: SubscriptionPlanDataModel.self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -32,14 +32,14 @@ extension WebService {
         }
     }
     func getSubscriptionPlan(countryId:String,completion: @escaping([SubscriptionPlanDataModel]) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.getPlans),
             requestMethod: .get,
             requestParams: [APIKeys.country_id: countryId],
             requestModel: [SubscriptionPlanDataModel].self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -52,14 +52,14 @@ extension WebService {
         }
     }
     func getSubscriptionPlanDetail(id:String,completion: @escaping(SubscriptionPlanDataModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.getPlanDetails),
             requestMethod: .get,
             requestParams: [APIKeys.plan_id:id],
             requestModel: SubscriptionPlanDataModel.self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -72,7 +72,7 @@ extension WebService {
         }
     }
     func updateStatusPlan(id:String,completion: @escaping(SubscriptionPlanDataModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.changePlanStatus),
             requestMethod: .post,
@@ -80,7 +80,7 @@ extension WebService {
             encoding: JSONEncoding.default,
             requestModel: SubscriptionPlanDataModel.self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -94,7 +94,7 @@ extension WebService {
         }
     }
     func deletePlan(id:String,completion: @escaping(SubscriptionPlanDataModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.deltePlan),
             requestMethod: .post,
@@ -102,7 +102,7 @@ extension WebService {
             encoding: JSONEncoding.default,
             requestModel: SubscriptionPlanDataModel.self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {
@@ -115,7 +115,7 @@ extension WebService {
         }
     }
     func editPlan(paramter:[String:Any],completion: @escaping(SubscriptionPlanDataModel) -> Void) {
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         NetworkManager.shared.request(
             withAPI: .endpoint(.updatePlan),
             requestMethod: .post,
@@ -123,7 +123,7 @@ extension WebService {
             encoding: JSONEncoding.default,
             requestModel: SubscriptionPlanDataModel.self
         ) { result, code in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             self.evaluateWebServiceResponse(response: result) { response, message, error in
                 guard let response = response else {
                     if let error {

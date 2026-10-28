@@ -697,9 +697,9 @@ class CommonUtils {
             UIApplication.shared.topViewController()?.showAlert(msg: AlertConstant.wentWrong.value())
             return
         }
-        CommonUtils.showHud(show: true)
+        Shimmer.shared.show(show: true)
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            CommonUtils.showHud(show: false)
+            Shimmer.shared.show(show: false)
             guard let data = data, error == nil else {
                 UIApplication.shared.topViewController()?.showAlert(msg: AlertConstant.wentWrong.value())
                 return
